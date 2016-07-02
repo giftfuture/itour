@@ -3,9 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>itour</title>
 <style type="text/css">
-<!--
 body {
 	margin-left: 0px;
 	margin-top: 0px;
@@ -48,10 +47,8 @@ body {
 .STYLE8 {font-size: 14px; line-height: 30px; color: #333333; font-family: "微软雅黑"; }
 .STYLE9 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #333333; }
 .STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
--->
 </style>
 </head>
-
 <body>
 <table width="200" border="0" cellspacing="0" cellpadding="0">
   <tr>
