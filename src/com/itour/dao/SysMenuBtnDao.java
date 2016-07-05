@@ -9,17 +9,16 @@ import com.itour.base.dao.BaseDao;
  * @author Administrator
  *
  */
-public interface SysMenuBtnDao<T> extends BaseDao<T> {
+public interface SysMenuBtnDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
-	public List<T> queryByMenuid(Integer menuid);
+	public List<SysMenuBtn> queryByMenuid(Integer menuid);
 	
-	public List<T> queryByMenuUrl(String url); 
+	public List<SysMenuBtn> queryByMenuUrl(String url); 
 	
 	public void deleteByMenuid(Integer menuid);
 	
-	public List<T> getMenuBtnByUser(Integer userid); 
+	public List<SysMenuBtn> getMenuBtnByUser(Integer userid); 
 	
 	
-	
-	public List<T> queryByAll();
+	public List<SysMenuBtn> queryByAll();
 }

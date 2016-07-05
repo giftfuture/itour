@@ -9,7 +9,7 @@ import com.itour.base.dao.BaseDao;
  * <b>作者：</b>fred<br>
  * <b>日期：</b> Jul 2, 2016 <br>
  */
-public interface CustomersDao<T> extends BaseDao<T> {
+public interface CustomersDao<Customers> extends BaseDao<Customers> {
 	
 	
 }

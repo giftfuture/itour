@@ -15,8 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import com.itour.base.web.BaseAction;
+import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.Customers;
@@ -31,18 +30,14 @@ import com.itour.service.CustomersService;
  * <b>日期：</b> Jul 2, 2016 <br>
  */ 
 @Controller
-@RequestMapping("/jeecgPerson") 
-public class CustomersController extends BaseAction{
+@RequestMapping("/customers") 
+public class CustomersController extends BaseController{
 	
 	private final static Logger log= Logger.getLogger(CustomersController.class);
 	
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private CustomersService<Customers> customersService; 
-	
-	
-	
-	
 	
 	/**
 	 * 

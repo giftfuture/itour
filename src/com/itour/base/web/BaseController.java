@@ -17,12 +17,11 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.URLUtils;
 import com.itour.base.util.edit.MyEditor;
 
-public class BaseAction{
+public class BaseController{
 	
 	public final static String SUCCESS ="success";  
 	
 	public final static String MSG ="msg";  
-	
 	
 	public final static String DATA ="data";  
 	

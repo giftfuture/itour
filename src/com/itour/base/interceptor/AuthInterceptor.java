@@ -14,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.itour.base.annotation.Auth;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
-import com.itour.base.web.BaseAction;
+import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
 
 
@@ -46,9 +46,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				}else{
 					response.setStatus(response.SC_GATEWAY_TIMEOUT);
 					Map<String, Object> result = new HashMap<String, Object>();
-					result.put(BaseAction.SUCCESS, false);
-					result.put(BaseAction.LOGOUT_FLAG, true);//登录标记 true 退出
-					result.put(BaseAction.MSG, "登录超时.");
+					result.put(BaseController.SUCCESS, false);
+					result.put(BaseController.LOGOUT_FLAG, true);//登录标记 true 退出
+					result.put(BaseController.MSG, "登录超时.");
 					HtmlUtil.writerJson(response, result);
 					return false;
 				}
@@ -67,8 +67,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					
 					response.setStatus(response.SC_FORBIDDEN);
 					Map<String, Object> result = new HashMap<String, Object>();
-					result.put(BaseAction.SUCCESS, false);
-					result.put(BaseAction.MSG, "没有权限访问,请联系管理员.");
+					result.put(BaseController.SUCCESS, false);
+					result.put(BaseController.MSG, "没有权限访问,请联系管理员.");
 					HtmlUtil.writerJson(response, result);
 					return false;
 				}

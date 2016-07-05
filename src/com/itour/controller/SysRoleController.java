@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.util.HtmlUtil;
-import com.itour.base.web.BaseAction;
+import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
@@ -27,9 +27,9 @@ import com.itour.service.SysRoleService;
  
 @Controller
 @RequestMapping("/sysRole") 
-public class SysRoleAction extends BaseAction{
+public class SysRoleController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysRoleAction.class);
+	private final static Logger log= Logger.getLogger(SysRoleController.class);
 	
 	// Servrice start
 	@Autowired(required=false) 

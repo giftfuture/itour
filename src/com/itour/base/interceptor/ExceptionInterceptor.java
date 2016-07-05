@@ -16,7 +16,7 @@ import com.itour.base.util.HtmlUtil;
 
 /**
  * 异常拦截器
- * @author  www.jeecg.org
+ * @author 
  *
  */
 public class ExceptionInterceptor extends HandlerInterceptorAdapter {

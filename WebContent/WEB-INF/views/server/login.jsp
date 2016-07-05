@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/views/server/resource.jsp" %>
+<%    
+String path = request.getContextPath();    
+// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
+// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
+pageContext.setAttribute("basePath",basePath);    
+%>
 <!DOCTYPE html>
 <html>
  <head>
+ <base href=" <%=basePath%>">
+ <meta http-equiv="pragma" content="no-cache">  
+ <meta http-equiv="cache-control" content="no-cache">  
+ <meta http-equiv="expires" content="0">      
+ <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+ <meta http-equiv="description" content="This is my page"> 
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title></title>
   <link rel="shortcut icon" href="resources/fc/images/icon/favicon.ico">
   <!--[if lt IE 9]>
@@ -14,10 +27,10 @@
 	EvPNG.fix('div, ul, img, li, input'); //EvPNG.fix('包含透明PNG图片的标签'); 多个标签之间用英文逗号隔开。
 </script>
   <![endif]-->
-  <link href="plug-in/login/css/zice.style.css" rel="stylesheet" type="text/css" />
-  <link href="plug-in/login/css/buttons.css" rel="stylesheet" type="text/css" />
-  <link href="plug-in/login/css/icon.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="plug-in/login/css/tipsy.css" media="all" />
+  <link href="js/plug-in/login/css/zice.style.css" rel="stylesheet" type="text/css" />
+  <link href="js/plug-in/login/css/buttons.css" rel="stylesheet" type="text/css" />
+  <link href="js/plug-in/login/css/icon.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="js/plug-in/login/css/tipsy.css" media="all" />
   <style type="text/css">
 html {
 	background-image: none;
@@ -60,17 +73,18 @@ label.iPhoneCheckLabelOn span {
 </style>
  </head>
  <body>
+ <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
   <div id="alertMessage"></div>
   <div id="successLogin"></div>
   <div class="text_success">
-   <img src="plug-in/login/images/loader_green.gif" alt="Please wait" />
+   <img src="js/plug-in/login/images/loader_green.gif" alt="Please wait" />
    <span>登陆成功!请稍后....</span>
   </div>
   <div id="login">
-   <div class="ribbon" style="background-image:url(plug-in/login/images/typelogin.png);"></div>
+   <div class="ribbon" style="background-image:url(js/plug-in/login/images/typelogin.png);"></div>
    <div class="inner">
     <div class="logo">
-     <img src="plug-in/login/images/toplogo.png"/>
+     <img src="js/plug-in/login/images/toplogo.png"/>
     </div>
     <div class="formLogin">
      <form name="formLogin" id="formLogin" action="loginController.do?login" check="checkuser.do" method="post">
@@ -109,11 +123,11 @@ label.iPhoneCheckLabelOn span {
    </div>
   </div>
   <!-- Link JScript-->
-  <script type="text/javascript" src="plug-in/jquery/jquery-1.8.3.min.js"></script>
-  <script type="text/javascript" src="plug-in/jquery/jquery.cookie.js"></script>
-  <script type="text/javascript" src="plug-in/login/js/jquery-jrumble.js"></script>
-  <script type="text/javascript" src="plug-in/login/js/jquery.tipsy.js"></script>
-  <script type="text/javascript" src="plug-in/login/js/iphone.check.js"></script>
-  <script type="text/javascript" src="plug-in/login/js/login.js"></script>
+  <script type="text/javascript" src="js/plug-in/jquery/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/plug-in/jquery/jquery.cookie.js"></script>
+  <script type="text/javascript" src="js/plug-in/login/js/jquery-jrumble.js"></script>
+  <script type="text/javascript" src="js/plug-in/login/js/jquery.tipsy.js"></script>
+  <script type="text/javascript" src="js/plug-in/login/js/iphone.check.js"></script>
+  <script type="text/javascript" src="js/plug-in/login/js/login.js"></script>
  </body>
 </html>

@@ -29,7 +29,7 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.util.TreeUtil;
 import com.itour.base.util.URLUtils;
 import com.itour.base.util.Constant.SuperAdmin;
-import com.itour.base.web.BaseAction;
+import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
@@ -39,10 +39,11 @@ import com.itour.service.SysMenuService;
 import com.itour.service.SysUserService;
 
 @Controller
-public class MainAction extends BaseAction {
+@RequestMapping("/main")
+public class MainController extends BaseController {
 
 	
-	private final static Logger log= Logger.getLogger(MainAction.class);
+	private final static Logger log= Logger.getLogger(MainController.class);
 	private String message = null;
 	// Servrice start
 	@Autowired(required=false) 
@@ -62,9 +63,9 @@ public class MainAction extends BaseAction {
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/login")
-	public ModelAndView  login(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ModelAndView login(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("login", context);
+		return forword("/server/login", context);
 	}
 	
 	

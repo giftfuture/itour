@@ -12,21 +12,42 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-autowire="byType">
 	<!-- Annotation Config -->	
 	<context:annotation-config/>
-	
+	<context:property-placeholder location="classpath*:conf.properties" />
 	<!-- 扫描Service -->
-	<context:component-scan base-package="com.jeecg.service" />
-	<context:component-scan base-package="scott.service.*" />
+	<context:component-scan base-package="com.itour.service" />
+	<context:component-scan base-package="com.itour.service.*" />
 	
 
 	<!-- ***************配置数据源************** -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">	
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">	
          <property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property> 
-         <property name="url"><value>jdbc:mysql://127.0.0.1:3306/jeecgmybatis?useUnicode=true&amp;charaterEncoding=utf-8</value></property> 
+         <property name="url"><value>jdbc:mysql://127.0.0.1:3306/itour?useUnicode=true&amp;charaterEncoding=utf-8</value></property> 
          <property name="username"><value>root</value></property> 
          <property name="password"><value></value></property>
-	</bean>
+	</bean> -->
 	
-	
+	<!-- 配置系统的数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="filters" value="stat" />
+		<property name="maxActive" value="10" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="50" />
+		<property name="maxOpenPreparedStatements" value="100" />
+	</bean>  
 	
 	<!-- ***************事务配置************** -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -34,8 +55,8 @@
 	</bean>
 
 	<aop:config>  
-        <aop:advisor pointcut="execution(* com.jeecg.service.*.*(..))"  advice-ref="txAdvice" />  
-        <aop:advisor pointcut="execution(* scott.service.*.*(..))"  advice-ref="txAdvice" />  
+        <aop:advisor pointcut="execution(* com.itour.service.*.*(..))"  advice-ref="txAdvice" />  
+        <aop:advisor pointcut="execution(* com.itour.base.service.*.*(..))"  advice-ref="txAdvice" />  
     </aop:config>  
   
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  
@@ -54,20 +75,19 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="mapperLocations">
 			 <list>
-			  	<value>classpath:com/jeecg/mapper/*Mapper.xml</value>
-			  	<value>classpath:scott/mapper/*/*Mapper.xml</value>
+			  	 <value>classpath:com/itour/mapper/*Mapper.xml</value> 
 			 </list>
 		</property>
 	</bean>
 	
 	<!-- 扫描mapper.java  -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" autowire="byName">    
-	    <property name="basePackage" value="com.jeecg.dao,scott.dao.*" />
+	<!--   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" autowire="byName">    
+	    <property name="basePackage" value="com.itour.dao,com.itour.dao,com.itour.base.dao" />
 	    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
+	</bean>   -->
 
   
 	<!-- Spring 工具类 -->
-	<bean id="springContextUtil" class="com.base.util.SpringContextUtil" />
+	<bean id="springContextUtil" class="com.itour.base.util.SpringContextUtil" />
 </beans>
 

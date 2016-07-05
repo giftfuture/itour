@@ -8,7 +8,7 @@ import com.itour.page.SysUserModel;
  * @author Administrator
  *
  */
-public interface SysUserDao<T> extends BaseDao<T> {
+public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
 	/**
 	 * 检查登录
@@ -16,7 +16,7 @@ public interface SysUserDao<T> extends BaseDao<T> {
 	 * @param pwd
 	 * @return
 	 */
-	public T queryLogin(SysUserModel model);
+	public SysMenuBtn queryLogin(SysUserModel model);
 	
 	
 	/**

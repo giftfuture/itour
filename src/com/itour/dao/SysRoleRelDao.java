@@ -10,7 +10,7 @@ import com.itour.entity.SysRoleRel;
  * @author Administrator
  *
  */
-public interface SysRoleRelDao<T> extends BaseDao<T> {
+public interface SysRoleRelDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
 	public void deleteByRoleId(java.util.Map<String, Object> param);
 	

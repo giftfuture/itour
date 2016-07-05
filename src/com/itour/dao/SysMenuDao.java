@@ -9,26 +9,26 @@ import com.itour.base.dao.BaseDao;
  * @author Administrator
  *
  */
-public interface SysMenuDao<T> extends BaseDao<T> {
+public interface SysMenuDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
 	/**
 	 * 查询所有系统菜单列表
 	 * @return
 	 */
-	public List<T> queryByAll();
+	public List<SysMenuBtn> queryByAll();
 	
 	
 	/**
 	 * 获取顶级菜单
 	 * @return
 	 */
-	public List<T> getRootMenu(java.util.Map map);
+	public List<SysMenuBtn> getRootMenu(java.util.Map map);
 	
 	/**
 	 * 获取子菜单
 	 * @return
 	 */
-	public List<T> getChildMenu();
+	public List<SysMenuBtn> getChildMenu();
 	
 	
 
@@ -37,7 +37,7 @@ public interface SysMenuDao<T> extends BaseDao<T> {
 	 * @param roleId
 	 * @return
 	 */
-	public List<T> getMenuByRoleId(Integer roleId);
+	public List<SysMenuBtn> getMenuByRoleId(Integer roleId);
 	
 	
 	/**
@@ -45,13 +45,13 @@ public interface SysMenuDao<T> extends BaseDao<T> {
 	 * @param userId
 	 * @return
 	 */
-	public List<T> getRootMenuByUser(Integer userId);
+	public List<SysMenuBtn> getRootMenuByUser(Integer userId);
 	
 	/**
 	 * 根据用户id查询子菜单菜单
 	 * @param userId
 	 * @return
 	 */
-	public List<T> getChildMenuByUser(Integer userId);
+	public List<SysMenuBtn> getChildMenuByUser(Integer userId);
 	
 }

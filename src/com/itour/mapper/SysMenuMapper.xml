@@ -17,7 +17,7 @@
 </resultMap>
 
 <!-- 扩展字段 -->
-<resultMap id="ExtResultMap" extends="BaseResultMap" type="com.jeecg.entity.SysMenu" >
+<resultMap id="ExtResultMap" extends="BaseResultMap" type="com.itour.entity.SysMenu" >
 	<result column="subCount" property="subCount"/>
 </resultMap>
 

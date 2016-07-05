@@ -18,7 +18,7 @@ import com.itour.base.entity.BaseEntity.STATE;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.MethodUtil;
 import com.itour.base.util.SessionUtils;
-import com.itour.base.web.BaseAction;
+import com.itour.base.web.BaseController;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
@@ -29,9 +29,9 @@ import com.itour.service.SysUserService;
  
 @Controller
 @RequestMapping("/sysUser") 
-public class SysUserAction extends BaseAction{
+public class SysUserController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysUserAction.class);
+	private final static Logger log= Logger.getLogger(SysUserController.class);
 	
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。

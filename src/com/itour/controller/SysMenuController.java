@@ -20,7 +20,7 @@ import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.TreeUtil;
-import com.itour.base.web.BaseAction;
+import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.page.SysMenuModel;
@@ -29,9 +29,9 @@ import com.itour.service.SysMenuService;
  
 @Controller
 @RequestMapping("/sysMenu") 
-public class SysMenuAction extends BaseAction{
+public class SysMenuController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysMenuAction.class);
+	private final static Logger log= Logger.getLogger(SysMenuController.class);
 	
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。

@@ -16,9 +16,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
-<title>åå§å¨å±±æµ·å­æ²å¾æ­¥ãé¿åªæ²ç©¿è¶æ¯æ£æ²</title>
+<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
 
 
 
@@ -31,13 +29,13 @@ body {
 	margin-bottom: 0px;
 }
 .h1-black {
-	font-family: "é»ä½";
+	font-family: "黑体";
 	font-size: 36px;
 	font-weight: bold;
 	color: #333333;
 }
 .h1-2 {
-	font-family: "é»ä½";
+	font-family: "黑体";
 	font-size: 36px;
 	color: #666666;
 }
@@ -46,7 +44,7 @@ body {
 	line-height: 40px;
 }
 .h2-24 {
-	font-family: "é»ä½";
+	font-family: "黑体";
 	font-size: 24px;
 }
 .f12-gao1 {
@@ -65,7 +63,7 @@ body {
 }
 .STYLE140 {color: #666666}
 .STYLE148 {color: #990000}
-.STYLE2 {font-family: "é»ä½"; font-size: 24px; color: #990000; }
+.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
 .STYLE3 {font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #990000; }
 .STYLE7 {color: #990000; font-weight: bold; }
 .STYLE9 {
@@ -76,16 +74,16 @@ body {
 .STYLE10 {color: #FF0000}
 .STYLE13 {color: #999999}
 .STYLE14 {color: #000000}
-.STYLE16 {color: #990000; font-family: "å¾®è½¯éé»"; }
-.STYLE18 {font-family: "å¾®è½¯éé»"}
-.STYLE23 {color: #000000; font-weight: bold; font-family: "å¾®è½¯éé»"; }
+.STYLE16 {color: #990000; font-family: "微软雅黑"; }
+.STYLE18 {font-family: "微软雅黑"}
+.STYLE23 {color: #000000; font-weight: bold; font-family: "微软雅黑"; }
 .STYLE24 {color: #333333}
 .STYLE27 {
 	font-size: 24px;
 	color: #990000;
 }
-.STYLE28 {font-family: "å¾®è½¯éé»"; font-size: 24px; color: #990000; }
-.STYLE29 {font-size: 14px; font-family: "å¾®è½¯éé»"; }
+.STYLE28 {font-family: "微软雅黑"; font-size: 24px; color: #990000; }
+.STYLE29 {font-size: 14px; font-family: "微软雅黑"; }
 -->
 </style>
 </head>
@@ -107,25 +105,25 @@ body {
         <td width="685"><table width="577" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
-            <td width="545"><span class="STYLE148"><span class="STYLE24">æ¥èªï¼</span>å°æ¹¾ ååç <span class="STYLE24">å¢å·ï¼</span>itours160701a</span></td>
+            <td width="545"><span class="STYLE148"><span class="STYLE24">来自：</span>台湾 刘先生 <span class="STYLE24">团号：</span>itours160701a</span></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td><a href="#">1.ç¬¬ä¸æ¬¡æ¹æ¡</a> <span class="STYLE140">2016-5-01</span><a href="#"><br />
-              2.ç¬¬äºæ¬¡æ¹æ¡</a> <span class="STYLE140">2016-5-03</span><a href="#"><br />
-                3.ç¬¬ä¸æ¬¡æ¹æ¡</a> <span class="STYLE140">2016-5-03<br />
-                  <a href="#">4.ç¬¬äºæ¬¡æ¹æ¡</a> 2016-5-08</span></td>
+            <td><a href="#">1.第一次方案</a> <span class="STYLE140">2016-5-01</span><a href="#"><br />
+              2.第二次方案</a> <span class="STYLE140">2016-5-03</span><a href="#"><br />
+                3.第三次方案</a> <span class="STYLE140">2016-5-03<br />
+                  <a href="#">4.第二次方案</a> 2016-5-08</span></td>
           </tr>
         </table></td>
         <td width="415"><table width="415" border="0" align="center" cellpadding="5" cellspacing="0">
           <tr>
             <td width="32"><img src="images/ask03.png" width="32" height="32" /></td>
-            <td width="99"><span class="STYLE2">è¡ç¨è¨è«</span></td>
-            <td width="254">è¨è«å¯ç¢¼ï¼<span class="STYLE126">
+            <td width="99"><span class="STYLE2">行程討論</span></td>
+            <td width="254">討論密碼：<span class="STYLE126">
               <input name="textfield322222" type="text" size="10" />
               <span class="STYLE140">
-                <input type="submit" name="Submit222222" value="é©è­" />
-              </span><a href="#">èªªæã</a></span></td>
+                <input type="submit" name="Submit222222" value="驗證" />
+              </span><a href="#">說明》</a></span></td>
           </tr>
         </table></td>
       </tr>
@@ -137,7 +135,7 @@ body {
 </table>
 <table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td class="h1-black">åå§å¨å±±æµ·å­æ²å¾æ­¥ãé¿åªæ²ç©¿è¶æ¯æ£æ²<span class="STYLE27"> ç¬¬ä¸æ¬¡æ¹æ¡ 2016-5-01</span></td>
+    <td class="h1-black">四姑娘山海子沟徒步、长坪沟穿越毕棚沟<span class="STYLE27"> 第一次方案 2016-5-01</span></td>
   </tr>
 </table>
 <br />
@@ -169,63 +167,63 @@ body {
       <tr>
         <td background="images/frame2-2.gif"><table border="0" align="center" cellpadding="5" cellspacing="0">
             <tr>
-              <td><div align="center"><span class="STYLE28">æ¦è¦ä¿¡æ¯</span></div></td>
+              <td><div align="center"><span class="STYLE28">概要信息</span></div></td>
             </tr>
 
             <tr>
               <td><table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
                 <tr>
-                  <td width="70" class="STYLE126"><div align="right" class="STYLE18"><strong>ç±»å</strong></div></td>
-                  <td width="350" class="STYLE29">å¾æ­¥ <a href="#">è¯´æ&gt;&gt;</a></td>
+                  <td width="70" class="STYLE126"><div align="right" class="STYLE18"><strong>类型</strong></div></td>
+                  <td width="350" class="STYLE29">徒步 <a href="#">说明&gt;&gt;</a></td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>æè¡å¤©æ°</strong></div></td>
-                  <td class="STYLE29">8å¤©7å¤  <a href="#">è¯´æ&gt;&gt;</a></td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>旅行天数</strong></div></td>
+                  <td class="STYLE29">8天7夜  <a href="#">说明&gt;&gt;</a></td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>åºå¢æ¥æ</strong></div></td>
-                  <td class="STYLE29">2016å¹´7æ1æ¥ è³ 2016å¹´7æ8æ¥</td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>出团日期</strong></div></td>
+                  <td class="STYLE29">2016年7月1日 至 2016年7月8日</td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>æé«æµ·æ</strong></div></td>
-                  <td class="STYLE29">4800ç±³</td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>最高海拔</strong></div></td>
+                  <td class="STYLE29">4800米</td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>èµ·å§å°</strong></div></td>
-                  <td class="STYLE29">æé½ <a href="#">è¯´æ&gt;&gt;</a></td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>起始地</strong></div></td>
+                  <td class="STYLE29">成都 <a href="#">说明&gt;&gt;</a></td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>å®æå°</strong></div></td>
-                  <td class="STYLE29">æé½</td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>完成地</strong></div></td>
+                  <td class="STYLE29">成都</td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>è·¯çº¿</strong></div></td>
-                  <td class="STYLE29">æé½âæ±¶å·âåå§å¨å±±âæé½</td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>路线</strong></div></td>
+                  <td class="STYLE29">成都—汶川—四姑娘山—成都</td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>äº¤éæ¹å¼</strong></div></td>
-                  <td class="STYLE29">é£æºãæ±½è½¦</td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>交通方式</strong></div></td>
+                  <td class="STYLE29">飞机、汽车</td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>å¾æ­¥é¾åº¦</strong></div></td>
-                  <td class="STYLE29"><img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-2.gif" width="16" height="16" /> <a href="#">è¯´æ&gt;&gt;</a></td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>徒步难度</strong></div></td>
+                  <td class="STYLE29"><img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-2.gif" width="16" height="16" /> <a href="#">说明&gt;&gt;</a></td>
                 </tr>
                 <tr>
-                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>å¾æ­¥è·ç¦» </strong></div></td>
+                  <td class="STYLE126"><div align="right" class="STYLE18"><strong>徒步距离 </strong></div></td>
                   <td class="STYLE29">25km</td>
                 </tr>
               </table>
-                <span class="STYLE16">*å¯æ ¹ææ¨çææ³åéæ°èª¿æ´è¡ç¨å²~</span><br />
+                <span class="STYLE16">*可根據您的情況再重新調整行程喲~</span><br />
 <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
   <tr>
     <td><img src="images/facebook.png" width="24" height="24" /></td>
-    <td><a href="#">åäº«è³FB</a></td>
+    <td><a href="#">分享至FB</a></td>
     <td><img src="images/share.png" width="24" height="24" /></td>
-    <td><a href="#">å¤å¶é¾æ¥</a></td>
+    <td><a href="#">复制链接</a></td>
     <td><img src="images/favorite01.png" width="24" height="24" /></td>
-    <td><a href="#">æ¶èæ¬é¡µ</a></td>
+    <td><a href="#">收藏本页</a></td>
     <td><img src="images/print.png" width="24" height="24" /></td>
-    <td><a href="#">æå°é¡µé¢</a></td>
+    <td><a href="#">打印页面</a></td>
   </tr>
 </table></td>
             </tr>
@@ -241,9 +239,9 @@ body {
 <br />
 <table width="1140" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">æ´ä½æ¦è§</span></div></td>
-    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">è¯¦ç»è¡ç¨</span></div></td>
-    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">è¡åéç¥</span></div></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">整体概览</span></div></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">详细行程</span></div></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">行前需知</span></div></td>
     <td width="110"><div align="center"></div></td>
     <td width="533">&nbsp;</td>
     <td width="84">&nbsp;</td>
@@ -256,23 +254,23 @@ body {
   <tr>
     <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
-        <td width="761" valign="top" class="STYLE126"><span class="STYLE3">è®¾è®¡çå¿µ</span><span class="STYLE2">ï¼</span><br />
+        <td width="761" valign="top" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
             <br />
-          * åå§å¨å±±è¢«è­½çºæ±æ¹çé¿ç¾åæ¯ï¼æ¯æ¶å¤éåèçå¤©å ãæ­¤ç·è·¯å¯ä»¥æ¬£è³é·åªæºï¼æµ·å­æºé¢¨åã<br />
+          * 四姑娘山被譽為東方的阿爾卑斯，是戶外運動者的天堂。此線路可以欣賞長坪溝，海子溝風光。<br />
           <br />
-          * é·åªæºç©¿è¶ç¢æ£æºæ¯ä¸­ååå¤§æä½³å¾æ­¥ç·è·¯ä¹ä¸ã<br />
+          * 長坪溝穿越畢棚溝是中國十大最佳徒步線路之一。<br />
           <br />
-          * å°æ¥­é éååå°çºæ¨æä¾åå¤è£çµ¦åç©¿è¶ä¿éãæ¨åªéè¦è¼è£ä¸é£å³å¯ ï¼ï¼<br />
+          * 專業領隊及向導為您提供后勤補給及穿越保障。您只需要輕裝上陣即可 ：）<br />
           <br />
-          <span class="STYLE16">âæ³å»åª~å¸¶ä½ å»ï¼å»å¹¾å¤©~é¨ä¾¿æ¨ï¼ä¸å©åäººOKï¼ä¸äºå¥½åäº¦å¯ï¼å¤äººåè¡ä¹è¡ã<br />
-â<strong>æ²¡ææå¥½çè¡ç¨ï¼åªææéåæ¨çæç¨ï¼æ¯æ¢ç·è·¯åå¯éæ°å®è£½ã</strong><br />
-âæä»¬äºè§£æ¨ççèï¼æ¨åªè² è²¬æè¡ï¼å¶å®çäº¤çµ¦ä¸»è§æè¡å§ã <br />
+          <span class="STYLE16">★想去哪~帶你去，去幾天~隨便您，一兩個人OK，三五好友亦可，多人同行也行。<br />
+★<strong>没有最好的行程，只有最适合您的旅程，每條線路均可重新定製。</strong><br />
+★我们了解您的疑虑，您只負責旅行，其它的交給主角旅行吧。 <br />
           </span><br />
           <br />
         </td>
-        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">è¡ç¨å°å¾</span><br />
+        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
                 <img src="img-test/map-002.jpg" width="260" height="127" /><br />
-          ç¹å»å¾çæ¾å¤§</div>
+          点击图片放大</div>
             <br />
             <br />
         </td>
@@ -280,77 +278,77 @@ body {
     </table>
       <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
-          <td width="761" valign="top" class="STYLE126"><span class="STYLE3">ç®è¦è¡ç¨</span><span class="STYLE2">ï¼</span></td>
+          <td width="761" valign="top" class="STYLE126"><span class="STYLE3">简要行程</span><span class="STYLE2">：</span></td>
         </tr>
       </table>
       <table width="1100" border="0" align="center" cellpadding="5" cellspacing="1">
         <tr>
           <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center"><strong><strong>å¤©æ°</strong></strong></div>
+            <div align="center"><strong><strong>天数</strong></strong></div>
           </div></td>
           <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center"><strong><strong>è¡ç¨</strong></strong></div>
+            <div align="center"><strong><strong>行程</strong></strong></div>
           </div></td>
           <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center">éç¨</div>
+            <div align="center">里程</div>
           </div></td>
           <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center">æ¯ç¹</div>
+            <div align="center">景点</div>
           </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">é¤é£</div></td>
+          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">餐食</div></td>
           <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center">ä½å®¿</div>
+            <div align="center">住宿</div>
           </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">éåº</div></td>
+          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">酒店</div></td>
         </tr>
         <tr>
           <td width="40" valign="middle" class="STYLE126"><div align="center">1</div></td>
-          <td width="431" valign="middle" class="STYLE126">æé½-åå§å¨å±±</td>
+          <td width="431" valign="middle" class="STYLE126">成都-四姑娘山</td>
           <td width="45" valign="middle" class="STYLE126">310km</td>
-          <td width="372" valign="middle" class="STYLE126">ãå·´éå±±ã</td>
+          <td width="372" valign="middle" class="STYLE126">【巴郎山】</td>
           <td width="106" valign="middle" class="STYLE126">&nbsp;</td>
-          <td width="106" valign="middle" class="STYLE126">åå§å¨å±±é</td>
+          <td width="106" valign="middle" class="STYLE126">四姑娘山镇</td>
           <td width="106" valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
         <tr>
           <td valign="middle" class="STYLE126"><div align="center">2</div></td>
-          <td valign="middle" class="STYLE126">å¾æ­¥ï¼æµ·å­æº</td>
+          <td valign="middle" class="STYLE126">徒步：海子溝</td>
           <td valign="middle" class="STYLE126">30km</td>
-          <td valign="middle" class="STYLE126">ãæµ·å­æ²ã</td>
+          <td valign="middle" class="STYLE126">【海子沟】</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">åå§å¨å±±é</td>
+          <td valign="middle" class="STYLE126">四姑娘山镇</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
         <tr>
           <td valign="middle" class="STYLE126"><div align="center">3</div></td>
-          <td valign="middle" class="STYLE126">æ¥é-10km-ååå¯º-5km-æ¯æ æ»©-7km-æ¨éª¡å­</td>
+          <td valign="middle" class="STYLE126">日隆-10km-喇嘛寺-5km-枯树滩-7km-木骡子</td>
           <td valign="middle" class="STYLE126">22Km</td>
-          <td valign="middle" class="STYLE126">ã<a href="Destinations-sgnscpg.html" target="_blank">é¿åªæ²</a>ã</td>
+          <td valign="middle" class="STYLE126">【<a href="Destinations-sgnscpg.html" target="_blank">长坪沟</a>】</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">é²è¥</td>
+          <td valign="middle" class="STYLE126">露营</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
         <tr>
           <td valign="middle" class="STYLE126"><div align="center">4</div></td>
-          <td valign="middle" class="STYLE126">æ¨éª¡å­-3km-æ°´æå-11m-åå­æ²å°¾è¥å° Â </td>
+          <td valign="middle" class="STYLE126">木骡子-3km-水打坝-11m-叉子沟尾营地  </td>
           <td valign="middle" class="STYLE126">14km</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">é²è¥</td>
+          <td valign="middle" class="STYLE126">露营</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
         <tr>
           <td valign="middle" class="STYLE126"><div align="center">5</div></td>
-          <td valign="middle" class="STYLE126">åå­æ²å°¾-å­å£-ä¸é¢æ -ç½é¾çå¸-åçæ¹-ä¸æµ·å­æ¥å¾ç«-çå¿</td>
+          <td valign="middle" class="STYLE126">叉子沟尾-垭口-三颗树-白龙瀑布-卓玛湖-上海子接待站-理县</td>
           <td valign="middle" class="STYLE126">23km</td>
-          <td valign="middle" class="STYLE126">ãæ¯æ£æ²ã</td>
+          <td valign="middle" class="STYLE126">【毕棚沟】</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">çå¿/æ±¶å·</td>
+          <td valign="middle" class="STYLE126">理县/汶川</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
         <tr>
           <td valign="middle" class="STYLE126"><div align="center">6</div></td>
-          <td valign="middle" class="STYLE126">è¿åæé½</td>
+          <td valign="middle" class="STYLE126">返回成都</td>
           <td valign="middle" class="STYLE126">200k</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
@@ -361,7 +359,7 @@ body {
       <br />
       <table width="1100" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td><span class="STYLE7">æ³¨ï¼ä»¥ä¸è¡ç¨åä¾åèï¼å¯æ ¹æ®æ¨çåæéæ°è°æ´è®¾è®¡ã</span></td>
+          <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
         </tr>
       </table>  
       <br /></td>
@@ -375,7 +373,7 @@ body {
 <table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">æå¡åæ¥ä»·</span></span></span></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -388,63 +386,63 @@ body {
           <td valign="top"><br />
           <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
               <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>é¨ç¥¨ï¼</strong></p></td>
-                <td width="529"><span class="STYLE126"> 1.</span>æµ·å­æ²é¨ç¥¨50å<br />
-                    <span class="STYLE126">2.</span>é¿åªæ²æ·å¤é¨ç¥¨150å<br />
-                    <span class="STYLE126">3.æ¯æ£æ²é¨ç¥¨80å/äºº
-                      è§åè½¦ 70å/äºº</span></td>
-                <td width="444">350å/äºº</td>
+                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
+                <td width="529"><span class="STYLE126"> 1.</span>海子沟门票50元<br />
+                    <span class="STYLE126">2.</span>长坪沟户外门票150元<br />
+                    <span class="STYLE126">3.毕棚沟门票80元/人
+                      观光车 70元/人</span></td>
+                <td width="444">350元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>å¯¼æ¸¸ï¼</strong></div></td>
-                <td><span class="STYLE126"> å¨ç¨ä¸­æå¯¼æ¸¸ </span></td>
-                <td>450å/äºº</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
+                <td><span class="STYLE126"> 全程中文导游 </span></td>
+                <td>450元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>éåºï¼<br />
+                <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
                 </strong></div></td>
-                <td>1.è´µå±±åå¡éåº 2å¤<br />
-                  2.é²è¥ 2å¤ <br />
-                  3.æ±¶å·å¤§éåº 1å¤<br />
+                <td>1.贵山商务酒店 2夜<br />
+                  2.露营 2夜 <br />
+                  3.汶川大酒店 1夜<br />
                   <span class="STYLE10"></span></td>
-                <td>420å/äºº</td>
+                <td>420元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>ç¨è½¦ï¼<br />
+                <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
                 </strong></div></td>
-                <td><span class="STYLE126"> å¨ç¨ç¨è½¦</span><br /></td>
-                <td>1100å/äºº</td>
+                <td><span class="STYLE126"> 全程用车</span><br /></td>
+                <td>1100元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>ç¨é¤ï¼<br />
+                <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
                           <br />
                 </strong></div></td>
-                <td><label> æ©é¤éåºç¨<br />
-                  æ­£é¤ å±11é¤ï¼ç¹è²é¤2é¤ï¼<span class="STYLE126">é¦åæè¯è³ç«é </span>ãéå°åå·ç«éï¼</label>              </td>
-                <td>500å/äºº</td>
+                <td><label> 早餐酒店用<br />
+                  正餐 共11餐，特色餐2餐（<span class="STYLE126">钦善斋药膳火锅 </span>、道地四川火锅）</label>              </td>
+                <td>500元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>ä¿é©ï¼</strong></div></td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
                 <td><span class="STYLE126">
                   <label></label>
-                </span><span class="STYLE126">åå®¾ææ¸¸æå¤ä¿é© </span></td>
-                <td>10å/äºº</td>
+                </span><span class="STYLE126">内宾旅游意外保险 </span></td>
+                <td>10元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>ç»¼è´¹</strong><strong>ï¼</strong></div></td>
-                <td><span class="STYLE126">æè¡ç¤¾ç»¼åæå¡è´¹</span></td>
-                <td>200å/äºº</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
+                <td><span class="STYLE126">旅行社综合服务费</span></td>
+                <td>200元/人</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>å¨±ä¹ï¼</strong></div></td>
-                <td>æé½å·å§è¡¨æ¼ </td>
-                <td>200å/äºº</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
+                <td>成都川剧表演 </td>
+                <td>200元/人</td>
               </tr>
 
               <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>æ¥ä»·</strong></div></td>
-                <td>å¤§äººï¼3230å/äºº*4äºº<br />
-                  å°å­©ï¼2330å/äºº*2äººï¼å°å­©ä¸å«é¨ç¥¨ï¼ </td>
+                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
+                <td>大人：3230元/人*4人<br />
+                  小孩：2330元/人*2人（小孩不含门票） </td>
                 <td>&nbsp;</td>
               </tr>
 
@@ -462,7 +460,7 @@ body {
 <table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><span class="h2-24"><img src="images/detail.png" width="32" height="32" /></span></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">è¯¦ç»æ¥ç¨</span></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -473,13 +471,13 @@ body {
     <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 01 </strong></td>
-            <td width="972"><span class="STYLE9">æé½-åå§å¨å±±</span><span class="STYLE148"><strong> 310km ä½ï¼åå§å¨å±±é® </strong></span></td>
+            <td width="972"><span class="STYLE9">成都-四姑娘山</span><span class="STYLE148"><strong> 310km 住：四姑娘山鎮 </strong></span></td>
           </tr>
           <tr>
             <td valign="top">&nbsp;</td>
-            <td valign="top"><span class="STYLE126">æé½åºç¼ï¼ç¿»è¶å·´éå±±ï¼æµéåå§å¨å±±ï¼é©æé«åæµ·æã<br />
+            <td valign="top"><span class="STYLE126">成都出發，翻越巴郎山，抵達四姑娘山，適應高原海拔。<br />
                   <br />
-              ãå·´éå±±ãæµ·æ5040ç±³ï¼ä½å¶æ¯è²æä¸ºç¾ä¸½ï¼ç½äºå¦æµ·ï¼éªå±±è¿ç»µï¼èç¸èµ·ä¼<span class="STYLE10">ãï¼å¤æ³¨ï¼è°ç¨æ¯åºçç®è¿°åå¾ç å¯éå¾çï¼<br />
+              【巴郎山】海拔5040米，但其景色极为美丽，白云如海，雪山连绵，草甸起伏<span class="STYLE10">。（备注：调用景区的简述和图片 可选图片）<br />
                 <br />
                 </span></span>
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
@@ -487,7 +485,7 @@ body {
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
                   </tr>
                   <tr>
-                    <td class="STYLE126"><div align="center">å·´éå±±</div></td>
+                    <td class="STYLE126"><div align="center">巴郎山</div></td>
                   </tr>
               </table></td>
           </tr>
@@ -495,13 +493,13 @@ body {
         <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 02 </strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">å¾æ­¥ï¼æµ·å­æº</span> 30km ä½ï¼åå§å¨å±±é</strong></span></td>
+            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">徒步：海子溝</span> 30km 住：四姑娘山镇</strong></span></td>
           </tr>
           <tr>
             <td valign="top">&nbsp;</td>
-            <td valign="top">æµ·å­æ²å£å¾æ­¥ä¸å¤©ãå¯å¸¦ä¸äºå¹²ç²®ï¼æä¸ååå§å¨å±±éä¸ä½ã<br />
+            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
                 <br />
-                <span class="STYLE126">ãæµ·å­æ²ã</span>ï¼é£æ¯å¦ç»<br />
+                <span class="STYLE126">【海子沟】</span>：风景如画<br />
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
@@ -509,9 +507,9 @@ body {
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
                   </tr>
                   <tr>
-                    <td class="STYLE126"><div align="center">æµ·å­æ²</div></td>
-                    <td class="STYLE126"><div align="center">æµ·å­æ²å¾æ­¥</div></td>
-                    <td><div align="center">å¾æ­¥</div></td>
+                    <td class="STYLE126"><div align="center">海子沟</div></td>
+                    <td class="STYLE126"><div align="center">海子沟徒步</div></td>
+                    <td><div align="center">徒步</div></td>
                   </tr>
               </table></td>
           </tr>
@@ -519,13 +517,13 @@ body {
         <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 03 </strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">åå§å¨å±±é-10km-ååå¯º-5km-æ¯æ æ»©-7km-æ¨éª¡å­ 22km ä½ï¼æ¨éª¡å­è¥å° </span></strong></span></td>
+            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
           </tr>
           <tr>
             <td valign="top">&nbsp;</td>
-            <td valign="top">æµ·å­æ²å£å¾æ­¥ä¸å¤©ãå¯å¸¦ä¸äºå¹²ç²®ï¼æä¸ååå§å¨å±±éä¸ä½ã<br />
+            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
                 <br />
-                <span class="STYLE126">ãæµ·å­æ²ã</span>ï¼é£æ¯å¦ç»<br />
+                <span class="STYLE126">【海子沟】</span>：风景如画<br />
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
@@ -533,8 +531,8 @@ body {
                     <td><div align="center"></div></td>
                   </tr>
                   <tr>
-                    <td class="STYLE126"><div align="center">é¿åªæ²å¾æ­¥</div></td>
-                    <td class="STYLE126"><div align="center">é¿åªæ²</div></td>
+                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
+                    <td class="STYLE126"><div align="center">长坪沟</div></td>
                     <td><div align="center"></div></td>
                   </tr>
               </table></td>
@@ -543,13 +541,13 @@ body {
         <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 04</strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">åå§å¨å±±é-10km-ååå¯º-5km-æ¯æ æ»©-7km-æ¨éª¡å­ 22km ä½ï¼æ¨éª¡å­è¥å° </span></strong></span></td>
+            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
           </tr>
           <tr>
             <td valign="top">&nbsp;</td>
-            <td valign="top">æµ·å­æ²å£å¾æ­¥ä¸å¤©ãå¯å¸¦ä¸äºå¹²ç²®ï¼æä¸ååå§å¨å±±éä¸ä½ã<br />
+            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
                 <br />
-                <span class="STYLE126">ãæµ·å­æ²ã</span>ï¼é£æ¯å¦ç»<br />
+                <span class="STYLE126">【海子沟】</span>：风景如画<br />
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
@@ -557,9 +555,9 @@ body {
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
                   </tr>
                   <tr>
-                    <td class="STYLE126"><div align="center">æµ·å­æ²</div></td>
-                    <td class="STYLE126"><div align="center">æµ·å­æ²å¾æ­¥</div></td>
-                    <td><div align="center">å¾æ­¥</div></td>
+                    <td class="STYLE126"><div align="center">海子沟</div></td>
+                    <td class="STYLE126"><div align="center">海子沟徒步</div></td>
+                    <td><div align="center">徒步</div></td>
                   </tr>
                 </table></td>
           </tr>
@@ -567,13 +565,13 @@ body {
         <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 05</strong></td>
-            <td width="972"><span class="STYLE3"><strong><span class="STYLE126">åå§å¨å±±é-10km-ååå¯º-5km-æ¯æ æ»©-7km-æ¨éª¡å­ 22km ä½ï¼æ¨éª¡å­è¥å° </span></strong></span></td>
+            <td width="972"><span class="STYLE3"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
           </tr>
           <tr>
             <td valign="top">&nbsp;</td>
-            <td valign="top">æµ·å­æ²å£å¾æ­¥ä¸å¤©ãå¯å¸¦ä¸äºå¹²ç²®ï¼æä¸ååå§å¨å±±éä¸ä½ã<br />
+            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
                 <br />
-                <span class="STYLE126">ãæµ·å­æ²ã</span>ï¼é£æ¯å¦ç»<br />
+                <span class="STYLE126">【海子沟】</span>：风景如画<br />
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
@@ -581,8 +579,8 @@ body {
                     <td><div align="center"></div></td>
                   </tr>
                   <tr>
-                    <td class="STYLE126"><div align="center">é¿åªæ²å¾æ­¥</div></td>
-                    <td class="STYLE126"><div align="center">é¿åªæ²</div></td>
+                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
+                    <td class="STYLE126"><div align="center">长坪沟</div></td>
                     <td><div align="center"></div></td>
                   </tr>
               </table></td>
@@ -591,13 +589,13 @@ body {
         <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 06</strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">åå§å¨å±±é-10km-ååå¯º-5km-æ¯æ æ»©-7km-æ¨éª¡å­ 22km ä½ï¼æ¨éª¡å­è¥å° </span></strong></span></td>
+            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
           </tr>
           <tr>
             <td valign="top">&nbsp;</td>
-            <td valign="top">æµ·å­æ²å£å¾æ­¥ä¸å¤©ãå¯å¸¦ä¸äºå¹²ç²®ï¼æä¸ååå§å¨å±±éä¸ä½ã<br />
+            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
                 <br />
-                <span class="STYLE126">ãæµ·å­æ²ã</span>ï¼é£æ¯å¦ç»<br />
+                <span class="STYLE126">【海子沟】</span>：风景如画<br />
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
                     <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
@@ -605,8 +603,8 @@ body {
                     <td><div align="center"></div></td>
                   </tr>
                   <tr>
-                    <td class="STYLE126"><div align="center">é¿åªæ²å¾æ­¥</div></td>
-                    <td class="STYLE126"><div align="center">é¿åªæ²</div></td>
+                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
+                    <td class="STYLE126"><div align="center">长坪沟</div></td>
                     <td><div align="center"></div></td>
                   </tr>
               </table></td>
@@ -621,7 +619,7 @@ body {
 <table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">è¡åéç¥</span></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -631,14 +629,14 @@ body {
   <tr>
     <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
-          <td>âè¡£ï¼é«åçé½åå¾ç¾ä¹æå·äººï¼å¢¨é¡å¸¶æ²¿çå¸½å­é²æ¬é²ç­æ¯å¿è¦çï¼å¸¶ä»¶å¤å¥ï¼é½åä¸çæº«åº¦åé°æ¶¼èé½æå¾å¤§çå·®å¥ï¼é¨æå è¡£ï¼<br />
-âé£ï¼é£²é£åå§å°å·®å¥ä¸å¤§ï¼åç¨®èç³»åºæ¬é½æï¼æèè¶£éå¯ä»¥ååå°éçèé¤ä»¥åå°åº¦å°¼æ³ç¾ç­é¢¨å³ï¼åå¥æ¯é»éè¦æåçºæ¨æºåè·¯é¤ï¼<br />
-âä½ï¼éåºèå§å°å¥ç¡äºè´ï¼éåºéå¥è¨­æ½ç¥å°ä¸äºï¼ä½å®¢æ¿åå§å°åæ¨£èé©ï¼æç´éåºéåæ°§æ°£ç¶ç­ä¾æ°§è¨­åï¼<br />
-âè¡ï¼æåçå¸¸è¦è§åè¡ç¨æéä¹èï¼è·¯æ³é½éå¸¸å¥½ä¸è¬é½ä½¿ç¨ç©ºèª¿å·å·´ï¼æéä¸­ï¼åå¨èé©çåº§æ¤ä¸ï¼çªå¤å¨æ¯é¢¨æ¯ã<br />
+          <td>★衣：高原的陽光很美也易傷人，墨鏡帶沿的帽子防曬露等是必要的，帶件外套，陽光下的溫度和陰涼處都有很大的差別，隨時加衣；<br />
+★食：飲食和內地差別不大，各種菜系基本都有，有興趣還可以品嘗地道的藏餐以及印度尼泊爾等風味，個別景點需要我們為您準備路餐；<br />
+★住：酒店與內地別無二致，酒店配套設施略少一些，但客房和內地同樣舒適，星級酒店配備氧氣瓶等供氧設備；<br />
+★行：我們的常規觀光行程所達之處，路況都非常好一般都使用空調冷巴，旅途中，坐在舒適的座椅上，窗外全是風景。<br />
 <br />
-åèè³æï¼<br />
-1.<a href="#">é«åæéæ³¨æé ç®</a><br />
-2.<a href="#">é«ååæ</a></td>
+參考資料：<br />
+1.<a href="#">高原旅遊注意項目</a><br />
+2.<a href="#">高原反應</a></td>
         </tr>
       </table>
     <p>&nbsp;</p></td>
@@ -647,7 +645,7 @@ body {
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-è¾å¥è®¨è®ºå¯ç ååºç°ä¸é¢çè®¨è®ºåºï¼ä¸¦ä¸å±å¹é¡¯ç¾èªååæå°éåä½ç½®é¡¯ç¤ºï¼ï¼æªè¾å¥å¯ç æ¶ä¸æ¾ç¤ºè®¨è®ºåºåå®¹ï¼
+输入讨论密码后出现下面的讨论区（並且屏幕顯現自動切換到這個位置顯示），未输入密码时不显示讨论区内容：
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
@@ -657,34 +655,34 @@ body {
       <tr>
         <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
           <tr>
-            <td height="30" colspan="2" bgcolor="#CCCCCC" class="STYLE140"><div align="center" class="STYLE3">è¡ç¨è¨è«</div>
+            <td height="30" colspan="2" bgcolor="#CCCCCC" class="STYLE140"><div align="center" class="STYLE3">行程討論</div>
                     <div align="center"></div></td>
           </tr>
           <tr>
-            <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*å§å</strong>:</div></td>
+            <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
             <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield3222" />
                     <select name="select5" id="select">
-                      <option value="Mr">åç</option>
-                      <option value="Ms">å¥³å£«</option>
+                      <option value="Mr">先生</option>
+                      <option value="Ms">女士</option>
                     </select>
             </td>
           </tr>
           <tr>
-            <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*çµé®</strong>:</div></td>
+            <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
             <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield24222" /></td>
           </tr>
           <tr>
-            <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>çµè¯</strong>:</div></td>
+            <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
             <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield222222" /></td>
           </tr>
           <tr>
-            <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>åå®¹</strong>:</div></td>
+            <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
             <td bgcolor="#F0F0F0" class="STYLE140"><label>
               <textarea name="textarea" cols="30" rows="5"></textarea>
             </label></td>
           </tr>
           <tr>
-            <td bgcolor="#F0F0F0" class="STYLE140">éªè¯ç </td>
+            <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
             <td bgcolor="#F0F0F0" class="STYLE126"><input name="textfield232222" type="text" size="8" />
               Confirm Code:3052</td>
           </tr>
@@ -694,21 +692,21 @@ body {
           </tr>
           <tr>
             <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
-            <td bgcolor="#F0F0F0" class="STYLE148">*æä»¬ä¼å¯¹æ¨çèµæä¿å¯ã</td>
+            <td bgcolor="#F0F0F0" class="STYLE148">*我们会对您的资料保密。</td>
           </tr>
         </table></td>
         <td width="733" valign="top"><table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
           <tr>
             <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
-            <td width="669"><strong>å¼µä¸è±</strong> <span class="STYLE140">2016å¹´2æ1æ¥ 23ï¼30 </span></td>
+            <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年2月1日 23：30 </span></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td><span class="STYLE148">è«åææ³9æå»éæ¢ç·è·¯å¯ä»¥åï¼æåå¤§æ¦ä¸è¡25äººã</span></td>
+            <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td><strong>ä¸»è§æè¡</strong>ï¼2016-6-16ï¼Reï¼9ææ¯ç§å­£ï¼æ­£å¥½æ¯æä½³æ¶æ</td>
+            <td><strong>主角旅行</strong>（2016-6-16）Re：9月是秋季，正好是最佳时期</td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -718,15 +716,15 @@ body {
               <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
                 <tr>
                   <td width="32"><div align="center"><img src="images/woman.png" width="32" height="32" /></div></td>
-                  <td width="669"><strong>æ´å­</strong> <span class="STYLE13">2016å¹´5æ12æ¥ 12ï¼11 </span></td>
+                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年5月12日 12：11 </span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td><span class="STYLE148">è«åææ³9æå»éæ¢ç·è·¯å¯ä»¥åï¼æåå¤§æ¦ä¸è¡25äººã</span></td>
+                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td><strong>ä¸»è§æè¡</strong>ï¼2016-6-16ï¼<strong>Reï¼</strong>9ææ¯ç§å­£ï¼æ­£å¥½æ¯æä½³æ¶æ</td>
+                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -736,15 +734,15 @@ body {
           <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
                 <tr>
                   <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
-                  <td width="669"><strong>å¼µä¸è±</strong> <span class="STYLE140">2016å¹´2æ1æ¥ 23ï¼30 </span></td>
+                  <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年2月1日 23：30 </span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td><span class="STYLE148">è«åææ³9æå»éæ¢ç·è·¯å¯ä»¥åï¼æåå¤§æ¦ä¸è¡25äººã</span></td>
+                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td><strong>ä¸»è§æè¡</strong>ï¼2016-6-16ï¼Reï¼9ææ¯ç§å­£ï¼æ­£å¥½æ¯æä½³æ¶æ</td>
+                  <td><strong>主角旅行</strong>（2016-6-16）Re：9月是秋季，正好是最佳时期</td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -752,7 +750,7 @@ body {
                 </tr>
             </table>
           <a href="#"><img src="images/page.gif" width="503" height="32" /><br />
-            </a><span class="STYLE10">å¤æ³¨ï¼æ¯é¡µ3æ¡ï¼ææ¥æä»åå¾åæï¼æçè¨åé®ç®±éç¥</span></td>
+            </a><span class="STYLE10">备注：每页3条，按日期从后往前排，有留言发邮箱通知</span></td>
       </tr>
     </table></td>
   </tr>
@@ -766,33 +764,33 @@ body {
 <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
-    <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">å¿«éæç´¢</div></td>
-    <td width="179" bgcolor="#CCCCCC" class="f14-gao1">ææ¸¸åºåï¼
+    <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
+    <td width="179" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
       <label>
         <select name="select">
-          <option>å¨é¨åå</option>
-          <option>åå·</option>
-          <option>è¥¿è</option>
-          <option>æ°ç</option>
-          <option>äºå</option>
+          <option>全部區域</option>
+          <option>四川</option>
+          <option>西藏</option>
+          <option>新疆</option>
+          <option>云南</option>
         </select>
         <br />
-        æè¡æ¹å¼ï¼
+        旅行方式：
         <select name="select3">
-          <option selected="selected">-ææ-</option>
-          <option>è§åæå½±</option>
-          <option>å¾æ­¥</option>
-          <option value=" ">ç»å±±</option>
-          <option>èªé©¾</option>
+          <option selected="selected">-所有-</option>
+          <option>观光摄影</option>
+          <option>徒步</option>
+          <option value=" ">登山</option>
+          <option>自驾</option>
         </select>
         <br />
-        åææ¶é´ï¼<a href="#">
+        假期时间：<a href="#">
           <select name="select2">
-            <option selected="selected">-ææ-</option>
-            <option>1-5å¤©</option>
-            <option>6-9å¤©</option>
-            <option value=" ">10-15å¤©</option>
-            <option>16å¤©+</option>
+            <option selected="selected">-所有-</option>
+            <option>1-5天</option>
+            <option>6-9天</option>
+            <option value=" ">10-15天</option>
+            <option>16天+</option>
           </select>
         </a></label></td>
     <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>

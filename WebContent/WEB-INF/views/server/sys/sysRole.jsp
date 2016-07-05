@@ -9,9 +9,16 @@ pageContext.setAttribute("basePath",basePath);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-   <%@include file="/views/server/resource.jsp" %>
+ <base href="<%=basePath%>">
+ <meta http-equiv="pragma" content="no-cache">  
+ <meta http-equiv="cache-control" content="no-cache">  
+ <meta http-equiv="expires" content="0">      
+ <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+ <meta http-equiv="description" content="This is my page"> 
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
 	<body  class="easyui-layout">
+	<jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
 	<!-- Search panel start -->
  	<div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">

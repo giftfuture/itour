@@ -11,13 +11,19 @@ pageContext.setAttribute("basePath",basePath);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>itour</title>
-    <base href="<%=basePath%>">
-    <%@include file="/views/server/resource.jsp" %>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/main.css">
-    <script type="text/javascript" src="<%=basePath%>/js/ux/main/main.js"></script>
+     <title>itour</title>
+     <base href="<%=basePath%>">
+	 <meta http-equiv="pragma" content="no-cache">  
+	 <meta http-equiv="cache-control" content="no-cache">  
+	 <meta http-equiv="expires" content="0">      
+	 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+	 <meta http-equiv="description" content="This is my page"> 
+	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/main.css">
+     <script type="text/javascript" src="<%=basePath%>/js/ux/main/main.js"></script>
   </head>
   <body class="easyui-layout">
+  <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
  	<div class="ui-header" data-options="region:'north',split:true,border:false" style="height:40px;overflow: hidden;">
  	<h1></h1>
  	<div  class="ui-login">
@@ -53,9 +59,6 @@ pageContext.setAttribute("basePath",basePath);
 				
 				<div style="margin-top:20px;">
 				</div>
-				
-				
-				
 			</div>
 		</div>	
 	</div>
