@@ -1,17 +1,25 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
+<%    
+String path = request.getContextPath();    
+// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
+// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
+pageContext.setAttribute("basePath",basePath);    
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>jeecg-mybatis-framework</title>
-    <%@include file="/view/server/resource.jsp" %>
+    <title>itour</title>
+    <base href="<%=basePath%>">
+    <%@include file="/views/server/resource.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/main.css">
     <script type="text/javascript" src="<%=basePath%>/js/ux/main/main.js"></script>
   </head>
   <body class="easyui-layout">
  	<div class="ui-header" data-options="region:'north',split:true,border:false" style="height:40px;overflow: hidden;">
- 	<h1>JEECG-Mybatis 演示系统</h1>
+ 	<h1></h1>
  	<div  class="ui-login">
  		<div class="ui-login-info">
 	 		欢迎 <span class="orange">${user.nickName}</span> 第[<span class="orange">${user.loginCount}</span>]次登录 
@@ -34,34 +42,16 @@
 		</div>
 	</div>
 	<div data-options="region:'south',split:true,border:false" style="height: 30px;overflow:hidden;">
-		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2013 JEECG 版权所有. &nbsp;&nbsp;官方网址: www.jeecg.org</div>
+		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
 	</div>
 	<!-- 中间内容页面 -->
 	<div data-options="region:'center'" >
 		<div class="easyui-tabs" id="tab-box" data-options="fit:true,border:false">
 			<div title="Welcome" style="padding:20px;overflow:hidden;"> 
 				<div style="margin-top:20px;">
-					<h3>简要说明</h3>
-					<ul>
-					    <li>JEECG[J2EE Code Generation]是一款基于代码生成器的J2EE智能开发框架,借助该框架可以节省50%的工作量,实现代码生成+手工merge的半智能开发</li>
-					    <li>代码生成：根据表生成对应的Bean,Service,Dao,Action,XML,JSP等,增删改查功能直接使用,实现了快速开发</li> 
-						<li>jeecg-mybatis-framework,采用SpringMVC+Mybatis等主流框架</li> 
-						<li>支持数据库: Mysql,Oracle10g</li> 
-						<li>前端:使用Jquery和Easyui技术.JS封装简洁,操作简单.</li> 
-						<li>权限:对菜单,按钮控制.根据登陆用户权限展示拥有的菜单和按钮.</li> 
-						<li>拦截:对所有无权限URL进行拦截,防止手动发送HTTP请求,确保系统全性.</li> 
-					</ul>
 				</div>
 				
 				<div style="margin-top:20px;">
-					<h3>技术交流</h3>
-					<p>  &nbsp;&nbsp;本系统由JEECG开发提供,如需个性化定制,外包项目,可与本人联系.</p>
-					<ul>
-						<li>交流群:106259349, 106838471, 289782002</li> 
-						<li>开发者：scott</li>
-						<li>邮箱：zhangdaiscott@163.com</li> 
-						<li>官网：<a href="http://www.jeecg.org">http://www.jeecg.org</a></li>
-					</ul>
 				</div>
 				
 				

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/view/resource.jsp" %>
+<%@include file="/views/server/resource.jsp" %>
 <!DOCTYPE html>
 <html>
  <head>
@@ -105,7 +105,7 @@ label.iPhoneCheckLabelOn span {
   <div id="versionBar">
    <div class="copyright">
     &copy; 版权所有
-    <span class="tip"><a href="http://www.jeecg.org" title="JEECG-Mybatis 演示系统">jeecg</a> (推荐使用IE8+,谷歌浏览器可以获得更快,更安全的页面响应速度)技术支持:<a href="#" title="JEECG-Mybatis 演示系统">jeecg</a></span>
+    <span class="tip"><a href="http://www.itours.com.cn" title="主角旅行"></a> (推荐使用IE8+,谷歌浏览器可以获得更快,更安全的页面响应速度)技术支持:<a href="#" title="主角旅行">itours</a></span>
    </div>
   </div>
   <!-- Link JScript-->
