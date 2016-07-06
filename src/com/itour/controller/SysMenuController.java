@@ -53,7 +53,7 @@ public class SysMenuController extends BaseController{
 		List<SysMenu> dataList = sysMenuService.queryByList(model);
 		//设置页面数据
 		context.put("dataList", dataList);
-		return forword("sys/sysMenu",context); 
+		return forword("server/sys/sysMenu",context); 
 	}
 	
 	/**

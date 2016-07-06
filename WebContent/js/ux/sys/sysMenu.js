@@ -1,6 +1,6 @@
-$package('jeecg.sysMenu');
+$package('itour.sysMenu');
 
-jeecg.sysMenu = function(){
+itour.sysMenu = function(){
 	var _box = null;
 	var _this = {
 		toList:function(parentId){
@@ -19,9 +19,9 @@ jeecg.sysMenu = function(){
 		//设置默认按钮数据
 		addDefBtns:function(){
 			var defaultBtns= [
-				{"btnName":"添加","menuid":2,"actionUrls":"save.do","btnType":"add"},
-				{"btnName":"修改","menuid":2,"actionUrls":"getId.do|save.do","btnType":"edit"},
-				{"btnName":"删除","menuid":2,"actionUrls":"delete.do","btnType":"remove"}
+				{"btnName":"添加","menuid":2,"actionUrls":"sysMenu/save","btnType":"add"},
+				{"btnName":"修改","menuid":2,"actionUrls":"sysMenu/getId","btnType":"edit"},
+				{"btnName":"删除","menuid":2,"actionUrls":"sysMenu/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
@@ -56,7 +56,7 @@ jeecg.sysMenu = function(){
 			var line = $(html);
 			//版定删除按钮事件
 			$(".remove-btn",line).click(function(){
-				jeecg.confirm('Confirm','Are you sure you want to delete record?',function(r){
+				itour.confirm('提示','你确定删除当前记录吗?',function(r){
 					if(r){
 						_this.delLine(line);
 					}
@@ -124,8 +124,8 @@ jeecg.sysMenu = function(){
 				}
   			},
   			dataGrid:{
-  				title:'Menu List',
-	   			url:'dataList.do',
+  				title:'菜单列表',
+	   			url:'sysMenu/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'name',title:'菜单名称',width:120,sortable:true},
@@ -134,7 +134,7 @@ jeecg.sysMenu = function(){
 					{field:'createTime',title:'创建时间',width:120,sortable:true},
 					{field:'updateTime',title:'修改时间',width:120,sortable:true},
 					{field:'childMenus',title:'子目录',width:120,align:'center',formatter:function(value,row,index){
-						var html ="<a href='#' onclick='jeecg.sysMenu.toList("+row.id+")'>子菜单管理("+row.subCount+")</a>";
+						var html ="<a href='#' onclick='itour.sysMenu.toList("+row.id+")'>子菜单管理("+row.subCount+")</a>";
 						return html;
 					}}
 				]],
@@ -160,7 +160,7 @@ jeecg.sysMenu = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				jeecg.confirm('Confirm','Are you sure you want to delete record?',function(r){
+				itour.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -171,5 +171,5 @@ jeecg.sysMenu = function(){
 }();
 
 $(function(){
-	jeecg.sysMenu.init();
+	itour.sysMenu.init();
 });		

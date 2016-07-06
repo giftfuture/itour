@@ -1,5 +1,5 @@
-$package('jeecg.UserRole');
-jeecg.UserRole = function(){
+$package('itour.UserRole');
+itour.UserRole = function(){
 	var _box = null;
 	var _this = {
 		openAddRole:function(record){
@@ -13,12 +13,12 @@ jeecg.UserRole = function(){
 		},
 		config:{
 			action:{
-				save:'addUserRole.do',
-				getId:'getUser.do'
+				save:'sysUser/addUserRole',
+				getId:'sysUser/getUser'
 			},
   			dataGrid:{
   				title:'系统用户授权',
-	   			url:'userList.do',
+	   			url:'sysUser/userList',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'email',title:'邮箱账号',width:120,sortable:true},
@@ -54,7 +54,7 @@ jeecg.UserRole = function(){
 		},
 		init:function(){
 			$("#roleIds").combobox({
-				url:'../sysRole/loadRoleList.do',
+				url:'sysRole/loadRoleList',
 				valueField:'id',
 				textField:'roleName',
 				multiple:true,
@@ -77,5 +77,5 @@ jeecg.UserRole = function(){
 }();
 
 $(function(){
-	jeecg.UserRole.init();
+	itour.UserRole.init();
 });		

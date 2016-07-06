@@ -50,7 +50,7 @@ public class SysRoleController extends BaseController{
 	@RequestMapping("/role")
 	public ModelAndView  list(SysRoleModel model,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("sys/sysRole",context); 
+		return forword("server/sys/sysRole",context); 
 	}
 	
 	

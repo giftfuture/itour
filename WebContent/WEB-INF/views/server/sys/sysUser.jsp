@@ -16,9 +16,9 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
   </head>
 	<body class="easyui-layout">
-	<jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
 	<!-- Search panel start -->
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">

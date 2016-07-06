@@ -52,7 +52,7 @@ public class SysUserController extends BaseController{
 		List<SysUser> dataList = sysUserService.queryByList(model);
 		//设置页面数据
 		context.put("dataList", dataList);
-		return forword("sys/sysUser",context); 
+		return forword("server/sys/sysUser",context); 
 	}
 	
 	
@@ -183,7 +183,7 @@ public class SysUserController extends BaseController{
 	@RequestMapping("/userRole") 
 	public ModelAndView  userRole(HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("/sys/sysUserRole", context);
+		return forword("server/sys/sysUserRole", context);
 	}
 	
 	/**

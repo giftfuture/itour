@@ -4,9 +4,9 @@ var YDataGrid = function(config){
 		//Actions
 		var actionUrl =  config.action || {}
 		var Action = {
-			'save': actionUrl.save ||'save.do',
-			'getId': actionUrl.getId||'getId.do',
-			'remove': actionUrl.remove||'delete.do'
+			'save': actionUrl.save ||'save',
+			'getId': actionUrl.getId||'getId',
+			'remove': actionUrl.remove||'delete'
 		}
 		
 		//Grid DataList
@@ -42,12 +42,12 @@ var YDataGrid = function(config){
 			edit:  function(callback){
 				var record = Utils.getCheckedRows();
 				if (Utils.checkSelectOne(record)){
-					jeecg.progress();
+					itour.progress();
 					var data ={};
 					var idKey = dataGrid.idField || 'id'; //主键名称
  					data[idKey] = (record[0][idKey]);
-					jeecg.getById(Action.getId,data,function(result){
-						jeecg.closeProgress();
+					itour.getById(Action.getId,data,function(result){
+						itour.closeProgress();
 						Form.edit.form('load',result.data);
 						Win.edit.dialog('open'); 
 						
@@ -72,16 +72,16 @@ var YDataGrid = function(config){
 			remove: function(callback){
 				var records = Utils.getCheckedRows();
 				if (Utils.checkSelect(records)){
-					$.messager.confirm('确认','确认删除记录?',function(r){  
+					$.messager.confirm('提示','确认删除记录?',function(r){  
 					    if (r){
-					    	jeecg.progress();
+					    	itour.progress();
 					    	var arr = [],idKey = dataGrid.idField || 'id'; //主键名称
 					    	$.each(records,function(i,record){
 					    		arr.push('id='+record[idKey]);
 					    	});
 					    	var data = arr.join("&");
-					   		jeecg.deleteForm(Action.remove,data,function(result){
-								jeecg.closeProgress();
+					   		itour.deleteForm(Action.remove,data,function(result){
+								itour.closeProgress();
 								Events.refresh();
 								//回调函数
 								if(jQuery.isFunction(callback)){
@@ -94,12 +94,12 @@ var YDataGrid = function(config){
 			},//保存调用方法
 			save: function(callback){
 				if(Form.edit.form('validate')){
-					jeecg.progress();
+					itour.progress();
 					Form.edit.attr('action',Action.save);
 					var parentId =$('#search_parentId').val();
 					$("#edit_parentId").val(parentId)
-					jeecg.saveForm(Form.edit,function(data){
-						jeecg.closeProgress();
+					itour.saveForm(Form.edit,function(data){
+						itour.closeProgress();
 						Win.edit.dialog('close');
 					    Events.refresh();
 					    Form.edit.resetForm();
@@ -134,7 +134,7 @@ var YDataGrid = function(config){
 				if(records && records.length > 0){
 					return true;
 				}
-				jeecg.alert('警告','未选中记录.','warning');  
+				itour.alert('警告','未选中记录.','warning');  
 				return false;
 				
 			},
@@ -146,7 +146,7 @@ var YDataGrid = function(config){
 				if(records.length == 1){
 					return true;
 				}
-				jeecg.alert('警告','只能选择一行记录.','warning');  
+				itour.alert('警告','只能选择一行记录.','warning');  
 				return false;
 			}
 		}
@@ -269,10 +269,10 @@ var YDataGrid = function(config){
 		//初始化Grid按钮 按钮控制
 		var initTbar = function(){
 			var tbars = getToolbar();
-			var _url = urls['msUrl'] + '/getActionBtn.do';
+			var _url = urls['msUrl'] + 'main/getActionBtn';
 			var data = {'url':window.location.href};
 			//查询页面授权的btnType
-			jeecg.ajaxJson(_url,data,function(data){
+			itour.ajaxJson(_url,data,function(data){
 				if(data.success){
 					if(data.allType){
 						Grid.datagrid({'toolbar':tbars});
@@ -296,7 +296,7 @@ var YDataGrid = function(config){
 						}
 					}
 				}else{
-					jeecg.alert('提示',data.msg);
+					itour.alert('提示',data.msg);
 				}
 			});
 		}
@@ -326,8 +326,8 @@ var YDataGrid = function(config){
 						]
 					});
 				}
-				//Win.edit.find("#btn-submit").click(Events.save); //保存事件
-				//Win.edit.find("#btn-close").click(Events.close);//关闭窗口
+				Win.edit.find("#btn-submit").click(Events.save); //保存事件
+				Win.edit.find("#btn-close").click(Events.close);//关闭窗口
 			}
 		}
 		

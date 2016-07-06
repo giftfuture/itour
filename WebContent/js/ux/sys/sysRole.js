@@ -1,5 +1,5 @@
-$package('jeecg.sysRole');
-jeecg.sysRole = function(){
+$package('itour.sysRole');
+itour.sysRole = function(){
 	var _box = null;
 	var _this = {
 		menu: $('#menu-tree'),
@@ -62,7 +62,7 @@ jeecg.sysRole = function(){
 					//判断是否被禁用帐号
 					var state = $("input[name='state']",_box.form.edit).val();
 					if(state != 0){
-						jeecg.confirm("提示","禁用角色将会自动解除关联的用户授权,是否确定?",function(r){
+						itour.confirm("提示","禁用角色将会自动解除关联的用户授权,是否确定?",function(r){
 							if(r){
 								_this.save();
 							}
@@ -74,7 +74,7 @@ jeecg.sysRole = function(){
 			},
   			dataGrid:{
   				title:'角色列表',
-	   			url:'dataList.do',
+	   			url:'sysRole/dataList',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'roleName',title:'角色名称',width:80,sortable:true},
@@ -103,7 +103,7 @@ jeecg.sysRole = function(){
 			_box.init();
 			
 			_this.menu.tree({
-				url:'../sysMenu/getMenuTree.do',
+				url:'sysMenu/getMenuTree',
 				checkbox:true
 			});
 		}
@@ -112,5 +112,5 @@ jeecg.sysRole = function(){
 }();
 
 $(function(){
-	jeecg.sysRole.init();
+	itour.sysRole.init();
 });		

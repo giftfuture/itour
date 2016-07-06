@@ -71,6 +71,7 @@ label.iPhoneCheckLabelOn span {
 	height: 51px;
 }
 </style>
+ <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
 <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="js/plug-in/login/js/html5.js"></script>
 <!-- <script type="text/javascript" src="js/plug-in/login/js/iepng.js"></script>  -->
@@ -80,7 +81,6 @@ label.iPhoneCheckLabelOn span {
 <script type="text/javascript" src="js/plug-in/login/js/login.js"></script>
  </head>
  <body>
- <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
   <div id="alertMessage"></div>
   <div id="successLogin"></div>
   <div class="text_success">

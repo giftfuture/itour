@@ -20,7 +20,7 @@ pageContext.setAttribute("basePath",basePath);
 	 <meta http-equiv="description" content="This is my page"> 
 	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <link rel="stylesheet" type="text/css" href="css/main.css">
-  <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
+  	 <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
      <script type="text/javascript" src="js/ux/main/main.js"></script>
   </head>
   <body class="easyui-layout">
@@ -41,7 +41,7 @@ pageContext.setAttribute("basePath",basePath);
 			<c:forEach var="item" items="${menuList}">
 			<div title="${item.text}">
 				<c:forEach var="node" items="${item.children}">
-				<a class="menu-item" href="<%=basePath%>${node.url}">${node.text}</a>
+				<a class="menu-item" href="${basePath}${node.url}">${node.text}</a>
 				</c:forEach>
 			</div>
 			</c:forEach>
@@ -64,7 +64,7 @@ pageContext.setAttribute("basePath",basePath);
 	</div>
 	<!--  modify password start -->
 	<div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;">
-		<form id="pwdForm" action="modifyPwd.do" class="ui-form" method="post">
+		<form id="pwdForm" action="${basePath}main/modifyPwd" class="ui-form" method="post">
      		 <input class="hidden" name="id">
      		 <input class="hidden" name="email">
      		 <div class="ui-edit">
