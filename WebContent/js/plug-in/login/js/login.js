@@ -45,7 +45,8 @@ $('#forgetpass').click(function(e) {
 	});
 });
 // 点击登录
-$('#but_login').click(function(e) {
+$("#but_login").click(function(e) {
+	console.log("btn_login click trigger");
 	submit();
 });
 //回车登录
@@ -71,37 +72,43 @@ function submit()
 		hideTop();
 		loading('核实中..', 1);
 		setTimeout("unloading()", 2000);
-		setTimeout("Login()", 2500);
+		setTimeout("login()", 0);
 	}
-
 }
 //登录处理函数
-function Login() {
+function login() {
 	setCookie();
-	var actionurl=$('form').attr('action');//提交路径
-	var checkurl=$('form').attr('check');//验证路径
+	var actionurl=$("#formLogin").attr("action");//提交路径
+	var checkurl=$("#formLogin").attr("check");//验证路径
 	 var formData = new Object();
 	var data=$(":input").each(function() {
 		 formData[this.name] =$("#"+this.name ).val();
 	});
+	//console.log(formData+"   "+checkurl);
 	$.ajax({
 		async : false,
 		cache : false,
-		type : 'POST',
+		type : 'post',
 		url : checkurl,// 请求的action路径
 		data : formData,
 		error : function() {// 请求失败处理函数
 		  alert('错误');
 		},
 		success : function(data) {
-			if (data.success) {
+			console.log("data.msg="+data.msg);
+			if (data.msg) {
 				loginsuccess();
-				setTimeout("window.location.href='main.shtml'", 100);
+				//setTimeout("formSubmit()", 0);
+				formSubmit();
+				alert("rraar"+actionurl);
 			} else {
 				showError(data.msg);
 			}
 		}
 	});
+}
+function formSubmit(){
+	document.forms["formLogin"].submit();
 }
 //设置cookie
 function setCookie()
@@ -224,4 +231,4 @@ function jrumble() {
 	});
 	$('.inner').trigger('startRumble');
 	setTimeout('$(".inner").trigger("stopRumble")', 500);
-}
+};

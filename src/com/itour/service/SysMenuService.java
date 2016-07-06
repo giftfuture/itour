@@ -26,10 +26,10 @@ public class SysMenuService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(SysMenuService.class);
 
 
-	@Autowired
+	@Autowired(required=false)
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
 	
-	@Autowired
+	@Autowired(required=false)
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
 	
 	@Autowired

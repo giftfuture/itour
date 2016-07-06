@@ -89,7 +89,7 @@ where 1=1
 </select>
   	
 <!-- 查询会员列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.HashMap">
 	select 
 	<include refid="Base_Column_List"/>
 	from customers 

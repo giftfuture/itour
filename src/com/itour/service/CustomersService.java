@@ -17,9 +17,14 @@ import com.itour.dao.SysMenuBtnDao;
  * <b>日期：</b> Jul 2, 2016 <br>
  */
 @Service("customersService")
-public class CustomersService<Customers> extends BaseService<Customers> {
+public class CustomersService<T> extends BaseService<T> {
 	
 	private final static Logger log= Logger.getLogger(CustomersService.class);
+
+/*	@Override
+	public BaseDao<T> getDao() {
+		return null;
+	}*/
 	
 	/*@Autowired
     private CustomersDao<Customers> customersDao;
@@ -29,9 +34,9 @@ public class CustomersService<Customers> extends BaseService<Customers> {
 */
 	
 	@Autowired
-    private CustomersDao<Customers> mapper;
-
-	public CustomersDao<Customers> getDao() {
+    private CustomersDao<T> mapper;
+	@Override
+	public CustomersDao<T> getDao() {
 		return mapper;
 	}
 	 

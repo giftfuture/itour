@@ -682,11 +682,11 @@ label.iPhoneCheckLabelOff span {
 }
 #login .ribbon {
 	position: absolute;
-	width: 111px;
-	height: 110px;
+	width: 187px;
+	height: 71px;
 	z-index: 12;
-	margin-top: -8px;
-	margin-left: -9px;
+	margin-top: 2px;
+	margin-left: 2px;
 
 }
 #login .shadow {
@@ -708,6 +708,8 @@ label.iPhoneCheckLabelOff span {
 }
 
 #login .logo {
+	font-size:20px;
+	font-family:MicrosoftYaHei
 	width:191px;
 	height:41px;
 	margin:20px auto;
@@ -741,7 +743,7 @@ label.iPhoneCheckLabelOff span {
 /*	padding-left: 35px;*/
 text-align:center;
 	margin:auto;	
-	height: 35px;
+	height: 45px;
 	background-position: 2px 3px;
 /*	background-position:right center; */
 	line-height: 35px;

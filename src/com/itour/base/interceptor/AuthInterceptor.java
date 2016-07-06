@@ -29,6 +29,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+	//	boolean handlerOk = super.preHandle(request, response, handler);
+		//AuthInterceptor auths = (handler).getMethodAnnotation(AuthInterceptor.class);
 		HandlerMethod method = (HandlerMethod)handler;
 		Auth  auth = method.getMethod().getAnnotation(Auth.class);
 		////验证登陆超时问题  auth = null，默认验证 

@@ -1,6 +1,6 @@
-$package('jeecg.main');
+$package('itour.main');
 
-jeecg.main = function(){
+itour.main = function(){
 	return {
 		treeSelect:function(){
 			var _this = $(this);
@@ -76,5 +76,5 @@ jeecg.main = function(){
 }();
 
 $(function(){
-	jeecg.main.init();
+	itour.main.init();
 });		

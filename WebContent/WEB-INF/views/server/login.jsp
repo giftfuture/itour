@@ -71,6 +71,13 @@ label.iPhoneCheckLabelOn span {
 	height: 51px;
 }
 </style>
+<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="js/plug-in/login/js/html5.js"></script>
+<!-- <script type="text/javascript" src="js/plug-in/login/js/iepng.js"></script>  -->
+<script type="text/javascript" src="js/plug-in/login/js/iphone.check.js"></script>
+<script type="text/javascript" src="js/plug-in/login/js/jquery-jrumble.js"></script>
+<script type="text/javascript" src="js/plug-in/login/js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="js/plug-in/login/js/login.js"></script>
  </head>
  <body>
  <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
@@ -81,13 +88,14 @@ label.iPhoneCheckLabelOn span {
    <span>登陆成功!请稍后....</span>
   </div>
   <div id="login">
-   <div class="ribbon" style="background-image:url(js/plug-in/login/images/typelogin.png);"></div>
+   <div class="ribbon" style="background-image:url(images/head2016.gif);"></div>
    <div class="inner">
     <div class="logo">
-     <img src="js/plug-in/login/images/toplogo.png"/>
+    	<span style=""><font face="微软雅黑">主角旅行后台管理</font></span>
+     <!-- <img src="js/plug-in/login/images/toplogo.png"/> -->
     </div>
-    <div class="formLogin">
-     <form name="formLogin" id="formLogin" action="loginController.do?login" check="checkuser.do" method="post">
+    <div class="formLogin"><!--  check="${basePath}main/checkuser" -->
+     <form name="formLogin" id="formLogin" action="${basePath}main/logIn" method="post" check="${basePath}main/checkuser">
       <div class="tip">
        <input class="userName" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
       </div>
@@ -98,11 +106,13 @@ label.iPhoneCheckLabelOn span {
        <div style="float: right; padding: 3px 0; margin-right: -12px;">
         <div>
          <ul class="uibutton-group">
-          <li>
-           <a class="uibutton normal" href="#" id="but_login">登陆</a>
-          </li>
-          <li>
-           <a class="uibutton normal" href="#" id="forgetpass">重置</a>
+          <li style="width:100px;height:80px;"><!-- onclick="javascript:forms['formLogin'].submit()" -->
+         <!--  <input  id="but_login"  class="uibutton normal"  type="button" value="登录" onclick="login()"/> -->
+          <a class="uibutton normal" href="#" id="but_login">登录</a>
+           </li>
+          <li style="width:150px;height:80px;">
+          <!--  <input  id="forgetpass"  class="uibutton normal"  type="button" value="忘记密码"/> -->
+            <a class="uibutton normal" href="#" id="forgetpass">忘记密码</a> 
           </li>
          </ul>
         </div>

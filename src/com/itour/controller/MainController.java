@@ -1,5 +1,6 @@
 package com.itour.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,22 +82,13 @@ public class MainController extends BaseController {
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/checkuser")
 	public void checkuser(SysUserModel user, HttpServletRequest req,HttpServletResponse response) throws Exception {
-		SysUser u = sysUserService.queryLogin(user.getEmail(), MethodUtil.MD5(user.getPwd()));
-		if (u != null) {
-				message = "用户: " + u.getNickName() + "登录成功";
-				//-------------------------------------------------------
-				//登录次数加1 修改登录时间
-				int loginCount = 0;
-				if(u.getLoginCount() != null){
-					loginCount = u.getLoginCount();
-				}
-				u.setLoginCount(loginCount+1);
-				u.setLoginTime(DateUtil.getDateByString(""));
-				sysUserService.update(u);
+		int count = sysUserService.getUserCountByEmail(user.getEmail());
+		if (count >= 1) {
 				//设置User到Session
-				SessionUtils.setUser(req,u);
+				//SessionUtils.setUser(req,u);
 				//记录成功登录日志
-				log.debug(message);
+				//log.debug(message);
+				message = "1";
 				sendSuccessMessage(response,message);
 				//-------------------------------------------------------
 		} else {
@@ -114,11 +106,11 @@ public class MainController extends BaseController {
 	 * @throws Exception
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping("/toLogin")
-	public void  toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@RequestMapping("/logIn")
+	public ModelAndView  toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String vcode  = SessionUtils.getValidateCode(request);
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
-		if(StringUtils.isBlank(verifyCode)){
+	/*	if(StringUtils.isBlank(verifyCode)){
 			sendFailureMessage(response, "验证码不能为空.");
 			return;
 		}
@@ -126,14 +118,14 @@ public class MainController extends BaseController {
 		if(!verifyCode.toLowerCase().equals(vcode)){
 			sendFailureMessage(response, "验证码输入错误.");
 			return;
-		}
+		}*/
 		if(StringUtils.isBlank(email)){
 			sendFailureMessage(response, "账号不能为空.");
-			return;
+			return new ModelAndView("redirect:/main/login");
 		}
 		if(StringUtils.isBlank(pwd)){
 			sendFailureMessage(response, "密码不能为空.");
-			return;
+			return new ModelAndView("redirect:/main/login");
 		}
 		String msg = "用户登录日志:";
 		SysUser user = sysUserService.queryLogin(email, MethodUtil.MD5(pwd));
@@ -141,11 +133,11 @@ public class MainController extends BaseController {
 			//记录错误登录日志
 			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
 			sendFailureMessage(response, "账号或者密码输入错误.");
-			return;
+			return new ModelAndView("redirect:/main/login");
 		}
 		if(STATE.DISABLE.key == user.getState()){
 			sendFailureMessage(response, "账号已被禁用.");
-			return;
+			return new ModelAndView("redirect:/main/login");
 		}
 		//登录次数加1 修改登录时间
 		int loginCount = 0;
@@ -158,8 +150,10 @@ public class MainController extends BaseController {
 		//设置User到Session
 		SessionUtils.setUser(request,user);
 		//记录成功登录日志
-		log.debug(msg+"["+email+"]"+"登录成功");
-		sendSuccessMessage(response, "登录成功.");
+		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
+		log.debug(message);
+		//sendSuccessMessage(response, message);
+		return new ModelAndView("redirect:/main/manage");
 	}
 	
 	
@@ -243,9 +237,15 @@ public class MainController extends BaseController {
 	 * @param classifyId
 	 * @return
 	 */
-	@Auth(verifyURL=false)
-	@RequestMapping("/main") 
-	public ModelAndView  main(HttpServletRequest request){
+	@Auth(verifyLogin=false,verifyURL=false)
+	@RequestMapping("/manage") 
+	public ModelAndView main(HttpServletRequest request){
+		//response.setContentType("text/html;charset=UTF-8");
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		Map<String,Object>  context = getRootMap();
 		SysUser user = SessionUtils.getUser(request);
 		List<SysMenu> rootMenus = null;
@@ -263,7 +263,7 @@ public class MainController extends BaseController {
 		}
 		context.put("user", user);
 		context.put("menuList", treeMenu(rootMenus,childMenus));
-		return forword("main/main",context); 
+		return forword("server/main/main",context); 
 	}
 	
 	/**

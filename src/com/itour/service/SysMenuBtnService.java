@@ -18,20 +18,20 @@ import com.itour.dao.SysMenuBtnDao;
  * <b>日期：</b> Jun 9, 2016 <br>
  */
 @Service("sysMenuBtnService")
-public class SysMenuBtnService<SysMenuBtn> extends BaseService<SysMenuBtn> {
+public class SysMenuBtnService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(SysMenuBtnService.class);
 	
-	public List<SysMenuBtn> queryByAll(){
+	public List<T> queryByAll(){
 		return getDao().queryByAll();
 	}
 	
 	
 	
-	public List<SysMenuBtn> queryByMenuid(Integer menuid){
+	public List<T> queryByMenuid(Integer menuid){
 		return getDao().queryByMenuid(menuid);
 	}
 	
-	public List<SysMenuBtn> queryByMenuUrl(String url){
+	public List<T> queryByMenuUrl(String url){
 		return getDao().queryByMenuUrl(url);
 	}
 	
@@ -39,15 +39,15 @@ public class SysMenuBtnService<SysMenuBtn> extends BaseService<SysMenuBtn> {
 		getDao().deleteByMenuid(menuid);
 	}
 	
-	public List<SysMenuBtn> getMenuBtnByUser(Integer userid){
+	public List<T> getMenuBtnByUser(Integer userid){
 		return getDao().getMenuBtnByUser(userid);
 	}
 
 	@Autowired
-    private SysMenuBtnDao<SysMenuBtn> mapper;
+    private SysMenuBtnDao<T> mapper;
 
 		
-	public SysMenuBtnDao<SysMenuBtn> getDao() {
+	public SysMenuBtnDao<T> getDao() {
 		return mapper;
 	}
 

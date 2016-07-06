@@ -1,6 +1,9 @@
 package com.itour.dao;
 
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.itour.base.dao.BaseDao;
 /**
  * 
@@ -12,4 +15,16 @@ import com.itour.base.dao.BaseDao;
 public interface CustomersDao<Customers> extends BaseDao<Customers> {
 	
 	
+	/**
+	 *查询全部有效的权限
+	 * @return
+	 */
+	public List<Customers> queryByList(HashMap map);
+	
+	
+	/**
+	 *根据用户Id查询权限
+	 * @return
+	 */
+	public List<Customers> queryById(Integer customerid);
 }

@@ -10,7 +10,6 @@ import com.itour.base.util.ClassReflectUtil;
 public abstract class BaseService<T>{
 	
 	public abstract BaseDao<T> getDao();
-
 	
 	public void add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增
