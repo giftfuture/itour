@@ -33,6 +33,12 @@ itour.sysUser = function(){
 			});
 		},
 		config:{
+		    action:{
+		    	save:'sysUser/save', //新增&修改 保存Action  
+				getId:'sysUser/getId',//编辑获取的Action
+				remove:'sysUser/delete',//删除数据的Action}
+				updatePwd:'sysUser/updatePwd'	
+		    },
   			dataGrid:{
   				title:'系统用户列表',
 	   			url:'sysUser/dataList',

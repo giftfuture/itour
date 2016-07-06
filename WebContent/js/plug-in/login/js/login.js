@@ -100,7 +100,7 @@ function login() {
 				loginsuccess();
 				//setTimeout("formSubmit()", 0);
 				formSubmit();
-				alert("rraar"+actionurl);
+			//	alert("rraar"+actionurl);
 			} else {
 				showError(data.msg);
 			}

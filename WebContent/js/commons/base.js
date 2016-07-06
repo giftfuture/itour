@@ -64,6 +64,7 @@ var itour={
 			 		try{
 			 			itour.closeProgress();
 			 			var data = $.parseJSON(response.responseText);
+			 			console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
 				 			return false;

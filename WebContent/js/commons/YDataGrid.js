@@ -6,7 +6,8 @@ var YDataGrid = function(config){
 		var Action = {
 			'save': actionUrl.save ||'save',
 			'getId': actionUrl.getId||'getId',
-			'remove': actionUrl.remove||'delete'
+			'remove': actionUrl.remove||'delete',
+			'updatePwd':actionUrl.updatePwd||'updatePwd'
 		}
 		
 		//Grid DataList

@@ -39,6 +39,11 @@ itour.sysRole = function(){
 			_box.handler.save();
 		},
 		config:{
+			action:{
+				save:'sysRole/save', //新增&修改 保存Action  
+				getId:'sysRole/getId',//编辑获取的Action
+				remove:'sysRole/delete'//删除数据的Action
+			},
 			event:{
 				add:function(){
 					_this.clearTreeData();

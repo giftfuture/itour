@@ -101,9 +101,9 @@ itour.sysMenu = function(){
 		},
 		config:{
   			action:{
-  				save:'', //新增&修改 保存Action  
-  				getId:'',//编辑获取的Action
-  				delele:''//删除数据的Action
+  				save:'sysMenu/save', //新增&修改 保存Action  
+  				getId:'sysMenu/getId',//编辑获取的Action
+  				remove:'sysMenu/delete'//删除数据的Action
   			},
   			event:{
   				add : function(){
