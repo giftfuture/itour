@@ -103,7 +103,7 @@ public class SHA {
 	  * @param data 
 	  * @throws Exception 
 	  */ 
-	 public static void encodeByMAC(String data) throws Exception{ 
+	 public static String encodeByMAC(String data) throws Exception{ 
 		//  KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA1"); 
 		//  SecretKey key = keyGen.generateKey(); //这个每次生成的key不一样, 此处不能使用 
 		   
@@ -126,7 +126,9 @@ public class SHA {
 		  mac.init(key); 
 		  byte[] dest = mac.doFinal(data.getBytes()); 
 		  System.out.println(dest.length); 
+		  String result = Arrays.toString(dest);
 		  System.out.println("MAC摘要：" + Arrays.toString(dest)); 
+		  return result;
 	 } 
 	  
 	 /** 
@@ -207,15 +209,14 @@ public class SHA {
      */  
     public static void main(String[] args) throws Exception {  
         String key = "admin";  
-        System.out.println(key +"encode "+encryptSHA(key));  
+        System.out.println(key +"encryptSHA "+encryptSHA(key));  
+        System.out.println(key +"encodeByMAC "+encodeByMAC(key));  
          key = "123456";  
         System.out.println(key +"encode  "+encryptSHA(key)); 
         key = "aaaaa";  
         System.out.println(key +"encode  "+encryptSHA(key)); 
-        System.out.println("D033E22AE348AEB5660FC2140AEC35850C4DA997");
-        encodeByMAC("admin"); 
-        encodeBySHA("admin"); 
+        System.out.println("D033E22AE348AEB5660FC2140AEC35850C4DA997".length());
 	  	//  encodeBySHA("中国oP……&*（）…&802134…"); 
-	  	  shaFile(); 
+	  //	  shaFile(); 
     }  
 }
