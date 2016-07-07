@@ -2,7 +2,7 @@ $package('itour.sysUser');
 itour.sysUser = function(){
 	var _box = null;
 	var _this = {
-		updatePwdAction:'updatePwd',
+		updatePwdAction:'sysUser/updatePwd',
 		editPwdForm:function(){
 			return $("#pwdForm");
 		},

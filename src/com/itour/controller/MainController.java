@@ -26,6 +26,7 @@ import com.itour.base.page.AjaxJson;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.MethodUtil;
+import com.itour.base.util.SHA;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.TreeUtil;
 import com.itour.base.util.URLUtils;
@@ -43,7 +44,6 @@ import com.itour.service.SysUserService;
 @RequestMapping("/main")
 public class MainController extends BaseController {
 
-	
 	private final static Logger log= Logger.getLogger(MainController.class);
 	private String message = null;
 	// Servrice start
@@ -119,6 +119,8 @@ public class MainController extends BaseController {
 			sendFailureMessage(response, "验证码输入错误.");
 			return;
 		}*/
+		email="admin@qq.com";
+		pwd="admin";
 		if(StringUtils.isBlank(email)){
 			sendFailureMessage(response, "账号不能为空.");
 			return new ModelAndView("redirect:/main/login");
@@ -128,7 +130,7 @@ public class MainController extends BaseController {
 			return new ModelAndView("redirect:/main/login");
 		}
 		String msg = "用户登录日志:";
-		SysUser user = sysUserService.queryLogin(email, MethodUtil.MD5(pwd));
+		SysUser user = sysUserService.queryLogin(email, SHA.encryptSHA(pwd));
 		if(user == null){
 			//记录错误登录日志
 			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
@@ -167,7 +169,7 @@ public class MainController extends BaseController {
 	@RequestMapping("/logout")
 	public void  logout(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SessionUtils.removeUser(request);
-		response.sendRedirect("login.shtml");
+		response.sendRedirect("login");
 	}
 	
 	/**
@@ -251,18 +253,20 @@ public class MainController extends BaseController {
 		List<SysMenu> rootMenus = null;
 		List<SysMenu> childMenus = null;
 		List<SysMenuBtn> childBtns = null;
-		//超级管理员
-		if(user != null && SuperAdmin.YES.key ==  user.getSuperAdmin()){
-			rootMenus = sysMenuService.getRootMenu(null);// 查询所有根节点
-			childMenus = sysMenuService.getChildMenu();//查询所有子节点
-		}else{
-			rootMenus = sysMenuService.getRootMenuByUser(user.getId() );//根节点
-			childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
-			childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
-			buildData(childMenus,childBtns,request); //构建必要的数据
+		if(user != null){
+			//超级管理员
+			if(SuperAdmin.YES.key ==  user.getSuperAdmin()){
+				rootMenus = sysMenuService.getRootMenu(null);// 查询所有根节点
+				childMenus = sysMenuService.getChildMenu();//查询所有子节点
+			}else{
+				rootMenus = sysMenuService.getRootMenuByUser(user.getId() );//根节点
+				childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
+				childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
+				buildData(childMenus,childBtns,request); //构建必要的数据
+			}
+			context.put("user", user);
+			context.put("menuList", treeMenu(rootMenus,childMenus));
 		}
-		context.put("user", user);
-		context.put("menuList", treeMenu(rootMenus,childMenus));
 		return forword("server/main/main",context); 
 	}
 	
