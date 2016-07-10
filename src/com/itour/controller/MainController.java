@@ -1,5 +1,6 @@
 package com.itour.controller;
 
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,7 +71,6 @@ public class MainController extends BaseController {
 	}
 	
 	
-	
 	/**
 	 * 检查用户名称
 	 * 
@@ -129,8 +129,11 @@ public class MainController extends BaseController {
 			sendFailureMessage(response, "密码不能为空.");
 			return new ModelAndView("redirect:/main/login");
 		}
-		String msg = "用户登录日志:";
-		SysUser user = sysUserService.queryLogin(email, SHA.encryptSHA(pwd));
+		 String msg = "用户登录日志:";
+		 String firstEncode = SHA.encryptSHA(pwd); 
+		 String secondEncode = SHA.encryptSHA(firstEncode.substring(20, firstEncode.length())); 
+		 String finalPwdCode = secondEncode.substring(1,secondEncode.length()-2);//加密原始密码后取后位再加密,去掉头1位,尾两位,剩余位存入数据库
+		 SysUser user = sysUserService.queryLogin(email, finalPwdCode);
 		if(user == null){
 			//记录错误登录日志
 			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
