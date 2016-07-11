@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.collections.map.CaseInsensitiveMap;
 
-public class SystemVariable {
+import org.apache.commons.collections.map.CaseInsensitiveMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+import com.itour.dao.CustomersDao;
+
+public class SystemVariable{
 	/**
 	 * 任务处理状态标志,
 	 * 等0表示等待接受任务。
@@ -36,16 +41,18 @@ public class SystemVariable {
 	
 	public static int errorSyncDataCount = 0;				//同步失败数据数量
 	
+	public static final Map<String,String> cache = new HashMap<String,String>();
+	
 	static{
 		try {
-			hostName = InetAddress.getLocalHost().getHostName();
-			//hostName = "UIAMPJQ";
-			hostIp = InetAddress.getLocalHost().getHostAddress();
+		   hostName = InetAddress.getLocalHost().getHostName();
+		   hostIp = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	
 	public static synchronized void addErrorSyncDataCount(){
 		errorSyncDataCount++;
 	}

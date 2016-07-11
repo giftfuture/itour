@@ -18,6 +18,12 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true">
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+	<listener>	
+   		 <listener-class>
+   			com.itour.listener.WebInitListener
+   		 </listener-class>
+	</listener>
+	
 	<!-- 字符编码过滤器-->
 	<filter>
 		<filter-name> encodingFilter</filter-name>

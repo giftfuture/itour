@@ -15,10 +15,12 @@ public interface BaseDao<T> {
 	
 	public void updateBySelective(T t); 	
 	
+	
 	public void delete(Object id);
 	
 
 	public int queryByCount(BasePage page);
+	
 	
 	public List<T> queryByList(BasePage page);
 	

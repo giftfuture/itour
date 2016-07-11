@@ -17,6 +17,7 @@ public class SslUtils {
 		sc.init(null, trustAllCerts, null);
 		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 	}
+	
 	static class miTM implements TrustManager,X509TrustManager {
 		public X509Certificate[] getAcceptedIssuers() {
 			return null;

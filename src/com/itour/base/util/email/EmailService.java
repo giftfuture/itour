@@ -45,7 +45,8 @@ public class EmailService {
 		// SslUtils.ignoreSsl();
 		// EmailService.sendEmail("zpc@sina.com", "mai test", "testmail","zpc@sina.com","123456","mail.sina.com","25");
 		//	emailTemplateService.sendEmail(userMap, acctMap, eventType);
-		 try {
+		
+		try {
 			 String title="";
 			 String content = "";
 			 String receivers = SystemVariable.map.get("receive_email");
@@ -80,9 +81,8 @@ public class EmailService {
 				email = new Email(username, receiver, subject, content);
 				service.send(email,prop);
 			}
-			email = null;
-		
-			return "true";
+	  		email = null;
+	   		return "true";
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

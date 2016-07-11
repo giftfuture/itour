@@ -65,6 +65,12 @@
     	<property name="logAbandoned" value="true" /> <!-- 关闭abanded连接时输出错误日志 -->
 	</bean>  
 	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+        <property name = "dataSource" ref="dataSource"/>
+	</bean>
+	<bean  class="com.itour.listener.WebInitListener">  
+	       <property name="dataSource" ref="dataSource"/>  
+	</bean>  
 	<!-- ***************事务配置************** -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
