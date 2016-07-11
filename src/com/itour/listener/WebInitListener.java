@@ -10,6 +10,7 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.itour.base.util.SystemVariable;
@@ -17,6 +18,9 @@ import com.itour.base.util.SystemVariable;
 public class WebInitListener extends JdbcDaoSupport implements ServletContextListener {
 	
 	private static final Logger log = Logger.getLogger(WebInitListener.class);
+	
+	@Autowired(required=false)
+	private JdbcTemplate tpl;
 	
 //	public static HashMap<String, String> ConfigMap=new HashMap<String, String>();
 	@Override
@@ -31,15 +35,16 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 		//WebApplicationContext apli=WebApplicationContextUtils.getWebApplicationContext(servlet);
 		//SysVariablesService sysParamService=(SysVariablesService) apli.getBean("SysParamService");
 		try{
-		    list = this.getJdbcTemplate().queryForList(sql);  
+			JdbcTemplate tpl =  this.getJdbcTemplate();
+		    list =tpl.queryForList(sql);  
 			for (Map map : list){
 				SystemVariable.cache.put(map.get("var_name").toString(),map.get("var_value").toString());
 			}
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 	}
-
+	
 
 	
 	/* 启动不同任务类型的线程 */

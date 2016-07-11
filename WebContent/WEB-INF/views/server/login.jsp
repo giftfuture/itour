@@ -108,11 +108,11 @@ label.iPhoneCheckLabelOn span {
          <ul class="uibutton-group">
           <li style="width:100px;height:80px;"><!-- onclick="javascript:forms['formLogin'].submit()" -->
          <!--  <input  id="but_login"  class="uibutton normal"  type="button" value="登录" onclick="login()"/> -->
-          <a class="uibutton normal" href="#" id="but_login">登录</a>
+          <a class="uibutton normal" href="javascript:void(0)" id="but_login">登录</a>
            </li>
           <li style="width:150px;height:80px;">
           <!--  <input  id="forgetpass"  class="uibutton normal"  type="button" value="忘记密码"/> -->
-            <a class="uibutton normal" href="#" id="forgetpass">忘记密码</a> 
+            <a class="uibutton normal" href="javascript:void(0)" id="forgetpass">忘记密码</a> 
           </li>
          </ul>
         </div>
