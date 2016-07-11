@@ -135,7 +135,7 @@ var YDataGrid = function(config){
 				if(records && records.length > 0){
 					return true;
 				}
-				itour.alert('警告','未选中记录.','warning');  
+				itour.alert('警告','请选中一条记录.','warning');  
 				return false;
 				
 			},
@@ -248,7 +248,7 @@ var YDataGrid = function(config){
 				loadMsg: dataGrid.loadMsg || 'Loading in ...',
 				idField: dataGrid.idField,
 				columns: dataGrid.columns,
-				//toolbar: getToolbar(),
+				toolbar: getToolbar(),
 				onLoadSuccess: dataGrid.onLoadSuccess || function(){
 					Grid.datagrid('unselectAll');
 					Grid.datagrid('uncheckAll');

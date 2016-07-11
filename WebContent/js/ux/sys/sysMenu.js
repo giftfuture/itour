@@ -11,7 +11,6 @@ itour.sysMenu = function(){
 					_box.grid.datagrid('hideColumn','childMenus');
 				}else{
 					$('#btnback').linkbutton('disable');
-					$('#btnback').linkbutton('disable');
 					_box.grid.datagrid('showColumn','childMenus');
 				}
 				_box.handler.refresh();
@@ -134,7 +133,7 @@ itour.sysMenu = function(){
 					{field:'createTime',title:'创建时间',width:120,sortable:true},
 					{field:'updateTime',title:'修改时间',width:120,sortable:true},
 					{field:'childMenus',title:'子目录',width:120,align:'center',formatter:function(value,row,index){
-						var html ="<a href='#' onclick='itour.sysMenu.toList("+row.id+")'>子菜单管理("+row.subCount+")</a>";
+						var html ="<a href='javascript:void(0)' onclick='itour.sysMenu.toList("+row.id+")'>子菜单管理("+row.subCount+")</a>";
 						return html;
 					}}
 				]],

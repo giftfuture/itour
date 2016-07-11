@@ -47,12 +47,11 @@ pageContext.setAttribute("basePath",basePath);
 		     	   <div class="ftitle">授权设置</div>    
 		           <div class="fitem">  
 		               <label>账号:</label>  
-		               <input class="easyui-validatebox" type="text" readonly="readonly" name="email" data-options="required:true,validType:'email'"></input>
+		               <input class="easyui-validatebox" type="text" readonly="readonly" name="email" data-options="required:true,validType:'email'"/>
 		           </div>  
 		            <div class="fitem">  
 		               <label>角色选择:</label>  
-		               <select class="easyui-combobox" id="roleIds" name="roleIds"  
-                    			data-options="width:135"></select>
+		               <select class="easyui-combobox" id="roleIds" name="roleIds" data-options="width:135"></select>
 		           </div> 
 	         </div>
      	</form>
