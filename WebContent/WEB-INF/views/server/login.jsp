@@ -100,7 +100,7 @@ label.iPhoneCheckLabelOn span {
        <input class="userName" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
-       <input class="password" name="pwd" type="password"  value='654321' id="pwd" title="密码" nullmsg="请输入密码!"/>
+       <input class="password" name="pwd" type="password"  value='admin' id="pwd" title="密码" nullmsg="请输入密码!"/>
       </div>
       <div class="loginButton">
        <div style="float: right; padding: 3px 0; margin-right: -12px;">

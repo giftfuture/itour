@@ -5,16 +5,25 @@
 <mapper namespace="com.itour.dao.CustomersDao" > 
 <!-- Result Map-->
 <resultMap id="BaseResultMap" type="com.itour.entity.Customers" >
-	<result column="id" property="id"/>
-	<result column="age" property="age"/>
-	<result column="name" property="name"/>
-	<result column="salary" property="salary"/>
-	<result column="createdt" property="createdt"/>
+	<result column="customer_id" property="customerId"/>
+	<result column="create_time" property="createTime"/>
+	<result column="status" property="status"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="address" property="address"/>
+	<result column="email" property="email"/>
+	<result column="scope" property="scope"/>
+	<result column="city" property="city"/>
+	<result column="telephone" property="telephone"/>
+	<result column="mobile" property="mobile"/>
+	<result column="customer_name" property="customerName"/>
+	<result column="nick_name" property="nickName"/>
+	<result column="district" property="district"/>
+	<result column="introduction" property="introduction"/>
 </resultMap>
        
-<!-- jeecg_person table all fields -->
+<!-- customers table all fields -->
 <sql id="Base_Column_List" >
-	 id,age,name,salary,createdt
+	 customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction
 </sql>
    
    
@@ -22,74 +31,131 @@
 <sql id="Example_Where_Clause">
 where 1=1
 <trim  suffixOverrides="," >
-	<if test="id != null and id != ''" >
-	    and id =  #{id}
+	<if test="customerId != null and customerId != ''" >
+	    and customer_id =  #{customerId}
 	</if>
-	<if test="age != null and age != ''" >
-	    and age =  #{age}
+	<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
 	</if>
-	<if test="name != null and name != ''" >
-	    and name =  #{name}
+	<if test="status != null and status != ''" >
+	    and status =  #{status}
 	</if>
-	<if test="salary != null and salary != ''" >
-	    and salary =  #{salary}
+	<if test="updateTime != null and updateTime != ''" >
+	    and update_time =  #{updateTime}
 	</if>
-	<if test="createdt != null and createdt != ''" >
-	    and createdt =  #{createdt}
+	<if test="address != null and address != ''" >
+	    and address =  #{address}
+	</if>
+	<if test="email != null and email != ''" >
+	    and email =  #{email}
+	</if>
+	<if test="scope != null and scope != ''" >
+	    and scope =  #{scope}
+	</if>
+	<if test="city != null and city != ''" >
+	    and city =  #{city}
+	</if>
+	<if test="telephone != null and telephone != ''" >
+	    and telephone =  #{telephone}
+	</if>
+	<if test="mobile != null and mobile != ''" >
+	    and mobile =  #{mobile}
+	</if>
+	<if test="customerName != null and customerName != ''" >
+	    and customer_name =  #{customerName}
+	</if>
+	<if test="nickName != null and nickName != ''" >
+	    and nick_name =  #{nickName}
+	</if>
+	<if test="district != null and district != ''" >
+	    and district =  #{district}
+	</if>
+	<if test="introduction != null and introduction != ''" >
+	    and introduction =  #{introduction}
 	</if>
 </trim>
 </sql>
    
 
 <!-- 插入记录 -->
-<insert id="add" parameterType="Object" >
-  insert into customers(id,age,name,salary,createdt)
- values(#{id},#{age},#{name},#{salary},#{createdt})
+<insert id="add" parameterType="com.itour.entity.Customers" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into customers(customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction)
+ values(#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction})
 </insert>
 
 <!-- 根据id，修改记录-->  
- <update id="update" parameterType="Object" >
-  update customers set age=#{age},name=#{name},salary=#{salary},createdt=#{createdt} where id=#{id}
+ <update id="update" parameterType="java.util.Map" >
+  update customers set create_time=now(),status=#{status},update_time=now(),address=#{address},email=#{email},scope=#{scope},city=#{city},telephone=#{telephone},mobile=#{mobile},customer_name=#{customerName},nick_name=#{nickName},district=#{district},introduction=#{introduction} where customer_id=#{customerId}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="Object" >
+<update id="updateBySelective" parameterType="com.itour.entity.Customers" >
 	update customers set 
 	<trim  suffixOverrides="," >
-	<if test="age != null  ">
-		age=#{age},
+	<if test="createTime != null  ">
+		create_time=#{createTime},
 	</if>
-	<if test="name != null  ">
-		name=#{name},
+	<if test="status != null  ">
+		status=#{status},
 	</if>
-	<if test="salary != null  ">
-		salary=#{salary},
+	<if test="updateTime != null  ">
+		update_time=#{updateTime},
 	</if>
-	<if test="createdt != null  ">
-		createdt=#{createdt},
+	<if test="address != null  ">
+		address=#{address},
 	</if>
-	</trim> where id=#{id}
+	<if test="email != null  ">
+		email=#{email},
+	</if>
+	<if test="scope != null  ">
+		scope=#{scope},
+	</if>
+	<if test="city != null  ">
+		city=#{city},
+	</if>
+	<if test="telephone != null  ">
+		telephone=#{telephone},
+	</if>
+	<if test="mobile != null  ">
+		mobile=#{mobile},
+	</if>
+	<if test="customerName != null  ">
+		customer_name=#{customerName},
+	</if>
+	<if test="nickName != null  ">
+		nick_name=#{nickName},
+	</if>
+	<if test="district != null  ">
+		district=#{district},
+	</if>
+	<if test="introduction != null  ">
+		introduction=#{introduction},
+	</if>
+	</trim> where customer_id=#{customerId}
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="Object">
-	delete 	 from customers where id = #{id}
+<delete id="delete" parameterType="java.util.Map">
+	delete 	 from customers where customer_id = #{customerId}
 </delete>
  
-<!-- 根据id查询 会员 -->
-<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+<!-- 根据id查询 客户信息 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
-	 from customers where id = #{id}
+	 from customers where customer_id = #{customerId}
 </select>
 
-<!-- 会员 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+<!-- 客户信息 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
 	select count(1) from customers 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
-<!-- 查询会员列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.HashMap">
+<!-- 查询客户信息列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
 	select 
 	<include refid="Base_Column_List"/>
 	from customers 

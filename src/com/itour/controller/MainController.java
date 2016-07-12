@@ -119,8 +119,8 @@ public class MainController extends BaseController {
 			sendFailureMessage(response, "验证码输入错误.");
 			return;
 		}*/
-		email="admin@qq.com";
-		pwd="admin";
+		//email="admin@qq.com";
+		//pwd="admin";
 		if(StringUtils.isBlank(email)){
 			sendFailureMessage(response, "账号不能为空.");
 			return new ModelAndView("redirect:/main/login");

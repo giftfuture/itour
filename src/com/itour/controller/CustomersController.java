@@ -8,7 +8,6 @@ import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +25,8 @@ import com.itour.service.CustomersService;
  * 
  * <br>
  * <b>功能：</b>CustomersController<br>
- * <b>作者：</b>fred<br>
- * <b>日期：</b> Jul 2, 2016 <br>
+ * <b>作者：</b>fred.zhao<br>
+ * <b>日期：</b> Feb 2, 2016 <br>
  */ 
 @Controller
 @RequestMapping("/customers") 
@@ -39,6 +38,10 @@ public class CustomersController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private CustomersService<Customers> customersService; 
 	
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param url
@@ -49,12 +52,11 @@ public class CustomersController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(CustomersPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com/itour/entity/Customers",context); 
+		return forword("com.itour//customers",context); 
 	}
 	
 	
 	/**
-	 * ilook 首页
 	 * @param url
 	 * @param classifyId
 	 * @return
@@ -80,7 +82,7 @@ public class CustomersController extends BaseController{
 	@RequestMapping("/save")
 	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+		if(entity.getcustomerId()==null||StringUtils.isBlank(entity.getcustomerId().toString())){
 			customersService.add(entity);
 		}else{
 			customersService.update(entity);
