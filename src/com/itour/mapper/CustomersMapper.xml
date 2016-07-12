@@ -5,6 +5,7 @@
 <mapper namespace="com.itour.dao.CustomersDao" > 
 <!-- Result Map-->
 <resultMap id="BaseResultMap" type="com.itour.entity.Customers" >
+	<result column="id" property="id"/>
 	<result column="customer_id" property="customerId"/>
 	<result column="create_time" property="createTime"/>
 	<result column="status" property="status"/>
@@ -23,7 +24,7 @@
        
 <!-- customers table all fields -->
 <sql id="Base_Column_List" >
-	 customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction
+	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction
 </sql>
    
    
@@ -31,6 +32,9 @@
 <sql id="Example_Where_Clause">
 where 1=1
 <trim  suffixOverrides="," >
+	<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
 	<if test="customerId != null and customerId != ''" >
 	    and customer_id =  #{customerId}
 	</if>
@@ -79,22 +83,25 @@ where 1=1
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.Customers" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
-  insert into customers(customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction)
- values(#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction})
+  </selectKey> -->
+  insert into customers(id,customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction)
+ values(#{id},#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction})
 </insert>
 
 <!-- 根据id，修改记录-->  
  <update id="update" parameterType="java.util.Map" >
-  update customers set create_time=now(),status=#{status},update_time=now(),address=#{address},email=#{email},scope=#{scope},city=#{city},telephone=#{telephone},mobile=#{mobile},customer_name=#{customerName},nick_name=#{nickName},district=#{district},introduction=#{introduction} where customer_id=#{customerId}
+  update customers set customer_id=#{customerId},create_time=now(),status=#{status},update_time=now(),address=#{address},email=#{email},scope=#{scope},city=#{city},telephone=#{telephone},mobile=#{mobile},customer_name=#{customerName},nick_name=#{nickName},district=#{district},introduction=#{introduction} where id=#{id}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="com.itour.entity.Customers" >
 	update customers set 
 	<trim  suffixOverrides="," >
+	<if test="customerId != null  ">
+		customer_id=#{customerId},
+	</if>
 	<if test="createTime != null  ">
 		create_time=#{createTime},
 	</if>
@@ -134,18 +141,18 @@ where 1=1
 	<if test="introduction != null  ">
 		introduction=#{introduction},
 	</if>
-	</trim> where customer_id=#{customerId}
+	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.util.Map">
-	delete 	 from customers where customer_id = #{customerId}
+	delete 	 from customers where id = #{id}
 </delete>
  
 <!-- 根据id查询 客户信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
-	 from customers where customer_id = #{customerId}
+	 from customers where id = #{id}
 </select>
 
 <!-- 客户信息 列表总数-->

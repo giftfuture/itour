@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.IDGenerator;
 import com.itour.base.util.json.JSONUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.Customers;
@@ -95,7 +96,8 @@ public class CustomersController extends BaseController{
 	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		
-		if(entity.getcustomerId()==null||StringUtils.isBlank(entity.getcustomerId().toString())){
+		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+			//entity.setId(IDGenerator.getLongId());
 			customersService.add(entity);
 		}else{
 			Customers cust = customersService.queryById(entity.getcustomerId());
@@ -118,14 +120,15 @@ public class CustomersController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJson(response, context);
+		HtmlUtil.writerJSON(response, context);
 	}
 	
 	
 	
 	@RequestMapping("/delete")
-	public void delete(String[] customerId,HttpServletResponse response) throws Exception{
-		customersService.delete(customerId);
+	public void delete(String[] id,HttpServletResponse response) throws Exception{
+		
+		customersService.delete(id);
 		sendSuccessMessage(response, "删除成功");
 	}
 

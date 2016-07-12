@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.itour.base.dao.BaseDao;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.IDGenerator;
 
 public abstract class BaseService<T>{
 	
@@ -14,6 +15,7 @@ public abstract class BaseService<T>{
 	public void add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增
 		ClassReflectUtil.setIdKeyValue(t,"id",UUID.randomUUID().toString());
+		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
 		getDao().add(t);
 	}
 	
