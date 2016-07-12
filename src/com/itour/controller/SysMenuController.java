@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.util.HtmlUtil;
@@ -41,7 +42,6 @@ public class SysMenuController extends BaseController{
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
 	
 	/**
-	 * ilook 首页
 	 * @param url
 	 * @param classifyId
 	 * @return
@@ -86,6 +86,7 @@ public class SysMenuController extends BaseController{
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",model.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
+	//	System.out.println(JSON.toJSONString(dataList));
 		HtmlUtil.writerJson(response, jsonMap);
 	}
 	

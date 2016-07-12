@@ -5,19 +5,26 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.json.JSONUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.Customers;
+import com.itour.entity.SysMenu;
 import com.itour.page.CustomersPage;
 import com.itour.service.CustomersService;
  
@@ -38,10 +45,6 @@ public class CustomersController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private CustomersService<Customers> customersService; 
 	
-	
-	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -50,9 +53,13 @@ public class CustomersController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(CustomersPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(CustomersPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//customers",context); 
+		//page.setDeleted(DELETED.NO.key);
+		List<Customers> dataList = customersService.queryByList(page);
+		//设置页面数据
+		context.put("dataList", dataList);
+		return forword("server/sys/customers",context); 
 	}
 	
 	
@@ -69,7 +76,12 @@ public class CustomersController extends BaseController{
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+	//	Customers cust = dataList.get(0);
+		//System.out.println("####"+JSON.toJSONString(cust));
+		//System.out.println("####"+JSON.toJSONString(dataList));
+	 //   JSONObject jsonObj = JSONObject.parseObject(cust.toString());
+	 //   System.out.println(jsonObj);
+		HtmlUtil.writerJSON(response,jsonMap);
 	}
 	
 	/**
@@ -81,11 +93,16 @@ public class CustomersController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+		//Map<String,Object>  context = new HashMap<String,Object>();
+		
 		if(entity.getcustomerId()==null||StringUtils.isBlank(entity.getcustomerId().toString())){
 			customersService.add(entity);
 		}else{
-			customersService.update(entity);
+			Customers cust = customersService.queryById(entity.getcustomerId());
+			if(cust == null)
+				customersService.add(entity);
+			else
+				customersService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
@@ -107,8 +124,8 @@ public class CustomersController extends BaseController{
 	
 	
 	@RequestMapping("/delete")
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
-		customersService.delete(id);
+	public void delete(String[] customerId,HttpServletResponse response) throws Exception{
+		customersService.delete(customerId);
 		sendSuccessMessage(response, "删除成功");
 	}
 

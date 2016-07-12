@@ -1,10 +1,12 @@
 package com.itour.base.entity;
 
+import java.io.Serializable;
+
 
 /**
  * @author fred
  */
-public class BaseEntity {
+public class BaseEntity implements Serializable{
 	
 	 /**
 	  * 状态枚举

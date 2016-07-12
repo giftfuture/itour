@@ -11,7 +11,12 @@ public class SysUser extends BaseEntity {
 	
 	private String roleStr;//用户权限, 按","区分
 	
-	
+	public SysUser (){}
+	public SysUser (Integer id,String email,String nickname){
+		this.id = id;
+		this.email = email;
+		this.nickName = nickname;
+	}
 		public String getRoleStr() {
 		return roleStr;
 	}

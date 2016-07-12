@@ -35,7 +35,7 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 		//WebApplicationContext apli=WebApplicationContextUtils.getWebApplicationContext(servlet);
 		//SysVariablesService sysParamService=(SysVariablesService) apli.getBean("SysParamService");
 		try{
-			JdbcTemplate tpl =  this.getJdbcTemplate();
+			//JdbcTemplate tpl =  this.getJdbcTemplate();
 		    list =tpl.queryForList(sql);  
 			for (Map map : list){
 				SystemVariable.cache.put(map.get("var_name").toString(),map.get("var_value").toString());

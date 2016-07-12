@@ -55,7 +55,6 @@ public class SysRoleController extends BaseController{
 	
 	
 	/**
-	 * ilook 首页
 	 * @param url
 	 * @param classifyId
 	 * @return
