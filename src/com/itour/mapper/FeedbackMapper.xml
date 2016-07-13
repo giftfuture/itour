@@ -91,7 +91,7 @@ where 1=1
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="java.lang.Sting">
+<delete id="delete" parameterType="java.lang.String">
 	delete from feedback where id = #{id}
 </delete>
  
