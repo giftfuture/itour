@@ -23,8 +23,8 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="item" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">旅游项目名:</label><input name="item" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">旅游项目代码:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -43,15 +43,15 @@ pageContext.setAttribute("basePath",basePath);
      		 <div class="ui-edit">
 		     	   <div class="ftitle">旅行项目</div>
 					<div class="fitem">
-						<label></label>
+						<label>项目名称:</label>
 						<input name="item" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写item">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>项目代码:</label>
 						<input name="itemCode" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写itemCode">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>海拔:</label>
 						<input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
 					<div class="fitem">
@@ -59,52 +59,52 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="content" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写content">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>美图:</label>
 						<input name="photos" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写photos">
 					</div>
 					<div class="fitem">
-						<label></label>
-						<input name="remark" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
-					</div>
-					<div class="fitem">
-						<label></label>
+						<label>里程:</label>
 						<input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>所属区域:</label>
 						<input name="scope" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>简略描述:</label>
 						<input name="shortContent" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写shortContent">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>推荐指数:</label>
 						<input name="rank" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rank">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>找茬原因:</label>
 						<input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>折扣:</label>
 						<input name="discount" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写discount">
 					</div>
 					<div class="fitem">
-						<label>建议天数</label>
+						<label>建议天数:</label>
 						<input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rcdDays">
 					</div>
 					<div class="fitem">
-						<label>(挑战度)1为最低,5为最高,依次递增</label>
+						<label>挑战度(1为最低,5为最高,依次递增)</label>
 						<input name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate">
 					</div>
 					<div class="fitem">
-						<label>1为最低,5为最高,依次递增</label>
+						<label>快乐值(1为最低,5为最高,依次递增)</label>
 						<input name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue">
 					</div>
 					<div class="fitem">
 						<label>建议适合的人群及要求,注意事项</label>
 						<input name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写recommandCrowd">
+					</div>
+					<div class="fitem">
+						<label>备注:</label>
+						<input name="remark" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>
      	</form>
