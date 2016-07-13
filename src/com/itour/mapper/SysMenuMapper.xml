@@ -43,7 +43,6 @@ where 1=1   and deleted =  0
 	<if test="url != null and url != ''" >
 	    and url =  #{url}
 	</if>
-	com.itour.entity.SysMenu
 	<if test="parentId != null" >
 	    and parentId =  #{parentId}
 	</if>
@@ -144,7 +143,7 @@ where 1=1   and deleted =  0
 
 <!-- 获取顶级菜单 -->
 <select id="getRootMenu"  resultMap="BaseResultMap">
-	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is null
+	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is null or parentId = ''
 	<!-- <if test="menuId != null" >
      and  id != #{menuId}
     </if> -->

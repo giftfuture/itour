@@ -23,8 +23,7 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="type" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="remark" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">旅行方式:</label><input name="type" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -43,11 +42,11 @@ pageContext.setAttribute("basePath",basePath);
      		 <div class="ui-edit">
 		     	   <div class="ftitle">旅行方式</div>
 					<div class="fitem">
-						<label></label>
+						<label>旅行方式:</label>
 						<input name="type" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写type">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>备注:</label>
 						<input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>

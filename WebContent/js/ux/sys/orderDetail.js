@@ -18,44 +18,44 @@ itour.orderDetail = function(){
 	   			url:'orderDetail/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'status',title:'',align:'center',sortable:true,
+					{field:'orderId',title:'订单号',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.orderId;
+						}
+					},
+					{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;
 							}
 						},
-					{field:'createTime',title:'',align:'center',sortable:true,
+					{field:'createTime',title:'创建时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
 							}
 						},
-					{field:'updateTime',title:'',align:'center',sortable:true,
+					{field:'updateTime',title:'更新时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateTime;
 							}
 						},
-					{field:'content',title:'',align:'center',sortable:true,
+					{field:'content',title:'内容明细',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.content;
 							}
 						},
-					{field:'remark',title:'',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.remark;
-							}
-						},
-					{field:'perPrice',title:'',align:'center',sortable:true,
+					{field:'perPrice',title:'单价',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.perPrice;
 							}
 						},
-					{field:'count',title:'',align:'center',sortable:true,
+					{field:'count',title:'数量',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.count;
 							}
 						},
-					{field:'orderId',title:'',align:'center',sortable:true,
+						{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.orderId;
+								return row.remark;
 							}
 						},
 					]]

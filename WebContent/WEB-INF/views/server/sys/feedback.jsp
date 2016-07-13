@@ -23,9 +23,9 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="feedbackId" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">客户ID:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">反馈时间:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -43,36 +43,36 @@ pageContext.setAttribute("basePath",basePath);
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">客户反馈</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label></label>
 						<input name="feedbackId" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写feedbackId">
-					</div>
+					</div> -->
 					<div class="fitem">
-						<label></label>
-						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
-					</div>
-					<div class="fitem">
-						<label></label>
-						<input name="status" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写status">
-					</div>
-					<div class="fitem">
-						<label></label>
-						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
-					</div>
-					<div class="fitem">
-						<label></label>
-						<input name="title" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写title">
-					</div>
-					<div class="fitem">
-						<label></label>
-						<input name="content" type="text" maxlength="65535" class="easyui-validatebox" data-options="" missingMessage="请填写content">
-					</div>
-					<div class="fitem">
-						<label></label>
+						<label>客户ID</label>
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>标题</label>
+						<input name="title" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写title">
+					</div>
+					<div class="fitem">
+						<label>内容</label>
+						<input name="content" type="text" maxlength="65535" class="easyui-validatebox" data-options="" missingMessage="请填写content">
+					</div>
+					<div class="fitem">
+						<label>反馈时间</label>
+						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
+					</div>
+					<div class="fitem">
+						<label>反馈状态</label>
+						<input name="status" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写status">
+					</div>
+					<div class="fitem">
+						<label>更新时间</label>
+						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
+					</div>
+					<div class="fitem">
+						<label>审核结果</label>
 						<input name="result" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写result">
 					</div>
   			</div>

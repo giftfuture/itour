@@ -43,40 +43,40 @@ pageContext.setAttribute("basePath",basePath);
      		 <div class="ui-edit">
 		     	   <div class="ftitle">报价单</div>
 					<div class="fitem">
-						<label></label>
+						<label>报价单名:</label>
 						<input name="name" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写name">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>订单号:</label>
 						<input name="orderId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>报价单:</label>
 						<input name="quotation" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写quotation">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>创建时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>更新时间:</label>
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
 					</div>
 					<div class="fitem">
-						<label></label>
-						<input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
-					</div>
-					<div class="fitem">
-						<label>1= 总价加利润,2= 明细报价</label>
+						<label>总价加利润/明细报价</label>
 						<input name="type" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写type">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>总金额</label>
 						<input name="totalPrice" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写totalPrice">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>计算明细</label>
 						<input name="formula" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写formula">
+					</div>
+					<div class="fitem">
+						<label>备注:</label>
+						<input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>
      	</form>

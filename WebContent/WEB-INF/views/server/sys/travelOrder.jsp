@@ -23,8 +23,8 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="updateTime" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">更新时间:</label><input name="updateTime" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -43,79 +43,79 @@ pageContext.setAttribute("basePath",basePath);
      		 <div class="ui-edit">
 		     	   <div class="ftitle">客户订单</div>
 					<div class="fitem">
-						<label></label>
+						<label>下单时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>更新时间:</label>
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>订单名称:</label>
 						<input name="orderName" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写orderName">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>订单号:</label>
 						<input name="orderNo" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写orderNo">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>订单状态:</label>
 						<input name="orderStatus" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写orderStatus">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>联系人:</label>
 						<input name="receiver" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写receiver">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>联系电话:</label>
 						<input name="receiverMobile" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写receiverMobile">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>备注:</label>
 						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>客户ID:</label>
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>计划出行日:</label>
 						<input name="expectedDepart" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写expectedDepart">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>计划返程日:</label>
 						<input name="expectedBack" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写expectedBack">
 					</div>
 					<div class="fitem">
-						<label>本次订单出行人数</label>
+						<label>出行人数:</label>
 						<input name="totalStaff" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写totalStaff">
 					</div>
 					<div class="fitem">
-						<label>是否支付完成.</label>
+						<label>是否支付完成:</label>
 						<input name="isPayed" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写isPayed">
 					</div>
 					<div class="fitem">
-						<label>1=线上支付,2=现金支付,3=邮政汇款,4=公司转帐</label>
+						<label>支付方式:</label>
 						<input name="payType" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payType">
 					</div>
 					<div class="fitem">
-						<label>付款平台,如1=微信,2=支付宝,3=网银.</label>
+						<label>支付平台:</label>
 						<input name="payPlatform" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payPlatform">
 					</div>
 					<div class="fitem">
-						<label>如网银支付,即为付款方银行</label>
+						<label>付款银行:</label>
 						<input name="bank" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写bank">
 					</div>
 					<div class="fitem">
-						<label>付款方银行帐户</label>
+						<label>付款方银行帐户:</label>
 						<input name="payAccount" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payAccount">
 					</div>
 					<div class="fitem">
-						<label>付款时间</label>
+						<label>付款时间:</label>
 						<input name="payTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写payTime">
 					</div>
 					<div class="fitem">
-						<label>付款终端,如有,则为PC,IOS,Android</label>
+						<label>付款终端:</label>
 						<input name="payTerminal" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payTerminal">
 					</div>
   			</div>

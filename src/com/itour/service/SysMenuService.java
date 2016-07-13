@@ -59,8 +59,6 @@ public class SysMenuService<T> extends BaseService<T> {
 		
 	}
 	
-	
-	
 	/**
 	 * 
 	 * @param menu

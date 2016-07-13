@@ -23,8 +23,8 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -42,37 +42,37 @@ pageContext.setAttribute("basePath",basePath);
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">订单详情</div>
+   					<div class="fitem">
+						<label>订单号:</label>
+						<input name="orderId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
+					</div>
 					<div class="fitem">
-						<label></label>
+						<label>状态:</label>
 						<input name="status" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写status">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>创建时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>更新时间:</label>
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>内容详情:</label>
 						<input name="content" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写content">
 					</div>
 					<div class="fitem">
-						<label></label>
-						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
-					</div>
-					<div class="fitem">
-						<label></label>
+						<label>单价:</label>
 						<input name="perPrice" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写perPrice">
 					</div>
 					<div class="fitem">
-						<label></label>
+						<label>数量:</label>
 						<input name="count" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写count">
 					</div>
 					<div class="fitem">
-						<label></label>
-						<input name="orderId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
+						<label>备注:</label>
+						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>
      	</form>

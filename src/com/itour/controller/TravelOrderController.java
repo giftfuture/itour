@@ -73,7 +73,7 @@ public class TravelOrderController extends BaseController{
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+		HtmlUtil.writerJSON(response, jsonMap);
 	}
 	
 	/**
@@ -109,7 +109,7 @@ public class TravelOrderController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJson(response, context);
+		HtmlUtil.writerJSON(response, context);
 	}
 	
 	
