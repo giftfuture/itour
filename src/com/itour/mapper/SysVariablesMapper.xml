@@ -51,20 +51,15 @@ where 1=1
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.SysVariables" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into sys_variables(id,var_name,var_value,var_hostname,var_hostip,remark,var_project)
  values(#{id},#{varName},#{varValue},#{varHostname},#{varHostip},#{remark},#{varProject})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="java.util.Map" >
-  update sys_variables set var_name=#{varName},var_value=#{varValue},var_hostname=#{varHostname},var_hostip=#{varHostip},remark=#{remark},var_project=#{varProject} where id=#{id}
- </update>
- 
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="com.itour.entity.SysVariables" >
+<update id="update" parameterType="com.itour.entity.SysVariables" >
 	update sys_variables set 
 	<trim  suffixOverrides="," >
 	<if test="varName != null  ">
@@ -89,7 +84,7 @@ where 1=1
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="java.util.Map">
+<delete id="delete" parameterType="java.lang.String">
 	delete 	 from sys_variables where id = #{id}
 </delete>
  
@@ -100,13 +95,13 @@ where 1=1
 </select>
 
 <!-- 系统变量 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from sys_variables 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询系统变量列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from sys_variables 

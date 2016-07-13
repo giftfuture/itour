@@ -118,13 +118,13 @@ public class SysUserController extends BaseController{
 			if(count > 1){
 				throw new ServiceException("用户已存在.");
 			}
-			sysUserService.updateBySelective(bean);
+			sysUserService.update(bean);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
 	@RequestMapping("/getId")
-	public void getId(Integer id,HttpServletResponse response) throws Exception{
+	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
@@ -137,7 +137,7 @@ public class SysUserController extends BaseController{
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(Integer[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysUserService.delete(id);
 		sendSuccessMessage(response, "删除成功");
 	}
@@ -151,7 +151,7 @@ public class SysUserController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/updatePwd")
-	public void updatePwd(Integer id,String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public void updatePwd(String id,String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		boolean isAdmin = SessionUtils.isAdmin(request); //是否超级管理员
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
@@ -205,7 +205,7 @@ public class SysUserController extends BaseController{
 	 * @throws Exception
 	 */
 	@RequestMapping("/getUser") 
-	public void getUser(Integer id,HttpServletResponse response)  throws Exception{
+	public void getUser(String id,HttpServletResponse response)  throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){

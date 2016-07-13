@@ -10,11 +10,17 @@
 	<result column="btnName" property="btnName"/>
 	<result column="btnType" property="btnType"/>
 	<result column="actionUrls" property="actionUrls"/>
+	<result column="deleted" property="deleted"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="actions" property="actions"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
 </resultMap>
        
 <!-- sys_menu_btn table all fields -->
 <sql id="Base_Column_List" >
-	 id,menuid,btnName,btnType,actionUrls
+	 id,menuid,btnName,btnType,actionUrls, deleted, create_time, update_time, actions, create_by, update_by
 </sql>
    
    
@@ -22,9 +28,6 @@
 <sql id="Example_Where_Clause">
 where 1=1
 <trim  suffixOverrides="," >
-	<if test="id != null" >
-	    and id =  #{id}
-	</if>
 	<if test="menuid != null" >
 	    and menuid =  #{menuid}
 	</if>
@@ -34,29 +37,42 @@ where 1=1
 	 	<if test="btnType != null and btnType != ''" >
 	    and btnType =  #{btnType}
 	</if>
-	 	<if test="actionUrls != null and actionUrls != ''" >
+	 <if test="actionUrls != null and actionUrls != ''" >
 	    and actionUrls =  #{actionUrls}
+	</if>
+	<if test="deleted != null and deleted != ''" >
+	    and deleted =  #{deleted}
+	</if>
+	<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
+	</if>
+	<if test="updateTime != null and updateTime != ''" >
+	    and update_time =  #{updateTime}
+	</if>
+	<if test="actions != null and actions != ''" >
+	    and actions =  #{actions}
+	</if>
+	<if test="createBy != null and createBy != ''" >
+	    and create_by =  #{createBy}
+	</if>
+	<if test="updateBy != null and updateBy != ''" >
+	    and update_by =  #{updateBy}
 	</if>
 </trim>
 </sql>
    
 
 <!-- 插入记录 -->
-<insert id="add" parameterType="Object" >
+<insert id="add" parameterType="com.itour.entity.SysMenuBtn" >
   <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into sys_menu_btn(id,menuid,btnName,btnType,actionUrls)
  values(#{id},#{menuid},#{btnName},#{btnType},#{actionUrls})
 </insert>
-
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="Object" >
-  update sys_menu_btn set menuid=#{menuid},btnName=#{btnName},btnType=#{btnType},actionUrls=#{actionUrls} where id=#{id}
- </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="Object" >
+<update id="update" parameterType="com.itour.entity.SysMenuBtn" >
 	update sys_menu_btn set 
 	<trim  suffixOverrides="," >
 	<if test="menuid != null  ">
@@ -71,40 +87,52 @@ where 1=1
 	<if test="actionUrls != null  and actionUrls != '' ">
 		actionUrls=#{actionUrls},
 	</if>
+	<if test="deleted != null  ">
+		deleted=#{deleted},
+	</if>
+	<if test="updateTime != null  ">
+		update_time=#{updateTime},
+	</if>
+	<if test="actions != null  ">
+		actions=#{actions},
+	</if>
+	<if test="updateBy != null and updateBy != ''">
+		update_by=#{updateBy},
+	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="Object">
+<delete id="delete" parameterType="java.lang.String">
 	delete 	 from sys_menu_btn where id = #{id}
 </delete>
 
 <!-- 删除记录 -->
-<delete id="deleteByMenuid" parameterType="Object">
-	delete 	 from sys_menu_btn where menuid = #{id}
+<delete id="deleteByMenuid" parameterType="java.lang.String">
+	delete 	 from sys_menu_btn where menuid = #{menuid}
 </delete>
  
 <!-- 根据id查询 菜单按钮 -->
-<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from sys_menu_btn where id = #{id}
 </select>
 
 
 <!-- 查询所有菜单按钮 -->
-<select id="queryByAll"  resultMap="BaseResultMap" parameterType="Object">
+<select id="queryByAll"  resultMap="BaseResultMap" >
 	select <include refid="Base_Column_List" />  from sys_menu_btn
 </select>
 
 
 <!-- 根据menuid查询 菜单按钮 -->
-<select id="queryByMenuid"  resultMap="BaseResultMap" parameterType="Object">
+<select id="queryByMenuid"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from sys_menu_btn where menuid = #{menuid}
 </select>
 
 <!-- 根据menuUrl查询 菜单按钮 -->
-<select id="queryByMenuUrl"  resultMap="BaseResultMap" parameterType="Object">
+<select id="queryByMenuUrl"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	from sys_menu_btn b WHERE EXISTS (
 		SELECT 1 FROM sys_menu m WHERE  m.id = b.menuid AND IFNULL(m.deleted,0) = 0 AND   m.url = #{url}
@@ -113,13 +141,13 @@ where 1=1
 
 
 <!-- 菜单按钮 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from sys_menu_btn 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询菜单按钮列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from sys_menu_btn 
@@ -134,7 +162,7 @@ where 1=1
 
 
 <!-- 根据用户id查询按钮 -->
-<select id="getMenuBtnByUser"  resultMap="BaseResultMap" parameterType="Object">
+<select id="getMenuBtnByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	SELECT DISTINCT * FROM sys_menu_btn b
 	WHERE EXISTS (
 		 SELECT * FROM sys_role_rel r 

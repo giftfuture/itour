@@ -29,13 +29,13 @@ where 1=1
 	<if test="id != null and id != ''" >
 	    and id =  #{id}
 	</if>
-	<if test="status != null and status != ''" >
+	<if test="status != null" >
 	    and status =  #{status}
 	</if>
-	<if test="createTime != null and createTime != ''" >
+	<if test="createTime != null " >
 	    and create_time =  #{createTime}
 	</if>
-	<if test="updateTime != null and updateTime != ''" >
+	<if test="updateTime != null " >
 	    and update_time =  #{updateTime}
 	</if>
 	<if test="content != null and content != ''" >
@@ -44,10 +44,10 @@ where 1=1
 	<if test="remark != null and remark != ''" >
 	    and remark =  #{remark}
 	</if>
-	<if test="perPrice != null and perPrice != ''" >
+	<if test="perPrice != null " >
 	    and per_price =  #{perPrice}
 	</if>
-	<if test="count != null and count != ''" >
+	<if test="count != null" >
 	    and count =  #{count}
 	</if>
 	<if test="orderId != null and orderId != ''" >
@@ -59,20 +59,16 @@ where 1=1
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.OrderDetail" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id)
  values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="java.util.Map" >
-  update order_detail set status=#{status},create_time=now(),update_time=now(),content=#{content},remark=#{remark},per_price=#{perPrice},count=#{count},order_id=#{orderId} where id=#{id}
- </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="com.itour.entity.OrderDetail" >
+<update id="update" parameterType="com.itour.entity.OrderDetail" >
 	update order_detail set 
 	<trim  suffixOverrides="," >
 	<if test="status != null  ">
@@ -84,10 +80,10 @@ where 1=1
 	<if test="updateTime != null  ">
 		update_time=#{updateTime},
 	</if>
-	<if test="content != null  ">
+	<if test="content != null and content != '' ">
 		content=#{content},
 	</if>
-	<if test="remark != null  ">
+	<if test="remark != null and remark != '' ">
 		remark=#{remark},
 	</if>
 	<if test="perPrice != null  ">
@@ -96,7 +92,7 @@ where 1=1
 	<if test="count != null  ">
 		count=#{count},
 	</if>
-	<if test="orderId != null  ">
+	<if test="orderId != null and orderId != '' ">
 		order_id=#{orderId},
 	</if>
 	</trim> where id=#{id}
@@ -114,13 +110,13 @@ where 1=1
 </select>
 
 <!-- 订单详情 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from order_detail 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询订单详情列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from order_detail 

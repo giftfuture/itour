@@ -13,10 +13,7 @@ public interface BaseDao<T> {
 	public void update(T t);
 	
 	
-	public void updateBySelective(T t); 	
-	
-	
-	public void delete(Object id);
+	public void delete(String id);
 	
 
 	public int queryByCount(BasePage page);
@@ -25,5 +22,5 @@ public interface BaseDao<T> {
 	public List<T> queryByList(BasePage page);
 	
 	
-	public T queryById(Object id);
+	public T queryById(String id);
 }

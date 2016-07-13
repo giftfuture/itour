@@ -27,10 +27,10 @@ public class SysUserService<T> extends BaseService<T> {
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
 
 	@Override
-	public void delete(Object[] ids) throws Exception {
+	public void delete(String[] ids) throws Exception {
 		super.delete(ids);
-		for(Object id :  ids){
-			sysRoleRelService.deleteByObjId((String)id, RelType.USER.key);
+		for(String id :  ids){
+			sysRoleRelService.deleteByObjId(id, RelType.USER.key);
 		}
 	}
 	/**

@@ -89,8 +89,8 @@ public class ClassReflectUtil {
 		 try {
 			  field = cls.getDeclaredField(filedname);
 		   } catch (Exception e) {
-			   e.printStackTrace();
 			   System.out.println("没有这个字段："+filedname);
+			   e.printStackTrace();
 		   }
 		if(field==null){
 			return null;

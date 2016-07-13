@@ -35,20 +35,15 @@ where 1=1
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.TravelStyle" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into travel_style(id,type,remark)
  values(#{id},#{type},#{remark})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="java.util.Map" >
-  update travel_style set type=#{type},remark=#{remark} where id=#{id}
- </update>
- 
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="com.itour.entity.TravelStyle" >
+<update id="update" parameterType="com.itour.entity.TravelStyle" >
 	update travel_style set 
 	<trim  suffixOverrides="," >
 	<if test="type != null  ">
@@ -61,7 +56,7 @@ where 1=1
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="java.util.Map">
+<delete id="delete" parameterType="java.lang.String">
 	delete 	 from travel_style where id = #{id}
 </delete>
  
@@ -72,13 +67,13 @@ where 1=1
 </select>
 
 <!-- 旅行方式 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from travel_style 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询旅行方式列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from travel_style 

@@ -11,7 +11,8 @@ public class SysMenu extends BaseEntity {
 	private String url;//   系统url	private String parentId;//   父id 关联sys_menu.id	private Integer deleted;//   是否删除,0=未删除，1=已删除	private java.sql.Timestamp createTime;//   创建时间
 	private java.sql.Timestamp updateTime;//   修改时间	private Integer rank;//   排序
 	private String actions; //注册Action 按钮|分隔
-	
+	private java.lang.String createBy;//   
+	private java.lang.String updateBy;//  
 	private int subCount;//子菜单总数
 	
 	//菜单按钮
@@ -83,5 +84,17 @@ public class SysMenu extends BaseEntity {
 	}
 	public void setSubCount(int subCount) {
 		this.subCount = subCount;
+	}
+	public java.lang.String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(java.lang.String createBy) {
+		this.createBy = createBy;
+	}
+	public java.lang.String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(java.lang.String updateBy) {
+		this.updateBy = updateBy;
 	}	
 }

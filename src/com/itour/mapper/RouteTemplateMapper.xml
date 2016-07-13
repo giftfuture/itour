@@ -270,10 +270,10 @@ where 1=1
 	<if test="customerId != null and customerId != ''" >
 	    and customer_id =  #{customerId}
 	</if>
-	<if test="createTime != null and createTime != ''" >
+	<if test="createTime != null" >
 	    and create_time =  #{createTime}
 	</if>
-	<if test="updateTime != null and updateTime != ''" >
+	<if test="updateTime != null" >
 	    and update_time =  #{updateTime}
 	</if>
 	<if test="createBy != null and createBy != ''" >
@@ -298,206 +298,192 @@ where 1=1
  values(#{id},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="java.util.Map" >
-  update route_template set d1=#{d1},d2=#{d2},d3=#{d3},d4=#{d4},d5=#{d5},d6=#{d6},d7=#{d7},d8=#{d8},d9=#{d9},d10=#{d10},d11=#{d11},d12=#{d12},d13=#{d13},d14=#{d14},d15=#{d15},d16=#{d16},d17=#{d17},d18=#{d18},d19=#{d19},d20=#{d20},d21=#{d21},d22=#{d22},d23=#{d23},d24=#{d24},d25=#{d25},d26=#{d26},d27=#{d27},d28=#{d28},d29=#{d29},d30=#{d30},d31=#{d31},d32=#{d32},d33=#{d33},d34=#{d34},d35=#{d35},d36=#{d36},d37=#{d37},d38=#{d38},d39=#{d39},d40=#{d40},d41=#{d41},d42=#{d42},d43=#{d43},d44=#{d44},d45=#{d45},d46=#{d46},d47=#{d47},d48=#{d48},d49=#{d49},d50=#{d50},d51=#{d51},d52=#{d52},d53=#{d53},d54=#{d54},d55=#{d55},d56=#{d56},d57=#{d57},d58=#{d58},d59=#{d59},d60=#{d60},customer_id=#{customerId},create_time=now(),update_time=now(),create_by=#{createBy},update_by=#{updateBy},remark=#{remark} where id=#{id}
- </update>
- 
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="com.itour.entity.RouteTemplate" >
+<update id="update" parameterType="com.itour.entity.RouteTemplate" >
 	update route_template set 
 	<trim  suffixOverrides="," >
-	<if test="d1 != null  ">
+	<if test="d1 != null and d1 != '' ">
 		d1=#{d1},
 	</if>
-	<if test="d2 != null  ">
+	<if test="d2 != null   and d2 != ''">
 		d2=#{d2},
 	</if>
-	<if test="d3 != null  ">
+	<if test="d3 != null   and d3 != ''">
 		d3=#{d3},
 	</if>
-	<if test="d4 != null  ">
+	<if test="d4 != null   and d4 != ''">
 		d4=#{d4},
 	</if>
-	<if test="d5 != null  ">
+	<if test="d5 != null  and d5 != '' ">
 		d5=#{d5},
 	</if>
-	<if test="d6 != null  ">
+	<if test="d6 != null  and d6 != '' ">
 		d6=#{d6},
 	</if>
-	<if test="d7 != null  ">
+	<if test="d7 != null   and d7 != ''">
 		d7=#{d7},
 	</if>
-	<if test="d8 != null  ">
+	<if test="d8 != null   and d8 != ''">
 		d8=#{d8},
 	</if>
-	<if test="d9 != null  ">
+	<if test="d9 != null  and d9 != '' ">
 		d9=#{d9},
 	</if>
-	<if test="d10 != null  ">
+	<if test="d10 != null   and d10 != ''">
 		d10=#{d10},
 	</if>
-	<if test="d11 != null  ">
+	<if test="d11 != null   and d11 != ''">
 		d11=#{d11},
 	</if>
-	<if test="d12 != null  ">
+	<if test="d12 != null  and d12 != '' ">
 		d12=#{d12},
 	</if>
-	<if test="d13 != null  ">
+	<if test="d13 != null  and d13 != ''">
 		d13=#{d13},
 	</if>
-	<if test="d14 != null  ">
+	<if test="d14 != null   and d14 != ''">
 		d14=#{d14},
 	</if>
-	<if test="d15 != null  ">
+	<if test="d15 != null   and d15 != ''">
 		d15=#{d15},
 	</if>
-	<if test="d16 != null  ">
+	<if test="d16 != null   and d16 != ''">
 		d16=#{d16},
 	</if>
-	<if test="d17 != null  ">
+	<if test="d17 != null  and d17 != '' ">
 		d17=#{d17},
 	</if>
-	<if test="d18 != null  ">
+	<if test="d18 != null  and d18 != '' ">
 		d18=#{d18},
 	</if>
-	<if test="d19 != null  ">
+	<if test="d19 != null   and d19 != ''">
 		d19=#{d19},
 	</if>
-	<if test="d20 != null  ">
+	<if test="d20 != null   and d20 != ''">
 		d20=#{d20},
 	</if>
-	<if test="d21 != null  ">
+	<if test="d21 != null   and d21 != ''">
 		d21=#{d21},
 	</if>
-	<if test="d22 != null  ">
+	<if test="d22 != null  and d22 != '' ">
 		d22=#{d22},
 	</if>
-	<if test="d23 != null  ">
+	<if test="d23 != null  and d23 != '' ">
 		d23=#{d23},
 	</if>
-	<if test="d24 != null  ">
+	<if test="d24 != null  and d24 != '' ">
 		d24=#{d24},
 	</if>
-	<if test="d25 != null  ">
+	<if test="d25 != null  and d25 != '' ">
 		d25=#{d25},
 	</if>
-	<if test="d26 != null  ">
+	<if test="d26 != null   and d26 != ''">
 		d26=#{d26},
 	</if>
-	<if test="d27 != null  ">
+	<if test="d27 != null  and d27 != '' ">
 		d27=#{d27},
 	</if>
-	<if test="d28 != null  ">
+	<if test="d28 != null  and d28 != '' ">
 		d28=#{d28},
 	</if>
-	<if test="d29 != null  ">
+	<if test="d29 != null  and d29 != '' ">
 		d29=#{d29},
 	</if>
-	<if test="d30 != null  ">
+	<if test="d30 != null  and d30 != '' ">
 		d30=#{d30},
 	</if>
-	<if test="d31 != null  ">
+	<if test="d31 != null  and d31 != '' ">
 		d31=#{d31},
 	</if>
-	<if test="d32 != null  ">
+	<if test="d32 != null  and d32 != '' ">
 		d32=#{d32},
 	</if>
-	<if test="d33 != null  ">
+	<if test="d33 != null  and d33 != '' ">
 		d33=#{d33},
 	</if>
-	<if test="d34 != null  ">
+	<if test="d34 != null  and d34 != '' ">
 		d34=#{d34},
 	</if>
-	<if test="d35 != null  ">
+	<if test="d35 != null   and d35 != ''">
 		d35=#{d35},
 	</if>
-	<if test="d36 != null  ">
+	<if test="d36 != null  and d36 != '' ">
 		d36=#{d36},
 	</if>
-	<if test="d37 != null  ">
+	<if test="d37 != null  and d37 != '' ">
 		d37=#{d37},
 	</if>
-	<if test="d38 != null  ">
+	<if test="d38 != null  and d38 != '' ">
 		d38=#{d38},
 	</if>
-	<if test="d39 != null  ">
+	<if test="d39 != null  and d39 != '' ">
 		d39=#{d39},
 	</if>
-	<if test="d40 != null  ">
+	<if test="d40 != null   and d40 != ''">
 		d40=#{d40},
 	</if>
-	<if test="d41 != null  ">
+	<if test="d41 != null  and d41 != '' ">
 		d41=#{d41},
 	</if>
-	<if test="d42 != null  ">
+	<if test="d42 != null  and d42 != '' ">
 		d42=#{d42},
 	</if>
-	<if test="d43 != null  ">
+	<if test="d43 != null  and d43 != '' ">
 		d43=#{d43},
 	</if>
-	<if test="d44 != null  ">
+	<if test="d44 != null  and d44 != '' ">
 		d44=#{d44},
 	</if>
-	<if test="d45 != null  ">
+	<if test="d45 != null  and d45 != '' ">
 		d45=#{d45},
 	</if>
-	<if test="d46 != null  ">
+	<if test="d46 != null   and d46 != ''">
 		d46=#{d46},
 	</if>
-	<if test="d47 != null  ">
+	<if test="d47 != null  and d47 != '' ">
 		d47=#{d47},
 	</if>
-	<if test="d48 != null  ">
+	<if test="d48 != null  and d48 != '' ">
 		d48=#{d48},
 	</if>
-	<if test="d49 != null  ">
+	<if test="d49 != null  and d49 != '' ">
 		d49=#{d49},
 	</if>
-	<if test="d50 != null  ">
+	<if test="d50 != null  and d50 != '' ">
 		d50=#{d50},
 	</if>
-	<if test="d51 != null  ">
+	<if test="d51 != null  and d51 != '' ">
 		d51=#{d51},
 	</if>
-	<if test="d52 != null  ">
+	<if test="d52 != null  and d52 != '' ">
 		d52=#{d52},
 	</if>
-	<if test="d53 != null  ">
+	<if test="d53 != null  and d53 != '' ">
 		d53=#{d53},
 	</if>
-	<if test="d54 != null  ">
+	<if test="d54 != null  and d54 != '' ">
 		d54=#{d54},
 	</if>
-	<if test="d55 != null  ">
+	<if test="d55 != null  and d55 != '' ">
 		d55=#{d55},
 	</if>
-	<if test="d56 != null  ">
+	<if test="d56 != null  and d56 != '' ">
 		d56=#{d56},
 	</if>
-	<if test="d57 != null  ">
+	<if test="d57 != null  and d57 != '' ">
 		d57=#{d57},
 	</if>
-	<if test="d58 != null  ">
+	<if test="d58 != null  and d58 != '' ">
 		d58=#{d58},
 	</if>
-	<if test="d59 != null  ">
+	<if test="d59 != null  and d59 != '' ">
 		d59=#{d59},
 	</if>
-	<if test="d60 != null  ">
+	<if test="d60 != null   and d60 != ''">
 		d60=#{d60},
-	</if>
-	<if test="customerId != null  ">
-		customer_id=#{customerId},
-	</if>
-	<if test="createTime != null  ">
-		create_time=#{createTime},
 	</if>
 	<if test="updateTime != null  ">
 		update_time=#{updateTime},
-	</if>
-	<if test="createBy != null  ">
-		create_by=#{createBy},
 	</if>
 	<if test="updateBy != null  ">
 		update_by=#{updateBy},
@@ -509,7 +495,7 @@ where 1=1
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="java.util.Map">
+<delete id="delete" parameterType="java.lang.String">
 	delete 	 from route_template where id = #{id}
 </delete>
  
@@ -520,13 +506,13 @@ where 1=1
 </select>
 
 <!-- 路线模板 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from route_template 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询路线模板列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from route_template 

@@ -100,7 +100,7 @@ public class CustomersController extends BaseController{
 			//entity.setId(IDGenerator.getLongId());
 			customersService.add(entity);
 		}else{
-			Customers cust = customersService.queryById(entity.getcustomerId());
+			Customers cust = customersService.queryById(entity.getId());
 			if(cust == null)
 				customersService.add(entity);
 			else

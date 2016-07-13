@@ -20,10 +20,12 @@ import com.alibaba.fastjson.JSON;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.util.TreeUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
+import com.itour.entity.SysUser;
 import com.itour.page.SysMenuModel;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
@@ -47,7 +49,7 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping("/menu")
-	public ModelAndView  menu(SysMenuModel model,HttpServletRequest request) throws Exception{
+	public ModelAndView menu(SysMenuModel model,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		model.setDeleted(DELETED.NO.key);
 		List<SysMenu> dataList = sysMenuService.queryByList(model);
@@ -101,18 +103,21 @@ public class SysMenuController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	public void save(SysMenu bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		SysUser user = SessionUtils.getUser(request);
 		//设置菜单按钮数据
 		List<SysMenuBtn> btns = getReqBtns(request);
 		bean.setBtns(btns);
-		if(bean.getId() == null){
+		if(bean.getId() == null ||bean.getId().equals("")){
 			bean.setDeleted(DELETED.NO.key);
 			sysMenuService.add(bean);
 		}else{
 			SysMenu sm = sysMenuService.queryById(bean.getId());
-			if(sm == null)
+			if(sm == null){
+				bean.setDeleted(DELETED.NO.key);
 				sysMenuService.add(bean);
-			else
+			}else{
 				sysMenuService.update(bean);
+			}
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
@@ -133,7 +138,7 @@ public class SysMenuController extends BaseController{
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(Integer[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		if(id != null && id.length > 0){
 			sysMenuService.delete(id);
 			sendSuccessMessage(response, "删除成功");
@@ -167,6 +172,7 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 */
 	public List<SysMenuBtn> getReqBtns(HttpServletRequest request){
+		SysUser user = SessionUtils.getUser(request);
 		List<SysMenuBtn> btnList= new ArrayList<SysMenuBtn>();
 		String[] btnId  = request.getParameterValues("btnId");
 		String[] btnName  = request.getParameterValues("btnName");
@@ -188,6 +194,9 @@ public class SysMenuController extends BaseController{
 				btn.setBtnType(btnType[i]);
 				btn.setActionUrls(actionUrls[i]);
 				btn.setDeleteFlag(deleteFlag[i]);
+				if(user != null){					
+					btn.setCreateBy(user.getId());
+				}
 				btnList.add(btn);
 			}
 		}

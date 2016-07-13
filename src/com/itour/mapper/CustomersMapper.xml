@@ -90,63 +90,52 @@ where 1=1
  values(#{id},#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="java.util.Map" >
-  update customers set customer_id=#{customerId},create_time=now(),status=#{status},update_time=now(),address=#{address},email=#{email},scope=#{scope},city=#{city},telephone=#{telephone},mobile=#{mobile},customer_name=#{customerName},nick_name=#{nickName},district=#{district},introduction=#{introduction} where id=#{id}
- </update>
- 
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="com.itour.entity.Customers" >
-	update customers set 
+<update id="update" parameterType="com.itour.entity.Customers" >
+	update customers set update_time=now(),
 	<trim  suffixOverrides="," >
 	<if test="customerId != null  ">
 		customer_id=#{customerId},
 	</if>
-	<if test="createTime != null  ">
-		create_time=#{createTime},
-	</if>
 	<if test="status != null  ">
 		status=#{status},
 	</if>
-	<if test="updateTime != null  ">
-		update_time=#{updateTime},
-	</if>
-	<if test="address != null  ">
+	<if test="address != null and address != '' ">
 		address=#{address},
 	</if>
-	<if test="email != null  ">
+	<if test="email != null and email != '' ">
 		email=#{email},
 	</if>
 	<if test="scope != null  ">
 		scope=#{scope},
 	</if>
-	<if test="city != null  ">
+	<if test="city != null and city != '' ">
 		city=#{city},
 	</if>
-	<if test="telephone != null  ">
+	<if test="telephone != null telephone != '' ">
 		telephone=#{telephone},
 	</if>
-	<if test="mobile != null  ">
+	<if test="mobile != null and mobile != '' ">
 		mobile=#{mobile},
 	</if>
-	<if test="customerName != null  ">
+	<if test="customerName != null and customerName != '' ">
 		customer_name=#{customerName},
 	</if>
-	<if test="nickName != null  ">
+	<if test="nickName != null and nickName !='' ">
 		nick_name=#{nickName},
 	</if>
-	<if test="district != null  ">
+	<if test="district != null and district !='' ">
 		district=#{district},
 	</if>
-	<if test="introduction != null  ">
+	<if test="introduction != null and introduction != '' ">
 		introduction=#{introduction},
 	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="java.util.Map">
-	delete 	 from customers where id = #{id}
+<delete id="delete" parameterType="java.lang.String">
+	delete  from customers where id = #{id}
 </delete>
  
 <!-- 根据id查询 客户信息 -->
@@ -156,13 +145,13 @@ where 1=1
 </select>
 
 <!-- 客户信息 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from customers 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询客户信息列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from customers 

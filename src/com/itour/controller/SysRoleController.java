@@ -135,7 +135,7 @@ public class SysRoleController extends BaseController{
 	
 	
 	@RequestMapping("/delete")
-	public void delete(Integer[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysRoleService.delete(id);
 		sendSuccessMessage(response, "删除成功");
 	}

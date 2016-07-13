@@ -14,6 +14,8 @@
 	<result column="updateTime" property="updateTime"/>
 	<result column="rank" property="rank"/>
 	<result column="actions" property="actions"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
 </resultMap>
 
 <!-- 扩展字段 -->
@@ -24,7 +26,7 @@
 
 <!-- sys_menu table all fields -->
 <sql id="Base_Column_List" >
-	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions
+	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by
 </sql>
    
    
@@ -32,7 +34,7 @@
 <sql id="Example_Where_Clause">
 where 1=1   and deleted =  0
 <trim  suffixOverrides="," >
-	<if test="id != null" >
+	<if test="id != null and id !=''" >
 	    and id =  #{id}
 	</if>
 	 <if test="name != null and name != ''" >
@@ -41,7 +43,7 @@ where 1=1   and deleted =  0
 	<if test="url != null and url != ''" >
 	    and url =  #{url}
 	</if>
-	
+	com.itour.entity.SysMenu
 	<if test="parentId != null" >
 	    and parentId =  #{parentId}
 	</if>
@@ -64,26 +66,19 @@ where 1=1   and deleted =  0
    
 
 <!-- 插入记录 -->
-<insert id="add" parameterType="Object" >
+<insert id="add" parameterType="com.itour.entity.SysMenu" >
  <!--  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_menu(name,url,parentId,deleted,createTime,rank,actions)
- values(#{name},#{url},#{parentId},#{deleted},now(),#{rank},#{actions})
+  insert into sys_menu(id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by)
+ values(#{id},#{name},#{url},#{parentId},#{deleted},now(),now(),#{rank},#{actions},#{createBy},#{updateBy})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="Object" >
-  update sys_menu set id=#{id},name=#{name},url=#{url},parentId=#{parentId},deleted=#{deleted},updateTime = now(),rank=#{rank},actions=#{actions} where id=#{id}
- </update>
  
- <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="Object" >
-	update sys_menu set 
+ <!-- 修改记录，只修改值不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.SysMenu" >
+	update sys_menu set updateTime=now(),
 	<trim  suffixOverrides="," >
-	<if test="id != null  ">
-		id=#{id},
-	</if>
 	<if test="name != null  and name != '' ">
 		name=#{name},
 	</if>
@@ -96,43 +91,40 @@ where 1=1   and deleted =  0
 	<if test="deleted != null  ">
 		deleted=#{deleted},
 	</if>
-	<if test="createTime != null  ">
-		createTime=#{createTime},
-	</if>
-	<if test="updateTime != null  ">
-		updateTime=#{updateTime},
-	</if>
 	<if test="rank != null  ">
 		rank=#{rank},
 	</if>
 	<if test="actions != null  and actions != '' ">
-		actions=#{actions}
+		actions=#{actions},
+	</if>
+	<if test="updateBy != null and updateBy !=''">
+	update_by=#{updateBy},
 	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
-<update id="delete" parameterType="Object">
+<update id="delete" parameterType="java.lang.String">
 	update sys_menu set deleted = 1 where id = #{id}
 </update>
  
 <!-- 根据id查询 系统菜单 -->
-<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from sys_menu where id = #{id}
 </select>
 
 <!-- 系统菜单 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.lang.String">
 	select count(1) from sys_menu 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询系统菜单列表 -->
-<select id="queryByList" resultMap="ExtResultMap"  parameterType="Object">
+<select id="queryByList" resultMap="ExtResultMap"  parameterType="java.util.Map">
 	select 
 	<include refid="Base_Column_List"/>
-	,(SELECT COUNT(*) FROM sys_menu c  WHERE c.parentId = m.id and deleted = 0) AS subCount
+	,(SELECT COUNT(1) FROM sys_menu c  WHERE c.parentId = m.id and deleted = 0) AS subCount
 	from sys_menu m
 	<include refid="Example_Where_Clause"/>
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
@@ -146,27 +138,30 @@ where 1=1   and deleted =  0
 
 	
 <!-- 查询所有有效系统菜单列表 -->
-<select id="queryByAll" resultMap="BaseResultMap"  parameterType="Object">
-	select  id,name,url,parentId,actions from sys_menu deleted= 0 order by rank desc
+<select id="queryByAll" resultMap="BaseResultMap">
+	select   <include refid="Base_Column_List" />  from sys_menu where deleted= 0 order by rank desc
 </select>
 
 <!-- 获取顶级菜单 -->
-<select id="getRootMenu"  resultMap="BaseResultMap" parameterType="Object">
-	select id,name,url,parentId,actions from sys_menu where deleted= 0 and parentId is null
-	<if test="menuId != null" >
+<select id="getRootMenu"  resultMap="BaseResultMap">
+	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is null
+	<!-- <if test="menuId != null" >
      and  id != #{menuId}
-    </if>
+    </if> -->
 </select>
 
 
 <!-- 获取子菜单-->
-<select id="getChildMenu"  resultMap="BaseResultMap" parameterType="Object">
-	select id,name,url,parentId,actions from sys_menu where deleted= 0 and parentId is not null
+<select id="getChildMenu"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is not null
+	 <if test="parentId != null" >
+      and  id = #{parentId}
+    </if>
 </select>
 
 <!-- 根据角色Id获取菜单（不需要父菜单） -->
-<select id="getMenuByRoleId"  resultMap="BaseResultMap" parameterType="Object">
-	SELECT id,NAME,url,parentId,actions FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL
+<select id="getMenuByRoleId"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Base_Column_List" /> FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL
 	AND EXISTS (
 		 SELECT * FROM sys_role_rel r WHERE r.objId = m.id AND relType = 0
 		 AND r.roleId = #{roleId}
@@ -174,7 +169,7 @@ where 1=1   and deleted =  0
 </select>
 
 <!-- 根据用户id查询父菜单菜单 -->
-<select id="getRootMenuByUser"  resultMap="BaseResultMap" parameterType="Object">
+<select id="getRootMenuByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	SELECT DISTINCT id,NAME,url,parentId,actions FROM sys_menu m 
 	WHERE deleted= 0 AND parentId IS NULL
 	AND EXISTS (

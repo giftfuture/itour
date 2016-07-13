@@ -14,9 +14,12 @@ public abstract class BaseService<T>{
 	
 	public void add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增
-		ClassReflectUtil.setIdKeyValue(t,"id",UUID.randomUUID().toString());
+		String uuid = UUID.randomUUID().toString();
+		System.out.println("uuid="+uuid);
+		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
 		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
 		getDao().add(t);
+		//return uuid;
 	}
 	
 	public void update(T t)  throws Exception{
@@ -24,15 +27,11 @@ public abstract class BaseService<T>{
 	}
 	
 	
-	public void updateBySelective(T t){
-		getDao().updateBySelective(t);
-	}
-	
-	public void delete(Object... ids) throws Exception{
+	public void delete(String... ids) throws Exception{
 		if(ids == null || ids.length < 1){
 			return;
 		}
-		for(Object id : ids ){
+		for(String id : ids ){
 			getDao().delete(id);
 		}
 	}
@@ -47,7 +46,7 @@ public abstract class BaseService<T>{
 		return getDao().queryByList(page);
 	}
 
-	public T queryById(Object id) throws Exception{
+	public T queryById(String id) throws Exception{
 		return getDao().queryById(id);
 	}
 }

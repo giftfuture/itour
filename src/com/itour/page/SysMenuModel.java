@@ -14,7 +14,8 @@ public class SysMenuModel extends BasePage {
 	private java.sql.Timestamp updateTime;//   修改时间
 	private Integer rank;//   排序
 	private String actions; //注册Action 按钮|分隔
-
+	private java.lang.String createBy;//   
+	private java.lang.String updateBy;// 
 	public String getActions() {
 		return actions;
 	}
@@ -68,6 +69,18 @@ public class SysMenuModel extends BasePage {
 	}
 	public void setRank(Integer rank) {
 		this.rank = rank;
+	}
+	public java.lang.String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(java.lang.String createBy) {
+		this.createBy = createBy;
+	}
+	public java.lang.String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(java.lang.String updateBy) {
+		this.updateBy = updateBy;
 	}
 	
 	

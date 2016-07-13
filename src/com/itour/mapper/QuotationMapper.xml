@@ -39,10 +39,10 @@ where 1=1
 	<if test="quotation != null and quotation != ''" >
 	    and quotation =  #{quotation}
 	</if>
-	<if test="createTime != null and createTime != ''" >
+	<if test="createTime != null" >
 	    and create_time =  #{createTime}
 	</if>
-	<if test="updateTime != null and updateTime != ''" >
+	<if test="updateTime != null" >
 	    and update_time =  #{updateTime}
 	</if>
 	<if test="remark != null and remark != ''" >
@@ -51,7 +51,7 @@ where 1=1
 	<if test="type != null and type != ''" >
 	    and type =  #{type}
 	</if>
-	<if test="totalPrice != null and totalPrice != ''" >
+	<if test="totalPrice != null" >
 	    and total_price =  #{totalPrice}
 	</if>
 	<if test="formula != null and formula != ''" >
@@ -63,29 +63,24 @@ where 1=1
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.Quotation" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into quotation(id,name,order_id,quotation,create_time,update_time,remark,type,total_price,formula)
  values(#{id},#{name},#{orderId},#{quotation},now(),now(),#{remark},#{type},#{totalPrice},#{formula})
 </insert>
 
-<!-- 根据id，修改记录-->  
- <update id="update" parameterType="java.util.Map" >
-  update quotation set name=#{name},order_id=#{orderId},quotation=#{quotation},create_time=now(),update_time=now(),remark=#{remark},type=#{type},total_price=#{totalPrice},formula=#{formula} where id=#{id}
- </update>
- 
  <!-- 修改记录，只修改只不为空的字段 -->
-<update id="updateBySelective" parameterType="com.itour.entity.Quotation" >
+<update id="update" parameterType="com.itour.entity.Quotation" >
 	update quotation set 
 	<trim  suffixOverrides="," >
-	<if test="name != null  ">
+	<if test="name != null and name != '' ">
 		name=#{name},
 	</if>
-	<if test="orderId != null  ">
+	<if test="orderId != null and orderId != '' ">
 		order_id=#{orderId},
 	</if>
-	<if test="quotation != null  ">
+	<if test="quotation != null and quotation != '' ">
 		quotation=#{quotation},
 	</if>
 	<if test="createTime != null  ">
@@ -94,24 +89,24 @@ where 1=1
 	<if test="updateTime != null  ">
 		update_time=#{updateTime},
 	</if>
-	<if test="remark != null  ">
+	<if test="remark != null and remark != '' ">
 		remark=#{remark},
 	</if>
-	<if test="type != null  ">
+	<if test="type != null and type != '' ">
 		type=#{type},
 	</if>
 	<if test="totalPrice != null  ">
 		total_price=#{totalPrice},
 	</if>
-	<if test="formula != null  ">
+	<if test="formula != null and formula != '' ">
 		formula=#{formula},
 	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
-<delete id="delete" parameterType="java.util.Map">
-	delete 	 from quotation where id = #{id}
+<delete id="delete" parameterType="java.lang.String">
+	delete from quotation where id = #{id}
 </delete>
  
 <!-- 根据id查询 报价单 -->
@@ -121,13 +116,13 @@ where 1=1
 </select>
 
 <!-- 报价单 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from quotation 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询报价单列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
 	from quotation 

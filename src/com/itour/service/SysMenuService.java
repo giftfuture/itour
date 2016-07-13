@@ -61,9 +61,13 @@ public class SysMenuService<T> extends BaseService<T> {
 	
 	
 	
-
+	/**
+	 * 
+	 * @param menu
+	 * @throws Exception
+	 */
 	public void add(SysMenu menu) throws Exception {
-		super.add((T)menu);
+		 super.add((T)menu);
 		saveBtns(menu.getId(),menu.getBtns());
 	}
 
@@ -136,12 +140,12 @@ public class SysMenuService<T> extends BaseService<T> {
 	
 	
 	@Override
-	public void delete(Object[] ids) throws Exception {
+	public void delete(String[] ids) throws Exception {
 		super.delete(ids);
 		//删除关联关系
-		for(Object id : ids){
-			sysRoleRelService.deleteByObjId((String)id, RelType.MENU.key);
-			sysMenuBtnService.deleteByMenuid((String)id);
+		for(String id : ids){
+			sysRoleRelService.deleteByObjId(id, RelType.MENU.key);
+			sysMenuBtnService.deleteByMenuid(id);
 		}
 	}
 
