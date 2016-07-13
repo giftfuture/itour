@@ -30,11 +30,11 @@ public class SysRoleService<T> extends BaseService<T> {
 	/**
 	 * 添加角色&菜单关系
 	 */
-	public void addRoleMenuRel(Integer roleId,Integer[] menuIds) throws Exception{
+	public void addRoleMenuRel(String roleId,String[] menuIds) throws Exception{
 		if(roleId == null ||  menuIds == null || menuIds.length < 1 ){ 
 			return;
 		}
-		for(Integer menuid :menuIds ){ 
+		for(String menuid :menuIds ){ 
 			SysRoleRel rel = new SysRoleRel();
 			rel.setRoleId(roleId);
 			rel.setObjId(menuid);
@@ -46,11 +46,11 @@ public class SysRoleService<T> extends BaseService<T> {
 	/**
 	 * 添加角色&菜单关系
 	 */
-	public void addRoleBtnRel(Integer roleId,Integer[] btnIds) throws Exception{
+	public void addRoleBtnRel(String roleId,String[] btnIds) throws Exception{
 		if(roleId == null ||  btnIds == null || btnIds.length < 1 ){ 
 			return;
 		}
-		for(Integer btnid : btnIds ){ 
+		for(String btnid : btnIds ){ 
 			SysRoleRel rel = new SysRoleRel();
 			rel.setRoleId(roleId);
 			rel.setObjId(btnid);
@@ -66,7 +66,7 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @param menuIds
 	 * @throws Exception
 	 */
-	public void add(SysRole role,Integer[] menuIds,Integer[] btnIds) throws Exception {
+	public void add(SysRole role,String[] menuIds,String[] btnIds) throws Exception {
 		super.add((T)role);
 		addRoleMenuRel(role.getId(),menuIds);
 		addRoleBtnRel(role.getId(),btnIds);
@@ -77,9 +77,9 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @param id
 	 * @throws Exception
 	 */
-	public void delete(Integer[] ids) throws Exception {
+	public void delete(String[] ids) throws Exception {
 		super.delete(ids);
-		for(Integer id : ids){
+		for(String id : ids){
 			//清除关联关系
 			sysRoleRelService.deleteByRoleId(id);
 		}
@@ -91,7 +91,7 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @param menuIds
 	 * @throws Exception
 	 */
-	public void update(SysRole role,Integer[] menuIds,Integer[] btnIds) throws Exception {
+	public void update(SysRole role,String[] menuIds,String[] btnIds) throws Exception {
 		super.update((T)role);
 		//如果角色被禁用则删除关联的用户关系
 		if(STATE.DISABLE.key == role.getState()){
@@ -120,7 +120,7 @@ public class SysRoleService<T> extends BaseService<T> {
 	 *查询全部有效的权限
 	 * @return
 	 */
-	public List<T> queryByUserid(Integer userid){
+	public List<T> queryByUserid(String userid){
 		return getDao().queryByUserid(userid);
 	}
 

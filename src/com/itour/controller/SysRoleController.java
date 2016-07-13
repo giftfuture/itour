@@ -78,7 +78,7 @@ public class SysRoleController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/save")
-	public void save(SysRole bean,Integer[] menuIds,Integer[] btnIds,HttpServletResponse response) throws Exception{
+	public void save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletResponse response) throws Exception{
 		if(bean.getId() == null){
 			sysRoleService.add(bean,menuIds,btnIds);
 		}else{
@@ -89,7 +89,7 @@ public class SysRoleController extends BaseController{
 	
 	
 	@RequestMapping("/getId")
-	public void getId(Integer id,HttpServletResponse response) throws Exception{
+	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object> ();
 		SysRole bean  = sysRoleService.queryById(id);
 		if(bean  == null){
@@ -97,10 +97,10 @@ public class SysRoleController extends BaseController{
 			return;
 		}
 		//获取权限关联的菜单
-		Integer[] menuIds = null;
+		String[] menuIds = null;
 		List<SysMenu> menuList =  sysMenuService.getMenuByRoleId(id);
 		if(menuList != null){
-			menuIds = new Integer[menuList.size()];
+			menuIds = new String[menuList.size()];
 			int i = 0;
 			for(SysMenu item : menuList){
 				menuIds[i] = item.getId();
@@ -108,10 +108,10 @@ public class SysRoleController extends BaseController{
 			}
 		}
 		//获取权限下关联的按钮
-		Integer[] btnIds = null;
+		String[] btnIds = null;
 		List<SysRoleRel>  btnList =sysRoleRelService.queryByRoleId(id, RelType.BTN.key);
 		if(btnList != null){
-			btnIds = new Integer[btnList.size()];
+			btnIds = new String[btnList.size()];
 			int i = 0;
 			for(SysRoleRel item : btnList){
 				btnIds[i] = item.getObjId();

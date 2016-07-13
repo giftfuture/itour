@@ -22,5 +22,5 @@ public interface SysRoleDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 *根据用户Id查询权限
 	 * @return
 	 */
-	public List<SysMenuBtn> queryByUserid(Integer userid);
+	public List<SysMenuBtn> queryByUserid(String userid);
 }

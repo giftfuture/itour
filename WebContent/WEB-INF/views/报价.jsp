@@ -1,6 +1,4 @@
-<%@ page language="java" import="java.lang.*"
-	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	isELIgnored="false"%>
+<%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%    
 String path = request.getContextPath();    
 // 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    

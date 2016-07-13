@@ -35,9 +35,9 @@ where 1=1
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+  <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into sys_role_rel(roleId,objId,relType)
  values(#{roleId},#{objId},#{relType})
 </insert>

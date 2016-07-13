@@ -85,7 +85,7 @@ public final class SessionUtils {
 	  * @param request
 	  * @return SysUser
 	  */
-	 public static Integer getUserId(HttpServletRequest request){
+	 public static String getUserId(HttpServletRequest request){
 		 SysUser user = getUser(request);
 		 if(user != null){
 			 return user.getId();

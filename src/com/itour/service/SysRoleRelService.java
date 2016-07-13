@@ -25,7 +25,7 @@ public class SysRoleRelService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(SysRoleRelService.class);
 	
 	
-	public List<SysRoleRel> queryByRoleId(Integer roleId,Integer relType){
+	public List<SysRoleRel> queryByRoleId(String roleId,Integer relType){
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("roleId", roleId);
 		param.put("relType", relType);
@@ -33,7 +33,7 @@ public class SysRoleRelService<T> extends BaseService<T> {
 	}
 	
 	
-	public List<SysRoleRel> queryByObjId(Integer objId,Integer relType){
+	public List<SysRoleRel> queryByObjId(String objId,Integer relType){
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("objId", objId);
 		param.put("relType", relType);
@@ -45,7 +45,7 @@ public class SysRoleRelService<T> extends BaseService<T> {
 	 * @param objId
 	 * @param relType
 	 */
-	public void deleteByObjId(Integer objId,Integer relType){
+	public void deleteByObjId(String objId,Integer relType){
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("objId", objId);
 		param.put("relType", relType);
@@ -56,7 +56,7 @@ public class SysRoleRelService<T> extends BaseService<T> {
 	 * 根据角色id删除 
 	 * @param roleId
 	 */
-	public void deleteByRoleId(Integer roleId){
+	public void deleteByRoleId(String roleId){
 		deleteByRoleId(roleId,null);
 	}
 	
@@ -65,7 +65,7 @@ public class SysRoleRelService<T> extends BaseService<T> {
 	 * @param roleId
 	 * @param relType
 	 */
-	public void deleteByRoleId(Integer roleId,Integer relType){
+	public void deleteByRoleId(String roleId,Integer relType){
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("roleId", roleId);
 		param.put("relType", relType);

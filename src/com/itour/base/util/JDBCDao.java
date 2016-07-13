@@ -8,6 +8,7 @@ import java.util.List;
 
 import junit.framework.Assert;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -22,6 +23,7 @@ import com.itour.entity.SysUser;
 
 public class JDBCDao extends JdbcDaoSupport{
 	
+	@Autowired(required=false)
 	private JdbcTemplate jdbcTemplate;  
 	   /**   
      * 创建表  
@@ -104,7 +106,7 @@ public class JDBCDao extends JdbcDaoSupport{
                     public void setValues(PreparedStatement ps) throws SQLException {  
                         ps.setString(1, user.getEmail());  
                         ps.setString(2, user.getPwd());  
-                        ps.setInt(3, user.getId());  
+                        ps.setString(3, user.getId());  
                     }  
                 }  
         );  
@@ -158,7 +160,7 @@ public class JDBCDao extends JdbcDaoSupport{
                         @Override  
                         public Object mapRow(ResultSet rs, int rowNum)throws SQLException {  
                         	SysUser user  = new SysUser();  
-                            user.setId(rs.getInt("id"));  
+                            user.setId(rs.getString("id"));  
                             user.setEmail(rs.getString("email"));  
                             user.setPwd(rs.getString("pwd"));  
                             return user;  
@@ -183,7 +185,7 @@ public class JDBCDao extends JdbcDaoSupport{
                     @Override  
                     public Object mapRow(ResultSet rs,int rowNum)throws SQLException {  
                         SysUser user  = new SysUser();  
-                        user.setId(rs.getInt("id"));  
+                        user.setId(rs.getString("id"));  
                         user.setEmail(rs.getString("email"));  
                         user.setPwd(rs.getString("password"));  
                         return user;  
@@ -204,7 +206,7 @@ public class JDBCDao extends JdbcDaoSupport{
                     @Override  
                     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {  
                         SysUser user  = new SysUser();  
-                        user.setId(rs.getInt("id"));  
+                        user.setId(rs.getString("id"));  
                         user.setEmail(rs.getString("username"));  
                         user.setPwd(rs.getString("password"));  
                         return user;  
@@ -248,7 +250,7 @@ public class JDBCDao extends JdbcDaoSupport{
                     @Override    
                     public void processRow(ResultSet rs) throws SQLException {     
                     	SysUser user  = new SysUser();  
-            user.setId(rs.getInt("id"));  
+            user.setId(rs.getString("id"));  
             user.setEmail(rs.getString("username"));  
             user.setPwd(rs.getString("password"));    
                     }     
@@ -268,7 +270,7 @@ public class JDBCDao extends JdbcDaoSupport{
                     @Override  
                     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {  
                     	SysUser user  = new SysUser();  
-                        user.setId(rs.getInt("id"));  
+                        user.setId(rs.getString("id"));  
                         user.setEmail(rs.getString("email"));  
                         user.setPwd(rs.getString("pwd"));  
                         return user;  
@@ -286,7 +288,7 @@ public class JDBCDao extends JdbcDaoSupport{
                         public void setValues(PreparedStatement ps, int i) throws SQLException {  
                             ps.setString(1, ((SysUser)users.get(i)).getEmail());  
                             ps.setString(2, ((SysUser)users.get(i)).getPwd());  
-                            ps.setLong(3, ((SysUser)users.get(i)).getId());  
+                            ps.setString(3, ((SysUser)users.get(i)).getId());  
                         }  
                           
                         @Override  

@@ -11,13 +11,13 @@ import com.itour.base.dao.BaseDao;
  */
 public interface SysMenuBtnDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
-	public List<SysMenuBtn> queryByMenuid(Integer menuid);
+	public List<SysMenuBtn> queryByMenuid(String menuid);
 	
 	public List<SysMenuBtn> queryByMenuUrl(String url); 
 	
-	public void deleteByMenuid(Integer menuid);
+	public void deleteByMenuid(String menuid);
 	
-	public List<SysMenuBtn> getMenuBtnByUser(Integer userid); 
+	public List<SysMenuBtn> getMenuBtnByUser(String userid); 
 	
 	
 	public List<SysMenuBtn> queryByAll();

@@ -8,7 +8,7 @@ public class TreeNode {
 
 	private String id;
 	
-	private Integer dataId;
+	private String dataId;
 	
 	private String text;
 	
@@ -18,7 +18,7 @@ public class TreeNode {
 	
 	private boolean checked; //
 	
-	private Integer parentId;
+	private String parentId;
 	
 	private Map<String,Object> attributes = new HashMap<String, Object>();
 	
@@ -44,19 +44,19 @@ public class TreeNode {
 		this.url = url;
 	}
 
-	public  Integer getParentId() {
+	public  String getParentId() {
 		return parentId;
 	}
 
-	public void setParentId( Integer parentId) {
+	public void setParentId( String parentId) {
 		this.parentId = parentId;
 	}
 
-	public Integer getDataId() {
+	public String getDataId() {
 		return dataId;
 	}
 
-	public void setDataId(Integer dataId) {
+	public void setDataId(String dataId) {
 		this.dataId = dataId;
 	}
 

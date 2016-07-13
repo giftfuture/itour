@@ -40,7 +40,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param btns
 	 * @throws Exception 
 	 */
-	public void saveBtns(Integer menuid,List<SysMenuBtn> btns) throws Exception{
+	public void saveBtns(String menuid,List<SysMenuBtn> btns) throws Exception{
 		if(btns == null || btns.isEmpty()){
 			return;
 		}
@@ -109,7 +109,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param roleId
 	 * @return
 	 */
-	public List<T> getRootMenuByUser(Integer userId){
+	public List<T> getRootMenuByUser(String userId){
 		return getDao().getRootMenuByUser(userId);
 	}
 	
@@ -119,7 +119,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param roleId
 	 * @return
 	 */
-	public List<T> getChildMenuByUser(Integer userId){
+	public List<T> getChildMenuByUser(String userId){
 		return getDao().getChildMenuByUser(userId);
 	}
 	
@@ -129,7 +129,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param roleId
 	 * @return
 	 */
-	public List<T> getMenuByRoleId(Integer roleId){
+	public List<T> getMenuByRoleId(String roleId){
 		return getDao().getMenuByRoleId(roleId);
 	}
 	
@@ -140,8 +140,8 @@ public class SysMenuService<T> extends BaseService<T> {
 		super.delete(ids);
 		//删除关联关系
 		for(Object id : ids){
-			sysRoleRelService.deleteByObjId((Integer)id, RelType.MENU.key);
-			sysMenuBtnService.deleteByMenuid((Integer)id);
+			sysRoleRelService.deleteByObjId((String)id, RelType.MENU.key);
+			sysMenuBtnService.deleteByMenuid((String)id);
 		}
 	}
 

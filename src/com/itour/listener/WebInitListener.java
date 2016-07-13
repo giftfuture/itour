@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-
+import com.alibaba.druid.pool.DruidDataSource;
 import com.itour.base.util.SystemVariable;
 
 public class WebInitListener extends JdbcDaoSupport implements ServletContextListener {
@@ -20,8 +20,10 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 	private static final Logger log = Logger.getLogger(WebInitListener.class);
 	
 	@Autowired(required=false)
-	private JdbcTemplate tpl;
+	private JdbcTemplate jdbcTemplate;
 	
+	@Autowired(required=false)
+	private DruidDataSource dataSource;
 //	public static HashMap<String, String> ConfigMap=new HashMap<String, String>();
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
@@ -29,20 +31,7 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 	   ServletContext servlet=arg0.getServletContext();
-	   String sql = "select var_name,var_value from sys_variables where var_project='itour' and var_hostname='"+SystemVariable.hostName+"' and var_hostip='"+SystemVariable.hostIp+"'";  
-	   List<Map<String, Object>> list = null;
-	   System.out.println("WebInitListener.contextInitialized.sql="+sql);
-		//WebApplicationContext apli=WebApplicationContextUtils.getWebApplicationContext(servlet);
-		//SysVariablesService sysParamService=(SysVariablesService) apli.getBean("SysParamService");
-		try{
-			//JdbcTemplate tpl =  this.getJdbcTemplate();
-		    list =tpl.queryForList(sql);  
-			for (Map map : list){
-				SystemVariable.cache.put(map.get("var_name").toString(),map.get("var_value").toString());
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	   SystemVariable.initVariables();
 	}
 	
 

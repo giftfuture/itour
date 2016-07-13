@@ -30,7 +30,7 @@ public class SysUserService<T> extends BaseService<T> {
 	public void delete(Object[] ids) throws Exception {
 		super.delete(ids);
 		for(Object id :  ids){
-			sysRoleRelService.deleteByObjId((Integer)id, RelType.USER.key);
+			sysRoleRelService.deleteByObjId((String)id, RelType.USER.key);
 		}
 	}
 	/**
@@ -62,7 +62,7 @@ public class SysUserService<T> extends BaseService<T> {
 	 * @param userId
 	 * @return
 	 */
-	public List<SysRoleRel> getUserRole(Integer userId){
+	public List<SysRoleRel> getUserRole(String userId){
 		return sysRoleRelService.queryByObjId(userId,RelType.USER.key);
 	}
 	
@@ -72,13 +72,13 @@ public class SysUserService<T> extends BaseService<T> {
 	 * @param roleIds
 	 * @throws Exception
 	 */
-	public void addUserRole(Integer userId,Integer[] roleIds) throws Exception{
+	public void addUserRole(String userId,String[] roleIds) throws Exception{
 		if(userId == null ||  roleIds == null || roleIds.length < 1 ){ 
 			return;
 		}
 		//清除关联关系
 		sysRoleRelService.deleteByObjId(userId, RelType.USER.key);
-		for(Integer roleId :roleIds ){ 
+		for(String roleId :roleIds ){ 
 			SysRoleRel rel = new SysRoleRel();
 			rel.setRoleId(roleId);
 			rel.setObjId(userId);

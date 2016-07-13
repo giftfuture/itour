@@ -37,7 +37,7 @@ public interface SysMenuDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param roleId
 	 * @return
 	 */
-	public List<SysMenuBtn> getMenuByRoleId(Integer roleId);
+	public List<SysMenuBtn> getMenuByRoleId(String roleId);
 	
 	
 	/**
@@ -45,13 +45,13 @@ public interface SysMenuDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param userId
 	 * @return
 	 */
-	public List<SysMenuBtn> getRootMenuByUser(Integer userId);
+	public List<SysMenuBtn> getRootMenuByUser(String userId);
 	
 	/**
 	 * 根据用户id查询子菜单菜单
 	 * @param userId
 	 * @return
 	 */
-	public List<SysMenuBtn> getChildMenuByUser(Integer userId);
+	public List<SysMenuBtn> getChildMenuByUser(String userId);
 	
 }

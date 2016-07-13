@@ -114,7 +114,7 @@ public class SysMenuController extends BaseController{
 	}
 	
 	@RequestMapping("/getId")
-	public void getId(Integer id,HttpServletResponse response) throws Exception{
+	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		SysMenu bean  = sysMenuService.queryById(id);
 		if(bean  == null){
@@ -177,7 +177,8 @@ public class SysMenuController extends BaseController{
 			if(StringUtils.isNotBlank(btnName[i]) && StringUtils.isNotBlank(btnType[i])){
 				SysMenuBtn btn = new SysMenuBtn();
 				if(StringUtils.isNotBlank(btnId[i]) && NumberUtils.isNumber(btnId[i])){
-					btn.setId(NumberUtils.toInt(btnId[i]));
+					//btn.setId(NumberUtils.toInt(btnId[i]));
+					btn.setId(btnId[i]);
 				}
 				btn.setBtnName(btnName[i]);
 				btn.setBtnType(btnType[i]);

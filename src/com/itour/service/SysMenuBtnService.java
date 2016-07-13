@@ -27,7 +27,7 @@ public class SysMenuBtnService<T> extends BaseService<T> {
 	
 	
 	
-	public List<T> queryByMenuid(Integer menuid){
+	public List<T> queryByMenuid(String menuid){
 		return getDao().queryByMenuid(menuid);
 	}
 	
@@ -35,11 +35,11 @@ public class SysMenuBtnService<T> extends BaseService<T> {
 		return getDao().queryByMenuUrl(url);
 	}
 	
-	public void deleteByMenuid(Integer menuid){
+	public void deleteByMenuid(String menuid){
 		getDao().deleteByMenuid(menuid);
 	}
 	
-	public List<T> getMenuBtnByUser(Integer userid){
+	public List<T> getMenuBtnByUser(String userid){
 		return getDao().getMenuBtnByUser(userid);
 	}
 

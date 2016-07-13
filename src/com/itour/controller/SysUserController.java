@@ -212,10 +212,10 @@ public class SysUserController extends BaseController{
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return;
 		}
-		Integer[] roleIds = null;
+		String[] roleIds = null;
 		List<SysRoleRel>  roles  =sysUserService.getUserRole(bean.getId());
 		if(roles != null){
-			roleIds = new Integer[roles.size()];
+			roleIds = new String[roles.size()];
 			int i = 0;
 			for(SysRoleRel rel : roles ){
 				roleIds[i] = rel.getRoleId();
@@ -241,7 +241,7 @@ public class SysUserController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/addUserRole")
-	public void addUserRole(Integer id,Integer roleIds[],HttpServletResponse response) throws Exception{
+	public void addUserRole(String id,String roleIds[],HttpServletResponse response) throws Exception{
 		sysUserService.addUserRole(id, roleIds);
 		sendSuccessMessage(response, "保存成功");
 	}

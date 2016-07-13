@@ -1,6 +1,7 @@
 package com.itour.controller;
 
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -133,7 +134,7 @@ public class MainController extends BaseController {
 		 String firstEncode = SHA.encryptSHA(pwd); 
 		 String secondEncode = SHA.encryptSHA(firstEncode.substring(20, firstEncode.length())); 
 		 String finalPwdCode = secondEncode.substring(1,secondEncode.length()-2);//加密原始密码后取后位再加密,去掉头1位,尾两位,剩余位存入数据库
-		 SysUser user = sysUserService.queryLogin(email, finalPwdCode);
+		 SysUser user = sysUserService.queryLogin(email,finalPwdCode);
 		if(user == null){
 			//记录错误登录日志
 			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
@@ -160,7 +161,6 @@ public class MainController extends BaseController {
 		//sendSuccessMessage(response, message);
 		return new ModelAndView("redirect:/main/manage");
 	}
-	
 	
 	/**
 	 * 退出登录
@@ -244,15 +244,19 @@ public class MainController extends BaseController {
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/manage") 
-	public ModelAndView main(HttpServletRequest request){
-		//response.setContentType("text/html;charset=UTF-8");
+	public ModelAndView main(HttpServletRequest request,HttpServletResponse response){
+		SysUser user = SessionUtils.getUser(request);
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+		} 
+		if(user == null){
+			//sendFailureMessage(response, "对不起,登录超时,请重新登录.");
+			//response.sendRedirect("login");
+			return new ModelAndView("redirect:/main/login");
 		}
 		Map<String,Object>  context = getRootMap();
-		SysUser user = SessionUtils.getUser(request);
 		List<SysMenu> rootMenus = null;
 		List<SysMenu> childMenus = null;
 		List<SysMenuBtn> childBtns = null;
