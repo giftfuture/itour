@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.SysVariables;
 import com.itour.entity.TravelItem;
 import com.itour.page.TravelItemPage;
 import com.itour.service.TravelItemService;
@@ -52,7 +54,9 @@ public class TravelItemController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(TravelItemPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//travelItem",context); 
+		List<TravelItem> dataList = travelItemService.queryByList(page);
+		context.put("dataList", dataList);//设置页面数据
+		return forword("server/sys/travelItem",context); 
 	}
 	
 	
@@ -85,7 +89,11 @@ public class TravelItemController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			travelItemService.add(entity);
 		}else{
-			travelItemService.update(entity);
+			TravelItem ti = travelItemService.queryById(entity.getId());
+			if(ti == null)
+				travelItemService.add(entity);
+			else
+				travelItemService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

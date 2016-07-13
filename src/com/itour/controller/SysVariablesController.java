@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysVariables;
 import com.itour.page.SysVariablesPage;
 import com.itour.service.SysVariablesService;
@@ -52,7 +54,9 @@ public class SysVariablesController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(SysVariablesPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//sysVariables",context); 
+		List<SysVariables> dataList = sysVariablesService.queryByList(page);
+		context.put("dataList", dataList);//设置页面数据
+		return forword("server/sys/sysVariables",context); 
 	}
 	
 	
@@ -85,7 +89,11 @@ public class SysVariablesController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			sysVariablesService.add(entity);
 		}else{
-			sysVariablesService.update(entity);
+			SysVariables sv = sysVariablesService.queryById(entity.getId());
+			if(sv == null)
+				sysVariablesService.add(entity);
+			else
+				sysVariablesService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.Customers;
+import com.itour.entity.Feedback;
 import com.itour.entity.LogOperation;
 import com.itour.page.LogOperationPage;
 import com.itour.service.LogOperationService;
@@ -52,7 +55,10 @@ public class LogOperationController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(LogOperationPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//logOperation",context); 
+		List<LogOperation> dataList = logOperationService.queryByList(page);
+		//设置页面数据
+		context.put("dataList", dataList);
+		return forword("server/sys/logOperation",context); 
 	}
 	
 	

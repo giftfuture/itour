@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.LogSettingDetail;
 import com.itour.entity.OrderDetail;
 import com.itour.page.OrderDetailPage;
 import com.itour.service.OrderDetailService;
@@ -52,7 +54,10 @@ public class OrderDetailController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(OrderDetailPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//orderDetail",context); 
+		List<OrderDetail> dataList = orderDetailService.queryByList(page);
+		//设置页面数据
+		context.put("dataList", dataList);
+		return forword("server/sys/orderDetail",context); 
 	}
 	
 	
@@ -85,7 +90,11 @@ public class OrderDetailController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			orderDetailService.add(entity);
 		}else{
-			orderDetailService.update(entity);
+			OrderDetail od = orderDetailService.queryById(entity.getId());
+			if(od == null)
+				orderDetailService.add(entity);
+			else
+				orderDetailService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

@@ -34,7 +34,7 @@ public class BaseEntity implements Serializable{
 	 	
 	 	/**
 	 	 * 删除枚举
-	 	 * @author  www.jeecg.org
+	 	 * @author  
 	 	 *
 	 	 */
 	 	public static enum DELETED {

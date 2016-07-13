@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.Quotation;
 import com.itour.entity.RouteTemplate;
 import com.itour.page.RouteTemplatePage;
 import com.itour.service.RouteTemplateService;
@@ -52,7 +54,10 @@ public class RouteTemplateController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(RouteTemplatePage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//routeTemplate",context); 
+		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
+		//设置页面数据
+		context.put("dataList", dataList);
+		return forword("server/sys/routeTemplate",context); 
 	}
 	
 	
@@ -85,7 +90,11 @@ public class RouteTemplateController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			routeTemplateService.add(entity);
 		}else{
-			routeTemplateService.update(entity);
+			RouteTemplate rt = routeTemplateService.queryById(entity.getId());
+			if(rt == null)
+				routeTemplateService.add(entity);
+			else
+				routeTemplateService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

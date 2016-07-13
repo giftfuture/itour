@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.Customers;
 import com.itour.entity.Feedback;
 import com.itour.page.FeedbackPage;
 import com.itour.service.FeedbackService;
@@ -52,7 +54,10 @@ public class FeedbackController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(FeedbackPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//feedback",context); 
+		List<Feedback> dataList = feedbackService.queryByList(page);
+		//设置页面数据
+		context.put("dataList", dataList);
+		return forword("server/sys/feedback",context); 
 	}
 	
 	
@@ -85,7 +90,11 @@ public class FeedbackController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			feedbackService.add(entity);
 		}else{
-			feedbackService.update(entity);
+			Feedback feedback = feedbackService.queryById(entity.getId());
+			if(feedback == null)
+				feedbackService.add(entity);
+			else
+				feedbackService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

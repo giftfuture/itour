@@ -108,7 +108,11 @@ public class SysMenuController extends BaseController{
 			bean.setDeleted(DELETED.NO.key);
 			sysMenuService.add(bean);
 		}else{
-			sysMenuService.update(bean);
+			SysMenu sm = sysMenuService.queryById(bean.getId());
+			if(sm == null)
+				sysMenuService.add(bean);
+			else
+				sysMenuService.update(bean);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

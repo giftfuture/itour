@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.TravelOrder;
 import com.itour.entity.TravelStyle;
 import com.itour.page.TravelStylePage;
 import com.itour.service.TravelStyleService;
@@ -52,7 +54,9 @@ public class TravelStyleController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(TravelStylePage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//travelStyle",context); 
+		List<TravelStyle> dataList = travelStyleService.queryByList(page);
+		context.put("dataList", dataList);//设置页面数据
+		return forword("server/sys/travelStyle",context); 
 	}
 	
 	
@@ -85,7 +89,11 @@ public class TravelStyleController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			travelStyleService.add(entity);
 		}else{
-			travelStyleService.update(entity);
+			TravelStyle ts = travelStyleService.queryById(entity.getId());
+			if(ts == null)
+				travelStyleService.add(entity);
+			else
+				travelStyleService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

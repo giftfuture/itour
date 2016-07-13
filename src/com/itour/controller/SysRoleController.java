@@ -82,7 +82,11 @@ public class SysRoleController extends BaseController{
 		if(bean.getId() == null){
 			sysRoleService.add(bean,menuIds,btnIds);
 		}else{
-			sysRoleService.update(bean,menuIds,btnIds);
+			SysRole sr = sysRoleService.queryById(bean.getId());
+			if(sr == null)
+				sysRoleService.add(bean,menuIds,btnIds);
+			else
+				sysRoleService.update(bean,menuIds,btnIds);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

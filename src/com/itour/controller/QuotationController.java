@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.entity.OrderDetail;
 import com.itour.entity.Quotation;
 import com.itour.page.QuotationPage;
 import com.itour.service.QuotationService;
@@ -52,7 +54,10 @@ public class QuotationController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(QuotationPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		return forword("com.itour//quotation",context); 
+		List<Quotation> dataList = quotationService.queryByList(page);
+		//设置页面数据
+		context.put("dataList", dataList);
+		return forword("server/sys/quotation",context); 
 	}
 	
 	
@@ -85,7 +90,11 @@ public class QuotationController extends BaseController{
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			quotationService.add(entity);
 		}else{
-			quotationService.update(entity);
+			Quotation qo = quotationService.queryById(entity.getId());
+			if(qo == null)
+				quotationService.add(entity);
+			else
+				quotationService.update(entity);
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
