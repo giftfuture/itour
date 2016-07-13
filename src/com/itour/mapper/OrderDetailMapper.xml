@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.OrderDetailDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.OrderDetail" >
+	<result column="id" property="id"/>
+	<result column="status" property="status"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="content" property="content"/>
+	<result column="remark" property="remark"/>
+	<result column="per_price" property="perPrice"/>
+	<result column="count" property="count"/>
+	<result column="order_id" property="orderId"/>
+</resultMap>
+       
+<!-- order_detail table all fields -->
+<sql id="Base_Column_List" >
+	 id, status, create_time, update_time, content, remark, per_price, count, order_id
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+	<if test="status != null and status != ''" >
+	    and status =  #{status}
+	</if>
+	<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
+	</if>
+	<if test="updateTime != null and updateTime != ''" >
+	    and update_time =  #{updateTime}
+	</if>
+	<if test="content != null and content != ''" >
+	    and content =  #{content}
+	</if>
+	<if test="remark != null and remark != ''" >
+	    and remark =  #{remark}
+	</if>
+	<if test="perPrice != null and perPrice != ''" >
+	    and per_price =  #{perPrice}
+	</if>
+	<if test="count != null and count != ''" >
+	    and count =  #{count}
+	</if>
+	<if test="orderId != null and orderId != ''" >
+	    and order_id =  #{orderId}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.OrderDetail" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id)
+ values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="java.util.Map" >
+  update order_detail set status=#{status},create_time=now(),update_time=now(),content=#{content},remark=#{remark},per_price=#{perPrice},count=#{count},order_id=#{orderId} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="com.itour.entity.OrderDetail" >
+	update order_detail set 
+	<trim  suffixOverrides="," >
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	<if test="updateTime != null  ">
+		update_time=#{updateTime},
+	</if>
+	<if test="content != null  ">
+		content=#{content},
+	</if>
+	<if test="remark != null  ">
+		remark=#{remark},
+	</if>
+	<if test="perPrice != null  ">
+		per_price=#{perPrice},
+	</if>
+	<if test="count != null  ">
+		count=#{count},
+	</if>
+	<if test="orderId != null  ">
+		order_id=#{orderId},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.util.Map">
+	delete 	 from order_detail where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 订单详情 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from order_detail where id = #{id}
+</select>
+
+<!-- 订单详情 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+	select count(1) from order_detail 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询订单详情列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+	select 
+	<include refid="Base_Column_List"/>
+	from order_detail 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

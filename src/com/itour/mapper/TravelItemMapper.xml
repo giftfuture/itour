@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.TravelItemDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.TravelItem" >
+	<result column="id" property="id"/>
+	<result column="item" property="item"/>
+	<result column="item_code" property="itemCode"/>
+	<result column="elevation" property="elevation"/>
+	<result column="content" property="content"/>
+	<result column="photos" property="photos"/>
+	<result column="remark" property="remark"/>
+	<result column="mileage" property="mileage"/>
+	<result column="scope" property="scope"/>
+	<result column="short_content" property="shortContent"/>
+	<result column="rank" property="rank"/>
+	<result column="recommand_reason" property="recommandReason"/>
+	<result column="discount" property="discount"/>
+	<result column="rcd_days" property="rcdDays"/>
+	<result column="difficulty_rate" property="difficultyRate"/>
+	<result column="happy_value" property="happyValue"/>
+	<result column="recommand_crowd" property="recommandCrowd"/>
+</resultMap>
+       
+<!-- travel_item table all fields -->
+<sql id="Base_Column_List" >
+	 id, item, item_code, elevation, content, photos, remark, mileage, scope, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+	<if test="item != null and item != ''" >
+	    and item =  #{item}
+	</if>
+	<if test="itemCode != null and itemCode != ''" >
+	    and item_code =  #{itemCode}
+	</if>
+	<if test="elevation != null and elevation != ''" >
+	    and elevation =  #{elevation}
+	</if>
+	<if test="content != null and content != ''" >
+	    and content =  #{content}
+	</if>
+	<if test="photos != null and photos != ''" >
+	    and photos =  #{photos}
+	</if>
+	<if test="remark != null and remark != ''" >
+	    and remark =  #{remark}
+	</if>
+	<if test="mileage != null and mileage != ''" >
+	    and mileage =  #{mileage}
+	</if>
+	<if test="scope != null and scope != ''" >
+	    and scope =  #{scope}
+	</if>
+	<if test="shortContent != null and shortContent != ''" >
+	    and short_content =  #{shortContent}
+	</if>
+	<if test="rank != null and rank != ''" >
+	    and rank =  #{rank}
+	</if>
+	<if test="recommandReason != null and recommandReason != ''" >
+	    and recommand_reason =  #{recommandReason}
+	</if>
+	<if test="discount != null and discount != ''" >
+	    and discount =  #{discount}
+	</if>
+	<if test="rcdDays != null and rcdDays != ''" >
+	    and rcd_days =  #{rcdDays}
+	</if>
+	<if test="difficultyRate != null and difficultyRate != ''" >
+	    and difficulty_rate =  #{difficultyRate}
+	</if>
+	<if test="happyValue != null and happyValue != ''" >
+	    and happy_value =  #{happyValue}
+	</if>
+	<if test="recommandCrowd != null and recommandCrowd != ''" >
+	    and recommand_crowd =  #{recommandCrowd}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.TravelItem" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into travel_item(id,item,item_code,elevation,content,photos,remark,mileage,scope,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd)
+ values(#{id},#{item},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="java.util.Map" >
+  update travel_item set item=#{item},item_code=#{itemCode},elevation=#{elevation},content=#{content},photos=#{photos},remark=#{remark},mileage=#{mileage},scope=#{scope},short_content=#{shortContent},rank=#{rank},recommand_reason=#{recommandReason},discount=#{discount},rcd_days=#{rcdDays},difficulty_rate=#{difficultyRate},happy_value=#{happyValue},recommand_crowd=#{recommandCrowd} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="com.itour.entity.TravelItem" >
+	update travel_item set 
+	<trim  suffixOverrides="," >
+	<if test="item != null  ">
+		item=#{item},
+	</if>
+	<if test="itemCode != null  ">
+		item_code=#{itemCode},
+	</if>
+	<if test="elevation != null  ">
+		elevation=#{elevation},
+	</if>
+	<if test="content != null  ">
+		content=#{content},
+	</if>
+	<if test="photos != null  ">
+		photos=#{photos},
+	</if>
+	<if test="remark != null  ">
+		remark=#{remark},
+	</if>
+	<if test="mileage != null  ">
+		mileage=#{mileage},
+	</if>
+	<if test="scope != null  ">
+		scope=#{scope},
+	</if>
+	<if test="shortContent != null  ">
+		short_content=#{shortContent},
+	</if>
+	<if test="rank != null  ">
+		rank=#{rank},
+	</if>
+	<if test="recommandReason != null  ">
+		recommand_reason=#{recommandReason},
+	</if>
+	<if test="discount != null  ">
+		discount=#{discount},
+	</if>
+	<if test="rcdDays != null  ">
+		rcd_days=#{rcdDays},
+	</if>
+	<if test="difficultyRate != null  ">
+		difficulty_rate=#{difficultyRate},
+	</if>
+	<if test="happyValue != null  ">
+		happy_value=#{happyValue},
+	</if>
+	<if test="recommandCrowd != null  ">
+		recommand_crowd=#{recommandCrowd},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.util.Map">
+	delete 	 from travel_item where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 旅行项目 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from travel_item where id = #{id}
+</select>
+
+<!-- 旅行项目 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+	select count(1) from travel_item 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询旅行项目列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+	select 
+	<include refid="Base_Column_List"/>
+	from travel_item 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   
