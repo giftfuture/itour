@@ -71,7 +71,6 @@ itour.routeTemplate = function(){
 			}
 			$.parser.parse(line);//解析esayui标签
 			table.append(line);
-			
 		},
 		//删除全部
 		delAllLine:function(b){
@@ -146,11 +145,12 @@ itour.routeTemplate = function(){
 	   			url:'routeTemplate/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'customerId',title:'客户ID',align:'center',sortable:true,
+				/*	{field:'customerId',title:'客户ID',align:'center',sortable:true,
 						formatter:function(value,row,index){
+							alert(row.customerId);
 							return row.customerId;
 						}
-					},
+					},*/
 					{field:'d1',title:'模板1',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.d1;
@@ -200,7 +200,7 @@ itour.routeTemplate = function(){
 							formatter:function(value,row,index){
 								return row.d10;
 							}
-						},
+						}/*,
 					{field:'d11',title:'模板11',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.d11;
@@ -475,14 +475,13 @@ itour.routeTemplate = function(){
 							formatter:function(value,row,index){
 								return row.remark;
 							}
-						},
+						}*/
 					]],
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
-								{
-									id:'btnback',
+								{id:'btnback',
 									text:'back',
 									disabled: true,
 									iconCls:'icon-back',

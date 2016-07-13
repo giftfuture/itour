@@ -52,7 +52,7 @@ public class RouteTemplateController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(RouteTemplatePage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(RouteTemplatePage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		//设置页面数据
