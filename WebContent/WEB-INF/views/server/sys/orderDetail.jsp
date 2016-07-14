@@ -26,7 +26,7 @@ pageContext.setAttribute("basePath",basePath);
 			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    &nbsp; &nbsp;<a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -59,10 +59,6 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
 					</div>
 					<div class="fitem">
-						<label>内容详情:</label>
-							<textarea rows="5" cols="40" name="content" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
-					</div>
-					<div class="fitem">
 						<label>单价:</label>
 						<input name="perPrice" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写perPrice">
 					</div>
@@ -71,8 +67,12 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="count" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写count">
 					</div>
 					<div class="fitem">
+						<label>内容详情:</label>
+							<textarea rows="5" cols="40" name="content" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+					</div>
+					<div class="fitem">
 						<label>备注:</label>
-						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

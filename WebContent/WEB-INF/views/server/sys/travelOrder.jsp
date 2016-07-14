@@ -20,16 +20,15 @@ pageContext.setAttribute("basePath",basePath);
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">订单状态:</label><input name="orderStatus" class="easyui-box ui-text" style="width:100px;">
-		<br/>	<label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;">
-	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+			<label class="ui-label">订单状态:</label><input name="orderStatus" class="easyui-box ui-text" style="width:100px;"></p>
+		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;"></p>
+	    &nbsp; &nbsp; <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -95,7 +94,12 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>支付方式:</label>
-						<input name="payType" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payType">
+						<select name="payType" class="easyui-validatebox" data-options="" >
+							<option value="1">线上支付</option>
+							<option value="2">现金支付</option>
+							<option value="3">邮局汇款</option>
+							<option value="4">公司转帐</option>
+						</select>
 					</div>
 					<div class="fitem">
 						<label>支付平台:</label>
@@ -123,7 +127,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>备注:</label>
-						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
+								<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

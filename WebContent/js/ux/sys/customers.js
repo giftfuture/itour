@@ -140,52 +140,7 @@ itour.customers = function(){
 								return row.customerId;
 							}
 						},
-					{field:'createTime',title:'创建时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.createTime;
-							}
-						},
-					{field:'status',title:'状态',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.status;
-							}
-						},
-					{field:'updateTime',title:'更新时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.updateTime;
-							}
-						},
-					{field:'address',title:'地址',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.address;
-							}
-						},
-					{field:'email',title:'邮箱',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.email;
-							}
-						},
-					{field:'scope',title:'来自(区域)',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.scope;
-							}
-						},
-					{field:'city',title:'城市',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.city;
-							}
-						},
-					{field:'telephone',title:'电话',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.telephone;
-							}
-						},
-					{field:'mobile',title:'手机',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.mobile;
-							}
-						},
-					{field:'customerName',title:'客户姓名',align:'center',sortable:true,
+						{field:'customerName',title:'客户姓名',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.customerName;
 							}
@@ -195,6 +150,71 @@ itour.customers = function(){
 								return row.nickName;
 							}
 						},
+						{field:'telephone',title:'电话',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.telephone;
+							}
+						},
+					{field:'mobile',title:'手机',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.mobile;
+							}
+						},
+						{field:'email',title:'邮箱',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.email;
+							}
+						},
+					{field:'createTime',title:'创建时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.createTime;
+							}
+						},
+					{field:'status',title:'状态',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								if(value == 1){
+									return "活跃";
+								}
+								if(value == 2){
+									return "废弃";
+								}
+							}
+						},
+					{field:'address',title:'地址',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.address;
+							}
+						},
+						{field:'updateTime',title:'更新时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.updateTime;
+							}
+						},
+					{field:'scope',title:'来自(区域)',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								if(value == 1){
+									return "中国大陆";
+								}
+								if(value == 2){
+									return "香港";
+								}
+								if(value == 3){
+									return "澳门";
+								}
+								if(value == 4){
+									return "台湾";
+								}
+								if(value == 5){
+									return "海外";
+								}
+							}
+						},
+					{field:'city',title:'城市',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.city;
+							}
+						},
+				
 					{field:'district',title:'区县',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.district;

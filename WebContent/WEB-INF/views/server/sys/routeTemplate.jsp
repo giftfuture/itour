@@ -144,8 +144,7 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="updateBy" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写updateBy">
 					</div>
 					<div class="fitem">
-						<label>备注:</label>
-						<input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
+						<label>备注:</label>		<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea><input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>
      	</form>

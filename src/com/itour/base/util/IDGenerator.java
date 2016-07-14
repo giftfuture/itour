@@ -16,7 +16,7 @@ public class IDGenerator {
 	    UUID uuid=UUID.randomUUID();
 	    String str = uuid.toString(); 
 	    String uuidStr=str.replace("-", "");
-	    return uuidStr;
+	    return uuidStr.toUpperCase();
 	  }
 	  /**
 	   * 根据字符串生成固定UUID
@@ -44,6 +44,10 @@ public class IDGenerator {
 	      date+=num;
 	    }
 	    return Long.valueOf(date);
+	  }
+	  
+	  public static void main(String[]args){
+		 System.out.println(UUID.randomUUID());
 	  }
 	  
 	}

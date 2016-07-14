@@ -97,7 +97,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>个人简介/要求:</label>
-						<textarea  name="introduction"  rows="4" cols="30" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写introduction"></textarea>
+						<textarea  name="introduction"  rows="5" cols="40" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写introduction"></textarea>
 					</div>
   			</div>
      	</form>

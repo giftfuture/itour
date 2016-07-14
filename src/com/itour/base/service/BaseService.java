@@ -14,7 +14,7 @@ public abstract class BaseService<T>{
 	
 	public void add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增
-		String uuid = UUID.randomUUID().toString();
+		String uuid = IDGenerator.getUUID();// UUID.randomUUID().toString();
 		//System.out.println("uuid="+uuid);
 		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
 		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");

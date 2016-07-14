@@ -167,7 +167,15 @@ itour.feedback = function(){
 						},
 					{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.status;
+								if(value == 1){
+									return "待审核";
+								}
+								if(value == 2){
+									return "审核通过";
+								}
+								if(value == 3){
+									return "审核未通过";
+								}
 							}
 						},
 					{field:'updateTime',title:'更新时间',align:'center',sortable:true,

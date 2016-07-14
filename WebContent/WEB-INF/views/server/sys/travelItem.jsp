@@ -20,18 +20,18 @@ pageContext.setAttribute("basePath",basePath);
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">旅游项目:</label><input name="item" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">项目代码:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">海拔:</label><input name="elevation" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">所属省市:</label><input name="scope" class="easyui-box ui-text" style="width:100px;">
-			<br/><label class="ui-label">推荐人群:</label><input name="recommandCrowd" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">里程:</label><input name="mileage" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">推荐指数:</label><input name="rank" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">旅游项目:</label><input name="item" class="easyui-box ui-text" style="width:100px;"/>
+			<label class="ui-label">项目代码:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;"/>
+			<label class="ui-label">海&nbsp;&nbsp;拔:</label><input name="elevation" class="easyui-box ui-text" style="width:100px;"/>
+			<label class="ui-label">所属省市:</label><input name="scope" class="easyui-box ui-text" style="width:100px;"/></p>
+			<p class="ui-fields"><label class="ui-label">推荐人群:</label><input name="recommandCrowd" class="easyui-box ui-text" style="width:100px;"/>
+			<label class="ui-label">里&nbsp;&nbsp;程:</label><input name="mileage" class="easyui-box ui-text" style="width:100px;"/>
+			<label class="ui-label">推荐指数:</label><input name="rank" class="easyui-box ui-text" style="width:100px;"/>
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -60,8 +60,8 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
 					<div class="fitem">
-						<label></label>
-						<input name="content" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写content">
+						<label>具体介绍:</label>
+						<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写具体介绍"></textarea>
 					</div>
 					<div class="fitem">
 						<label>美图:</label>
@@ -72,7 +72,7 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
 					</div>
 					<div class="fitem">
-						<label>所属区域:</label>
+						<label>所属省市:</label>
 						<input name="scope" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
 					</div>
 					<div class="fitem">
@@ -109,7 +109,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>备注:</label>
-						<input name="remark" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
+						<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

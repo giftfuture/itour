@@ -151,6 +151,39 @@ itour.travelOrder = function(){
 							return row.customerId;
 						}
 					},
+					{field:'orderNo',title:'订单号',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.orderNo;
+						}
+					},
+					{field:'orderName',title:'订单名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.orderName;
+						}
+					},
+					{field:'orderStatus',title:'订单状态',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if(value == 1){
+								return "待付款";
+							}
+							if(value == 2){
+								return "付款完成,待确认";
+							}
+							if(value == 3){
+								return "确认完成";
+							}
+						}
+					},
+					{field:'receiver',title:'联系人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.receiver;
+						}
+					},
+					{field:'receiverMobile',title:'联系电话',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.receiverMobile;
+						}
+					},
 					{field:'createTime',title:'下单时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
@@ -159,31 +192,6 @@ itour.travelOrder = function(){
 					{field:'updateTime',title:'更新时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateTime;
-							}
-						},
-					{field:'orderName',title:'订单名称',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.orderName;
-							}
-						},
-					{field:'orderNo',title:'订单号',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.orderNo;
-							}
-						},
-					{field:'orderStatus',title:'订单状态',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.orderStatus;
-							}
-						},
-					{field:'receiver',title:'联系人',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.receiver;
-							}
-						},
-					{field:'receiverMobile',title:'联系电话',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.receiverMobile;
 							}
 						},
 					{field:'expectedDepart',title:'计划出行日',align:'center',sortable:true,
@@ -208,17 +216,41 @@ itour.travelOrder = function(){
 					},
 					{field:'isPayed',title:'是否支付完成.',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isPayed;
+								if(value == 1){
+									return "未支付";
+								}
+								if(value == 2){
+									return "支付完成";
+								}
 							}
 						},
 					{field:'payType',title:'支付方式',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.payType;
+								if(value == 1){
+									return "线上支付";
+								}
+								if(value == 2){
+									return "现金支付";
+								}
+								if(value == 3){
+									return "邮政汇款";
+								}
+								if(value == 4){
+									return "公司转帐";
+								}
 							}
 						},
 					{field:'payPlatform',title:'付款平台',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.payPlatform;
+								if(value == 1){
+									return "微信";
+								}
+								if(value == 2){
+									return "支付宝";
+								}
+								if(value == 3){
+									return "网银";
+								}
 							}
 						},
 					{field:'bank',title:'付款方银行',align:'center',sortable:true,
@@ -238,7 +270,15 @@ itour.travelOrder = function(){
 						},
 					{field:'payTerminal',title:'付款终端',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.payTerminal;
+								if(value == 1){
+									return "PC";
+								}
+								if(value == 2){
+									return "IOS";
+								}
+								if(value == 3){
+									return "Android";
+								}
 							}
 						},
 					{field:'remark',title:'备注',align:'center',sortable:true,
@@ -248,7 +288,7 @@ itour.travelOrder = function(){
 					}
 					]],
 					toolbar:[
-								{id:'btnadd',text:'添加',btnType:'add'},
+								{id:'btnadd',text:'添加',btnType:'add',disabled:true},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
 								{
