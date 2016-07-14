@@ -11,6 +11,402 @@ import java.math.BigDecimal;
  */
 public class RouteTemplate extends BaseEntity {
 	
-		private java.lang.String id;//   	private java.lang.Object d1;//   	private java.lang.Object d2;//   	private java.lang.Object d3;//   	private java.lang.Object d4;//   	private java.lang.Object d5;//   	private java.lang.Object d6;//   	private java.lang.Object d7;//   	private java.lang.Object d8;//   	private java.lang.Object d9;//   	private java.lang.Object d10;//   	private java.lang.Object d11;//   	private java.lang.Object d12;//   	private java.lang.Object d13;//   	private java.lang.Object d14;//   	private java.lang.Object d15;//   	private java.lang.Object d16;//   	private java.lang.Object d17;//   	private java.lang.Object d18;//   	private java.lang.Object d19;//   	private java.lang.Object d20;//   	private java.lang.Object d21;//   	private java.lang.Object d22;//   	private java.lang.Object d23;//   	private java.lang.Object d24;//   	private java.lang.Object d25;//   	private java.lang.Object d26;//   	private java.lang.Object d27;//   	private java.lang.Object d28;//   	private java.lang.Object d29;//   	private java.lang.Object d30;//   	private java.lang.Object d31;//   	private java.lang.Object d32;//   	private java.lang.Object d33;//   	private java.lang.Object d34;//   	private java.lang.Object d35;//   	private java.lang.Object d36;//   	private java.lang.Object d37;//   	private java.lang.Object d38;//   	private java.lang.Object d39;//   	private java.lang.Object d40;//   	private java.lang.Object d41;//   	private java.lang.Object d42;//   	private java.lang.Object d43;//   	private java.lang.Object d44;//   	private java.lang.Object d45;//   	private java.lang.Object d46;//   	private java.lang.Object d47;//   	private java.lang.Object d48;//   	private java.lang.Object d49;//   	private java.lang.Object d50;//   	private java.lang.Object d51;//   	private java.lang.Object d52;//   	private java.lang.Object d53;//   	private java.lang.Object d54;//   	private java.lang.Object d55;//   	private java.lang.Object d56;//   	private java.lang.Object d57;//   	private java.lang.Object d58;//   	private java.lang.Object d59;//   	private java.lang.String d60;//   	private java.lang.String customerId;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//   	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public java.lang.Object getd1() {	    return this.d1;	}	public void setd1(java.lang.Object d1) {	    this.d1=d1;	}	public java.lang.Object getd2() {	    return this.d2;	}	public void setd2(java.lang.Object d2) {	    this.d2=d2;	}	public java.lang.Object getd3() {	    return this.d3;	}	public void setd3(java.lang.Object d3) {	    this.d3=d3;	}	public java.lang.Object getd4() {	    return this.d4;	}	public void setd4(java.lang.Object d4) {	    this.d4=d4;	}	public java.lang.Object getd5() {	    return this.d5;	}	public void setd5(java.lang.Object d5) {	    this.d5=d5;	}	public java.lang.Object getd6() {	    return this.d6;	}	public void setd6(java.lang.Object d6) {	    this.d6=d6;	}	public java.lang.Object getd7() {	    return this.d7;	}	public void setd7(java.lang.Object d7) {	    this.d7=d7;	}	public java.lang.Object getd8() {	    return this.d8;	}	public void setd8(java.lang.Object d8) {	    this.d8=d8;	}	public java.lang.Object getd9() {	    return this.d9;	}	public void setd9(java.lang.Object d9) {	    this.d9=d9;	}	public java.lang.Object getd10() {	    return this.d10;	}	public void setd10(java.lang.Object d10) {	    this.d10=d10;	}	public java.lang.Object getd11() {	    return this.d11;	}	public void setd11(java.lang.Object d11) {	    this.d11=d11;	}	public java.lang.Object getd12() {	    return this.d12;	}	public void setd12(java.lang.Object d12) {	    this.d12=d12;	}	public java.lang.Object getd13() {	    return this.d13;	}	public void setd13(java.lang.Object d13) {	    this.d13=d13;	}	public java.lang.Object getd14() {	    return this.d14;	}	public void setd14(java.lang.Object d14) {	    this.d14=d14;	}	public java.lang.Object getd15() {	    return this.d15;	}	public void setd15(java.lang.Object d15) {	    this.d15=d15;	}	public java.lang.Object getd16() {	    return this.d16;	}	public void setd16(java.lang.Object d16) {	    this.d16=d16;	}	public java.lang.Object getd17() {	    return this.d17;	}	public void setd17(java.lang.Object d17) {	    this.d17=d17;	}	public java.lang.Object getd18() {	    return this.d18;	}	public void setd18(java.lang.Object d18) {	    this.d18=d18;	}	public java.lang.Object getd19() {	    return this.d19;	}	public void setd19(java.lang.Object d19) {	    this.d19=d19;	}	public java.lang.Object getd20() {	    return this.d20;	}	public void setd20(java.lang.Object d20) {	    this.d20=d20;	}	public java.lang.Object getd21() {	    return this.d21;	}	public void setd21(java.lang.Object d21) {	    this.d21=d21;	}	public java.lang.Object getd22() {	    return this.d22;	}	public void setd22(java.lang.Object d22) {	    this.d22=d22;	}	public java.lang.Object getd23() {	    return this.d23;	}	public void setd23(java.lang.Object d23) {	    this.d23=d23;	}	public java.lang.Object getd24() {	    return this.d24;	}	public void setd24(java.lang.Object d24) {	    this.d24=d24;	}	public java.lang.Object getd25() {	    return this.d25;	}	public void setd25(java.lang.Object d25) {	    this.d25=d25;	}	public java.lang.Object getd26() {	    return this.d26;	}	public void setd26(java.lang.Object d26) {	    this.d26=d26;	}	public java.lang.Object getd27() {	    return this.d27;	}	public void setd27(java.lang.Object d27) {	    this.d27=d27;	}	public java.lang.Object getd28() {	    return this.d28;	}	public void setd28(java.lang.Object d28) {	    this.d28=d28;	}	public java.lang.Object getd29() {	    return this.d29;	}	public void setd29(java.lang.Object d29) {	    this.d29=d29;	}	public java.lang.Object getd30() {	    return this.d30;	}	public void setd30(java.lang.Object d30) {	    this.d30=d30;	}	public java.lang.Object getd31() {	    return this.d31;	}	public void setd31(java.lang.Object d31) {	    this.d31=d31;	}	public java.lang.Object getd32() {	    return this.d32;	}	public void setd32(java.lang.Object d32) {	    this.d32=d32;	}	public java.lang.Object getd33() {	    return this.d33;	}	public void setd33(java.lang.Object d33) {	    this.d33=d33;	}	public java.lang.Object getd34() {	    return this.d34;	}	public void setd34(java.lang.Object d34) {	    this.d34=d34;	}	public java.lang.Object getd35() {	    return this.d35;	}	public void setd35(java.lang.Object d35) {	    this.d35=d35;	}	public java.lang.Object getd36() {	    return this.d36;	}	public void setd36(java.lang.Object d36) {	    this.d36=d36;	}	public java.lang.Object getd37() {	    return this.d37;	}	public void setd37(java.lang.Object d37) {	    this.d37=d37;	}	public java.lang.Object getd38() {	    return this.d38;	}	public void setd38(java.lang.Object d38) {	    this.d38=d38;	}	public java.lang.Object getd39() {	    return this.d39;	}	public void setd39(java.lang.Object d39) {	    this.d39=d39;	}	public java.lang.Object getd40() {	    return this.d40;	}	public void setd40(java.lang.Object d40) {	    this.d40=d40;	}	public java.lang.Object getd41() {	    return this.d41;	}	public void setd41(java.lang.Object d41) {	    this.d41=d41;	}	public java.lang.Object getd42() {	    return this.d42;	}	public void setd42(java.lang.Object d42) {	    this.d42=d42;	}	public java.lang.Object getd43() {	    return this.d43;	}	public void setd43(java.lang.Object d43) {	    this.d43=d43;	}	public java.lang.Object getd44() {	    return this.d44;	}	public void setd44(java.lang.Object d44) {	    this.d44=d44;	}	public java.lang.Object getd45() {	    return this.d45;	}	public void setd45(java.lang.Object d45) {	    this.d45=d45;	}	public java.lang.Object getd46() {	    return this.d46;	}	public void setd46(java.lang.Object d46) {	    this.d46=d46;	}	public java.lang.Object getd47() {	    return this.d47;	}	public void setd47(java.lang.Object d47) {	    this.d47=d47;	}	public java.lang.Object getd48() {	    return this.d48;	}	public void setd48(java.lang.Object d48) {	    this.d48=d48;	}	public java.lang.Object getd49() {	    return this.d49;	}	public void setd49(java.lang.Object d49) {	    this.d49=d49;	}	public java.lang.Object getd50() {	    return this.d50;	}	public void setd50(java.lang.Object d50) {	    this.d50=d50;	}	public java.lang.Object getd51() {	    return this.d51;	}	public void setd51(java.lang.Object d51) {	    this.d51=d51;	}	public java.lang.Object getd52() {	    return this.d52;	}	public void setd52(java.lang.Object d52) {	    this.d52=d52;	}	public java.lang.Object getd53() {	    return this.d53;	}	public void setd53(java.lang.Object d53) {	    this.d53=d53;	}	public java.lang.Object getd54() {	    return this.d54;	}	public void setd54(java.lang.Object d54) {	    this.d54=d54;	}	public java.lang.Object getd55() {	    return this.d55;	}	public void setd55(java.lang.Object d55) {	    this.d55=d55;	}	public java.lang.Object getd56() {	    return this.d56;	}	public void setd56(java.lang.Object d56) {	    this.d56=d56;	}	public java.lang.Object getd57() {	    return this.d57;	}	public void setd57(java.lang.Object d57) {	    this.d57=d57;	}	public java.lang.Object getd58() {	    return this.d58;	}	public void setd58(java.lang.Object d58) {	    this.d58=d58;	}	public java.lang.Object getd59() {	    return this.d59;	}	public void setd59(java.lang.Object d59) {	    this.d59=d59;	}	public java.lang.String getd60() {	    return this.d60;	}	public void setd60(java.lang.String d60) {	    this.d60=d60;	}	public java.lang.String getcustomerId() {	    return this.customerId;	}	public void setcustomerId(java.lang.String customerId) {	    this.customerId=customerId;	}	public java.util.Date getcreateTime() {	    return this.createTime;	}	public void setcreateTime(java.util.Date createTime) {	    this.createTime=createTime;	}	public java.util.Date getupdateTime() {	    return this.updateTime;	}	public void setupdateTime(java.util.Date updateTime) {	    this.updateTime=updateTime;	}	public java.lang.String getcreateBy() {	    return this.createBy;	}	public void setcreateBy(java.lang.String createBy) {	    this.createBy=createBy;	}	public java.lang.String getupdateBy() {	    return this.updateBy;	}	public void setupdateBy(java.lang.String updateBy) {	    this.updateBy=updateBy;	}	public java.lang.String getremark() {	    return this.remark;	}	public void setremark(java.lang.String remark) {	    this.remark=remark;	}
+		private java.lang.String id;//   	private java.lang.String d1;//   	private java.lang.String d2;//   	private java.lang.String d3;//   	private java.lang.String d4;//   	private java.lang.String d5;//   	private java.lang.String d6;//   	private java.lang.String d7;//   	private java.lang.String d8;//   	private java.lang.String d9;//   	private java.lang.String d10;//   	private java.lang.String d11;//   	private java.lang.String d12;//   	private java.lang.String d13;//   	private java.lang.String d14;//   	private java.lang.String d15;//   	private java.lang.String d16;//   	private java.lang.String d17;//   	private java.lang.String d18;//   	private java.lang.String d19;//   	private java.lang.String d20;//   	private java.lang.String d21;//   	private java.lang.String d22;//   	private java.lang.String d23;//   	private java.lang.String d24;//   	private java.lang.String d25;//   	private java.lang.String d26;//   	private java.lang.String d27;//   	private java.lang.String d28;//   	private java.lang.String d29;//   	private java.lang.String d30;//   	private java.lang.String d31;//   	private java.lang.String d32;//   	private java.lang.String d33;//   	private java.lang.String d34;//   	private java.lang.String d35;//   	private java.lang.String d36;//   	private java.lang.String d37;//   	private java.lang.String d38;//   	private java.lang.String d39;//   	private java.lang.String d40;//   	private java.lang.String d41;//   	private java.lang.String d42;//   	private java.lang.String d43;//   	private java.lang.String d44;//   	private java.lang.String d45;//   	private java.lang.String d46;//   	private java.lang.String d47;//   	private java.lang.String d48;//   	private java.lang.String d49;//   	private java.lang.String d50;//   	private java.lang.String d51;//   	private java.lang.String d52;//   	private java.lang.String d53;//   	private java.lang.String d54;//   	private java.lang.String d55;//   	private java.lang.String d56;//   	private java.lang.String d57;//   	private java.lang.String d58;//   	private java.lang.String d59;//   	private java.lang.String d60;//   	private java.lang.String customerId;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//   	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	public java.lang.String getD1() {
+		return d1;
+	}
+	public void setD1(java.lang.String d1) {
+		this.d1 = d1;
+	}
+	public java.lang.String getD2() {
+		return d2;
+	}
+	public void setD2(java.lang.String d2) {
+		this.d2 = d2;
+	}
+	public java.lang.String getD3() {
+		return d3;
+	}
+	public void setD3(java.lang.String d3) {
+		this.d3 = d3;
+	}
+	public java.lang.String getD4() {
+		return d4;
+	}
+	public void setD4(java.lang.String d4) {
+		this.d4 = d4;
+	}
+	public java.lang.String getD5() {
+		return d5;
+	}
+	public void setD5(java.lang.String d5) {
+		this.d5 = d5;
+	}
+	public java.lang.String getD6() {
+		return d6;
+	}
+	public void setD6(java.lang.String d6) {
+		this.d6 = d6;
+	}
+	public java.lang.String getD7() {
+		return d7;
+	}
+	public void setD7(java.lang.String d7) {
+		this.d7 = d7;
+	}
+	public java.lang.String getD8() {
+		return d8;
+	}
+	public void setD8(java.lang.String d8) {
+		this.d8 = d8;
+	}
+	public java.lang.String getD9() {
+		return d9;
+	}
+	public void setD9(java.lang.String d9) {
+		this.d9 = d9;
+	}
+	public java.lang.String getD10() {
+		return d10;
+	}
+	public void setD10(java.lang.String d10) {
+		this.d10 = d10;
+	}
+	public java.lang.String getD11() {
+		return d11;
+	}
+	public void setD11(java.lang.String d11) {
+		this.d11 = d11;
+	}
+	public java.lang.String getD12() {
+		return d12;
+	}
+	public void setD12(java.lang.String d12) {
+		this.d12 = d12;
+	}
+	public java.lang.String getD13() {
+		return d13;
+	}
+	public void setD13(java.lang.String d13) {
+		this.d13 = d13;
+	}
+	public java.lang.String getD14() {
+		return d14;
+	}
+	public void setD14(java.lang.String d14) {
+		this.d14 = d14;
+	}
+	public java.lang.String getD15() {
+		return d15;
+	}
+	public void setD15(java.lang.String d15) {
+		this.d15 = d15;
+	}
+	public java.lang.String getD16() {
+		return d16;
+	}
+	public void setD16(java.lang.String d16) {
+		this.d16 = d16;
+	}
+	public java.lang.String getD17() {
+		return d17;
+	}
+	public void setD17(java.lang.String d17) {
+		this.d17 = d17;
+	}
+	public java.lang.String getD18() {
+		return d18;
+	}
+	public void setD18(java.lang.String d18) {
+		this.d18 = d18;
+	}
+	public java.lang.String getD19() {
+		return d19;
+	}
+	public void setD19(java.lang.String d19) {
+		this.d19 = d19;
+	}
+	public java.lang.String getD20() {
+		return d20;
+	}
+	public void setD20(java.lang.String d20) {
+		this.d20 = d20;
+	}
+	public java.lang.String getD21() {
+		return d21;
+	}
+	public void setD21(java.lang.String d21) {
+		this.d21 = d21;
+	}
+	public java.lang.String getD22() {
+		return d22;
+	}
+	public void setD22(java.lang.String d22) {
+		this.d22 = d22;
+	}
+	public java.lang.String getD23() {
+		return d23;
+	}
+	public void setD23(java.lang.String d23) {
+		this.d23 = d23;
+	}
+	public java.lang.String getD24() {
+		return d24;
+	}
+	public void setD24(java.lang.String d24) {
+		this.d24 = d24;
+	}
+	public java.lang.String getD25() {
+		return d25;
+	}
+	public void setD25(java.lang.String d25) {
+		this.d25 = d25;
+	}
+	public java.lang.String getD26() {
+		return d26;
+	}
+	public void setD26(java.lang.String d26) {
+		this.d26 = d26;
+	}
+	public java.lang.String getD27() {
+		return d27;
+	}
+	public void setD27(java.lang.String d27) {
+		this.d27 = d27;
+	}
+	public java.lang.String getD28() {
+		return d28;
+	}
+	public void setD28(java.lang.String d28) {
+		this.d28 = d28;
+	}
+	public java.lang.String getD29() {
+		return d29;
+	}
+	public void setD29(java.lang.String d29) {
+		this.d29 = d29;
+	}
+	public java.lang.String getD30() {
+		return d30;
+	}
+	public void setD30(java.lang.String d30) {
+		this.d30 = d30;
+	}
+	public java.lang.String getD31() {
+		return d31;
+	}
+	public void setD31(java.lang.String d31) {
+		this.d31 = d31;
+	}
+	public java.lang.String getD32() {
+		return d32;
+	}
+	public void setD32(java.lang.String d32) {
+		this.d32 = d32;
+	}
+	public java.lang.String getD33() {
+		return d33;
+	}
+	public void setD33(java.lang.String d33) {
+		this.d33 = d33;
+	}
+	public java.lang.String getD34() {
+		return d34;
+	}
+	public void setD34(java.lang.String d34) {
+		this.d34 = d34;
+	}
+	public java.lang.String getD35() {
+		return d35;
+	}
+	public void setD35(java.lang.String d35) {
+		this.d35 = d35;
+	}
+	public java.lang.String getD36() {
+		return d36;
+	}
+	public void setD36(java.lang.String d36) {
+		this.d36 = d36;
+	}
+	public java.lang.String getD37() {
+		return d37;
+	}
+	public void setD37(java.lang.String d37) {
+		this.d37 = d37;
+	}
+	public java.lang.String getD38() {
+		return d38;
+	}
+	public void setD38(java.lang.String d38) {
+		this.d38 = d38;
+	}
+	public java.lang.String getD39() {
+		return d39;
+	}
+	public void setD39(java.lang.String d39) {
+		this.d39 = d39;
+	}
+	public java.lang.String getD40() {
+		return d40;
+	}
+	public void setD40(java.lang.String d40) {
+		this.d40 = d40;
+	}
+	public java.lang.String getD41() {
+		return d41;
+	}
+	public void setD41(java.lang.String d41) {
+		this.d41 = d41;
+	}
+	public java.lang.String getD42() {
+		return d42;
+	}
+	public void setD42(java.lang.String d42) {
+		this.d42 = d42;
+	}
+	public java.lang.String getD43() {
+		return d43;
+	}
+	public void setD43(java.lang.String d43) {
+		this.d43 = d43;
+	}
+	public java.lang.String getD44() {
+		return d44;
+	}
+	public void setD44(java.lang.String d44) {
+		this.d44 = d44;
+	}
+	public java.lang.String getD45() {
+		return d45;
+	}
+	public void setD45(java.lang.String d45) {
+		this.d45 = d45;
+	}
+	public java.lang.String getD46() {
+		return d46;
+	}
+	public void setD46(java.lang.String d46) {
+		this.d46 = d46;
+	}
+	public java.lang.String getD47() {
+		return d47;
+	}
+	public void setD47(java.lang.String d47) {
+		this.d47 = d47;
+	}
+	public java.lang.String getD48() {
+		return d48;
+	}
+	public void setD48(java.lang.String d48) {
+		this.d48 = d48;
+	}
+	public java.lang.String getD49() {
+		return d49;
+	}
+	public void setD49(java.lang.String d49) {
+		this.d49 = d49;
+	}
+	public java.lang.String getD50() {
+		return d50;
+	}
+	public void setD50(java.lang.String d50) {
+		this.d50 = d50;
+	}
+	public java.lang.String getD51() {
+		return d51;
+	}
+	public void setD51(java.lang.String d51) {
+		this.d51 = d51;
+	}
+	public java.lang.String getD52() {
+		return d52;
+	}
+	public void setD52(java.lang.String d52) {
+		this.d52 = d52;
+	}
+	public java.lang.String getD53() {
+		return d53;
+	}
+	public void setD53(java.lang.String d53) {
+		this.d53 = d53;
+	}
+	public java.lang.String getD54() {
+		return d54;
+	}
+	public void setD54(java.lang.String d54) {
+		this.d54 = d54;
+	}
+	public java.lang.String getD55() {
+		return d55;
+	}
+	public void setD55(java.lang.String d55) {
+		this.d55 = d55;
+	}
+	public java.lang.String getD56() {
+		return d56;
+	}
+	public void setD56(java.lang.String d56) {
+		this.d56 = d56;
+	}
+	public java.lang.String getD57() {
+		return d57;
+	}
+	public void setD57(java.lang.String d57) {
+		this.d57 = d57;
+	}
+	public java.lang.String getD58() {
+		return d58;
+	}
+	public void setD58(java.lang.String d58) {
+		this.d58 = d58;
+	}
+	public java.lang.String getD59() {
+		return d59;
+	}
+	public void setD59(java.lang.String d59) {
+		this.d59 = d59;
+	}
+	public java.lang.String getD60() {
+		return d60;
+	}
+	public void setD60(java.lang.String d60) {
+		this.d60 = d60;
+	}
+	public java.lang.String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(java.lang.String customerId) {
+		this.customerId = customerId;
+	}
+	public java.util.Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(java.util.Date createTime) {
+		this.createTime = createTime;
+	}
+	public java.util.Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(java.util.Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	public java.lang.String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(java.lang.String createBy) {
+		this.createBy = createBy;
+	}
+	public java.lang.String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(java.lang.String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public java.lang.String getRemark() {
+		return remark;
+	}
+	public void setRemark(java.lang.String remark) {
+		this.remark = remark;
+	}	
 }
 

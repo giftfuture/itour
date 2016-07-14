@@ -40,89 +40,90 @@ public class Customers extends BaseEntity {
 	public void setId(java.lang.String id) {
 	    this.id=id;
 	}
-	public java.lang.Integer getcustomerId() {
-	    return this.customerId;
+	public java.lang.Integer getCustomerId() {
+		return customerId;
 	}
-	public void setcustomerId(java.lang.Integer customerId) {
-	    this.customerId=customerId;
+	public void setCustomerId(java.lang.Integer customerId) {
+		this.customerId = customerId;
 	}
-	public java.util.Date getcreateTime() {
-	    return this.createTime;
+	public java.util.Date getCreateTime() {
+		return createTime;
 	}
-	public void setcreateTime(java.util.Date createTime) {
-	    this.createTime=createTime;
+	public void setCreateTime(java.util.Date createTime) {
+		this.createTime = createTime;
 	}
-	public java.lang.Integer getstatus() {
-	    return this.status;
+	public java.lang.Integer getStatus() {
+		return status;
 	}
-	public void setstatus(java.lang.Integer status) {
-	    this.status=status;
+	public void setStatus(java.lang.Integer status) {
+		this.status = status;
 	}
-	public java.util.Date getupdateTime() {
-	    return this.updateTime;
+	public java.util.Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setupdateTime(java.util.Date updateTime) {
-	    this.updateTime=updateTime;
+	public void setUpdateTime(java.util.Date updateTime) {
+		this.updateTime = updateTime;
 	}
-	public java.lang.String getaddress() {
-	    return this.address;
+	public java.lang.String getAddress() {
+		return address;
 	}
-	public void setaddress(java.lang.String address) {
-	    this.address=address;
+	public void setAddress(java.lang.String address) {
+		this.address = address;
 	}
-	public java.lang.String getemail() {
-	    return this.email;
+	public java.lang.String getEmail() {
+		return email;
 	}
-	public void setemail(java.lang.String email) {
-	    this.email=email;
+	public void setEmail(java.lang.String email) {
+		this.email = email;
 	}
-	public java.lang.Integer getscope() {
-	    return this.scope;
+	public java.lang.Integer getScope() {
+		return scope;
 	}
-	public void setscope(java.lang.Integer scope) {
-	    this.scope=scope;
+	public void setScope(java.lang.Integer scope) {
+		this.scope = scope;
 	}
-	public java.lang.String getcity() {
-	    return this.city;
+	public java.lang.String getCity() {
+		return city;
 	}
-	public void setcity(java.lang.String city) {
-	    this.city=city;
+	public void setCity(java.lang.String city) {
+		this.city = city;
 	}
-	public java.lang.String gettelephone() {
-	    return this.telephone;
+	public java.lang.String getTelephone() {
+		return telephone;
 	}
-	public void settelephone(java.lang.String telephone) {
-	    this.telephone=telephone;
+	public void setTelephone(java.lang.String telephone) {
+		this.telephone = telephone;
 	}
-	public java.lang.String getmobile() {
-	    return this.mobile;
+	public java.lang.String getMobile() {
+		return mobile;
 	}
-	public void setmobile(java.lang.String mobile) {
-	    this.mobile=mobile;
+	public void setMobile(java.lang.String mobile) {
+		this.mobile = mobile;
 	}
-	public java.lang.String getcustomerName() {
-	    return this.customerName;
+	public java.lang.String getCustomerName() {
+		return customerName;
 	}
-	public void setcustomerName(java.lang.String customerName) {
-	    this.customerName=customerName;
+	public void setCustomerName(java.lang.String customerName) {
+		this.customerName = customerName;
 	}
-	public java.lang.String getnickName() {
-	    return this.nickName;
+	public java.lang.String getNickName() {
+		return nickName;
 	}
-	public void setnickName(java.lang.String nickName) {
-	    this.nickName=nickName;
+	public void setNickName(java.lang.String nickName) {
+		this.nickName = nickName;
 	}
-	public java.lang.String getdistrict() {
-	    return this.district;
+	public java.lang.String getDistrict() {
+		return district;
 	}
-	public void setdistrict(java.lang.String district) {
-	    this.district=district;
+	public void setDistrict(java.lang.String district) {
+		this.district = district;
 	}
-	public java.lang.String getintroduction() {
-	    return this.introduction;
+	public java.lang.String getIntroduction() {
+		return introduction;
 	}
-	public void setintroduction(java.lang.String introduction) {
-	    this.introduction=introduction;
+	public void setIntroduction(java.lang.String introduction) {
+		this.introduction = introduction;
 	}
+	
 }
 

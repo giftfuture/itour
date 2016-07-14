@@ -145,12 +145,11 @@ itour.routeTemplate = function(){
 	   			url:'routeTemplate/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
-				/*	{field:'customerId',title:'客户ID',align:'center',sortable:true,
+					{field:'customerId',title:'客户ID',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							alert(row.customerId);
 							return row.customerId;
 						}
-					},*/
+					},
 					{field:'d1',title:'模板1',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.d1;
@@ -200,7 +199,7 @@ itour.routeTemplate = function(){
 							formatter:function(value,row,index){
 								return row.d10;
 							}
-						}/*,
+						},
 					{field:'d11',title:'模板11',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.d11;
@@ -475,7 +474,7 @@ itour.routeTemplate = function(){
 							formatter:function(value,row,index){
 								return row.remark;
 							}
-						}*/
+						}
 					]],
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},

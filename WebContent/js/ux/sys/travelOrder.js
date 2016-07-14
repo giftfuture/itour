@@ -201,6 +201,11 @@ itour.travelOrder = function(){
 								return row.totalStaff;
 							}
 						},
+					{field:'budget',title:'出行预算',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.budget;
+						}
+					},
 					{field:'isPayed',title:'是否支付完成.',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.isPayed;

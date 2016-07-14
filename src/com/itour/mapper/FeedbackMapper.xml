@@ -25,8 +25,8 @@
 <sql id="Example_Where_Clause">
 where 1=1
 <trim  suffixOverrides="," >
-	<if test="feedbackId != null and feedbackId != ''" >
-	    and feedback_id =  #{feedbackId}
+	<if test="id != null and id != ''" >
+	    and id =  #{id}
 	</if>
 	<if test="createTime != null " >
 	    and create_time =  #{createTime}
@@ -58,8 +58,8 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into feedback(feedback_id,create_time,status,update_time,title,content,customer_id,result)
- values(#{feedbackId},now(),#{status},now(),#{title},#{content},#{customerId},#{result})
+  insert into feedback(id,create_time,status,update_time,title,content,customer_id,result)
+ values(#{id},now(),#{status},now(),#{title},#{content},#{customerId},#{result})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->

@@ -11,6 +11,48 @@ import java.math.BigDecimal;
  */
 public class LogSettingDetail extends BaseEntity {
 	
-		private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creator;//   	public java.lang.String getdetailCode() {	    return this.detailCode;	}	public void setdetailCode(java.lang.String detailCode) {	    this.detailCode=detailCode;	}	public java.lang.String getlogCode() {	    return this.logCode;	}	public void setlogCode(java.lang.String logCode) {	    this.logCode=logCode;	}	public java.lang.String getcolumnName() {	    return this.columnName;	}	public void setcolumnName(java.lang.String columnName) {	    this.columnName=columnName;	}	public java.lang.String getcolumnText() {	    return this.columnText;	}	public void setcolumnText(java.lang.String columnText) {	    this.columnText=columnText;	}	public java.lang.String getcolumnDatatype() {	    return this.columnDatatype;	}	public void setcolumnDatatype(java.lang.String columnDatatype) {	    this.columnDatatype=columnDatatype;	}	public java.util.Date getcreateTime() {	    return this.createTime;	}	public void setcreateTime(java.util.Date createTime) {	    this.createTime=createTime;	}	public java.lang.String getcreator() {	    return this.creator;	}	public void setcreator(java.lang.String creator) {	    this.creator=creator;	}
+		private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creator;//   
+	public java.lang.String getDetailCode() {
+		return detailCode;
+	}
+	public void setDetailCode(java.lang.String detailCode) {
+		this.detailCode = detailCode;
+	}
+	public java.lang.String getLogCode() {
+		return logCode;
+	}
+	public void setLogCode(java.lang.String logCode) {
+		this.logCode = logCode;
+	}
+	public java.lang.String getColumnName() {
+		return columnName;
+	}
+	public void setColumnName(java.lang.String columnName) {
+		this.columnName = columnName;
+	}
+	public java.lang.String getColumnText() {
+		return columnText;
+	}
+	public void setColumnText(java.lang.String columnText) {
+		this.columnText = columnText;
+	}
+	public java.lang.String getColumnDatatype() {
+		return columnDatatype;
+	}
+	public void setColumnDatatype(java.lang.String columnDatatype) {
+		this.columnDatatype = columnDatatype;
+	}
+	public java.util.Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(java.util.Date createTime) {
+		this.createTime = createTime;
+	}
+	public java.lang.String getCreator() {
+		return creator;
+	}
+	public void setCreator(java.lang.String creator) {
+		this.creator = creator;
+	}	
 }
 

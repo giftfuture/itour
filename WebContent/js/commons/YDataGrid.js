@@ -15,9 +15,9 @@ var YDataGrid = function(config){
 		//Form
 		var Form = {
 					search:$("#searchForm"),
-					edit:$("#editForm")}
+					edit:$("#editForm")};
 		//Win 窗口
-		var Win = { edit:$("#edit-win")}
+		var Win = { edit:$("#edit-win")};
 		
 		//处理函数
 		var Handler = {

@@ -57,7 +57,7 @@ public class SystemVariable{
 		}
 	}
 	
-	public static void initVariables(){
+	public static void init(){
 		String sql = "select var_name,var_value from sys_variables where var_project='itour' and var_hostname='"+SystemVariable.hostName+"' and var_hostip='"+SystemVariable.hostIp+"'";  
 		List<Map<String, Object>> list = null;
 		System.out.println("WebInitListener.contextInitialized.sql="+sql);

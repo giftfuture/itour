@@ -44,7 +44,7 @@ public class FastJsonTest {
     {  
 	    String text = "{\"id\":105,\"customername\":\"testFastJson001\",\"introduction\":\"maks\"}"; 
         Customers user = (Customers) JSON.parseObject(text, Customers.class);  
-        System.out.println("parseBeanObject()方法：user==" + user.getcustomerId() + "," + user.getcustomerName() + "," + user.getintroduction());  
+        System.out.println("parseBeanObject()方法：user==" + user.getCustomerId() + "," + user.getCustomerName() + "," + user.getIntroduction());  
         // 输出结果：user==testFastJson001,maks,105  
     }  
   
@@ -70,7 +70,7 @@ public class FastJsonTest {
         System.out.println("parseJSONAndBeanEachother()方法：text==" + text);  
         // 输出结果：text=={"@type":"fastJson.test.User","age":105,"id":"testFastJson001","name":"maks"}  
         Customers userObj = (Customers) JSON.parse(text);  
-        System.out.println("parseJSONAndBeanEachother()方法：userObj==" + userObj.getcustomerId() + "," + userObj.getcustomerName() + "," + userObj.getintroduction());  
+        System.out.println("parseJSONAndBeanEachother()方法：userObj==" + userObj.getCustomerId() + "," + userObj.getCustomerName() + "," + userObj.getIntroduction());  
         // 输出结果：userObj==testFastJson001,maks,105  
     }  
   

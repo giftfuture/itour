@@ -24,7 +24,7 @@ pageContext.setAttribute("basePath",basePath);
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -37,7 +37,7 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="订单详情" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -60,7 +60,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>内容详情:</label>
-						<input name="content" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写content">
+							<textarea rows="5" cols="40" name="content" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
 					<div class="fitem">
 						<label>单价:</label>
@@ -72,7 +72,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>备注:</label>
-						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
+						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

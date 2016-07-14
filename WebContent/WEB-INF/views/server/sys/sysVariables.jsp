@@ -25,6 +25,8 @@ pageContext.setAttribute("basePath",basePath);
         <p class="ui-fields">
 			<label class="ui-label">变量名:</label><input name="varName" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">变量值:</label><input name="varValue" class="easyui-box ui-text" style="width:100px;">
+		    <label class="ui-label">主机名:</label><input name="varHostname" class="easyui-box ui-text" style="width:100px;">
+            <label class="ui-label">主机IP: </label><input name="varHostip" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -37,7 +39,7 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="系统变量" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">

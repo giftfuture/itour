@@ -25,6 +25,8 @@ pageContext.setAttribute("basePath",basePath);
  	 	<p class="ui-fields">
             <label class="ui-label">角色名:</label> 
             <input name="roleName" class="easyui-box ui-text" style="width:100px;">
+                        <label class="ui-label">状态: </label><input name="state" class="easyui-box ui-text" style="width:100px;">
+             <label class="ui-label">创建时间: </label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
         </p>  
         <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -36,7 +38,7 @@ pageContext.setAttribute("basePath",basePath);
     	 <table id="data-list"></table>
 	 </div>
      <!-- Edit Form -->
-     <div id="edit-win" class="easyui-dialog" title="Edit" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:410px;">  
+     <div id="edit-win" class="easyui-dialog" title="系统角色" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:410px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" type="text" name="id">
      		 <div class="ui-edit">

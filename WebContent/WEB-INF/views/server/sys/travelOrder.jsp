@@ -23,8 +23,11 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">更新时间:</label><input name="updateTime" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">订单状态:</label><input name="orderStatus" class="easyui-box ui-text" style="width:100px;">
+		<br/>	<label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -37,11 +40,19 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="订单信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">客户订单</div>
+					<div class="fitem">
+						<label>订单号:</label>
+						<input name="orderNo" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写orderNo">
+					</div>
+					<div class="fitem">
+						<label>订单名称:</label>
+						<input name="orderName" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写orderName">
+					</div>
 					<div class="fitem">
 						<label>下单时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
@@ -49,14 +60,6 @@ pageContext.setAttribute("basePath",basePath);
 					<div class="fitem">
 						<label>更新时间:</label>
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
-					</div>
-					<div class="fitem">
-						<label>订单名称:</label>
-						<input name="orderName" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写orderName">
-					</div>
-					<div class="fitem">
-						<label>订单号:</label>
-						<input name="orderNo" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写orderNo">
 					</div>
 					<div class="fitem">
 						<label>订单状态:</label>
@@ -69,10 +72,6 @@ pageContext.setAttribute("basePath",basePath);
 					<div class="fitem">
 						<label>联系电话:</label>
 						<input name="receiverMobile" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写receiverMobile">
-					</div>
-					<div class="fitem">
-						<label>备注:</label>
-						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
 					<div class="fitem">
 						<label>客户ID:</label>
@@ -91,8 +90,8 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="totalStaff" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写totalStaff">
 					</div>
 					<div class="fitem">
-						<label>是否支付完成:</label>
-						<input name="isPayed" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写isPayed">
+						<label>出行预算:</label>
+						<input name="budget" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写出行预算">
 					</div>
 					<div class="fitem">
 						<label>支付方式:</label>
@@ -117,6 +116,14 @@ pageContext.setAttribute("basePath",basePath);
 					<div class="fitem">
 						<label>付款终端:</label>
 						<input name="payTerminal" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payTerminal">
+					</div>
+					<div class="fitem">
+						<label>是否支付完成:</label>
+						<input name="isPayed" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写isPayed">
+					</div>
+					<div class="fitem">
+						<label>备注:</label>
+						<input name="remark" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>
      	</form>

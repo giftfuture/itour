@@ -23,8 +23,9 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="name" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="orderId" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">报价单号:</label><input name="orderId" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">报价单名:</label><input name="name" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">生成时间:</label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -37,7 +38,7 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="报价单" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">

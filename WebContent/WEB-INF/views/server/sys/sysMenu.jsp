@@ -26,18 +26,22 @@ pageContext.setAttribute("basePath",basePath);
  	 	<p class="ui-fields">
             <label class="ui-label">菜单名:</label> 
             <input name="name" class="easyui-box ui-text" style="width:100px;">
+             <label class="ui-label">URL:</label> 
+            <input name="url" class="easyui-box ui-text" style="width:100px;">
+             <label class="ui-label">创建时间:</label> 
+            <input name="createTime" class="easyui-datetimebox" style="width:100px;">
         </p>
         <a id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
      <!-- DataList  -->
-	 <div region="center" border="false" >
+	 <div region="center" border="false">
      	<table id="data-list" ></table>
      </div>
     
      <!-- Edit Win&From -->
-     <div id="edit-win" class="easyui-dialog" title="Edit Menu" data-options="closed:true,iconCls:'icon-save',modal:true"  style="width:500px;height:450px;">  
+     <div id="edit-win" class="easyui-dialog" title="菜单项" data-options="closed:true,iconCls:'icon-save',modal:true"  style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post"> 
      	 <!-- 隐藏文本框 -->
      	 <input class="hidden" name="id">

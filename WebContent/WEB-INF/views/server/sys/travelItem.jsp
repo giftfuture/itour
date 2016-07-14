@@ -23,8 +23,13 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">旅游项目名:</label><input name="item" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">旅游项目代码:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">旅游项目:</label><input name="item" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">项目代码:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">海拔:</label><input name="elevation" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">所属省市:</label><input name="scope" class="easyui-box ui-text" style="width:100px;">
+			<br/><label class="ui-label">推荐人群:</label><input name="recommandCrowd" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">里程:</label><input name="mileage" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">推荐指数:</label><input name="rank" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -37,7 +42,7 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="旅行项目" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">

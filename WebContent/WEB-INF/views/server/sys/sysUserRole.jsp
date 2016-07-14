@@ -26,8 +26,8 @@ pageContext.setAttribute("basePath",basePath);
  	 	<p class="ui-fields">
  	 	   <label class="ui-label">账号:</label> 
  	 	   <input name="email" class="easyui-box ui-text" style="width:100px;">
-           <label class="ui-label"> 昵称:</label> 
-           <input name="nickName" class="easyui-box ui-text" style="width:100px;">
+            <label class="ui-label">状态: </label><input name="state" class="easyui-box ui-text" style="width:100px;">
+            <label class="ui-label">授予角色: </label><input name="roleStr" class="easyui-box ui-text" style="width:100px;">
         </p>
         <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -40,7 +40,7 @@ pageContext.setAttribute("basePath",basePath);
      </div>
 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Edit" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
+     <div id="edit-win" class="easyui-dialog" title="授权" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" type="text" name="id">
      		  <div class="ui-edit">

@@ -87,7 +87,7 @@ public class LogSettingDetailController extends BaseController{
 	@RequestMapping("/save")
 	public void save(LogSettingDetail entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
-		if(entity.getdetailCode()==null||StringUtils.isBlank(entity.getdetailCode().toString())){
+		if(entity.getDetailCode()==null||StringUtils.isBlank(entity.getDetailCode().toString())){
 			logSettingDetailService.add(entity);
 		}else{
 			logSettingDetailService.update(entity);

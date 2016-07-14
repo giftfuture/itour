@@ -23,8 +23,9 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
  	 	<p class="ui-fields">
- 	 	    <label class="ui-label">邮箱账号:</label><input name="email" class="easyui-box ui-text" style="width:100px;">
-            <label class="ui-label">昵称: </label><input name="nickName" class="easyui-box ui-text" style="width:100px;">
+ 	 	    <label class="ui-label">邮箱:</label><input name="email" class="easyui-box ui-text" style="width:100px;">
+            <label class="ui-label">状态: </label><input name="state" class="easyui-box ui-text" style="width:100px;">
+             <label class="ui-label">创建时间: </label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
         </p>
         <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -37,14 +38,14 @@ pageContext.setAttribute("basePath",basePath);
      </div>
 
      <!-- Edit Form -->
-     <div id="edit-win" class="easyui-dialog" title="Edit" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
+     <div id="edit-win" class="easyui-dialog" title="系统用户" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" type="text" name="id">
      		 <input class="hidden" name="deleted">
      		 <div class="ui-edit">
 	     	   <div class="ftitle">系统用户信息</div>    
 	           <div class="fitem">  
-	               <label>邮箱账号:</label>  
+	               <label>邮箱:</label>  
 	               <input class="easyui-validatebox" type="text" name="email" data-options="required:true,validType:'email'">
 	           </div>  
 	            
