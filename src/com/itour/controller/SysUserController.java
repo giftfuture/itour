@@ -105,18 +105,26 @@ public class SysUserController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/save")
-	public void save(SysUser bean,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+	public void save(SysUser bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		//Map<String,Object>  context = new HashMap<String,Object>();
+		SysUser user = SessionUtils.getUser(request);
 		int count = sysUserService.getUserCountByEmail(bean.getEmail());
 		if(bean.getId() == null){
 			if(count > 0){
 				throw new ServiceException("用户已存在.");
 			}
 			bean.setDeleted(DELETED.NO.key);
+			if(user != null){
+				bean.setCreateBy(user.getId());
+				bean.setUpdateBy(user.getId());
+			}
 			sysUserService.add(bean);
 		}else{
 			if(count > 1){
 				throw new ServiceException("用户已存在.");
+			}
+			if(user != null){
+				bean.setUpdateBy(user.getId());
 			}
 			sysUserService.update(bean);
 		}
