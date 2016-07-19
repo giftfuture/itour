@@ -46,7 +46,7 @@ $('#forgetpass').click(function(e) {
 });
 // 点击登录
 $("#but_login").click(function(e) {
-	console.log("btn_login click trigger");
+	//console.log("btn_login click trigger");
 	submit();
 });
 //回车登录
@@ -70,10 +70,14 @@ function submit()
 	});
 	if (submit) {
 		hideTop();
-		loading('核实中..', 1);
+		loading('请稍候..', 1);
 		setTimeout("unloading()", 2000);
 		setTimeout("login()", 0);
 	}
+}
+//刷新验证码
+function changeImg(){
+    document.getElementById("validateCodeImg").src=basePath+"/ImageServlet?"+Math.random();
 }
 //登录处理函数
 function login() {
@@ -95,7 +99,7 @@ function login() {
 		  alert('错误');
 		},
 		success : function(data) {
-			console.log("data.msg="+data.msg);
+		//	console.log("data.msg="+data.msg);
 			if (data.msg) {
 				loginsuccess();
 				//setTimeout("formSubmit()", 0);

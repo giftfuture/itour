@@ -1,14 +1,22 @@
 package com.itour.entity;
 
+import java.sql.Timestamp;
+
 import com.itour.base.entity.BaseEntity;
 
 
 public class SysUser extends BaseEntity {
 	
-		private String id;//   id主键	private String email;//   邮箱也是登录帐号	private String pwd;//   登录密码	private String nickName;//   昵称	private Integer state;//   状态 0=可用,1=禁用	private Integer loginCount;//   登录总次数	private java.sql.Timestamp loginTime;//   最后登录时间	private Integer deleted;//   删除状态 0=未删除,1=已删除	private java.sql.Timestamp createTime;//   创建时间	private java.sql.Timestamp updateTime;//   修改时间	private Integer createBy;//   创建人	private Integer updateBy;//   修改人
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7694404748102354148L;
+	private String id;//   id主键	private String email;//   邮箱也是登录帐号	private String pwd;//   登录密码	private String nickName;//   昵称	private Integer state;//   状态 0=可用,1=禁用	private Integer loginCount;//   登录总次数	private java.sql.Timestamp loginTime;//   最后登录时间	private Integer deleted;//   删除状态 0=未删除,1=已删除	private java.sql.Timestamp createTime;//   创建时间	private java.sql.Timestamp updateTime;//   修改时间	private Integer createBy;//   创建人	private Integer updateBy;//   修改人
 	
 	private Integer superAdmin;//超级管理员
 	
+	private String validateCode;
+	private Timestamp expireDate;
 	private String roleStr;//用户权限, 按","区分
 	
 	public SysUser (){}
@@ -30,4 +38,17 @@ public class SysUser extends BaseEntity {
 	public void setSuperAdmin(Integer superAdmin) {
 		this.superAdmin = superAdmin;
 	}
+	public String getValidateCode() {
+		return validateCode;
+	}
+	public void setValidateCode(String validateCode) {
+		this.validateCode = validateCode;
+	}
+	public Timestamp getExpireDate() {
+		return expireDate;
+	}
+	public void setExpireDate(Timestamp expireDate) {
+		this.expireDate = expireDate;
+	}
+	
 }

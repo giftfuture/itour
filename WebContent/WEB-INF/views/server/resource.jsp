@@ -1,7 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    application.setAttribute("basePath", basePath);
 %>
+<script type="text/javascript">
+var basePath = '${basePath}';
+<!--
+
+//-->
+</script>
 <!-- 公共资源CSS,JS  -->
 <!--Css -->
 <link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui-1.3.2/themes/bootstrap/easyui.css">

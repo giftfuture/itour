@@ -1,6 +1,9 @@
 package com.itour.dao;
 
+import java.util.HashMap;
+
 import com.itour.base.dao.BaseDao;
+import com.itour.entity.SysUser;
 import com.itour.page.SysUserModel;
 
 /**
@@ -16,7 +19,7 @@ public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param pwd
 	 * @return
 	 */
-	public SysMenuBtn queryLogin(SysUserModel model);
+	SysMenuBtn queryLogin(SysUserModel model);
 	
 	
 	/**
@@ -24,5 +27,19 @@ public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param email
 	 * @return
 	 */
-	public int getUserCountByEmail(String email);
+	int getUserCountByEmail(String email);
+	
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	void updateCode(HashMap map);
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	SysUser getUserByEmail(String email);
 }

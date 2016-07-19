@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.annotation.Auth;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysVariables;
@@ -28,7 +29,7 @@ import com.itour.service.SysVariablesService;
  * <br>
  * <b>功能：</b>SysVariablesController<br>
  * <b>作者：</b>fred.zhao<br>
- * <b>日期：</b> Feb 2, 2016 <br>
+ * <b>日期：</b> Jul 2, 2016 <br>
  */ 
 @Controller
 @RequestMapping("/sysVariables") 
@@ -40,10 +41,6 @@ public class SysVariablesController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysVariablesService<SysVariables> sysVariablesService; 
 	
-	
-	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -51,6 +48,7 @@ public class SysVariablesController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth
 	@RequestMapping("/list") 
 	public ModelAndView  list(SysVariablesPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -66,6 +64,7 @@ public class SysVariablesController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth
 	@RequestMapping("/dataList") 
 	public void  datalist(SysVariablesPage page,HttpServletResponse response) throws Exception{
 		List<SysVariables> dataList = sysVariablesService.queryByList(page);
@@ -83,6 +82,7 @@ public class SysVariablesController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth
 	@RequestMapping("/save")
 	public void save(SysVariables entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
@@ -98,7 +98,13 @@ public class SysVariablesController extends BaseController{
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
@@ -112,8 +118,13 @@ public class SysVariablesController extends BaseController{
 		HtmlUtil.writerJSON(response, context);
 	}
 	
-	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth
 	@RequestMapping("/delete")
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysVariablesService.delete(id);

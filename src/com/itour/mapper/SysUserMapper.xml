@@ -18,11 +18,13 @@
 	<result column="createBy" property="createBy"/>
 	<result column="updateBy" property="updateBy"/>
 	<result column="superAdmin" property="superAdmin"/>
+	<result column="validate_code" property="validateCode"/>
+	<result column="expire_date" property="expireDate"/>
 </resultMap>
        
 <!-- sys_user table all fields -->
 <sql id="Base_Column_List" >
-	 id,email,pwd,nickName,state,loginCount,loginTime,deleted,createTime,updateTime,createBy,updateBy,superAdmin
+	 id,email,pwd,nickName,state,loginCount,loginTime,deleted,createTime,updateTime,createBy,updateBy,superAdmin,validate_code,expire_date
 </sql>
    
    
@@ -75,7 +77,10 @@ where 1=1
   insert into sys_user(id,email,pwd,nickName,state,loginCount,loginTime,deleted,createTime,updateTime,createBy,updateBy)
  values(#{id},#{email},#{pwd},#{nickName},#{state},#{loginCount},#{loginTime},#{deleted},now(),now(),#{createBy},#{updateBy})
 </insert>
-
+<!-- 记录重置密码时邮箱验证码和过期时间 -->
+<update id="updateCode"  parameterType="java.util.HashMap" >
+update sys_user set validate_code = #validateCode#,expire_date=#expireDate# where id=#id#
+</update>
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.SysUser" >
 	update sys_user set 
@@ -118,7 +123,7 @@ where 1=1
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	 from sys_user where id = #{id}
+	delete from sys_user where id = #{id}
 </delete>
  
 <!-- 根据id查询 系统用户 -->
@@ -158,6 +163,12 @@ where 1=1
 <!-- 用于登录检查 -->
 <select id="getUserCountByEmail" resultType="java.lang.Integer"  parameterType="java.lang.String">
 	select count(1)
+	from sys_user where email=#{email}
+</select>
+
+<!-- 使用邮箱获取信息 -->
+<select id="getUserByEmail" resultType="com.itour.entity.SysUser"  parameterType="java.lang.String">
+	select <include refid="Base_Column_List"/>
 	from sys_user where email=#{email}
 </select>
 </mapper>   

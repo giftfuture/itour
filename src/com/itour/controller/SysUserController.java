@@ -155,21 +155,21 @@ public class SysUserController extends BaseController{
 		boolean isAdmin = SessionUtils.isAdmin(request); //是否超级管理员
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
-			sendFailureMessage(response, "Sorry ,User is not exists.");
+			sendFailureMessage(response, "抱歉,该用户不存在。");
 			return;
 		}
 		if(StringUtils.isBlank(newPwd)){
-			sendFailureMessage(response, "Password is required.");
+			sendFailureMessage(response, "密码是必输项.");
 			return;
 		}
 		//不是超级管理员，匹配旧密码
 		if(!isAdmin && !MethodUtil.ecompareMD5(oldPwd,bean.getPwd())){
-			sendFailureMessage(response, "Wrong old password.");
+			sendFailureMessage(response, "旧密码错误");
 			return;
 		}
 		bean.setPwd(MethodUtil.MD5(newPwd));
 		sysUserService.update(bean);
-		sendSuccessMessage(response, "保存成功~");
+		sendSuccessMessage(response, "修改密码成功.");
 	}
 	
 
@@ -227,8 +227,8 @@ public class SysUserController extends BaseController{
 		data.put("id", bean.getId());
 		data.put("email", bean.getEmail());
 		data.put("roleIds", roleIds);
-		context.put(SUCCESS, true);
 		context.put("data", data);
+		context.put(SUCCESS, true);
 		HtmlUtil.writerJson(response, context);
 		
 	}

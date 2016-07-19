@@ -13,7 +13,7 @@ public class MyBatisDB {
 	 private static SqlSessionFactory sqlMapper ;
 	 static {
 	
-		String resource = "com/wei/ssi/conf/mybatis/mybatis-config.xml";
+		String resource = "com/itour/conf/mybatis-config.xml";
 		Reader reader = null;
 		try {
 			reader = Resources.getResourceAsReader(resource);

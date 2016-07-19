@@ -60,8 +60,8 @@ itour.sysUser = function(){
 							}
 						}},
 						{field:'createTime',title:'创建时间',width:120,sortable:true},
-						{field:'loginCount',title:'登陆次数',align:'right',width:80,sortable:true},
-						{field:'loginTime',title:'登陆时间',width:120,sortable:true}
+						{field:'loginCount',title:'登录次数',align:'right',width:80,sortable:true},
+						{field:'loginTime',title:'最近登录时间',width:120,sortable:true}
 				]],
 				toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},

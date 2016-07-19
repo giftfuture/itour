@@ -95,7 +95,7 @@ public class SHA {
         for (int i = 0; i < bytes.length; i++) {  
             sb.append(byteToHexString(bytes[i]));  
         }  
-        return sb.toString();  
+        return sb.toString().toUpperCase();  
     }  
     	  
 	 /** 
@@ -218,12 +218,12 @@ public class SHA {
         System.out.println("D033E22AE348AEB5660FC2140AEC35850C4DA997".length());*/
 	  	//  encodeBySHA("中国oP……&*（）…&802134…"); 
 	  //	  shaFile(); 
-        String firstEncode = SHA.encryptSHA("admin"); 
+        String firstEncode = SHA.encryptSHA(key); 
+        System.out.println(firstEncode);
         String second = firstEncode.substring(20, firstEncode.length());
-        System.out.println(second.length());
-		 String secondEncode = SHA.encryptSHA(firstEncode.substring(20, firstEncode.length())); 
-		 String finalPwdCode = secondEncode.substring(1,secondEncode.length()-1);//SHA1加密原始密码后取前16位再SHA1加密,去掉头尾两位,剩余30位存入数据库
-		 System.out.println(finalPwdCode+"  398A7190A349339E41D727090D95FA0DDF9D78  "+finalPwdCode.length());
+		 String secondEncode = SHA.encryptSHA(second); 
+		 String finalPwdCode = secondEncode.substring(1,secondEncode.length()-2);//SHA1加密原始密码后取前16位再SHA1加密,去掉头尾两位,剩余30位存入数据库
+		 System.out.println(finalPwdCode+"     398A7190A349339E41D727090D95FA0DDF9D78  "+finalPwdCode.length());
 	
     }  
 }

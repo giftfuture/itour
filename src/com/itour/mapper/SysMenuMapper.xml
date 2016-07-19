@@ -29,10 +29,14 @@
 	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by
 </sql>
    
+   <!-- sys_menu table  -->
+<sql id="Column_List" >
+	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions
+</sql>
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1   and deleted =  0
+where 1=1  and deleted =  0
 <trim  suffixOverrides="," >
 	<if test="id != null and id !=''" >
 	    and id =  #{id}
@@ -48,7 +52,7 @@ where 1=1   and deleted =  0
 	</if>
 	<!-- 如果parentId为空,这查询顶级菜单 -->
 	<if test="parentId == null" >
-	    and parentId is null
+	    and parentId is null or parentId = '' 
 	</if>
 	
 	<if test="createTime != null" >
@@ -64,6 +68,9 @@ where 1=1   and deleted =  0
 </sql>
    
 
+<select id="maxRank" resultType="java.lang.Integer">
+select max(rank+1) as rank from sys_menu 
+</select>
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.SysMenu" >
  <!--  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
@@ -122,8 +129,10 @@ where 1=1   and deleted =  0
 <!-- 查询系统菜单列表 -->
 <select id="queryByList" resultMap="ExtResultMap"  parameterType="java.util.Map">
 	select 
-	<include refid="Base_Column_List"/>
-	,(SELECT COUNT(1) FROM sys_menu c  WHERE c.parentId = m.id and deleted = 0) AS subCount
+	<include refid="Column_List"/>
+	,(SELECT COUNT(1) FROM sys_menu c  WHERE c.parentId = m.id and deleted = 0) AS subCount,
+	(select concat(u.nickname,'(',u.email,')') from sys_user u left join sys_menu menu on u.id=menu.create_by where menu.deleted = 0 and menu.id=m.id)as create_by,
+	(select concat(u.nickname,'(',u.email,')') from sys_user u left join sys_menu menu on u.id=menu.update_by where menu.deleted = 0 and menu.id=m.id)as update_by
 	from sys_menu m
 	<include refid="Example_Where_Clause"/>
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
@@ -138,7 +147,7 @@ where 1=1   and deleted =  0
 	
 <!-- 查询所有有效系统菜单列表 -->
 <select id="queryByAll" resultMap="BaseResultMap">
-	select   <include refid="Base_Column_List" />  from sys_menu where deleted= 0 order by rank desc
+select<include refid="Base_Column_List" />  from sys_menu where deleted= 0 order by rank desc
 </select>
 
 <!-- 获取顶级菜单 -->

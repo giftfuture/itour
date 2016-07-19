@@ -12,6 +12,7 @@ public class MethodUtil{
 	public static MethodUtil getInit(){
 		return new MethodUtil();
 	}
+	
 	private static String byteArrayToHexString(byte b[]) {
 		StringBuffer resultSb = new StringBuffer();
 		for (int i = 0; i < b.length; i++)
@@ -52,8 +53,31 @@ public class MethodUtil{
 		String result =MD5(origin);
 		return md5.equals(result);
 	}
-	
-	
+	/**
+	 * 
+	 * @param origin
+	 * @param shapwd
+	 * @return
+	 */
+	public static boolean compareSHA(String origin,String shapwd){
+		 return shapwd.equals(encryptSHA(origin));
+	}
+	/**
+	 * 
+	 * @param pwd
+	 * @return
+	 */
+	public static String encryptSHA(String pwd){
+		try {
+			String firstEncode = SHA.encryptSHA(pwd); 
+			String secondEncode = SHA.encryptSHA(firstEncode.substring(20, firstEncode.length()));
+			String finalPwdCode = secondEncode.substring(1,secondEncode.length()-2);//加密原始密码后取后位再加密,去掉头1位,尾两位,剩余位存入数据库
+			return finalPwdCode;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "";
+	}
 /*
  *  MD5 加密  
  * */

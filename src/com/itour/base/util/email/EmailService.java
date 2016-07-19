@@ -24,6 +24,7 @@ import javax.mail.internet.MimeUtility;
 import org.apache.commons.lang.StringUtils;
 
 import com.itour.base.util.SystemVariable;
+
 //import static com.itour.base.util.email.EmailProperty.pass_MAIL_QUITWAIT;
 //import static com.itour.base.util.email.EmailProperty.pass_MAIL_SMTP_TIMEOUT;
 //import static com.itour.base.util.email.EmailProperty.pass_MAIL_TIMEOUT;
@@ -65,7 +66,7 @@ public class EmailService {
 			e1.printStackTrace();
 		} 
 	}   
-	public static String sendEmail(String receive_email, String subject, String content,String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol)throws Exception {
+	public static boolean sendEmail(String receive_email, String subject, String content,String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol)throws Exception {
 		try {
 			 EmailProperty	prop = new EmailProperty(username,password,stmp,smtp_port,auth,ssl,protocol);
 			// Properties prop = new Properties();
@@ -80,12 +81,16 @@ public class EmailService {
 			for(String receiver:receivers){	
 				email = new Email(username, receiver, subject, content);
 				service.send(email,prop);
+				System.out.println("邮箱为"+receiver+"的发送成功!!");
 			}
 	  		email = null;
-	   		return "true";
+	  		return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
+			return false;
+			//throw e;
+		}finally{
+			
 		}
 	}
 

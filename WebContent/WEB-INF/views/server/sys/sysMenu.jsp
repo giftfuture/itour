@@ -59,10 +59,10 @@ pageContext.setAttribute("basePath",basePath);
 		               <label>URL:</label>  
 		               <input type="text" name="url"></input>
 		           </div>  
-		           <div class="fitem">  
+		      <!--      <div class="fitem">  
 		               <label>Rank:</label>  
 		               <input class="easyui-numberbox" type="text" value="0" name="rank" data-options="required:true,min:0,max:999">
-		           </div> 
+		           </div>  -->
 		           <div class="fitem">  
 		               <label>Actions:</label>  
 		               <input class="easyui-validatebox" type="text" name="actions" >
@@ -78,7 +78,7 @@ pageContext.setAttribute("basePath",basePath);
 				    <table id="btn-tb" style="width:100%">
 				    	<thead>
 				    	<tr>
-				    		<th width="5%"></th>
+				    		<!-- <th width="5%"></th> -->
 				    		<th width="25%">按钮名称:</th>
 				    		<th width="25%">按钮类型</th>
 				    		<th width="35%">注册Action(用"|"分格)</th>

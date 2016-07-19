@@ -58,6 +58,7 @@ public class MainController extends BaseController {
 	@Autowired(required=false) 
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
 	
+	private String verifyCode;
 	/**
 	 * 登录页面
 	 * @param url
@@ -108,18 +109,19 @@ public class MainController extends BaseController {
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/logIn")
-	public ModelAndView  toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		String vcode  = SessionUtils.getValidateCode(request);
+	public ModelAndView toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		String vcode  = SessionUtils.getValidateCode(request).toLowerCase();
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
-	/*	if(StringUtils.isBlank(verifyCode)){
+	 	if(StringUtils.isBlank(verifyCode)){
 			sendFailureMessage(response, "验证码不能为空.");
-			return;
+			return new ModelAndView("redirect:/main/login");
 		}
 		//判断验证码是否正确
 		if(!verifyCode.toLowerCase().equals(vcode)){
 			sendFailureMessage(response, "验证码输入错误.");
-			return;
-		}*/
+			return new ModelAndView("redirect:/main/login");
+		} 
 		//email="admin@qq.com";
 		//pwd="admin";
 		if(StringUtils.isBlank(email)){
@@ -131,19 +133,19 @@ public class MainController extends BaseController {
 			return new ModelAndView("redirect:/main/login");
 		}
 		 String msg = "用户登录日志:";
-		 String firstEncode = SHA.encryptSHA(pwd); 
-		 String secondEncode = SHA.encryptSHA(firstEncode.substring(20, firstEncode.length())); 
-		 String finalPwdCode = secondEncode.substring(1,secondEncode.length()-2);//加密原始密码后取后位再加密,去掉头1位,尾两位,剩余位存入数据库
-		 SysUser user = sysUserService.queryLogin(email,finalPwdCode);
-		if(user == null){
-			//记录错误登录日志
+		 SysUser user = sysUserService.queryLogin(email,MethodUtil.encryptSHA(pwd));
+		if(user == null){//记录错误登录日志
 			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
 			sendFailureMessage(response, "账号或者密码输入错误.");
-			return new ModelAndView("redirect:/main/login");
+			context.put(SUCCESS,false);
+			context.put(MSG, "账号或者密码输入错误.");
+			//result.put(SUCCESS, false);
+			//result.put(MSG, message);
+			return   new ModelAndView("redirect:/main/login",context);
 		}
 		if(STATE.DISABLE.key == user.getState()){
 			sendFailureMessage(response, "账号已被禁用.");
-			return new ModelAndView("redirect:/main/login");
+			return   new ModelAndView("redirect:/main/login");
 		}
 		//登录次数加1 修改登录时间
 		int loginCount = 0;
@@ -158,8 +160,9 @@ public class MainController extends BaseController {
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		log.debug(message);
-		//sendSuccessMessage(response, message);
-		return new ModelAndView("redirect:/main/manage");
+		sendSuccessMessage(response, message);
+		//forward("redirect:/main/manage",context);
+		return new ModelAndView("/main/manage");
 	}
 	
 	/**
@@ -215,29 +218,30 @@ public class MainController extends BaseController {
 		SysUser user = SessionUtils.getUser(request);
 		if(user == null){
 			sendFailureMessage(response, "对不起,登录超时.");
-			return;
+			return;// return new ModelAndView("redirect:/main/login");; 
 		}
 		SysUser bean  = sysUserService.queryById(user.getId());
 		if(bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
-			sendFailureMessage(response, "对不起,用户不存在.");
+			sendFailureMessage(response, "对不起,用户不存在或已被删除.");
 			return;
 		}
-		if(StringUtils.isBlank(newPwd)){
-			sendFailureMessage(response, "密码不能为空.");
+		if(StringUtils.isBlank(newPwd) || newPwd.length()<6){
+			sendFailureMessage(response, "密码不能为空且长度不小于六位.");
 			return;
 		}
+
 		//不是超级管理员，匹配旧密码
-		if(!MethodUtil.ecompareMD5(oldPwd,bean.getPwd())){
+		if(!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
 			sendFailureMessage(response, "旧密码输入不匹配.");
 			return;
 		}
-		bean.setPwd(MethodUtil.MD5(newPwd));
+		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
-		sendSuccessMessage(response, "Save success.");
+		sendSuccessMessage(response, "密码更新成功");
 	}
 	
 	/**
-	 * ilook 首页
+	 * 登录后首页
 	 * @param url
 	 * @param classifyId
 	 * @return
@@ -314,4 +318,15 @@ public class MainController extends BaseController {
 		SessionUtils.setAccessUrl(request, accessUrls);//设置可访问的URL
 		SessionUtils.setMemuBtnMap(request, menuBtnMap); //设置可用的按钮
 	}
+
+
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+
+
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
+	
 }

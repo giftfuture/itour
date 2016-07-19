@@ -107,15 +107,28 @@ public class SysMenuController extends BaseController{
 		//设置菜单按钮数据
 		List<SysMenuBtn> btns = getReqBtns(request);
 		bean.setBtns(btns);
+		int rank = sysMenuService.maxRank();
+		bean.setRank(rank);
 		if(bean.getId() == null ||bean.getId().equals("")){
+			if(user != null){
+				bean.setCreateBy(user.getId());
+				bean.setUpdateBy(user.getId());
+			}
 			bean.setDeleted(DELETED.NO.key);
 			sysMenuService.add(bean);
 		}else{
 			SysMenu sm = sysMenuService.queryById(bean.getId());
 			if(sm == null){
+				if(user != null){
+					bean.setCreateBy(user.getId());
+					bean.setUpdateBy(user.getId());
+				}
 				bean.setDeleted(DELETED.NO.key);
 				sysMenuService.add(bean);
 			}else{
+				if(user != null){
+					bean.setUpdateBy(user.getId());
+				}
 				sysMenuService.update(bean);
 			}
 		}

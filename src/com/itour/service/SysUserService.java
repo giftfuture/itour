@@ -1,5 +1,6 @@
 package com.itour.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itour.base.service.BaseService;
 import com.itour.dao.SysUserDao;
 import com.itour.entity.SysRoleRel;
+import com.itour.entity.SysUser;
 import com.itour.entity.SysRoleRel.RelType;
 import com.itour.page.SysUserModel;
 
@@ -86,7 +88,18 @@ public class SysUserService<T> extends BaseService<T> {
 			sysRoleRelService.add(rel);
 		}
 	}
-	
+
+	public void updateCode(HashMap map){
+		getDao().updateCode(map);
+	};
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public SysUser getUserByEmail(String email){
+	  return getDao().getUserByEmail(email);
+	};
 	
 	@Autowired
     private SysUserDao<T> mapper;

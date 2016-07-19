@@ -95,7 +95,7 @@ public final class SessionUtils {
 	 
 	 
 	 /**
-	  * 从session中获取用户信息
+	  * 从session中删除用户信息
 	  * @param request
 	  * @return SysUser
 	  */

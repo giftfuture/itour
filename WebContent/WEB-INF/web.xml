@@ -55,7 +55,6 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true">
 		<servlet-name>Spring-Servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
 <!-- 	<servlet-mapping>
 		<servlet-name>Spring-Servlet</servlet-name>
 		<url-pattern>*.shtml</url-pattern>

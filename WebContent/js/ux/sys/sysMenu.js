@@ -128,12 +128,14 @@ itour.sysMenu = function(){
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'name',title:'菜单名称',width:120,sortable:true},
-					{field:'rank',title:'序号',align:'right',width:80,sortable:true},
+					/*{field:'rank',title:'序号',align:'right',width:80,sortable:true},*/
 					{field:'url',title:'URL',width:220,sortable:true},
+					{field:'createBy',title:'创建人',width:120,sortable:true},
 					{field:'createTime',title:'创建时间',width:120,sortable:true},
-					{field:'updateTime',title:'修改时间',width:120,sortable:true},
+					{field:'updateBy',title:'更新人',width:120,sortable:true},
+					{field:'updateTime',title:'更新时间',width:120,sortable:true},
 					{field:'childMenus',title:'子目录',width:120,align:'center',formatter:function(value,row,index){
-						var html ="<a href='javascript:void(0)' onclick='itour.sysMenu.toList("+row.id+")'>子菜单管理("+row.subCount+")</a>";
+						var html ="<a href='javascript:void(0)' title='本菜单有"+row.subCount+"个子菜单' onclick='itour.sysMenu.toList("+row.id+")'>进入子菜单</a>";
 						return html;
 					}}
 				]],

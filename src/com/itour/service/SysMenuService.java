@@ -148,7 +148,14 @@ public class SysMenuService<T> extends BaseService<T> {
 	}
 
 	
-	
+
+	/**
+	 * 获取表中最大rank
+	 * @return
+	 */
+	public int maxRank() {
+		return  getDao().maxRank();
+	}
 	
 	public SysMenuDao<T> getDao() {
 		return mapper;

@@ -145,11 +145,11 @@ itour.feedback = function(){
 	   			url:'feedback/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'customerId',title:'客户ID',align:'center',sortable:true,
+			/*		{field:'customerId',title:'客户ID',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.customerId;
 						}
-					},
+					},*/
 					{field:'title',title:'标题',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.title;
@@ -178,13 +178,12 @@ itour.feedback = function(){
 								}
 							}
 						},
-					{field:'updateTime',title:'更新时间',align:'center',sortable:true,
+				/*	{field:'updateTime',title:'更新时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateTime;
 							}
-						},
-					
-					{field:'result',title:'审核结果',align:'center',sortable:true,
+						},*/
+					{field:'result',title:'审核意见',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.result;
 							}
