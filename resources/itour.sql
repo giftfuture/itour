@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50146
 File Encoding         : 65001
 
-Date: 2016-07-14 17:34:32
+Date: 2016-07-21 10:42:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,10 +41,10 @@ CREATE TABLE `customers` (
 -- ----------------------------
 -- Records of customers
 -- ----------------------------
-INSERT INTO `customers` VALUES ('1', '1', '2016-07-12 13:41:23', '1', '2016-07-12 13:41:27', '北京顺义', 'zpclord@cmbc.com.cn', '1', '北京', '15566667777', '010-11223344', '赵紫阳', '书纪', '顺义', '前总结工作 ');
-INSERT INTO `customers` VALUES ('221', '221', '2016-07-12 18:22:07', '2', '2016-07-12 18:22:07', '四川成都', 'peter@usts.edu', '2', 'Shanghai,China', '+8615900827825', '+8615900827825', '赵无极', '非机动车', '厅魂牵梦萦', '夺无奇不有');
+INSERT INTO `customers` VALUES ('2CED3B1A057447B18302B104D4033C48\r\n', '1', '2016-07-12 13:41:23', '1', '2016-07-12 13:41:27', '北京顺义', 'zpclord@cmbc.com.cn', '1', '北京', '15566667777', '010-11223344', '赵紫阳', '书纪', '顺义', '前总结工作 ');
 INSERT INTO `customers` VALUES ('6A36C12213CE45AB8654F5B3D6F2C558', null, '2016-07-14 16:24:55', '2', '2016-07-14 16:24:55', '中国大陆上海市闵行区北华路168弄', 'yyy@sina.vip.com', '5', 'Shanghai,China', '+8615900827811', '13341169872', '杨浦', '杨浦林', '闵行区', '学习认识古代近东的世界观，能使我们避免犯错，并使我们对经文的理解，与当时的以色列人更接近。');
 INSERT INTO `customers` VALUES ('AD4F49AA1E2142B6A7590601A5175D20', null, '2016-07-12 19:12:31', '1', '2016-07-12 19:12:31', '上海嘉定', 'john@nju.edu.cn', '2', 'Shanghai,China', '+8615900827825', '+8615900827825', '赵无极', '暗影行者', '天国', '夺无奇不有vdss');
+INSERT INTO `customers` VALUES ('BBD581F3A5EA4ED6905282C3134CAA7F\r\n', '221', '2016-07-12 18:22:07', '2', '2016-07-12 18:22:07', '四川成都', 'peter@usts.edu', '2', 'Shanghai,China', '+8615900827825', '+8615900827825', '赵无极', '非机动车', '厅魂牵梦萦', '夺无奇不有');
 INSERT INTO `customers` VALUES ('C73B5C0F0EFC4A40AC6D997C20991359', '221', '2016-07-12 18:59:41', '1', '2016-07-12 18:59:41', '河南漯河', 'zpclord@sina.com', '4', '上海', '+8615900827825', '+8615900827825', '赵无极', '原地区', '确有其事', '在此之前');
 INSERT INTO `customers` VALUES ('DCB2E1E8047A443FAB4F777EF7F631EA', null, '2016-07-14 16:35:22', null, '2016-07-14 16:35:22', 'hk', 'holy@heaven.lord', '4', '码头', '021-11113455', '13543969872', '康长', '康长', '湾仔', '美索不达米亚');
 
@@ -311,37 +311,38 @@ CREATE TABLE `sys_menu` (
   `actions` varchar(500) DEFAULT '0' COMMENT '注册Action 按钮|分隔',
   `create_by` varchar(64) DEFAULT NULL,
   `update_by` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `rank` (`rank`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('0BFBE5C0E2BF4A579A65B45FCD52B74D\r\n', '订单详情管理', 'orderDetail/list', '9', '0', '2016-07-13 14:46:46', null, '0', 'orderDetail/list', null, null);
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', 'main/manage', null, '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '1', '', null, null);
-INSERT INTO `sys_menu` VALUES ('10', '客户管理', 'customers/list', '9', '0', '2016-07-06 10:44:45', '2016-07-06 13:32:26', '1', 'dataList.do', null, null);
-INSERT INTO `sys_menu` VALUES ('11', '订单管理', 'travelOrder/list', '9', '0', '2016-07-06 11:37:01', '2016-07-13 17:58:45', '0', '2', null, null);
-INSERT INTO `sys_menu` VALUES ('12', '12', '', '16', '0', '2016-07-06 11:37:20', '2016-07-06 11:37:29', '0', '', null, null);
-INSERT INTO `sys_menu` VALUES ('13', '旅游项目管理', 'travelItem/list', '9', '0', '2016-07-06 17:24:36', '2016-07-13 19:46:38', '1', 'dataList.do', null, null);
-INSERT INTO `sys_menu` VALUES ('14', '7777', '777', '16', '0', '2016-07-06 10:55:26', '2016-07-06 17:25:20', '0', '', null, null);
-INSERT INTO `sys_menu` VALUES ('15', '77', '77', '16', '0', '2016-07-06 11:01:08', '2016-07-06 17:25:22', '77', '77', null, null);
-INSERT INTO `sys_menu` VALUES ('16', '日志管理', '/logs/list', '', '0', '2016-07-06 18:43:11', '2016-07-13 17:17:29', '1', '/logs/list', null, null);
-INSERT INTO `sys_menu` VALUES ('17', 'aaa', 'aa', '16', '0', '2016-07-06 18:43:50', '2016-07-13 10:03:36', '0', 'aaa', null, null);
-INSERT INTO `sys_menu` VALUES ('18', 'aa', 'aa', '16', '0', '2016-07-06 18:44:10', '2016-07-13 10:03:39', '0', 'aa', null, null);
-INSERT INTO `sys_menu` VALUES ('2', '菜单管理', 'sysMenu/menu', '1', '0', '2016-07-06 18:18:32', '2016-07-06 17:21:58', '0', 'dataList.do', null, null);
-INSERT INTO `sys_menu` VALUES ('3', '站点管理', '', '4', '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '1', '', null, null);
-INSERT INTO `sys_menu` VALUES ('38E4B204A09D49E89358A1D1D5E463B6', '报价单管理', 'quotation/list', '9', '0', '2016-07-13 17:09:49', '2016-07-13 17:09:49', '0', 'quotation/list', null, null);
-INSERT INTO `sys_menu` VALUES ('4', '站点信息管理', 'siteMain/list', '3', '0', '2016-07-06 17:21:58', '2016-07-06 01:24:47', '0', 'dataList.do|/siteType/typeListJson.do', null, null);
-INSERT INTO `sys_menu` VALUES ('5', '站点类型', 'siteType/list', '3', '0', '2016-07-06 17:21:58', '2016-07-06 01:20:46', '0', 'dataList.do', null, null);
-INSERT INTO `sys_menu` VALUES ('6', '系统用户管理', 'sysUser/list', '1', '0', '2016-07-06 17:21:58', '2016-07-06 11:42:46', '0', 'dataList.do', null, null);
-INSERT INTO `sys_menu` VALUES ('7', '角色管理', 'sysRole/role', '1', '0', '2016-07-06 22:17:51', '2016-07-06 01:15:00', '0', 'dataList.do|/sysMenu/getMenuTree.do', null, null);
-INSERT INTO `sys_menu` VALUES ('74BDAEA713D841549B840E502C4F150B', '路线模板', 'routeTemplate/list', '9', '0', '2016-07-13 17:15:43', '2016-07-13 17:15:43', '0', 'routeTemplate/list', null, null);
-INSERT INTO `sys_menu` VALUES ('7A776ACD16D546A2866B1D79509383F8', '系统变量', 'sysVariables/list', '9', '1', '2016-07-13 17:10:33', '2016-07-13 17:11:25', '0', 'sysVariables/list', null, null);
-INSERT INTO `sys_menu` VALUES ('8', '系统用户授权', 'sysUser/userRole', '1', '0', '2016-07-06 11:42:26', '2016-07-06 11:43:19', '0', 'userList.do|/sysRole/loadRoleList.do', null, null);
-INSERT INTO `sys_menu` VALUES ('9', '业务功能', 'main/manage', null, '0', '2016-07-06 10:42:42', '2016-07-06 17:25:42', '1', '', null, null);
-INSERT INTO `sys_menu` VALUES ('9A6DA61999AB422782E398C62514968F', '系统变量', 'sysVariables/list', '1', '0', '2016-07-13 17:12:52', '2016-07-13 17:12:52', '0', 'sysVariables/list', null, null);
-INSERT INTO `sys_menu` VALUES ('A1C1A1B47AAA4A40B74962E59FCE9F64', '旅行方式管理', 'travelStyle/list', '9', '0', '2016-07-13 16:00:18', '2016-07-13 16:00:18', '0', 'travelStyle/list', null, null);
-INSERT INTO `sys_menu` VALUES ('E2A9CF59E2F144A2B863ECA27EC8BDDF', '反馈审核', 'feedback/list', '9', '0', '2016-07-13 17:14:17', '2016-07-13 17:14:17', '0', 'feedback/list', null, null);
+INSERT INTO `sys_menu` VALUES ('0BFBE5C0E2BF4A579A65B45FCD52B74D', '订单详情管理', 'orderDetail/list', '9', '0', '2016-07-13 14:46:46', '2016-07-18 17:31:16', '1', 'orderDetail/list', '1', '1');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', 'main/manage', null, '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '2', '', '1', '1');
+INSERT INTO `sys_menu` VALUES ('10', '客户管理', 'customers/list', '9', '0', '2016-07-06 10:44:45', '2016-07-06 13:32:26', '3', 'dataList.do', '1', '1');
+INSERT INTO `sys_menu` VALUES ('11', '订单管理', 'travelOrder/list', '9', '0', '2016-07-06 11:37:01', '2016-07-13 17:58:45', '4', '2', '12', '1');
+INSERT INTO `sys_menu` VALUES ('12', '12', '', '16', '0', '2016-07-06 11:37:20', '2016-07-06 11:37:29', '5', '', '1', '1');
+INSERT INTO `sys_menu` VALUES ('13', '旅游项目管理', 'travelItem/list', '9', '0', '2016-07-06 17:24:36', '2016-07-13 19:46:38', '6', 'dataList.do', '1', '12');
+INSERT INTO `sys_menu` VALUES ('14', '7777', '777', '16', '0', '2016-07-06 10:55:26', '2016-07-06 17:25:20', '7', '', '1', '13');
+INSERT INTO `sys_menu` VALUES ('15', '77', '77', '16', '0', '2016-07-06 11:01:08', '2016-07-06 17:25:22', '8', '77', '1', '13');
+INSERT INTO `sys_menu` VALUES ('16', '日志管理', '/logs/list', '', '0', '2016-07-06 18:43:11', '2016-07-13 17:17:29', '9', '/logs/list', '1', '14');
+INSERT INTO `sys_menu` VALUES ('17', 'aaa', 'aa', '16', '0', '2016-07-06 18:43:50', '2016-07-13 10:03:36', '10', 'aaa', '1', '15');
+INSERT INTO `sys_menu` VALUES ('18', 'aa', 'aa', '16', '0', '2016-07-06 18:44:10', '2016-07-13 10:03:39', '11', 'aa', '1', '16');
+INSERT INTO `sys_menu` VALUES ('2', '菜单管理', 'sysMenu/menu', '1', '0', '2016-07-06 18:18:32', '2016-07-18 17:34:40', '12', 'dataList.do', '5', '1');
+INSERT INTO `sys_menu` VALUES ('3', '站点管理', '', '4', '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '13', '', '5', '17');
+INSERT INTO `sys_menu` VALUES ('38E4B204A09D49E89358A1D1D5E463B6', '报价单管理', 'quotation/list', '9', '0', '2016-07-13 17:09:49', '2016-07-13 17:09:49', '14', 'quotation/list', '12', '17');
+INSERT INTO `sys_menu` VALUES ('4', '站点信息管理', 'siteMain/list', '3', '0', '2016-07-06 17:21:58', '2016-07-06 01:24:47', '15', 'dataList.do|/siteType/typeListJson.do', '13', '18');
+INSERT INTO `sys_menu` VALUES ('5', '站点类型', 'siteType/list', '3', '0', '2016-07-06 17:21:58', '2016-07-06 01:20:46', '16', 'dataList.do', '14', '19');
+INSERT INTO `sys_menu` VALUES ('6', '系统用户管理', 'sysUser/list', '1', '0', '2016-07-06 17:21:58', '2016-07-06 11:42:46', '17', 'dataList.do', '15', '20');
+INSERT INTO `sys_menu` VALUES ('7', '角色管理', 'sysRole/role', '1', '0', '2016-07-06 22:17:51', '2016-07-06 01:15:00', '18', 'dataList.do|/sysMenu/getMenuTree.do', '16', '21');
+INSERT INTO `sys_menu` VALUES ('74BDAEA713D841549B840E502C4F150B', '路线模板', 'routeTemplate/list', '9', '0', '2016-07-13 17:15:43', '2016-07-13 17:15:43', '19', 'routeTemplate/list', '17', '5');
+INSERT INTO `sys_menu` VALUES ('7A776ACD16D546A2866B1D79509383F8', '系统变量', 'sysVariables/list', '9', '1', '2016-07-13 17:10:33', '2016-07-13 17:11:25', '20', 'sysVariables/list', '18', '6');
+INSERT INTO `sys_menu` VALUES ('8', '系统用户授权', 'sysUser/userRole', '1', '0', '2016-07-06 11:42:26', '2016-07-06 11:43:19', '21', 'userList.do|/sysRole/loadRoleList.do', '19', '1');
+INSERT INTO `sys_menu` VALUES ('9', '业务功能', 'main/manage', null, '0', '2016-07-06 10:42:42', '2016-07-06 17:25:42', '22', '', '20', '1');
+INSERT INTO `sys_menu` VALUES ('9A6DA61999AB422782E398C62514968F', '系统变量', 'sysVariables/list', '1', '0', '2016-07-13 17:12:52', '2016-07-13 17:12:52', '23', 'sysVariables/list', '21', '1');
+INSERT INTO `sys_menu` VALUES ('A1C1A1B47AAA4A40B74962E59FCE9F64', '旅行方式管理', 'travelStyle/list', '9', '0', '2016-07-13 16:00:18', '2016-07-13 16:00:18', '24', 'travelStyle/list', '1', '1');
+INSERT INTO `sys_menu` VALUES ('E2A9CF59E2F144A2B863ECA27EC8BDDF', '反馈审核', 'feedback/list', '9', '0', '2016-07-13 17:14:17', '2016-07-13 17:14:17', '25', 'feedback/list', '1', '1');
 
 -- ----------------------------
 -- Table structure for sys_menu_btn
@@ -365,6 +366,7 @@ CREATE TABLE `sys_menu_btn` (
 -- ----------------------------
 -- Records of sys_menu_btn
 -- ----------------------------
+INSERT INTO `sys_menu_btn` VALUES ('02E73BFB9E8940E68FBA133A3F15107D', 'F38A31E8FE44479A9B0719BEB7BA436B', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('0503E68B02F0460F88BDD4A8C10B82FA', '74bdaea7-13d8-4154-9b84-0e502c4f150b', '添加', 'add', 'routeTemplate/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('10', '6', '修改密码', 'editPwd', 'updatePwd', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('11', '6', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
@@ -415,6 +417,7 @@ INSERT INTO `sys_menu_btn` VALUES ('84B78CFDED4649E9AC511B4DADF0CDC7', '9a6da619
 INSERT INTO `sys_menu_btn` VALUES ('9', '6', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('9A9C1B318EB3450E8EB94746C43CB5A3', '', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('9B3B369CADC24F9A880741568368212C', 'f264f3cf-5cfa-4309-bbf2-ea96af489937', '修改', 'edit', 'logs/getId', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('A554D04F82BC430E8B8599A4D37462A7', 'F38A31E8FE44479A9B0719BEB7BA436B', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('A779EDA9161345B288DB73D4FED2BCF6', 'e2a9cf59-e2f1-44a2-b863-eca27ec8bddf', '添加', 'add', 'feedback/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('AD6E00F626C74D70A67D955A3D08BFE1', '9a6da619-99ab-4227-82e3-98c62514968f', '添加', 'add', 'sysVariables/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('B04F7707BDBE44098BB6C8026646C6F0', '38e4b204-a09d-49e8-9358-a1d1d5e463b6', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
@@ -423,6 +426,7 @@ INSERT INTO `sys_menu_btn` VALUES ('CD09D0422D9A445F9AACAA8732AF04A4', '74bdaea7
 INSERT INTO `sys_menu_btn` VALUES ('DBAF912FCA304171B7D8A86830B2152C', '', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('DEF0F7DF1F2641CF80944D7EA0092EF2', '', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('E8F63D92EFEB4A8682A5AF85896A5406', '', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('ED486CDC83E14A91AFEF3EAA9C39EA51', 'F38A31E8FE44479A9B0719BEB7BA436B', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('F5DBDE0F67884EF9971CCC70A0B966F6', 'f264f3cf-5cfa-4309-bbf2-ea96af489937', '添加', 'add', 'logs/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('F635FE493C2C45DE8CF41C7835E34EF0', '', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
 
@@ -562,25 +566,27 @@ CREATE TABLE `sys_user` (
   `createBy` varchar(64) DEFAULT NULL COMMENT '创建人',
   `updateBy` varchar(64) DEFAULT NULL COMMENT '修改人',
   `superAdmin` int(1) NOT NULL DEFAULT '0' COMMENT '是否超级管理员 0= 不是，1=是',
+  `validate_code` varchar(128) DEFAULT NULL,
+  `expire_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin@qq.com', '398A7190A349339E41D727090D95FA0DDF9D7', '康长老', '0', '333', '2016-07-14 17:28:36', '0', '2016-07-06 23:01:15', '2016-07-13 15:53:51', null, null, '1');
-INSERT INTO `sys_user` VALUES ('12', 'fred.zhao@163.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'fred', '0', null, null, '0', '2016-07-06 11:24:28', '2016-07-06 11:24:28', null, null, '0');
-INSERT INTO `sys_user` VALUES ('13', 'zpclord@sina.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'remnantddd', '0', '2', '2016-07-06 19:14:29', '0', '2016-07-06 18:27:43', '2016-07-07 10:07:20', null, null, '0');
-INSERT INTO `sys_user` VALUES ('14', 'zpchoney@gmail.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'walker', '0', null, null, '0', '2016-07-06 18:46:18', '2016-07-06 18:46:18', null, null, '0');
-INSERT INTO `sys_user` VALUES ('15', 'aaa@gmail.com', '398A7190A349339E41D727090D95FA0DDF9D7', '呆物', '0', null, null, '0', '2016-07-07 10:00:04', '2016-07-07 10:00:04', null, null, '0');
-INSERT INTO `sys_user` VALUES ('16', 'admin@126.com', '398A7190A349339E41D727090D95FA0DDF9D7', '总管', '0', null, null, '0', '2016-07-07 10:00:33', '2016-07-07 10:00:33', null, null, '0');
-INSERT INTO `sys_user` VALUES ('17', 'Lord@Lord.com', '398A7190A349339E41D727090D95FA0DDF9D7', '我主', '0', null, null, '0', '2016-07-07 10:00:54', '2016-07-07 10:00:54', null, null, '0');
-INSERT INTO `sys_user` VALUES ('18', 'Jesus@Emmanuel.Heaven', '398A7190A349339E41D727090D95FA0DDF9D7', 'Christ', '0', null, null, '0', '2016-07-07 10:01:34', '2016-07-07 10:01:34', null, null, '0');
-INSERT INTO `sys_user` VALUES ('19', '99999@itours.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'uptoU', '0', null, null, '0', '2016-07-07 10:02:10', '2016-07-07 10:02:10', null, null, '0');
-INSERT INTO `sys_user` VALUES ('20', 'mm@mm.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'aaad', '1', null, null, '0', '2016-07-07 10:10:39', '2016-07-07 10:10:39', null, null, '0');
-INSERT INTO `sys_user` VALUES ('21', 'Alexander@greece.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'Empretor', '0', null, null, '0', '2016-07-07 10:32:58', '2016-07-07 10:32:58', null, null, '0');
-INSERT INTO `sys_user` VALUES ('5', 'club@qq.com', '398A7190A349339E41D727090D95FA0DDF9D7', 'admin', '0', '71', '2013-02-09 10:29:42', '0', '2016-07-06 12:30:10', '2016-07-06 10:29:42', null, null, '0');
-INSERT INTO `sys_user` VALUES ('6', 'youke@qq.com', '398A7190A349339E41D727090D95FA0DDF9D7', ' 游客', '0', null, null, '0', '2016-07-06 13:41:32', '2013-01-13 13:41:32', null, null, '0');
+INSERT INTO `sys_user` VALUES ('1', 'admin@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '康长老', '0', '381', '2016-07-20 19:48:27', '0', '2016-07-06 23:01:15', '2016-07-13 15:53:51', null, null, '1', null, null);
+INSERT INTO `sys_user` VALUES ('12', 'fred.zhao@163.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'fred', '0', '2', '2016-07-20 20:43:06', '0', '2016-07-06 11:24:28', '2016-07-06 11:24:28', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('13', 'zpclord@sina.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'remnantddd', '0', '2', '2016-07-06 19:14:29', '0', '2016-07-06 18:27:43', '2016-07-07 10:07:20', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('14', 'zpchoney@gmail.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'walker', '0', '1', null, '0', '2016-07-06 18:46:18', '2016-07-06 18:46:18', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('15', 'aaa@gmail.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '呆物', '0', '1', null, '0', '2016-07-07 10:00:04', '2016-07-07 10:00:04', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('16', 'admin@126.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '总管', '0', '1', null, '0', '2016-07-07 10:00:33', '2016-07-07 10:00:33', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('17', 'Lord@Lord.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '我主', '0', '1', null, '0', '2016-07-07 10:00:54', '2016-07-07 10:00:54', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('18', 'Jesus@Emmanuel.Heaven', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'Christ', '0', '1', null, '0', '2016-07-07 10:01:34', '2016-07-07 10:01:34', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('19', '99999@itours.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'uptoU', '0', '11', null, '0', '2016-07-07 10:02:10', '2016-07-07 10:02:10', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('20', 'mm@mm.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'aaad', '1', '1', null, '0', '2016-07-07 10:10:39', '2016-07-07 10:10:39', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('21', 'Alexander@greece.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'Empretor', '0', '1', null, '0', '2016-07-07 10:32:58', '2016-07-07 10:32:58', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('5', 'club@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'admin', '0', '71', '2013-02-09 10:29:42', '0', '2016-07-06 12:30:10', '2016-07-06 10:29:42', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('6', 'youke@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', ' 游客', '0', '1', null, '0', '2016-07-06 13:41:32', '2013-01-13 13:41:32', null, null, '0', null, null);
 
 -- ----------------------------
 -- Table structure for sys_variables
@@ -682,13 +688,13 @@ CREATE TABLE `travel_order` (
 -- ----------------------------
 -- Records of travel_order
 -- ----------------------------
-INSERT INTO `travel_order` VALUES ('18BB849978364ACCA301167D52AB3D3F ', '2014-08-19 13:55:11', '2014-08-19 13:55:11', '305', '14084277108698', '1', '7878', '12121212121', '122', '1', '2014-08-19 13:55:11', '2014-08-19 13:55:11', '2', '1', '1', '1', '招商银行', '611111456765438998', '2016-07-14 12:55:54', '1', '2223.00');
-INSERT INTO `travel_order` VALUES ('1A5B071707C046EA8F3D6246C57D9FB1 ', '2014-08-26 13:21:43', '2014-08-26 13:21:43', '308', '14090305031880', '1', 'zhouzhanghuan', '11111111111', 'sdk;gjweprugw0euwe4r', '221', '2014-08-26 13:21:43', '2014-08-26 13:21:43', '5', '1', '2', '2', '建设银行', '611111456765438998', '2016-07-14 12:55:54', '2', '4443.00');
-INSERT INTO `travel_order` VALUES ('27070E60ACE5474DAA478A4F37D16742 ', '2014-08-19 13:52:42', '2014-08-19 13:52:42', '304', '14084275620420', '2', '444', '12345678901', '111', 'ad4f49aa-1e21-42b6-a759-0601a5175d20', '2014-08-19 13:52:42', '2014-08-19 13:52:42', '6', '1', '3', '3', '交通银行', '611111456765438998', '2016-07-14 12:55:54', '3', '8444.00');
-INSERT INTO `travel_order` VALUES ('5BF923787EFD4454806CDFBFE51753C3 ', '2014-08-19 13:59:34', '2014-08-19 13:59:34', '307', '14084279740981', '3', '1', '11111111111', '', 'ad4f49aa-1e21-42b6-a759-0601a5175d20', '2014-08-19 13:59:34', '2014-08-19 13:59:34', '4', '2', '4', '1', '浦发银行', '611111456765438998', '2016-07-14 12:55:54', '1', '7565.00');
-INSERT INTO `travel_order` VALUES ('74B751BF5CA54526AFB82AA467852976 ', '2014-09-17 16:28:29', '2014-09-17 16:28:29', '310', '14109425085084', '2', '111111111111111111111111', '11111111111', '111', 'c73b5c0f-0efc-4a40-ac6d-997c20991359', '2014-09-17 16:28:29', '2014-09-17 16:28:29', '2', '2', '5', '2', '工商银行', '611111456765438998', '2016-07-14 12:55:54', '2', '7588.00');
-INSERT INTO `travel_order` VALUES ('8EC342B2555A4EACA82D5AC6C7941421 ', '2014-08-19 13:57:54', '2014-08-19 13:57:54', '306', '14084278736578', '1', '23232', '23222222222', '1', 'c73b5c0f-0efc-4a40-ac6d-997c20991359', '2014-08-19 13:57:54', '2014-08-19 13:57:54', '6', '2', '6', '3', '渣打银行', '611111456765438998', '2016-07-14 12:55:54', '3', '4668.00');
-INSERT INTO `travel_order` VALUES ('C3C642CEA05E496D85E64830CF39970B ', '2014-09-12 15:34:48', '2014-09-12 15:34:48', '309', '14105072884225', '3', '4454大幅广告', '11111111111', '', 'c73b5c0f-0efc-4a40-ac6d-997c20991359', '2014-09-12 15:34:48', '2014-09-12 15:34:48', '3', '1', '1', '1', '中国银行', '611111456765438998', '2016-07-14 12:55:54', '4', '7657.00');
+INSERT INTO `travel_order` VALUES ('18BB849978364ACCA301167D52AB3D3F ', '2014-08-19 13:55:11', '2014-08-19 13:55:11', '6A36C12213CE45AB8654F5B3D6F2C558那年,宏村20110111', '5CE967C699CB4662B3755AD095DB2A57', '1', '7878', '12121212121', '122', '1', '2014-08-19 13:55:11', '2014-08-19 13:55:11', '2', '1', '1', '1', '招商银行', '611111456765438998', '2016-07-14 12:55:54', '1', '2223.00');
+INSERT INTO `travel_order` VALUES ('1A5B071707C046EA8F3D6246C57D9FB1 ', '2014-08-26 13:21:43', '2014-08-26 13:21:43', 'AD4F49AA1E2142B6A7590601A5175D20四姑娘山--湘西风情五日自驾游20120501', '2564E43788D34A3DB58C78C241AAE390', '1', 'zhouzhanghuan', '11111111111', 'sdk;gjweprugw0euwe4r', '221', '2014-08-26 13:21:43', '2014-08-26 13:21:43', '5', '1', '2', '2', '建设银行', '611111456765438998', '2016-07-14 12:55:54', '2', '4443.00');
+INSERT INTO `travel_order` VALUES ('27070E60ACE5474DAA478A4F37D16742 ', '2014-08-19 13:52:42', '2014-08-19 13:52:42', '\r\nC73B5C0F0EFC4A40AC6D997C20991359贡嘎西坡--喀纳斯20131001', '55DD9B7F5BBC48ADB3F8A0A4F8A57752', '2', '444', '12345678901', '111', 'AD4F49AA1E2142B6A7590601A5175D20', '2014-08-19 13:52:42', '2014-08-19 13:52:42', '6', '1', '3', '3', '交通银行', '611111456765438998', '2016-07-14 12:55:54', '3', '8444.00');
+INSERT INTO `travel_order` VALUES ('5BF923787EFD4454806CDFBFE51753C3 ', '2014-08-19 13:59:34', '2014-08-19 13:59:34', 'DCB2E1E8047A443FAB4F777EF7F631EA稻城亚丁--黄山景区端午轻旅行20140612', '425A299F925248A5AD367E4E676D32A3', '3', '1', '11111111111', '', 'AD4F49AA1E2142B6A7590601A5175D20', '2014-08-19 13:59:34', '2014-08-19 13:59:34', '4', '2', '4', '1', '浦发银行', '611111456765438998', '2016-07-14 12:55:54', '1', '7565.00');
+INSERT INTO `travel_order` VALUES ('74B751BF5CA54526AFB82AA467852976 ', '2014-09-17 16:28:29', '2014-09-17 16:28:29', 'BBD581F3A5EA4ED6905282C3134CAA7F\r\n毕绷沟--贡嘎山家庭亲子游20151011', 'CCD841AFFADD40E7A28E5D5E86D5CDB8', '2', '111111111111111111111111', '11111111111', '111', 'C73B5C0F0EFC4A40AC6D997C20991359', '2014-09-17 16:28:29', '2014-09-17 16:28:29', '2', '2', '5', '2', '工商银行', '611111456765438998', '2016-07-14 12:55:54', '2', '7588.00');
+INSERT INTO `travel_order` VALUES ('8EC342B2555A4EACA82D5AC6C7941421 ', '2014-08-19 13:57:54', '2014-08-19 13:57:54', '2CED3B1A057447B18302B104D4033C48\r\n同里--牛背山情侣双人游20160122', '6CBF290AC4494F3DA266B25AC62F2D17', '1', '23232', '23222222222', '1', 'C73B5C0F0EFC4A40AC6D997C20991359', '2014-08-19 13:57:54', '2014-08-19 13:57:54', '6', '2', '6', '3', '渣打银行', '611111456765438998', '2016-07-14 12:55:54', '3', '4668.00');
+INSERT INTO `travel_order` VALUES ('C3C642CEA05E496D85E64830CF39970B ', '2014-09-12 15:34:48', '2014-09-12 15:34:48', '2CED3B1A057447B18302B104D4033C48\r\n四姑娘山景区--烏鎮暑期游20160722', '870D500380184B2784BDAE1124494EFF', '3', '4454大幅广告', '11111111111', '', 'C73B5C0F0EFC4A40AC6D997C20991359', '2014-09-12 15:34:48', '2014-09-12 15:34:48', '3', '1', '1', '1', '中国银行', '611111456765438998', '2016-07-14 12:55:54', '4', '7657.00');
 
 -- ----------------------------
 -- Table structure for travel_style

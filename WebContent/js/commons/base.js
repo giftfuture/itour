@@ -48,7 +48,7 @@ var itour={
 	},
 	ajaxJson: function(url,option,callback){
 		$.ajax(url,{
-			type:'post',
+				type:'post',
 			 	dataType:'json',
 			 	data:option,
 			 	success:function(data){
@@ -167,7 +167,7 @@ $.extend($.fn.validatebox.defaults.rules, {
         validator: function(value,param){  
             return value == $(param[0]).val();  
         },  
-        message: 'Field do not match.'  
+        message: '两次输入密码不匹配.'  
     }  
 });  
 

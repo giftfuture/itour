@@ -37,7 +37,7 @@ itour.sysUser = function(){
 		    	save:'sysUser/save', //新增&修改 保存Action  
 				getId:'sysUser/getId',//编辑获取的Action
 				remove:'sysUser/delete',//删除数据的Action}
-				updatePwd:'sysUser/updatePwd'	
+				updatePwd:'sysUser/updatePwd'//修改密码的action
 		    },
   			dataGrid:{
   				title:'系统用户列表',

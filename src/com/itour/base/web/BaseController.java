@@ -17,11 +17,13 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.URLUtils;
 import com.itour.base.util.edit.MyEditor;
 
-public class BaseController{
+public class BaseController {
 	
 	public final static String SUCCESS ="success";  
 	
 	public final static String MSG ="msg";  
+	
+	public final static String PROP ="prop";  
 	
 	public final static String DATA ="data";  
 	
@@ -101,6 +103,20 @@ public class BaseController{
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put(SUCCESS, false);
 		result.put(MSG, message);
+		HtmlUtil.writerJson(response, result);
+	}
+	/**
+	 *
+	 * 提示失败信息
+	 *
+	 * @param message
+	 *
+	 */
+	public void sendFailureMessage(HttpServletResponse response,String property,String message) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put(SUCCESS, false);
+		result.put(MSG, message);
+		result.put(PROP, property);
 		HtmlUtil.writerJson(response, result);
 	}
 }

@@ -38,8 +38,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			ResourceHttpRequestHandler hh = (ResourceHttpRequestHandler)handler;
 			//if(hh.)
 		}*/
-		String menuUrl = StringUtils.remove(request.getRequestURI(),request.getContextPath());
-		if(menuUrl.startsWith("/images/")||menuUrl.startsWith("/js/")||menuUrl.startsWith("/css/")||menuUrl.startsWith("/resources/")){
+		String menuUrl = StringUtils.remove(request.getRequestURI(),request.getContextPath()+"/");
+		if(menuUrl.startsWith("images/")||menuUrl.startsWith("js/")||menuUrl.startsWith("css/")||menuUrl.startsWith("resources/")||menuUrl.startsWith("main/logIn")||menuUrl.startsWith("main/index.js.map")){
 			return super.preHandle(request, response, handler);
 		}
 		HandlerMethod method = (HandlerMethod)handler;

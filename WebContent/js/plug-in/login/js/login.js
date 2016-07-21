@@ -85,7 +85,7 @@ function login() {
 	var actionurl=$("#formLogin").attr("action");//提交路径
 	var checkurl=$("#formLogin").attr("check");//验证路径
 	 var formData = new Object();
-	var data=$(":input").each(function() {
+	var data=$(":input").each(function(){
 		 formData[this.name] =$("#"+this.name ).val();
 	});
 	//console.log(formData+"   "+checkurl);
@@ -93,18 +93,21 @@ function login() {
 		async : false,
 		cache : false,
 		type : 'post',
-		url : checkurl,// 请求的action路径
+		url : actionurl,//checkurl,// 请求的action路径
 		data : formData,
 		error : function() {// 请求失败处理函数
-		  alert('错误');
+		  alert('登录处理函数出现错误');
 		},
 		success : function(data) {
-		//	console.log("data.msg="+data.msg);
-			if (data.msg) {
+			//console.log("data.success="+data.success);
+			if (data.success) {
 				loginsuccess();
+				showSuccess(data.msg);
 				//setTimeout("formSubmit()", 0);
-				formSubmit();
+			//	formSubmit();
 			//	alert("rraar"+actionurl);
+			//	$("#" + this.name).val("");
+				window.location.href=basePath+"/main/manage";
 			} else {
 				showError(data.msg);
 			}
@@ -112,7 +115,8 @@ function login() {
 	});
 }
 function formSubmit(){
-	document.forms["formLogin"].submit();
+	//itour.ajaxSubmit(document.forms["formLogin"]);
+//	document.forms["formLogin"].submit();
 }
 //设置cookie
 function setCookie()

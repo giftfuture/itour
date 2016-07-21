@@ -149,7 +149,7 @@ public final class SessionUtils {
 	 
 	 
 	 /**
-	  * 判断当前登录用户是否超级管理员
+	  * 设置当前登录用户的访问菜单的权限
 	  * @param request
 	  * @return
 	  */

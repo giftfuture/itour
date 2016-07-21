@@ -67,8 +67,8 @@ public class MainController extends BaseController {
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/login")
-	public ModelAndView login(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = getRootMap();
+	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,Map<String,Object>  context) throws Exception{
+		//Map<String,Object>  context = getRootMap();
 		return forword("/server/login", context);
 	}
 	
@@ -107,45 +107,52 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
-	@Auth(verifyLogin=false,verifyURL=false)
+	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping("/logIn")
-	public ModelAndView toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> context = getRootMap();
-		String vcode  = SessionUtils.getValidateCode(request).toLowerCase();
+	public void toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	/*	Map<String,Object> context = getRootMap();
+		SysUser u = SessionUtils.getUser(request);
+		if(u !=null){
+			SysUser bean  = sysUserService.queryLogin(u.getEmail(), u.getPwd());
+			if(bean != null && bean.getId() == null || DELETED.NO.key == bean.getDeleted()){
+				//return new ModelAndView("redirect:/main/manage");
+				//message =  "用户: " + bean.getNickName() +"["+bean.getEmail()+"]"+"登录成功";
+				sendSuccessMessage(response, "");
+				return;
+			}
+		}*/
+		String vcode  = SessionUtils.getValidateCode(request);
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isBlank(verifyCode)){
 			sendFailureMessage(response, "验证码不能为空.");
-			return new ModelAndView("redirect:/main/login");
+			return;
 		}
 		//判断验证码是否正确
-		if(!verifyCode.toLowerCase().equals(vcode)){
+	 	if(!verifyCode.toLowerCase().equals(vcode)){
+	 	//if(!verifyCode.toLowerCase().equals(vcode) || verifyCode.toLowerCase() != vcode){
 			sendFailureMessage(response, "验证码输入错误.");
-			return new ModelAndView("redirect:/main/login");
+			return;
 		} 
 		//email="admin@qq.com";
 		//pwd="admin";
 		if(StringUtils.isBlank(email)){
 			sendFailureMessage(response, "账号不能为空.");
-			return new ModelAndView("redirect:/main/login");
+			return;
 		}
 		if(StringUtils.isBlank(pwd)){
 			sendFailureMessage(response, "密码不能为空.");
-			return new ModelAndView("redirect:/main/login");
+			return;
 		}
 		 String msg = "用户登录日志:";
 		 SysUser user = sysUserService.queryLogin(email,MethodUtil.encryptSHA(pwd));
 		if(user == null){//记录错误登录日志
 			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
 			sendFailureMessage(response, "账号或者密码输入错误.");
-			context.put(SUCCESS,false);
-			context.put(MSG, "账号或者密码输入错误.");
-			//result.put(SUCCESS, false);
-			//result.put(MSG, message);
-			return   new ModelAndView("redirect:/main/login",context);
+			return;
 		}
 		if(STATE.DISABLE.key == user.getState()){
 			sendFailureMessage(response, "账号已被禁用.");
-			return   new ModelAndView("redirect:/main/login");
+			return;
 		}
 		//登录次数加1 修改登录时间
 		int loginCount = 0;
@@ -160,9 +167,9 @@ public class MainController extends BaseController {
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		log.debug(message);
+		//return forword("/main/main",context);
 		sendSuccessMessage(response, message);
-		//forward("redirect:/main/manage",context);
-		return new ModelAndView("/main/manage");
+		//return new ModelAndView("redirect:/main/manage","map",context);
 	}
 	
 	/**
@@ -248,7 +255,7 @@ public class MainController extends BaseController {
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/manage") 
-	public ModelAndView main(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView main(HttpServletRequest request,HttpServletResponse response,Map<String,Object> context){
 		SysUser user = SessionUtils.getUser(request);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -260,7 +267,7 @@ public class MainController extends BaseController {
 			//response.sendRedirect("login");
 			return new ModelAndView("redirect:/main/login");
 		}
-		Map<String,Object>  context = getRootMap();
+		//Map<String,Object>  context = getRootMap();
 		List<SysMenu> rootMenus = null;
 		List<SysMenu> childMenus = null;
 		List<SysMenuBtn> childBtns = null;
@@ -269,17 +276,23 @@ public class MainController extends BaseController {
 			if(SuperAdmin.YES.key ==  user.getSuperAdmin()){
 				rootMenus = sysMenuService.getRootMenu(null);// 查询所有根节点
 				childMenus = sysMenuService.getChildMenu();//查询所有子节点
+				childBtns = sysMenuBtnService.queryByAll();//查询所有按钮
 			}else{
 				rootMenus = sysMenuService.getRootMenuByUser(user.getId() );//根节点
 				childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
 				childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
 				buildData(childMenus,childBtns,request); //构建必要的数据
 			}
+			List<TreeNode> menuList = treeMenu(rootMenus,childMenus);
+			TreeUtil treeutil = new TreeUtil(rootMenus,childMenus,childBtns);
+			List<String> accessUrls = TreeUtil.nodeUrls(treeutil);
 			context.put("user", user);
-			context.put("menuList", treeMenu(rootMenus,childMenus));
+			context.put("menuList", menuList);
+			SessionUtils.setAccessUrl(request, accessUrls);
 		}
 		return forword("server/main/main",context); 
 	}
+	
 	
 	/**
 	 * 构建树形数据

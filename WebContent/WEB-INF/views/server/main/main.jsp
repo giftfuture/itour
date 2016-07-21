@@ -31,7 +31,7 @@ pageContext.setAttribute("basePath",basePath);
 	 		欢迎 <span class="orange">${user.nickName}</span> 第[<span class="orange">${user.loginCount}</span>]次登录 
 	 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	 		<a class="modify-pwd-btn"  href="javascript:void(0);">修改密码</a> |
- 			<a class="logout-btn" href="main/logout">退出</a>
+ 			<a class="logout-btn" href="main/logout">安全退出</a>
  		</div>
  	</div>
  	</div>
@@ -78,13 +78,13 @@ pageContext.setAttribute("basePath",basePath);
 	           </div> 
 	           <div class="fitem">  
 	               <label>重复密码:</label>  
-	              <input id="rpwd" name="rpwd" type="password" class="easyui-validatebox"   required="required" validType="equals['#newPwd']" />
+	              <input id="rpwd" name="rpwd" type="password" class="easyui-validatebox"   data-options="required:true" required="required" validType="equals['#newPwd']" />
 	           </div> 
 	         </div>
      	 </form>
      	 <div id="editPwdbtn" class="dialog-button" >  
-            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">Submit</a>  
-            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">Close</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">确定</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">关闭</a>  
          </div>
 	</div>
 	<!-- modify password end  -->

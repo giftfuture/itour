@@ -32,12 +32,27 @@ public class TreeUtil {
 		return getRootNodes();
 	}
 	
+	public static List<String> nodeUrls(TreeUtil treeutil){
+		List<String> urls = new ArrayList<String>();
+		
+		for(SysMenu node:treeutil.rootMenus){
+			urls.add(node.getUrl());
+		}
+		for(SysMenu node:treeutil.childMenus){
+			urls.add(node.getUrl());
+		}
+		for(SysMenuBtn node:treeutil.childBtns){
+			urls.add(node.getActionUrls());
+		}
+		return urls;
+	}
+	
 	/**
 	 * 
 	 * @param menu
 	 * @return
 	 */
-	private TreeNode MenuToNode(SysMenu menu){
+	private TreeNode menuToNode(SysMenu menu){
 		if(menu == null){
 			return null;
 		}
@@ -47,7 +62,7 @@ public class TreeUtil {
 		node.setText(menu.getName());
 		node.setUrl(menu.getUrl());
 		node.setParentId(menu.getParentId());
-		node.getAttributes().put("type", "0");
+		node.getAttributes().put("type", "0");//0为菜单
 		node.getAttributes().put("id", menu.getId());
 		return node;
 	}
@@ -58,7 +73,7 @@ public class TreeUtil {
 	 * @param menu
 	 * @return
 	 */
-	private TreeNode BtnToNode(SysMenuBtn btn){
+	private TreeNode btnToNode(SysMenuBtn btn){
 		if(btn == null){
 			return null;
 		}
@@ -67,17 +82,21 @@ public class TreeUtil {
 		node.setDataId(btn.getId());
 		node.setText(btn.getBtnName());
 		node.setParentId(btn.getMenuid());
-		node.getAttributes().put("type", "1");
+		node.getAttributes().put("type", "1");//1为按钮
 		node.getAttributes().put("id", btn.getId());
 		return node;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	private List<TreeNode> getRootNodes(){
 		List<TreeNode> rootNodes = new ArrayList<TreeNode>();
 		for(SysMenu menu : rootMenus){
-			TreeNode node = MenuToNode(menu);
+			TreeNode node = menuToNode(menu);
 			if(node != null){
-				addChlidNodes(node);
+				addChildNodes(node);
 				rootNodes.add(node);
 			}
 		}
@@ -89,11 +108,11 @@ public class TreeUtil {
 	 * @param menu
 	 * @return
 	 */
-	private void addChlidNodes(TreeNode rootNode){
+	private void addChildNodes(TreeNode rootNode){
 		List<TreeNode> childNodes = new ArrayList<TreeNode>();  
 		for(SysMenu menu : childMenus){
 			if(rootNode.getDataId().equals(menu.getParentId())){
-				TreeNode node = MenuToNode(menu);
+				TreeNode node = menuToNode(menu);
 				if(childBtns != null && !childBtns.isEmpty()){
 					addChlidBtn(node);
 				}
@@ -113,7 +132,7 @@ public class TreeUtil {
 		List<TreeNode> childNodes = new ArrayList<TreeNode>(); 
 		for(SysMenuBtn btn : childBtns){
 			if(treeNode.getDataId().equals(btn.getMenuid())){
-				TreeNode node = BtnToNode(btn);
+				TreeNode node = btnToNode(btn);
 				childNodes.add(node);
 			}
 		}

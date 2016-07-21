@@ -119,6 +119,8 @@ public class PassEmailController extends BaseController {
             System.out.println("用户不存在");
             return "error";
         }
+    	//  sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
+    	//  mailMessage.setSubject(MimeUtility.encodeText(mailInfo.getSubject(), "UTF-8", "B")); 
     }
 	public String getSid() {
 		return sid;

@@ -9,11 +9,12 @@ itour.login = function(){
 					itour.submitForm(form,function(data){
 						itour.closeProgress();
 						if(data.success){
+							itour.alert('提示',data.msg,'info'); 
 					 		window.location= "/main/manage";
 				        }else{
 				        	itour.alert('提示',data.msg,'error');  
+				        	itour.login.loadVrifyCode();//刷新验证码
 				        }
-						itour.login.loadVrifyCode();//刷新验证码
 					});
 				}
 			}catch(e){

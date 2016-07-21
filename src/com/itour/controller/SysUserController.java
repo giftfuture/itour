@@ -160,24 +160,25 @@ public class SysUserController extends BaseController{
 	 */
 	@RequestMapping("/updatePwd")
 	public void updatePwd(String id,String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		boolean isAdmin = SessionUtils.isAdmin(request); //是否超级管理员
+	//	boolean isAdmin = SessionUtils.isAdmin(request); //是否超级管理员
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
-			sendFailureMessage(response, "抱歉,该用户不存在。");
+			sendFailureMessage(response, "抱歉,用户不存在或已被删除.");
 			return;
 		}
-		if(StringUtils.isBlank(newPwd)){
-			sendFailureMessage(response, "密码是必输项.");
+		if(StringUtils.isBlank(newPwd) || newPwd.length()<6){
+			sendFailureMessage(response, "新密码不能为空且长度不小于六位.");
 			return;
 		}
 		//不是超级管理员，匹配旧密码
-		if(!isAdmin && !MethodUtil.ecompareMD5(oldPwd,bean.getPwd())){
-			sendFailureMessage(response, "旧密码错误");
+		if(/*!isAdmin && */!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
+			sendFailureMessage(response, "旧密码输入错误");
 			return;
 		}
-		bean.setPwd(MethodUtil.MD5(newPwd));
+ 		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
-		sendSuccessMessage(response, "修改密码成功.");
+		sendSuccessMessage(response, "密码更新成功");
+	
 	}
 	
 

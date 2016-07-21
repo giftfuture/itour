@@ -69,17 +69,17 @@ pageContext.setAttribute("basePath",basePath);
      	<form id="pwdForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-	     	   <div class="ftitle">User Information</div>    
+	     	   <div class="ftitle">用户信息</div>    
 	           <div class="fitem">  
 	               <label>邮箱:</label>  
 	               <input class="easyui-validatebox" type="text" readonly="readonly" name="email" data-options="required:true,validType:'email'">
 	           </div>  
 	           <div class="fitem">  
 	              <label>旧密码:</label>  
-	              <input id="oldPwd" name="oldPwd" type="password" class="easyui-validatebox"/>
+	              <input id="oldPwd" name="oldPwd" type="password" class="easyui-validatebox" data-options="required:true"/>
 	           </div>
 	            <div class="fitem">  
-	               <label>新置密码:</label>  
+	               <label>新密码:</label>  
 	               <input id="newPwd" name="newPwd" type="password" class="easyui-validatebox" data-options="required:true" />
 	           </div> 
 	           <div class="fitem">  
@@ -89,8 +89,8 @@ pageContext.setAttribute("basePath",basePath);
 	         </div>
      	</form>
      	 <div id="editPwdbtn" class="dialog-button">  
-            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">Submit</a>  
-            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">Close</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">确定</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">关闭</a>  
         </div>
   	 </div> 
 <script type="text/javascript" src="<%=basePath%>/js/ux/sys/sysUser.js"></script>

@@ -96,13 +96,13 @@ label.iPhoneCheckLabelOn span {
     <div class="formLogin"><!--  check="${basePath}main/checkuser" -->
      <form name="formLogin" id="formLogin" action="${basePath}main/logIn" method="post" check="${basePath}main/checkuser">
       <div class="tip">
-       <input class="userName" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
+       <input class="userName easyui-validatebox" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  data-options="required:true" nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
-       <input class="password" name="pwd" type="password"  value='admin' id="pwd" title="密码" nullmsg="请输入密码!"/>
+       <input class="password easyui-validatebox" name="pwd" type="password"  value='admin' id="pwd" title="密码" nullmsg="请输入密码!" data-options="required:true"/>
       </div>
       <div class="tip">
-      <input type="text" name="verifyCode"/><br/>
+      <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true" nullmsg="请输入验证码!"/><br/>
            <img alt="验证码看不清，换一张" src="${basePath}ImageServlet" id="validateCodeImg" onclick="changeImg()">
            &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeImg()">看不清，换一张</a>
       </div>
