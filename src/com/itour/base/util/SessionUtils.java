@@ -164,8 +164,9 @@ public final class SessionUtils {
 	  * @param request
 	  * @return
 	  */
-	 public static boolean isAccessUrl(HttpServletRequest request,String url){ 
-		 List<String> accessUrls = (List)getAttr(request, SESSION_ACCESS_URLS);
+	 @SuppressWarnings("unchecked")
+	public static boolean isAccessUrl(HttpServletRequest request,String url){ 
+		 List<String> accessUrls = (List<String>)getAttr(request, SESSION_ACCESS_URLS);
 		 if(accessUrls == null ||accessUrls.isEmpty() || !accessUrls.contains(url)){
 			 return false;
 		 }

@@ -275,20 +275,20 @@ public class MainController extends BaseController {
 			//超级管理员
 			if(SuperAdmin.YES.key ==  user.getSuperAdmin()){
 				rootMenus = sysMenuService.getRootMenu(null);// 查询所有根节点
-				childMenus = sysMenuService.getChildMenu();//查询所有子节点
+				childMenus = sysMenuService.getChildMenu(null);//查询所有子节点
 				childBtns = sysMenuBtnService.queryByAll();//查询所有按钮
 			}else{
 				rootMenus = sysMenuService.getRootMenuByUser(user.getId() );//根节点
 				childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
 				childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
-				buildData(childMenus,childBtns,request); //构建必要的数据
 			}
+			buildData(childMenus,childBtns,request); //构建必要的数据
 			List<TreeNode> menuList = treeMenu(rootMenus,childMenus);
-			TreeUtil treeutil = new TreeUtil(rootMenus,childMenus,childBtns);
-			List<String> accessUrls = TreeUtil.nodeUrls(treeutil);
+			//TreeUtil treeutil = new TreeUtil(rootMenus,childMenus,childBtns);
+		//	List<String> accessUrls = TreeUtil.nodeUrls(treeutil);
 			context.put("user", user);
 			context.put("menuList", menuList);
-			SessionUtils.setAccessUrl(request, accessUrls);
+			//SessionUtils.setAccessUrl(request, accessUrls);
 		}
 		return forword("server/main/main",context); 
 	}

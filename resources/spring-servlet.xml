@@ -83,8 +83,25 @@
 	<!-- <mvc:view-controller path="/" view-name="redirect:/main/login"/> -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-		<mvc:mapping path="/*/*"/>
-	<!-- 	<mvc:exclude-mapping path="/images/**"/> 
+		<mvc:mapping path="/sysMenu/*"/>
+		<mvc:mapping path="/sysRole/*"/>
+		<mvc:mapping path="/sysUser/*"/>
+		<mvc:mapping path="/sysUserRole/*"/>
+		<mvc:mapping path="/customers/*"/>
+		<mvc:mapping path="/feedback/*"/>
+		<mvc:mapping path="/logOperation/*"/>
+		<mvc:mapping path="/logSetting/*"/>
+		<mvc:mapping path="/logSettingDetail/*"/>
+		<mvc:mapping path="/main/*"/>
+		<mvc:mapping path="/orderDetail/*"/>
+		<mvc:mapping path="/passEmail/*"/>
+		<mvc:mapping path="/quotation/*"/>
+		<mvc:mapping path="/routeTemplate/*"/>
+		<mvc:mapping path="/sysVariables/*"/>
+		<mvc:mapping path="/travelItem/*"/>
+		<mvc:mapping path="/travelOrder/*"/>
+		<mvc:mapping path="/travelStyle/*"/>
+	<!--<mvc:exclude-mapping path="/images/**"/> 
 		<mvc:exclude-mapping path="/js/**"/> 
 		<mvc:exclude-mapping path="/css/**"/> 
 		<mvc:exclude-mapping path="/resouces/**"/>  -->

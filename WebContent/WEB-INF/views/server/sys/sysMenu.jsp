@@ -93,6 +93,6 @@ pageContext.setAttribute("basePath",basePath);
 	       </div>
      	</form>
   	 </div>
-  <script type="text/javascript" src="<%=basePath%>/js/ux/sys/sysMenu.js"></script>
+  <script type="text/javascript" src="<%=basePath%>js/ux/sys/sysMenu.js"></script>
   </body>
 </html>

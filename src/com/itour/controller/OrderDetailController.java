@@ -54,9 +54,9 @@ public class OrderDetailController extends BaseController{
 	@RequestMapping("/list") 
 	public ModelAndView  list(OrderDetailPage page,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		List<OrderDetail> dataList = orderDetailService.queryByList(page);
+		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
-		context.put("dataList", dataList);
+	//	context.put("dataList", dataList);
 		return forword("server/sys/orderDetail",context); 
 	}
 	
@@ -74,7 +74,7 @@ public class OrderDetailController extends BaseController{
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJSON(response, jsonMap);
+		HtmlUtil.writerJson(response, jsonMap);
 	}
 	
 	/**

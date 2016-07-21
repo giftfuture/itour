@@ -20,7 +20,7 @@ itour.UserRole = function(){
 			},
   			dataGrid:{
   				title:'系统用户授权',
-	   			url:'sysUser/userList',
+	   			url:'sysUser/userRole',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'email',title:'邮箱账号',width:120,sortable:true},
@@ -56,7 +56,8 @@ itour.UserRole = function(){
 		},
 		init:function(){
 			$("#roleIds").combobox({
-				url:'sysRole/loadRoleList',
+				//url:'sysRole/loadRoleList',
+				url:'sysRole/userRole',
 				valueField:'id',
 				textField:'roleName',
 				multiple:true,

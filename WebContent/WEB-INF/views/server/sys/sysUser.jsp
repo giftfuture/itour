@@ -93,6 +93,6 @@ pageContext.setAttribute("basePath",basePath);
             <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">关闭</a>  
         </div>
   	 </div> 
-<script type="text/javascript" src="<%=basePath%>/js/ux/sys/sysUser.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/ux/sys/sysUser.js"></script>
   </body>
 </html>

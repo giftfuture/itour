@@ -92,8 +92,8 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * 获取顶级菜单
 	 * @return
 	 */
-	public List<T> getRootMenu(Integer menuId){
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public List<T> getRootMenu(String menuId){
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("menuId", menuId);
 		return mapper.getRootMenu(map);
 	}
@@ -102,8 +102,10 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * 获取子菜单
 	 * @return
 	 */
-	public List<T> getChildMenu(){
-		return mapper.getChildMenu();
+	public List<T> getChildMenu(String parentId){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("parentId", parentId);
+		return mapper.getChildMenu(map);
 	}
 	
 	/**
@@ -112,7 +114,9 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getRootMenuByUser(String userId){
-		return getDao().getRootMenuByUser(userId);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		return getDao().getRootMenuByUser(map);
 	}
 	
 	
@@ -122,7 +126,9 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getChildMenuByUser(String userId){
-		return getDao().getChildMenuByUser(userId);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		return getDao().getChildMenuByUser(map);
 	}
 	
 	
@@ -132,7 +138,9 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getMenuByRoleId(String roleId){
-		return getDao().getMenuByRoleId(roleId);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("roleId", roleId);
+		return getDao().getMenuByRoleId(map);
 	}
 	
 	

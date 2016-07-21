@@ -73,7 +73,7 @@ public class TravelStyleController extends BaseController{
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJSON(response, jsonMap);
+		HtmlUtil.writerJson(response, jsonMap);
 	}
 	
 	/**

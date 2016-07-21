@@ -121,7 +121,7 @@ where 1=1
 
 <!-- 查询所有菜单按钮 -->
 <select id="queryByAll"  resultMap="BaseResultMap" >
-	select <include refid="Base_Column_List" />  from sys_menu_btn
+	select <include refid="Base_Column_List" />  from sys_menu_btn  where deleted= 0 
 </select>
 
 
@@ -135,7 +135,10 @@ where 1=1
 <select id="queryByMenuUrl"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	from sys_menu_btn b WHERE EXISTS (
-		SELECT 1 FROM sys_menu m WHERE  m.id = b.menuid AND IFNULL(m.deleted,0) = 0 AND   m.url = #{url}
+		SELECT 1 FROM sys_menu m WHERE  m.id = b.menuid AND IFNULL(m.deleted,0) = 0 
+		<if test="url != null and url !=''">
+			AND m.url = #{url}
+		</if>
 	)
 </select>
 
@@ -168,7 +171,10 @@ where 1=1
 		 SELECT * FROM sys_role_rel r 
 		 WHERE r.objId = b.id AND r.relType = 2
 		 AND EXISTS ( 
-			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 AND u.objId =#{userId}
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 
+			<if test="userId != null and userId !=''">
+				AND u.objId =#{userId}
+			</if>
 		 )
 	)
 </select>

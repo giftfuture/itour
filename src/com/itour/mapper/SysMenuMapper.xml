@@ -116,8 +116,7 @@ select max(rank+1) as rank from sys_menu
  
 <!-- 根据id查询 系统菜单 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" /> 
-	 from sys_menu where id = #{id}
+	select <include refid="Base_Column_List" /> from sys_menu where id = #{id}
 </select>
 
 <!-- 系统菜单 列表总数-->
@@ -151,57 +150,69 @@ select<include refid="Base_Column_List" />  from sys_menu where deleted= 0 order
 </select>
 
 <!-- 获取顶级菜单 -->
-<select id="getRootMenu"  resultMap="BaseResultMap">
+<select id="getRootMenu" parameterType="java.lang.String" resultMap="BaseResultMap">
 	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is null or parentId = ''
-	<!-- <if test="menuId != null" >
+	 <if test="menuId != null and menuId != ''" >
      and  id != #{menuId}
-    </if> -->
+    </if> 
+    order by rank asc
 </select>
 
 
 <!-- 获取子菜单-->
 <select id="getChildMenu"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is not null
-	 <if test="parentId != null" >
-      and  id = #{parentId}
-    </if>
+	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is not null and parentId != ''
+	 <if test="parentId != null and parentId != ''" >
+      and  parentId = #{parentId}
+    </if>   
+    order by rank asc
 </select>
 
 <!-- 根据角色Id获取菜单（不需要父菜单） -->
 <select id="getMenuByRoleId"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	SELECT <include refid="Base_Column_List" /> FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL
+	SELECT <include refid="Base_Column_List" /> FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL and parentId != ''
 	AND EXISTS (
 		 SELECT * FROM sys_role_rel r WHERE r.objId = m.id AND relType = 0
-		 AND r.roleId = #{roleId}
+		 <if test="roleId != null and roleId != ''">
+			 AND r.roleId = #{roleId}
+		 </if>
 	)
+	order by rank asc
 </select>
 
 <!-- 根据用户id查询父菜单菜单 -->
 <select id="getRootMenuByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	SELECT DISTINCT id,NAME,url,parentId,actions FROM sys_menu m 
-	WHERE deleted= 0 AND parentId IS NULL
+	WHERE deleted= 0 AND (parentId IS NULL or parentId ='') 
 	AND EXISTS (
 		 SELECT * FROM sys_role_rel r 
 		 WHERE r.objId = m.id AND r.relType = 0
 		 AND EXISTS ( 
-			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 AND u.objId = #{userId}
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1
+			<if test="userId != null and userId !=''">
+				 AND u.objId = #{userId}
+			</if>
 		 )
 	)
+	order by rank asc
 </select>
 
 
 <!-- 根据用户id查询子菜单菜单 -->
-<select id="getChildMenuByUser"  resultMap="BaseResultMap" parameterType="Object">
+<select id="getChildMenuByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	SELECT DISTINCT id,NAME,url,parentId,actions FROM sys_menu m 
-	WHERE deleted= 0 AND parentId IS NOT NULL
+	WHERE deleted= 0 AND parentId IS NOT NULL and parentId !=''
 	AND EXISTS (
 		 SELECT * FROM sys_role_rel r 
 		 WHERE r.objId = m.id AND r.relType = 0
 		 AND EXISTS ( 
-			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 AND u.objId = #{userId}
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 
+			<if test="userId != null and userId !=''">
+				 AND u.objId = #{userId}
+			</if>
 		 )
 	)
+	order by rank asc
 </select>
-
 
 </mapper>   

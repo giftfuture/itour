@@ -47,7 +47,7 @@ public class SysUserController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(SysUserModel model,HttpServletRequest request) throws Exception{
+	public ModelAndView list(SysUserModel model,HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		List<SysUser> dataList = sysUserService.queryByList(model);
 		//设置页面数据

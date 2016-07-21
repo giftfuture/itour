@@ -78,10 +78,10 @@ public class URLUtils {
 		String menuUri = StringUtils.substringBeforeLast(menuUrl, "/");
 		for(String action : actions){
 			action = StringUtils.trim(action);
-			if(StringUtils.startsWith(action, "/"))
+			if(!StringUtils.startsWith(action, "/"))
 				accessUrls.add(action);
-			else
-				accessUrls.add(menuUri+"/"+action);
+			/*else
+				accessUrls.add(menuUri+"/"+action);*/
 		}
 	}
 	

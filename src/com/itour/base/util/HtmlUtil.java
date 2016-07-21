@@ -106,10 +106,14 @@ public class HtmlUtil {
 	public static void writerHtml(HttpServletResponse response,String htmlStr) {
 		writer(response,htmlStr);
 	}
-	
+	/**
+	 * 
+	 * @param response
+	 * @param str
+	 */
 	private static void writer(HttpServletResponse response,String str){
 		try {
-			StringBuffer result = new StringBuffer();
+			//StringBuffer result = new StringBuffer();
 			//设置页面不缓存
 			response.setHeader("Pragma", "No-cache");
 			response.setHeader("Cache-Control", "no-cache");

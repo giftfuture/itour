@@ -28,7 +28,7 @@ public interface SysMenuDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * 获取子菜单
 	 * @return
 	 */
-	List<SysMenuBtn> getChildMenu();
+	List<SysMenuBtn> getChildMenu(java.util.Map map);
 	
 	
 
@@ -37,7 +37,7 @@ public interface SysMenuDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param roleId
 	 * @return
 	 */
-	List<SysMenuBtn> getMenuByRoleId(String roleId);
+	List<SysMenuBtn> getMenuByRoleId(java.util.Map map);
 	
 	
 	/**
@@ -45,14 +45,14 @@ public interface SysMenuDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param userId
 	 * @return
 	 */
-	List<SysMenuBtn> getRootMenuByUser(String userId);
+	List<SysMenuBtn> getRootMenuByUser(java.util.Map map);
 	
 	/**
 	 * 根据用户id查询子菜单菜单
 	 * @param userId
 	 * @return
 	 */
-	List<SysMenuBtn> getChildMenuByUser(String userId);
+	List<SysMenuBtn> getChildMenuByUser(java.util.Map map);
 	
 	/**
 	 * 获取表中最大rank

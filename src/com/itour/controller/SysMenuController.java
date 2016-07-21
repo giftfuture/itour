@@ -59,22 +59,6 @@ public class SysMenuController extends BaseController{
 	}
 	
 	/**
-	 * 顶级菜单 json 
-	 * @param menuId 此菜单id不查询，可以为空
-	 * @param response
-	 * @throws Exception
-	 */
-	@RequestMapping("/rootMenuJson") 
-	public void  rootMenu(Integer menuId,HttpServletResponse response) throws Exception{
-		List<SysMenu> dataList = sysMenuService.getRootMenu(menuId);
-		if(dataList==null){
-			dataList = new ArrayList<SysMenu>();
-		}
-		HtmlUtil.writerJson(response, dataList);
-	}
-	
-	
-	/**
 	 * json 列表页面
 	 * @param url
 	 * @param classifyId
@@ -90,6 +74,21 @@ public class SysMenuController extends BaseController{
 		jsonMap.put("rows", dataList);
 	//	System.out.println(JSON.toJSONString(dataList));
 		HtmlUtil.writerJson(response, jsonMap);
+	}
+	
+	/**
+	 * 顶级菜单 json 
+	 * @param menuId 此菜单id不查询，可以为空
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("/rootMenuJson") 
+	public void  rootMenu(String menuId,HttpServletResponse response) throws Exception{
+		List<SysMenu> dataList = sysMenuService.getRootMenu(menuId);
+		if(dataList==null){
+			dataList = new ArrayList<SysMenu>();
+		}
+		HtmlUtil.writerJson(response, dataList);
 	}
 	
 
@@ -173,7 +172,7 @@ public class SysMenuController extends BaseController{
 	 */
 	public List<TreeNode> treeMenu(){
 		List<SysMenu> rootMenus = sysMenuService.getRootMenu(null);//根节点
-		List<SysMenu> childMenus = sysMenuService.getChildMenu();//子节点
+		List<SysMenu> childMenus = sysMenuService.getChildMenu(null);//子节点
 		List<SysMenuBtn> childBtns = sysMenuBtnService.queryByAll();
 		TreeUtil util = new TreeUtil(rootMenus,childMenus,childBtns);
 		return util.getTreeNode();
