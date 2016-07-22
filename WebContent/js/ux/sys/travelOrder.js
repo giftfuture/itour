@@ -17,9 +17,9 @@ itour.travelOrder = function(){
 			//设置默认按钮数据
 			addDefBtns:function(){
 				var defaultBtns= [
-					{"btnName":"添加","menuid":10,"actionUrls":"travelOrder/save","btnType":"add"},
-					{"btnName":"修改","menuid":10,"actionUrls":"travelOrder/getId","btnType":"edit"},
-					{"btnName":"删除","menuid":10,"actionUrls":"travelOrder/delete","btnType":"remove"}
+					{"btnName":"添加","menuid":"11","actionUrls":"travelOrder/save","btnType":"add"},
+					{"btnName":"修改","menuid":"11","actionUrls":"travelOrder/getId|travelOrder/save","btnType":"edit"},
+					{"btnName":"删除","menuid":"11","actionUrls":"travelOrder/delete","btnType":"remove"}
 				];
 				var tbline = $(".tb-line:visible");
 				var btnType = $("input[name='btnType']",tbline);

@@ -108,7 +108,8 @@ public class SysMenuController extends BaseController{
 		bean.setBtns(btns);
 		int rank = sysMenuService.maxRank();
 		bean.setRank(rank);
-		if(bean.getId() == null ||bean.getId().equals("")){
+		SysMenu sm  = sysMenuService.queryById(bean.getId());
+		if(sm.getId() == null ||sm.getId().equals("")){
 			if(user != null){
 				bean.setCreateBy(user.getId());
 				bean.setUpdateBy(user.getId());
@@ -116,20 +117,20 @@ public class SysMenuController extends BaseController{
 			bean.setDeleted(DELETED.NO.key);
 			sysMenuService.add(bean);
 		}else{
-			SysMenu sm = sysMenuService.queryById(bean.getId());
-			if(sm == null){
+			//SysMenu sm = sysMenuService.queryById(bean.getId());
+		/*	if(sm == null){
 				if(user != null){
 					bean.setCreateBy(user.getId());
 					bean.setUpdateBy(user.getId());
 				}
 				bean.setDeleted(DELETED.NO.key);
 				sysMenuService.add(bean);
-			}else{
+			}else{*/
 				if(user != null){
 					bean.setUpdateBy(user.getId());
 				}
 				sysMenuService.update(bean);
-			}
+			//}
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
@@ -137,7 +138,7 @@ public class SysMenuController extends BaseController{
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
-		SysMenu bean  = sysMenuService.queryById(id);
+		SysMenu bean = sysMenuService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return;
@@ -202,12 +203,14 @@ public class SysMenuController extends BaseController{
 					//btn.setId(NumberUtils.toInt(btnId[i]));
 					btn.setId(btnId[i]);
 				}
+				//sysMenuBtnService.queryById(id)
 				btn.setBtnName(btnName[i]);
 				btn.setBtnType(btnType[i]);
 				btn.setActionUrls(actionUrls[i]);
 				btn.setDeleteFlag(deleteFlag[i]);
 				if(user != null){					
-					btn.setCreateBy(user.getId());
+					//btn.setCreateBy(user.getId());
+					btn.setUpdateBy(user.getId());
 				}
 				btnList.add(btn);
 			}

@@ -43,8 +43,8 @@ pageContext.setAttribute("basePath",basePath);
      		 <div class="ui-edit">
 		     	   <div class="ftitle">订单详情</div>
    					<div class="fitem">
-						<label>订单号:</label>
-						<input name="orderId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
+						<label>订单号:<span name="orderId"></span></label>
+						<input name="orderId" type="hidden" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
 					</div>
 					<div class="fitem">
 						<label>状态:</label>

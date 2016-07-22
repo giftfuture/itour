@@ -17,9 +17,9 @@ itour.travelItem = function(){
 		//设置默认按钮数据
 		addDefBtns:function(){
 			var defaultBtns= [
-				{"btnName":"添加","menuid":10,"actionUrls":"travelItem/save","btnType":"add"},
-				{"btnName":"修改","menuid":10,"actionUrls":"travelItem/getId","btnType":"edit"},
-				{"btnName":"删除","menuid":10,"actionUrls":"travelItem/delete","btnType":"remove"}
+				{"btnName":"添加","menuid":"13","actionUrls":"travelItem/save","btnType":"add"},
+				{"btnName":"修改","menuid":"13","actionUrls":"travelItem/getId|travelItem/save","btnType":"edit"},
+				{"btnName":"删除","menuid":"13","actionUrls":"travelItem/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
@@ -42,7 +42,7 @@ itour.travelItem = function(){
 		addLine: function(data){
 			var table = $("#btn-tb");
 			var	html = "<tr class='tb-line'>";
-			html+=	   "	<td align='center'><span  class='newFlag red'>*</span></td>";
+			//html+=	   "	<td align='center'><span  class='newFlag red'>*</span></td>";
 			html+=	   "	<td><input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
 			html+=	   "	<td><input name=\"btnType\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
 			html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-validatebox text-desc\" style=\"width:100%\"  ></td>";

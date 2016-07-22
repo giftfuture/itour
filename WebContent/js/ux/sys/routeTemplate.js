@@ -17,9 +17,9 @@ itour.routeTemplate = function(){
 		//设置默认按钮数据
 		addDefBtns:function(){
 			var defaultBtns= [
-				{"btnName":"添加","menuid":10,"actionUrls":"routeTemplate/save","btnType":"add"},
-				{"btnName":"修改","menuid":10,"actionUrls":"routeTemplate/getId","btnType":"edit"},
-				{"btnName":"删除","menuid":10,"actionUrls":"routeTemplate/delete","btnType":"remove"}
+				{"btnName":"添加","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/save","btnType":"add"},
+				{"btnName":"修改","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/getId|routeTemplate/save","btnType":"edit"},
+				{"btnName":"删除","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);

@@ -40,7 +40,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param btns
 	 * @throws Exception 
 	 */
-	public void saveBtns(String menuid,List<SysMenuBtn> btns) throws Exception{
+	public void saveBtns(SysMenu menu,List<SysMenuBtn> btns) throws Exception{
 		if(btns == null || btns.isEmpty()){
 			return;
 		}
@@ -49,8 +49,11 @@ public class SysMenuService<T> extends BaseService<T> {
 				sysMenuBtnService.delete(btn.getId());
 				continue;
 			}
-			btn.setMenuid(menuid);
+			btn.setDeleted(0);
+			btn.setActions("0");
+			btn.setMenuid(menu.getId());
 			if(btn.getId() == null){
+				btn.setCreateBy(menu.getUpdateBy());
 				sysMenuBtnService.add(btn);
 			}else{
 				sysMenuBtnService.update(btn);
@@ -66,7 +69,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 */
 	public void add(SysMenu menu) throws Exception {
 		 super.add((T)menu);
-		saveBtns(menu.getId(),menu.getBtns());
+		saveBtns(menu,menu.getBtns());
 	}
 
 
@@ -74,7 +77,7 @@ public class SysMenuService<T> extends BaseService<T> {
 
 	public void update(SysMenu menu) throws Exception {
 		super.update((T)menu);
-		saveBtns(menu.getId(),menu.getBtns());
+		saveBtns(menu,menu.getBtns());
 	}
 
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50146
 File Encoding         : 65001
 
-Date: 2016-07-21 10:42:28
+Date: 2016-07-22 13:26:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -318,31 +318,22 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('0BFBE5C0E2BF4A579A65B45FCD52B74D', '订单详情管理', 'orderDetail/list', '9', '0', '2016-07-13 14:46:46', '2016-07-18 17:31:16', '1', 'orderDetail/list', '1', '1');
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', 'main/manage', null, '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '2', '', '1', '1');
-INSERT INTO `sys_menu` VALUES ('10', '客户管理', 'customers/list', '9', '0', '2016-07-06 10:44:45', '2016-07-06 13:32:26', '3', 'dataList.do', '1', '1');
-INSERT INTO `sys_menu` VALUES ('11', '订单管理', 'travelOrder/list', '9', '0', '2016-07-06 11:37:01', '2016-07-13 17:58:45', '4', '2', '12', '1');
-INSERT INTO `sys_menu` VALUES ('12', '12', '', '16', '0', '2016-07-06 11:37:20', '2016-07-06 11:37:29', '5', '', '1', '1');
-INSERT INTO `sys_menu` VALUES ('13', '旅游项目管理', 'travelItem/list', '9', '0', '2016-07-06 17:24:36', '2016-07-13 19:46:38', '6', 'dataList.do', '1', '12');
-INSERT INTO `sys_menu` VALUES ('14', '7777', '777', '16', '0', '2016-07-06 10:55:26', '2016-07-06 17:25:20', '7', '', '1', '13');
-INSERT INTO `sys_menu` VALUES ('15', '77', '77', '16', '0', '2016-07-06 11:01:08', '2016-07-06 17:25:22', '8', '77', '1', '13');
-INSERT INTO `sys_menu` VALUES ('16', '日志管理', '/logs/list', '', '0', '2016-07-06 18:43:11', '2016-07-13 17:17:29', '9', '/logs/list', '1', '14');
-INSERT INTO `sys_menu` VALUES ('17', 'aaa', 'aa', '16', '0', '2016-07-06 18:43:50', '2016-07-13 10:03:36', '10', 'aaa', '1', '15');
-INSERT INTO `sys_menu` VALUES ('18', 'aa', 'aa', '16', '0', '2016-07-06 18:44:10', '2016-07-13 10:03:39', '11', 'aa', '1', '16');
-INSERT INTO `sys_menu` VALUES ('2', '菜单管理', 'sysMenu/menu', '1', '0', '2016-07-06 18:18:32', '2016-07-18 17:34:40', '12', 'dataList.do', '5', '1');
-INSERT INTO `sys_menu` VALUES ('3', '站点管理', '', '4', '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '13', '', '5', '17');
-INSERT INTO `sys_menu` VALUES ('38E4B204A09D49E89358A1D1D5E463B6', '报价单管理', 'quotation/list', '9', '0', '2016-07-13 17:09:49', '2016-07-13 17:09:49', '14', 'quotation/list', '12', '17');
-INSERT INTO `sys_menu` VALUES ('4', '站点信息管理', 'siteMain/list', '3', '0', '2016-07-06 17:21:58', '2016-07-06 01:24:47', '15', 'dataList.do|/siteType/typeListJson.do', '13', '18');
-INSERT INTO `sys_menu` VALUES ('5', '站点类型', 'siteType/list', '3', '0', '2016-07-06 17:21:58', '2016-07-06 01:20:46', '16', 'dataList.do', '14', '19');
-INSERT INTO `sys_menu` VALUES ('6', '系统用户管理', 'sysUser/list', '1', '0', '2016-07-06 17:21:58', '2016-07-06 11:42:46', '17', 'dataList.do', '15', '20');
-INSERT INTO `sys_menu` VALUES ('7', '角色管理', 'sysRole/role', '1', '0', '2016-07-06 22:17:51', '2016-07-06 01:15:00', '18', 'dataList.do|/sysMenu/getMenuTree.do', '16', '21');
-INSERT INTO `sys_menu` VALUES ('74BDAEA713D841549B840E502C4F150B', '路线模板', 'routeTemplate/list', '9', '0', '2016-07-13 17:15:43', '2016-07-13 17:15:43', '19', 'routeTemplate/list', '17', '5');
-INSERT INTO `sys_menu` VALUES ('7A776ACD16D546A2866B1D79509383F8', '系统变量', 'sysVariables/list', '9', '1', '2016-07-13 17:10:33', '2016-07-13 17:11:25', '20', 'sysVariables/list', '18', '6');
-INSERT INTO `sys_menu` VALUES ('8', '系统用户授权', 'sysUser/userRole', '1', '0', '2016-07-06 11:42:26', '2016-07-06 11:43:19', '21', 'userList.do|/sysRole/loadRoleList.do', '19', '1');
-INSERT INTO `sys_menu` VALUES ('9', '业务功能', 'main/manage', null, '0', '2016-07-06 10:42:42', '2016-07-06 17:25:42', '22', '', '20', '1');
-INSERT INTO `sys_menu` VALUES ('9A6DA61999AB422782E398C62514968F', '系统变量', 'sysVariables/list', '1', '0', '2016-07-13 17:12:52', '2016-07-13 17:12:52', '23', 'sysVariables/list', '21', '1');
-INSERT INTO `sys_menu` VALUES ('A1C1A1B47AAA4A40B74962E59FCE9F64', '旅行方式管理', 'travelStyle/list', '9', '0', '2016-07-13 16:00:18', '2016-07-13 16:00:18', '24', 'travelStyle/list', '1', '1');
-INSERT INTO `sys_menu` VALUES ('E2A9CF59E2F144A2B863ECA27EC8BDDF', '反馈审核', 'feedback/list', '9', '0', '2016-07-13 17:14:17', '2016-07-13 17:14:17', '25', 'feedback/list', '1', '1');
+INSERT INTO `sys_menu` VALUES ('0BFBE5C0E2BF4A579A65B45FCD52B74D', '订单详情管理', 'orderDetail/list', '9', '0', '2016-07-13 14:46:46', '2016-07-22 12:09:16', '34', 'orderDetail/dataList', '1', '1');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', '', null, '0', '2016-07-06 17:21:58', '2016-07-06 17:21:58', '2', '', '1', '1');
+INSERT INTO `sys_menu` VALUES ('10', '客户管理', 'customers/list', '9', '0', '2016-07-06 10:44:45', '2016-07-22 11:55:44', '29', 'customers/dataList', '1', '1');
+INSERT INTO `sys_menu` VALUES ('11', '订单管理', 'travelOrder/list', '9', '0', '2016-07-06 11:37:01', '2016-07-22 11:57:00', '30', 'travelOrder/dataList', '12', '1');
+INSERT INTO `sys_menu` VALUES ('13', '旅游项目管理', 'travelItem/list', '9', '0', '2016-07-06 17:24:36', '2016-07-22 11:57:54', '31', 'travelItem/dataList', '1', '1');
+INSERT INTO `sys_menu` VALUES ('16', '日志管理', '', '', '0', '2016-07-06 18:43:11', '2016-07-13 17:17:29', '9', '', '1', '14');
+INSERT INTO `sys_menu` VALUES ('2', '菜单管理', 'sysMenu/menu', '1', '0', '2016-07-06 18:18:32', '2016-07-18 17:34:40', '12', 'sysMenu/dataList', '5', '1');
+INSERT INTO `sys_menu` VALUES ('38E4B204A09D49E89358A1D1D5E463B6', '报价单管理', 'quotation/list', '9', '0', '2016-07-13 17:09:49', '2016-07-22 12:02:03', '32', 'quotation/dataList', '12', '1');
+INSERT INTO `sys_menu` VALUES ('6', '系统用户管理', 'sysUser/list', '1', '0', '2016-07-06 17:21:58', '2016-07-06 11:42:46', '17', 'sysUser/dataList', '15', '20');
+INSERT INTO `sys_menu` VALUES ('7', '角色管理', 'sysRole/role', '1', '0', '2016-07-06 22:17:51', '2016-07-06 01:15:00', '18', 'sysRole/dataList|sysRole/loadRoleList|sysMenu/getMenuTree', '16', '21');
+INSERT INTO `sys_menu` VALUES ('74BDAEA713D841549B840E502C4F150B', '路线模板', 'routeTemplate/list', '9', '0', '2016-07-13 17:15:43', '2016-07-22 12:03:22', '33', 'routeTemplate/dataList', '17', '1');
+INSERT INTO `sys_menu` VALUES ('7A776ACD16D546A2866B1D79509383F8', '系统变量', 'sysVariables/list', '9', '0', '2016-07-13 17:10:33', '2016-07-22 11:54:17', '28', 'sysVariables/dataList', '18', '1');
+INSERT INTO `sys_menu` VALUES ('8', '系统用户授权', 'sysUser/userRole', '1', '0', '2016-07-06 11:42:26', '2016-07-06 11:43:19', '21', 'sysUser/userList|sysRole/loadRoleList', '19', '1');
+INSERT INTO `sys_menu` VALUES ('9', '业务功能', '', null, '0', '2016-07-06 10:42:42', '2016-07-06 17:25:42', '22', '', '20', '1');
+INSERT INTO `sys_menu` VALUES ('A1C1A1B47AAA4A40B74962E59FCE9F64', '旅行方式管理', 'travelStyle/list', '9', '0', '2016-07-13 16:00:18', '2016-07-13 16:00:18', '24', 'travelStyle/dataList', '1', '1');
+INSERT INTO `sys_menu` VALUES ('E2A9CF59E2F144A2B863ECA27EC8BDDF', '反馈审核', 'feedback/list', '9', '0', '2016-07-13 17:14:17', '2016-07-13 17:14:17', '25', 'feedback/dataList', '1', '1');
 
 -- ----------------------------
 -- Table structure for sys_menu_btn
@@ -366,69 +357,48 @@ CREATE TABLE `sys_menu_btn` (
 -- ----------------------------
 -- Records of sys_menu_btn
 -- ----------------------------
-INSERT INTO `sys_menu_btn` VALUES ('02E73BFB9E8940E68FBA133A3F15107D', 'F38A31E8FE44479A9B0719BEB7BA436B', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('0503E68B02F0460F88BDD4A8C10B82FA', '74bdaea7-13d8-4154-9b84-0e502c4f150b', '添加', 'add', 'routeTemplate/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('10', '6', '修改密码', 'editPwd', 'updatePwd', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('11', '6', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('12', '7', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('13', '7', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('14', '7', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('14F6196455794BE8AD2F8C2E7BEC2885', '9a6da619-99ab-4227-82e3-98c62514968f', '修改', 'edit', 'sysVariables/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('15', '8', '授权', 'authRole', '/sysUser/getUser|/sysUser/addUserRole', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('16', '5', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('161CF7308E3E4B2AB97A81F52D1E3605', 'a1c1a1b4-7aaa-4a40-b749-62e59fce9f64', '删除', 'remove', 'travelStyle/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('17', '5', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('18', '5', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('19', '4', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('20', '4', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('21', '4', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('22', '10', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('23', '10', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('24', '10', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('25', '13', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('26', '13', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('27', '13', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('02E73BFB9E8940E68FBA133A3F15107D', '2', '添加', 'add', 'sysMenu/save', '0', '2016-07-13 14:46:46', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('06E21C0DC46E40C1B58C4F91307102A3', '74BDAEA713D841549B840E502C4F150B', '删除', 'remove', 'routeTemplate/delete', '0', '2016-07-22 12:03:22', '2016-07-22 12:03:22', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('10', '6', '修改密码', 'editPwd', 'sysUser/updatePwd', '0', '2016-07-06 10:44:45', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('11', '6', '删除', 'remove', 'sysUser/delete', '0', '2016-07-06 11:37:01', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('12', '7', '添加', 'add', 'sysRole/save', '0', '2016-07-06 17:24:36', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('13', '7', '修改', 'edit', 'sysRole/getId|sysRole/save', '0', '2016-07-06 18:43:11', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('14', '7', '删除', 'remove', 'sysRole/delete', '0', '2016-07-06 18:18:32', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('15', '8', '授权', 'authRole', 'sysUser/getUser|sysUser/addUserRole', '0', '2016-07-06 17:21:58', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('161CF7308E3E4B2AB97A81F52D1E3605', 'A1C1A1B47AAA4A40B74962E59FCE9F64', '删除', 'remove', 'travelStyle/delete', '0', '2016-07-06 22:17:51', null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('18374BF19B9F4ED793945C425CE6E88D', '74BDAEA713D841549B840E502C4F150B', '修改', 'edit', 'routeTemplate/getId|routeTemplate/save', '0', '2016-07-22 12:03:22', '2016-07-22 12:03:22', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('1A7263167E884CB8AC341D7054CF1C80', '74BDAEA713D841549B840E502C4F150B', '添加', 'add', 'routeTemplate/save', '0', '2016-07-22 12:03:22', '2016-07-22 12:03:22', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('22', '10', '添加', 'add', 'customers/save', '0', '2016-07-13 17:15:43', '2016-07-22 11:55:44', '0', null, '1');
+INSERT INTO `sys_menu_btn` VALUES ('23', '10', '修改', 'edit', 'customers/getId|customers/save', '0', '2016-07-13 17:10:33', '2016-07-22 11:55:44', '0', null, '1');
+INSERT INTO `sys_menu_btn` VALUES ('24', '10', '删除', 'remove', 'customers/delete', '0', '2016-07-06 11:42:26', '2016-07-22 11:55:44', '0', null, '1');
+INSERT INTO `sys_menu_btn` VALUES ('25', '13', '添加', 'add', 'travelItem/save', '0', '2016-07-06 10:42:42', '2016-07-22 11:57:54', '0', null, '1');
+INSERT INTO `sys_menu_btn` VALUES ('26', '13', '修改', 'edit', 'travelItem/getId|travelItem/save', '0', '2016-07-13 16:00:18', '2016-07-22 11:57:54', '0', null, '1');
+INSERT INTO `sys_menu_btn` VALUES ('27', '13', '删除', 'remove', 'travelItem/delete', '0', '2016-07-13 17:14:17', '2016-07-22 11:57:54', '0', null, '1');
 INSERT INTO `sys_menu_btn` VALUES ('28', '16', '添加', 'add', 'logs/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('29', '16', '修改', 'edit', 'logs/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('2A6259EE98BC4C05B7D5A12232FFFE1C', '', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('29', '16', '修改', 'edit', 'logs/getId|logs/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('2FD7A74E5407458ABAEC416C25352947', '38E4B204A09D49E89358A1D1D5E463B6', '修改', 'edit', 'quotation/getId|quotation/save', '0', '2016-07-22 12:02:03', '2016-07-22 12:02:03', '0', '1', '1');
 INSERT INTO `sys_menu_btn` VALUES ('30', '16', '删除', 'remove', 'logs/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('31', '17', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('32', '17', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('33', '17', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('3529AFE8C74F40149C29043473525036', 'f264f3cf-5cfa-4309-bbf2-ea96af489937', '删除', 'remove', 'logs/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('36D1C732EF704B86BFB1A0B9DCF1A0AB', '', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
 INSERT INTO `sys_menu_btn` VALUES ('37', '16', '委托', 'delegate', 'logs/delegate', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('3D5284CEFC214102B22C6D52E879938C', '11', '修改', 'edit', 'travelOrder/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('3F9DBB185B604CD2B04DEA8F3F46BFF9', '38e4b204-a09d-49e8-9358-a1d1d5e463b6', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('450311FE4B464FF49013AE466554A4CA', '', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('4F703FC4C5AA429E87E3E000A8E6452F', '', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('5', '2', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('529415378B914B08950C9B7F77CF6A78', 'e2a9cf59-e2f1-44a2-b863-eca27ec8bddf', '删除', 'remove', 'feedback/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('5606AE3930504EE79C6C93DD8B3F32B9', 'a1c1a1b4-7aaa-4a40-b749-62e59fce9f64', '修改', 'edit', 'travelStyle/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('6', '2', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('6F4A8B7EC7C34A2C9BDA995C06C9D302', '38e4b204-a09d-49e8-9358-a1d1d5e463b6', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('7', '2', '删除', 'remove', 'delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('7724C5F0DCB74045B7BE3057DBB89FE0', '11', '添加', 'add', 'travelOrder/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('7740F644D3B544328BFB28C68BD8844E', 'a1c1a1b4-7aaa-4a40-b749-62e59fce9f64', '添加', 'add', 'travelStyle/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('7FC3939512D14F599F309EDFBBE9E61E', '74bdaea7-13d8-4154-9b84-0e502c4f150b', '删除', 'remove', 'routeTemplate/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('8', '6', '添加', 'add', 'save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('84B3F27C92E7427AA6D752C13A23493C', '11', '删除', 'remove', 'travelOrder/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('84B78CFDED4649E9AC511B4DADF0CDC7', '9a6da619-99ab-4227-82e3-98c62514968f', '删除', 'remove', 'sysVariables/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('9', '6', '修改', 'edit', 'getId|save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('9A9C1B318EB3450E8EB94746C43CB5A3', '', '添加', 'add', 'sysMenu/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('9B3B369CADC24F9A880741568368212C', 'f264f3cf-5cfa-4309-bbf2-ea96af489937', '修改', 'edit', 'logs/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('A554D04F82BC430E8B8599A4D37462A7', 'F38A31E8FE44479A9B0719BEB7BA436B', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('A779EDA9161345B288DB73D4FED2BCF6', 'e2a9cf59-e2f1-44a2-b863-eca27ec8bddf', '添加', 'add', 'feedback/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('AD6E00F626C74D70A67D955A3D08BFE1', '9a6da619-99ab-4227-82e3-98c62514968f', '添加', 'add', 'sysVariables/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('B04F7707BDBE44098BB6C8026646C6F0', '38e4b204-a09d-49e8-9358-a1d1d5e463b6', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('BCB0865E966043CC99D4E3D129B63EF7', 'e2a9cf59-e2f1-44a2-b863-eca27ec8bddf', '修改', 'edit', 'feedback/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('CD09D0422D9A445F9AACAA8732AF04A4', '74bdaea7-13d8-4154-9b84-0e502c4f150b', '修改', 'edit', 'routeTemplate/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('DBAF912FCA304171B7D8A86830B2152C', '', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('DEF0F7DF1F2641CF80944D7EA0092EF2', '', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('E8F63D92EFEB4A8682A5AF85896A5406', '', '修改', 'edit', 'sysMenu/getId', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('ED486CDC83E14A91AFEF3EAA9C39EA51', 'F38A31E8FE44479A9B0719BEB7BA436B', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('F5DBDE0F67884EF9971CCC70A0B966F6', 'f264f3cf-5cfa-4309-bbf2-ea96af489937', '添加', 'add', 'logs/save', '0', null, null, '0', null, null);
-INSERT INTO `sys_menu_btn` VALUES ('F635FE493C2C45DE8CF41C7835E34EF0', '', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('45AFE40CBCD642B8AF88A99D23D2C9AE', '7A776ACD16D546A2866B1D79509383F8', '删除', 'remove', 'sysVariables/delete', '0', '2016-07-22 11:54:17', '2016-07-22 11:54:17', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('529415378B914B08950C9B7F77CF6A78', 'E2A9CF59E2F144A2B863ECA27EC8BDDF', '删除', 'remove', 'feedback/delete', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('5606AE3930504EE79C6C93DD8B3F32B9', 'A1C1A1B47AAA4A40B74962E59FCE9F64', '修改', 'edit', 'travelStyle/getId|travelStyle/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('598715352C3547F1B9A74A30A0A82B4A', '0BFBE5C0E2BF4A579A65B45FCD52B74D', '删除', 'remove', 'orderDetail/delete', '0', '2016-07-22 11:51:28', '2016-07-22 11:51:28', null, '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('6', '2', '修改', 'edit', 'sysMenu/getId|sysMenu/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('67F759C4E34F4860AEFD325C6723E0B8', '38E4B204A09D49E89358A1D1D5E463B6', '添加', 'add', 'quotation/save', '0', '2016-07-22 12:02:03', '2016-07-22 12:02:03', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('7', '2', '删除', 'remove', 'sysMenu/delete', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('7740F644D3B544328BFB28C68BD8844E', 'A1C1A1B47AAA4A40B74962E59FCE9F64', '添加', 'add', 'travelStyle/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('8', '6', '添加', 'add', 'sysUser/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('869AAF7866D04A7D8ACDA4D1CE33EA5B', '0BFBE5C0E2BF4A579A65B45FCD52B74D', '添加', 'add', 'orderDetail/save', '0', '2016-07-22 11:51:28', '2016-07-22 11:51:28', null, '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('9', '6', '修改', 'edit', 'sysUser/getId|sysUser/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('A100CF53474246E182BE62F4E5AC9C46', '38E4B204A09D49E89358A1D1D5E463B6', '删除', 'remove', 'quotation/delete', '0', '2016-07-22 12:02:03', '2016-07-22 12:02:03', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('A3FA2F12D5F840B4AA7E5C5F060D7B69', '11', '删除', 'remove', 'travelOrder/delete', '0', '2016-07-22 11:57:00', '2016-07-22 11:57:00', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('A779EDA9161345B288DB73D4FED2BCF6', 'E2A9CF59E2F144A2B863ECA27EC8BDDF', '添加', 'add', 'feedback/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('ABD1AEC2EF52412B9BA4536BEE6E765F', '0BFBE5C0E2BF4A579A65B45FCD52B74D', '修改', 'edit', 'orderDetail/getId|orderDetail/save', '0', '2016-07-22 11:51:28', '2016-07-22 11:51:28', null, '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('BCB0865E966043CC99D4E3D129B63EF7', 'E2A9CF59E2F144A2B863ECA27EC8BDDF', '修改', 'edit', 'feedback/getId|feedback/save', '0', null, null, '0', null, null);
+INSERT INTO `sys_menu_btn` VALUES ('C0C693263D6A4EEB9ACBC99E587B3157', '11', '添加', 'add', 'travelOrder/save', '0', '2016-07-22 11:57:00', '2016-07-22 11:57:00', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('D34E894566544D7EA0141FA6E02EEA9C', '7A776ACD16D546A2866B1D79509383F8', '添加', 'add', 'sysVariables/save', '0', '2016-07-22 11:54:17', '2016-07-22 11:54:17', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('E4B0F312BCE14F2AAC4B8A662F8C50BD', '7A776ACD16D546A2866B1D79509383F8', '修改', 'edit', 'sysVariables/getId|sysVariables/save', '0', '2016-07-22 11:54:17', '2016-07-22 11:54:17', '0', '1', '1');
+INSERT INTO `sys_menu_btn` VALUES ('E820B6E300414B40A9708A2D2255F0C2', '11', '修改', 'edit', 'travelOrder/getId|travelOrder/save', '0', '2016-07-22 11:57:00', '2016-07-22 11:57:00', '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -455,98 +425,141 @@ INSERT INTO `sys_role` VALUES ('18', '站点管理', '2016-07-06 01:21:46', null
 INSERT INTO `sys_role` VALUES ('19', '测试管理员', '2016-07-06 17:10:21', null, '2016-07-13 00:27:42', null, '0', null);
 
 -- ----------------------------
+-- Table structure for sys_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu` (
+  `id` varchar(64) NOT NULL,
+  `role_id` varchar(64) DEFAULT NULL,
+  `menu_id` varchar(64) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_by` varchar(64) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_by` varchar(64) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_role_menu
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_role_rel
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_rel`;
 CREATE TABLE `sys_role_rel` (
   `roleId` varchar(64) NOT NULL COMMENT '角色主键 sys_role.id',
   `objId` varchar(64) NOT NULL COMMENT '关联主键 type=0管理sys_menu.id, type=1关联sys_user.id',
-  `relType` int(1) DEFAULT NULL COMMENT '关联类型 0=菜单,1=用户'
+  `relType` int(1) DEFAULT NULL COMMENT '关联类型 0=菜单,1=用户,2=按钮',
+  `id` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_role_rel
 -- ----------------------------
-INSERT INTO `sys_role_rel` VALUES ('1', '3', '1');
-INSERT INTO `sys_role_rel` VALUES ('3', '8', '0');
-INSERT INTO `sys_role_rel` VALUES ('3', '1', '0');
-INSERT INTO `sys_role_rel` VALUES ('3', '2', '0');
-INSERT INTO `sys_role_rel` VALUES ('3', '6', '0');
-INSERT INTO `sys_role_rel` VALUES ('3', '7', '0');
-INSERT INTO `sys_role_rel` VALUES ('3', '5', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '8', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '9', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '12', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '13', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '15', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '1', '1');
-INSERT INTO `sys_role_rel` VALUES ('18', '1', '1');
-INSERT INTO `sys_role_rel` VALUES ('19', '1', '1');
-INSERT INTO `sys_role_rel` VALUES ('1', '1', '1');
-INSERT INTO `sys_role_rel` VALUES ('1', '1', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '2', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '6', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '7', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '8', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '9', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '10', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '13', '0');
-INSERT INTO `sys_role_rel` VALUES ('1', '5', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '6', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '7', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '8', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '9', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '10', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '11', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '12', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '13', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '14', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '15', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '22', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '23', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '24', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '25', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '26', '2');
-INSERT INTO `sys_role_rel` VALUES ('1', '27', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '5', '1');
-INSERT INTO `sys_role_rel` VALUES ('3', '5', '1');
-INSERT INTO `sys_role_rel` VALUES ('19', '5', '1');
-INSERT INTO `sys_role_rel` VALUES ('3', '14', '1');
-INSERT INTO `sys_role_rel` VALUES ('18', '14', '1');
-INSERT INTO `sys_role_rel` VALUES ('19', '6', '1');
-INSERT INTO `sys_role_rel` VALUES ('3', '13', '1');
-INSERT INTO `sys_role_rel` VALUES ('', '13', '0');
-INSERT INTO `sys_role_rel` VALUES ('', '9', '0');
-INSERT INTO `sys_role_rel` VALUES ('', '25', '2');
-INSERT INTO `sys_role_rel` VALUES ('', '26', '2');
-INSERT INTO `sys_role_rel` VALUES ('', '27', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '8', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '10', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '1', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '2', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '6', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '7', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '9', '0');
-INSERT INTO `sys_role_rel` VALUES ('19', '7', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '10', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '8', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '13', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '15', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '22', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '23', '2');
-INSERT INTO `sys_role_rel` VALUES ('19', '24', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '9', '0');
-INSERT INTO `sys_role_rel` VALUES ('18', '10', '0');
-INSERT INTO `sys_role_rel` VALUES ('18', '11', '0');
-INSERT INTO `sys_role_rel` VALUES ('18', '13', '0');
-INSERT INTO `sys_role_rel` VALUES ('18', '22', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '23', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '24', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '25', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '26', '2');
-INSERT INTO `sys_role_rel` VALUES ('18', '27', '2');
-INSERT INTO `sys_role_rel` VALUES ('3', '12', '1');
-INSERT INTO `sys_role_rel` VALUES ('18', '12', '1');
+INSERT INTO `sys_role_rel` VALUES ('1', '3', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '8', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '1', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '2', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '6', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '7', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '5', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '8', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '9', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '12', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '13', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '15', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '1', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '1', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '1', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '1', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '7A776ACD16D546A2866B1D79509383F8', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '11', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '16', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '10', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '74BDAEA713D841549B840E502C4F150B', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '5', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '6', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '7', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '8', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '9', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '10', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '11', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '12', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '13', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '14', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '15', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '22', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '23', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '24', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '25', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '26', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '27', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '5', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '5', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '5', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('', '13', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('', '9', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('', '25', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('', '26', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('', '27', '2', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '0BFBE5C0E2BF4A579A65B45FCD52B74D', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '38E4B204A09D49E89358A1D1D5E463B6', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '1', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '2', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '6', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '7', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '9', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '7', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '10', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '8', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '13', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '15', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '22', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '23', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '24', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '9', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '10', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '11', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '13', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '22', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '23', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '24', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '25', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '26', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '27', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '12', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('18', '12', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('1', 'A1C1A1B47AAA4A40B74962E59FCE9F64', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', 'A1C1A1B47AAA4A40B74962E59FCE9F64', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('1', 'E2A9CF59E2F144A2B863ECA27EC8BDDF', '0', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '14', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('1', '14', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '17', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('19', '17', '1', null);
+INSERT INTO `sys_role_rel` VALUES ('3', '13', '1', '1C99E33BFBEA44F4B2E60782C9395A65');
+INSERT INTO `sys_role_rel` VALUES ('19', '13', '1', '47F93161EAD643518B0A1D23B367C721');
+
+-- ----------------------------
+-- Table structure for sys_role_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_user`;
+CREATE TABLE `sys_role_user` (
+  `id` varchar(64) NOT NULL,
+  `role_id` varchar(64) DEFAULT NULL,
+  `user_id` varchar(64) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_by` varchar(64) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_by` varchar(64) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_role_user
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -574,8 +587,8 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '康长老', '0', '381', '2016-07-20 19:48:27', '0', '2016-07-06 23:01:15', '2016-07-13 15:53:51', null, null, '1', null, null);
-INSERT INTO `sys_user` VALUES ('12', 'fred.zhao@163.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'fred', '0', '2', '2016-07-20 20:43:06', '0', '2016-07-06 11:24:28', '2016-07-06 11:24:28', null, null, '0', null, null);
+INSERT INTO `sys_user` VALUES ('1', 'admin@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '康长老老', '0', '404', '2016-07-22 11:47:44', '0', '2016-07-06 23:01:15', '2016-07-13 15:53:51', null, '1', '1', null, null);
+INSERT INTO `sys_user` VALUES ('12', 'fred.zhao@163.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'fred', '0', '3', '2016-07-21 10:44:07', '0', '2016-07-06 11:24:28', '2016-07-06 11:24:28', null, null, '0', null, null);
 INSERT INTO `sys_user` VALUES ('13', 'zpclord@sina.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'remnantddd', '0', '2', '2016-07-06 19:14:29', '0', '2016-07-06 18:27:43', '2016-07-07 10:07:20', null, null, '0', null, null);
 INSERT INTO `sys_user` VALUES ('14', 'zpchoney@gmail.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'walker', '0', '1', null, '0', '2016-07-06 18:46:18', '2016-07-06 18:46:18', null, null, '0', null, null);
 INSERT INTO `sys_user` VALUES ('15', 'aaa@gmail.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', '呆物', '0', '1', null, '0', '2016-07-07 10:00:04', '2016-07-07 10:00:04', null, null, '0', null, null);
@@ -586,7 +599,6 @@ INSERT INTO `sys_user` VALUES ('19', '99999@itours.com', '110F2D03BF41A32A7D3F25
 INSERT INTO `sys_user` VALUES ('20', 'mm@mm.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'aaad', '1', '1', null, '0', '2016-07-07 10:10:39', '2016-07-07 10:10:39', null, null, '0', null, null);
 INSERT INTO `sys_user` VALUES ('21', 'Alexander@greece.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'Empretor', '0', '1', null, '0', '2016-07-07 10:32:58', '2016-07-07 10:32:58', null, null, '0', null, null);
 INSERT INTO `sys_user` VALUES ('5', 'club@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', 'admin', '0', '71', '2013-02-09 10:29:42', '0', '2016-07-06 12:30:10', '2016-07-06 10:29:42', null, null, '0', null, null);
-INSERT INTO `sys_user` VALUES ('6', 'youke@qq.com', '110F2D03BF41A32A7D3F253C8C48EBA19682A', ' 游客', '0', '1', null, '0', '2016-07-06 13:41:32', '2013-01-13 13:41:32', null, null, '0', null, null);
 
 -- ----------------------------
 -- Table structure for sys_variables

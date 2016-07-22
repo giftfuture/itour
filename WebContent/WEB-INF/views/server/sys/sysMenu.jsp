@@ -82,7 +82,7 @@ pageContext.setAttribute("basePath",basePath);
 				    		<th width="25%">按钮名称:</th>
 				    		<th width="25%">按钮类型</th>
 				    		<th width="35%">注册Action(用"|"分格)</th>
-				    		<th width="10%">操作</th>
+				    		<th width="10%">删除</th>
 				    	</tr>
 				    	</thead>
 				    	<tbody>

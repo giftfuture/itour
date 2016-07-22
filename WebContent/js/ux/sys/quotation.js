@@ -28,9 +28,9 @@ itour.quotation = function(){
 		//设置默认按钮数据
 		addDefBtns:function(){
 			var defaultBtns= [
-				{"btnName":"添加","menuid":10,"actionUrls":"quotation/save","btnType":"add"},
-				{"btnName":"修改","menuid":10,"actionUrls":"quotation/getId","btnType":"edit"},
-				{"btnName":"删除","menuid":10,"actionUrls":"quotation/delete","btnType":"remove"}
+				{"btnName":"添加","menuid":'38E4B204A09D49E89358A1D1D5E463B6',"actionUrls":"quotation/save","btnType":"add"},
+				{"btnName":"修改","menuid":'38E4B204A09D49E89358A1D1D5E463B6',"actionUrls":"quotation/getId|quotation/save","btnType":"edit"},
+				{"btnName":"删除","menuid":'38E4B204A09D49E89358A1D1D5E463B6',"actionUrls":"quotation/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
