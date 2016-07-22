@@ -53,11 +53,11 @@ public class LogSettingController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView  list(LogSettingPage page,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+	/*	Map<String,Object>  context = getRootMap();
 		List<LogSetting> dataList = logSettingService.queryByList(page);
 		//设置页面数据
-		context.put("dataList", dataList);
-		return forword("server/sys/logSetting",context); 
+		context.put("dataList", dataList);*/
+		return forword("server/sys/logSetting"); 
 	}
 	
 	

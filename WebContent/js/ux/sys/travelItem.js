@@ -147,14 +147,14 @@ itour.travelItem = function(){
 	   			url:'travelItem/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
+					{field:'itemCode',title:'项目代码',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.itemCode;
+						}
+					},
 					{field:'item',title:'项目名称',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.item;
-							}
-						},
-					{field:'itemCode',title:'项目代码',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.itemCode;
 							}
 						},
 					{field:'elevation',title:'海拔',align:'center',sortable:true,

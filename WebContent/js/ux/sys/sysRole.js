@@ -79,7 +79,7 @@ itour.sysRole = function(){
 			},
   			dataGrid:{
   				title:'角色列表',
-	   			url:'sysRole/role',
+	   			url:'sysRole/dataList',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'roleName',title:'角色名称',width:80,sortable:true},

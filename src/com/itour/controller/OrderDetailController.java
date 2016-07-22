@@ -53,11 +53,11 @@ public class OrderDetailController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView  list(OrderDetailPage page,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		//Map<String,Object>  context = getRootMap();
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
 	//	context.put("dataList", dataList);
-		return forword("server/sys/orderDetail",context); 
+		return forword("server/sys/orderDetail"); 
 	}
 	
 	

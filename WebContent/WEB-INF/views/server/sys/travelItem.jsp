@@ -65,7 +65,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>美图:</label>
-						<input name="photos" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写photos">
+						<input name="photos" type="file" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写photos">
 					</div>
 					<div class="fitem">
 						<label>里程:</label>
@@ -84,7 +84,7 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="rank" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rank">
 					</div>
 					<div class="fitem">
-						<label>找茬原因:</label>
+						<label>推荐原因:</label>
 						<input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
 					</div>
 					<div class="fitem">

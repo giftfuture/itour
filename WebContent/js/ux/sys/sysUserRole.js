@@ -14,13 +14,11 @@ itour.UserRole = function(){
 		config:{
 			action:{
 				save:'sysUser/addUserRole',
-				getId:'sysUser/getUser',
-				remove:'sysUser/delete',//删除数据的Action
-				updatePwd:'sysUser/updatePwd'
+				getId:'sysUser/getUser'
 			},
   			dataGrid:{
   				title:'系统用户授权',
-	   			url:'sysUser/userRole',
+	   			url:'sysUser/dataList',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'email',title:'邮箱账号',width:120,sortable:true},
@@ -56,14 +54,14 @@ itour.UserRole = function(){
 		},
 		init:function(){
 			$("#roleIds").combobox({
-				//url:'sysRole/loadRoleList',
-				url:'sysRole/userRole',
+				url:'sysRole/loadRoleList',
+				//url:'sysRole/userRole',
 				valueField:'id',
 				textField:'roleName',
 				multiple:true,
 				formatter:function(row){
-				  var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.id+"'>"+row.roleName+"<span>"
-				  return s;  
+				   var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.id+"'>"+row.roleName+"<span>"
+				   return s;  
 				},
 				onSelect:function(record){
 					$("#selectId_"+record.id).attr("checked", true);

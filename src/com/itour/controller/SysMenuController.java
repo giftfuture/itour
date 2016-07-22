@@ -50,12 +50,12 @@ public class SysMenuController extends BaseController{
 	 */
 	@RequestMapping("/menu")
 	public ModelAndView menu(SysMenuModel model,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
-		model.setDeleted(DELETED.NO.key);
-		List<SysMenu> dataList = sysMenuService.queryByList(model);
+	//	Map<String,Object>  context = getRootMap();
+	//	model.setDeleted(DELETED.NO.key);
+	//	List<SysMenu> dataList = sysMenuService.queryByList(model);
 		//设置页面数据
-		context.put("dataList", dataList);
-		return forword("server/sys/sysMenu",context); 
+	//	context.put("dataList", dataList);
+		return forword("server/sys/sysMenu"); 
 	}
 	
 	/**

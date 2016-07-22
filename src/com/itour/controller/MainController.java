@@ -69,7 +69,7 @@ public class MainController extends BaseController {
 	@RequestMapping("/login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,Map<String,Object>  context) throws Exception{
 		//Map<String,Object>  context = getRootMap();
-		return forword("/server/login", context);
+		return forword("/server/login");
 	}
 	
 	

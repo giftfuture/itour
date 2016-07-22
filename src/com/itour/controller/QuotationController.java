@@ -53,11 +53,11 @@ public class QuotationController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView  list(QuotationPage page,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+	/*	Map<String,Object>  context = getRootMap();
 		List<Quotation> dataList = quotationService.queryByList(page);
 		//设置页面数据
-		context.put("dataList", dataList);
-		return forword("server/sys/quotation",context); 
+		context.put("dataList", dataList);*/
+		return forword("server/sys/quotation"); 
 	}
 	
 	

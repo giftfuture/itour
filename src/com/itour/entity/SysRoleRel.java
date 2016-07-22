@@ -4,7 +4,12 @@ import com.itour.base.entity.BaseEntity;
 
 
 public class SysRoleRel extends BaseEntity {
-		private String roleId;//   角色主键 sys_role.id	private String objId;//   关联主键 type=0管理sys_menu.id, type=1关联sys_user.id	private Integer relType;//   关联类型 0=菜单,1=用户
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6080631663815131651L;
+	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//   关联主键 type=0管理sys_menu.id, type=1关联sys_user.id	private Integer relType;//   关联类型 0=菜单,1=用户
 	
 	/**
  	 * 枚举
@@ -30,5 +35,11 @@ public class SysRoleRel extends BaseEntity {
 		}
 	}
 	
-		public String getRoleId() {	    return this.roleId;	}	public void setRoleId(String roleId) {	    this.roleId=roleId;	}	public String getObjId() {	    return this.objId;	}	public void setObjId(String objId) {	    this.objId=objId;	}	public Integer getRelType() {	    return this.relType;	}	public void setRelType(Integer relType) {	    this.relType=relType;	}
+		public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getRoleId() {	    return this.roleId;	}	public void setRoleId(String roleId) {	    this.roleId=roleId;	}	public String getObjId() {	    return this.objId;	}	public void setObjId(String objId) {	    this.objId=objId;	}	public Integer getRelType() {	    return this.relType;	}	public void setRelType(Integer relType) {	    this.relType=relType;	}
 }

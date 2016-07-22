@@ -80,7 +80,7 @@ public class SysUserService<T> extends BaseService<T> {
 		}
 		//清除关联关系
 		sysRoleRelService.deleteByObjId(userId, RelType.USER.key);
-		for(String roleId :roleIds ){ 
+		for(String roleId :roleIds){ 
 			SysRoleRel rel = new SysRoleRel();
 			rel.setRoleId(roleId);
 			rel.setObjId(userId);

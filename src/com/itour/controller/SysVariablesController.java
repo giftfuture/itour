@@ -51,10 +51,10 @@ public class SysVariablesController extends BaseController{
 	@Auth
 	@RequestMapping("/list") 
 	public ModelAndView  list(SysVariablesPage page,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		/*Map<String,Object>  context = getRootMap();
 		List<SysVariables> dataList = sysVariablesService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
-		return forword("server/sys/sysVariables",context); 
+*/		return forword("server/sys/sysVariables"); 
 	}
 	
 	

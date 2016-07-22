@@ -55,12 +55,12 @@ public class CustomersController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView list(CustomersPage page,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+	/*	Map<String,Object>  context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
-		context.put("dataList", dataList);
-		return forword("server/sys/customers",context); 
+		context.put("dataList", dataList);*/
+		return forword("server/sys/customers"); 
 	}
 	
 	

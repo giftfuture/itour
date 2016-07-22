@@ -53,10 +53,10 @@ public class TravelOrderController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView  list(TravelOrderPage page,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		/*Map<String,Object>  context = getRootMap();
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
-		return forword("server/sys/travelOrder",context); 
+*/		return forword("server/sys/travelOrder"); 
 	}
 	
 	

@@ -48,11 +48,11 @@ public class SysUserController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView list(SysUserModel model,HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+	/*	Map<String,Object>  context = getRootMap();
 		List<SysUser> dataList = sysUserService.queryByList(model);
 		//设置页面数据
-		context.put("dataList", dataList);
-		return forword("server/sys/sysUser",context); 
+		context.put("dataList", dataList);*/
+		return forword("server/sys/sysUser"); 
 	}
 	
 	

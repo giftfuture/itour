@@ -74,6 +74,10 @@ public class BaseController {
 		return new ModelAndView(viewName,context); 
 	}
 	
+	public ModelAndView forword(String viewName){
+		return new ModelAndView(viewName); 
+	}
+	
 	public ModelAndView error(String errMsg){
 		return new ModelAndView("error"); 
 	}
