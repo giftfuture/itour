@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%    
 String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
 // 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
 pageContext.setAttribute("basePath",basePath);    
@@ -17,6 +16,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="description" content="This is my page"> 
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
+ <script type="text/javascript" src="<%=basePath%>js/ux/sys/travelOrder.js"></script>
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -25,10 +25,17 @@ pageContext.setAttribute("basePath",basePath);
         <p class="ui-fields">
 			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">订单状态:</label><input name="orderStatus" class="easyui-box ui-text" style="width:100px;"></p>
+			<label class="ui-label">订单状态:</label>
+				<select name="orderStatus" class="easyui-box ui-text" style="width:100px;">
+					<option value="">--请选择--</option>
+					<option value="1">待付款</option>
+					<option value="2">付款完成,待确认</option>
+					<option value="3">确认支付完成</option>
+				</select>
+			</p>
 		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;"></p>
-	    &nbsp; &nbsp; <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -37,45 +44,48 @@ pageContext.setAttribute("basePath",basePath);
      <div region="center" border="false" >
      <table id="data-list"></table>
 	 </div>
-	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="订单信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="订单信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">客户订单</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>订单号:</label>
 						<input name="orderNo" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写orderNo">
-					</div>
-					<div class="fitem">
+					</div>-->
+				<!-- 	<div class="fitem">
 						<label>订单名称:</label>
 						<input name="orderName" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写orderName">
-					</div>
-					<div class="fitem">
+					</div>  -->
+				<!-- 	<div class="fitem">
 						<label>下单时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
 					</div>
 					<div class="fitem">
 						<label>更新时间:</label>
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
-					</div>
-					<div class="fitem">
+					</div> -->
+					<!-- <div class="fitem">
 						<label>订单状态:</label>
-						<input name="orderStatus" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写orderStatus">
-					</div>
+						<select name="orderStatus">
+							<option value="1">待付款</option>
+							<option value="2">付款完成,待确认</option>
+							<option value="3">确认支付完成</option>
+						</select>
+					</div> -->
 					<div class="fitem">
 						<label>联系人:</label>
 						<input name="receiver" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写receiver">
 					</div>
 					<div class="fitem">
 						<label>联系电话:</label>
-						<input name="receiverMobile" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写receiverMobile">
+						<input name="receiverMobile" type="text" maxlength="20" class="easyui-numberbox" data-options="" missingMessage="请填写receiverMobile">
 					</div>
-					<div class="fitem">
+				<!-- 	<div class="fitem">
 						<label>客户ID:</label>
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">
-					</div>
+					</div> -->
 					<div class="fitem">
 						<label>计划出行日:</label>
 						<input name="expectedDepart" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写expectedDepart">
@@ -95,6 +105,7 @@ pageContext.setAttribute("basePath",basePath);
 					<div class="fitem">
 						<label>支付方式:</label>
 						<select name="payType" class="easyui-validatebox" data-options="" >
+							<option value="">--请选择--</option>
 							<option value="1">线上支付</option>
 							<option value="2">现金支付</option>
 							<option value="3">邮局汇款</option>
@@ -103,35 +114,42 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>支付平台:</label>
-						<input name="payPlatform" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payPlatform">
+						<select name="payPlatform" class="easyui-validatebox">
+							<option value="">--请选择--</option>
+							<option value="1">微信</option>
+							<option value="2">支付宝</option>
+							<option value="3">网银</option>
+						</select>
 					</div>
 					<div class="fitem">
 						<label>付款银行:</label>
-						<input name="bank" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写bank">
+						<select name="bank">
+							<option value="">--请选择--</option>
+							<option value="中国银行">中国银行</option>
+							<option value="中国农业银行">中国农业银行</option>
+							<option value="中国工商银行">中国工商银行</option>
+							
+						</select>
 					</div>
 					<div class="fitem">
-						<label>付款方银行帐户:</label>
-						<input name="payAccount" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payAccount">
+						<label>付款方帐户:</label>
+						<input name="payAccount" type="text" maxlength="255" class="easyui-numberbox" data-options="" missingMessage="请填写payAccount">
 					</div>
-					<div class="fitem">
-						<label>付款时间:</label>
-						<input name="payTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写payTime">
-					</div>
-					<div class="fitem">
-						<label>付款终端:</label>
-						<input name="payTerminal" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payTerminal">
-					</div>
-					<div class="fitem">
+				<!-- 	<div class="fitem">
 						<label>是否支付完成:</label>
 						<input name="isPayed" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写isPayed">
-					</div>
+					</div>  -->
 					<div class="fitem">
-						<label>备注:</label>
-								<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<label>备&nbsp;&nbsp;注:</label>
+						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<!-- <label>付款时间:</label> -->
+						<input name="payTime" type="hidden" value="currentText" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写payTime">
+						<!-- <label>付款终端:</label> -->
+						<input name="payTerminal" type="hidden"  maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写payTerminal">
 					</div>
   			</div>
      	</form>
   	 </div>
-     <script type="text/javascript" src="<%=basePath%>js/ux/sys/travelOrder.js"></script>
+  
   </body>
 </html>

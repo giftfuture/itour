@@ -35,25 +35,25 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id =  #{id}
+	    and id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="item != null and item != ''" >
-	    and item =  #{item}
+	    and item like CONCAT('%', #{item}, '%')
 	</if>
 	<if test="itemCode != null and itemCode != ''" >
-	    and item_code =  #{itemCode}
+	    and item_code like CONCAT('%', #{itemCode}, '%')
 	</if>
 	<if test="elevation != null and elevation != ''" >
-	    and elevation =  #{elevation}
+	    and elevation like CONCAT('%', #{elevation}, '%')
 	</if>
 	<if test="content != null and content != ''" >
-	    and content =  #{content}
+	    and content like CONCAT('%', #{content}, '%')
 	</if>
 	<if test="photos != null and photos != ''" >
-	    and photos =  #{photos}
+	    and photos like CONCAT('%', #{photos}, '%')
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark =  #{remark}
+	    and remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="mileage != null and mileage != ''" >
 	    and mileage =  #{mileage}
@@ -62,13 +62,13 @@ where 1=1
 	    and scope =  #{scope}
 	</if>
 	<if test="shortContent != null and shortContent != ''" >
-	    and short_content =  #{shortContent}
+	    and short_content like CONCAT('%', #{shortContent}, '%')
 	</if>
 	<if test="rank != null and rank != ''" >
 	    and rank =  #{rank}
 	</if>
 	<if test="recommandReason != null and recommandReason != ''" >
-	    and recommand_reason =  #{recommandReason}
+	    and recommand_reason  like CONCAT('%', #{recommandReason}, '%')
 	</if>
 	<if test="discount != null and discount != ''" >
 	    and discount =  #{discount}
@@ -83,7 +83,7 @@ where 1=1
 	    and happy_value =  #{happyValue}
 	</if>
 	<if test="recommandCrowd != null and recommandCrowd != ''" >
-	    and recommand_crowd =  #{recommandCrowd}
+	    and recommand_crowd like CONCAT('%', #{recommandCrowd}, '%')
 	</if>
 </trim>
 </sql>

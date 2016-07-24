@@ -38,7 +38,7 @@ pageContext.setAttribute("basePath",basePath);
     	 <table id="data-list"></table>
 	 </div>
      <!-- Edit Form -->
-     <div id="edit-win" class="easyui-dialog" title="系统角色" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:410px;">  
+     <div id="edit-win" class="easyui-dialog" title="系统角色" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" type="text" name="id">
      		 <div class="ui-edit">

@@ -39,16 +39,16 @@
 where 1=1  and deleted =  0
 <trim  suffixOverrides="," >
 	<if test="id != null and id !=''" >
-	    and id =  #{id}
+	    and id like CONCAT('%', #{id}, '%')
 	</if>
 	 <if test="name != null and name != ''" >
 	 	and name like CONCAT('%', #{name}, '%')
 	</if>
 	<if test="url != null and url != ''" >
-	    and url =  #{url}
+	    and url like CONCAT('%', #{url}, '%')
 	</if>
-	<if test="parentId != null" >
-	    and parentId =  #{parentId}
+	<if test="parentId != null and parentId != ''" >
+	    and parentId  like CONCAT('%', #{parentId}, '%')
 	</if>
 	<!-- 如果parentId为空,这查询顶级菜单 -->
 	<if test="parentId == null" >
@@ -56,13 +56,13 @@ where 1=1  and deleted =  0
 	</if>
 	
 	<if test="createTime != null" >
-	    and createTime =  #{createTime}
+	     and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="rank != null" >
 	    and rank =  #{rank}
 	</if>
 	<if test="actions != null and actions != ''" >
-	    and actions =  #{actions}
+	    and actions  like CONCAT('%', #{actions}, '%')
 	</if>
 </trim>
 </sql>

@@ -118,7 +118,7 @@ itour.orderDetail = function(){
 				$('#typeIds_combobox').combobox('reload');
 				_box.handler.edit();
 			}*/
-				add : function(){
+			add : function(){
 					_this.delAllLine(true);//清空已有的数据
 					_box.handler.add();//调用add方法
 				var parentId =$('#search_parentId').val();
@@ -134,6 +134,9 @@ itour.orderDetail = function(){
 					});
 				});
 			}
+			
+		},
+		handlerAdd:function(){
 			
 		},
 		action:{
@@ -162,8 +165,7 @@ itour.orderDetail = function(){
 							if(value == 3){
 								return "处理完成";
 							}
-						}
-						},
+						}},
 					{field:'createTime',title:'创建时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
@@ -191,12 +193,19 @@ itour.orderDetail = function(){
 						},
 						{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.remark;
+								if((row.remark+"").length>30){
+									return (row.remark+"").substring(0,30)+"....";
+								}else{									
+									return row.remark;
+								}
 							}
 						},
 					]],
 					toolbar:[
-									{id:'btnadd',text:'添加',btnType:'add',disabled:true},
+									/*{id:'btnadd',text:'添加',btnType:'add',disabled:true,handler:function(){
+										//$("span[name='orderId']").text("aaaa");
+									}},*/
+									{id:'btnadd',text:'添加',btnType:'add'},
 									{id:'btnedit',text:'修改',btnType:'edit'},
 									{id:'btndelete',text:'删除',btnType:'remove'},
 									{

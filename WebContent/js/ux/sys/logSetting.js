@@ -30,7 +30,7 @@ itour.logSetting = function(){
 						},
 					{field:'function',title:'',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.function;
+								return value;// row.function;
 							}
 						},
 					{field:'urlTeimplate',title:'',align:'center',sortable:true,

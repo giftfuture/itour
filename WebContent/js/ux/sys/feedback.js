@@ -157,7 +157,11 @@ itour.feedback = function(){
 					},
 				{field:'content',title:'内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.content;
+							if((row.content+"").length>30){
+								return (row.content+"").substring(0,30)+"....";
+							}else{									
+								return row.content;
+							}
 						}
 					},
 					{field:'createTime',title:'反馈时间',align:'center',sortable:true,
@@ -185,7 +189,11 @@ itour.feedback = function(){
 						},*/
 					{field:'result',title:'审核意见',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.result;
+								if((row.result+"").length>30){
+									return (row.result+"").substring(0,30)+"....";
+								}else{									
+									return row.result;
+								}
 							}
 						},
 					]],

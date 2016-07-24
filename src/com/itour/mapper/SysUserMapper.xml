@@ -33,7 +33,7 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null" >
-	    and id =  #{id}
+	    and id like CONCAT('%', #{id}, '%')
 	</if>
 	 	<if test="email != null and email != ''" >
 	     and email like CONCAT('%', #{email}, '%')
@@ -48,22 +48,22 @@ where 1=1
 	    and loginCount =  #{loginCount}
 	</if>
 	<if test="loginTime != null" >
-	    and loginTime =  #{loginTime}
+	     and DATE_FORMAT(loginTime,'%Y-%m-%d') = DATE_FORMAT(#{loginTime},'%Y-%m-%d') 
 	</if>
 	<if test="deleted != null" >
 	    and deleted =  #{deleted}
 	</if>
 	<if test="createTime != null" >
-	    and createTime =  #{createTime}
+	    and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null" >
-	    and updateTime =  #{updateTime}
+	     and DATE_FORMAT(updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="createBy != null" >
-	    and createBy =  #{createBy}
+	    and createBy like CONCAT('%', #{createBy}, '%')
 	</if>
 	<if test="updateBy != null" >
-	    and updateBy =  #{updateBy}
+	    and updateBy like CONCAT('%', #{updateBy}, '%')
 	</if>
 </trim>
 </sql>
@@ -83,7 +83,7 @@ update sys_user set validate_code = #validateCode#,expire_date=#expireDate# wher
 </update>
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.SysUser" >
-	update sys_user set 
+	update sys_user set updateTime=now(),
 	<trim  suffixOverrides="," >
 	<if test="email != null  and email != '' ">
 		email=#{email},
@@ -105,12 +105,6 @@ update sys_user set validate_code = #validateCode#,expire_date=#expireDate# wher
 	</if>
 	<if test="deleted != null  ">
 		deleted=#{deleted},
-	</if>
-	<if test="createTime != null  ">
-		createTime=#{createTime},
-	</if>
-	<if test="updateTime != null  ">
-		updateTime=#{updateTime},
 	</if>
 	<if test="createBy != null  ">
 		createBy=#{createBy},

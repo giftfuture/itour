@@ -1,5 +1,6 @@
 package com.itour.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
+import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.IDGenerator;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelOrder;
@@ -69,8 +72,7 @@ public class TravelOrderController extends BaseController{
 	@RequestMapping("/dataList") 
 	public void  datalist(TravelOrderPage page,HttpServletResponse response) throws Exception{
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
 		HtmlUtil.writerJSON(response, jsonMap);
@@ -85,20 +87,55 @@ public class TravelOrderController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	public void save(TravelOrder entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+/*		TravelOrder to = new TravelOrder();
+		to.setId(entity.getId());
+		to.setOrderNo(entity.getOrderNo());
+		to.setOrderName(entity.getOrderName());
+		to.setBank(entity.getBank());
+		to.setBudget(entity.getBudget());
+		to.setCustomerId(entity.getCustomerId());
+		to.setExpectedBack(new Timestamp(DateUtil.parse(entity.getExpectedBack(), DateUtil.sdfLongTimePlus).getTime()));
+		to.setExpectedDepart(new Timestamp(DateUtil.parse(entity.getExpectedDepart(), DateUtil.sdfLongTimePlus).getTime()));
+		to.setIsPayed(entity.getIsPayed());
+		to.setOrderStatus(entity.getOrderStatus());
+		to.setPayAccount(entity.getPayAccount());
+		to.setPayPlatform(entity.getPayPlatform());
+		to.setPayTerminal(entity.getPayTerminal());
+		to.setPayTime(new Timestamp(DateUtil.parse(entity.getPayTime(), DateUtil.sdfLongTimePlus).getTime()));
+		to.setPayType(entity.getPayType());
+		to.setReceiver(entity.getReceiver());
+		to.setReceiverMobile(entity.getReceiverMobile());
+		to.setRemark(entity.getRemark());
+		to.setTotalStaff(entity.getTotalStaff());*/
+		//Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+			entity.setOrderNo(IDGenerator.getUUID());
+			entity.setOrderStatus(1);
+			entity.setCustomerId(IDGenerator.getUUID());
+			entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+DateUtil.format(entity.getExpectedDepart(), DateUtil.sdfShortLongTimePlusCn));
 			travelOrderService.add(entity);
 		}else{
 			TravelOrder to = travelOrderService.queryById(entity.getId());
-			if(to == null)
+			if(to == null){
+				entity.setOrderNo(IDGenerator.getUUID());
+				entity.setOrderStatus(1);
+				entity.setCustomerId(IDGenerator.getUUID());
+				entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+entity.getExpectedDepart());
 				travelOrderService.add(entity);
-			else
+			}else{
 				travelOrderService.update(entity);
+			}
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
 	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();

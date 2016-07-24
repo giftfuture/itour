@@ -28,34 +28,34 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id =  #{id}
+	    and id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="name != null and name != ''" >
-	    and name =  #{name}
+	    and name like CONCAT('%', #{name}, '%')
 	</if>
 	<if test="orderId != null and orderId != ''" >
-	    and order_id =  #{orderId}
+	    and order_id like CONCAT('%', #{orderId}, '%')
 	</if>
 	<if test="quotation != null and quotation != ''" >
-	    and quotation =  #{quotation}
+	    and quotation like CONCAT('%', #{quotation}, '%')
 	</if>
 	<if test="createTime != null" >
-	    and create_time =  #{createTime}
+	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null" >
-	    and update_time =  #{updateTime}
+	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark =  #{remark}
+	    and remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="type != null and type != ''" >
-	    and type =  #{type}
+	    and type like CONCAT('%', #{type}, '%')
 	</if>
 	<if test="totalPrice != null" >
 	    and total_price =  #{totalPrice}
 	</if>
 	<if test="formula != null and formula != ''" >
-	    and formula =  #{formula}
+	    and formula like CONCAT('%', #{formula}, '%')
 	</if>
 </trim>
 </sql>
@@ -72,7 +72,7 @@ where 1=1
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.Quotation" >
-	update quotation set 
+	update quotation set update_time=now(),
 	<trim  suffixOverrides="," >
 	<if test="name != null and name != '' ">
 		name=#{name},
@@ -82,12 +82,6 @@ where 1=1
 	</if>
 	<if test="quotation != null and quotation != '' ">
 		quotation=#{quotation},
-	</if>
-	<if test="createTime != null  ">
-		create_time=#{createTime},
-	</if>
-	<if test="updateTime != null  ">
-		update_time=#{updateTime},
 	</if>
 	<if test="remark != null and remark != '' ">
 		remark=#{remark},

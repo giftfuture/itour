@@ -18,7 +18,7 @@ public class FastJsonTest {
      */  
     public void toJsonString()  
     {  
-        Customers user = new Customers(105,"testFastJson001", "maks");  
+        Customers user = new Customers("105","testFastJson001", "maks");  
         JSONObject jo = new JSONObject();
         String text = JSON.toJSONString(user);  
         System.out.println("toJsonString()方法：text=" + text);  
@@ -53,7 +53,7 @@ public class FastJsonTest {
      */  
     public void bean2Json()  
     {  
-    	Customers user = new Customers(11,"testFastJson001", "maks");  
+    	Customers user = new Customers("11","testFastJson001", "maks");  
         JSONObject jsonObj = (JSONObject) JSON.toJSON(user);  
         System.out.println("bean2Json()方法：jsonObj==" + jsonObj);  
         // 输出结果：jsonObj=={"age":105,"id":"testFastJson001","name":"maks"}  
@@ -64,7 +64,7 @@ public class FastJsonTest {
      */  
     public void parseJSONAndBeanEachother()  
     {  
-    	Customers user = new Customers(111,"testFastJson001", "maks");  
+    	Customers user = new Customers("111","testFastJson001", "maks");  
         SerializerFeature[] featureArr = { SerializerFeature.WriteClassName };  
         String text = JSON.toJSONString(user, featureArr);  
         System.out.println("parseJSONAndBeanEachother()方法：text==" + text);  

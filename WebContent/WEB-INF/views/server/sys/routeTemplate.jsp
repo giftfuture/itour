@@ -47,14 +47,14 @@ pageContext.setAttribute("basePath",basePath);
 						<label>客户ID:</label>
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">
 					</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>创建时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
 					</div>
 					<div class="fitem">
 						<label>创建人:</label>
 						<input name="createBy" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写createBy">
-					</div>
+					</div> -->
 					<div class="fitem">
 						<label>模板1:</label>
 						<input name="d1" type="text" maxlength="65535" class="easyui-validatebox" data-options="" missingMessage="请填写d1">
@@ -144,7 +144,8 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="updateBy" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写updateBy">
 					</div>
 					<div class="fitem">
-						<label>备注:</label>		<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea><input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
+						<label>备注:</label>	
+							<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea><input name="remark" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
 					</div>
   			</div>
      	</form>

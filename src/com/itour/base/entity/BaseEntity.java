@@ -32,6 +32,7 @@ public class BaseEntity implements Serializable{
 			}
 		}
 	 	
+	 
 	 	/**
 	 	 * 删除枚举
 	 	 * @author  

@@ -39,34 +39,34 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="系统变量" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="系统变量" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">系统变量</div>
 					<div class="fitem">
-						<label>变量名</label>
+						<label>变量名:</label>
 						<input name="varName" type="text" maxlength="255" class="easyui-validatebox" data-options="required:true" missingMessage="请填写varName">
 					</div>
 					<div class="fitem">
-						<label>变量值</label>
+						<label>变量值:</label>
 						<input name="varValue" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写varValue">
 					</div>
 					<div class="fitem">
-						<label>主机名</label>
+						<label>主机名:</label>
 						<input name="varHostname" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写varHostname">
 					</div>
 					<div class="fitem">
-						<label>主机IP</label>
+						<label>主机IP:</label>
 						<input name="varHostip" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写varHostip">
 					</div>
 					<div class="fitem">
-						<label>所属项目</label>
+						<label>所属项目:</label>
 						<input name="varProject" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写varProject">
 					</div>
 					<div class="fitem">
-						<label>备注说明</label>
-						<input name="remark" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark">
+						<label>备注说明:</label>
+							<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

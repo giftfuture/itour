@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%    
 String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
 // 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
 pageContext.setAttribute("basePath",basePath);    
@@ -38,7 +37,7 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="客户信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="客户信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -64,7 +63,7 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="customerName" type="text" maxlength="200" class="easyui-validatebox" data-options="" missingMessage="请填写customerName">
 					</div>
 					<div class="fitem">
-						<label>昵称:</label>
+						<label>昵&nbsp;&nbsp;称:</label>
 						<input name="nickName" type="text" maxlength="50" class="easyui-validatebox" data-options="" missingMessage="请填写nickName">
 					</div>
 					<div class="fitem">
@@ -76,7 +75,7 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="telephone" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写telephone">
 					</div>
 					<div class="fitem">
-						<label>邮箱:</label>
+						<label>邮&nbsp;&nbsp;箱:</label>
 						<input name="email" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写email">
 					</div>
 					<div class="fitem">
@@ -84,20 +83,20 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="scope" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
 					</div>
 					<div class="fitem">
-						<label>城市:</label>
+						<label>城&nbsp;&nbsp;市:</label>
 						<input name="city" type="text" maxlength="50" class="easyui-validatebox" data-options="" missingMessage="请填写city">
 					</div>
 					<div class="fitem">
-						<label>区县:</label>
+						<label>区&nbsp;&nbsp;县:</label>
 						<input name="district" type="text" maxlength="250" class="easyui-validatebox" data-options="" missingMessage="请填写district">
 					</div>
 					<div class="fitem">
-						<label>地址:</label>
+						<label>地&nbsp;&nbsp;址:</label>
 						<input name="address" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写address">
 					</div>
 					<div class="fitem">
 						<label>个人简介/要求:</label>
-						<textarea  name="introduction"  rows="5" cols="40" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写introduction"></textarea>
+						<textarea  name="introduction"  rows="5" cols="30" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写introduction"></textarea>
 					</div>
   			</div>
      	</form>

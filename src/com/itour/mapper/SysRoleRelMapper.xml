@@ -22,13 +22,13 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''">
-		and id = #{id}
+		and id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="roleId != null and roleId != ''" >
-	    and roleId =  #{roleId}
+	    and roleId like CONCAT('%', #{roleId}, '%')
 	</if>
 	<if test="objId != null and objId != ''" >
-	    and objId =  #{objId}
+	    and objId like CONCAT('%', #{objId}, '%')
 	</if>
 	<if test="relType != null" >
 	    and relType =  #{relType}

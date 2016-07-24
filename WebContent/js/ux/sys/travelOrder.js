@@ -170,7 +170,7 @@ itour.travelOrder = function(){
 								return "付款完成,待确认";
 							}
 							if(value == 3){
-								return "确认完成";
+								return "确认支付完成";
 							}
 						}
 					},
@@ -278,15 +278,20 @@ itour.travelOrder = function(){
 								}
 								if(value == 3){
 									return "Android";
+								}else{
+									return value;
 								}
 							}
-						},
+					},
 					{field:'remark',title:'备注',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.remark;
+							if((row.remark+"").length>30){
+								return (row.remark+"").substring(0,30)+"....";
+							}else{									
+								return row.remark;
+							}
 						}
-					}
-					]],
+					}]],
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add',disabled:true},
 								{id:'btnedit',text:'修改',btnType:'edit'},
@@ -314,6 +319,36 @@ itour.travelOrder = function(){
 				});
 			});
 			
+		},
+		//判断访问终端
+		browser:function(){
+	         var explorer =navigator.userAgent,browse,
+	         app = navigator.appVersion,
+	         language=(navigator.browserLanguage || navigator.language).toLowerCase();
+			 if (explorer.indexOf("MSIE") >= 0){
+			 	//ie 
+			 	browse = "ie";
+			 }else if (explorer.indexOf("Firefox") >= 0) {
+			 	// firefox 火狐
+			 	browse = "Firefox";
+			 }else if(explorer.indexOf("Chrome") >= 0){
+			 	//Chrome 谷歌
+			 	browse = "Chrome";
+			 }else if(explorer.indexOf("Opera") >= 0){
+			 	//Opera 欧朋
+			 	browse = "Opera";
+			 }else if(explorer.indexOf("Safari") >= 0){
+			 	//Safari 苹果浏览器
+			 	browse = "Safari";
+			 }else if(explorer.indexOf("Netscape")>= 0) { 
+			 	//Netscape
+			 	browse = "Netscape"; 
+			 }
+			 var result = browse+"_"+app+"_"+language;
+			// alert(browse+"_"+app+"_"+language);
+			// return browse+"_"+app+"_"+language;
+			//$("#payTerminal").val(result);
+			$("input[name='payTerminal']").val(result);
 		}
 	}
 	return _this;
@@ -321,4 +356,5 @@ itour.travelOrder = function(){
 
 $(function(){
 	itour.travelOrder.init();
+	itour.travelOrder.browser();
 });

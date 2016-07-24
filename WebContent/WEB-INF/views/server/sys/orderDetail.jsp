@@ -23,7 +23,12 @@ pageContext.setAttribute("basePath",basePath);
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">状态:</label>
+			<select name="status" class="easyui-box ui-text" style="width:100px;">
+				<option value="1">待处理</option>
+				<option value="2">处理中</option>
+				<option value="3">处理完成</option>
+			</select>
 			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
 	    </p>
 	    &nbsp; &nbsp;<a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
@@ -37,42 +42,46 @@ pageContext.setAttribute("basePath",basePath);
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="订单详情" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="订单详情" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">订单详情</div>
    					<div class="fitem">
-						<label>订单号:<span name="orderId"></span></label>
+						<span name='orderId'></span>
 						<input name="orderId" type="hidden" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
 					</div>
 					<div class="fitem">
-						<label>状态:</label>
-						<input name="status" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写status">
+						<label>状&nbsp;&nbsp;态:</label>
+						<select name="status">
+							<option value="1">待处理</option>
+							<option value="2">处理中</option>
+							<option value="3">处理完成</option>
+						</select>
 					</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>创建时间:</label>
 						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
 					</div>
 					<div class="fitem">
 						<label>更新时间:</label>
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
-					</div>
+					</div> -->
 					<div class="fitem">
-						<label>单价:</label>
+						<label>单&nbsp;&nbsp;价:</label>
 						<input name="perPrice" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写perPrice">
 					</div>
 					<div class="fitem">
-						<label>数量:</label>
+						<label>数&nbsp;&nbsp;量:</label>
 						<input name="count" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写count">
 					</div>
 					<div class="fitem">
 						<label>内容详情:</label>
-							<textarea rows="5" cols="40" name="content" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+							<textarea rows="7" cols="30" name="content" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
 					<div class="fitem">
-						<label>备注:</label>
-						<textarea rows="5" cols="40" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<label>备&nbsp;&nbsp;注:</label>
+						<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

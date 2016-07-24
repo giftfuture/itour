@@ -13,7 +13,7 @@ public class Customers extends BaseEntity {
 	
 	
 	private java.lang.String id;//   
-	private java.lang.Integer customerId;//   
+	private java.lang.String customerId;//   
 	private java.util.Date createTime;//   
 	private java.lang.Integer status;//   
 	private java.util.Date updateTime;//   
@@ -29,7 +29,7 @@ public class Customers extends BaseEntity {
 	private java.lang.String introduction;//  
 	
 	public Customers(){}
-	public Customers(int customerId,String customerName,String introduce){
+	public Customers(String customerId,String customerName,String introduce){
 		this.customerId = customerId ;
 		this.customerName = customerName;
 		this.introduction = introduce ;
@@ -40,10 +40,10 @@ public class Customers extends BaseEntity {
 	public void setId(java.lang.String id) {
 	    this.id=id;
 	}
-	public java.lang.Integer getCustomerId() {
+	public java.lang.String getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(java.lang.Integer customerId) {
+	public void setCustomerId(java.lang.String customerId) {
 		this.customerId = customerId;
 	}
 	public java.util.Date getCreateTime() {

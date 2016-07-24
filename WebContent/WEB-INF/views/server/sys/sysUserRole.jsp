@@ -40,7 +40,7 @@ pageContext.setAttribute("basePath",basePath);
      </div>
 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="授权" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
+     <div id="edit-win" class="easyui-dialog" title="授权" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:340px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" type="text" name="id">
      		  <div class="ui-edit">

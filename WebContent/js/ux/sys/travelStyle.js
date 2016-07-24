@@ -43,7 +43,7 @@ itour.travelStyle = function(){
 				var table = $("#btn-tb");
 				var	html = "<tr class='tb-line'>";
 				html+=	   "	<td><span class='newFlag red'>*</span>";
-				html+=	   "	<input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
+				html+=	   "	<td><input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
 				html+=	   "	<td><input name=\"btnType\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
 				html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-validatebox text-desc\" style=\"width:100%\"  ></td>";
 				html+=	   "	<td align='center'><a class=\"easyui-linkbutton remove-btn\"  iconCls=\"icon-remove\" plain=\"true\"></a>";
@@ -155,7 +155,11 @@ itour.travelStyle = function(){
 						},
 					{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.remark;
+								if((row.remark+"").length>30){
+									return (row.remark+"").substring(0,30)+"....";
+								}else{									
+									return row.remark;
+								}
 							}
 						},
 					]],

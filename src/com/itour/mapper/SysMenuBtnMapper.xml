@@ -28,35 +28,35 @@
 <sql id="Example_Where_Clause">
 where 1=1
 <trim  suffixOverrides="," >
-	<if test="menuid != null" >
-	    and menuid =  #{menuid}
+	<if test="menuid != null and menuid !=''" >
+	    and menuid like CONCAT('%', #{menuid}, '%')
 	</if>
 	 	<if test="btnName != null and btnName != ''" >
-	    and btnName =  #{btnName}
+	    and btnName like CONCAT('%', #{btnName}, '%')
 	</if>
 	 	<if test="btnType != null and btnType != ''" >
-	    and btnType =  #{btnType}
+	    and btnType like CONCAT('%', #{btnType}, '%')
 	</if>
 	 <if test="actionUrls != null and actionUrls != ''" >
-	    and actionUrls =  #{actionUrls}
+	    and actionUrls like CONCAT('%', #{actionUrls}, '%')
 	</if>
 	<if test="deleted != null and deleted != ''" >
 	    and deleted =  #{deleted}
 	</if>
 	<if test="createTime != null and createTime != ''" >
-	    and create_time =  #{createTime}
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and updateTime != ''" >
-	    and update_time =  #{updateTime}
+	     and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="actions != null and actions != ''" >
-	    and actions =  #{actions}
+	    and actions like CONCAT('%', #{actions}, '%')
 	</if>
 	<if test="createBy != null and createBy != ''" >
-	    and create_by =  #{createBy}
+	    and create_by like CONCAT('%', #{createBy}, '%')
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
-	    and update_by =  #{updateBy}
+	    and update_by like CONCAT('%', #{updateBy}, '%')
 	</if>
 </trim>
 </sql>

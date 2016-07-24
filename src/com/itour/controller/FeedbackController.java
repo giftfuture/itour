@@ -1,28 +1,28 @@
 package com.itour.controller;
 
+import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itour.base.web.BaseController;
+import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
-import com.itour.base.entity.BaseEntity.DELETED;
-import com.itour.entity.Customers;
+import com.itour.base.web.BaseController;
 import com.itour.entity.Feedback;
 import com.itour.page.FeedbackPage;
 import com.itour.service.FeedbackService;
- 
+
 /**
  * 
  * <br>
@@ -69,7 +69,11 @@ public class FeedbackController extends BaseController{
 	 */
 	@RequestMapping("/dataList") 
 	public void  datalist(FeedbackPage page,HttpServletResponse response) throws Exception{
-		List<Feedback> dataList = feedbackService.queryByList(page);
+		if(page.getCreateTime() != null){
+			Timestamp createTime =  new Timestamp(page.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
+			page.setCreateTime(createTime);
+		}
+	    List<Feedback> dataList = feedbackService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());

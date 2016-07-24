@@ -41,7 +41,7 @@ pageContext.setAttribute("basePath",basePath);
      </div>
     
      <!-- Edit Win&From -->
-     <div id="edit-win" class="easyui-dialog" title="菜单项" data-options="closed:true,iconCls:'icon-save',modal:true"  style="width:500px;height:450px;">  
+     <div id="edit-win" class="easyui-dialog" title="菜单项" data-options="closed:true,iconCls:'icon-save',modal:true"  style="width:500px;height:490px;">  
      	<form id="editForm" class="ui-form" method="post"> 
      	 <!-- 隐藏文本框 -->
      	 <input class="hidden" name="id">

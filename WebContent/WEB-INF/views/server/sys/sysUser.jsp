@@ -65,7 +65,7 @@ pageContext.setAttribute("basePath",basePath);
   	 </div> 
   	 
   	 <!-- Edit Password Form -->
-     <div id="edit-pwd-win" class="easyui-dialog" buttons="#editPwdbtn" title="修改密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">
+     <div id="edit-pwd-win" class="easyui-dialog" buttons="#editPwdbtn" title="修改密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:340px;">
      	<form id="pwdForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">

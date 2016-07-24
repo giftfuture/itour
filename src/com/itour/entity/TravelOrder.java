@@ -2,6 +2,7 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+import java.util.Date;
 /**
  * 
  * <br>
@@ -11,24 +12,17 @@ import java.math.BigDecimal;
  */
 public class TravelOrder extends BaseEntity {
 	
-		private java.lang.String id;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String orderName;//   	private java.lang.String orderNo;//   	private java.lang.Integer orderStatus;//   	private java.lang.String receiver;//   	private java.lang.String receiverMobile;//   	private java.lang.String remark;//   	private java.lang.String customerId;//   	private java.util.Date expectedDepart;//   	private java.util.Date expectedBack;//   	private java.lang.Integer totalStaff;//   本次订单出行人数	private java.lang.String isPayed;//   是否支付完成.	private java.lang.String payType;//   1=线上支付,2=现金支付,3=邮政汇款,4=公司转帐	private java.lang.String payPlatform;//   付款平台,如1=微信,2=支付宝,3=网银.	private java.lang.String bank;//   如网银支付,即为付款方银行	private java.lang.String payAccount;//   付款方银行帐户	private java.util.Date payTime;//   付款时间	private java.lang.String payTerminal;//   付款终端,如有,则为PC,IOS,Android
-	private BigDecimal budget;  //旅行预算	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8753408936131541053L;
+	private java.lang.String id;//   	private Date createTime;//   	private Date updateTime;//   	private java.lang.String orderName;//   	private java.lang.String orderNo;//   	private java.lang.Integer orderStatus;//   	private java.lang.String receiver;//   	private java.lang.String receiverMobile;//   	private java.lang.String remark;//   	private java.lang.String customerId;//   	private Date expectedDepart;//   	private Date expectedBack;//   	private java.lang.Integer totalStaff;//   本次订单出行人数	private java.lang.String isPayed;//   是否支付完成.	private java.lang.String payType;//   1=线上支付,2=现金支付,3=邮政汇款,4=公司转帐	private java.lang.String payPlatform;//   付款平台,如1=微信,2=支付宝,3=网银.	private java.lang.String bank;//   如网银支付,即为付款方银行	private java.lang.String payAccount;//   付款方银行帐户	private Date payTime;//   付款时间	private java.lang.String payTerminal;//   付款终端,如有,则为PC,IOS,Android
+	private BigDecimal budget;  //旅行预算
+		public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
 		return budget;
 	}
 	public void setBudget(BigDecimal budget) {
 		this.budget = budget;
-	}
-	public java.util.Date getCreateTime() {
-		return createTime;
-	}
-	public void setCreateTime(java.util.Date createTime) {
-		this.createTime = createTime;
-	}
-	public java.util.Date getUpdateTime() {
-		return updateTime;
-	}
-	public void setUpdateTime(java.util.Date updateTime) {
-		this.updateTime = updateTime;
 	}
 	public java.lang.String getOrderName() {
 		return orderName;
@@ -72,18 +66,6 @@ public class TravelOrder extends BaseEntity {
 	public void setCustomerId(java.lang.String customerId) {
 		this.customerId = customerId;
 	}
-	public java.util.Date getExpectedDepart() {
-		return expectedDepart;
-	}
-	public void setExpectedDepart(java.util.Date expectedDepart) {
-		this.expectedDepart = expectedDepart;
-	}
-	public java.util.Date getExpectedBack() {
-		return expectedBack;
-	}
-	public void setExpectedBack(java.util.Date expectedBack) {
-		this.expectedBack = expectedBack;
-	}
 	public java.lang.Integer getTotalStaff() {
 		return totalStaff;
 	}
@@ -120,10 +102,34 @@ public class TravelOrder extends BaseEntity {
 	public void setPayAccount(java.lang.String payAccount) {
 		this.payAccount = payAccount;
 	}
-	public java.util.Date getPayTime() {
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	public Date getExpectedDepart() {
+		return expectedDepart;
+	}
+	public void setExpectedDepart(Date expectedDepart) {
+		this.expectedDepart = expectedDepart;
+	}
+	public Date getExpectedBack() {
+		return expectedBack;
+	}
+	public void setExpectedBack(Date expectedBack) {
+		this.expectedBack = expectedBack;
+	}
+	public Date getPayTime() {
 		return payTime;
 	}
-	public void setPayTime(java.util.Date payTime) {
+	public void setPayTime(Date payTime) {
 		this.payTime = payTime;
 	}
 	public java.lang.String getPayTerminal() {

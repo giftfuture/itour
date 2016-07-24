@@ -11,16 +11,16 @@ import java.math.BigDecimal;
  */
 public class Feedback extends BaseEntity {
 	
-		private java.lang.String id;//   	private java.util.Date createTime;//   	private java.lang.Integer status;//   	private java.util.Date updateTime;//   	private java.lang.String title;//   	private java.lang.Object content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   		public java.lang.String getId() {
+		private java.lang.String id;//   	private java.sql.Timestamp createTime;//   	private java.lang.Integer status;//   	private java.sql.Timestamp updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   		public java.lang.String getId() {
 		return id;
 	}
 	public void setId(java.lang.String id) {
 		this.id = id;
 	}
-	public java.util.Date getCreateTime() {
+	public java.sql.Timestamp getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(java.util.Date createTime) {
+	public void setCreateTime(java.sql.Timestamp createTime) {
 		this.createTime = createTime;
 	}
 	public java.lang.Integer getStatus() {
@@ -29,10 +29,10 @@ public class Feedback extends BaseEntity {
 	public void setStatus(java.lang.Integer status) {
 		this.status = status;
 	}
-	public java.util.Date getUpdateTime() {
+	public java.sql.Timestamp getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(java.util.Date updateTime) {
+	public void setUpdateTime(java.sql.Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 	public java.lang.String getTitle() {
@@ -44,7 +44,7 @@ public class Feedback extends BaseEntity {
 	public java.lang.Object getContent() {
 		return content;
 	}
-	public void setContent(java.lang.Object content) {
+	public void setContent(java.lang.String content) {
 		this.content = content;
 	}
 	public java.lang.String getCustomerId() {

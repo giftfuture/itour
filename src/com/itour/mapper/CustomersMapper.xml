@@ -33,49 +33,49 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id =  #{id}
+	    and id  like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="customerId != null and customerId != ''" >
-	    and customer_id =  #{customerId}
+	    and customer_id  like CONCAT('%', #{customerId}, '%')
 	</if>
 	<if test="createTime != null and createTime != ''" >
-	    and create_time =  #{createTime}
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="status != null and status != ''" >
 	    and status =  #{status}
 	</if>
 	<if test="updateTime != null and updateTime != ''" >
-	    and update_time =  #{updateTime}
+	     and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="address != null and address != ''" >
-	    and address =  #{address}
+	    and address like CONCAT('%', #{address}, '%')
 	</if>
 	<if test="email != null and email != ''" >
-	    and email =  #{email}
+	    and email like CONCAT('%', #{email}, '%')
 	</if>
-	<if test="scope != null and scope != ''" >
+	<if test="scope != null" >
 	    and scope =  #{scope}
 	</if>
 	<if test="city != null and city != ''" >
-	    and city =  #{city}
+	    and city  like CONCAT('%', #{city}, '%')
 	</if>
 	<if test="telephone != null and telephone != ''" >
-	    and telephone =  #{telephone}
+	    and telephone  like CONCAT('%', #{telephone}, '%')
 	</if>
 	<if test="mobile != null and mobile != ''" >
-	    and mobile =  #{mobile}
+	    and mobile like CONCAT('%', #{mobile}, '%')
 	</if>
 	<if test="customerName != null and customerName != ''" >
-	    and customer_name =  #{customerName}
+	    and customer_name like CONCAT('%', #{customerName}, '%')
 	</if>
 	<if test="nickName != null and nickName != ''" >
-	    and nick_name =  #{nickName}
+	    and nick_name like CONCAT('%', #{nickName}, '%')
 	</if>
 	<if test="district != null and district != ''" >
-	    and district =  #{district}
+	    and district like CONCAT('%', #{district}, '%')
 	</if>
 	<if test="introduction != null and introduction != ''" >
-	    and introduction =  #{introduction}
+	    and introduction like CONCAT('%', #{introduction}, '%')
 	</if>
 </trim>
 </sql>

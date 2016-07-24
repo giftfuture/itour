@@ -32,6 +32,7 @@ var YDataGrid = function(config){
 			},
 			//add按钮事件
 			add: function(callback){
+				Win.edit.css("display","inline");
 				Win.edit.dialog('open');
 				Form.edit.resetForm();
 				//回调函数
@@ -41,6 +42,8 @@ var YDataGrid = function(config){
 			},
 			//edit 按钮事件
 			edit:  function(callback){
+				//Win.edit.removeAttr("display");
+				Win.edit.css("display","inline");
 				var record = Utils.getCheckedRows();
 				if (Utils.checkSelectOne(record)){
 					itour.progress();
@@ -50,6 +53,7 @@ var YDataGrid = function(config){
 					itour.getById(Action.getId,data,function(result){
 						itour.closeProgress();
 						Form.edit.form('load',result.data);
+						$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 						Win.edit.dialog('open'); 
 						
 						

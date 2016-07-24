@@ -222,9 +222,13 @@ itour.customers = function(){
 						},
 					{field:'introduction',title:'简介',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.introduction;
+								if((row.introduction+"").length>30){
+									return (row.introduction+"").substring(0,30)+"....";
+								}else{									
+									return row.introduction;
+								}
 							}
-						},
+					}
 					]],
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},

@@ -39,40 +39,40 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id =  #{id}
+	    and id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="createTime != null" >
-	    and create_time =  #{createTime}
+	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null" >
-	    and update_time =  #{updateTime}
+	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="orderName != null and orderName != ''" >
-	    and order_name =  #{orderName}
+	    and order_name like CONCAT('%', #{orderName}, '%')
 	</if>
 	<if test="orderNo != null and orderNo != ''" >
-	    and order_no =  #{orderNo}
+	    and order_no like CONCAT('%', #{orderNo}, '%')
 	</if>
 	<if test="orderStatus != null and orderStatus != ''" >
 	    and order_status =  #{orderStatus}
 	</if>
 	<if test="receiver != null and receiver != ''" >
-	    and receiver =  #{receiver}
+	    and receiver like CONCAT('%', #{receiver}, '%')
 	</if>
 	<if test="receiverMobile != null and receiverMobile != ''" >
 	    and receiver_mobile =  #{receiverMobile}
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark =  #{remark}
+	    and remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="customerId != null and customerId != ''" >
-	    and customer_id =  #{customerId}
+	    and customer_id like CONCAT('%', #{customerId}, '%')
 	</if>
 	<if test="expectedDepart != null" >
-	    and expected_depart =  #{expectedDepart}
+	   and DATE_FORMAT(expected_depart,'%Y-%m-%d') = DATE_FORMAT(#{expectedDepart},'%Y-%m-%d') 
 	</if>
 	<if test="expectedBack != null" >
-	    and expected_back =  #{expectedBack}
+	   and DATE_FORMAT(expected_back,'%Y-%m-%d') = DATE_FORMAT(#{expectedBack},'%Y-%m-%d') 
 	</if>
 	<if test="totalStaff != null" >
 	    and total_staff =  #{totalStaff}
@@ -84,19 +84,19 @@ where 1=1
 	    and pay_type =  #{payType}
 	</if>
 	<if test="payPlatform != null and payPlatform != ''" >
-	    and pay_platform =  #{payPlatform}
+	    and pay_platform like CONCAT('%', #{payPlatform}, '%')
 	</if>
 	<if test="bank != null and bank != ''" >
-	    and bank =  #{bank}
+	    and bank like CONCAT('%', #{bank}, '%')
 	</if>
 	<if test="payAccount != null and payAccount != ''" >
-	    and pay_account =  #{payAccount}
+	    and pay_account like CONCAT('%', #{payAccount}, '%')
 	</if>
 	<if test="payTime != null" >
-	    and pay_time =  #{payTime}
+	   and DATE_FORMAT(pay_time,'%Y-%m-%d') = DATE_FORMAT(#{payTime},'%Y-%m-%d') 
 	</if>
 	<if test="payTerminal != null and payTerminal != ''" >
-	    and pay_terminal =  #{payTerminal}
+	    and pay_terminal like CONCAT('%', #{payTerminal}, '%')
 	</if>
 	<if test="budget != null" >
 	    and budget =  #{budget}
@@ -116,14 +116,8 @@ where 1=1
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelOrder" >
-	update travel_order set 
+	update travel_order set update_time=now(),
 	<trim  suffixOverrides="," >
-	<if test="createTime != null  ">
-		create_time=#{createTime},
-	</if>
-	<if test="updateTime != null  ">
-		update_time=#{updateTime},
-	</if>
 	<if test="orderName != null  ">
 		order_name=#{orderName},
 	</if>

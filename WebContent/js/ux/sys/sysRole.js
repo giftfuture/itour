@@ -98,7 +98,13 @@ itour.sysRole = function(){
 							}},
 						{field:'createTime',title:'创建时间',width:120,sortable:true},
 						{field:'updateTime',title:'修改时间',width:120,sortable:true},
-						{field:'descr',title:'描述',width:120,sortable:true}
+						{field:'descr',title:'描述',width:120,sortable:true,formatter:function(value,row,index){
+							if((row.descr+"").length>30){
+								return (row.descr+"").substring(0,30)+"....";
+							}else{									
+								return row.descr;
+							}
+						}}
 						
 				]]
 			}

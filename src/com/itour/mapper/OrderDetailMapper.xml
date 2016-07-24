@@ -27,22 +27,23 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id =  #{id}
+	    and id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="status != null" >
 	    and status =  #{status}
 	</if>
 	<if test="createTime != null " >
-	    and create_time =  #{createTime}
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	    <!-- unix_timestamp(create_time)  -->
 	</if>
 	<if test="updateTime != null " >
-	    and update_time =  #{updateTime}
+	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="content != null and content != ''" >
-	    and content =  #{content}
+	    and content like CONCAT('%', #{content}, '%')
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark =  #{remark}
+	    and remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="perPrice != null " >
 	    and per_price =  #{perPrice}
@@ -51,7 +52,7 @@ where 1=1
 	    and count =  #{count}
 	</if>
 	<if test="orderId != null and orderId != ''" >
-	    and order_id =  #{orderId}
+	    and order_id = like CONCAT('%', #{orderId}, '%')
 	</if>
 </trim>
 </sql>
@@ -69,16 +70,10 @@ where 1=1
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.OrderDetail" >
-	update order_detail set 
+	update order_detail set update_time=now(),
 	<trim  suffixOverrides="," >
 	<if test="status != null  ">
 		status=#{status},
-	</if>
-	<if test="createTime != null  ">
-		create_time=#{createTime},
-	</if>
-	<if test="updateTime != null  ">
-		update_time=#{updateTime},
 	</if>
 	<if test="content != null and content != '' ">
 		content=#{content},
@@ -89,7 +84,7 @@ where 1=1
 	<if test="perPrice != null  ">
 		per_price=#{perPrice},
 	</if>
-	<if test="count != null  ">
+	<if test="count != null ">
 		count=#{count},
 	</if>
 	<if test="orderId != null and orderId != '' ">
@@ -100,7 +95,7 @@ where 1=1
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.util.Map">
-	delete 	 from order_detail where id = #{id}
+	delete from order_detail where id = #{id}
 </delete>
  
 <!-- 根据id查询 订单详情 -->

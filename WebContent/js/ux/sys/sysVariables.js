@@ -175,7 +175,11 @@ itour.sysVariables = function(){
 						},
 					{field:'remark',title:'备注说明',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.remark;
+								if((row.remark+"").length>30){
+									return (row.remark+"").substring(0,30)+"....";
+								}else{									
+									return row.remark;
+								}
 							}
 						}
 					]],
