@@ -24,7 +24,7 @@ pageContext.setAttribute("basePath",basePath);
         <p class="ui-fields">
 			<label class="ui-label">旅行方式:</label><input name="type" class="easyui-box ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -47,7 +47,7 @@ pageContext.setAttribute("basePath",basePath);
 					<p></p>
 					<div class="fitem">
 						<label>备&nbsp;&nbsp;注:</label>
-						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

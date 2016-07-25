@@ -94,10 +94,10 @@ where 1=1
 <update id="update" parameterType="com.itour.entity.Customers" >
 	update customers set update_time=now(),
 	<trim  suffixOverrides="," >
-	<if test="customerId != null  ">
+	<if test="customerId != null and customerId != '' ">
 		customer_id=#{customerId},
 	</if>
-	<if test="status != null  ">
+	<if test="status != null">
 		status=#{status},
 	</if>
 	<if test="address != null and address != '' ">
@@ -112,7 +112,7 @@ where 1=1
 	<if test="city != null and city != '' ">
 		city=#{city},
 	</if>
-	<if test="telephone != null telephone != '' ">
+	<if test="telephone != null and telephone != '' ">
 		telephone=#{telephone},
 	</if>
 	<if test="mobile != null and mobile != '' ">

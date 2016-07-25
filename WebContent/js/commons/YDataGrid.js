@@ -67,6 +67,8 @@ var YDataGrid = function(config){
 			//刷新Grid 数据
 			refresh: function(callback){
 				var param = Form.search.serializeObject();
+				//Grid.datagrid("resize");
+				console.log(param);
 				Grid.datagrid('reload',param);
 				//回调函数
 				if(jQuery.isFunction(callback)){
@@ -231,6 +233,7 @@ var YDataGrid = function(config){
 	
 		//初始化表格
 		var initGrid = function(){
+			//console.log(dataGrid.method);
 			var dataconfig = {
 				title: dataGrid.title || 'Data List',
 				iconCls: dataGrid.iconCls || 'icon-save',

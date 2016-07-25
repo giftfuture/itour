@@ -56,7 +56,8 @@ public class TravelItemController extends BaseController{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelItem> dataList = travelItemService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
-*/		return forword("server/sys/travelItem"); 
+		 */	
+		return forword("server/sys/travelItem"); 
 	}
 	
 	
@@ -69,8 +70,7 @@ public class TravelItemController extends BaseController{
 	@RequestMapping("/dataList") 
 	public void  datalist(TravelItemPage page,HttpServletResponse response) throws Exception{
 		List<TravelItem> dataList = travelItemService.queryByList(page);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
 		HtmlUtil.writerJSON(response, jsonMap);

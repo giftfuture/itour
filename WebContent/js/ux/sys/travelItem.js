@@ -144,7 +144,7 @@ itour.travelItem = function(){
 			},*/
   			dataGrid:{
   				title:'旅行项目',
-	   			url:'travelItem/dataList',
+	   			url:'dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'itemCode',title:'项目代码',align:'center',sortable:true,
@@ -162,7 +162,7 @@ itour.travelItem = function(){
 								return row.elevation;
 							}
 						},
-					{field:'content',title:'描述',align:'center',sortable:true,
+					{field:'content',title:'详细描述',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.content;
 							}
@@ -189,7 +189,23 @@ itour.travelItem = function(){
 						},
 					{field:'rank',title:'推荐指数',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.rank;
+								if(value == 1){
+									return "一般推荐";
+								}
+								if(value == 2){
+									return "比较推荐";								
+								}
+								if(value == 3){
+									return "实力推荐";
+								}
+								if(value == 4){
+									return "强烈推荐";							
+								}
+								if(value == 5){
+									return "极力推荐";
+								}else{									
+									return row.rank;
+								}
 							}
 						},
 					{field:'recommandReason',title:'推荐原因',align:'center',sortable:true,
@@ -197,11 +213,11 @@ itour.travelItem = function(){
 								return row.recommandReason;
 							}
 						},
-					{field:'discount',title:'折扣',align:'center',sortable:true,
+					/*{field:'discount',title:'折扣',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.discount;
 							}
-						},
+					},*/
 					{field:'rcdDays',title:'建议天数',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.rcdDays;
@@ -209,20 +225,52 @@ itour.travelItem = function(){
 						},
 					{field:'difficultyRate',title:'挑战度(1为最低,5为最高,依次递增)',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.difficultyRate;
+								if(value == 1){
+									return "一般难度";
+								}
+								if(value == 2){
+									return "略有挑战";								
+								}
+								if(value == 3){
+									return "难度适中";
+								}
+								if(value == 4){
+									return "是个难关";							
+								}
+								if(value == 5){
+									return "难度爆棚";
+								}else{									
+									return row.difficultyRate;
+								}
 							}
 						},
 					{field:'happyValue',title:'快乐值(1为最低,5为最高,依次递增)',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.happyValue;
+								if(value == 1){
+									return "心情舒畅";
+								}
+								if(value == 2){
+									return "趣味盎然";								
+								}
+								if(value == 3){
+									return "乐翻天";
+								}
+								if(value == 4){
+									return "乐不思蜀";							
+								}
+								if(value == 5){
+									return "极乐无穷";
+								}else{									
+									return row.happyValue;
+								}
 							}
 						},
-					{field:'recommandCrowd',title:'建议适合的人群及要求,注意事项',align:'center',sortable:true,
+					{field:'recommandCrowd',title:'建议人群',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.recommandCrowd;
 							}
 						},				
-					{field:'remark',title:'备注',align:'center',sortable:true,
+					{field:'remark',title:'备注(提醒建议)',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.remark+"").length>30){
 									return (row.remark+"").substring(0,30)+"....";
@@ -259,6 +307,31 @@ itour.travelItem = function(){
 				});
 			});
 			
+		},
+		writeSelect:function(){
+			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写recommandCrowd">'+
+			'<option value="">--请选择--</option>'+  
+			'<option value="亲子游">亲子游</option> '+ 
+			'<option value="情侣双人游">情侣双人游</option>'+ 
+			'<option value="家庭游">家庭游</option>'+ 
+			'<option value="老人游">老人游</option>'+ 
+			'<option value="个人游">个人游</option>'+ 
+			'<option value="伙伴游(毕业旅行)">伙伴游(毕业旅行)</option>'+ 
+			'<option value="其他人群">其他人群</option>'+ 
+			'</select>';
+			$("#rucrowd").parent().append(result);
+			//document.getElementById("rucrowd").innerHTML= result;
+		},
+		writeRank:function(){
+			var rankSelect ='<select name="rank" class="easyui-box ui-text" style="width:100px;">'+
+			'<option value="">--请选择--</option>'+
+			'<option value="5">极力推荐</option>'+
+			'<option value="4">强烈推荐</option>'+
+			'<option value="3">实力推荐</option>'+
+			'<option value="2">比较推荐</option>'+
+			'<option value="1">一般推荐</option>'+
+		'</select>'; 
+			$("#rankLabel").parent().append(rankSelect);
 		}
 	}
 	return _this;
@@ -266,4 +339,6 @@ itour.travelItem = function(){
 
 $(function(){
 	itour.travelItem.init();
+	itour.travelItem.writeSelect();
+	itour.travelItem.writeRank();
 });

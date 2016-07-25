@@ -34,7 +34,7 @@ pageContext.setAttribute("basePath",basePath);
 			<!-- <input name="status" class="easyui-box ui-text" style="width:100px;"/> -->
 			<label class="ui-label">反馈时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -60,12 +60,14 @@ pageContext.setAttribute("basePath",basePath);
 					</div> -->
 					<div class="fitem">
 						<label>标题:</label>
-						<input name="title" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写title">
+						<input name="title" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写title">
+						<span style="color:red">*</span>
 					</div>
 					<p></p>
 					<div class="fitem">
 						<label>内容:</label>
-						<textarea rows="7" cols="30" name="content" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写content"></textarea>
+						<textarea rows="7" cols="30" name="content" required="true" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写content"></textarea>
+						<span style="color:red">*</span>
 					</div>
 			<!-- 		<div class="fitem">
 						<label>反馈时间</label>

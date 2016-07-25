@@ -95,7 +95,7 @@ public class CustomersController extends BaseController{
 	@RequestMapping("/save")
 	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
-		
+		entity.setCustomerId(IDGenerator.getUUID());
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			//entity.setId(IDGenerator.getLongId());
 			customersService.add(entity);

@@ -28,7 +28,7 @@ pageContext.setAttribute("basePath",basePath);
 		    <label class="ui-label">主机名:</label><input name="varHostname" class="easyui-box ui-text" style="width:100px;">
             <label class="ui-label">主机IP: </label><input name="varHostip" class="easyui-box ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

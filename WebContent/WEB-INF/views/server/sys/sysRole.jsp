@@ -28,7 +28,7 @@ pageContext.setAttribute("basePath",basePath);
                         <label class="ui-label">状态: </label><input name="state" class="easyui-box ui-text" style="width:100px;">
              <label class="ui-label">创建时间: </label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
         </p>  
-        <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

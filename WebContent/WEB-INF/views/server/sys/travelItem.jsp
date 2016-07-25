@@ -1,119 +1,129 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java"  pageEncoding="UTF-8" %>
+<!DOCTYPE HTML>
 <html>
-  <head>
- <base href="<%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
+ <head>
+  <meta http-equiv="pragma" content="no-cache">  
  <meta http-equiv="cache-control" content="no-cache">  
  <meta http-equiv="expires" content="0">      
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
+ <jsp:include page="../resource.jsp"></jsp:include>
+ <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
  	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">旅游项目:</label><input name="item" class="easyui-box ui-text" style="width:100px;"/>
-			<label class="ui-label">项目代码:</label><input name="itemCode" class="easyui-box ui-text" style="width:100px;"/>
-			<label class="ui-label">海&nbsp;&nbsp;拔:</label><input name="elevation" class="easyui-box ui-text" style="width:100px;"/>
-			<label class="ui-label">所属省市:</label><input name="scope" class="easyui-box ui-text" style="width:100px;"/></p>
-			<p class="ui-fields"><label class="ui-label">推荐人群:</label><input name="recommandCrowd" class="easyui-box ui-text" style="width:100px;"/>
-			<label class="ui-label">里&nbsp;&nbsp;程:</label><input name="mileage" class="easyui-box ui-text" style="width:100px;"/>
-			<label class="ui-label">推荐指数:</label><input name="rank" class="easyui-box ui-text" style="width:100px;"/>
-	        <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
-	    </p>
-      </form>  
-     </div> 
-     <!--  Search panel end -->
-
-     <!-- Data List -->
+			<label class="ui-label">项目代码:</label>
+			<input name="itemCode" class="easyui-box ui-text" style="width:110px;"/>
+			<label class="ui-label">旅游项目:</label>
+			<input name="item" class="easyui-box ui-text" style="width:108px;"/>
+			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
+			<select name="elevation" class="easyui-box ui-text" style="width:100px;">
+				<option value="">--请选择--</option>
+				<option value="1">100米以下</option>
+				<option value="2">500米以下</option>
+				<option value="3">1000米以下</option>
+				<option value="4">2000米以下</option>
+				<option value="5">4000米以下</option>
+				<option value="6">6000米以下</option>
+				<option value="7">8000米以下</option>
+				<option value="8">8000米以上</option>
+			</select>
+			<label class="ui-label">所属省市:</label>
+			<select name="scope" class="easyui-box ui-text" style="width:100px;">
+				<option value="">--请选择--</option>
+				<option value="四川">四川</option>
+				<option value="云南">云南</option>
+				<option value="西藏">西藏</option>
+				<option value="新疆">新疆</option>
+			</select>
+			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:</label>
+			<select name="recommandCrowd" class="easyui-box ui-text" style="width:103px;">
+			   <option value="">--请选择--</option>
+			   <option value="亲子游">亲子游</option>
+			   <option value="情侣双人游">情侣双人游</option>
+			   <option value="家庭游">家庭游</option>
+			   <option value="老人游">老人游</option>
+			   <option value="个人游">个人游</option> 
+			   <option value="伙伴游(毕业旅行)">伙伴游(毕业旅行)</option> 
+			   <option value="其他人群">其他人群</option>
+			   </select>
+			<label class="ui-label">里&nbsp;&nbsp;程:</label>
+			<select name="mileage" class="easyui-box ui-text" style="width:100px;">
+				<option value="">--请选择--</option>
+				<option value="1">5公里以内</option>
+				<option value="2">20公里以内</option>
+				<option value="3">50公里以内</option>
+				<option value="4">200公里以内</option>
+				<option value="5">500公里以内</option>
+				<option value="6">1000公里以内</option>
+				<option value="7">2000公里以内</option>
+				</select>
+			<label class="ui-label">推荐指数:</label>
+			<select name="rank" class="easyui-box ui-text" style="width:100px;">
+				<option value="">--请选择--</option>
+				<option value="5">极力推荐</option>
+				<option value="4">强烈推荐</option>
+				<option value="3">实力推荐</option>
+				<option value="2">比较推荐</option>
+				<option value="1">一般推荐</option>
+			</select> 
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
+      </form></div>
+       <!--  Search panel end -->
+     
      <div region="center" border="false" >
+     <!-- Data List -->
      <table id="data-list"></table>
-	 </div>
-	 
-     <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="旅行项目" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
+	 </div><!-- Edit Win&Form -->
+     <div id="edit-win" class="" title="旅行项目" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">旅行项目</div>
 					<div class="fitem">
-						<label>项目名称:</label>
-						<input name="item" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写item">
-					</div>
-					<!-- <div class="fitem">
-						<label>项目代码:</label>
-						<input name="itemCode" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写itemCode">
-					</div> -->
-					<div class="fitem">
-						<label>海&nbsp;&nbsp;拔:</label>
-						<input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
+						<label>项目名称:</label><input name="item" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写项目名称">
+						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
-						<label>具体介绍:</label>
-						<textarea rows="6" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写具体介绍"></textarea>
+						<label>所属省市:</label><input name="scope" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
 					</div>
 					<div class="fitem">
-						<label>美&nbsp;&nbsp;图:</label>
-						<input name="photos" type="file" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写photos">
+						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
+					</div>
+					<div class="fitem"><label>美&nbsp;&nbsp;图:</label><input name="photos" type="text" /></div>
+					<div class="fitem">
+						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
 					<div class="fitem">
-						<label>里&nbsp;&nbsp;程:</label>
-						<input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
+						<label>里&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
 					</div>
 					<div class="fitem">
-						<label>所属省市:</label>
-						<input name="scope" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
+						<label>具体介绍:</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写具体介绍"></textarea>
+					</div> 
+				  	<div class="fitem">
+						<label id="rankLabel">推荐指数:</label>
+						</div>  
+					<div class="fitem">
+						<label>推荐原因:</label><input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
 					</div>
 					<div class="fitem">
-						<label>简略描述:</label>
-						<input name="shortContent" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写shortContent">
+						<label>建议天数:</label><input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rcdDays">
 					</div>
 					<div class="fitem">
-						<label>推荐指数:</label>
-						<input name="rank" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rank">
+						<label>挑战度:</label><select name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate"><option value="">--请选择--</option><option value="1">一般难度</option><option value="2">略有挑战</option><option value="3">难度适中</option><option value="4">是个难关</option><option value="5">难度爆棚</option></select>
 					</div>
 					<div class="fitem">
-						<label>推荐原因:</label>
-						<input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
+						<label>好玩值:</label><select name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>
 					</div>
 					<div class="fitem">
-						<label>折&nbsp;&nbsp;扣:</label>
-						<input name="discount" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写discount">
+						<label id="rucrowd">建议人群:</label>
 					</div>
 					<div class="fitem">
-						<label>建议天数:</label>
-						<input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rcdDays">
-					</div>
-					<div class="fitem">
-						<label>挑战度(1为最低,5为最高,依次递增):</label>
-						<input name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate">
-					</div>
-					<div class="fitem">
-						<label>快乐值(1为最低,5为最高,依次递增):</label>
-						<input name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue">
-					</div>
-					<div class="fitem">
-						<label>建议适合的人群及要求,注意事项:</label>
-						<input name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写recommandCrowd">
-					</div>
-					<div class="fitem">
-						<label>备&nbsp;&nbsp;注:</label>
-						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<label>备注(提醒建议):</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>
   	 </div>
-     <script type="text/javascript" src="<%=basePath%>js/ux/sys/travelItem.js"></script>
   </body>
 </html>

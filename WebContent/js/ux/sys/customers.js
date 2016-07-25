@@ -176,6 +176,9 @@ itour.customers = function(){
 									return "活跃";
 								}
 								if(value == 2){
+									return "不活跃";
+								}
+								if(value == 3){
 									return "废弃";
 								}
 							}
@@ -206,6 +209,8 @@ itour.customers = function(){
 								}
 								if(value == 5){
 									return "海外";
+								}else{
+									return value;
 								}
 							}
 						},
@@ -228,10 +233,8 @@ itour.customers = function(){
 									return row.introduction;
 								}
 							}
-					}
-					]],
-					toolbar:[
-								{id:'btnadd',text:'添加',btnType:'add'},
+					}]],
+					toolbar:[{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
 								{

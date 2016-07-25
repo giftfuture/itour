@@ -17,6 +17,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="description" content="This is my page"> 
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
+      <script type="text/javascript" src="<%=basePath%>js/ux/sys/quotation.js"></script>
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -27,7 +28,7 @@ pageContext.setAttribute("basePath",basePath);
 			<label class="ui-label">报价单名:</label><input name="name" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">生成时间:</label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -82,6 +83,6 @@ pageContext.setAttribute("basePath",basePath);
   			</div>
      	</form>
   	 </div>
-     <script type="text/javascript" src="<%=basePath%>js/ux/sys/quotation.js"></script>
+
   </body>
 </html>

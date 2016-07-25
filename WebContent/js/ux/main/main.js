@@ -24,7 +24,9 @@ itour.main = function(){
 				     _refresh_ifram.contentWindow.location.href=_url;  
 			    } 
 			}else{		
-				var _content ="<iframe scrolling='auto' frameborder='0' src='"+_url+"' style='width:100%; height:100%'></iframe>";
+				var _content ="<iframe scrolling='auto'" +
+						/*" onload=javascript:this.height=document.frames(this.name).document.body.scrollHeight+30" +*/
+						" frameborder='0' src='"+_url+"' style='width:100%; height:100%'></iframe>";
 				$(boxId).tabs('add',{
 					    title:_title,
 					    content:_content,

@@ -24,9 +24,15 @@ pageContext.setAttribute("basePath",basePath);
         <p class="ui-fields">
 			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;">
-			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">状态:</label>
+			<select name="status" class="easyui-box ui-text" style="width:100px;">
+				<option value="">--请选择--</option>
+				<option value="1">活跃</option>
+				<option value="2">不活跃</option>
+				<option value="3">废弃</option>
+			</select>
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -59,8 +65,9 @@ pageContext.setAttribute("basePath",basePath);
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
 					</div>-->
 					<div class="fitem">
-						<label>客户姓名:</label>
-						<input name="customerName" type="text" maxlength="200" class="easyui-validatebox" data-options="" missingMessage="请填写customerName">
+						<label>姓&nbsp;&nbsp;名:</label>
+						<input name="customerName" type="text" maxlength="200" class="easyui-validatebox" required="true" data-options="" missingMessage="客户姓名为必填项">
+						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>昵&nbsp;&nbsp;称:</label>
@@ -68,7 +75,8 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>手机/移动电话:</label>
-						<input name="mobile" type="text" maxlength="50" class="easyui-validatebox" data-options="" missingMessage="请填写mobile">
+						<input name="mobile" type="text" maxlength="50" class="easyui-validatebox" required="true" data-options="" missingMessage="移动电话为必填项">
+						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>固话/小灵通:</label>
@@ -76,11 +84,19 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>邮&nbsp;&nbsp;箱:</label>
-						<input name="email" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写email">
+						<input name="email" type="text" maxlength="255" class="easyui-validatebox" required="true" data-options="" missingMessage="邮箱为必填项" validType="email" invalidMessage="请填写正确格式的邮件" >
+						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>来自(国家/地区):</label>
-						<input name="scope" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
+						<select name="scope" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
+							<option value="0">--请选择--</option>
+							<option value="1">中国大陆</option>
+							<option value="2">香港</option>
+							<option value="3">澳门</option>
+							<option value="4">台湾</option>
+							<option value="5">海外</option>
+						</select>
 					</div>
 					<div class="fitem">
 						<label>城&nbsp;&nbsp;市:</label>
@@ -96,7 +112,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div>
 					<div class="fitem">
 						<label>个人简介/要求:</label>
-						<textarea  name="introduction"  rows="5" cols="30" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写introduction"></textarea>
+						<textarea  name="introduction"  rows="7" cols="30" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写introduction"></textarea>
 					</div>
   			</div>
      	</form>

@@ -42,7 +42,7 @@ itour.travelStyle = function(){
 			addLine: function(data){
 				var table = $("#btn-tb");
 				var	html = "<tr class='tb-line'>";
-				html+=	   "	<td><span class='newFlag red'>*</span>";
+				//html+=	   "	<td><span class='newFlag red'>*</span>";
 				html+=	   "	<td><input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
 				html+=	   "	<td><input name=\"btnType\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
 				html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-validatebox text-desc\" style=\"width:100%\"  ></td>";
