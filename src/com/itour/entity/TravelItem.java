@@ -2,6 +2,7 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+import java.io.File;
 /**
  * 
  * <br>
@@ -11,7 +12,14 @@ import java.math.BigDecimal;
  */
 public class TravelItem extends BaseEntity {
 	
-		private java.lang.String id;//   	private java.lang.String item;//   	private java.lang.String itemCode;//   	private BigDecimal elevation;//海拔   	private java.lang.String content;//   	private java.lang.String photos;//   	private java.lang.String remark;//   	private java.lang.String mileage;//   	private java.lang.String scope;//   	private java.lang.String shortContent;//   	private java.lang.Integer rank;//   	private java.lang.String recommandReason;//   	private BigDecimal discount;//  折扣 	private java.lang.Integer rcdDays;//   建议天数	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6120210586713700033L;
+	private java.lang.String id;//   	private java.lang.String item;//   	private java.lang.String itemCode;//   	private BigDecimal elevation;//海拔   	private java.lang.String content;//   	private java.lang.String photos;//   	private java.lang.String remark;//   	private java.lang.String mileage;//   	private java.lang.String scope;//   	private java.lang.String shortContent;//   	private java.lang.Integer rank;//   	private java.lang.String recommandReason;//   	private BigDecimal discount;//  折扣 	private java.lang.Integer rcdDays;//   建议天数	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
+	
+	private File[] fileselect;
+		public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getItem() {
 		return item;
 	}
@@ -107,6 +115,12 @@ public class TravelItem extends BaseEntity {
 	}
 	public void setRecommandCrowd(java.lang.String recommandCrowd) {
 		this.recommandCrowd = recommandCrowd;
+	}
+	public File[] getFileselect() {
+		return fileselect;
+	}
+	public void setFileselect(File[] fileselect) {
+		this.fileselect = fileselect;
 	}	
 }
 

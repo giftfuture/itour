@@ -1,6 +1,8 @@
 package com.itour.page;
 
 import com.itour.base.page.BasePage;
+
+import java.io.File;
 import java.math.BigDecimal;
 
 /**
@@ -30,6 +32,9 @@ public class TravelItemPage extends BasePage {
 	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增
 	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增
 	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
+
+	private File[] fileselect;
+	
 	public java.lang.String getId() {
 	    return this.id;
 	}
@@ -131,6 +136,12 @@ public class TravelItemPage extends BasePage {
 	}
 	public void setRecommandCrowd(java.lang.String recommandCrowd) {
 	    this.recommandCrowd=recommandCrowd;
+	}
+	public File[] getFileselect() {
+		return fileselect;
+	}
+	public void setFileselect(File[] fileselect) {
+		this.fileselect = fileselect;
 	}
 	
 }

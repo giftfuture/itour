@@ -51,22 +51,6 @@ pageContext.setAttribute("basePath",basePath);
      		 <div class="ui-edit">
 		     	   <div class="ftitle">客户订单</div>
 					<!-- <div class="fitem">
-						<label>订单号:</label>
-						<input name="orderNo" type="text" maxlength="" class="easyui-validatebox" data-options="" missingMessage="请填写orderNo">
-					</div>-->
-				<!-- 	<div class="fitem">
-						<label>订单名称:</label>
-						<input name="orderName" type="text" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写orderName">
-					</div>  -->
-				<!-- 	<div class="fitem">
-						<label>下单时间:</label>
-						<input name="createTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写createTime">
-					</div>
-					<div class="fitem">
-						<label>更新时间:</label>
-						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
-					</div> -->
-					<!-- <div class="fitem">
 						<label>订单状态:</label>
 						<select name="orderStatus">
 							<option value="1">待付款</option>
@@ -128,7 +112,20 @@ pageContext.setAttribute("basePath",basePath);
 							<option value="中国银行">中国银行</option>
 							<option value="中国农业银行">中国农业银行</option>
 							<option value="中国工商银行">中国工商银行</option>
-							
+							<option value="中国建设银行">中国建设银行</option>
+							<option value="交通银行">交通银行</option>
+							<option value="浦发银行">浦发银行</option>
+							<option value="招商银行">招商银行</option> 
+							<option value="广发银行">广发银行</option>
+							<option value="中信银行">中信银行</option>
+							<option value="兴业银行">兴业银行</option>
+							<option value="邮储银行">邮储银行</option>
+							<option value="民生银行">民生银行</option>
+							<option value="平安银行">平安银行</option>
+							<option value="光大银行">光大银行</option>
+							<option value="华夏银行">华夏银行</option>
+							<option value="汇丰银行">汇丰银行</option>
+							<option value="其他银行">其他银行</option>
 						</select>
 					</div>
 					<div class="fitem">

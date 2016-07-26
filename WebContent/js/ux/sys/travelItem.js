@@ -17,9 +17,9 @@ itour.travelItem = function(){
 		//设置默认按钮数据
 		addDefBtns:function(){
 			var defaultBtns= [
-				{"btnName":"添加","menuid":"13","actionUrls":"travelItem/save","btnType":"add"},
-				{"btnName":"修改","menuid":"13","actionUrls":"travelItem/getId|travelItem/save","btnType":"edit"},
-				{"btnName":"删除","menuid":"13","actionUrls":"travelItem/delete","btnType":"remove"}
+				{"btnName":"添加","menuid":"13","actionUrls":"save","btnType":"add"},
+				{"btnName":"修改","menuid":"13","actionUrls":"getId|save","btnType":"edit"},
+				{"btnName":"删除","menuid":"13","actionUrls":"delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
@@ -126,9 +126,9 @@ itour.travelItem = function(){
 			
 		},
 		action:{
-				save:'travelItem/save', //新增&修改 保存Action  
-				getId:'travelItem/getId',//编辑获取的Action
-				remove:'travelItem/delete'//删除数据的Action
+				save:'save', //新增&修改 保存Action  
+				getId:'getId',//编辑获取的Action
+				remove:'delete'//删除数据的Action
 			},
 		//config:{
 			
@@ -281,18 +281,18 @@ itour.travelItem = function(){
 						}
 					]],
 					toolbar:[
-								{id:'btnadd',text:'添加',btnType:'add'},
-								{id:'btnedit',text:'修改',btnType:'edit'},
-								{id:'btndelete',text:'删除',btnType:'remove'},
-								{
-									id:'btnback',
-									text:'back',
-									disabled: true,
-									iconCls:'icon-back',
-									handler:function(){
-										_this.toList();
-									}
-								}
+						{id:'btnadd',text:'添加',btnType:'add'},
+						{id:'btnedit',text:'修改',btnType:'edit'},
+						{id:'btndelete',text:'删除',btnType:'remove'},
+						{
+							id:'btnback',
+							text:'back',
+							disabled: true,
+							iconCls:'icon-back',
+							handler:function(){
+								_this.toList();
+							}
+						}
 			     	]
 			}
 		},
@@ -309,7 +309,7 @@ itour.travelItem = function(){
 			
 		},
 		writeSelect:function(){
-			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写recommandCrowd">'+
+			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" style="width:112px;" data-options="" missingMessage="请填写recommandCrowd">'+
 			'<option value="">--请选择--</option>'+  
 			'<option value="亲子游">亲子游</option> '+ 
 			'<option value="情侣双人游">情侣双人游</option>'+ 
@@ -320,6 +320,7 @@ itour.travelItem = function(){
 			'<option value="其他人群">其他人群</option>'+ 
 			'</select>';
 			$("#rucrowd").parent().append(result);
+			$("#rcmdCrowd").parent().append(result);
 			//document.getElementById("rucrowd").innerHTML= result;
 		},
 		writeRank:function(){
@@ -332,8 +333,93 @@ itour.travelItem = function(){
 			'<option value="1">一般推荐</option>'+
 		'</select>'; 
 			$("#rankLabel").parent().append(rankSelect);
-		}
-	}
+			$("#SelectrankLabel").parent().append(rankSelect);
+		},
+		params:{
+				fileInput: $("#fileImage").get(0),
+			//	dragDrop: $("#fileDragArea").get(0),
+				upButton: $("#fileSubmit").get(0),
+				url: 'uploadPhoto',// _this.config.action.save,//$("#uploadForm").attr("action"),
+				filter: function(files) {
+					var arrFiles = [];
+					for (var i = 0, file; file = files[i]; i++) {
+						if (file.type.indexOf("image") == 0) {
+							if (file.size >= 512000) {
+								alert('您这张"'+ file.name +'"图片大小过大，应小于500k');	
+							} else {
+								arrFiles.push(file);	
+							}			
+						} else {
+							alert('文件"' + file.name + '"不是图片。');	
+						}
+					}
+					return arrFiles;
+				},
+				onSelect: function(files) {
+					var html = '', i = 0;
+					$("#preview").html('<div class="upload_loading"></div>');
+					var funAppendImage = function() {
+						file = files[i];
+					//	alert(file.name);
+						if (file) {
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
+									'<a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><br />' +
+									'<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+									'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+								'</div>';
+								i++;
+								funAppendImage();
+							}
+							reader.readAsDataURL(file);
+						} else {
+							$("#preview").html(html);
+							if (html) {
+								//删除方法
+								$(".upload_delete").click(function() {
+									ZXXFILE.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+									return false;	
+								});
+								//提交按钮显示
+								$("#fileSubmit").show();	
+							} else {
+								//提交按钮隐藏
+								$("#fileSubmit").hide();	
+							}
+						}
+					};
+					funAppendImage();		
+				},
+				onDelete: function(file) {
+					$("#uploadList_" + file.index).fadeOut();
+				},
+				onDragOver: function() {
+					$(this).addClass("upload_drag_hover");
+				},
+				onDragLeave: function() {
+					$(this).removeClass("upload_drag_hover");
+				},
+				onProgress: function(file, loaded, total) {
+					var eleProgress = $("#uploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+					eleProgress.show().html(percent);
+				},
+				onSuccess: function(file, response) {
+					$("#uploadInf").append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
+					//$("#uploadInf").append("<p>上传成功，图片地址是：" + response + "</p>");
+				},
+				onFailure: function(file) {
+					$("#uploadInf").append("<p>图片" + file.name + "上传失败！</p>");	
+					$("#uploadImage_" + file.index).css("opacity", 0.2);
+				},
+				onComplete: function() {
+					//提交按钮隐藏
+					$("#fileSubmit").hide();
+					//file控件value置空
+					$("#fileImage").val("");
+					$("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+				}
+	}};
 	return _this;
 }();
 
@@ -341,4 +427,6 @@ $(function(){
 	itour.travelItem.init();
 	itour.travelItem.writeSelect();
 	itour.travelItem.writeRank();
+	ZXXFILE = $.extend(ZXXFILE, itour.travelItem.params);
+	ZXXFILE.init();
 });

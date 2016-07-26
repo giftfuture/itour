@@ -4,9 +4,11 @@
  <head>
   <meta http-equiv="pragma" content="no-cache">  
  <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
+ <meta http-equiv="expires" content="0">    
  <jsp:include page="../resource.jsp"></jsp:include>
- <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script> 
+ <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
+ <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script>
+ 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -38,18 +40,9 @@
 				<option value="新疆">新疆</option>
 			</select>
 			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:</label>
-			<select name="recommandCrowd" class="easyui-box ui-text" style="width:103px;">
-			   <option value="">--请选择--</option>
-			   <option value="亲子游">亲子游</option>
-			   <option value="情侣双人游">情侣双人游</option>
-			   <option value="家庭游">家庭游</option>
-			   <option value="老人游">老人游</option>
-			   <option value="个人游">个人游</option> 
-			   <option value="伙伴游(毕业旅行)">伙伴游(毕业旅行)</option> 
-			   <option value="其他人群">其他人群</option>
-			   </select>
+		
 			<label class="ui-label">里&nbsp;&nbsp;程:</label>
-			<select name="mileage" class="easyui-box ui-text" style="width:100px;">
+			<select name="mileage" class="easyui-box ui-text" style="width:110px;">
 				<option value="">--请选择--</option>
 				<option value="1">5公里以内</option>
 				<option value="2">20公里以内</option>
@@ -59,24 +52,31 @@
 				<option value="6">1000公里以内</option>
 				<option value="7">2000公里以内</option>
 				</select>
-			<label class="ui-label">推荐指数:</label>
-			<select name="rank" class="easyui-box ui-text" style="width:100px;">
-				<option value="">--请选择--</option>
-				<option value="5">极力推荐</option>
-				<option value="4">强烈推荐</option>
-				<option value="3">实力推荐</option>
-				<option value="2">比较推荐</option>
-				<option value="1">一般推荐</option>
-			</select> 
+			<label class="ui-label" id="SelectrankLabel">推荐指数:</label>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
       </form></div>
        <!--  Search panel end -->
-     
      <div region="center" border="false" >
      <!-- Data List -->
      <table id="data-list"></table>
 	 </div><!-- Edit Win&Form -->
      <div id="edit-win" class="" title="旅行项目" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
+     	<form action="" method="post" enctype="multipart/form-data">
+     			<div class="fitem upload"><label>美&nbsp;&nbsp;图:</label>
+					<div class="upload_box">
+                        <div class="upload_main">
+                            <div class="upload_choose">
+                                <input id="fileImage" type="file" size="30" name="fileselect" multiple  />
+                            </div>
+                            <div id="preview" class="upload_preview"></div>
+                        </div>
+                        <div class="upload_submit">
+                            <button type="button" id="fileSubmit" class="upload_submit_btn">确认上传图片</button>
+                        </div>
+                        <div id="uploadInf" class="upload_inf"></div>
+                    </div>
+					</div>
+     	</form>
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -91,7 +91,7 @@
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
 					</div>
-					<div class="fitem"><label>美&nbsp;&nbsp;图:</label><input name="photos" type="text" /></div>
+			
 					<div class="fitem">
 						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
@@ -125,5 +125,6 @@
   			</div>
      	</form>
   	 </div>
+  	  <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>
   </body>
 </html>
