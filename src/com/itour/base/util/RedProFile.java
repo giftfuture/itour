@@ -8,6 +8,7 @@ public class RedProFile {
 	public static String uploadPath(){
 		String resourceFile = "jdbc";    
 		ResourceBundle rb = ResourceBundle.getBundle(resourceFile);
+		//return  rb.getString("url");//rb.getString("upload");
 		return rb.getString("upload");
 	}
 	
@@ -24,7 +25,6 @@ public class RedProFile {
 	//ResourceBundle rb = ResourceBundle.getBundle(resourceFile);
 	System.out.println(uploadPath());//这里是分大小写的，嘿嘿输出值为
 		
-
 	}
 
 }

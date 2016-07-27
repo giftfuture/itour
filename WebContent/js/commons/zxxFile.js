@@ -98,11 +98,28 @@ var ZXXFILE = {
 							}
 						}
 					};
-		
+					//var form = new FormData();
+					//form.append("fileselect", file); // 文件对象
+				//	var oData = new FormData({'fileselect':document.forms["multiDataForm"].fileselect}); 
 					// 开始上传
-					xhr.open("POST", self.url, true);
+			/*		xhr.open("post", self.url, true);
+					//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8;boundary="+new Date().getTime());
+					  // Set appropriate headers
+					xhr.overrideMimeType('text/plain; charset=utf-8');
+					xhr.setRequestHeader("Content-Type", "multipart/form-data;charset=UTF-8;boundary="+new Date().getTime());
+				//	xhr.setRequestHeader("Content-Type", "multipart/x-www-form-urlencoded;charset=UTF-8;boundary="+new Date().getTime());
+					//xhr.setRequestHeader("X-File-Name", file.fileName);
+					//xhr.setRequestHeader("X-File-Size", file.fileSize);
+					xhr.setRequestHeader("X-File-Type", file.type);
 					xhr.setRequestHeader("X_FILENAME", file.name);
-					xhr.send(file);
+					xhr.setRequestHeader("fileselect", file);
+					// FormData 对象
+		            var form = new FormData($("#multiDataForm")[0]);
+		            form.append("name","daaaaa");//http://localhost:8080/itour/travelItem/uploadPhoto
+					//xhr.setRequestHeader("id", new Date().getTime());
+					//console.log(file);
+					//xhr.send(file);
+					xhr.send(form);*/
 				}	
 			})(file);	
 		}	

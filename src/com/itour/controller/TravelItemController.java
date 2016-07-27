@@ -1,28 +1,57 @@
 package com.itour.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.BufferedOutputStream;
+import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.AsyncContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
+
+
+
+
+//import com.alibaba.fastjson.JSONObject;
+import com.itour.base.util.FileIO;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.RedProFile;
 import com.itour.base.util.StringUtil;
@@ -110,22 +139,72 @@ public class TravelItemController extends BaseController{
 		sendSuccessMessage(response, "保存成功~");
 	}
 	//headers = "content-type=application/x-www-form-urlencoded",
-	@RequestMapping(value="/uploadPhoto",  method = RequestMethod.POST)//,method = RequestMethod.POST
-	//@ResponseBody
-	public @ResponseBody Map<String,Object> uploadPhoto(String id,@RequestParam(value = "fileselect",required=false) MultipartFile fileselect,MultipartHttpServletRequest request) {
+	
+	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST
+	@ResponseBody // @ResponseBody Map<String,Object>
+	public void uploadPhoto(@RequestParam(value="id",required=false)String id,
+			@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
+			//@RequestParam(value="name",required=false) String name,
+			HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object> resMap = new HashMap<String,Object>();
+		//MultipartFile fileselect = null;
 		try {
-			//MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;            
-			// 获得文件：   
-			//MultipartFile file = (MultipartFile) request.getFileMap(); 
 			if(request instanceof MultipartHttpServletRequest){
-			InputStream is = fileselect.getInputStream();
+			//MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;// resolver.resolveMultipart(request);
+			//MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;            
+		 //String filename =	multipartRequest.getHeader("X_FILENAME");
+		// String filetype =	multipartRequest.getHeader("X-File-Type");
+		// String fifi = multipartRequest.getHeader("fileselect");
+		// CommonsMultipartFile cm = (CommonsMultipartFile) multipartRequest.getFile("file");
+			// 获得文件：   
+			//Map<String,MultipartFile> file = (Map<String,MultipartFile>) multipartRequest.getFileMap(); 
+			//MultiValueMap<String,MultipartFile> its = multipartRequest.getMultiFileMap();
+			//List<MultipartFile> lll = multipartRequest.getFiles("fileselect");
+			
+			String realPath = RedProFile.uploadPath() ;
+			// MultipartFile imgFile = null;
+			 OutputStream out = null;
+			// Iterator<String> it = multipartRequest.getFileNames();
+			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
+			 String fileName = "";
+			for(MultipartFile f:multifiles){
+			    if (f.getOriginalFilename().length() > 0) {    
+		            fileName = f.getOriginalFilename();   
+		            System.err.println("upload filename is " + fileName);  
+		            out = new FileOutputStream(new File(realPath+"\\" + fileName));  
+		            out.write(f.getBytes());  
+		            out.close();  
+		        }  
+			}
+			fileName = null;
+		/*	 String key = it.next();
+			  while(it.hasNext()) {    
+			         key = (String) it.next();    
+			        imgFile = multipartRequest.getFile(key);    
+			        if (imgFile.getOriginalFilename().length() > 0) {    
+			            String fileName = imgFile.getOriginalFilename();   
+			            System.err.println("filename is " + fileName);  
+			            out = new FileOutputStream(new File(realPath+"\\" + fileName));  
+			            out.write(imgFile.getBytes());  
+			            out.close();  
+			        }  
+			    }  
+			  imgFile = null;*/
+				//HttpHeaders map = multipartRequest.getRequestHeaders();
+			 //Object obj = multipartRequest.getAttribute("fileselect");
+			// HttpHeaders header= multipartRequest.getRequestHeaders();// multipartRequest.getHeader("fileselect");
+			// List<MultipartFile> files = multipartRequest.getFiles("fileselect");
+			//获得提交的所有的<img name=""/> 标签中的name,可实现多张上传
+			// Iterator<String> names= multipartRequest.getFileNames();
+
+			 //循环所有的<img name=""/> 标签中的name
 			if (fileselect != null) {
 					//FileIO.uploadPhoto(id,fileselect.getInputStream());
 				//获取保存的路径，
-				String realPath = RedProFile.uploadPath() ;//request.getSession().getServletContext().getRealPath("/upload/apk");
+				//request.getSession().getServletContext().getRealPath("/upload/apk");
 				String originFileName = fileselect.getOriginalFilename();
-				File f = new File(realPath,originFileName);
+				//File f = new File(realPath,originFileName);
 				if (fileselect.isEmpty()) {
 					// 未选择文件
 					//resMap.put("status", StatusConstants.STATUS_PARM_IS_EMPTY);
@@ -144,13 +223,24 @@ public class TravelItemController extends BaseController{
 				}
 
 			}
+			}else{
+				System.out.println("##########不是上传文件对象#############");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-			
-		
-		return resMap;
+	/*	try{	
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setContentType("text/html;charset=UTF-8");   
+	    PrintWriter out1 = response.getWriter();  
+	    //FileUploadResp res = new FileUploadResp();  
+	    //res.setResult(0);  
+	    //res.setDesc("success.");  
+	    out1.write(JSONObject.fromObject(new Object()).toString());  
+	    } catch (IOException e) {  
+	        log.error("in batchImportApps,inputstream is null.");  
+	    } */
+		//return resMap;
 	}
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -173,7 +263,17 @@ public class TravelItemController extends BaseController{
 		sendSuccessMessage(response, "删除成功");
 	}
 	
-	
+	/**
+	 * 
+	 * @param exception
+	 * @return
+	 */
+	 @ExceptionHandler(IOException.class)  
+	 public ModelAndView handleIOException(IOException exception) {  
+		 ModelAndView modelAndView = new ModelAndView("profile/uploadPage");  
+		 modelAndView.addObject("error", exception.getMessage());  
+		 return modelAndView;  
+	 }  
 
 	
 	/**

@@ -331,7 +331,7 @@ itour.travelItem = function(){
 			'<option value="3">实力推荐</option>'+
 			'<option value="2">比较推荐</option>'+
 			'<option value="1">一般推荐</option>'+
-		'</select>'; 
+			'</select>'; 
 			$("#rankLabel").parent().append(rankSelect);
 			$("#SelectrankLabel").parent().append(rankSelect);
 		},

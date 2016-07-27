@@ -8,17 +8,26 @@
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context-3.2.xsd" 
-		default-autowire="byName">
-		
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+		 default-autowire="byName">
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-
 	<!-- Configures the @Controller programming model -->
 	<!-- Enables the Spring MVC @Controller programming model -->
-   <mvc:annotation-driven /> 
+   <mvc:annotation-driven >
+	   	<mvc:message-converters register-defaults="true">  
+				 <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					<!--  <constructor-arg value="UTF-8" index="0"></constructor-arg> -->
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</mvc:message-converters> 
+   </mvc:annotation-driven> 
    <mvc:default-servlet-handler /> 
 	<context:component-scan base-package="com.itour.dao,com.itour.service,com.itour.controller,com.itour.base.dao,com.itour.base.service" />
-		<!-- 扫描classpath的包下的所有类，该包路径下的类可以不需要配置bean了 -->
+		<!-- 扫描classpath的包下的所有类，该包路径下的类可以不需要配置bean了 -->      
 	<context:component-scan base-package="com.itour.base.*" />
 	<!-- <context:component-scan base-package="com.itour.controller.*" /> -->
 	<!-- Configures Handler Interceptors -->	
@@ -55,13 +64,13 @@
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<ref bean="fastJsonHttpMessageConverter" /><!-- json转换器 -->
+				<ref bean="fastJsonHttpMessageConverter" /> <!-- json转换器 -->
 			</list>
-		</property>
+		</property> 
 	</bean>
 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="maxUploadSize" value="32505856" /><!-- 上传文件大小限制为31M，31*1024*1024 -->
 		<property name="maxInMemorySize" value="4096" />
 	</bean>
@@ -79,6 +88,18 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
+		 <!--<property name="defaultViews">  
+            <list>  
+                for application/json 
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />  
+                 for application/xml 
+              <bean class="org.springframework.web.servlet.view.xml.MarshallingView" >  
+                    <property name="marshaller">  
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller"/>  
+                    </property>  
+                </bean> 
+            </list>  
+        </property>  --> 
 	</bean>
 	<!-- <mvc:view-controller path="/" view-name="redirect:/main/login"/> -->
 	<mvc:interceptors>
@@ -108,4 +129,13 @@
 		<bean class="com.itour.base.interceptor.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+	   <!-- Mapping exception to the handler view -->  
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+        <property name="exceptionMappings">  
+            <props>  
+            <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->
+           			<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
+            </props>  
+        </property>  
+    </bean> 
 </beans>

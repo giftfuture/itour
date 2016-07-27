@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 import com.itour.entity.TravelItem;
 
 public class FileIO {
-	private static final int BUFFER_SIZE = 0x300000;
+	public static final int BUFFER_SIZE = 0x300000;
 	/** 
 	* 查找文件 
 	* @param f 
