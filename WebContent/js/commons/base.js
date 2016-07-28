@@ -105,7 +105,6 @@ var itour={
 			 		}
 			 	},
 			 	complete:function(){
-			 	
 			 	}
 			 }
 			 itour.ajaxSubmit(form,option);

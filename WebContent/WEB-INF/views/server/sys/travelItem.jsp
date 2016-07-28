@@ -8,7 +8,6 @@
  <jsp:include page="../resource.jsp"></jsp:include>
  <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
  <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
- 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -59,25 +58,32 @@
      <div region="center" border="false" >
      <!-- Data List -->
      <table id="data-list"></table>
-	 </div><!-- Edit Win&Form -->
-     <div id="edit-win" class="" title="旅行项目" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
-     	<form action="uploadPhoto" id="multiDataForm"  name="multiDataForm" method="post" enctype="multipart/form-data">
-     			<div class="fitem upload"><label>美&nbsp;&nbsp;图:</label>
+	 </div>
+	 <!-- Edit Win&Form -->
+	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+     	<form action="" class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data">
+   				 <input class="hidden" name="id">
+   				 <div class="ui-edit">
+		     	   <div class="ftitle">旅行项目</div>
+    		       <div class="fitem upload"><label>美&nbsp;&nbsp;图:</label>
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                            	<input name="id" type="hidden" value="ssfksfsfkskflslfsl" /> 
                                 <input id="fileImage" type="file" size="30" name="fileselect" multiple="multiple" accept="image/*"  />
                             </div>
                             <div id="preview" class="upload_preview"></div>
                         </div>
                         <div class="upload_submit">
-                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传图片</button>
+                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
                         </div>
                         <div id="uploadInf" class="upload_inf"></div>
                     </div>
-					</div>
+				</div>
+				</div>
      	</form>
+	 </div>  
+     <div id="edit-win" title="旅行项目" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -91,8 +97,8 @@
 					</div>
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
-					</div>
-			
+					</div>			
+					  <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>
 					<div class="fitem">
 						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
@@ -114,7 +120,6 @@
 					<div class="fitem">
 						<label>挑战度:</label><select name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate"><option value="">--请选择--</option><option value="1">一般难度</option><option value="2">略有挑战</option><option value="3">难度适中</option><option value="4">是个难关</option><option value="5">难度爆棚</option></select>
 					</div>
-					  <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>
 					<div class="fitem">
 						<label>好玩值:</label><select name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>
 					</div>

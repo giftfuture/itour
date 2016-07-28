@@ -9,12 +9,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.BufferedOutputStream;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.AsyncContext;
@@ -43,6 +45,9 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
+
+
+
 
 
 
@@ -142,11 +147,11 @@ public class TravelItemController extends BaseController{
 	
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST
 	@ResponseBody // @ResponseBody Map<String,Object>
-	public void uploadPhoto(@RequestParam(value="id",required=false)String id,
+	public ModelAndView uploadPhoto(@RequestParam(value="id",required=false)String id,
 			@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			//@RequestParam(value="name",required=false) String name,
 			HttpServletRequest request,HttpServletResponse response) {
-		Map<String,Object> resMap = new HashMap<String,Object>();
+		//Map<String,Object> resMap = new HashMap<String,Object>();
 		//MultipartFile fileselect = null;
 		try {
 			if(request instanceof MultipartHttpServletRequest){
@@ -161,23 +166,43 @@ public class TravelItemController extends BaseController{
 			//Map<String,MultipartFile> file = (Map<String,MultipartFile>) multipartRequest.getFileMap(); 
 			//MultiValueMap<String,MultipartFile> its = multipartRequest.getMultiFileMap();
 			//List<MultipartFile> lll = multipartRequest.getFiles("fileselect");
-			
-			String realPath = RedProFile.uploadPath() ;
+			String realPath = RedProFile.uploadPath();
+			TravelItem t = travelItemService.queryById(id);
+			StringBuffer photos = new StringBuffer();
+			if (t != null){
+				photos.append(t.getPhotos() == null ? "":t.getPhotos());
+			}
 			// MultipartFile imgFile = null;
 			 OutputStream out = null;
 			// Iterator<String> it = multipartRequest.getFileNames();
 			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 			 String fileName = "";
+			 String newfileName = "";
+			 File newfile = null;
 			for(MultipartFile f:multifiles){
 			    if (f.getOriginalFilename().length() > 0) {    
 		            fileName = f.getOriginalFilename();   
-		            System.err.println("upload filename is " + fileName);  
-		            out = new FileOutputStream(new File(realPath+"\\" + fileName));  
+		            newfile =  new File(realPath);
+		            newfile = new File(realPath+"\\"+t.getItemCode()+"_"+t.getItem());
+		            if(!newfile.exists()||!newfile.isDirectory()){
+		            	newfile.mkdirs();
+		            }
+		            newfileName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+fileName.substring(fileName.indexOf("."));
+		            newfile = new File(realPath+"\\"+t.getItemCode()+"_"+t.getItem()+"\\" +newfileName);
+		            photos.append("|"+newfileName);
+		            System.out.println("upload filename is " + fileName+"   newfilename="+newfileName);  
+		            out = new FileOutputStream(newfile);  
 		            out.write(f.getBytes());  
 		            out.close();  
 		        }  
 			}
+			newfile = null;
 			fileName = null;
+			newfileName = null;
+			TravelItem ti = new TravelItem();
+			ti.setId(id);
+			ti.setPhotos(photos.toString());
+			travelItemService.update(ti);
 		/*	 String key = it.next();
 			  while(it.hasNext()) {    
 			         key = (String) it.next();    
@@ -199,16 +224,16 @@ public class TravelItemController extends BaseController{
 			// Iterator<String> names= multipartRequest.getFileNames();
 
 			 //循环所有的<img name=""/> 标签中的name
-			if (fileselect != null) {
+			//if (fileselect != null) {
 					//FileIO.uploadPhoto(id,fileselect.getInputStream());
 				//获取保存的路径，
 				//request.getSession().getServletContext().getRealPath("/upload/apk");
-				String originFileName = fileselect.getOriginalFilename();
+				//String originFileName = fileselect.getOriginalFilename();
 				//File f = new File(realPath,originFileName);
-				if (fileselect.isEmpty()) {
+				//if (fileselect.isEmpty()) {
 					// 未选择文件
 					//resMap.put("status", StatusConstants.STATUS_PARM_IS_EMPTY);
-				} else{
+			//	} else{
 					// 文件原名称
 					/*try {
 						//这里使用Apache的FileUtils方法来进行保存
@@ -220,13 +245,15 @@ public class TravelItemController extends BaseController{
 						resMap.put("status", StatusConstants.STATUS_EXECPTION);
 						e.printStackTrace();
 					}*/
-				}
+				//}
 
-			}
+			//}
 			}else{
 				System.out.println("##########不是上传文件对象#############");
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	/*	try{	
@@ -241,6 +268,7 @@ public class TravelItemController extends BaseController{
 	        log.error("in batchImportApps,inputstream is null.");  
 	    } */
 		//return resMap;
+		return forword("server/sys/travelItem"); 
 	}
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{

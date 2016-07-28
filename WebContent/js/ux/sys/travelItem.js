@@ -2,6 +2,33 @@ $package('itour.travelItem');
 itour.travelItem = function(){
 	var _box = null;
 	var _this = {
+			uploadPhotoAction:'uploadPhoto',
+			uploadPhotoForm:function(){
+				return $("#multiDataForm");
+			},
+			uploadPhotoWin:function(){//upload-photo
+				return $("#upload-photo");
+			},
+			savePhoto:function(){
+					itour.progress();//缓冲条
+					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
+					itour.saveForm(_this.uploadPhotoForm(),function(data){
+						itour.closeProgress();//关闭缓冲条
+						_this.uploadPhotoWin().dialog('close');
+					});
+			},
+			initForm:function(){
+				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
+					_this.savePhoto();
+				});
+				_this.uploadPhotoWin().find("#win-close").click(function(){	
+					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
+					    if (r){  
+					     	_this.uploadPhotoWin().dialog('close');
+					    }  
+					});
+				});
+			},
 			toList:function(parentId){
 				_box.form.search.resetForm();
 				if(parentId){
@@ -71,7 +98,6 @@ itour.travelItem = function(){
 			}
 			$.parser.parse(line);//解析esayui标签
 			table.append(line);
-			
 		},
 		//删除全部
 		delAllLine:function(b){
@@ -99,49 +125,22 @@ itour.travelItem = function(){
 		},
 	config:{
 		event:{
-			/*add:function(){
-				$('#typeIds_combobox').combobox('reload');
+			add:function(){
 				_box.handler.add();
 			},
 			edit:function(){
-				$('#typeIds_combobox').combobox('reload');
 				_box.handler.edit();
-			}*/
-				add : function(){
-					_this.delAllLine(true);//清空已有的数据
-					_box.handler.add();//调用add方法
-				var parentId =$('#search_parentId').val();
-				if(parentId){
-					$("#edit_parentId").val(parentId);
-				}
 			},
-			edit:function(){
-				_this.delAllLine(true);
-				_box.handler.edit(function(result){
-					$.each(result.data.btns,function(i,btn){
-						_this.addLine(btn);
-					});
-				});
+			uploadImg:function(){
+				_box.handler.uploadImg();
 			}
-			
 		},
 		action:{
 				save:'save', //新增&修改 保存Action  
 				getId:'getId',//编辑获取的Action
-				remove:'delete'//删除数据的Action
+				remove:'delete',//删除数据的Action
+				uploadPhoto:'uploadPhoto'
 			},
-		//config:{
-			
-		/*	event:{
-				add:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
-				},
-				edit:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
-				}
-			},*/
   			dataGrid:{
   				title:'旅行项目',
 	   			url:'dataList',
@@ -284,11 +283,15 @@ itour.travelItem = function(){
 						{id:'btnadd',text:'添加',btnType:'add'},
 						{id:'btnedit',text:'修改',btnType:'edit'},
 						{id:'btndelete',text:'删除',btnType:'remove'},
-						{
-							id:'btnback',
-							text:'back',
-							disabled: true,
-							iconCls:'icon-back',
+						{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-edit',handler:function(){
+							var selected = _box.utils.getCheckedRows();
+							if (_box.utils.checkSelectOne(selected)){
+								_this.uploadPhotoForm().resetForm();
+								_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
+								_this.uploadPhotoWin().window('open'); 		
+							}
+						}},
+						{id:'btnback',text:'back',disabled: true,iconCls:'icon-back',
 							handler:function(){
 								_this.toList();
 							}
@@ -297,6 +300,7 @@ itour.travelItem = function(){
 			}
 		},
 		init:function(){
+			this.initForm();
 			_box = new YDataGrid(_this.config); 
 			_box.init();
 			$('#addLine_btn').click(_this.addLine);
@@ -344,8 +348,8 @@ itour.travelItem = function(){
 					var arrFiles = [];
 					for (var i = 0, file; file = files[i]; i++) {
 						if (file.type.indexOf("image") == 0) {
-							if (file.size >= 512000) {
-								alert('您这张"'+ file.name +'"图片大小过大，应小于500k');	
+							if (file.size >= 5120000) {
+								alert('您这张"'+ file.name +'"图片大小过大，应小于5M');	
 							} else {
 								arrFiles.push(file);	
 							}			

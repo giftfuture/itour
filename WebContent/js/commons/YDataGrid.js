@@ -13,12 +13,13 @@ var YDataGrid = function(config){
 		//Grid DataList
 		var Grid = $('#data-list');
 		//Form
-		var Form = {
-					search:$("#searchForm"),
+		var Form = {search:$("#searchForm"),
 					edit:$("#editForm")};
-		//Win 窗口
-		var Win = { edit:$("#edit-win")};
+		//var picForm = {edit:$("#multiDataForm")};
 		
+		//Win 窗口
+		var Win =  {edit:$("#edit-win")};
+		//var PhotoWin = {edit:$("#uploadphoto")};
 		//处理函数
 		var Handler = {
 			//serach 查询事件
@@ -55,8 +56,6 @@ var YDataGrid = function(config){
 						Form.edit.form('load',result.data);
 						$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 						Win.edit.dialog('open'); 
-						
-						
 						//回调函数
 						if(jQuery.isFunction(callback)){
 							callback(result);
@@ -124,9 +123,9 @@ var YDataGrid = function(config){
 				     	Win.edit.dialog('close');
 				     	//回调函数
 						if(jQuery.isFunction(callback)){
-							callback(data);
+			  				callback(data);
 						}
-				    }
+		  		    }
 				});
 			}
 		}
@@ -145,7 +144,7 @@ var YDataGrid = function(config){
 				return false;
 				
 			},
-			checkSelectOne : function(rows){//检查grid是否只勾选了一行,是返回 true,否返回true
+			checkSelectOne : function(rows){//检查grid是否只勾选了一行,是返回 true,否返回false
 				var records = rows;
 				if(!Utils.checkSelect(records)){
 					return false;
@@ -178,7 +177,9 @@ var YDataGrid = function(config){
 			//保存调用方法
 			save: evt.save || Handler.save,
 			//关闭按钮事件
-			close : evt.close ||  Handler.close
+			close : evt.close ||  Handler.close//,
+			//上传图片的事件
+			//uploadImg:evt.uploadImg||Handler.uploadImg
 		}
 		
 		//按钮控制 btnType 用来控制按钮是否显示,后台根据授权控制是否显示
@@ -190,11 +191,11 @@ var YDataGrid = function(config){
 						handler: Events.add
 					 };
 		var bar_edit = {
-							id:'btnedit',
-							text:'修改',
-							iconCls:'icon-edit',
-							btnType:'edit',
-							handler: Events.edit
+						id:'btnedit',
+						text:'修改',
+						iconCls:'icon-edit',
+						btnType:'edit',
+						handler: Events.edit
 						};
 		var bar_remove = { id:'btnremove',
 						text:'删除',
@@ -202,11 +203,17 @@ var YDataGrid = function(config){
 						btnType:'remove',
 						handler:Events.remove
 					   };
+	/*	var bar_upload={id:'btnupload',
+						text:'上传图片',
+					//	iconCls:'icon_upload',
+						btnType:'upload',
+						handler:Events.uploadImg
+					  };*/
 		var toolbarConfig = [bar_add,bar_edit,bar_remove];
 		var getToolbar = function (){
 			var tbars = [];
 			if (dataGrid.toolbar != undefined && dataGrid.toolbar.length > 0) {
-				for ( var i = 0; i < dataGrid.toolbar.length; i++) {
+				for (var i = 0; i < dataGrid.toolbar.length; i++) {
 					var bar = dataGrid.toolbar[i];
 					if(!bar){
 						continue;
@@ -223,6 +230,10 @@ var YDataGrid = function(config){
 						tbars.push({id:bar.id || bar_remove.id,text:bar.text || bar_remove.text ,iconCls: bar.iconCls || bar_remove.iconCls,btnType: bar.btnType || bar_remove.btnType,handler:bar.handler || bar_remove.handler});
 						continue;
 					}
+			/*		if(bar.btnType=='upload'){
+						tbars.push({id:bar.id || bar_upload.id,text:bar.text || bar_upload.text ,iconCls: bar.iconCls || bar_upload.iconCls,btnType: bar.btnType || bar_upload.btnType,handler:bar.handler || bar_upload.handler});
+						continue;
+					}*/
 					tbars.push({id:bar.id,text:bar.text,iconCls:bar.iconCls,btnType: bar.btnType,handler:bar.handler,disabled:bar.disabled});
 				}
 			}else{
