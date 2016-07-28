@@ -17,7 +17,7 @@ itour.travelItem = function(){
 						_this.uploadPhotoWin().dialog('close');
 					});
 			},
-			initForm:function(){
+			initUploadForm:function(){
 				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
 					_this.savePhoto();
 				});
@@ -25,6 +25,33 @@ itour.travelItem = function(){
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
 					     	_this.uploadPhotoWin().dialog('close');
+					    }  
+					});
+				});
+			},
+			editPhotoAction:'editPhoto',
+			editPhotoForm:function(){
+				return $("#editPhotoForm");
+			},
+			editPhotoWin:function(){//upload-photo
+				return $("#edit-photo");
+			},
+			submitPhoto:function(){
+					itour.progress();//缓冲条
+					_this.editPhotoForm().attr('action',_this.editPhotoAction);
+					itour.saveForm(_this.editPhotoForm(),function(data){
+						itour.closeProgress();//关闭缓冲条
+						_this.editPhotoWin().dialog('close');
+					});
+			},
+			initEditForm:function(){
+				_this.editPhotoWin().find("#fileSubmit").click(function(){
+					_this.submitPhoto();
+				});
+				_this.editPhotoWin().find("#win-close").click(function(){	
+					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
+					    if (r){  
+					     	_this.editPhotoWin().dialog('close');
 					    }  
 					});
 				});
@@ -291,6 +318,14 @@ itour.travelItem = function(){
 								_this.uploadPhotoWin().window('open'); 		
 							}
 						}},
+						{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-edit',handler:function(){
+							var selected = _box.utils.getCheckedRows();
+							if (_box.utils.checkSelectOne(selected)){
+								_this.uploadPhotoForm().resetForm();
+								_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
+								_this.uploadPhotoWin().window('open'); 		
+							}
+						}},
 						{id:'btnback',text:'back',disabled: true,iconCls:'icon-back',
 							handler:function(){
 								_this.toList();
@@ -300,7 +335,12 @@ itour.travelItem = function(){
 			}
 		},
 		init:function(){
-			this.initForm();
+			this.initUploadForm();
+			this.initEditForm();
+			this.difficultyRate();
+			this.happyValue();
+			this.writeSelect();
+			this.writeRank();
 			_box = new YDataGrid(_this.config); 
 			_box.init();
 			$('#addLine_btn').click(_this.addLine);
@@ -313,7 +353,7 @@ itour.travelItem = function(){
 			
 		},
 		writeSelect:function(){
-			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" style="width:112px;" data-options="" missingMessage="请填写recommandCrowd">'+
+			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" style="width:111px;" data-options="" missingMessage="请填写recommandCrowd">'+
 			'<option value="">--请选择--</option>'+  
 			'<option value="亲子游">亲子游</option> '+ 
 			'<option value="情侣双人游">情侣双人游</option>'+ 
@@ -324,11 +364,11 @@ itour.travelItem = function(){
 			'<option value="其他人群">其他人群</option>'+ 
 			'</select>';
 			$("#rucrowd").parent().append(result);
-			$("#rcmdCrowd").parent().append(result);
+			$("#rcmdCrowd").after(result);
 			//document.getElementById("rucrowd").innerHTML= result;
 		},
 		writeRank:function(){
-			var rankSelect ='<select name="rank" class="easyui-box ui-text" style="width:100px;">'+
+			var rankSelect ='<select name="rank" class="easyui-box ui-text" style="width:110px;">'+
 			'<option value="">--请选择--</option>'+
 			'<option value="5">极力推荐</option>'+
 			'<option value="4">强烈推荐</option>'+
@@ -337,7 +377,22 @@ itour.travelItem = function(){
 			'<option value="1">一般推荐</option>'+
 			'</select>'; 
 			$("#rankLabel").parent().append(rankSelect);
-			$("#SelectrankLabel").parent().append(rankSelect);
+			$("#SelectrankLabel").after(rankSelect);
+		},
+		difficultyRate:function(){
+			var difficultyRateSelect = '<select name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate">'+
+						'<option value="">--请选择--</option>'+
+						'<option value="1">一般难度</option>'+
+						'<option value="2">略有挑战</option>'+
+						'<option value="3">难度适中</option>'+
+						'<option value="4">是个难关</option>'+
+						'<option value="5">难度爆棚</option>'+
+						'</select>';
+			$("#difficultyRateLabel").parent().append(difficultyRateSelect);
+		},
+		happyValue:function(){
+			var happySelect='<select name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>';
+			$("#happyLabel").parent().append(happySelect);
 		},
 		params:{
 				fileInput: $("#fileImage").get(0),
@@ -429,8 +484,6 @@ itour.travelItem = function(){
 
 $(function(){
 	itour.travelItem.init();
-	itour.travelItem.writeSelect();
-	itour.travelItem.writeRank();
 	ZXXFILE = $.extend(ZXXFILE, itour.travelItem.params);
 	ZXXFILE.init();
 });
