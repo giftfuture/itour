@@ -29,7 +29,7 @@ itour.travelItem = function(){
 					});
 				});
 			},
-			editPhotoAction:'editPhoto',
+			editPhotoAction:'saveeditedPhoto',
 			editPhotoForm:function(){
 				return $("#editPhotoForm");
 			},
@@ -44,11 +44,29 @@ itour.travelItem = function(){
 						_this.editPhotoWin().dialog('close');
 					});
 			},
+			loadPhotoList:function(id){
+				itour.loadPhotos('editPhoto',{'id':id},function(data){
+					itour.closeProgress();
+					var images = "";
+					//console.log(data.uris);
+					for(var i in data.uris){
+					  images+='<img alt="图片浏览" src="file:\\'+data.uris[i]+'" style="width:50px;height:50px;">';	
+					}
+					$("#previewPhotos").html(images);
+					_this.editPhotoWin().dialog('open'); 
+					//_this.editPhotoWin().window('open'); 
+					//回调函数
+					/*if(jQuery.isFunction(callback)){
+						callback(result);
+					}*/                        																									
+				
+				});
+			},
 			initEditForm:function(){
-				_this.editPhotoWin().find("#fileSubmit").click(function(){
+				_this.editPhotoWin().find("#editPhotoSubmit").click(function(){
 					_this.submitPhoto();
 				});
-				_this.editPhotoWin().find("#win-close").click(function(){	
+				_this.editPhotoWin().find("#editwin-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
 					     	_this.editPhotoWin().dialog('close');
@@ -321,9 +339,11 @@ itour.travelItem = function(){
 						{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-edit',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){
-								_this.uploadPhotoForm().resetForm();
-								_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
-								_this.uploadPhotoWin().window('open'); 		
+								_this.editPhotoForm().resetForm();
+								_this.editPhotoForm().find("input[name='id']").val(selected[0].id);
+								_this.loadPhotoList(selected[0].id);
+								//_this.editPhotoWin().window('open');
+								
 							}
 						}},
 						{id:'btnback',text:'back',disabled: true,iconCls:'icon-back',
@@ -343,6 +363,8 @@ itour.travelItem = function(){
 			this.writeRank();
 			_box = new YDataGrid(_this.config); 
 			_box.init();
+			ZXXFILE = $.extend(ZXXFILE,this.params);
+			ZXXFILE.init();
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
@@ -484,6 +506,4 @@ itour.travelItem = function(){
 
 $(function(){
 	itour.travelItem.init();
-	ZXXFILE = $.extend(ZXXFILE, itour.travelItem.params);
-	ZXXFILE.init();
 });

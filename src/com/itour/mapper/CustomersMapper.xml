@@ -20,11 +20,12 @@
 	<result column="nick_name" property="nickName"/>
 	<result column="district" property="district"/>
 	<result column="introduction" property="introduction"/>
+	<result column="birthday" property="birthday"/>
 </resultMap>
        
 <!-- customers table all fields -->
 <sql id="Base_Column_List" >
-	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction
+	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction, date_format(birthday,'%Y年%c月%d日') birthday
 </sql>
    
    
@@ -77,6 +78,9 @@ where 1=1
 	<if test="introduction != null and introduction != ''" >
 	    and introduction like CONCAT('%', #{introduction}, '%')
 	</if>
+	<if test="birthday !=null">
+		and birthday like CONCAT('%',#{birthday},'%')
+	</if>
 </trim>
 </sql>
    
@@ -86,8 +90,8 @@ where 1=1
 <!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into customers(id,customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction)
- values(#{id},#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction})
+  insert into customers(id,customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction,birthday)
+ values(#{id},#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction},#{birthday})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -129,6 +133,9 @@ where 1=1
 	</if>
 	<if test="introduction != null and introduction != '' ">
 		introduction=#{introduction},
+	</if>
+	<if test="birthday != null">
+		birthday=#{birthday},
 	</if>
 	</trim> where id=#{id}
 </update>

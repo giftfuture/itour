@@ -5,35 +5,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.BufferedOutputStream;
-import java.io.PrintWriter;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.AsyncContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
-import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,22 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
-
-
-
-
-
-
-
-//import com.alibaba.fastjson.JSONObject;
-import com.itour.base.util.FileIO;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.RedProFile;
 import com.itour.base.util.StringUtil;
@@ -64,6 +38,7 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.TravelItem;
 import com.itour.page.TravelItemPage;
 import com.itour.service.TravelItemService;
+//import com.alibaba.fastjson.JSONObject;
  
 /**
  * 
@@ -179,16 +154,18 @@ public class TravelItemController extends BaseController{
 			 String fileName = "";
 			 String newfileName = "";
 			 File newfile = null;
+			 String parpath = "";
 			for(MultipartFile f:multifiles){
 			    if (f.getOriginalFilename().length() > 0) {    
 		            fileName = f.getOriginalFilename();   
-		            newfile =  new File(realPath);
-		            newfile = new File(realPath+"\\"+t.getItemCode()+"_"+t.getItem());
+		           // newfile =  new File(realPath);
+		            parpath = realPath+"\\"+t.getItemCode().replaceAll(" ", "")+"_"+t.getItem().replaceAll(" ", "");
+		            newfile = new File(parpath);
 		            if(!newfile.exists()||!newfile.isDirectory()){
 		            	newfile.mkdirs();
 		            }
 		            newfileName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+fileName.substring(fileName.indexOf("."));
-		            newfile = new File(realPath+"\\"+t.getItemCode()+"_"+t.getItem()+"\\" +newfileName);
+		            newfile = new File(parpath+"\\" +newfileName);
 		            photos.append("|"+newfileName);
 		            System.out.println("upload filename is " + fileName+"   newfilename="+newfileName);  
 		            out = new FileOutputStream(newfile);  
@@ -270,6 +247,101 @@ public class TravelItemController extends BaseController{
 		//return resMap;
 		return forword("server/sys/travelItem"); 
 	}
+	/**
+	 * 获取待编辑,预览,删除的图片
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
+	public void editPhoto(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		try {
+			TravelItem ti = travelItemService.queryById(id);
+			String photos =  ti.getPhotos();
+			String [] filenames = photos.split("\\|");
+			String realPath = RedProFile.uploadPath();
+			String parpath = realPath+"\\"+ti.getItemCode().replaceAll(" ", "")+"_"+ti.getItem().replaceAll(" ", "");
+			List<String> uris = new ArrayList<String>();
+			File newfile = null;
+			FileInputStream is = null;
+			BufferedInputStream imageStream = null;
+			OutputStream toClient = null;
+			for(String name:filenames){
+				if(StringUtils.isNotEmpty(name)&& !name.equals(","))
+				{	
+					newfile = new File(parpath+"\\" +name);
+					if(newfile.exists() && newfile.getName().equals(name)){
+						/*is = new FileInputStream(newfile);
+					    imageStream = new BufferedInputStream(is);
+				        int i = imageStream.available(); // 得到文件大小
+				        byte data[] = new byte[i];
+				        is.read(data);// 读数据
+	*/			      //  response.setContentType("image/*"); // 设置返回的文件类型
+				      //  response.setContentType("application/octet-stream;charset=UTF-8");  
+				       // toClient = response.getOutputStream(); // 得到向客户端输出二进制数据的对象
+				      //  toClient.write(data); // 输出数据
+				      //  toClient.flush();
+						uris.add(newfile.getAbsolutePath());
+					}
+				}
+			}
+			if(is != null){			        	
+				is.close();
+			}
+			if(toClient != null){				
+				toClient.close();
+			}
+			newfile = null;
+			imageStream = null;
+			toClient = null;
+			context.put(SUCCESS, true);
+			context.put("uris", uris);
+			HtmlUtil.writerJSON(response, context);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 保存编辑,删除后的图片
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
+	public void saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletResponse response)throws Exception{
+		String realPath = RedProFile.uploadPath();
+		TravelItem ti = travelItemService.queryById(id);
+		String [] photos = StringUtils.isNotEmpty(ti.getPhotos()) ? ti.getPhotos().split("\\|"):null;
+		String [] names = fileNames.split(",");
+		List<String> list =	Arrays.asList(photos);
+		for(String name:names){
+			String parpath = ti != null?ti.getItemCode().replaceAll(" ", "")+"_"+ti.getItem() :"";
+			if(StringUtils.isNotEmpty(name) &&StringUtils.isNotEmpty(parpath)){
+				String filePath = realPath+"\\"+parpath+"\\"+name;
+				File file = new File(filePath);
+				if (file.exists() && file.getName().equals(name)) {
+					file.delete();
+					for(String photo:photos){
+						if(photo.equals(name)){
+							list.remove(photo);
+						}
+					}
+				}
+			}
+		}
+		list.spliterator();
+		ti = new TravelItem();
+		ti.setId(id);
+		StringBuffer pnames = new StringBuffer();
+		for(String name:list){
+			pnames.append("|"+name);
+		}
+		ti.setPhotos(pnames.toString());
+		travelItemService.update(ti);
+	}
+	
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();

@@ -1,62 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%    
+String path = request.getContextPath();    
+// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
+// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
+pageContext.setAttribute("basePath",basePath);    
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>itour</title>
-<style type="text/css">
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 30px;
-	color: #666666;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE3 {
-	color: #990000;
-	font-family: "微软雅黑";
-}
-.STYLE5 {color: #666666}
-.STYLE6 {font-family: "微软雅黑"}
-.STYLE7 {color: #666666; font-family: "微软雅黑"; }
-.STYLE8 {font-size: 14px; line-height: 30px; color: #333333; font-family: "微软雅黑"; }
-.STYLE9 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #333333; }
-.STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
-</style>
+<title>欢迎访问主角旅行</title>
+ <link href="css/index.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 </head>
+
 <body>
-<table width="200" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><img src="images/top-menu.jpg" width="1350" height="153" /></td>
+    <td>
+    <div id="top-menu" width="100%" height="153" >
+    <table width="100%" align="center">
+    	<tr><th colspan="2"><img src="images/head2016.gif" /></th><th colspan="2"><img src="images/chinatravel.png" alt="" />旗下</th><th colspan="2">&nbsp;定製旅行服務團隊</th><th colspan="2"><span style="color:red">+86&nbsp;28&nbsp;85580038&nbsp;&nbsp;&nbsp;info@iTours.com.cn</span></th></tr>
+    	<tr class="trbanner" align="center"><td>首頁</td><td>旅行</td><td>徒步</td><td>登山</td><td>自駕</td><td>定製</td><td>客戶反饋</td><td>Why Us</td></tr>
+    </table>
+   
+    
+     </div>
+    </td>
   </tr>
   <tr>
-    <td><img src="images/banner-index.jpg" width="1350" height="598" /></td>
+    <td><img id="banner-index"  src="images/Route001.jpg" width="100%" height="598" /></td>
   </tr>
+  <tr><td><video width="602px" height="345px" controls="controls">
+<source src="video/sc_135567145825hd_qqvga.mp4" type="video/mp4"></source>
+your browser does not support the video tag
+</video> </td></tr>
+<tr><td><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">
+		<param name="movie" value="FLVPlayer_Progressive.swf" />
+		<param name="quality" value="high" />
+		<param name="wmode" value="opaque" />
+		<param name="scale" value="noscale" />
+		<param name="salign" value="lt" />
+		<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/test&amp;autoPlay=false&amp;autoRewind=false" />
+		<param name="swfversion" value="8,0,0,0" />
+		<!-- 此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
+		<param name="expressinstall" value="expressInstall.swf" />
+</object> 
+<script type="text/javascript">
+if($.browser.msie){ 
+	document.write('<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">'+
+			'<param name="movie" value="FLVPlayer_Progressive.swf" />'+
+			'<param name="quality" value="high" />'+
+			'<param name="wmode" value="opaque" />'+
+			'<param name="scale" value="noscale" />'+
+			'<param name="salign" value="lt" />'+
+			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/test&amp;autoPlay=false&amp;autoRewind=false" />'+
+			'<param name="swfversion" value="8,0,0,0" />'+
+			'<!-- 此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->'+
+			'<param name="expressinstall" value="expressInstall.swf" />'+
+			'</object>');
+	}else{
+		document.write('<video width="602px" height="345px" controls="controls">'+
+		'<source src="public/video/test.mp4" type="video/mp4"></source>'+
+		'<source src="public/video/test.ogg" type="video/ogg"></source>'+
+		'your browser does not support the video tag'+
+		'</video>');
+	}
+</script>
+</td></tr>
+  <tr><td><input type="button" value="1" onclick="changePho(this.value)" /><input type="button" value="2" onclick="changePho(this.value)" /><input type="button" value="3" onclick="changePho(this.value)" />
+    <input type="button" value="4" onclick="changePho(this.value)" /><input type="button" value="5" onclick="changePho(this.value)" /><input type="button" value="6" onclick="changePho(this.value)" /></td></tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
@@ -324,5 +338,6 @@ body {
     </table></td>
   </tr>
 </table>
+<script type="text/javascript" src="js/commons/index.js"></script>
 </body>
 </html>

@@ -38,10 +38,10 @@
 				<option value="西藏">西藏</option>
 				<option value="新疆">新疆</option>
 			</select>
-			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:</label>
-		
+			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>
+			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>
 			<label class="ui-label">里&nbsp;&nbsp;程:</label>
-			<select name="mileage" class="easyui-box ui-text" style="width:110px;">
+			<select name="mileage" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="1">5公里以内</option>
 				<option value="2">20公里以内</option>
@@ -50,10 +50,10 @@
 				<option value="5">500公里以内</option>
 				<option value="6">1000公里以内</option>
 				<option value="7">2000公里以内</option>
-				</select>
-			<label class="ui-label" id="SelectrankLabel">推荐指数:</label>
+			</select>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
-      </form></div>
+      </form>
+      </div>
        <!--  Search panel end -->
      <div region="center" border="false" >
      <!-- Data List -->
@@ -64,8 +64,7 @@
      	<form action="" class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
-		     	   <div class="ftitle">旅行项目</div>
-    		       <div class="fitem upload"><label>美&nbsp;&nbsp;图:</label>
+    		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
@@ -75,7 +74,30 @@
                         </div>
                         <div class="upload_submit">
                             <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                        </div>
+                        <div id="uploadInf" class="upload_inf"></div>
+                    </div>
+				</div>
+				</div>
+     	</form>
+	 </div>  
+ 	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+     	<form action="" class="ui-form" id="editPhotoForm" name="editPhotoForm" method="post" ><!-- enctype="multipart/form-data" -->
+   				 <input class="hidden" name="id">
+   				 <div class="ui-edit">
+    		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->
+					<div class="upload_box">
+                        <div class="upload_main">
+                            <div id="previewPhotos" class="upload_preview">
+								<!-- <img alt="图片浏览" src=""> -->
+                            </div>
+                        </div>
+                        <div class="upload_submit">
+                            <button type="submit" id="editPhotoSubmit" class="upload_submit_btn">确定</button>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="upload_cancel_btn" id="editwin-close">取消</button>
                         </div>
                         <div id="uploadInf" class="upload_inf"></div>
                     </div>
@@ -97,8 +119,8 @@
 					</div>
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
-					</div>			
-					  <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>
+					</div>	
+					<script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>		
 					<div class="fitem">
 						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
@@ -118,10 +140,10 @@
 						<label>建议天数:</label><input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rcdDays">
 					</div>
 					<div class="fitem">
-						<label>挑战度:</label><select name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate"><option value="">--请选择--</option><option value="1">一般难度</option><option value="2">略有挑战</option><option value="3">难度适中</option><option value="4">是个难关</option><option value="5">难度爆棚</option></select>
+						<label id="difficultyRateLabel">挑战度:</label>
 					</div>
 					<div class="fitem">
-						<label>好玩值:</label><select name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>
+						<label id="happyLabel">好玩值:</label>
 					</div>
 					<div class="fitem">
 						<label id="rucrowd">建议人群:</label>
@@ -132,6 +154,6 @@
   			</div>
      	</form>
   	 </div>
-  	
+	  
   </body>
 </html>

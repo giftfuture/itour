@@ -36,7 +36,8 @@ var itour={
 		window.top.location= urls['msUrl']+"main/login";
 	},
 	checkLogin:function(data){//检查是否登录超时
-		if(data.logoutFlag){
+		//console.log(data+"      "+data.logoutFlag);
+		if(!data /*|| data.logoutFlag || data.logoutFlag == null*/){
 			itour.closeProgress();
 			itour.alert('提示',"登录超时,点击确定重新登录.",'error',itour.toLogin);
 			return false;
@@ -52,8 +53,10 @@ var itour={
 			 	dataType:'json',
 			 	data:option,
 			 	success:function(data){
-			 		//坚持登录
-			 		if(!itour.checkLogin(data)){
+			 		var checklogin = itour.checkLogin(data);
+			 		//console.log(checklogin);
+			 		//检查登录
+			 		if(!checklogin){
 			 			return false;
 			 		}		 	
 			 		if($.isFunction(callback)){
@@ -138,6 +141,25 @@ var itour={
 			itour.closeProgress();
 			if(data.success){
 				if(callback){
+			       	callback(data);
+			    }
+			}else{
+				itour.alert('提示',data.msg,'error');  
+			}
+		});
+	},
+	/**
+	 * 
+	 * @param {} url
+	 * @param {} option {id:''} 
+	 */
+	loadPhotos:function(url,option,callback){
+		itour.progress();
+		itour.ajaxJson(url,option,function(data){
+			itour.closeProgress();
+			if(data.success){
+				if(callback){
+					//console.log("base:"+data)
 			       	callback(data);
 			    }
 			}else{

@@ -164,6 +164,7 @@ public class MainController extends BaseController {
 		sysUserService.update(user);
 		//设置User到Session
 		SessionUtils.setUser(request,user);
+		
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		log.debug(message);

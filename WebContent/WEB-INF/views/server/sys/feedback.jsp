@@ -66,7 +66,7 @@ pageContext.setAttribute("basePath",basePath);
 					<p></p>
 					<div class="fitem">
 						<label>内容:</label>
-						<textarea rows="7" cols="30" name="content" required="true" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写content"></textarea>
+						<textarea rows="5" cols="30" name="content" required="true" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写content"></textarea>
 						<span style="color:red">*</span>
 					</div>
 			<!-- 		<div class="fitem">
@@ -88,7 +88,7 @@ pageContext.setAttribute("basePath",basePath);
 					</div> -->
 					<div class="fitem">
 						<label>审核意见</label>
-						<textarea rows="7" cols="30" name="result" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写result"></textarea>
+						<textarea rows="5" cols="30" name="result" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写result"></textarea>
 					<!-- 	<input name="result" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写result"> -->
 					</div> 
   			</div>

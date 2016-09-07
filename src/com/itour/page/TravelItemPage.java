@@ -5,6 +5,8 @@ import com.itour.base.page.BasePage;
 import java.io.File;
 import java.math.BigDecimal;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 /**
  * 
  * <br>
@@ -33,7 +35,7 @@ public class TravelItemPage extends BasePage {
 	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增
 	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
 
-	private File[] fileselect;
+	private CommonsMultipartFile[] fileselect;
 	
 	public java.lang.String getId() {
 	    return this.id;
@@ -137,11 +139,12 @@ public class TravelItemPage extends BasePage {
 	public void setRecommandCrowd(java.lang.String recommandCrowd) {
 	    this.recommandCrowd=recommandCrowd;
 	}
-	public File[] getFileselect() {
+	public CommonsMultipartFile[] getFileselect() {
 		return fileselect;
 	}
-	public void setFileselect(File[] fileselect) {
+	public void setFileselect(CommonsMultipartFile[] fileselect) {
 		this.fileselect = fileselect;
 	}
+	
 	
 }

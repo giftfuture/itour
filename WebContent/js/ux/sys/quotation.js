@@ -192,6 +192,8 @@ itour.quotation = function(){
 								}else{									
 									return row.remark;
 								}
+					 }},{field:'detail',title:'处理明细',align:'center',formatter:function(value,row,index){
+						 return '<a href="#">处理明细</a>';
 					 }}
 					]],
 					toolbar:[

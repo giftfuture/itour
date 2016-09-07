@@ -141,7 +141,7 @@ itour.feedback = function(){
 				}
 			},*/
   			dataGrid:{
-  				title:'客户反馈',
+  				title:'反馈咨询',
 	   			url:'feedback/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
@@ -150,11 +150,20 @@ itour.feedback = function(){
 							return row.customerId;
 						}
 					},*/
-					{field:'title',title:'标题',align:'center',sortable:true,
+					{field:'customerName',title:'姓名',align:'center',sortable:false,formatter:function(value,row,index){
+						return row.customerName;
+					}},
+					{field:'email',title:'邮箱',align:'center',sortable:false,formatter:function(value,row,index){
+						return row.email;
+					}},
+					{field:'mobile',title:'电话',align:'center',sortable:false,formatter:function(value,row,index){
+						return row.mobile;
+					}},
+				/*	{field:'title',title:'标题',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.title;
 						}
-					},
+					},*/
 				{field:'content',title:'内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							if((row.content+"").length>30){

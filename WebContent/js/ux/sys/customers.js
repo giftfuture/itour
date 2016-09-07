@@ -135,22 +135,27 @@ itour.customers = function(){
 	   			url:'customers/dataList',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'customerId',title:'客户ID',align:'center',sortable:true,
+					/*{field:'customerId',title:'客户ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.customerId;
 							}
-						},
+						},*/
 						{field:'customerName',title:'客户姓名',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.customerName;
 							}
 						},
-					{field:'nickName',title:'昵称',align:'center',sortable:true,
+						{field:'email',title:'邮箱',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.email;
+							}
+						},
+					/*{field:'nickName',title:'昵称',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.nickName;
 							}
-						},
-						{field:'telephone',title:'电话',align:'center',sortable:true,
+						},*/
+				/*		{field:'telephone',title:'电话',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.telephone;
 							}
@@ -158,11 +163,6 @@ itour.customers = function(){
 					{field:'mobile',title:'手机',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.mobile;
-							}
-						},
-						{field:'email',title:'邮箱',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.email;
 							}
 						},
 					{field:'createTime',title:'创建时间',align:'center',sortable:true,
@@ -213,14 +213,21 @@ itour.customers = function(){
 									return value;
 								}
 							}
-						},
+						},*/
 					{field:'city',title:'城市',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.city;
 							}
-						},
-				
-					{field:'district',title:'区县',align:'center',sortable:true,
+					},
+					{field:'birthday',title:'生日',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.birthday;
+							}
+					},
+					{field:'detailed',title:'查看详细',align:'center',formatter:function(value,row,index){
+						return '<a>查看详细</a>';		
+					}}
+				/*	{field:'district',title:'区县',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.district;
 							}
@@ -233,7 +240,22 @@ itour.customers = function(){
 									return row.introduction;
 								}
 							}
-					}]],
+					}*/]/*,[
+							{field:'district',title:'区县',align:'center',sortable:true,
+								formatter:function(value,row,index){
+									return row.district;
+								}
+							},
+							{field:'introduction',title:'简介',align:'center',sortable:true,
+								formatter:function(value,row,index){
+									if((row.introduction+"").length>30){
+										return (row.introduction+"").substring(0,30)+"....";
+									}else{									
+										return row.introduction;
+									}
+								}
+							}
+					      ]*/],
 					toolbar:[{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},

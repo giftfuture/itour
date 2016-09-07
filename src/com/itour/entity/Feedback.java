@@ -12,7 +12,10 @@ import java.util.Date;
  */
 public class Feedback extends BaseEntity {
 	
-		private java.lang.String id;//   	private Date createTime;//   	private java.lang.Integer status;//   	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   		public java.lang.String getId() {
+		private java.lang.String id;//   	private Date createTime;//   	private java.lang.Integer status;//   	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
+	private String email;
+	private String mobile;
+		public java.lang.String getId() {
 		return id;
 	}
 	public void setId(java.lang.String id) {
@@ -60,5 +63,24 @@ public class Feedback extends BaseEntity {
 	public void setResult(java.lang.String result) {
 		this.result = result;
 	}
+	public java.lang.String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(java.lang.String customerName) {
+		this.customerName = customerName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	
 }
 

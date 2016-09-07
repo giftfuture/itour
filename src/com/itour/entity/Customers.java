@@ -26,7 +26,8 @@ public class Customers extends BaseEntity {
 	private java.lang.String customerName;//   
 	private java.lang.String nickName;//   
 	private java.lang.String district;//   
-	private java.lang.String introduction;//  
+	private java.lang.String introduction;// 
+	private String birthday;
 	
 	public Customers(){}
 	public Customers(String customerId,String customerName,String introduce){
@@ -123,6 +124,12 @@ public class Customers extends BaseEntity {
 	}
 	public void setIntroduction(java.lang.String introduction) {
 		this.introduction = introduction;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	
 }

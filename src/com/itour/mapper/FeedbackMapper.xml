@@ -13,13 +13,18 @@
 		<result column="content" property="content" />
 		<result column="customer_id" property="customerId" />
 		<result column="result" property="result" />
+		<result column="customerName" property="customerName"/>
+		<result column="email" property="email"/>
+		<result column="mobile" property="mobile"/>
 	</resultMap>
 
 	<!-- feedback table all fields -->
 	<sql id="Base_Column_List">
 		id, create_time, status, update_time, title, content, customer_id, result
 	</sql>
-
+	<sql id="Extend_Column_List">
+		id, create_time, status, update_time, title, content, customer_id, result,customerName,email,mobile
+	</sql>
 
 	<!-- 查询条件 -->
 	<sql id="Example_Where_Clause">
@@ -93,8 +98,8 @@
 	<!-- 根据id查询 客户反馈 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
-		<include refid="Base_Column_List" />
-		from feedback where id = #{id}
+		feedback.id, feedback.create_time, feedback.status, feedback.update_time, feedback.title, feedback.content, feedback.customer_id, feedback.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
+		from feedback left join customers on feedback.customer_id = customers.id where feedback.id = #{id}  
 	</select>
 
 	<!-- 客户反馈 列表总数 -->
@@ -108,8 +113,8 @@
 	<select id="queryByList" resultMap="BaseResultMap"
 		parameterType="com.itour.base.page.BasePage">
 		select
-		<include refid="Base_Column_List" />
-		from feedback
+		feedback.id, feedback.create_time, feedback.status, feedback.update_time, feedback.title, feedback.content, feedback.customer_id, feedback.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
+		from feedback	left join customers on feedback.customer_id = customers.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">
 			${pager.orderCondition}
@@ -119,5 +124,4 @@
 			${pager.mysqlQueryCondition}
 		</if>
 	</select>
-
 </mapper>   

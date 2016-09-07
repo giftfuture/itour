@@ -28,6 +28,7 @@ public class CustomersPage extends BasePage {
 	private java.lang.String nickName;//   
 	private java.lang.String district;//   
 	private java.lang.String introduction;//   
+	private String birthday;
 	public java.lang.String getId() {
 	    return this.id;
 	}
@@ -117,6 +118,12 @@ public class CustomersPage extends BasePage {
 	}
 	public void setIntroduction(java.lang.String introduction) {
 	    this.introduction=introduction;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	
 }
