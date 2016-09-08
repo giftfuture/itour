@@ -13,6 +13,10 @@ pageContext.setAttribute("basePath",basePath);
 <title>欢迎访问主角旅行</title>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+ <!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> -->
+ <script type="text/javascript">
+ jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+ </script>
 </head>
 
 <body>
@@ -20,33 +24,39 @@ pageContext.setAttribute("basePath",basePath);
   <tr>
     <td>
     <div id="top-menu" width="100%" height="153" >
-    <table width="100%" align="center">
-    	<tr><th colspan="2"><img src="images/head2016.gif" /></th><th colspan="2"><img src="images/chinatravel.png" alt="" />旗下</th><th colspan="2">&nbsp;定製旅行服務團隊</th><th colspan="2"><span style="color:red">+86&nbsp;28&nbsp;85580038&nbsp;&nbsp;&nbsp;info@iTours.com.cn</span></th></tr>
-    	<tr class="trbanner" align="center"><td>首頁</td><td>旅行</td><td>徒步</td><td>登山</td><td>自駕</td><td>定製</td><td>客戶反饋</td><td>Why Us</td></tr>
+    <table width="100%" align="center" style="border:0;cursor:pointer">
+    	<tr><th colspan="2"><img src="images/head2016.gif" /></th>
+    	<th colspan="4"><img src="images/chinatravel.png" alt="" />
+    	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th>
+    	<th><span style="color:red">一鍵撥號：<a href="tel:+8602885580038">+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th>
+    	<th><a href="mailto:info@iTours.com.cn">info@iTours.com.cn</a></th></tr>
+    	<tr class="trbanner" align="center" border=0><td href="#">首頁</td><td>旅行</td><td>徒步</td><td>登山</td><td>自駕</td><td>定製</td><td>客戶反饋</td><td>Why Us</td></tr>
     </table>
-   
-    
      </div>
     </td>
   </tr>
   <tr>
     <td><img id="banner-index"  src="images/Route001.jpg" width="100%" height="598" /></td>
   </tr>
-  <tr><td><video width="602px" height="345px" controls="controls">
-<source src="video/sc_135567145825hd_qqvga.mp4" type="video/mp4"></source>
+    <tr><td><input style="background:red;" type="button" value="1" onclick="changePho(this)" /><input style="background:red;" type="button" value="2" onclick="changePho(this)" /><input style="background:red;" type="button" value="3" onclick="changePho(this)" />
+    <input style="background:red;" type="button" value="4" onclick="changePho(this)" /><input style="background:red;" type="button" value="5" onclick="changePho(this)" /><input style="background:red;" type="button" value="6" onclick="changePho(this)" /></td></tr>
+  <tr><td><!--<video width="602px" height="345px" controls="controls">
+<source src="video/boshijie.mpg" type="video/mpg"></source>
 your browser does not support the video tag
-</video> </td></tr>
-<tr><td><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">
+</video>  --></td></tr>
+<tr><td><!-- <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1"
+ title="此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。">
 		<param name="movie" value="FLVPlayer_Progressive.swf" />
 		<param name="quality" value="high" />
 		<param name="wmode" value="opaque" />
 		<param name="scale" value="noscale" />
 		<param name="salign" value="lt" />
-		<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/test&amp;autoPlay=false&amp;autoRewind=false" />
+		<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=video/boshijie.mpg&amp;autoPlay=false&amp;autoRewind=false" />
 		<param name="swfversion" value="8,0,0,0" />
-		<!-- 此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
+		
 		<param name="expressinstall" value="expressInstall.swf" />
-</object> 
+</object>  -->
+<!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 
 <script type="text/javascript">
 if($.browser.msie){ 
 	document.write('<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">'+
@@ -57,24 +67,21 @@ if($.browser.msie){
 			'<param name="salign" value="lt" />'+
 			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/test&amp;autoPlay=false&amp;autoRewind=false" />'+
 			'<param name="swfversion" value="8,0,0,0" />'+
-			'<!-- 此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->'+
 			'<param name="expressinstall" value="expressInstall.swf" />'+
 			'</object>');
 	}else{
 		document.write('<video width="602px" height="345px" controls="controls">'+
-		'<source src="public/video/test.mp4" type="video/mp4"></source>'+
-		'<source src="public/video/test.ogg" type="video/ogg"></source>'+
+		'<source src="video/sc_135567145825hd_qqvga.mp4" type="video/mp4"></source>'+
 		'your browser does not support the video tag'+
 		'</video>');
 	}
-</script>
+</script> -->
 </td></tr>
-  <tr><td><input type="button" value="1" onclick="changePho(this.value)" /><input type="button" value="2" onclick="changePho(this.value)" /><input type="button" value="3" onclick="changePho(this.value)" />
-    <input type="button" value="4" onclick="changePho(this.value)" /><input type="button" value="5" onclick="changePho(this.value)" /><input type="button" value="6" onclick="changePho(this.value)" /></td></tr>
 </table>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="106" valign="top" bgcolor="#fafafa"><table width="1050" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td height="106" valign="top" bgcolor="#fafafa">
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td class="STYLE9">主角旅行——定製旅行服務商</td>
       </tr>
@@ -99,9 +106,9 @@ if($.browser.msie){
   </tr>
 </table>
 <br />
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="766" valign="top"><table border="0" align="center" cellpadding="15" cellspacing="0">
+    <td width="100%" valign="top"><table border="0" align="center" cellpadding="15" cellspacing="0">
       <tr>
         <td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0" class="f14-gao1">
             <tr>
@@ -189,10 +196,10 @@ if($.browser.msie){
         </table></td>
       </tr>
     </table></td>
-    <td width="374" valign="top" bgcolor="#f0f0f0"><br />
+    <td width="100%" valign="top" bgcolor="#f0f0f0"><br />
       <table width="353" border="0" align="center" cellpadding="0" cellspacing="0" class="f12-gao1">
       <tr>
-        <td><table width="300" border="0" align="left" cellpadding="5" cellspacing="0">
+        <td><table width="100%" border="0" align="left" cellpadding="5" cellspacing="0">
             <tr>
               <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
               <td width="268" class="h2-24">回憶幸福</td>
@@ -204,15 +211,16 @@ if($.browser.msie){
         <td><img src="images/huiyi.jpg" width="353" height="166" /></td>
       </tr>
       <tr>
-        <td><p class="f12-gao1">“此次出遊，飽覽大自然，擴張我的生命深度與廣度。<span class="STYLE6">          或許是有許多第一次的經歷 特有感觸吧！
+        <td><p class="f12-gao1">“此次出遊，飽覽大自然，擴張我的生命深度與廣度。<span class="STYLE6"> 
+                 或許是有許多第一次的經歷 特有感觸吧！
           此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。。。”　　 <a href="#">More》》</a></span></p>          </td>
       </tr>
     </table>
       <br />
-      <table width="353" border="0" align="center" cellpadding="5" cellspacing="0">
+      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
         <tr>
-          <td width="32"><img src="images/earth.png" width="32" height="32" /></td>
-          <td width="301" class="h2-24">热门景点</td>
+          <td width="100%"><img src="images/earth.png" width="32" height="32" /></td>
+          <td width="100%" class="h2-24">热门景点</td>
         </tr>
       </table>
       <table border="0" align="center" cellpadding="1" cellspacing="0">
@@ -228,7 +236,7 @@ if($.browser.msie){
           </table></td>
         </tr>
       </table>
-      <table width="353" border="0" align="center" cellpadding="0" cellspacing="0">
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 
         <tr>
           <td>九寨沟 四姑娘山 海螺沟。。。。 </td>
@@ -238,11 +246,11 @@ if($.browser.msie){
 </table>
 <br />
 <br />
-<table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
-    <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
-    <td width="179" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
+    <td width="100%" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
+    <td width="100%" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
+    <td width="100%" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
       <label>
         <select name="select">
           <option>全部區域</option>
@@ -270,14 +278,15 @@ if($.browser.msie){
   <option>16天+</option>
 </select>
       </a></label></td>
-    <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
+    <td width="100%" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
   </tr>
 </table>
 <p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="15" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
   
   <tr>
-    <td height="106" valign="top" bgcolor="#fafafa"><table width="1050" border="0" align="center" cellpadding="5" cellspacing="0">
+    <td height="106" valign="top" bgcolor="#fafafa">
+    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
       <tr>
         <td width="210"><strong>一些關鍵字</strong></td>
         <td width="210"><strong>页脚待定</strong></td>
@@ -322,12 +331,13 @@ if($.browser.msie){
 </table>
 <br />
 <br />
-<table width="1140" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
+<table width="100%" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
   <tr>
-    <td width="611" height="105" valign="top" bgcolor="#666666"><table width="1100" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td width="100%" height="105" valign="top" bgcolor="#666666">
+    <table width="100%" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
       <tbody>
         <tr>
-          <td width="883" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
+          <td width="100%" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
         </tr>
         <tr>
           <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: 成都一環路南三段15號華僑大廈9層<br />
