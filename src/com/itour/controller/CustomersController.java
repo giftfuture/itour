@@ -55,6 +55,7 @@ public class CustomersController extends BaseController{
 	 */
 	@RequestMapping("/list") 
 	public ModelAndView list(CustomersPage page,HttpServletRequest request) throws Exception{
+		request.isUserInRole("");
 	/*	Map<String,Object>  context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
 		List<Customers> dataList = customersService.queryByList(page);

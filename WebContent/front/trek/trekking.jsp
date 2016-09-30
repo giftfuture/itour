@@ -54,6 +54,7 @@ body {
 	line-height: 30px;
 	color: #333333;
 }
+.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
 -->
 </style>
 </head>
@@ -95,34 +96,39 @@ body {
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td width="94" bgcolor="#CCCCCC"><div align="center"><strong>快速搜索</strong></div></td>
-    <td width="956" bgcolor="#CCCCCC" class="f14-gao1">区域：
+    <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
+    <td width="109" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
+    <td width="925" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
       <label>
-        <select name="select3">
-          <option>旅行方式：</option>
-          <option>旅行</option>
-          <option>徒步</option>
-          <option value=" ">登山</option>
-          <option>自驾</option>
-                        </select>
         <select name="select">
           <option>区域：</option>
           <option>四川</option>
           <option>西藏</option>
           <option>新疆</option>
           <option>云南</option>
-                        </select>
+        </select>
         <select name="select2">
           <option>四姑娘山</option>
           <option>川西</option>
           <option>大香格里拉</option>
-                </select>
+        </select>
+        <input type="submit" name="Submit" value="Search" />
         <br />
-        天数：<a href="#">所有</a> <a href="#">3-5天</a> <a href="#">6-9天</a> <a href="#">10-15天</a> <a href="#">16天+</a></label></td>
+        旅行方式：
+        <select name="select3">
+          <option selected="selected">-所有-</option>
+          <option>观光摄影</option>
+          <option>徒步</option>
+          <option value=" ">登山</option>
+          <option>自驾</option>
+        </select>
+        <br />
+        假期时间：<a href="#">所有</a> <a href="#">3-5天</a> <a href="#">6-9天</a> <a href="#">10-15天</a> <a href="#">16天+</a></label></td>
   </tr>
   <tr>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td class="f14-gao1">&nbsp;</td>
   </tr>
@@ -305,6 +311,41 @@ body {
           。無人之境</td>
       </tr>
     </table></td>
+  </tr>
+</table>
+<table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+    <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
+    <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
+    <td width="179" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
+      <label>
+        <select name="select4">
+          <option>全部區域</option>
+          <option>四川</option>
+          <option>西藏</option>
+          <option>新疆</option>
+          <option>云南</option>
+        </select>
+        <br />
+        旅行方式：
+        <select name="select4">
+          <option selected="selected">-所有-</option>
+          <option>观光摄影</option>
+          <option>徒步</option>
+          <option value=" ">登山</option>
+          <option>自驾</option>
+        </select>
+        <br />
+        假期时间：<a href="#">
+          <select name="select4">
+            <option selected="selected">-所有-</option>
+            <option>1-5天</option>
+            <option>6-9天</option>
+            <option value=" ">10-15天</option>
+            <option>16天+</option>
+          </select>
+        </a></label></td>
+    <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit2" value="Search" /></td>
   </tr>
 </table>
 <p>&nbsp;</p>

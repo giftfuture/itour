@@ -52,7 +52,7 @@ public class TravelStyleController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(TravelStylePage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(TravelStylePage page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelStyle> dataList = travelStyleService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
@@ -72,6 +72,18 @@ public class TravelStyleController extends BaseController{
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());
+		jsonMap.put("rows", dataList);
+		HtmlUtil.writerJson(response, jsonMap);
+	}
+	/**
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("/allData") 
+	public void allData(HttpServletResponse response)throws Exception{
+		List<TravelStyle> dataList = travelStyleService.queryByList(null);
+		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);
 		HtmlUtil.writerJson(response, jsonMap);
 	}

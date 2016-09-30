@@ -105,7 +105,7 @@
 	
 	<!-- 扫描mapper.java  -->
 	  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" autowire="byName">    
-	    <property name="basePackage" value="com.itour.dao,com.itour.dao,com.itour.base.dao" />
+	    <property name="basePackage" value="com.itour.dao,com.itour.base.dao" />
 	    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>   
 

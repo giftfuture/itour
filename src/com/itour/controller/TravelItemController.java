@@ -59,8 +59,6 @@ public class TravelItemController extends BaseController{
 	
 	
 	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -287,10 +285,19 @@ public class TravelItemController extends BaseController{
 				}
 			}
 			if(is != null){			        	
-				is.close();
+				try {
+					is.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			if(toClient != null){				
-				toClient.close();
+				try {
+					toClient.close();
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
 			}
 			newfile = null;
 			imageStream = null;
@@ -354,8 +361,40 @@ public class TravelItemController extends BaseController{
 		context.put("data", entity);
 		HtmlUtil.writerJSON(response, context);
 	}
+	/**
+	 * IllegalAccessException
+	 * @param travelStyle
+	 * @param fileNames
+	 * @param response
+	 * @throws Exception
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping("/search")
+	public void searchTravelItem(@RequestParam(value="travelStyle")String travelStyle,@RequestParam(value="rcdDays")String rcdDays,@RequestParam(value="scope")String scope,HttpServletResponse response) throws Exception{
+		HashMap map = new HashMap();
+		map.put("travelStyle", travelStyle);
+		map.put("scope", scope);
+		if(rcdDays.indexOf('-')>0){
+			map.put("rcdDays1", rcdDays.split("-")[0]);
+			map.put("rcdDays2", rcdDays.split("-")[1]);
+		}else{
+			map.put("rcdDays1", rcdDays);
+		}
+		travelItemService.searchTravelItem(map);
+	}
 	
-	
+	/**
+	 * 通过旅行方式查询
+	 * @param travelStyle
+	 * @param response
+	 * @throws Exception
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping("/queryByStyle")
+	public void queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletResponse response)throws Exception{
+		List<TravelItem> travelItems = travelItemService.queryByStyle(travelStyle);
+		
+	}
 	
 	@RequestMapping("/delete")
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

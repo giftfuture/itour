@@ -3,13 +3,14 @@ package com.itour.test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Map;
+import java.util.Collection;
 public class Testing {
 	  private final char value[] = null;
 	  String ss = "";
 	  private static int a = 2;
-	  
-	 Character ch = null;
+	//  Runtime rt = Runtime.getRuntime();
+	  Character ch = null;
 	  private int hash; // Default to 0
 	  /*public int hashCode() {
 	        int h = hash;
@@ -41,10 +42,18 @@ public class Testing {
 		Testing s = this;
 		return 0;
 	}
+	
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {// manipulating 
+		Map<String,String> map = System.getenv();
+		//map.putIfAbsent(key, value);
+		Runtime.runFinalizersOnExit(true);
+		SecurityManager sm = System.getSecurityManager();
+		StringBuffer sf = new StringBuffer();
+		sf.append("");
+		ThreadGroup tg = sm.getThreadGroup();
 		Class<String> cls = null;
 		Object obj = null;
 		Collections.sort(new ArrayList());

@@ -20,11 +20,11 @@ public class OrderDetailService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(OrderDetailService.class);
 
 	@Autowired
-    private OrderDetailDao<T> dao;
+    private OrderDetailDao<T> mapper;
 
 		
 	public OrderDetailDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

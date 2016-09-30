@@ -11,7 +11,7 @@ public class JdbcTest {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context=  new ClassPathXmlApplicationContext("classpath:/spring-common.xml"); 
 		JdbcTemplate bean = (JdbcTemplate) context.getBean("jdbcTemplate",JdbcTemplate.class);
-		
+		//bean.
 		System.out.println(bean.queryForInt("select count(1) from customers"));
 	}
 

@@ -55,6 +55,8 @@
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
 	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>  
+	<mvc:resources location="/video/" mapping="/video/**"></mvc:resources>  
+	<mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>  
 	<!-- Jackson转换器 -->
 	<!-- <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" /> -->
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />

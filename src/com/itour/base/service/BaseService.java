@@ -7,10 +7,16 @@ import com.itour.base.dao.BaseDao;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.IDGenerator;
+import com.itour.dao.CustomersDao;
 
 public abstract class BaseService<T>{
 	
-	public abstract BaseDao<T> getDao();
+	protected BaseDao<T> mapper;
+	//protected Mapper<T> mapper;
+	
+	protected BaseDao<T> getDao() {
+		return mapper;
+	}
 	
 	public void add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增

@@ -20,11 +20,11 @@ public class CustomersService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(CustomersService.class);
 
 	@Autowired
-    private CustomersDao<T> dao;
+    private CustomersDao<T> mapper;
 
 		
 	public CustomersDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

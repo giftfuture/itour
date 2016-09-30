@@ -20,11 +20,11 @@ public class TravelStyleService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(TravelStyleService.class);
 
 	@Autowired
-    private TravelStyleDao<T> dao;
+    private TravelStyleDao<T> mapper;
 
 		
 	public TravelStyleDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

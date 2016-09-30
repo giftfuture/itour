@@ -1,12 +1,15 @@
 package com.itour.service;
 
-import org.apache.log4j.Logger;
+import java.util.HashMap;
+import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itour.base.service.BaseService;
 import com.itour.dao.TravelItemDao;
+import com.itour.entity.TravelItem;
 
 /**
  * 
@@ -18,13 +21,19 @@ import com.itour.dao.TravelItemDao;
 @Service("travelItemService")
 public class TravelItemService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(TravelItemService.class);
-
+	
 	@Autowired
-    private TravelItemDao<T> dao;
+    private TravelItemDao<T> mapper;
 
 		
 	public TravelItemDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
-
+	public List<TravelItem> searchTravelItem(HashMap map)throws Exception{
+	   return mapper.searchTravelItem(map);
+	}
+	
+	public List<TravelItem> queryByStyle(String style)throws Exception{
+		return mapper.queryByStyle(style);
+	}
 }

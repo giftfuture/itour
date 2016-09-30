@@ -20,11 +20,11 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(RouteTemplateService.class);
 
 	@Autowired
-    private RouteTemplateDao<T> dao;
+    private RouteTemplateDao<T> mapper;
 
 		
 	public RouteTemplateDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

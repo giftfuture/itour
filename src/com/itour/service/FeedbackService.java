@@ -20,11 +20,11 @@ public class FeedbackService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(FeedbackService.class);
 
 	@Autowired
-    private FeedbackDao<T> dao;
+    private FeedbackDao<T> mapper;
 
 		
 	public FeedbackDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

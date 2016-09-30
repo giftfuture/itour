@@ -20,11 +20,11 @@ public class QuotationService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(QuotationService.class);
 
 	@Autowired
-    private QuotationDao<T> dao;
+    private QuotationDao<T> mapper;
 
 		
 	public QuotationDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

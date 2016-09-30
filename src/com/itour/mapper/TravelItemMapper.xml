@@ -22,11 +22,12 @@
 	<result column="difficulty_rate" property="difficultyRate"/>
 	<result column="happy_value" property="happyValue"/>
 	<result column="recommand_crowd" property="recommandCrowd"/>
+	<result column="travel_style" property="travelStyle"/>
 </resultMap>
        
 <!-- travel_item table all fields -->
 <sql id="Base_Column_List" >
-	 id, item, item_code, elevation, content, photos, remark, mileage, scope, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd
+	 id, item, item_code, elevation, content, photos, remark, mileage, scope, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style
 </sql>
    
    
@@ -85,6 +86,9 @@ where 1=1
 	<if test="recommandCrowd != null and recommandCrowd != ''" >
 	    and recommand_crowd like CONCAT('%', #{recommandCrowd}, '%')
 	</if>
+	<if test="travelStyle != null">
+	    and travel_style like CONCAT('%', #{travelStyle}, '%')
+	</if>
 </trim>
 </sql>
    
@@ -94,8 +98,8 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_item(id,item,item_code,elevation,content,photos,remark,mileage,scope,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd)
- values(#{id},#{item},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd})
+  insert into travel_item(id,item,item_code,elevation,content,photos,remark,mileage,scope,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style)
+ values(#{id},#{item},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -150,12 +154,15 @@ where 1=1
 	<if test="recommandCrowd != null  ">
 		recommand_crowd=#{recommandCrowd},
 	</if>
+	<if test="travelStyle != null">
+		travel_style=#{travelStyle}
+	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	 from travel_item where id = #{id}
+	delete from travel_item where id = #{id}
 </delete>
  
 <!-- 根据id查询 旅行项目 -->
@@ -163,13 +170,35 @@ where 1=1
 	select <include refid="Base_Column_List" /> 
 	 from travel_item where id = #{id}
 </select>
-
+<select id="searchTravelItem" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+ 	select <include refid="Base_Column_List" /> 
+ 	 from travel_item 
+ 	 where 1=1
+ 	 <trim  suffixOverrides="," >
+ 	 <if test="travelStyle != null">
+	    and travel_style like CONCAT('%', #{travelStyle}, '%')
+	</if>
+	<if test="scope != null and scope != ''" >
+	    and scope =  #{scope}
+	</if>
+	<if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays !=''">
+		and rcd_days between #{rcdDays1} and #{rcdDays2}
+	</if>
+	<if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 == null or rcdDays2 ==''">
+		and rcd_days <![CDATA[>=]]> #{rcdDays1}
+	</if>
+	</trim>
+</select>
 <!-- 旅行项目 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from travel_item 
 	<include refid="Example_Where_Clause"/>
 </select>
-  	
+<!-- 获取该旅行方式下的施行项目 -->
+<select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/>
+from travel_item inner join travel_style on travel_item.travel_style = travel_style.id where travel_item.travel_style=#{travelStyle}
+</select>  	
 <!-- 查询旅行项目列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 

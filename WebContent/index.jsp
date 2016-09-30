@@ -23,16 +23,7 @@ pageContext.setAttribute("basePath",basePath);
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-    <div id="top-menu" width="100%" height="153" >
-    <table width="100%" align="center" style="border:0;cursor:pointer">
-    	<tr><th colspan="2"><img src="images/head2016.gif" /></th>
-    	<th colspan="4"><img src="images/chinatravel.png" alt="" />
-    	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th>
-    	<th><span style="color:red">一鍵撥號：<a href="tel:+8602885580038">+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th>
-    	<th><a href="mailto:info@iTours.com.cn">info@iTours.com.cn</a></th></tr>
-    	<tr class="trbanner" align="center" border=0><td href="#">首頁</td><td>旅行</td><td>徒步</td><td>登山</td><td>自駕</td><td>定製</td><td>客戶反饋</td><td>Why Us</td></tr>
-    </table>
-     </div>
+		 <jsp:include page="/front/header.jsp" />
     </td>
   </tr>
   <tr>
@@ -93,7 +84,7 @@ if($.browser.msie){
           <p>我們衷心希望，每一個旅途都能為您創造幸福而美好的回憶 。將來，不管您憶起哪一個片段，都能打從心底泛起笑顏。<br />
             <br />
           主角旅行是隶属于中旅旗下的专业定制旅行服务团队。 我們有強大的信心來履行對您的承諾，因為我們</p>
-          <p>》》<a href="Why.html">了解更多</a></p>
+          <p>》》<a href="front/whyus/Why.jsp">了解更多</a></p>
           <p></p></td>
       </tr>
       <tr>
@@ -106,16 +97,16 @@ if($.browser.msie){
   </tr>
 </table>
 <br />
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="100%" valign="top"><table border="0" align="center" cellpadding="15" cellspacing="0">
+    <td width="766" valign="top"><table border="0" align="center" cellpadding="15" cellspacing="0">
       <tr>
         <td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0" class="f14-gao1">
             <tr>
               <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
                   <tr>
                     <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-                    <td width="296" class="h2-24"><a href="trekking.html" class="STYLE3">徒步</a></td>
+                    <td width="296" class="h2-24"><a href="front/trek/Trekkings.jsp" class="STYLE3">徒步</a></td>
                   </tr>
               </table></td>
             </tr>
@@ -196,10 +187,10 @@ if($.browser.msie){
         </table></td>
       </tr>
     </table></td>
-    <td width="100%" valign="top" bgcolor="#f0f0f0"><br />
+    <td width="374" valign="top" bgcolor="#f0f0f0"><br />
       <table width="353" border="0" align="center" cellpadding="0" cellspacing="0" class="f12-gao1">
       <tr>
-        <td><table width="100%" border="0" align="left" cellpadding="5" cellspacing="0">
+        <td><table width="300" border="0" align="left" cellpadding="5" cellspacing="0">
             <tr>
               <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
               <td width="268" class="h2-24">回憶幸福</td>
@@ -211,16 +202,17 @@ if($.browser.msie){
         <td><img src="images/huiyi.jpg" width="353" height="166" /></td>
       </tr>
       <tr>
-        <td><p class="f12-gao1">“此次出遊，飽覽大自然，擴張我的生命深度與廣度。<span class="STYLE6"> 
-                 或許是有許多第一次的經歷 特有感觸吧！
-          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。。。”　　 <a href="#">More》》</a></span></p>          </td>
+        <td><p class="f12-gao1">“此次出遊，飽覽大自然，擴張我的生命深度與廣度。<span class="STYLE6">   
+               或許是有許多第一次的經歷 特有感觸吧！
+          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。。。”　　 <a href="#">More》》</a></span></p>
+       </td>
       </tr>
     </table>
       <br />
-      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <table width="353" border="0" align="center" cellpadding="5" cellspacing="0">
         <tr>
-          <td width="100%"><img src="images/earth.png" width="32" height="32" /></td>
-          <td width="100%" class="h2-24">热门景点</td>
+          <td width="32"><img src="images/earth.png" width="32" height="32" /></td>
+          <td width="301" class="h2-24">热门景点</td>
         </tr>
       </table>
       <table border="0" align="center" cellpadding="1" cellspacing="0">
@@ -236,8 +228,8 @@ if($.browser.msie){
           </table></td>
         </tr>
       </table>
-      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-
+      <table width="353" border="0" align="center" cellpadding="0" cellspacing="0">
+			
         <tr>
           <td>九寨沟 四姑娘山 海螺沟。。。。 </td>
         </tr>
@@ -246,108 +238,7 @@ if($.browser.msie){
 </table>
 <br />
 <br />
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="100%" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
-    <td width="100%" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
-    <td width="100%" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
-      <label>
-        <select name="select">
-          <option>全部區域</option>
-          <option>四川</option>
-          <option>西藏</option>
-          <option>新疆</option>
-          <option>云南</option>
-                </select>
-        <br />
-        旅行方式：
-        <select name="select3">
-          <option selected="selected">-所有-</option>
-          <option>观光摄影</option>
-          <option>徒步</option>
-          <option value=" ">登山</option>
-          <option>自驾</option>
-        </select>
-        <br />
-        假期时间：<a href="#">
-<select name="select2">
-  <option selected="selected">-所有-</option>
-  <option>1-5天</option>
-  <option>6-9天</option>
-  <option value=" ">10-15天</option>
-  <option>16天+</option>
-</select>
-      </a></label></td>
-    <td width="100%" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
-  
-  <tr>
-    <td height="106" valign="top" bgcolor="#fafafa">
-    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-      <tr>
-        <td width="210"><strong>一些關鍵字</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-      </tr>
-      <tr>
-        <td valign="top"><p>四川旅游<br />
-        四川旅游<br />
-        四川旅游<br />
-        四川旅游<br />
-        四川旅游<br />
-        四川旅游</p>          </td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-      </tr>
-    </table></td>
-  </tr>
-</table>
-<br />
-<br />
-<table width="100%" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
-  <tr>
-    <td width="100%" height="105" valign="top" bgcolor="#666666">
-    <table width="100%" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr>
-          <td width="100%" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
-        </tr>
-        <tr>
-          <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: 成都一環路南三段15號華僑大廈9層<br />
-            Tel: +86-28-85580038 / 85562905<br />
-            E-mail: info@itours.com.cn </div></td>
-        </tr>
-      </tbody>
-    </table></td>
-  </tr>
-</table>
+<jsp:include page="/front/footer.jsp" />
 <script type="text/javascript" src="js/commons/index.js"></script>
 </body>
 </html>

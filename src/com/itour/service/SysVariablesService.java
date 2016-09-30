@@ -20,11 +20,11 @@ public class SysVariablesService<T> extends BaseService<T> {
 	private final static Logger log= Logger.getLogger(SysVariablesService.class);
 
 	@Autowired
-    private SysVariablesDao<T> dao;
+    private SysVariablesDao<T> mapper;
 
 		
 	public SysVariablesDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }
