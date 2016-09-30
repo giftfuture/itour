@@ -14,10 +14,9 @@ import com.itour.page.CustomersPage;
 import com.itour.service.CustomersService;
 
 @Controller
-@RequestMapping("/happy") 
-public class HappyController extends BaseController{
-	
-	private final static Logger log= Logger.getLogger(HappyController.class);
+@RequestMapping("/hotsight") 
+public class HotSightController extends BaseController{
+	private final static Logger log= Logger.getLogger(LightController.class);
 	
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
@@ -39,5 +38,5 @@ public class HappyController extends BaseController{
 		context.put("dataList", dataList);*/
 		return forword("server/sys/customers"); 
 	}
-	
+
 }
