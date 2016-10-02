@@ -1,5 +1,7 @@
 package com.itour.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itour.base.service.BaseService;
 import com.itour.dao.TravelStyleDao;
+import com.itour.entity.TravelStyle;
 
 /**
  * 
@@ -26,5 +29,7 @@ public class TravelStyleService<T> extends BaseService<T> {
 	public TravelStyleDao<T> getDao() {
 		return mapper;
 	}
-
+	public List<TravelStyle> queryValid(){
+		return mapper.queryValid();
+	};
 }

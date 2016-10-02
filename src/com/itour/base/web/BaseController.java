@@ -3,6 +3,7 @@ package com.itour.base.web;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.util.HtmlUtil;
-import com.itour.base.util.URLUtils;
 import com.itour.base.util.edit.MyEditor;
 
 public class BaseController {
@@ -77,7 +77,6 @@ public class BaseController {
 	public ModelAndView forword(String viewName){
 		return new ModelAndView(viewName); 
 	}
-	
 	public ModelAndView error(String errMsg){
 		return new ModelAndView("error"); 
 	}

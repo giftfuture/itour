@@ -106,7 +106,7 @@ if($.browser.msie){
               <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
                   <tr>
                     <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-                    <td width="296" class="h2-24"><a href="front/trek/Trekkings.jsp" class="STYLE3">徒步</a></td>
+                    <td width="296" class="h2-24"><a href="hiking/goHiking" class="STYLE3">徒步</a></td>
                   </tr>
               </table></td>
             </tr>

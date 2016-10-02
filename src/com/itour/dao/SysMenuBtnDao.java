@@ -19,6 +19,5 @@ public interface SysMenuBtnDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
 	public List<SysMenuBtn> getMenuBtnByUser(String userid); 
 	
-	
 	public List<SysMenuBtn> queryByAll();
 }

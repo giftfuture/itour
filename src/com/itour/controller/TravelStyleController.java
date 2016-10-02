@@ -40,10 +40,6 @@ public class TravelStyleController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelStyleService<TravelStyle> travelStyleService; 
 	
-	
-	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -82,6 +78,7 @@ public class TravelStyleController extends BaseController{
 	 */
 	@RequestMapping("/allData") 
 	public void allData(HttpServletResponse response)throws Exception{
+		System.out.println("###########");
 		List<TravelStyle> dataList = travelStyleService.queryByList(null);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);

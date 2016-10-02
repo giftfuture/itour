@@ -57,8 +57,6 @@ public class TravelItemController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelItemService<TravelItem> travelItemService; 
 	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -75,6 +73,21 @@ public class TravelItemController extends BaseController{
 		return forword("server/sys/travelItem"); 
 	}
 	
+	/**
+	 * 更改封面
+	 * @param cover
+	 * @param page
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/updateCover") 
+	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemPage page,HttpServletRequest request) throws Exception{
+		TravelItem ti = new TravelItem();
+		ti.setCover(cover);
+		travelItemService.update(ti);	
+		return forword("server/sys/travelItem"); 
+	}
 	
 	/**
 	 * @param url
@@ -83,7 +96,7 @@ public class TravelItemController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(TravelItemPage page,HttpServletResponse response) throws Exception{
+	public void datalist(TravelItemPage page,HttpServletResponse response) throws Exception{
 		List<TravelItem> dataList = travelItemService.queryByList(page);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
 		jsonMap.put("total",page.getPager().getRowCount());
@@ -372,13 +385,17 @@ public class TravelItemController extends BaseController{
 	@RequestMapping("/search")
 	public void searchTravelItem(@RequestParam(value="travelStyle")String travelStyle,@RequestParam(value="rcdDays")String rcdDays,@RequestParam(value="scope")String scope,HttpServletResponse response) throws Exception{
 		HashMap map = new HashMap();
-		map.put("travelStyle", travelStyle);
-		map.put("scope", scope);
+		if(StringUtils.isNotEmpty(travelStyle)){			
+			map.put("travelStyle", travelStyle);
+		}
+		if(StringUtils.isNotEmpty(scope)){			
+			map.put("scope", scope);
+		}
 		if(rcdDays.indexOf('-')>0){
 			map.put("rcdDays1", rcdDays.split("-")[0]);
 			map.put("rcdDays2", rcdDays.split("-")[1]);
 		}else{
-			map.put("rcdDays1", rcdDays);
+			map.put("rcdDays", rcdDays);
 		}
 		travelItemService.searchTravelItem(map);
 	}

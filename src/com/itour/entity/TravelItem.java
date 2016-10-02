@@ -11,15 +11,14 @@ import java.io.File;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelItem extends BaseEntity {
-	
-		/**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6120210586713700033L;
 	private java.lang.String id;//   	private java.lang.String item;//   	private java.lang.String itemCode;//   	private BigDecimal elevation;//海拔   	private java.lang.String content;//   	private java.lang.String photos;//   	private java.lang.String remark;//   	private java.lang.String mileage;//   	private java.lang.String scope;//   	private java.lang.String shortContent;//   	private java.lang.Integer rank;//   	private java.lang.String recommandReason;//   	private BigDecimal discount;//  折扣 	private java.lang.Integer rcdDays;//   建议天数	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
 	private String travelStyle;
 	private File[] fileselect;
-		public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	private String cover;//封面图片	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getItem() {
 		return item;
 	}
@@ -127,6 +126,12 @@ public class TravelItem extends BaseEntity {
 	}
 	public void setTravelStyle(String travelStyle) {
 		this.travelStyle = travelStyle;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
 	}	
 }
 

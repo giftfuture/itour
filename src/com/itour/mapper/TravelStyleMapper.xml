@@ -8,17 +8,18 @@
 	<result column="id" property="id"/>
 	<result column="type" property="type"/>
 	<result column="remark" property="remark"/>
+	<result column="alias" property="alias"/>
+	<result column="valid" property="valid"/> 
 </resultMap>
        
 <!-- travel_style table all fields -->
 <sql id="Base_Column_List" >
-	 id, type, remark
+	 id, type,alias, remark,valid
 </sql>
-   
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -29,43 +30,60 @@ where 1=1
 	<if test="remark != null and remark != ''" >
 	    and remark like CONCAT('%', #{remark}, '%')
 	</if>
+	<if test="alias != null and alias != ''">
+		and alias like CONCAT('%', #{alias}, '%')
+	</if>
+	<if test="valid != null">
+		and valid =#{valid}
+	</if>
 </trim>
 </sql>
-   
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.TravelStyle" >
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_style(id,type,remark)
- values(#{id},#{type},#{remark})
+  insert into travel_style(id,type,alias,remark,valid)
+ values(#{id},#{type},#{alias},#{remark},#{valid})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelStyle" >
 	update travel_style set 
 	<trim  suffixOverrides="," >
-	<if test="type != null  ">
+	<if test="type != null  and type != ''">
 		type=#{type},
 	</if>
-	<if test="remark != null  ">
+	<if test="alias != null and alias != ''">
+	    alias=#{alias},
+	</if>
+	<if test="remark != null and remark != '' ">
 		remark=#{remark},
 	</if>
-	</trim> where id=#{id}
+	<if test="valid != null">
+		valid=#{valid},
+	</if>
+	</trim>
+	 where id=#{id}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	 from travel_style where id = #{id}
+	delete from travel_style where id = #{id}
 </delete>
  
 <!-- 根据id查询 旅行方式 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
-	 from travel_style where id = #{id}
+	 from travel_style where valid = 1
+	 <if test="id != null and id != ''">
+		 and id = #{id} 
+	 </if>
 </select>
-
+<select id="queryValid"  resultMap="BaseResultMap">
+select type,alias from travel_style where valid = 1
+</select>
 <!-- 旅行方式 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from travel_style 

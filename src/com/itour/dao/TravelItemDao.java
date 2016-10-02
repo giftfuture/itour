@@ -1,8 +1,8 @@
 package com.itour.dao;
 
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.TravelItem;
@@ -14,7 +14,17 @@ import com.itour.entity.TravelItem;
  * <b>日期：</b> Feb 2, 2013 <br>
  */
 public interface TravelItemDao<T> extends BaseDao<T> {
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	List<TravelItem> searchTravelItem(Map map);
 	
-	List<TravelItem> searchTravelItem(HashMap map);
+	/**
+	 * 
+	 * @param style
+	 * @return
+	 */
 	List<TravelItem> queryByStyle(String style);
 }

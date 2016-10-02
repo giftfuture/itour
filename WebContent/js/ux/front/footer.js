@@ -17,18 +17,19 @@ itour.footer = function(){
 		},
 		travelStyle:function(){
 			$.ajax({
-				type:'post',
-				url:'/travelStyle/allData',
+				dataType:"json",
+				url:basePath+"common/styles",
+				data:{},
+				type:"post",
 				success:function(result){
-					if(result != null){
-						var rows = result.rows;
-						$(rows).each(function(e){
-							$("select[name='travel_style']").append("<option value='"+e.id+"'>"+e.type+"</option>");
-						});
-					}
+					var data = result.rows;
+					$(data).each(function(i,e){
+						//console.log(data[i]);
+						$("select[name='travel_style']").append("<option value='"+$(e).attr("alias")+"'>"+$(e).attr("type")+"</option>");
+					});
 				},
-				error:function(e){
-					console.log(e);
+				error:function(err){
+					console.log(err);
 				}
 			});
 		},

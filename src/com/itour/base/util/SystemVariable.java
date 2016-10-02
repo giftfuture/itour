@@ -34,7 +34,6 @@ public class SystemVariable{
 	public static List<Exception> exceptionList = new ArrayList<Exception>();//异常列表
 	public static StringBuffer brandString = new StringBuffer();//异常标签
 	
-	public static String chnl_tx_no = "";					//CPS渠道流水号
 	public static String tasker = "";						//调用者
 	
 	public static boolean localCacheRunning = false;		//本地文件写入运行状态

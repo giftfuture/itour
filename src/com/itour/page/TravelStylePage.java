@@ -16,6 +16,8 @@ public class TravelStylePage extends BasePage {
 	private java.lang.String id;//   
 	private java.lang.String type;//   
 	private java.lang.String remark;//   
+	private String alias;
+	private boolean valid;
 	public java.lang.String getId() {
 	    return this.id;
 	}
@@ -33,6 +35,18 @@ public class TravelStylePage extends BasePage {
 	}
 	public void setRemark(java.lang.String remark) {
 	    this.remark=remark;
+	}
+	public String getAlias() {
+		return alias;
+	}
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	
 }

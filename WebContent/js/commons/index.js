@@ -24,7 +24,6 @@ function changeImg()
 }
 function changePho(i){
 	$("tr input[type='button']").css("background","red");
-	
 	var obj=document.getElementById("banner-index");
 	obj.src=arr[i.value];
 	$(i).css("background","white");

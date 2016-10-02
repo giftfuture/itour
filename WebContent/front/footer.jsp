@@ -1,13 +1,20 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-
+<%    
+String path = request.getContextPath();    
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
+pageContext.setAttribute("basePath",basePath);    
+%>
+ <script type="text/javascript" src="${basePath}js/jquery-2.1.1.min.js"></script>
+ <script type="text/javascript">
+ var basePath = '${basePath}';
+</script>
 <form name="searchForm" action="" method="post">
 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="30px" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
+    <td width="30px" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
     <td width="50px" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
-    
     <td width="50px" bgcolor="#CCCCCC" class="f14-gao1" >  
-  	<font color="#E2FAE4">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</font>  
+  	<!-- <font color="#E2FAE4">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</font>   -->
        旅行方式：
         <select name="travel_style">
           <option selected="selected">-所有-</option>
@@ -23,7 +30,7 @@
        </select>
         <br />
    
-        假期天数：<a href="#">
+        假期天数：<a href="javascript:void(0)">
 <select name="vacation">
   <option selected="selected">-所有-</option>
   <option value="1-5">1-5天</option>
@@ -37,7 +44,6 @@
 </table>
 </form>
 <p>&nbsp;</p>
-
 <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
@@ -104,3 +110,5 @@
     </td>
   </tr>
 </table>
+<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
+<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>

@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
-encoding//WebContent/front/error_fileupload.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/front/error_fileupload.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/front/trek/trekking.jsp=UTF-8
 encoding//WebContent/index.jsp=UTF-8

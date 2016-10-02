@@ -14,16 +14,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.itour.base.util.SystemVariable;
+import com.itour.util.Constants;
 
 public class WebInitListener extends JdbcDaoSupport implements ServletContextListener {
 	
 	private static final Logger log = Logger.getLogger(WebInitListener.class);
 	
-	@Autowired(required=false)
+	/*@Autowired(required=false)
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired(required=false)
-	private DruidDataSource dataSource;
+	private DruidDataSource dataSource;*/
 //	public static HashMap<String, String> ConfigMap=new HashMap<String, String>();
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
@@ -31,7 +32,9 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 	   ServletContext servlet=arg0.getServletContext();
+	   //servlet.
 	   SystemVariable.init();
+	   Constants.init();
 	}
 	
 

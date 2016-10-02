@@ -1,7 +1,7 @@
 package com.itour.service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,10 @@ public class TravelItemService<T> extends BaseService<T> {
 	@Autowired
     private TravelItemDao<T> mapper;
 
-		
 	public TravelItemDao<T> getDao() {
 		return mapper;
 	}
-	public List<TravelItem> searchTravelItem(HashMap map)throws Exception{
+	public List<TravelItem> searchTravelItem(Map map)throws Exception{
 	   return mapper.searchTravelItem(map);
 	}
 	
