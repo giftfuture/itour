@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.edit.MyEditor;
-
+@Controller
+@Scope("prototype")
 public class BaseController {
 	
 	public final static String SUCCESS ="success";  

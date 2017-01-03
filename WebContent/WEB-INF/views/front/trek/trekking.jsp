@@ -95,7 +95,7 @@ a:active {
       </table>
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="5">
         <tr> 
-          <td> <h1> Trekking from Lugu Lake to Yading</h1></td>
+          <td> <h1> ${item.item }</h1></td>
         </tr>
       </table>
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="10" bgcolor="#CCCCCC" class="lefttxt">
@@ -103,57 +103,28 @@ a:active {
         <tr>
           <td width="600" valign="top"><img src="${basePath}images/img/yading-03.jpg" width="600" height="338" /></td>
           <td width="330" valign="middle"><p class="STYLE126"><span class="STYLE129">线路特色：</span><br />
-            <strong>*民族风情：母系氏族摩梭族，藏族风情<br />
+            <strong><!-- *民族风情：母系氏族摩梭族，藏族风情<br />
           *沿线人迹罕致<br />
           *亚丁的三座雪山被誉为中国最美的雪山<br />
           *也可根据时间调整抵达或离开的城市<br />
-          *可加入丽江、虎跳峡、梅里雪山等地的观光或徒步，依你的情况来调整日程。 </strong></p>
-            <p class="STYLE126"><span class="STYLE129">天数：</span> 15天 (徒步8天，此行程可调整为13-25天&nbsp;)　　<span class="STYLE129"><br />
-难度：</span>***-- 　　　　<br />
-<span class="STYLE129">最高海拔：</span> 4800米<span class="STYLE129"><br />
-季节：</span>5-6月，9-10月（10月最佳）<br />
-<span class="STYLE129">人数：</span>你说了算，2人开始私人定制</p>
-          <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php"><strong>开始私人定制</strong></a>&gt;&gt;</p></td>
+          *可加入丽江、虎跳峡、梅里雪山等地的观光或徒步，依你的情况来调整日程。 --> ${item.feature }</strong></p>
+            <p class="STYLE126"><span class="STYLE129">天数：</span> ${item.rcdDays}天 (徒步8天，此行程可调整为13-25天&nbsp;)
+            　　<span class="STYLE129"><br />
+难度：</span>${item.difficultyRate} 　　　　<br />
+<span class="STYLE129">最高海拔：</span> ${item.mileage }米<span class="STYLE129"><br />
+季节：</span>${item.season}<br />
+<span class="STYLE129">人数：</span>${item.recommandCrowd}</p>
+        <!--   <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php"><strong>开始私人定制</strong></a>&gt;&gt;</p> -->
+          </td>
         </tr>
       </table>
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="10" class="lefttxt">
         <tr> 
           <td width="620" valign="top"><p><br />
-            Trekking from Lugu Lake to Yading</p>
-            <p>Trekking from Lugu Lake to Yading is just like walking in a beautiful paradise, to experience a variety of ethnic customs. On the way, you will pass the villages of Mosuo, Pumi, Naxi and Tibetans, and each one is with unique customs and culture. <br />
-              <br />
-              The nature scenery changes with the seasons. Blossom spring, freshly green summer, colorful autumn, and white winter travel around on this plateau make it charming all over the year. <br />
-              <br />
-              Lugu Lake is known as the &quot;Pearl of the plateau&quot;,  for it’s blue and clean water and the beautiful island, The US scholar Rock also once traveled and lived here. <br />
-              <br />
-            Yading is one of China's most amazing nature reserves.  Every stunning vista here is celebrated with a gompa, prayer flags or Mani Stones. On this adventurous trip you will take in relatively remote areas of Tibetan culture - small towns reminiscent of the wild west, rolling landscapes characterized by wheat and barley fields and Tibetan houses.</p>
-            <p><span class="right">Itinerary ：</span><br />
-            D01 Arrive in Chengdu. City tour. ( Visit Chengdu Giant Panda Base)  Overnight in Chengdu. </p>
-            <p>D02 Chengdu——Xichang    Overnight in Xichang </p>
-            <p>D03 Xichang——Lugu Lake（arrive at about 4p.m.） Overnight at Lakeside </p>
-            <p>D04 Hiking around Lugu Lake; get used to the altitude. </p>
-            <p>D05 Lugu Lake --Yongning --Hotspring - foot of the mountain --start hiking --Lijiazu Village --Bayi Village (Camp) <br />
-              <br />
-              D06 Bayi --Camp --Wujiao Village -- Yangpeng (Camp) <br />
-              <br />
-              D07 Yangpeng -- Darkuduo Pass -- Quershan Pass -- Tasi Valley (Camp) <br />
-              <br />
-              D08 Tasi Valley -- Qiongyin Village  (Camp) <br />
-              <br />
-              D09 Qiongyin Village -- Qiongyin village Pass -- Ludu village--Tongtian River valley --Tongtian River Camp (Camp) <br />
-              <br />
-              D10 Tongtian River Camp --Dongla Village -- Dulu Village --Galuo Village (Camp) <br />
-              <br />
-              D11 Galuo Village Pasture Camp --Galo Pasture --Niupeng (Camp) <br />
-              <br />
-            D12 Niupeng -Shanuo duoji Pass -- Chonggu Temple --Yading Village-- Shangrila county --Daocheng<br />
-            <br />
-            D13 Daocheng——Xinduqiao or Kading </p>
-            <p>D14 Kading ——Chengdu </p>
-            <p>D15 Farewell. <br />
-            </p>
-            <p><strong>*此行程供参考，可根据您的情况量身调整行程。</strong></p>
-            <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php"><strong>开始私人定制</strong></a>&gt;&gt;</p>
+           ${item.item}</p>
+            <p>${item.content } </p>
+            <p><span class="right">行程 ：</span><br />
+            ${item.itinerary }
             <p><br />
               <img src="${basePath}images/img/yading-05.jpg" width="600" height="338" /></p>
             <p><img src="${basePath}images/img/yading-02.jpg" width="600" height="338" /></p>
@@ -166,28 +137,19 @@ a:active {
             <br />
             -------------------------------------------------------------------------------<br />
             <br />
-            <p><strong><span class="STYLE130">What's included:</span><br />
-              .</strong>all transport, including airport pick-up and transfers<br />
-              .Tibet Travel Permit (TTP)<br />
-              .private vehicle and driver with foreign guide.<br />
+            <p><strong><span class="STYLE130">配备:</span><br />
+				${item.equip}
+             </strong></p>
+            <p><span class="STYLE130"><strong>不包括:</strong></span><br />
+             	${item.exclude }
               <br />
-              .all meals with wine included at dinner (as selected by Extravagant 
-              Yak)<br />
-              .complimentary use of a cell phone with local number for the duration 
-              of the trip<br />
-              .all accommodation based on double occupancy<br />
-            .all activities and entrance fees enroute (per the itinerary)</p>
-            <p><span class="STYLE130"><strong>Not included:</strong></span><br />
-              international airfare<br />
-              medical, travel, and trip interruption insurance<br />
-              passport and visa fees<br />
-              activities not included on the trip itinerary<br />
-              souvenirs, laundry, items of a personal nature <br />
-              <br />
+              </p>
+              <p>
               -------------------------------------------------------------------------------<br />
               <br />
               <span class="STYLE130"><strong>建议装备：</strong></span><br />
-            冲锋衣裤、抓绒衣裤、大小背包、高帮防水登山鞋、保温水壶、太阳帽、照像机、个人药品、防晒霜、头灯或电筒和备用电池、太阳眼镜、雪镜、手机和充电器、排汗内衣、厚袜子、睡袋（羽绒1500克）、抓绒帽，手套（要防水保暖的），雪套，头巾，登山杖，防晒唇膏，电池若干（温度低，电池消耗大，灯头相机电池多备）以及个人洗漱用品，还有身份证，银行卡，现金（不需要太多没地方花的）个人喜爱零食。</p>
+              ${item.recommandEquip }
+            </p>
             -------------------------------------------------------------------------------<br />
             <br />
             <strong>Fill in this form and you'll hear back from us in 48 hrs!：</strong><br />
@@ -233,7 +195,7 @@ a:active {
     <td width="10" background="${basePath}images/shadowright.gif"><img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" background="${basePath}images/shadowleft.gif"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
@@ -241,7 +203,7 @@ a:active {
     <td width="10" background="${basePath}images/shadowright.gif"><img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" height="16" background="${basePath}images/shadowleft.gif"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
@@ -251,7 +213,8 @@ a:active {
   </tr>
   <tr>
     <td background="${basePath}images/shadowleft.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td colspan="2" valign="top"><table width="960" height="60" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
+    <td colspan="2" valign="top">
+    <table width="100%" height="60" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
       <tr>
         <td width="623" height="30" bgcolor="#EFEFEF"><div align="center">Southwest-China-Adventures.com</div></td>
       </tr>

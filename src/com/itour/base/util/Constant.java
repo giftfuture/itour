@@ -2,7 +2,7 @@ package com.itour.base.util;
 
 import java.util.ResourceBundle;
 
-import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 public class Constant {
 

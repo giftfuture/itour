@@ -18,7 +18,15 @@ pageContext.setAttribute("basePath",basePath);
     	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th>
     	<th><span style="color:red">一鍵撥號：<a href="tel:+8602885580038">+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th>
     	<th><a href="mailto:info@iTours.com.cn">info@iTours.com.cn</a></th></tr>
-    	<tr class="trbanner" align="center" border=0><td href="#">首頁</td><td>徒步</td><td>登山</td><td>自駕</td><td>輕驢行</td><td>回憶興福</td><td>目的地</td><td><a href="${basePath}front/whyus/Why.jsp">Why Us</a></td></tr>
+    	<tr class="trbanner" align="center" border=0><td><a href="">首頁</a></td>
+    	<td><a href="${basePath}hiking/goHiking">徒步</a></td>
+    	<td><a href="${basePath }climb/main">登山</a></td>
+    	<td><a href="${basePath }selfdrive/main">自駕</a></td>
+    	<td><a href="${basePath }light/main">輕驢行</a></td>
+    	<td><a href="${basePath }happy/main">回憶興福</a></td>
+    	<td><a href="${basePath }destination/main">目的地</a></td>
+    	<td><a href="${basePath}whyus/why">Why Us</a></td>
+    	</tr>
     </table>
      </div>
   

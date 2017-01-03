@@ -34,9 +34,15 @@ public class TravelItemPage extends BasePage {
 	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增
 	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增
 	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
-
+	private String feature;//特色
+	private String equip;//装备
+	private String exclude;//不包括
+	private String initerary;//行程
+	private String map;//地图
+	private String cover;//封面图片
 	private CommonsMultipartFile[] fileselect;
-	
+	private String season;//建议季节
+	private String recommandEquip;
 	public java.lang.String getId() {
 	    return this.id;
 	}
@@ -78,6 +84,12 @@ public class TravelItemPage extends BasePage {
 	}
 	public void setRemark(java.lang.String remark) {
 	    this.remark=remark;
+	}
+	public String getRecommandEquip() {
+		return recommandEquip;
+	}
+	public void setRecommandEquip(String recommandEquip) {
+		this.recommandEquip = recommandEquip;
 	}
 	public java.lang.String getMileage() {
 	    return this.mileage;
@@ -144,6 +156,48 @@ public class TravelItemPage extends BasePage {
 	}
 	public void setFileselect(CommonsMultipartFile[] fileselect) {
 		this.fileselect = fileselect;
+	}
+	public String getFeature() {
+		return feature;
+	}
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+	public String getEquip() {
+		return equip;
+	}
+	public void setEquip(String equip) {
+		this.equip = equip;
+	}
+	public String getExclude() {
+		return exclude;
+	}
+	public void setExclude(String exclude) {
+		this.exclude = exclude;
+	}
+	public String getIniterary() {
+		return initerary;
+	}
+	public void setIniterary(String initerary) {
+		this.initerary = initerary;
+	}
+	public String getMap() {
+		return map;
+	}
+	public void setMap(String map) {
+		this.map = map;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+	public String getSeason() {
+		return season;
+	}
+	public void setSeason(String season) {
+		this.season = season;
 	}
 	
 	

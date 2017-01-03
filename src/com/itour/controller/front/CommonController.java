@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,7 @@ import com.itour.page.TravelStylePage;
 import com.itour.service.TravelStyleService;
 
 @Controller
+//@Scope("prototype")
 @RequestMapping("/common") 
 public class CommonController {
 
