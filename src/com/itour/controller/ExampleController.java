@@ -8,16 +8,21 @@ import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itour.base.easyui.DataGridAdapter;
+
 @Controller
 @Scope("prototype")
 public class ExampleController {
 	private int singletonInt=1;
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
     @RequestMapping(value = "/test")
     @ResponseBody
     public String singleton(HttpServletRequest request,HttpServletResponse response) throws Exception {

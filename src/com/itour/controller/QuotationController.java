@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.OrderDetail;
 import com.itour.entity.Quotation;
-import com.itour.page.QuotationPage;
+import com.itour.vo.QuotationVo;
 import com.itour.service.QuotationService;
  
 /**
@@ -39,7 +40,8 @@ public class QuotationController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private QuotationService<Quotation> quotationService; 
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	
 	
@@ -52,7 +54,7 @@ public class QuotationController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(QuotationPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(QuotationVo page,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<Quotation> dataList = quotationService.queryByList(page);
 		//设置页面数据
@@ -68,7 +70,7 @@ public class QuotationController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(QuotationPage page,HttpServletResponse response) throws Exception{
+	public void  datalist(QuotationVo page,HttpServletResponse response) throws Exception{
 		List<Quotation> dataList = quotationService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

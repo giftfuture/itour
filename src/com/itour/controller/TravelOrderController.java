@@ -20,10 +20,11 @@ import com.itour.base.web.BaseController;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelOrder;
-import com.itour.page.TravelOrderPage;
+import com.itour.vo.TravelOrderVo;
 import com.itour.service.TravelOrderService;
  
 /**
@@ -42,7 +43,8 @@ public class TravelOrderController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelOrderService<TravelOrder> travelOrderService; 
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	
 	
@@ -55,7 +57,7 @@ public class TravelOrderController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(TravelOrderPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(TravelOrderVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
@@ -70,7 +72,7 @@ public class TravelOrderController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(TravelOrderPage page,HttpServletResponse response) throws Exception{
+	public void  datalist(TravelOrderVo page,HttpServletResponse response) throws Exception{
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
 		jsonMap.put("total",page.getPager().getRowCount());

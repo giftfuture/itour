@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.Quotation;
 import com.itour.entity.RouteTemplate;
-import com.itour.page.RouteTemplatePage;
+import com.itour.vo.RouteTemplateVo;
 import com.itour.service.RouteTemplateService;
  
 /**
@@ -40,7 +41,8 @@ public class RouteTemplateController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private RouteTemplateService<RouteTemplate> routeTemplateService; 
 	
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	
 	
@@ -52,7 +54,7 @@ public class RouteTemplateController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView list(RouteTemplatePage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(RouteTemplateVo page,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		//设置页面数据
@@ -68,7 +70,7 @@ public class RouteTemplateController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(RouteTemplatePage page,HttpServletResponse response) throws Exception{
+	public void  datalist(RouteTemplateVo page,HttpServletResponse response) throws Exception{
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

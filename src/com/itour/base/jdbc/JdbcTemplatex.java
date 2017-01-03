@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.itour.base.page.Page;
+import com.itour.base.page.BasePage;
 
 
 /**
@@ -59,7 +59,7 @@ public class JdbcTemplatex extends JdbcTemplate {
 	 * @param rowMapper 行映射
 	 * @return 分页查询結果
 	 */
-	public <T> Page<T> pagedQuery(String sql, Object[] args, int start, int limit, RowMapper<T> rowMapper) {
+	public <T> BasePage<T> pagedQuery(String sql, Object[] args, int start, int limit, RowMapper<T> rowMapper) {
 		return JdbcDaoHelper.pagedQuery(sql, args, start, limit, rowMapper, this);
 	}
 
@@ -72,7 +72,7 @@ public class JdbcTemplatex extends JdbcTemplate {
 	 * @param rowMapper 行映射
 	 * @return 分页查询結果
 	 */
-	public <T> Page<T> pagedQuery(CharSequence sql, List<Object> args, int start, int limit, RowMapper<T> rowMapper) {
+	public <T> BasePage<T> pagedQuery(CharSequence sql, List<Object> args, int start, int limit, RowMapper<T> rowMapper) {
 		return JdbcDaoHelper.pagedQuery(sql.toString(), args.toArray(), start, limit, rowMapper, this);
 	}
 

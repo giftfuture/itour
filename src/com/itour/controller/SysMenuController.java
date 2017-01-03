@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.util.HtmlUtil;
@@ -26,7 +27,7 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
-import com.itour.page.SysMenuModel;
+import com.itour.vo.SysMenuVo;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
  
@@ -43,13 +44,15 @@ public class SysMenuController extends BaseController{
 	@Autowired
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
 	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * @param url
 	 * @param classifyId
 	 * @return
 	 */
 	@RequestMapping("/menu")
-	public ModelAndView menu(SysMenuModel model,HttpServletRequest request) throws Exception{
+	public ModelAndView menu(SysMenuVo model,HttpServletRequest request) throws Exception{
 	//	Map<String,Object>  context = getRootMap();
 	//	model.setDeleted(DELETED.NO.key);
 	//	List<SysMenu> dataList = sysMenuService.queryByList(model);
@@ -66,7 +69,7 @@ public class SysMenuController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  dataList(SysMenuModel model,HttpServletResponse response) throws Exception{
+	public void  dataList(SysMenuVo model,HttpServletResponse response) throws Exception{
 		List<SysMenu> dataList = sysMenuService.queryByList(model);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

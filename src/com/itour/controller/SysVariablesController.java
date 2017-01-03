@@ -18,10 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.annotation.Auth;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysVariables;
-import com.itour.page.SysVariablesPage;
+import com.itour.vo.SysVariablesVo;
 import com.itour.service.SysVariablesService;
  
 /**
@@ -40,7 +41,8 @@ public class SysVariablesController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysVariablesService<SysVariables> sysVariablesService; 
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * 
 	 * @param url
@@ -50,7 +52,7 @@ public class SysVariablesController extends BaseController{
 	 */
 	@Auth
 	@RequestMapping("/list") 
-	public ModelAndView  list(SysVariablesPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(SysVariablesVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<SysVariables> dataList = sysVariablesService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
@@ -66,7 +68,7 @@ public class SysVariablesController extends BaseController{
 	 */
 	@Auth
 	@RequestMapping("/dataList") 
-	public void  datalist(SysVariablesPage page,HttpServletResponse response) throws Exception{
+	public void  datalist(SysVariablesVo page,HttpServletResponse response) throws Exception{
 		List<SysVariables> dataList = sysVariablesService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

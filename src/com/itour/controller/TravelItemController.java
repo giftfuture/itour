@@ -31,14 +31,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.RedProFile;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.TravelItem;
-import com.itour.page.TravelItemPage;
 import com.itour.service.TravelItemService;
 //import com.alibaba.fastjson.JSONObject;
+import com.itour.vo.TravelItemVo;
  
 /**
  * 
@@ -56,7 +57,8 @@ public class TravelItemController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelItemService<TravelItem> travelItemService; 
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * 
 	 * @param url
@@ -65,7 +67,7 @@ public class TravelItemController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView list(TravelItemPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(TravelItemVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelItem> dataList = travelItemService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
@@ -82,7 +84,7 @@ public class TravelItemController extends BaseController{
 	 * @throws Exception
 	 */
 	@RequestMapping("/updateCover") 
-	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemVo page,HttpServletRequest request) throws Exception{
 		TravelItem ti = new TravelItem();
 		ti.setCover(cover);
 		travelItemService.update(ti);	
@@ -96,7 +98,7 @@ public class TravelItemController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void datalist(TravelItemPage page,HttpServletResponse response) throws Exception{
+	public void datalist(TravelItemVo page,HttpServletResponse response) throws Exception{
 		List<TravelItem> dataList = travelItemService.queryByList(page);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
 		jsonMap.put("total",page.getPager().getRowCount());

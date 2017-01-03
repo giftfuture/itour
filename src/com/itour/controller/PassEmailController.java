@@ -11,13 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SHA;
 import com.itour.base.util.SystemVariable;
 import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
-import com.itour.page.SysUserModel;
+import com.itour.vo.SysUserVo;
 import com.itour.service.SysUserService;
 
 @Controller
@@ -27,12 +28,14 @@ public class PassEmailController extends BaseController {
 	@SuppressWarnings("rawtypes")
 	@Autowired(required=false)
 	private SysUserService userService;
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
     private String sid;
     private String userName;
     @SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/sendmail")
-    public String sendmail(SysUserModel user, HttpServletRequest req,HttpServletResponse response) throws Exception{
+    public String sendmail(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception{
         try {
         	int count = userService.getUserCountByEmail(user.getEmail());
         	if (count >= 1) {

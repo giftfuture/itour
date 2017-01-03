@@ -12,10 +12,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.HtmlUtil;
 import com.itour.controller.TravelStyleController;
 import com.itour.entity.TravelStyle;
-import com.itour.page.TravelStylePage;
+import com.itour.vo.TravelStyleVo;
 import com.itour.service.TravelStyleService;
 
 @Controller
@@ -28,13 +29,15 @@ public class CommonController {
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelStyleService<TravelStyle> travelStyleService; 
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * 
 	 * @param response
 	 * @throws Exception
 	 */
 	@RequestMapping("/styles") 
-	public void allData(HttpServletResponse response,TravelStylePage page)throws Exception{
+	public void allData(HttpServletResponse response,TravelStyleVo page)throws Exception{
 		List<TravelStyle> dataList = travelStyleService.queryValid();
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);

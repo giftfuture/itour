@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.google.common.collect.Lists;
 import com.itour.base.jdbc.dialect.Dialect;
 import com.itour.base.jdbc.dialect.impl.MySqlDialect;
-import com.itour.base.page.Page;
+import com.itour.base.page.BasePage;
 
 
 /**
@@ -43,14 +43,14 @@ public class JdbcDaoHelper {
 	 * @param jdbcTemplate JDBC模板
 	 * @return 分页查询結果
 	 */
-	public static <T> Page<T> pagedQuery(String sql, Object[] args, int start, int limit, RowMapper<T> rowMapper,
+	public static <T> BasePage<T> pagedQuery(String sql, Object[] args, int start, int limit, RowMapper<T> rowMapper,
 			JdbcTemplate jdbcTemplate) {
 		long count = jdbcTemplate.queryForObject(jdbcDialect.getCountSql(sql), args, Long.class).longValue();
 		if (count == 0) {
-			return new Page<T>(start, limit, Lists.<T> newArrayList(), 0);
+			return new BasePage<T>(start, limit, Lists.<T> newArrayList(), 0);
 		}
 		List<T> records = jdbcTemplate.query(jdbcDialect.getLimitSql(sql, start, limit), args, rowMapper);
-		return new Page<T>(start, limit, records, count);
+		return new BasePage<T>(start, limit, records, count);
 	}
 
 	/**

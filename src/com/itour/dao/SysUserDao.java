@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.SysUser;
-import com.itour.page.SysUserModel;
+import com.itour.vo.SysUserVo;
 
 /**
  * SysUser Mapper
@@ -19,7 +19,7 @@ public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param pwd
 	 * @return
 	 */
-	SysMenuBtn queryLogin(SysUserModel model);
+	SysMenuBtn queryLogin(SysUserVo model);
 	
 	
 	/**

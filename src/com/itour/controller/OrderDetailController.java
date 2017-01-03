@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.LogSettingDetail;
 import com.itour.entity.OrderDetail;
-import com.itour.page.OrderDetailPage;
+import com.itour.vo.OrderDetailVo;
 import com.itour.service.OrderDetailService;
  
 /**
@@ -40,7 +41,8 @@ public class OrderDetailController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private OrderDetailService<OrderDetail> orderDetailService; 
 	
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	
 	
@@ -52,7 +54,7 @@ public class OrderDetailController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(OrderDetailPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(OrderDetailVo page,HttpServletRequest request) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
@@ -68,7 +70,7 @@ public class OrderDetailController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(OrderDetailPage page,HttpServletResponse response) throws Exception{
+	public void  datalist(OrderDetailVo page,HttpServletResponse response) throws Exception{
 		List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

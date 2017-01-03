@@ -8,9 +8,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.itour.base.collect.Mapx;
 import com.itour.base.convert.ConvertUtil;
-import com.itour.base.page.Page;
+import com.itour.base.page.BasePage;
 import com.itour.base.page.PageUtil;
-import com.itour.base.page.Pagination;
 import com.itour.base.util.json.JsonUtils;
 
 
@@ -27,9 +26,9 @@ public class DataGridAdapter {
 	 * 获得查询条件
 	 * @param 查询条件
 	 */
-	public Pagination getPagination() {
+	public BasePage getPagination() {
 		HttpServletRequest request = getRequest();
-		Pagination pagination = new Pagination();
+		BasePage pagination = new BasePage();
 		String sPageNo = request.getParameter("page");
 		String sPageSize = request.getParameter("rows");
 		String json = request.getParameter("filters");// 获取查询条件
@@ -47,7 +46,7 @@ public class DataGridAdapter {
 	 * 封装分页结果
 	 * @return 封装分页结果
 	 */
-	public EasyUIGrid wrap(Page<?> page) {
+	public EasyUIGrid wrap(BasePage<?> page) {
 		return new EasyUIGrid(page);
 	}
 

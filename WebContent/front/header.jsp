@@ -19,7 +19,7 @@ pageContext.setAttribute("basePath",basePath);
     	<th><span style="color:red">一鍵撥號：<a href="tel:+8602885580038">+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th>
     	<th><a href="mailto:info@iTours.com.cn">info@iTours.com.cn</a></th></tr>
     	<tr class="trbanner" align="center" border=0><td><a href="">首頁</a></td>
-    	<td><a href="${basePath}hiking/goHiking">徒步</a></td>
+    	<td><a href="${basePath}hiking/main">徒步</a></td>
     	<td><a href="${basePath }climb/main">登山</a></td>
     	<td><a href="${basePath }selfdrive/main">自駕</a></td>
     	<td><a href="${basePath }light/main">輕驢行</a></td>

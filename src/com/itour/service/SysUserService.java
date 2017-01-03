@@ -12,7 +12,7 @@ import com.itour.dao.SysUserDao;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
 import com.itour.entity.SysRoleRel.RelType;
-import com.itour.page.SysUserModel;
+import com.itour.vo.SysUserVo;
 
 /**
  * 
@@ -42,7 +42,7 @@ public class SysUserService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public T queryLogin(String email,String pwd){
-		SysUserModel model = new SysUserModel();
+		SysUserVo model = new SysUserVo();
 		model.setEmail(email);
 		model.setPwd(pwd);
 		SysUserDao<T> mapper = getDao();

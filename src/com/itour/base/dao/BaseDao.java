@@ -21,6 +21,8 @@ public interface BaseDao<T> {
 	
 	public List<T> queryByList(BasePage page);
 	
+	public BasePage<T> pagedQuery(BasePage page);
+	
 	
 	public T queryById(String id);
 }

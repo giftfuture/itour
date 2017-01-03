@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.entity.BaseEntity.STATE;
 import com.itour.base.util.HtmlUtil;
@@ -23,7 +24,7 @@ import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
 import com.itour.exception.ServiceException;
-import com.itour.page.SysUserModel;
+import com.itour.vo.SysUserVo;
 import com.itour.service.SysRoleService;
 import com.itour.service.SysUserService;
  
@@ -40,6 +41,8 @@ public class SysUserController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) 
 	private SysRoleService<SysRole> sysRoleService; 
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * ilook 首页
 	 * @param url
@@ -47,7 +50,7 @@ public class SysUserController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView list(SysUserModel model,HttpServletRequest request) throws Exception{
+	public ModelAndView list(SysUserVo model,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<SysUser> dataList = sysUserService.queryByList(model);
 		//设置页面数据
@@ -64,7 +67,7 @@ public class SysUserController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  dataList(SysUserModel model,HttpServletResponse response) throws Exception{
+	public void  dataList(SysUserVo model,HttpServletResponse response) throws Exception{
 		List<SysUser> dataList = sysUserService.queryByList(model);
 		for(SysUser user: dataList){
 			List<SysRole> list = sysRoleService.queryByUserid(user.getId());
@@ -202,7 +205,7 @@ public class SysUserController extends BaseController{
 	 * @throws Exception
 	 */
 	@RequestMapping("/userList") 
-	public void  userList(SysUserModel model,HttpServletResponse response) throws Exception{
+	public void  userList(SysUserVo model,HttpServletResponse response) throws Exception{
 		model.setState(STATE.ENABLE.key);
 		dataList(model, response);
 	}

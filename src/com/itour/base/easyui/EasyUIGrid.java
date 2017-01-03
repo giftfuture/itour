@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.itour.base.page.Page;
+import com.itour.base.page.BasePage;
 
 /**
  * 分页表格数据模型<br>
@@ -25,7 +25,7 @@ public class EasyUIGrid implements Serializable {
 	 * 构造函数
 	 * @param page 分页对象
 	 */
-	public EasyUIGrid(Page<?> page) {
+	public EasyUIGrid(BasePage<?> page) {
 		this.rows = page.getRecords();
 		this.total = page.getTotal();
 		this.footer = page.getFooter();

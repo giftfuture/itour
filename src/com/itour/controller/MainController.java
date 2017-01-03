@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.entity.BaseEntity.STATE;
-import com.itour.base.page.AjaxJson;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.MethodUtil;
@@ -37,7 +37,7 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
-import com.itour.page.SysUserModel;
+import com.itour.vo.SysUserVo;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysUserService;
@@ -57,6 +57,9 @@ public class MainController extends BaseController {
 	
 	@Autowired(required=false) 
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
+	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	private String verifyCode;
 	/**
@@ -83,7 +86,7 @@ public class MainController extends BaseController {
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping("/checkuser")
-	public void checkuser(SysUserModel user, HttpServletRequest req,HttpServletResponse response) throws Exception {
+	public void checkuser(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception {
 		int count = sysUserService.getUserCountByEmail(user.getEmail());
 		if (count >= 1) {
 				//设置User到Session

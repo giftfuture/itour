@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSettingDetail;
-import com.itour.page.LogSettingDetailPage;
+import com.itour.vo.LogSettingDetailVo;
 import com.itour.service.LogSettingDetailService;
  
 /**
@@ -40,7 +41,8 @@ public class LogSettingDetailController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private LogSettingDetailService<LogSettingDetail> logSettingDetailService; 
 	
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	
 	
@@ -52,7 +54,7 @@ public class LogSettingDetailController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(LogSettingDetailPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(LogSettingDetailVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
 		//设置页面数据
@@ -68,7 +70,7 @@ public class LogSettingDetailController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(LogSettingDetailPage page,HttpServletResponse response) throws Exception{
+	public void  datalist(LogSettingDetailVo page,HttpServletResponse response) throws Exception{
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

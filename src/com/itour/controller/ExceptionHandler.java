@@ -11,12 +11,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;  
 import org.codehaus.jackson.JsonEncoding;  
 import org.codehaus.jackson.JsonGenerator;  
-import org.codehaus.jackson.map.ObjectMapper;  
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;  
 import org.springframework.web.multipart.MaxUploadSizeExceededException;  
 import org.springframework.web.servlet.HandlerExceptionResolver;  
-import org.springframework.web.servlet.ModelAndView;  
+import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.State;
 import com.itour.exception.NoSupportExtensionException;
   
@@ -24,6 +26,8 @@ import com.itour.exception.NoSupportExtensionException;
 public class ExceptionHandler implements HandlerExceptionResolver, Ordered {
 
 	private Log logger = LogFactory.getLog(this.getClass());  
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	@Override  
     public int getOrder() {  
         return Integer.MIN_VALUE;  

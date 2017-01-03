@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.TravelOrder;
 import com.itour.entity.TravelStyle;
-import com.itour.page.TravelStylePage;
+import com.itour.vo.TravelStyleVo;
 import com.itour.service.TravelStyleService;
  
 /**
@@ -39,7 +40,8 @@ public class TravelStyleController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelStyleService<TravelStyle> travelStyleService; 
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * 
 	 * @param url
@@ -48,7 +50,7 @@ public class TravelStyleController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView list(TravelStylePage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(TravelStyleVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelStyle> dataList = travelStyleService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
@@ -63,7 +65,7 @@ public class TravelStyleController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(TravelStylePage page,HttpServletResponse response) throws Exception{
+	public void  datalist(TravelStyleVo page,HttpServletResponse response) throws Exception{
 		List<TravelStyle> dataList = travelStyleService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

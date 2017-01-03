@@ -23,11 +23,14 @@ import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.json.JSONUtil;
+import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.base.page.BasePage;
 import com.itour.entity.Customers;
 import com.itour.entity.SysMenu;
-import com.itour.page.CustomersPage;
 import com.itour.service.CustomersService;
+import com.itour.vo.CustomerVo;
  
 /**
  * 
@@ -45,7 +48,8 @@ public class CustomersController extends BaseController{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private CustomersService<Customers> customersService; 
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * 
 	 * @param url
@@ -54,7 +58,7 @@ public class CustomersController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView list(CustomersPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		request.isUserInRole("");
 	/*	Map<String,Object>  context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
@@ -72,18 +76,21 @@ public class CustomersController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(CustomersPage page,HttpServletResponse response) throws Exception{
-		List<Customers> dataList = customersService.queryByList(page);
+	public EasyUIGrid  datalist(CustomerVo params,HttpServletResponse response) throws Exception{
+		BasePage page = dataGridAdapter.getPagination();
+		BasePage<Map<String, Object>> pagination = customersService.pagedQuery(page);
+		//List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
+		//Map<String,Object> jsonMap = new HashMap<String,Object>();
+		//jsonMap.put("total",page.getPager().getRowCount());
+		//jsonMap.put("rows", dataList);
 	//	Customers cust = dataList.get(0);
 		//System.out.println("####"+JSON.toJSONString(cust));
 		//System.out.println("####"+JSON.toJSONString(dataList));
 	 //   JSONObject jsonObj = JSONObject.parseObject(cust.toString());
 	 //   System.out.println(jsonObj);
-		HtmlUtil.writerJSON(response,jsonMap);
+	 //	HtmlUtil.writerJSON(response,jsonMap);
+		return dataGridAdapter.wrap(pagination);
 	}
 	
 	/**

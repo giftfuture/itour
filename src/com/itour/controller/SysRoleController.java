@@ -14,13 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
-import com.itour.page.SysRoleModel;
+import com.itour.vo.SysRoleVo;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysRoleRelService;
 import com.itour.service.SysRoleService;
@@ -40,6 +41,8 @@ public class SysRoleController extends BaseController{
 	private SysMenuService<SysMenu> sysMenuService; 
 	@Autowired(required=false) 
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	/**
 	 * 
 	 * @param url
@@ -48,7 +51,7 @@ public class SysRoleController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/role")
-	public ModelAndView list(SysRoleModel model,HttpServletRequest request) throws Exception{
+	public ModelAndView list(SysRoleVo model,HttpServletRequest request) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		return forword("server/sys/sysRole"); 
 	}
@@ -61,7 +64,7 @@ public class SysRoleController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(SysRoleModel model,HttpServletResponse response) throws Exception{
+	public void  datalist(SysRoleVo model,HttpServletResponse response) throws Exception{
 		List<SysRole> dataList = sysRoleService.queryByList(model);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

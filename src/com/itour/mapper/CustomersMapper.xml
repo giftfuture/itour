@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itour.dao.CustomersDao" > 
 <!-- Result Map-->
-<resultMap id="BaseResultMap" type="com.itour.entity.Customers" >
+<resultMap id="BaseResultMap" type="com.itour.vo.CustomerVo" >
 	<result column="id" property="id"/>
 	<result column="customer_id" property="customerId"/>
 	<result column="create_time" property="createTime"/>

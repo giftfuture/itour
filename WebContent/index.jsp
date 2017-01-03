@@ -29,8 +29,12 @@ pageContext.setAttribute("basePath",basePath);
   <tr>
     <td><img id="banner-index"  src="images/Route001.jpg" width="100%" height="598" /></td>
   </tr>
-    <tr><td><input style="background:red;" type="button" value="1" onclick="changePho(this)" /><input style="background:red;" type="button" value="2" onclick="changePho(this)" /><input style="background:red;" type="button" value="3" onclick="changePho(this)" />
-    <input style="background:red;" type="button" value="4" onclick="changePho(this)" /><input style="background:red;" type="button" value="5" onclick="changePho(this)" /><input style="background:red;" type="button" value="6" onclick="changePho(this)" /></td></tr>
+    <tr><td><input style="background:red;" type="button" value="1" onclick="changePho(this)" />
+    <input style="background:red;" type="button" value="2" onclick="changePho(this)" />
+    <input style="background:red;" type="button" value="3" onclick="changePho(this)" />
+    <input style="background:red;" type="button" value="4" onclick="changePho(this)" />
+    <input style="background:red;" type="button" value="5" onclick="changePho(this)" />
+    <input style="background:red;" type="button" value="6" onclick="changePho(this)" /></td></tr>
   <tr><td><!--<video width="602px" height="345px" controls="controls">
 <source src="video/boshijie.mpg" type="video/mpg"></source>
 your browser does not support the video tag
@@ -106,7 +110,7 @@ if($.browser.msie){
               <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
                   <tr>
                     <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-                    <td width="296" class="h2-24"><a href="hiking/goHiking" class="STYLE3">徒步</a></td>
+                    <td width="296" class="h2-24"><a href="hiking/main" class="STYLE3">徒步</a></td>
                   </tr>
               </table></td>
             </tr>

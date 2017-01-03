@@ -16,12 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Feedback;
-import com.itour.page.FeedbackPage;
 import com.itour.service.FeedbackService;
+import com.itour.vo.CustomerVo;
 
 /**
  * 
@@ -40,7 +41,8 @@ public class FeedbackController extends BaseController{
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private FeedbackService<Feedback> feedbackService; 
 	
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	
 	
@@ -52,7 +54,7 @@ public class FeedbackController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(FeedbackPage page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<Feedback> dataList = feedbackService.queryByList(page);
 		//设置页面数据
@@ -68,7 +70,7 @@ public class FeedbackController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(FeedbackPage page,HttpServletResponse response) throws Exception{
+	public void  datalist(CustomerVo page,HttpServletResponse response) throws Exception{
 		if(page.getCreateTime() != null){
 			Timestamp createTime =  new Timestamp(page.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
 			page.setCreateTime(createTime);

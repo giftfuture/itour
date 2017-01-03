@@ -1,20 +1,23 @@
-package com.itour.page;
+package com.itour.vo;
+
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.itour.base.page.BasePage;
-import java.math.BigDecimal;
-
 /**
  * 
  * <br>
- * <b>功能：</b>CustomersPage<br>
  * <b>作者：</b>fred.zhao<br>
- * <b>日期：</b> Thu Jul 14 12:18:17 2016 <br>
+ * <b>日期：</b> Feb 2, 2016 <br>
  */
-public class CustomersPage extends BasePage {
+public class CustomerVo extends BasePage implements Serializable{
 	
 	
 	private java.lang.String id;//   
-	private java.lang.Integer customerId;//   
+	private java.lang.String customerId;//   
 	private java.util.Date createTime;//   
 	private java.lang.Integer status;//   
 	private java.util.Date updateTime;//   
@@ -27,97 +30,103 @@ public class CustomersPage extends BasePage {
 	private java.lang.String customerName;//   
 	private java.lang.String nickName;//   
 	private java.lang.String district;//   
-	private java.lang.String introduction;//   
+	private java.lang.String introduction;// 
 	private String birthday;
+	public CustomerVo(){}
+	public CustomerVo(String customerId,String customerName,String introduce){
+		this.customerId = customerId ;
+		this.customerName = customerName;
+		this.introduction = introduce ;
+	}
 	public java.lang.String getId() {
 	    return this.id;
 	}
 	public void setId(java.lang.String id) {
 	    this.id=id;
 	}
-	public java.lang.Integer getCustomerId() {
-	    return this.customerId;
+	public java.lang.String getCustomerId() {
+		return customerId;
 	}
-	public void setCustomerId(java.lang.Integer customerId) {
-	    this.customerId=customerId;
+	public void setCustomerId(java.lang.String customerId) {
+		this.customerId = customerId;
 	}
 	public java.util.Date getCreateTime() {
-	    return this.createTime;
+		return createTime;
 	}
 	public void setCreateTime(java.util.Date createTime) {
-	    this.createTime=createTime;
+		this.createTime = createTime;
 	}
 	public java.lang.Integer getStatus() {
-	    return this.status;
+		return status;
 	}
 	public void setStatus(java.lang.Integer status) {
-	    this.status=status;
+		this.status = status;
 	}
 	public java.util.Date getUpdateTime() {
-	    return this.updateTime;
+		return updateTime;
 	}
 	public void setUpdateTime(java.util.Date updateTime) {
-	    this.updateTime=updateTime;
+		this.updateTime = updateTime;
 	}
 	public java.lang.String getAddress() {
-	    return this.address;
+		return address;
 	}
 	public void setAddress(java.lang.String address) {
-	    this.address=address;
+		this.address = address;
 	}
 	public java.lang.String getEmail() {
-	    return this.email;
+		return email;
 	}
 	public void setEmail(java.lang.String email) {
-	    this.email=email;
+		this.email = email;
 	}
 	public java.lang.Integer getScope() {
-	    return this.scope;
+		return scope;
 	}
 	public void setScope(java.lang.Integer scope) {
-	    this.scope=scope;
+		this.scope = scope;
 	}
 	public java.lang.String getCity() {
-	    return this.city;
+		return city;
 	}
 	public void setCity(java.lang.String city) {
-	    this.city=city;
+		this.city = city;
 	}
 	public java.lang.String getTelephone() {
-	    return this.telephone;
+		return telephone;
 	}
 	public void setTelephone(java.lang.String telephone) {
-	    this.telephone=telephone;
+		this.telephone = telephone;
 	}
 	public java.lang.String getMobile() {
-	    return this.mobile;
+		return mobile;
 	}
 	public void setMobile(java.lang.String mobile) {
-	    this.mobile=mobile;
+		this.mobile = mobile;
 	}
 	public java.lang.String getCustomerName() {
-	    return this.customerName;
+		return customerName;
 	}
 	public void setCustomerName(java.lang.String customerName) {
-	    this.customerName=customerName;
+		this.customerName = customerName;
 	}
 	public java.lang.String getNickName() {
-	    return this.nickName;
+		return nickName;
 	}
 	public void setNickName(java.lang.String nickName) {
-	    this.nickName=nickName;
+		this.nickName = nickName;
 	}
 	public java.lang.String getDistrict() {
-	    return this.district;
+		return district;
 	}
 	public void setDistrict(java.lang.String district) {
-	    this.district=district;
+		this.district = district;
 	}
 	public java.lang.String getIntroduction() {
-	    return this.introduction;
+		return introduction;
 	}
 	public void setIntroduction(java.lang.String introduction) {
-	    this.introduction=introduction;
+		this.introduction = introduction;
 	}
 	public String getBirthday() {
 		return birthday;
@@ -127,3 +136,4 @@ public class CustomersPage extends BasePage {
 	}
 	
 }
+

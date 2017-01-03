@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Customers;
 import com.itour.entity.TravelItem;
-import com.itour.page.CustomersPage;
+import com.itour.vo.CustomerVo;
 import com.itour.service.CustomersService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
@@ -33,7 +34,8 @@ public class HikingController extends BaseController{
 	
 	private final static Logger log= Logger.getLogger(HikingController.class);
 	
-	
+	@Autowired
+	private DataGridAdapter dataGridAdapter;
 	
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
@@ -48,7 +50,7 @@ public class HikingController extends BaseController{
 	 * @throws Exception 
 	 */
 	@SuppressWarnings("rawtypes")
-	@RequestMapping("/goHiking") 
+	@RequestMapping("/main") 
 	public ModelAndView goHiking(HttpServletRequest request,HttpServletResponse response) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
