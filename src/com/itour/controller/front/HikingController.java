@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -32,15 +33,15 @@ import com.itour.util.Constants;
 @RequestMapping("/hiking") 
 public class HikingController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(HikingController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private CustomersService<Customers> customersService; 
-	@Autowired(required=false) 
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CustomersService customersService; 
+	@Autowired 
 	private TravelItemService<TravelItem> travelItemService; 
 	/**
 	 * 

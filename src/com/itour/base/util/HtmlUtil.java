@@ -7,12 +7,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JsonConfig;
-import net.sf.json.processors.JsonValueProcessor;
-
-import org.json.JSONException;
-
-import com.itour.base.util.json.JSONUtil;
+import com.itour.base.json.JsonUtils;
 
 /**
  * <br>
@@ -43,14 +38,10 @@ public class HtmlUtil {
 	 * @param object
 	 */
 	public static void writerJson(HttpServletResponse response,Object object){
-			try {
-				response.setContentType("application/json");
-				String result = JSONUtil.toJSONString(object);
-				// result = result == null ||result == "{\"msg\":\"1\",\"success\":true}" || result =="{\"total\":1,\"rows\":[{}]}"|| result.equals("{success=true, allType=true}") || result.equals("{}") ||result.length()<3 ? net.sf.json.JSONObject.fromObject(object).toString() :result ;
-				writer(response,result);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+		response.setContentType("application/json");
+		String result = JsonUtils.encode(object);
+		// result = result == null ||result == "{\"msg\":\"1\",\"success\":true}" || result =="{\"total\":1,\"rows\":[{}]}"|| result.equals("{success=true, allType=true}") || result.equals("{}") ||result.length()<3 ? net.sf.json.JSONObject.fromObject(object).toString() :result ;
+		writer(response,result);
 	}
 	/**
 	 * net.sf.json write
@@ -59,12 +50,12 @@ public class HtmlUtil {
 	 */
 	public static void writerJSON(HttpServletResponse response,Object object){
 			response.setContentType("application/json");
-			  JsonConfig jsonConfig = new JsonConfig();
+			  /*JsonConfig jsonConfig = new JsonConfig();
 		        jsonConfig.registerJsonValueProcessor(Date.class,
 		                new JsonValueProcessor() {
-		                    /**
+		                    *//**
 		                     * paramString -> 参数名 paramObject -> 参数值
-		                     */
+		                     *//*
 		                    @Override
 		                    public Object processObjectValue(String paramString,
 		                            Object paramObject, JsonConfig paramJsonConfig) {
@@ -92,7 +83,7 @@ public class HtmlUtil {
 			//jo.put("updateTime", jo.get("updateTime"));
 			//jo.put("createTime", value)
 			String result = jo.toString();
-			writer(response,result);
+			writer(response,result);*/
 	}
 	/**
 	 * 

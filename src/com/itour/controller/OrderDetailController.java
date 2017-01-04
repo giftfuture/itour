@@ -9,10 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
@@ -35,10 +38,10 @@ import com.itour.service.OrderDetailService;
 @RequestMapping("/orderDetail") 
 public class OrderDetailController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(OrderDetailController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private OrderDetailService<OrderDetail> orderDetailService; 
 	
 	@Autowired
@@ -53,7 +56,7 @@ public class OrderDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/list") 
+	@RequestMapping(value="/list", method = RequestMethod.POST) 
 	public ModelAndView  list(OrderDetailVo page,HttpServletRequest request) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
@@ -69,7 +72,8 @@ public class OrderDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  datalist(OrderDetailVo page,HttpServletResponse response) throws Exception{
 		List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
@@ -86,7 +90,8 @@ public class OrderDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(OrderDetail entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -100,9 +105,14 @@ public class OrderDetailController extends BaseController{
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
-	
-	
-	@RequestMapping("/getId")
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		OrderDetail entity  = orderDetailService.queryById(id);
@@ -115,9 +125,14 @@ public class OrderDetailController extends BaseController{
 		HtmlUtil.writerJSON(response, context);
 	}
 	
-	
-	
-	@RequestMapping("/delete")
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		orderDetailService.delete(id);
 		sendSuccessMessage(response, "删除成功");

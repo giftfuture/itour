@@ -8,12 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.json.JSONException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -22,7 +23,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
-import com.itour.base.util.json.JSONUtil;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
@@ -43,11 +43,11 @@ import com.itour.vo.CustomerVo;
 @RequestMapping("/customers") 
 public class CustomersController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(CustomersController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private CustomersService<Customers> customersService; 
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CustomersService customersService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	/**
@@ -57,7 +57,7 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/list") 
+	@RequestMapping(value = "/list", method = RequestMethod.POST) 
 	public ModelAndView list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		request.isUserInRole("");
 	/*	Map<String,Object>  context = getRootMap();
@@ -75,10 +75,11 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
-	public EasyUIGrid  datalist(CustomerVo params,HttpServletResponse response) throws Exception{
-		BasePage page = dataGridAdapter.getPagination();
-		BasePage<Map<String, Object>> pagination = customersService.pagedQuery(page);
+	@RequestMapping(value = "/dataList.json", method = RequestMethod.POST) 
+	@ResponseBody
+	public EasyUIGrid datalist(CustomerVo vo,HttpServletResponse response) throws Exception{
+		//BasePage page = dataGridAdapter.getPagination();
+		BasePage<Map<String, Object>> pagination = customersService.pagedQuery(vo);
 		//List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		//Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -100,7 +101,8 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@ResponseBody
 	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setCustomerId(IDGenerator.getUUID());
@@ -118,7 +120,8 @@ public class CustomersController extends BaseController{
 	}
 	
 	
-	@RequestMapping("/getId")
+	@RequestMapping(value = "/getId", method = RequestMethod.POST)
+	@ResponseBody
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		Customers entity  = customersService.queryById(id);
@@ -133,9 +136,9 @@ public class CustomersController extends BaseController{
 	
 	
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@ResponseBody
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
-		
 		customersService.delete(id);
 		sendSuccessMessage(response, "删除成功");
 	}

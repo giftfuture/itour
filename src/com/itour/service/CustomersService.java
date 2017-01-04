@@ -25,14 +25,13 @@ import com.itour.vo.CustomerVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 @Service("customersService")
-public class CustomersService<T> extends BaseService<T> {
+public class CustomersService extends BaseService<Customers> {
 	private final static Logger log= Logger.getLogger(CustomersService.class);
 
 	@Autowired
-    private CustomersDao<T> mapper;
-
+    private CustomersDao mapper;
 		
-	public CustomersDao<T> getDao() {
+	public CustomersDao getDao(){
 		return mapper;
 	}
 
@@ -43,20 +42,18 @@ public class CustomersService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 
-	public BasePage<Map<String, Object>> pagedQuery(BasePage page) {
-		List<CustomerVo> list = (List<CustomerVo>) mapper.queryByList(page);
-		BasePage<CustomerVo> basepage = null;//(BasePage<CustomerVo>)mapper.pagedQuery(page);
-		//List<AuthPermissionEntity> list = authPermissionDao.findAll();
-		Map<String, String> map = Maps.newHashMap();
-		for (int i = 0; i < list.size(); i++) {
-			CustomerVo vo = list.get(i);
+	@SuppressWarnings("unchecked")
+	public BasePage<Map<String, Object>> pagedQuery(CustomerVo vo) {
+	//	CustomerVo vo = new CustomerVo();
+		List<Customers> list = mapper.queryByList(vo);
+		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
+		//Map<String, String> map = Maps.newHashMap();
+		List<Map<String, Object>> records = Lists.newArrayList();
+		for(int i = 0; i < list.size(); i++) {
+			Customers customers = list.get(i);
+			records.add(CustomerKit.toRecord(customers));
 			//map.put(authPermissionVo.getId(), authPermissionVo.getName());
 		}
-		List<Map<String, Object>> record = Lists.newArrayList();
-		for (CustomerVo vo : basepage.getRecords()) {
-			record.add(CustomerKit.toRecord(vo));
-			//record.add(AuthPermissionKit.toRecord(map, entity));
-		}
-		return new BasePage<Map<String, Object>>(page.getStart(), page.getLimit(), record, page.getTotal());
+		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
 	}
 }

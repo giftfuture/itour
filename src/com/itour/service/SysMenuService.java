@@ -8,12 +8,19 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.convert.CustomerKit;
+import com.itour.convert.SysMenuKit;
 import com.itour.dao.SysMenuDao;
+import com.itour.entity.Customers;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
+import com.itour.vo.CustomerVo;
+import com.itour.vo.SysMenuVo;
 
 /**
  * 
@@ -167,7 +174,27 @@ public class SysMenuService<T> extends BaseService<T> {
 	public int maxRank() {
 		return  getDao().maxRank();
 	}
-	
+	/**
+	 * 分页查询
+	 * 
+	 * @param pageQuery 查询条件
+	 * @return 查询结果
+	 */
+
+	@SuppressWarnings("unchecked")
+	public BasePage<Map<String, Object>> pagedQuery(SysMenuVo vo) {
+	//	CustomerVo vo = new CustomerVo();
+		List<SysMenu> list = (List<SysMenu>) mapper.queryByList(vo);
+		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
+		//Map<String, String> map = Maps.newHashMap();
+		List<Map<String, Object>> records = Lists.newArrayList();
+		for(int i = 0; i < list.size(); i++) {
+			SysMenu menu = list.get(i);
+			records.add(SysMenuKit.toRecord(menu));
+			//map.put(authPermissionVo.getId(), authPermissionVo.getName());
+		}
+		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+	}
 	public SysMenuDao<T> getDao() {
 		return mapper;
 	}

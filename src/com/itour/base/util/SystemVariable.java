@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
+import com.itour.base.jdbc.JdbcDaoHelper;
+import com.itour.base.jdbc.JdbcTemplatex;
 import com.itour.base.util.email.EmailService;
 import com.itour.dao.CustomersDao;
 
@@ -44,7 +46,7 @@ public class SystemVariable{
 	
 	public static final Map<String,String> cache = new HashMap<String,String>();
 	
-	@Autowired(required=false)
+	@Autowired
 	private static JdbcTemplate jdbcTemplate;
 	
 	static{
@@ -65,7 +67,9 @@ public class SystemVariable{
 		try{
 			//JdbcTemplate tpl =  this.getJdbcTemplate();
 			//tpl = new JdbcTemplate(dataSource);
-			list =jdbcTemplate.queryForList(sql);  
+			//list =JdbcTemplatex.queryForList(sql);  
+			//list =JdbcDaoHelper.(sql);  
+			list = jdbcTemplate.queryForList(sql);
 			for (Map map : list){
 				SystemVariable.cache.put(map.get("var_name").toString(),map.get("var_value").toString());
 			}

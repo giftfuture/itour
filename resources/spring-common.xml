@@ -68,6 +68,9 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
         <property name = "dataSource" ref="dataSource"/>
 	</bean>
+	<bean id="jdbcTemplateX" class="com.itour.base.jdbc.JdbcTemplatex">
+	 	<property name = "dataSource" ref="dataSource"/>
+	</bean>
 	<bean  class="com.itour.base.util.SystemVariable">  
       <!--  <property name="dataSource" ref="dataSource"/>   -->
        <property name="jdbcTemplate" ref="jdbcTemplate"/>
@@ -79,7 +82,7 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+	
 	<aop:config>  
         <aop:advisor pointcut="execution(* com.itour.service.*.*(..))"  advice-ref="txAdvice" />  
         <aop:advisor pointcut="execution(* com.itour.base.service.*.*(..))"  advice-ref="txAdvice" />  

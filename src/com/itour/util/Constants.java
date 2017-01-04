@@ -14,13 +14,13 @@ import com.itour.base.util.SystemVariable;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.TravelStyle;
 
-public class Constants<T> {
+public class Constants {
 	
 	
 	//ResourceBundle.getBundle("conf");
 	public static String basePhoto ="/images/";
 	//private TravelStyleDao baseDao;
-	@Autowired(required=false)
+	@Autowired
 	private static JdbcTemplate jdbcTemplate;
 	
 	public static final Map<String,String> travelStyles = new HashMap<String,String>(){{}};

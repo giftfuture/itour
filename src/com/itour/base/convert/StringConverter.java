@@ -2,6 +2,11 @@ package com.itour.base.convert;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair;
 
 
 /**
@@ -32,5 +37,15 @@ public class StringConverter implements Converter<String> {
 	@Override
 	public boolean support(Class<? extends String> type) {
 		return String.class.isAssignableFrom(type);
+	}
+
+	@Override
+	public Object convert(Object arg0, TypeDescriptor arg1, TypeDescriptor arg2) {
+		return null;
+	}
+
+	@Override
+	public Set<ConvertiblePair> getConvertibleTypes() {
+		return new HashSet<ConvertiblePair>();
 	}
 }

@@ -10,16 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.itour.base.easyui.DataGridAdapter;
-import com.itour.base.entity.TreeNode;
+import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.base.entity.TreeNode;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.TreeUtil;
@@ -27,18 +31,18 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysMenuVo;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
+import com.itour.vo.SysMenuVo;
  
 @Controller
 @RequestMapping("/sysMenu") 
 public class SysMenuController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysMenuController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysMenuService<SysMenu> sysMenuService; 
 	
 	@Autowired
@@ -51,7 +55,8 @@ public class SysMenuController extends BaseController{
 	 * @param classifyId
 	 * @return
 	 */
-	@RequestMapping("/menu")
+	@ResponseBody
+	@RequestMapping(value="/menu", method = RequestMethod.POST)
 	public ModelAndView menu(SysMenuVo model,HttpServletRequest request) throws Exception{
 	//	Map<String,Object>  context = getRootMap();
 	//	model.setDeleted(DELETED.NO.key);
@@ -68,15 +73,19 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
-	public void  dataList(SysMenuVo model,HttpServletResponse response) throws Exception{
-		List<SysMenu> dataList = sysMenuService.queryByList(model);
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
+	public EasyUIGrid dataList(SysMenuVo vo,HttpServletResponse response) throws Exception{
+		List<SysMenu> dataList = sysMenuService.queryByList(vo);
+		dataGridAdapter.getPagination();
+		BasePage<Map<String, Object>> pagination = sysMenuService.pagedQuery(vo);
+		return dataGridAdapter.wrap(pagination);
 		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",model.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
+		//Map<String,Object> jsonMap = new HashMap<String,Object>();
+		//jsonMap.put("total",model.getPager().getRowCount());
+		//jsonMap.put("rows", dataList);
 	//	System.out.println(JSON.toJSONString(dataList));
-		HtmlUtil.writerJson(response, jsonMap);
+		//HtmlUtil.writerJson(response, jsonMap);
 	}
 	
 	/**
@@ -85,7 +94,8 @@ public class SysMenuController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping("/rootMenuJson") 
+	@ResponseBody
+	@RequestMapping(value="/rootMenuJson", method = RequestMethod.POST) 
 	public void  rootMenu(String menuId,HttpServletResponse response) throws Exception{
 		List<SysMenu> dataList = sysMenuService.getRootMenu(menuId);
 		if(dataList==null){
@@ -103,7 +113,8 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysMenu bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
 		//设置菜单按钮数据
@@ -137,8 +148,14 @@ public class SysMenuController extends BaseController{
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
-	
-	@RequestMapping("/getId")
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		SysMenu bean = sysMenuService.queryById(id);
@@ -153,7 +170,8 @@ public class SysMenuController extends BaseController{
 		HtmlUtil.writerJson(response, context);
 	}
 	
-	@RequestMapping("/delete")
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		if(id != null && id.length > 0){
 			sysMenuService.delete(id);
@@ -163,8 +181,8 @@ public class SysMenuController extends BaseController{
 		}
 	}
 	
-	
-	@RequestMapping("/getMenuTree")
+	@ResponseBody
+	@RequestMapping(value="/getMenuTree", method = RequestMethod.POST)
 	public void getMenuTree(Integer id,HttpServletResponse response) throws Exception{
 		List<TreeNode> menuTree = treeMenu();
 		HtmlUtil.writerJson(response, menuTree);

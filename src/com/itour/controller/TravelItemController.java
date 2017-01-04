@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,10 +53,10 @@ import com.itour.vo.TravelItemVo;
 @RequestMapping("/travelItem") 
 public class TravelItemController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(TravelItemController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelItemService<TravelItem> travelItemService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
@@ -66,12 +67,9 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/list") 
+	
+	@RequestMapping(value="/list", method = RequestMethod.POST) 
 	public ModelAndView list(TravelItemVo page,HttpServletRequest request) throws Exception{
-		/*Map<String,Object>  context = getRootMap();
-		List<TravelItem> dataList = travelItemService.queryByList(page);
-		context.put("dataList", dataList);//设置页面数据
-		 */	
 		return forword("server/sys/travelItem"); 
 	}
 	
@@ -83,7 +81,8 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/updateCover") 
+	//@ResponseBody
+	@RequestMapping(value="/updateCover", method = RequestMethod.POST) 
 	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemVo page,HttpServletRequest request) throws Exception{
 		TravelItem ti = new TravelItem();
 		ti.setCover(cover);
@@ -97,7 +96,8 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void datalist(TravelItemVo page,HttpServletResponse response) throws Exception{
 		List<TravelItem> dataList = travelItemService.queryByList(page);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
@@ -115,7 +115,8 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelItem entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 	//	File[]  ff = fileselect;
 		//System.out.println(ff != null ? ff.length:0);
@@ -133,8 +134,8 @@ public class TravelItemController extends BaseController{
 	}
 	//headers = "content-type=application/x-www-form-urlencoded",
 	
+	@ResponseBody  
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST
-	@ResponseBody // @ResponseBody Map<String,Object>
 	public ModelAndView uploadPhoto(@RequestParam(value="id",required=false)String id,
 			@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			//@RequestParam(value="name",required=false) String name,
@@ -266,6 +267,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
 	public void editPhoto(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -331,6 +333,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
 	public void saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletResponse response)throws Exception{
 		String realPath = RedProFile.uploadPath();
@@ -363,8 +366,8 @@ public class TravelItemController extends BaseController{
 		ti.setPhotos(pnames.toString());
 		travelItemService.update(ti);
 	}
-	
-	@RequestMapping("/getId")
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		TravelItem entity  = travelItemService.queryById(id);
@@ -383,8 +386,9 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping("/search")
+	@RequestMapping(value="/search", method = RequestMethod.POST)
 	public void searchTravelItem(@RequestParam(value="travelStyle")String travelStyle,@RequestParam(value="rcdDays")String rcdDays,@RequestParam(value="scope")String scope,HttpServletResponse response) throws Exception{
 		HashMap map = new HashMap();
 		if(StringUtils.isNotEmpty(travelStyle)){			
@@ -408,14 +412,21 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping("/queryByStyle")
+	@RequestMapping(value="/queryByStyle", method = RequestMethod.POST)
 	public void queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletResponse response)throws Exception{
 		List<TravelItem> travelItems = travelItemService.queryByStyle(travelStyle);
 		
 	}
-	
-	@RequestMapping("/delete")
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		travelItemService.delete(id);
 		sendSuccessMessage(response, "删除成功");

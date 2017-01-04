@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
@@ -24,22 +27,22 @@ import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
 import com.itour.exception.ServiceException;
-import com.itour.vo.SysUserVo;
 import com.itour.service.SysRoleService;
 import com.itour.service.SysUserService;
+import com.itour.vo.SysUserVo;
  
 @Controller
 @RequestMapping("/sysUser") 
 public class SysUserController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysUserController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysUserService<SysUser> sysUserService; 
 	
 	// Servrice start
-	@Autowired(required=false) 
+	@Autowired
 	private SysRoleService<SysRole> sysRoleService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
@@ -49,12 +52,8 @@ public class SysUserController extends BaseController{
 	 * @param classifyId
 	 * @return
 	 */
-	@RequestMapping("/list") 
+	@RequestMapping(value="/list", method = RequestMethod.POST) 
 	public ModelAndView list(SysUserVo model,HttpServletRequest request) throws Exception{
-	/*	Map<String,Object>  context = getRootMap();
-		List<SysUser> dataList = sysUserService.queryByList(model);
-		//设置页面数据
-		context.put("dataList", dataList);*/
 		return forword("server/sys/sysUser"); 
 	}
 	
@@ -66,7 +65,8 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  dataList(SysUserVo model,HttpServletResponse response) throws Exception{
 		List<SysUser> dataList = sysUserService.queryByList(model);
 		for(SysUser user: dataList){
@@ -107,7 +107,8 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysUser bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		SysUser user = SessionUtils.getUser(request);
@@ -133,8 +134,13 @@ public class SysUserController extends BaseController{
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
-	
-	@RequestMapping("/getId")
+	/**
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
@@ -147,7 +153,7 @@ public class SysUserController extends BaseController{
 		HtmlUtil.writerJson(response, context);
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysUserService.delete(id);
 		sendSuccessMessage(response, "删除成功");
@@ -161,7 +167,8 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/updatePwd")
+	@ResponseBody
+	@RequestMapping(value="/updatePwd", method = RequestMethod.POST)
 	public void updatePwd(String id,String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	boolean isAdmin = SessionUtils.isAdmin(request); //是否超级管理员
 		SysUser bean  = sysUserService.queryById(id);
@@ -192,7 +199,8 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/userRole") 
+	@ResponseBody
+	@RequestMapping(value="/userRole", method = RequestMethod.POST) 
 	public ModelAndView  userRole(HttpServletRequest request) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		return forword("server/sys/sysUserRole", context);
@@ -204,7 +212,8 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping("/userList") 
+	@ResponseBody
+	@RequestMapping(value="/userList", method = RequestMethod.POST) 
 	public void  userList(SysUserVo model,HttpServletResponse response) throws Exception{
 		model.setState(STATE.ENABLE.key);
 		dataList(model, response);
@@ -216,7 +225,8 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping("/getUser") 
+	@ResponseBody
+	@RequestMapping(value="/getUser", method = RequestMethod.POST) 
 	public void getUser(String id,HttpServletResponse response)  throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
@@ -234,7 +244,6 @@ public class SysUserController extends BaseController{
 				i++;
 			}
 		}
-		
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("id", bean.getId());
 		data.put("email", bean.getEmail());
@@ -246,13 +255,14 @@ public class SysUserController extends BaseController{
 	}
 	
 	/**
-	 * 添加或修改数据
+	 * 添加用户角色
 	 * @param url
 	 * @param classifyId
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/addUserRole")
+	@ResponseBody
+	@RequestMapping(value="/addUserRole", method = RequestMethod.POST)
 	public void addUserRole(String id,String roleIds[],HttpServletResponse response) throws Exception{
 		sysUserService.addUserRole(id, roleIds);
 		sendSuccessMessage(response, "保存成功");

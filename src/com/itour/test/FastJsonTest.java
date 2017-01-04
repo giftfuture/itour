@@ -1,13 +1,9 @@
 package com.itour.test;
 
 import com.alibaba.fastjson.JSON;
-
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import org.jsoup.Jsoup;
-
-
-
 //import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.itour.entity.Customers;
@@ -19,10 +15,9 @@ public class FastJsonTest {
     public void toJsonString()  
     {  
         Customers user = new Customers("105","testFastJson001", "maks");  
-        JSONObject jo = new JSONObject();
         String text = JSON.toJSONString(user);  
         System.out.println("toJsonString()方法：text=" + text);  
-        System.out.println("toJsonString()方法：text=" +  JSONObject.fromObject(user).toString());  
+        System.out.println("toJsonString()方法：text=" +  JSON.toJSONString(user));  
         // 输出结果：text={"age":105,"id":"testFastJson001","name":"maks"}  
     }  
   
@@ -32,7 +27,7 @@ public class FastJsonTest {
     public void parseJsonObject()  
     {  
         String text = "{\"id\":105,\"customername\":\"testFastJson001\",\"introduction\":\"maks\"}";  
-        JSONObject json = null;// JSON.parseObject(text);  
+        JSONObject json =  JSON.parseObject(text);  
         System.out.println("parseJsonObject()方法：json==" + json);  
         // 输出结果：json=={"age":105,"id":"testFastJson001","name":"maks"}  
     }  

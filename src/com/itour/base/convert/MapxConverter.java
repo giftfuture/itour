@@ -1,6 +1,11 @@
 package com.itour.base.convert;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair;
 
 import com.itour.base.collect.HashMapx;
 import com.itour.base.collect.Mapx;
@@ -34,5 +39,15 @@ public class MapxConverter implements Converter<Mapx> {
 	@Override
 	public boolean support(Class<? extends Mapx> type) {
 		return Mapx.class.isAssignableFrom(type);
+	}
+
+	@Override
+	public Object convert(Object arg0, TypeDescriptor arg1, TypeDescriptor arg2) {
+		return null;
+	}
+
+	@Override
+	public Set<ConvertiblePair> getConvertibleTypes() {
+		return new HashSet<ConvertiblePair>();
 	}
 }

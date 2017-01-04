@@ -8,11 +8,14 @@ import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itour.base.easyui.DataGridAdapter;
@@ -20,11 +23,13 @@ import com.itour.base.easyui.DataGridAdapter;
 @Controller
 @Scope("prototype")
 public class ExampleController {
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	private int singletonInt=1;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
-    @RequestMapping(value = "/test")
-    @ResponseBody
+	
+	@ResponseBody
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
     public String singleton(HttpServletRequest request,HttpServletResponse response) throws Exception {
         String data=request.getParameter("data");
         if(data!=null&&data.length()>0){
@@ -41,7 +46,7 @@ public class ExampleController {
        	System.out.println(singletonInt);
         return String.valueOf(singletonInt);
    }
-    @RequestMapping(value = "/sleepdata")
+    @RequestMapping(value = "/sleepdata", method = RequestMethod.POST)
     @ResponseBody
     public String switcher(HttpServletRequest request
          , HttpServletResponse response)
@@ -59,7 +64,9 @@ public class ExampleController {
     
     private static int st = 0;      //静态的
     private int index = 0;          //非静态
-    @RequestMapping("/show")
+    
+    @ResponseBody
+    @RequestMapping(value="/show", method = RequestMethod.POST)
     public String toShow(ModelMap model) {
         Map user = new HashMap();
         user.put("userName","testuname");
@@ -67,6 +74,10 @@ public class ExampleController {
         model.put("user", user);
         return user.toString();
     }
+    /**
+     * 
+     * @return
+     */
     @RequestMapping("/plus")
     public String plus() {
     	Vector vt = null;

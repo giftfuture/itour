@@ -1,10 +1,12 @@
 package com.itour.base.convert;
-
+//import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.convert.converter.ConverterFactory;
+import org.springframework.core.convert.converter.GenericConverter;
 /**
  * 类型转换接口
  * @author  
  */
-public interface Converter<T> {
+public interface Converter<T> extends GenericConverter{
 
 	/**
 	 * 类型转换

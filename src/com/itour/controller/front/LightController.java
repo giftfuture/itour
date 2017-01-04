@@ -2,7 +2,8 @@ package com.itour.controller.front;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,14 +19,14 @@ import com.itour.vo.CustomerVo;
 
 @Controller
 @RequestMapping("/light") 
-public class LightController  extends BaseController{
+public class LightController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(LightController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private CustomersService<Customers> customersService; 
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CustomersService customersService; 
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();

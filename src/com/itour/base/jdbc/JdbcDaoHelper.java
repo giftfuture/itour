@@ -78,7 +78,7 @@ public class JdbcDaoHelper {
 	/**
 	 * @param dialect the jdbcDialect to set
 	 */
-	@Autowired(required = false)
+	@Autowired
 	public void setJdbcDialect(Dialect dialect) {
 		JdbcDaoHelper.jdbcDialect = dialect;
 	}

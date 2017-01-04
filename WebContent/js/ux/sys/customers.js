@@ -132,7 +132,7 @@ itour.customers = function(){
   			},
   			dataGrid:{
   				title:'客户信息',
-	   			url:'customers/dataList',
+	   			url:'customers/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					/*{field:'customerId',title:'客户ID',align:'center',sortable:true,

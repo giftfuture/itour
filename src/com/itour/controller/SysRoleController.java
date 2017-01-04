@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
@@ -21,25 +24,25 @@ import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
-import com.itour.vo.SysRoleVo;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysRoleRelService;
 import com.itour.service.SysRoleService;
+import com.itour.vo.SysRoleVo;
  
 @Controller
 @RequestMapping("/sysRole") 
 public class SysRoleController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysRoleController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) 
+	@Autowired 
 	private SysRoleService<SysRole> sysRoleService; 
 	
 	// Servrice start
-	@Autowired(required=false) 
+	@Autowired
 	private SysMenuService<SysMenu> sysMenuService; 
-	@Autowired(required=false) 
+	@Autowired
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
@@ -50,9 +53,8 @@ public class SysRoleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/role")
+	@RequestMapping(value="/role", method = RequestMethod.POST)
 	public ModelAndView list(SysRoleVo model,HttpServletRequest request) throws Exception{
-		//Map<String,Object>  context = getRootMap();
 		return forword("server/sys/sysRole"); 
 	}
 	
@@ -63,7 +65,8 @@ public class SysRoleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  datalist(SysRoleVo model,HttpServletResponse response) throws Exception{
 		List<SysRole> dataList = sysRoleService.queryByList(model);
 		//设置页面数据
@@ -80,7 +83,8 @@ public class SysRoleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletResponse response) throws Exception{
 		if(bean.getId() == null){
 			sysRoleService.add(bean,menuIds,btnIds);
@@ -93,9 +97,13 @@ public class SysRoleController extends BaseController{
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
-	
-	
-	@RequestMapping("/getId")
+	/**
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object> ();
 		SysRole bean  = sysRoleService.queryById(id);
@@ -135,17 +143,26 @@ public class SysRoleController extends BaseController{
 		HtmlUtil.writerJson(response, context);
 	}
 	
-	
-	
-	@RequestMapping("/delete")
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysRoleService.delete(id);
 		sendSuccessMessage(response, "删除成功");
 	}
 	
-	
-	
-	@RequestMapping("/loadRoleList")
+	/**
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/loadRoleList", method = RequestMethod.POST)
 	public void loadRoleList(HttpServletResponse response) throws Exception{
 		List<SysRole>  roloList = sysRoleService.queryAllList();
 		HtmlUtil.writerJson(response, roloList);

@@ -39,19 +39,21 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			ResourceHttpRequestHandler hh = (ResourceHttpRequestHandler)handler;
 			//if(hh.)
 		}*/
-		String menuUrl = StringUtils.remove(request.getRequestURI(),request.getContextPath()+"/");
+		String requesturi= request.getRequestURI();
+		String menuUrl = StringUtils.remove(requesturi,request.getContextPath()+"/");
 		if(menuUrl.startsWith("images/")||menuUrl.startsWith("js/")||menuUrl.startsWith("css/")||menuUrl.startsWith("resources/")||menuUrl.startsWith("main/logIn")||menuUrl.startsWith("main/index.js.map")){
 			return super.preHandle(request, response, handler);
 		}
 		HandlerMethod method = (HandlerMethod)handler;
-		Auth auth = method.getMethod().getAnnotation(Auth.class);
+		Auth auth =  method.getMethodAnnotation(Auth.class);
+//		Auth auth = method.getMethod().getAnnotation(Auth.class);
 		////验证登陆超时问题  auth = null，默认验证 
-		if( auth == null || auth.verifyLogin()){
-			String baseUri = request.getContextPath();
-			String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+baseUri+"/";    
-			//String path = request.getServletPath();
+		if(auth == null || auth.verifyLogin()){
+			String path = request.getServletPath();
 			SysUser user =SessionUtils.getUser(request);
-			if(user  == null){
+			if(user == null){
+				String baseUri = request.getContextPath();
+				String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+baseUri+"/";    
 				response.setStatus(response.SC_GATEWAY_TIMEOUT);
 				//request.getRequestDispatcher("window.location.href="+basePath+"main/login").forward(request,response);
 				//response.sendRedirect("window.location.href="+basePath+"main/login");
@@ -66,7 +68,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 		//验证URL权限
-		if(auth == null || auth.verifyURL()){		
+		if(auth.verifyURL()){		
 			//判断是否超级管理员
 		//	if(!SessionUtils.isAdmin(request)){
 				if(!SessionUtils.isAccessUrl(request, StringUtils.trim(menuUrl))){					

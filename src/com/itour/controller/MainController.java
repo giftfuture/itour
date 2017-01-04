@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,7 +34,7 @@ import com.itour.base.util.SHA;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.TreeUtil;
 import com.itour.base.util.URLUtils;
-import com.itour.base.util.Constant.SuperAdmin;
+import com.itour.base.util.RoleConstant.SuperAdmin;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
@@ -46,16 +48,16 @@ import com.itour.service.SysUserService;
 @RequestMapping("/main")
 public class MainController extends BaseController {
 
-	private final static Logger log= Logger.getLogger(MainController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	private String message = null;
 	// Servrice start
-	@Autowired(required=false) 
+	@Autowired
 	private SysMenuService<SysMenu> sysMenuService; 
 	
-	@Autowired(required=false) 
+	@Autowired 
 	private SysUserService<SysUser> sysUserService; 
 	
-	@Autowired(required=false) 
+	@Autowired
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
 	
 	@Autowired
@@ -68,8 +70,9 @@ public class MainController extends BaseController {
 	 * @param classifyId
 	 * @return
 	 */
+	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping("/login")
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,Map<String,Object>  context) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		return forword("/server/login");
@@ -84,8 +87,9 @@ public class MainController extends BaseController {
 	 * @return
 	 * @throws Exception 
 	 */
+	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping("/checkuser")
+	@RequestMapping(value="/checkuser", method = RequestMethod.POST)
 	public void checkuser(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception {
 		int count = sysUserService.getUserCountByEmail(user.getEmail());
 		if (count >= 1) {
@@ -110,8 +114,9 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=false)
-	@RequestMapping("/logIn")
+	@RequestMapping(value="/logIn", method = RequestMethod.POST)
 	public void toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	/*	Map<String,Object> context = getRootMap();
 		SysUser u = SessionUtils.getUser(request);
@@ -149,7 +154,7 @@ public class MainController extends BaseController {
 		 String msg = "用户登录日志:";
 		 SysUser user = sysUserService.queryLogin(email,MethodUtil.encryptSHA(pwd));
 		if(user == null){//记录错误登录日志
-			log.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
+			logger.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
 			sendFailureMessage(response, "账号或者密码输入错误.");
 			return;
 		}
@@ -170,7 +175,7 @@ public class MainController extends BaseController {
 		
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
-		log.debug(message);
+		logger.debug(message);
 		//return forword("/main/main",context);
 		sendSuccessMessage(response, message);
 		//return new ModelAndView("redirect:/main/manage","map",context);
@@ -182,8 +187,9 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping("/logout")
+	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public void  logout(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SessionUtils.removeUser(request);
 		response.sendRedirect("login");
@@ -195,8 +201,9 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@Auth(verifyURL=false)
-	@RequestMapping("/getActionBtn")
+	@RequestMapping(value="/getActionBtn", method = RequestMethod.POST)
 	public void  getActionBtn(String url,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<String> actionTypes = new ArrayList<String>();
@@ -223,8 +230,9 @@ public class MainController extends BaseController {
 	 * @return
 	 * @throws Exception 
 	 */
+	@ResponseBody
 	@Auth(verifyURL=false)
-	@RequestMapping("/modifyPwd")
+	@RequestMapping(value="/modifyPwd", method = RequestMethod.POST)
 	public void modifyPwd(String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
 		if(user == null){
@@ -257,8 +265,9 @@ public class MainController extends BaseController {
 	 * @param classifyId
 	 * @return
 	 */
+	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping("/manage") 
+	@RequestMapping(value="/manage", method = RequestMethod.POST) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response,Map<String,Object> context){
 		SysUser user = SessionUtils.getUser(request);
 		try {

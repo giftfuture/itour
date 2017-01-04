@@ -1,21 +1,21 @@
 package com.itour.controller;
 
-import java.util.Map;  
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
-  
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-
-import org.apache.commons.logging.Log;  
-import org.apache.commons.logging.LogFactory;  
-import org.codehaus.jackson.JsonEncoding;  
-import org.codehaus.jackson.JsonGenerator;  
+import org.codehaus.jackson.JsonEncoding;
+import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;  
-import org.springframework.web.multipart.MaxUploadSizeExceededException;  
-import org.springframework.web.servlet.HandlerExceptionResolver;  
+import org.springframework.core.Ordered;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
@@ -25,16 +25,18 @@ import com.itour.exception.NoSupportExtensionException;
 
 public class ExceptionHandler implements HandlerExceptionResolver, Ordered {
 
-	private Log logger = LogFactory.getLog(this.getClass());  
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	@Override  
     public int getOrder() {  
         return Integer.MIN_VALUE;  
     }  
+	@ResponseBody
 	@Override
-    public ModelAndView resolveException(HttpServletRequest request,  
-            HttpServletResponse response, Object handler, Exception ex) {  
+	@RequestMapping("/reslove")
+    public ModelAndView resolveException(HttpServletRequest request,HttpServletResponse response, Object handler, Exception ex) {  
         logger.info("ExceptionHandler#resolveException() start");  
         Map<String, Object> errorMap = null;  
         if(ex instanceof NoSupportExtensionException) {  

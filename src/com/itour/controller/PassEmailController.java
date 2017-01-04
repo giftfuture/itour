@@ -6,9 +6,13 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
@@ -18,23 +22,25 @@ import com.itour.base.util.SystemVariable;
 import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysUserVo;
 import com.itour.service.SysUserService;
+import com.itour.vo.SysUserVo;
 
 @Controller
 @RequestMapping("/passEmail")
 public class PassEmailController extends BaseController {
-	
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@SuppressWarnings("rawtypes")
-	@Autowired(required=false)
+	@Autowired
 	private SysUserService userService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
     private String sid;
     private String userName;
+    
+	@ResponseBody
     @SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping("/sendmail")
+	@RequestMapping(value="/sendmail", method = RequestMethod.POST)
     public String sendmail(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception{
         try {
         	int count = userService.getUserCountByEmail(user.getEmail());
@@ -84,7 +90,8 @@ public class PassEmailController extends BaseController {
         return null;
     }
     @Auth(verifyLogin=false,verifyURL=false)
-  	@RequestMapping("/checkLink")
+	@ResponseBody
+  	@RequestMapping(value="/checkLink", method = RequestMethod.POST)
     public String checkResetLink(HttpServletRequest req,HttpServletResponse response) throws Exception {
         System.out.println("sid>>>" +sid);
         if (sid.equals("")  || userName.equals("")) {

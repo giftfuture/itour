@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
-import com.itour.base.util.Constant.SuperAdmin;
+import com.itour.base.util.RoleConstant.SuperAdmin;
 import com.itour.entity.SysUser;
 
 /**

@@ -1,5 +1,10 @@
 package com.itour.base.convert;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.core.convert.TypeDescriptor;
+
 import com.itour.base.convert.Converter;
 
 /**
@@ -11,7 +16,11 @@ import com.itour.base.convert.Converter;
 public class BooleanConverter implements Converter<Boolean> {
 
 	public static final BooleanConverter INSTANCE = new BooleanConverter();
-
+	@Override
+	public Object convert(Object arg0, TypeDescriptor arg1, TypeDescriptor arg2) {
+		return null;
+	}
+	@Override
 	public Boolean convert(Object source, Class<? extends Boolean> toType, Boolean vDefault) {
 		try {
 			if (toType.isPrimitive() && vDefault == null) {
@@ -45,4 +54,12 @@ public class BooleanConverter implements Converter<Boolean> {
 	public boolean support(Class<? extends Boolean> type) {
 		return Boolean.class.equals(type) || Boolean.TYPE.equals(type);
 	}
+
+
+
+	@Override
+	public Set<ConvertiblePair> getConvertibleTypes() {
+		return new HashSet<ConvertiblePair>();
+	}
+
 }

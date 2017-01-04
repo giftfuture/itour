@@ -1,7 +1,9 @@
 package com.itour.service;
 
-import com.itour.base.service.BaseService;
+import org.springframework.stereotype.Service;
 
+import com.itour.base.service.BaseService;
+@Service("destinationService")
 public class DestinationService extends BaseService {
 
 }

@@ -11,7 +11,6 @@ import com.itour.base.collect.Mapxs;
 
 public class BasePage<T> implements Serializable{
 	// =================================Fields================================================
-
 	private Integer page = 1;
 	
 	private Integer rows =10;
@@ -175,6 +174,5 @@ public class BasePage<T> implements Serializable{
 		public void setOrder(String order) {
 			this.order = order;
 		}
-		
 	
 }

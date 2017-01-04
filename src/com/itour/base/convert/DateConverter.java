@@ -5,10 +5,14 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair;
 
 /**
  * 日期类型转换器
@@ -16,7 +20,7 @@ import java.util.regex.Pattern;
  * @version  
  * @see Converter
  */
-public class DateConverter implements Converter<Date> {
+public class DateConverter implements Converter<Date>{
 
     public static final DateConverter INSTANCE = new DateConverter();
 
@@ -112,4 +116,18 @@ public class DateConverter implements Converter<Date> {
         trys.add("MM/dd/yyyy");
         tryDatePatterns = trys.toArray(new String[trys.size()]);
     }
+	//@Override
+	public Object convert(Object arg0) {
+		return null;
+	}
+
+	@Override
+	public Object convert(Object arg0, TypeDescriptor arg1, TypeDescriptor arg2) {
+		return null;
+	}
+
+	@Override
+	public Set<ConvertiblePair> getConvertibleTypes() {
+		return new HashSet<ConvertiblePair>();
+	}
 }

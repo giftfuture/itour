@@ -2,8 +2,13 @@ package com.itour.base.convert;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair;
 
 
 /**
@@ -110,4 +115,15 @@ public class NumberConverter implements Converter<Number> {
 				Short.TYPE.equals(type) || //
 				Byte.TYPE.equals(type);
 	}
+
+	@Override
+	public Object convert(Object arg0, TypeDescriptor arg1, TypeDescriptor arg2) {
+		return null;
+	}
+
+	@Override
+	public Set<ConvertiblePair> getConvertibleTypes() {
+		return new HashSet<ConvertiblePair>();
+	}
+
 }

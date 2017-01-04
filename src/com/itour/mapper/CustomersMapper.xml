@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itour.dao.CustomersDao" > 
 <!-- Result Map-->
-<resultMap id="BaseResultMap" type="com.itour.vo.CustomerVo" >
+<resultMap id="BaseResultMap" type="com.itour.entity.Customers" >
 	<result column="id" property="id"/>
 	<result column="customer_id" property="customerId"/>
 	<result column="create_time" property="createTime"/>
@@ -152,13 +152,13 @@ where 1=1
 </select>
 
 <!-- 客户信息 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.CustomerVo">
 	select count(1) from customers 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询客户信息列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.CustomerVo">
 	select 
 	<include refid="Base_Column_List"/>
 	from customers 

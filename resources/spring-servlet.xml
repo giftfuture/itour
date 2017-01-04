@@ -13,16 +13,20 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<!-- Configures the @Controller programming model -->
 	<!-- Enables the Spring MVC @Controller programming model -->
-   <mvc:annotation-driven >
-	   	<mvc:message-converters register-defaults="true">  
-				 <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-					<!--  <constructor-arg value="UTF-8" index="0"></constructor-arg> -->
-					<property name="supportedMediaTypes">
-						<list>
-							<value>text/html;charset=UTF-8</value>
-						</list>
-					</property>
-				</bean>
+   <mvc:annotation-driven  conversion-service="conversionService">
+	   	<mvc:message-converters register-defaults="true"> 
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+			 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<!--  <constructor-arg value="UTF-8" index="0"></constructor-arg> -->
+				<property name="objectMapper" ref="myObjectMapper"></property>
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
 			</mvc:message-converters> 
    </mvc:annotation-driven> 
    <mvc:default-servlet-handler /> 
@@ -59,7 +63,7 @@
 	<mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>  
 	<!-- Jackson转换器 -->
 	<!-- <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" /> -->
-	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 	
 	<!-- fastjson转换器 -->
 	<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" />
@@ -70,13 +74,31 @@
 			</list>
 		</property> 
 	</bean>
+	<bean id="myObjectMapper" class="com.itour.base.convert.ObjectMapperFactoryBean" />
 
+	<!-- 类型转换 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.itour.base.convert.DateConverter" />
+				<bean class="com.itour.base.convert.MapxConverter" />
+			</list>
+		</property>
+	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="maxUploadSize" value="32505856" /><!-- 上传文件大小限制为31M，31*1024*1024 -->
 		<property name="maxInMemorySize" value="4096" />
 	</bean>
-
+	<!-- SpringMVC异常处理 -->
+	<bean id="springmvcExceptionResolver" class="com.itour.exception.SpringMvcExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">common/403</prop>
+				<prop key="org.apache.shiro.authz.AuthorizationException">common/403</prop>
+			</props>
+		</property>
+	</bean>
 	<!-- Saves a locale change using a cookie -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
 	
@@ -141,4 +163,7 @@
             </props>  
         </property>  
     </bean> 
+    <!-- 安全控制 -->
+	<import resource="classpath:/springmvc-shiro.xml" />
+	<import resource="classpath:/common-shiro.xml" />
 </beans>

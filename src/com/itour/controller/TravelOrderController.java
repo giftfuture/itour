@@ -1,31 +1,30 @@
 package com.itour.controller;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itour.base.web.BaseController;
+import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
-import com.itour.base.easyui.DataGridAdapter;
-import com.itour.base.entity.BaseEntity.DELETED;
-import com.itour.entity.TravelItem;
+import com.itour.base.web.BaseController;
 import com.itour.entity.TravelOrder;
-import com.itour.vo.TravelOrderVo;
 import com.itour.service.TravelOrderService;
+import com.itour.vo.TravelOrderVo;
  
 /**
  * 
@@ -38,17 +37,13 @@ import com.itour.service.TravelOrderService;
 @RequestMapping("/travelOrder") 
 public class TravelOrderController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(TravelOrderController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelOrderService<TravelOrder> travelOrderService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
-	
-	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -56,7 +51,7 @@ public class TravelOrderController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/list") 
+	@RequestMapping(value="/list", method = RequestMethod.POST) 
 	public ModelAndView  list(TravelOrderVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
@@ -71,7 +66,8 @@ public class TravelOrderController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  datalist(TravelOrderVo page,HttpServletResponse response) throws Exception{
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
@@ -87,7 +83,8 @@ public class TravelOrderController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelOrder entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 /*		TravelOrder to = new TravelOrder();
 		to.setId(entity.getId());
@@ -138,7 +135,8 @@ public class TravelOrderController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping("/getId")
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		TravelOrder entity  = travelOrderService.queryById(id);
@@ -152,8 +150,8 @@ public class TravelOrderController extends BaseController{
 	}
 	
 	
-	
-	@RequestMapping("/delete")
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		travelOrderService.delete(id);
 		sendSuccessMessage(response, "删除成功");

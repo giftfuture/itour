@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,7 +19,8 @@ import com.itour.base.page.BasePage;
 public class JdbcTemplatex extends JdbcTemplate {
 
 	// ==============================Fields===========================================
-	// ...
+	@Autowired
+	private DataSource dataSource;
 
 	// ==============================Constructors=====================================
 	/**
@@ -28,7 +30,8 @@ public class JdbcTemplatex extends JdbcTemplate {
 	protected JdbcTemplatex() {
 		super();
 	}
-
+	
+	
 	/**
 	 * 构造函数
 	 * @param dataSource 数据源
@@ -131,4 +134,5 @@ public class JdbcTemplatex extends JdbcTemplate {
 	protected <T> BeanPropertyRowMapper<T> getBeanPropertyRowMapper(Class<T> mappedClass) {
 		return new BeanPropertyRowMapper<T>(mappedClass);
 	}
+	
 }

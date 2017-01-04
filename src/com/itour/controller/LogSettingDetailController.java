@@ -9,10 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
@@ -35,10 +38,10 @@ import com.itour.service.LogSettingDetailService;
 @RequestMapping("/logSettingDetail") 
 public class LogSettingDetailController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(LogSettingDetailController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private LogSettingDetailService<LogSettingDetail> logSettingDetailService; 
 	
 	@Autowired
@@ -53,7 +56,7 @@ public class LogSettingDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/list") 
+	@RequestMapping(value="/list", method = RequestMethod.POST) 
 	public ModelAndView  list(LogSettingDetailVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
@@ -69,7 +72,8 @@ public class LogSettingDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  datalist(LogSettingDetailVo page,HttpServletResponse response) throws Exception{
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
 		//设置页面数据
@@ -85,8 +89,9 @@ public class LogSettingDetailController extends BaseController{
 	 * @param classifyId
 	 * @return
 	 * @throws Exception 
-	 */
-	@RequestMapping("/save")
+	 */	
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(LogSettingDetail entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getDetailCode()==null||StringUtils.isBlank(entity.getDetailCode().toString())){
@@ -97,8 +102,8 @@ public class LogSettingDetailController extends BaseController{
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
-	
-	@RequestMapping("/getId")
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		LogSettingDetail entity  = logSettingDetailService.queryById(id);
@@ -112,8 +117,8 @@ public class LogSettingDetailController extends BaseController{
 	}
 	
 	
-	
-	@RequestMapping("/delete")
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		logSettingDetailService.delete(id);
 		sendSuccessMessage(response, "删除成功");

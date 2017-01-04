@@ -4,26 +4,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itour.base.web.BaseController;
-import com.itour.base.util.HtmlUtil;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
-import com.itour.base.entity.BaseEntity.DELETED;
-import com.itour.entity.RouteTemplate;
+import com.itour.base.util.HtmlUtil;
+import com.itour.base.web.BaseController;
 import com.itour.entity.SysVariables;
-import com.itour.vo.SysVariablesVo;
 import com.itour.service.SysVariablesService;
+import com.itour.vo.SysVariablesVo;
  
 /**
  * 
@@ -36,10 +36,10 @@ import com.itour.service.SysVariablesService;
 @RequestMapping("/sysVariables") 
 public class SysVariablesController extends BaseController{
 	
-	private final static Logger log= Logger.getLogger(SysVariablesController.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysVariablesService<SysVariables> sysVariablesService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
@@ -51,7 +51,8 @@ public class SysVariablesController extends BaseController{
 	 * @throws Exception 
 	 */
 	@Auth
-	@RequestMapping("/list") 
+	@ResponseBody
+	@RequestMapping(value="/list", method = RequestMethod.POST) 
 	public ModelAndView  list(SysVariablesVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<SysVariables> dataList = sysVariablesService.queryByList(page);
@@ -67,7 +68,8 @@ public class SysVariablesController extends BaseController{
 	 * @throws Exception 
 	 */
 	@Auth
-	@RequestMapping("/dataList") 
+	@ResponseBody
+	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  datalist(SysVariablesVo page,HttpServletResponse response) throws Exception{
 		List<SysVariables> dataList = sysVariablesService.queryByList(page);
 		//设置页面数据
@@ -85,7 +87,8 @@ public class SysVariablesController extends BaseController{
 	 * @throws Exception 
 	 */
 	@Auth
-	@RequestMapping("/save")
+	@ResponseBody
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysVariables entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -107,7 +110,8 @@ public class SysVariablesController extends BaseController{
 	 * @throws Exception
 	 */
 	@Auth
-	@RequestMapping("/getId")
+	@ResponseBody
+	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		SysVariables entity  = sysVariablesService.queryById(id);
@@ -127,7 +131,8 @@ public class SysVariablesController extends BaseController{
 	 * @throws Exception
 	 */
 	@Auth
-	@RequestMapping("/delete")
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysVariablesService.delete(id);
 		sendSuccessMessage(response, "删除成功");

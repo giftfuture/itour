@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itour.base.service.BaseService;
 import com.itour.dao.FeedbackDao;
+import com.itour.entity.Feedback;
 
 /**
  * 
@@ -16,14 +17,14 @@ import com.itour.dao.FeedbackDao;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 @Service("feedbackService")
-public class FeedbackService<T> extends BaseService<T> {
+public class FeedbackService extends BaseService<Feedback> {
 	private final static Logger log= Logger.getLogger(FeedbackService.class);
 
 	@Autowired
-    private FeedbackDao<T> mapper;
+    private FeedbackDao mapper;
 
 		
-	public FeedbackDao<T> getDao() {
+	public FeedbackDao getDao() {
 		return mapper;
 	}
 

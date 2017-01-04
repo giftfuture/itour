@@ -1,4 +1,4 @@
-package com.itour.base.util.json;
+package com.itour.base.json;
 
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -34,6 +34,7 @@ public class JsonUtils {
 	private final static Gson GSON;
 	private final static Logger LOGGER = LoggerFactory.getLogger(JsonUtils.class);
 	static {
+		
 		GsonBuilder builder = new GsonBuilder();
 		//对日期格式进行特殊处理
 		builder.registerTypeHierarchyAdapter(java.util.Date.class, new JsonSerializer<java.util.Date>() {

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.itour.base.page.BasePage;
+import com.itour.entity.Customers;
 import com.itour.vo.CustomerVo;
 /**
  * 
@@ -17,6 +18,26 @@ import com.itour.vo.CustomerVo;
 public class CustomerKit {
 	
 	public static Map<String, Object> toRecord(CustomerVo vo){
+		Map<String, Object> record = new HashMap<String, Object>();
+		record.put("id", vo.getId());
+		record.put("customerId", vo.getCustomerId());
+		record.put("createTime", vo.getCreateTime());
+		record.put("status", vo.getStatus());
+		record.put("updateTime", vo.getUpdateTime());
+		record.put("address", vo.getAddress());
+		record.put("email", vo.getEmail());
+		record.put("scope", vo.getScope());
+		record.put("city", vo.getCity());
+		record.put("telephone", vo.getTelephone());
+		record.put("mobile", vo.getMobile());
+		record.put("customerName", vo.getCustomerName());
+		record.put("nickName", vo.getNickName());
+		record.put("district", vo.getDistrict());
+		record.put("introduction", vo.getIntroduction());
+		record.put("birthday", vo.getBirthday());
+		return record;
+	}
+	public static Map<String, Object> toRecord(Customers vo){
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("id", vo.getId());
 		record.put("customerId", vo.getCustomerId());

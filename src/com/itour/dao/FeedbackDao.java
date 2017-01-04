@@ -2,6 +2,7 @@ package com.itour.dao;
 
 
 import com.itour.base.dao.BaseDao;
+import com.itour.entity.Feedback;
 /**
  * 
  * <br>
@@ -9,7 +10,7 @@ import com.itour.base.dao.BaseDao;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2013 <br>
  */
-public interface FeedbackDao<T> extends BaseDao<T> {
+public interface FeedbackDao extends BaseDao<Feedback> {
 	
 	
 }

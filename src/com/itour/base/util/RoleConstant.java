@@ -4,9 +4,7 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-public class Constant {
-
-	
+public class RoleConstant {
 	/**
 	 * 超级管理员常量
 	 * @author fred
