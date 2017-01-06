@@ -35,7 +35,7 @@ public class DestinationController extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("front/destination/Destinations"); 
+		return forward("front/destination/Destinations"); 
 	}
 	/**
 	 * 
@@ -51,6 +51,6 @@ public class DestinationController extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("server/sys/customers"); 
+		return forward("server/sys/customers"); 
 	}
 }

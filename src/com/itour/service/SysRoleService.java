@@ -44,11 +44,12 @@ public class SysRoleService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<SysRoleVo> pagedQuery(SysRoleVo vo) {
 		List<SysRole> list = (List<SysRole>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<SysRoleVo>	vos = Lists.newArrayList();
 		for(SysRole sv:list){
 			vos.add(SysRoleKit.toRecord(sv));
 		}
-		return new BasePage<SysRoleVo>(vo.getStart(), vo.getLimit(), vos, vo.getPager().getRowCount());
+		return new BasePage<SysRoleVo>(vo.getStart(), vo.getLimit(), vos, count);
 	}
 	/**
 	 * 添加角色&菜单关系

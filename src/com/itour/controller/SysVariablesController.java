@@ -55,8 +55,8 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(SysVariablesVo page,HttpServletRequest request) throws Exception{
-		return forword("server/sys/sysVariables"); 
+	public ModelAndView list(SysVariablesVo page,HttpServletRequest request) throws Exception{
+		return forward("server/sys/sysVariables"); 
 	}
 	
 	
@@ -70,7 +70,7 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(SysVariablesVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(SysVariablesVo vo,HttpServletResponse response) throws Exception{
 		BasePage<SysVariables> pagination = sysVariablesService.pagedQuery(vo);
 		return dataGridAdapter.wrap(pagination); 
 	}
@@ -108,16 +108,16 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		SysVariables entity  = sysVariablesService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJSON(response, context);
+		return context;
 	}
 	
 	/**

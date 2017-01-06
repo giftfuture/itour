@@ -59,7 +59,7 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView list(SysUserVo model,HttpServletRequest request) throws Exception{
-		return forword("server/sys/sysUser"); 
+		return forward("server/sys/sysUser"); 
 	}
 	
 	
@@ -122,16 +122,16 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", bean);
-		HtmlUtil.writerJson(response, context);
+		return context;
 	}
 	
 	/**
@@ -193,7 +193,7 @@ public class SysUserController extends BaseController{
 	@RequestMapping(value="/userRole") 
 	public ModelAndView  userRole(HttpServletRequest request) throws Exception{
 		Map<String,Object> context = getRootMap();
-		return forword("server/sys/sysUserRole", context);
+		return forward("server/sys/sysUserRole", context);
 	}
 	
 	/**
@@ -219,12 +219,12 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getUser", method = RequestMethod.POST) 
-	public void getUser(String id,HttpServletResponse response)  throws Exception{
+	public Map<String,Object> getUser(String id,HttpServletResponse response)  throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		String[] roleIds = null;
 		List<SysRoleRel>  roles  =sysUserService.getUserRole(bean.getId());
@@ -242,8 +242,7 @@ public class SysUserController extends BaseController{
 		data.put("roleIds", roleIds);
 		context.put("data", data);
 		context.put(SUCCESS, true);
-		HtmlUtil.writerJson(response, context);
-		
+		return context;
 	}
 	
 	/**

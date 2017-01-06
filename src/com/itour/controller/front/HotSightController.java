@@ -40,7 +40,7 @@ public class HotSightController extends BaseController{
 		List<TravelItem> dataList = travelItemService.searchTravelItem(params);
 		//设置页面数据
 		context.put("dataList", dataList);
-		return forword("front/hotsight/hotsight"); 
+		return forward("front/hotsight/hotsight"); 
 	}
 	/**
 	 * 
@@ -56,7 +56,7 @@ public class HotSightController extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("server/sys/customers"); 
+		return forward("server/sys/customers"); 
 	}
 
 }

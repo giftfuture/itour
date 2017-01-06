@@ -35,7 +35,7 @@ public class ClimbController  extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("front/climb/climb"); 
+		return forward("front/climb/climb"); 
 	}
 	/**
 	 * 
@@ -51,7 +51,7 @@ public class ClimbController  extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("server/sys/customers"); 
+		return forward("server/sys/customers"); 
 	}
 	
 }

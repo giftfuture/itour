@@ -64,7 +64,7 @@ public class RouteTemplateController extends BaseController{
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("server/sys/routeTemplate"); 
+		return forward("server/sys/routeTemplate"); 
 	}
 	
 	
@@ -116,16 +116,16 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		RouteTemplate entity  = routeTemplateService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJSON(response, context);
+		return context;
 	}
 	
 	/**

@@ -36,11 +36,12 @@ public class TravelStyleService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<TravelStyleVo> pagedQuery(TravelStyleVo vo) {
 		List<TravelStyle> list = (List<TravelStyle>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<TravelStyleVo> records = Lists.newArrayList();
 		for(TravelStyle ts:list) {
 			records.add(TravelStyleKit.toRecord(ts));
 		}
-		return new BasePage<TravelStyleVo>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<TravelStyleVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	
 	@Autowired

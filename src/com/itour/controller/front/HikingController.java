@@ -81,7 +81,7 @@ public class HikingController extends BaseController{
 			rowItems.put(i,items.subList(Constants.perRow*i, end));
 		}
 		map.put("items", rowItems);
-		return forword("front/trek/Trekkings",map); 
+		return forward("front/trek/Trekkings",map); 
 	}
 	/**
 	 * 
@@ -96,6 +96,6 @@ public class HikingController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		TravelItem item = travelItemService.queryById(id);
 		map.put("item", item);
-		return forword("front/trek/trekking",map); 
+		return forward("front/trek/trekking",map); 
 	}
 }

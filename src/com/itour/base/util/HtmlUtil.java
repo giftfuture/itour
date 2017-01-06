@@ -50,7 +50,7 @@ public class HtmlUtil {
 	 */
 	public static void writerJSON(HttpServletResponse response,Object object){
 			response.setContentType("application/json");
-			  /*JsonConfig jsonConfig = new JsonConfig();
+			 /* JsonConfig jsonConfig = new JsonConfig();
 		        jsonConfig.registerJsonValueProcessor(Date.class,
 		                new JsonValueProcessor() {
 		                    *//**

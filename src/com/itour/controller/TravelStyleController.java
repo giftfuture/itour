@@ -59,7 +59,7 @@ public class TravelStyleController extends BaseController{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelStyle> dataList = travelStyleService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
-*/		return forword("server/sys/travelStyle"); 
+*/		return forward("server/sys/travelStyle"); 
 	}
 	
 	
@@ -87,7 +87,7 @@ public class TravelStyleController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/allData", method = RequestMethod.POST) 
 	public void allData(HttpServletResponse response)throws Exception{
-		System.out.println("###########");
+		System.out.println("TravelStyleController#######allData###########");
 		List<TravelStyle> dataList = travelStyleService.queryByList(null);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);
@@ -105,7 +105,8 @@ public class TravelStyleController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelStyle entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+	//	Map<String,Object>  context = new HashMap<String,Object>();
+		entity.setValid(true);
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			travelStyleService.add(entity);
 		}else{
@@ -125,17 +126,17 @@ public class TravelStyleController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/getId")
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		TravelStyle entity  = travelStyleService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJSON(response, context);
+		return context;
 	}
 	
 	/**
@@ -146,7 +147,7 @@ public class TravelStyleController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	@RequestMapping(value="/delete")
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		travelStyleService.delete(id);
 		sendSuccessMessage(response, "删除成功");

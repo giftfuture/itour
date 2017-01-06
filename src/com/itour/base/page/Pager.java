@@ -39,7 +39,7 @@ public class Pager {
 	public int[] getIndexs() {
 		int len = getEndIndex() - getStartIndex() + 1;
 		indexs = new int[len];
-		ArrayList a;
+		//ArrayList a;
 		for (int i = 0; i < len; i++) {
 			indexs[i] = (getStartIndex() + i);
 		}
@@ -80,37 +80,30 @@ public class Pager {
 	}
 
 	protected void doPage() {
-		this.pageCount = this.rowCount / this.pageSize + 1;
-		// 如果模板==0，且总数大于1，则减一
-		if ((this.rowCount % this.pageSize == 0) && pageCount > 1)
-			this.pageCount--;
-
 		// //如果输入也页面编号（pageId）大于总页数，将pageId设置为pageCount;
 		// if(this.pageId> this.pageCount)
 		// this.pageId = this.pageCount;
 		// this.pageOffset=(this.pageId-1)*this.pageSize+1;
 
 		// this.pageTail=this.pageOffset+this.pageSize-1;
-
-		// Mysql 算法
+		this.pageCount = (this.rowCount % this.pageSize == 0) && pageCount > 1 ? this.rowCount / this.pageSize : this.rowCount / this.pageSize + 1;
+		// Mysql 算法  
 		this.pageOffset = (this.pageId - 1) * this.pageSize;
-		this.pageTail = this.pageOffset + this.pageSize;
-		if ((this.pageOffset + this.pageSize) > this.rowCount)
-			this.pageTail = this.rowCount;
+		this.pageTail = this.pageOffset + this.pageSize > this.rowCount ? this.rowCount%this.pageSize == 0 ? this.pageSize : this.rowCount%this.pageSize :this.pageOffset + this.pageSize;
 	}
 
 	public String getOrderCondition() {
 		String condition = "";
 		if (this.orderField != null && this.orderField.length() != 0) {
-			condition = " order by " + orderField
-					+ (orderDirection ? " " : " desc ");
+			condition = " order by " + orderField + (orderDirection ? " " : " desc ");
 		}
 		return condition;
 	}
 
 	public String getMysqlQueryCondition() {
 		String condition = "";
-		condition = " limit " + pageOffset + "," + pageSize;
+		condition = " limit " + pageOffset + "," + pageTail;
+		System.out.println("####################="+condition);
 		return condition;
 	}
 

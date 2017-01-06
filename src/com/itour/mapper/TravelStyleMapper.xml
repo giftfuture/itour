@@ -70,7 +70,7 @@ where valid=1
 	delete from travel_style where id = #{id}
 </delete>
  
-<!-- 根据id查询 旅行方式 -->
+<!-- 根据id查询 旅行方式 #{_parameter,jdbcType=VARCHAR}  -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from travel_style where valid = 1
@@ -91,7 +91,7 @@ select type,alias from travel_style where valid = 1
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 
 	<include refid="Base_Column_List"/>
-	from travel_style 
+	from travel_style
 	<include refid="Example_Where_Clause"/>
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}

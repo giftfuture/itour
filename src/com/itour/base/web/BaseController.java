@@ -85,11 +85,11 @@ public class BaseController {
 		return rootMap;
 	}
 	
-	public ModelAndView forword(String viewName,Map context){
+	public ModelAndView forward(String viewName,Map context){
 		return new ModelAndView(viewName,context); 
 	}
 	
-	public ModelAndView forword(String viewName){
+	public ModelAndView forward(String viewName){
 		return new ModelAndView(viewName); 
 	}
 	public ModelAndView error(String errMsg){

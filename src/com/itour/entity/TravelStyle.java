@@ -11,9 +11,14 @@ import java.math.BigDecimal;
  */
 public class TravelStyle extends BaseEntity {
 	
-		private java.lang.String id;//   	private java.lang.String type;//   
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 857054434524741892L;
+	private java.lang.String id;//   	private java.lang.String type;//   
 	private java.lang.String remark;//  	private String alias;
-	private boolean valid;	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	private boolean valid;
+		public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getType() {
 		return type;
 	}

@@ -36,6 +36,7 @@ var itour={
 		window.top.location= urls['msUrl']+"main/login";
 	},
 	checkLogin:function(data){//检查是否登录超时
+		//console.log(data);
 		//console.log(data+"      "+data.logoutFlag);
 		if(!data /*|| data.logoutFlag || data.logoutFlag == null*/){
 			itour.closeProgress();
@@ -53,6 +54,7 @@ var itour={
 			 	dataType:'json',
 			 	data:option,
 			 	success:function(data){
+			 		//console.log(data);
 			 		var checklogin = itour.checkLogin(data);
 			 		//console.log(checklogin);
 			 		//检查登录

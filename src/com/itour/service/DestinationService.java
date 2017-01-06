@@ -8,4 +8,6 @@ import com.itour.base.service.BaseService;
 @Service("destinationService")
 public class DestinationService extends BaseService {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
+	
+	
 }

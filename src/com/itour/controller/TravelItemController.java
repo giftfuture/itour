@@ -74,7 +74,7 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView list(TravelItemVo page,HttpServletRequest request) throws Exception{
-		return forword("server/sys/travelItem"); 
+		return forward("server/sys/travelItem"); 
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class TravelItemController extends BaseController{
 		TravelItem ti = new TravelItem();
 		ti.setCover(cover);
 		travelItemService.update(ti);	
-		return forword("server/sys/travelItem"); 
+		return forward("server/sys/travelItem"); 
 	}
 	
 	/**
@@ -273,7 +273,7 @@ public class TravelItemController extends BaseController{
 	        log.error("in batchImportApps,inputstream is null.");  
 	    } */
 		//return resMap;
-		return forword("server/sys/travelItem"); 
+		return forward("server/sys/travelItem"); 
 	}
 	/**
 	 * 获取待编辑,预览,删除的图片
@@ -284,7 +284,7 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
-	public void editPhoto(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> editPhoto(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		try {
 			TravelItem ti = travelItemService.queryById(id);
@@ -336,10 +336,11 @@ public class TravelItemController extends BaseController{
 			toClient = null;
 			context.put(SUCCESS, true);
 			context.put("uris", uris);
-			HtmlUtil.writerJSON(response, context);
+			//HtmlUtil.writerJSON(response, context);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return context;
 	}
 	
 	/**
@@ -391,16 +392,16 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		TravelItem entity  = travelItemService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJSON(response, context);
+		return context;
 	}
 	/**
 	 * IllegalAccessException
@@ -440,9 +441,9 @@ public class TravelItemController extends BaseController{
 	@ResponseBody
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/queryByStyle", method = RequestMethod.POST)
-	public void queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletResponse response)throws Exception{
+	public List<TravelItem> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletResponse response)throws Exception{
 		List<TravelItem> travelItems = travelItemService.queryByStyle(travelStyle);
-		
+		return travelItems ;
 	}
 	/**
 	 * 

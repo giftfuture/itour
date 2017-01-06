@@ -74,7 +74,7 @@ public class MainController extends BaseController {
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,Map<String,Object>  context) throws Exception{
-		return forword("/server/login");
+		return forward("/server/login");
 	}
 	/**
 	 * 检查用户名称
@@ -201,7 +201,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/getActionBtn", method = RequestMethod.POST)
-	public void  getActionBtn(String url,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public Map<String,Object>  getActionBtn(String url,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<String> actionTypes = new ArrayList<String>();
 		//判断是否超级管理员
@@ -216,7 +216,7 @@ public class MainController extends BaseController {
 			result.put("types", actionTypes);
 		}
 		result.put(SUCCESS, true);
-		HtmlUtil.writerJson(response, result);
+		return result;
 	}
 	 
 	
@@ -300,7 +300,7 @@ public class MainController extends BaseController {
 			context.put("menuList", menuList);
 			//SessionUtils.setAccessUrl(request, accessUrls);
 		}
-		return forword("server/main/main",context); 
+		return forward("server/main/main",context); 
 	}
 	
 	

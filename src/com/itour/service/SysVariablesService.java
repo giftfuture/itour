@@ -37,7 +37,8 @@ public class SysVariablesService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<SysVariables> pagedQuery(SysVariablesVo vo) {
 		List<SysVariables> list = (List<SysVariables>) mapper.queryByList(vo);
-		return new BasePage<SysVariables>(vo.getStart(), vo.getLimit(), list, vo.getPager().getRowCount());
+		int count = mapper.queryByCount(vo);
+		return new BasePage<SysVariables>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	@Autowired
     private SysVariablesDao<T> mapper;

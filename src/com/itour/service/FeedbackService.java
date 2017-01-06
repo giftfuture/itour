@@ -35,11 +35,12 @@ public class FeedbackService extends BaseService<Feedback> {
 	@SuppressWarnings("unchecked")
 	public BasePage<FeedbackVo> pagedQuery(FeedbackVo vo) {
 		List<Feedback> list = (List<Feedback>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<FeedbackVo> records = Lists.newArrayList();
 		for(Feedback fb:list) {
 			records.add(FeedbackKit.toRecord(fb));
 		}
-		return new BasePage<FeedbackVo>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<FeedbackVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	
 	@Autowired

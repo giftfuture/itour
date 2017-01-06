@@ -34,7 +34,7 @@ public class HappyController extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("front/happy/happiness"); 
+		return forward("front/happy/happiness"); 
 	}
 	/**
 	 * 
@@ -50,7 +50,7 @@ public class HappyController extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		return forword("server/sys/customers"); 
+		return forward("server/sys/customers"); 
 	}
 	
 }

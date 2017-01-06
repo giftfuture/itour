@@ -24,8 +24,7 @@ itour.travelStyle = function(){
 				var tbline = $(".tb-line:visible");
 				var btnType = $("input[name='btnType']",tbline);
 				$.each(defaultBtns,function(i,btn){
-					var isExists = false;
-					//判断按钮类型是否存在
+					var isExists = false;//判断按钮类型是否存在
 					if(btnType.length > 0){
 						for(var i =0; i < btnType.length; i++){
 							if(btnType.eq(i).val() == btn.btnType){

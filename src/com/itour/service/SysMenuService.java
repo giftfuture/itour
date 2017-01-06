@@ -184,12 +184,13 @@ public class SysMenuService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<Map<String, Object>> pagedQuery(SysMenuVo vo) {
 		List<SysMenu> list = (List<SysMenu>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<Map<String, Object>> records = Lists.newArrayList();
 		for(int i = 0; i < list.size(); i++) {
 			SysMenu menu = list.get(i);
 			records.add(SysMenuKit.toRecord(menu));
 		}
-		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	public SysMenuDao<T> getDao() {
 		return mapper;

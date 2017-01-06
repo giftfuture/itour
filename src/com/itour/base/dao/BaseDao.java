@@ -2,6 +2,8 @@ package com.itour.base.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itour.base.page.BasePage;
 
 public interface BaseDao<T> {
@@ -13,7 +15,7 @@ public interface BaseDao<T> {
 	public void update(T t);
 	
 	
-	public void delete(String id);
+	public void delete(@Param(value="id")String id);
 	
 
 	public int queryByCount(BasePage page);
@@ -24,5 +26,5 @@ public interface BaseDao<T> {
 	public BasePage<T> pagedQuery(BasePage page);
 	
 	
-	public T queryById(String id);
+	public T queryById(@Param(value="id")String id);
 }

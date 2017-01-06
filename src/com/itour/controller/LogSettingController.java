@@ -60,7 +60,7 @@ public class LogSettingController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView  list(LogSettingVo page,HttpServletRequest request) throws Exception{
-		return forword("server/sys/logSetting"); 
+		return forward("server/sys/logSetting"); 
 	}
 	
 	
@@ -110,16 +110,16 @@ public class LogSettingController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		LogSetting entity  = logSettingService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJson(response, context);
+		return context;
 	}
 	
 	/**

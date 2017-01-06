@@ -37,6 +37,7 @@ public class TravelOrderService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<TravelOrderVo> pagedQuery(TravelOrderVo vo) {
 		List<TravelOrder> list = (List<TravelOrder>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<TravelOrderVo> records = Lists.newArrayList();
 		try {
 			for (TravelOrder to : list) {
@@ -45,7 +46,7 @@ public class TravelOrderService<T> extends BaseService<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BasePage<TravelOrderVo>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<TravelOrderVo>(vo.getStart(), vo.getLimit(), records,count);
 	}
 	@Autowired
     private TravelOrderDao<T> mapper;

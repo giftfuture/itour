@@ -45,6 +45,7 @@ public class CustomersService extends BaseService<Customers> {
 	@SuppressWarnings("unchecked")
 	public BasePage<Map<String, Object>> pagedQuery(CustomerVo vo) {
 		List<Customers> list = mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
@@ -52,6 +53,6 @@ public class CustomersService extends BaseService<Customers> {
 			Customers customers = list.get(i);
 			records.add(CustomerKit.toRecord(customers));
 		}
-		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, count);
 	}
 }

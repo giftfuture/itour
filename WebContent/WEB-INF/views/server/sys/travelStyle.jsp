@@ -42,12 +42,16 @@ pageContext.setAttribute("basePath",basePath);
 		     	   <div class="ftitle">旅行方式</div>
 					<div class="fitem">
 						<label>旅行方式:</label>
-						<input name="type" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写type">
+						<input name="type" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写旅行方式">
+					</div>
+					<div class="fitem">
+					<label>英文别名:</label>
+					<input name="alias" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写英文别名">
 					</div>
 					<p></p>
 					<div class="fitem">
 						<label>备&nbsp;&nbsp;注:</label>
-						<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写旅行方式备注"></textarea>
 					</div>
   			</div>
      	</form>

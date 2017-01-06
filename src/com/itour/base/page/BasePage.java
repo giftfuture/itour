@@ -42,6 +42,7 @@ public class BasePage<T> implements Serializable{
 	public Pager getPager() {
 		pager.setPageId(getPage());
 		pager.setPageSize(getRows());
+		pager.doPage();
 		String orderField="";
 		if(StringUtils.isNotBlank(sort)){
 			orderField = sort;

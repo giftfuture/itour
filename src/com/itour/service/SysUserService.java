@@ -113,6 +113,7 @@ public class SysUserService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<SysUserVo> pagedQuery(SysUserVo vo) {
 		List<SysUser> list = (List<SysUser>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<SysUserVo>	vos = Lists.newArrayList();
 		for(SysUser user:list){
 			List<SysRole> roleRels = sysRoleDao.queryByUserid(user.getId());
@@ -122,7 +123,7 @@ public class SysUserService<T> extends BaseService<T> {
 			user.setRoleStr(rolesToStr(roleRels));
 			vos.add(SysUserKit.toRecord(user));
 		}
-		return new BasePage<SysUserVo>(vo.getStart(), vo.getLimit(), vos, vo.getPager().getRowCount());
+		return new BasePage<SysUserVo>(vo.getStart(), vo.getLimit(), vos, count);
 	}
 	/**
 	 * 

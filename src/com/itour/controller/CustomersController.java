@@ -62,7 +62,7 @@ public class CustomersController extends BaseController{
 	@RequestMapping(value = "/list") 
 	public ModelAndView list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		request.isUserInRole("");
-		return forword("server/sys/customers"); 
+		return forward("server/sys/customers"); 
 	}
 	
 	
@@ -121,16 +121,16 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/getId", method = RequestMethod.POST)
 	@ResponseBody
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap();
 		Customers entity  = customersService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		HtmlUtil.writerJSON(response, context);
+		return context;
 	}
 	
 	

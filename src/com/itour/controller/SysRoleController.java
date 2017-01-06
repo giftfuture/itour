@@ -59,7 +59,7 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/role")
 	public ModelAndView list(SysRoleVo model,HttpServletRequest request) throws Exception{
-		return forword("server/sys/sysRole"); 
+		return forward("server/sys/sysRole"); 
 	}
 	
 	
@@ -108,12 +108,12 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public void getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object> ();
 		SysRole bean  = sysRoleService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return;
+			return new HashMap<String,Object>();
 		}
 		//获取权限关联的菜单
 		String[] menuIds = null;
@@ -137,14 +137,13 @@ public class SysRoleController extends BaseController{
 				i++;
 			}
 		}
-
 		//将对象转成Map
 		Map<String,Object> data = BeanUtils.describe(bean);
 		data.put("menuIds", menuIds);
 		data.put("btnIds", btnIds);
 		context.put(SUCCESS, true);
 		context.put("data", data);
-		HtmlUtil.writerJson(response, context);
+		return context;
 	}
 	
 	/**

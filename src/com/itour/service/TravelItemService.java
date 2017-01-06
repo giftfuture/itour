@@ -41,11 +41,12 @@ public class TravelItemService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<TravelItemVo> pagedQuery(TravelItemVo vo) {
 		List<TravelItem> list = (List<TravelItem>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<TravelItemVo> records = Lists.newArrayList();
 		for(TravelItem fb:list) {
 			records.add(TravelItemKit.toRecord(fb));
 		}
-		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	public TravelItemDao<T> getDao() {
 		return mapper;

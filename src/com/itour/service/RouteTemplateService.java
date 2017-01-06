@@ -38,11 +38,12 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	@SuppressWarnings("unchecked")
 	public BasePage<RouteTemplateVo> pagedQuery(RouteTemplateVo vo) {
 		List<RouteTemplate> list = (List<RouteTemplate>) mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
 		for(RouteTemplate fb:list) {
 			records.add(RouteTemplateKit.toRecord(fb));
 		}
-		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
 	}
 	
 	@Autowired
