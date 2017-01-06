@@ -143,7 +143,7 @@ itour.travelOrder = function(){
 			},*/
   			dataGrid:{
   				title:'客户订单',
-	   			url:'travelOrder/dataList',
+	   			url:'travelOrder/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'customerId',title:'客户ID',align:'center',sortable:true,

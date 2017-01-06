@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
@@ -57,14 +58,10 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value = "/list") 
 	public ModelAndView list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		request.isUserInRole("");
-	/*	Map<String,Object>  context = getRootMap();
-		//page.setDeleted(DELETED.NO.key);
-		List<Customers> dataList = customersService.queryByList(page);
-		//设置页面数据
-		context.put("dataList", dataList);*/
 		return forword("server/sys/customers"); 
 	}
 	
@@ -75,6 +72,7 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/dataList.json", method = RequestMethod.POST) 
 	@ResponseBody
 	public EasyUIGrid datalist(CustomerVo vo,HttpServletResponse response) throws Exception{
@@ -101,6 +99,7 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -119,7 +118,7 @@ public class CustomersController extends BaseController{
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
-	
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/getId", method = RequestMethod.POST)
 	@ResponseBody
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -135,7 +134,7 @@ public class CustomersController extends BaseController{
 	}
 	
 	
-	
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

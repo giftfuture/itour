@@ -188,7 +188,7 @@ itour.travelItem = function(){
 			},
   			dataGrid:{
   				title:'旅行项目',
-	   			url:'dataList',
+	   			url:'dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'itemCode',title:'项目代码',align:'center',sortable:true,

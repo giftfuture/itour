@@ -41,7 +41,7 @@ itour.sysUser = function(){
 		    },
   			dataGrid:{
   				title:'系统用户列表',
-	   			url:'sysUser/dataList',
+	   			url:'sysUser/dataList.json',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'email',title:'邮箱',width:120,sortable:true},

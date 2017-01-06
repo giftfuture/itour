@@ -143,7 +143,7 @@ itour.quotation = function(){
 			},
   			dataGrid:{
   				title:'报价单',
-	   			url:'quotation/dataList',
+	   			url:'quotation/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'name',title:'报价单名',align:'center',sortable:true,

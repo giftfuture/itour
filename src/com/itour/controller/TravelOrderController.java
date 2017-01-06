@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
@@ -25,6 +28,7 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.TravelOrder;
 import com.itour.service.TravelOrderService;
 import com.itour.vo.TravelOrderVo;
+import com.itour.vo.TravelStyleVo;
  
 /**
  * 
@@ -51,7 +55,8 @@ public class TravelOrderController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView  list(TravelOrderVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
@@ -63,17 +68,17 @@ public class TravelOrderController extends BaseController{
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(TravelOrderVo page,HttpServletResponse response) throws Exception{
-		List<TravelOrder> dataList = travelOrderService.queryByList(page);
-		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJSON(response, jsonMap);
+	public EasyUIGrid  datalist(TravelOrderVo vo,HttpServletResponse response) throws Exception{
+		//List<TravelOrder> dataList = travelOrderService.queryByList(page);
+		BasePage<TravelOrderVo> pagination = travelOrderService.pagedQuery(vo);
+		return dataGridAdapter.wrap(pagination); 
 	}
 	
 	/**
@@ -83,6 +88,7 @@ public class TravelOrderController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelOrder entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -135,6 +141,7 @@ public class TravelOrderController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -149,7 +156,13 @@ public class TravelOrderController extends BaseController{
 		HtmlUtil.writerJSON(response, context);
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

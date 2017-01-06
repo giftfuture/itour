@@ -39,7 +39,7 @@ public class PassEmailController extends BaseController {
     
 	@ResponseBody
     @SuppressWarnings("unchecked")
-	@Auth(verifyLogin=false,verifyURL=false)
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/sendmail", method = RequestMethod.POST)
     public String sendmail(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception{
         try {
@@ -89,7 +89,15 @@ public class PassEmailController extends BaseController {
         }
         return null;
     }
-    @Auth(verifyLogin=false,verifyURL=false)
+
+	/**
+	 * 
+	 * @param req
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
   	@RequestMapping(value="/checkLink", method = RequestMethod.POST)
     public String checkResetLink(HttpServletRequest req,HttpServletResponse response) throws Exception {

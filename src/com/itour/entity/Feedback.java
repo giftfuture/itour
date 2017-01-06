@@ -45,7 +45,7 @@ public class Feedback extends BaseEntity {
 	public void setTitle(java.lang.String title) {
 		this.title = title;
 	}
-	public java.lang.Object getContent() {
+	public java.lang.String getContent() {
 		return content;
 	}
 	public void setContent(java.lang.String content) {

@@ -3,8 +3,8 @@ package com.itour.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ import com.itour.vo.CustomerVo;
  */
 @Service("customersService")
 public class CustomersService extends BaseService<Customers> {
-	private final static Logger log= Logger.getLogger(CustomersService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 
 	@Autowired
     private CustomersDao mapper;
@@ -44,7 +44,6 @@ public class CustomersService extends BaseService<Customers> {
 
 	@SuppressWarnings("unchecked")
 	public BasePage<Map<String, Object>> pagedQuery(CustomerVo vo) {
-	//	CustomerVo vo = new CustomerVo();
 		List<Customers> list = mapper.queryByList(vo);
 		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
@@ -52,7 +51,6 @@ public class CustomersService extends BaseService<Customers> {
 		for(int i = 0; i < list.size(); i++) {
 			Customers customers = list.get(i);
 			records.add(CustomerKit.toRecord(customers));
-			//map.put(authPermissionVo.getId(), authPermissionVo.getName());
 		}
 		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
 	}

@@ -124,7 +124,7 @@ itour.sysMenu = function(){
   			},
   			dataGrid:{
   				title:'菜单列表',
-	   			url:'sysMenu/dataList',
+	   			url:'sysMenu/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'name',title:'菜单名称',width:120,sortable:true},

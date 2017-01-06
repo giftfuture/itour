@@ -1,12 +1,22 @@
 package com.itour.service;
 
-import org.apache.log4j.Logger;
+import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.convert.FeedbackKit;
+import com.itour.convert.QuotationKit;
 import com.itour.dao.QuotationDao;
+import com.itour.entity.Feedback;
+import com.itour.entity.Quotation;
+import com.itour.vo.FeedbackVo;
+import com.itour.vo.QuotationVo;
 
 /**
  * 
@@ -17,8 +27,24 @@ import com.itour.dao.QuotationDao;
  */
 @Service("quotationService")
 public class QuotationService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(QuotationService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 
+	/**
+	 * 分页查询
+	 * 
+	 * @param pageQuery 查询条件
+	 * @return 查询结果
+	 */
+	@SuppressWarnings("unchecked")
+	public BasePage<QuotationVo> pagedQuery(QuotationVo vo) {
+		List<Quotation> list = (List<Quotation>) mapper.queryByList(vo);
+		List<QuotationVo> records = Lists.newArrayList();
+		for(Quotation fb:list) {
+			records.add(QuotationKit.toRecord(fb));
+		}
+		return new BasePage<QuotationVo>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
+	}
+	
 	@Autowired
     private QuotationDao<T> mapper;
 

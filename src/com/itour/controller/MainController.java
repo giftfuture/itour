@@ -72,13 +72,10 @@ public class MainController extends BaseController {
 	 */
 	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,Map<String,Object>  context) throws Exception{
-		//Map<String,Object>  context = getRootMap();
 		return forword("/server/login");
 	}
-	
-	
 	/**
 	 * 检查用户名称
 	 * 
@@ -115,7 +112,7 @@ public class MainController extends BaseController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@Auth(verifyLogin=true,verifyURL=false)
+	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/logIn", method = RequestMethod.POST)
 	public void toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	/*	Map<String,Object> context = getRootMap();
@@ -188,7 +185,7 @@ public class MainController extends BaseController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@Auth(verifyLogin=false,verifyURL=false)
+	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public void  logout(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SessionUtils.removeUser(request);
@@ -202,7 +199,7 @@ public class MainController extends BaseController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@Auth(verifyURL=false)
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/getActionBtn", method = RequestMethod.POST)
 	public void  getActionBtn(String url,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -231,7 +228,7 @@ public class MainController extends BaseController {
 	 * @throws Exception 
 	 */
 	@ResponseBody
-	@Auth(verifyURL=false)
+	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/modifyPwd", method = RequestMethod.POST)
 	public void modifyPwd(String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
@@ -266,8 +263,8 @@ public class MainController extends BaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@Auth(verifyLogin=false,verifyURL=false)
-	@RequestMapping(value="/manage", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=false)
+	@RequestMapping(value="/manage") 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response,Map<String,Object> context){
 		SysUser user = SessionUtils.getUser(request);
 		try {
@@ -325,7 +322,7 @@ public class MainController extends BaseController {
 		//能够访问的url列表
 		List<String> accessUrls  = new ArrayList<String>();
 		//菜单对应的按钮
-		Map<String,List> menuBtnMap = new HashMap<String,List>(); 
+		Map<String,List<String>> menuBtnMap = new HashMap<String,List<String>>(); 
 		for(SysMenu menu: childMenus){
 			//判断URL是否为空
 			if(StringUtils.isNotBlank(menu.getUrl())){

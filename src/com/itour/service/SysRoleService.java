@@ -1,17 +1,26 @@
 package com.itour.service;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
 import com.itour.base.entity.BaseEntity.STATE;
+import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.convert.SysMenuKit;
+import com.itour.convert.SysRoleKit;
 import com.itour.dao.SysRoleDao;
+import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
+import com.itour.vo.SysMenuVo;
+import com.itour.vo.SysRoleVo;
 
 /**
  * 
@@ -22,11 +31,25 @@ import com.itour.entity.SysRoleRel.RelType;
  */
 @Service("sysRoleService")
 public class SysRoleService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(SysRoleService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
-	
+	/**
+	 * 分页查询
+	 * 
+	 * @param pageQuery 查询条件
+	 * @return 查询结果
+	 */
+	@SuppressWarnings("unchecked")
+	public BasePage<SysRoleVo> pagedQuery(SysRoleVo vo) {
+		List<SysRole> list = (List<SysRole>) mapper.queryByList(vo);
+		List<SysRoleVo>	vos = Lists.newArrayList();
+		for(SysRole sv:list){
+			vos.add(SysRoleKit.toRecord(sv));
+		}
+		return new BasePage<SysRoleVo>(vo.getStart(), vo.getLimit(), vos, vo.getPager().getRowCount());
+	}
 	/**
 	 * 添加角色&菜单关系
 	 */
@@ -113,8 +136,6 @@ public class SysRoleService<T> extends BaseService<T> {
 	public List<T> queryAllList(){
 		return getDao().queryAllList();
 	}
-
-	
 
 	/**
 	 *查询全部有效的权限

@@ -13,11 +13,11 @@
 	<result column="updateBy" property="updateBy"/>
 	<result column="state" property="state"/>
 	<result column="descr" property="descr"/>
+	<result column="role_level" property="level"/>
 </resultMap>
-       
 <!-- sys_role table all fields -->
 <sql id="Base_Column_List" >
-	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr
+	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level
 </sql>
    
    
@@ -46,8 +46,11 @@ where 1=1
 	<if test="state != null" >
 	    and state =  #{state}
 	</if>
-	 	<if test="descr != null and descr != ''" >
+ 	<if test="descr != null and descr != ''" >
 	    and descr like CONCAT('%', #{descr}, '%')
+	</if>
+	<if test="level != null and level != 0">
+		and role_level = #{level}	
 	</if>
 </trim>
 </sql>
@@ -58,8 +61,8 @@ where 1=1
 <!--   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr)
- values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},#{state},#{descr})
+  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level)
+ values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},#{state},#{descr},#{level})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -81,12 +84,15 @@ where 1=1
 	<if test="descr != null  and descr != '' ">
 		descr=#{descr},
 	</if>
+	<if test="level != null and level != 0">
+		and role_level = #{level}	
+	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	 from sys_role where id = #{id}
+	delete from sys_role where id = #{id}
 </delete>
  
 <!-- 根据id查询 系统角色 -->

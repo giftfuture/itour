@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.RouteTemplate;
 import com.itour.service.RouteTemplateService;
+import com.itour.vo.QuotationVo;
 import com.itour.vo.RouteTemplateVo;
  
 /**
@@ -53,7 +57,8 @@ public class RouteTemplateController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView list(RouteTemplateVo page,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
@@ -66,18 +71,17 @@ public class RouteTemplateController extends BaseController{
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(RouteTemplateVo page,HttpServletResponse response) throws Exception{
-		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJSON(response, jsonMap);
+	public EasyUIGrid datalist(RouteTemplateVo vo,HttpServletResponse response) throws Exception{
+		//List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
+		BasePage<RouteTemplateVo> page = routeTemplateService.pagedQuery(vo);
+		return dataGridAdapter.wrap(page);
 	}
 	
 	/**
@@ -87,6 +91,7 @@ public class RouteTemplateController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(RouteTemplate entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -108,6 +113,7 @@ public class RouteTemplateController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -127,6 +133,7 @@ public class RouteTemplateController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

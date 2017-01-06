@@ -15,7 +15,7 @@ itour.logOperation = function(){
 			},
   			dataGrid:{
   				title:'操作日志',
-	   			url:'logOperation/dataList',
+	   			url:'logOperation/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'operCode',title:'',align:'center',sortable:true,

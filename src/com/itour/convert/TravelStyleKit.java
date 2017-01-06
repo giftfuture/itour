@@ -1,9 +1,7 @@
 package com.itour.convert;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
-import com.itour.base.page.BasePage;
+import com.itour.entity.TravelStyle;
+import com.itour.vo.TravelStyleVo;
 /**
  * 
  * <br>
@@ -12,6 +10,14 @@ import com.itour.base.page.BasePage;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelStyleKit{
-
+	  public static TravelStyleVo toRecord(TravelStyle ts){
+		  TravelStyleVo tv = new TravelStyleVo();
+		  tv.setAlias(ts.getAlias());
+		  tv.setId(ts.getId());
+		  tv.setRemark(ts.getRemark());
+		  tv.setType(ts.getType());
+		  tv.setValid(ts.isValid());
+		  return tv;
+	  }
 }
 

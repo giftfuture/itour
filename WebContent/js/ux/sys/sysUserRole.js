@@ -18,7 +18,7 @@ itour.UserRole = function(){
 			},
   			dataGrid:{
   				title:'系统用户授权',
-	   			url:'sysUser/dataList',
+	   			url:'sysUser/dataList.json',
 	   			columns:[[
 						{field:'id',checkbox:true},
 						{field:'email',title:'邮箱账号',width:120,sortable:true},

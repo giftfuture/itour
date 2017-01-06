@@ -32,13 +32,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.RedProFile;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.TravelItem;
 import com.itour.service.TravelItemService;
+import com.itour.vo.OrderDetailVo;
 //import com.alibaba.fastjson.JSONObject;
 import com.itour.vo.TravelItemVo;
  
@@ -67,8 +71,8 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView list(TravelItemVo page,HttpServletRequest request) throws Exception{
 		return forword("server/sys/travelItem"); 
 	}
@@ -82,6 +86,7 @@ public class TravelItemController extends BaseController{
 	 * @throws Exception
 	 */
 	//@ResponseBody
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/updateCover", method = RequestMethod.POST) 
 	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemVo page,HttpServletRequest request) throws Exception{
 		TravelItem ti = new TravelItem();
@@ -93,17 +98,17 @@ public class TravelItemController extends BaseController{
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void datalist(TravelItemVo page,HttpServletResponse response) throws Exception{
-		List<TravelItem> dataList = travelItemService.queryByList(page);
-		Map<String,Object> jsonMap = new HashMap<String,Object>();//设置页面数据
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJSON(response, jsonMap);
+	public EasyUIGrid datalist(TravelItemVo vo,HttpServletResponse response) throws Exception{
+		//List<TravelItem> dataList = travelItemService.queryByList(page);
+		BasePage<TravelItemVo> page = travelItemService.pagedQuery(vo);
+		return dataGridAdapter.wrap(page);
 	}
 	
 	
@@ -115,6 +120,7 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelItem entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -133,7 +139,15 @@ public class TravelItemController extends BaseController{
 		sendSuccessMessage(response, "保存成功~");
 	}
 	//headers = "content-type=application/x-www-form-urlencoded",
-	
+	/**
+	 * 
+	 * @param id
+	 * @param fileselect
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody  
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST
 	public ModelAndView uploadPhoto(@RequestParam(value="id",required=false)String id,
@@ -267,6 +281,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
 	public void editPhoto(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
@@ -333,6 +348,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
 	public void saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletResponse response)throws Exception{
@@ -366,6 +382,13 @@ public class TravelItemController extends BaseController{
 		ti.setPhotos(pnames.toString());
 		travelItemService.update(ti);
 	}
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -386,6 +409,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/search", method = RequestMethod.POST)
@@ -412,6 +436,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/queryByStyle", method = RequestMethod.POST)
@@ -425,6 +450,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

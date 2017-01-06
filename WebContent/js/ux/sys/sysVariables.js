@@ -145,7 +145,7 @@ itour.sysVariables = function(){
   			},
   			dataGrid:{
   				title:'系统变量',
-	   			url:'sysVariables/dataList',
+	   			url:'sysVariables/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'varName',title:'变量名',align:'center',sortable:true,

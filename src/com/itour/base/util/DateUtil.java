@@ -25,6 +25,7 @@ public class DateUtil
 {
 	static java.text.SimpleDateFormat sdfShort = new java.text.SimpleDateFormat("yyyyMMdd");
 	static java.text.SimpleDateFormat sdfLong = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	static java.text.SimpleDateFormat sdfYmdHs = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
 	static java.text.SimpleDateFormat sdfLongCn = new java.text.SimpleDateFormat("yyyy年MM月dd日");
 	static java.text.SimpleDateFormat sdfShortU = new java.text.SimpleDateFormat("MMM dd",Locale.ENGLISH);
 	static java.text.SimpleDateFormat sdfLongU = new java.text.SimpleDateFormat("MMM dd,yyyy",Locale.ENGLISH);
@@ -52,6 +53,21 @@ public class DateUtil
 		{	
 			if(date != null)
 				nowDate = sdfLong.format(date);
+			return nowDate;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error at getDate:" + e.getMessage());
+			return "";
+		}
+	}
+	public static String getDateYmdHs(Date date)
+	{
+		String nowDate = "";
+		try
+		{	
+			if(date != null)
+				nowDate = sdfYmdHs.format(date);
 			return nowDate;
 		}
 		catch (Exception e)

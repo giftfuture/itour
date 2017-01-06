@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 
 @Controller
@@ -25,11 +26,15 @@ import com.itour.base.easyui.DataGridAdapter;
 public class ExampleController {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	private int singletonInt=1;
+    
+    private static int st = 0;      //静态的
+    private int index = 0;          //非静态
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/test")
     public String singleton(HttpServletRequest request,HttpServletResponse response) throws Exception {
         String data=request.getParameter("data");
         if(data!=null&&data.length()>0){
@@ -46,6 +51,7 @@ public class ExampleController {
        	System.out.println(singletonInt);
         return String.valueOf(singletonInt);
    }
+	@Auth(verifyLogin=true,verifyURL=true)
     @RequestMapping(value = "/sleepdata", method = RequestMethod.POST)
     @ResponseBody
     public String switcher(HttpServletRequest request
@@ -61,10 +67,8 @@ public class ExampleController {
            return sleep;
       }
     }
-    
-    private static int st = 0;      //静态的
-    private int index = 0;          //非静态
-    
+
+    @Auth(verifyLogin=true,verifyURL=true)
     @ResponseBody
     @RequestMapping(value="/show", method = RequestMethod.POST)
     public String toShow(ModelMap model) {
@@ -78,6 +82,7 @@ public class ExampleController {
      * 
      * @return
      */
+    @Auth(verifyLogin=true,verifyURL=true)
     @RequestMapping("/plus")
     public String plus() {
     	Vector vt = null;

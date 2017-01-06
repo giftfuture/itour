@@ -19,13 +19,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Feedback;
 import com.itour.service.FeedbackService;
 import com.itour.vo.CustomerVo;
+import com.itour.vo.FeedbackVo;
 
 /**
  * 
@@ -47,8 +51,6 @@ public class FeedbackController extends BaseController{
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	
-	
-	
 	/**
 	 * 
 	 * @param url
@@ -56,7 +58,8 @@ public class FeedbackController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView  list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		return forword("server/sys/feedback"); 
 	}
@@ -65,22 +68,21 @@ public class FeedbackController extends BaseController{
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(CustomerVo page,HttpServletResponse response) throws Exception{
-		if(page.getCreateTime() != null){
-			Timestamp createTime =  new Timestamp(page.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
-			page.setCreateTime(createTime);
+	public EasyUIGrid  datalist(FeedbackVo vo,HttpServletResponse response) throws Exception{
+		if(vo.getCreateTime() != null){
+			//String createTime = DateUtil.getDateYmdHs(vo.getCreateTime());
+			//Timestamp createTime =  new Timestamp(vo.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
+			vo.setCreateTime(vo.getCreateTime());
 		}
-	    List<Feedback> dataList = feedbackService.queryByList(page);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+		BasePage<FeedbackVo> page = feedbackService.pagedQuery(vo);
+		return dataGridAdapter.wrap(page);
 	}
 	
 	/**
@@ -90,6 +92,7 @@ public class FeedbackController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(Feedback entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -106,7 +109,13 @@ public class FeedbackController extends BaseController{
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -122,7 +131,7 @@ public class FeedbackController extends BaseController{
 	}
 	
 	
-	
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.State;
 import com.itour.exception.NoSupportExtensionException;
@@ -33,6 +34,8 @@ public class ExceptionHandler implements HandlerExceptionResolver, Ordered {
     public int getOrder() {  
         return Integer.MIN_VALUE;  
     }  
+	
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@Override
 	@RequestMapping("/reslove")

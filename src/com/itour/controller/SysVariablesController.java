@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysVariables;
@@ -50,33 +52,27 @@ public class SysVariablesController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@Auth
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@RequestMapping(value="/list") 
 	public ModelAndView  list(SysVariablesVo page,HttpServletRequest request) throws Exception{
-		/*Map<String,Object>  context = getRootMap();
-		List<SysVariables> dataList = sysVariablesService.queryByList(page);
-		context.put("dataList", dataList);//设置页面数据
-*/		return forword("server/sys/sysVariables"); 
+		return forword("server/sys/sysVariables"); 
 	}
 	
 	
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
-	@Auth
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(SysVariablesVo page,HttpServletResponse response) throws Exception{
-		List<SysVariables> dataList = sysVariablesService.queryByList(page);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJSON(response, jsonMap);
+	public EasyUIGrid  datalist(SysVariablesVo vo,HttpServletResponse response) throws Exception{
+		BasePage<SysVariables> pagination = sysVariablesService.pagedQuery(vo);
+		return dataGridAdapter.wrap(pagination); 
 	}
 	
 	/**
@@ -86,7 +82,7 @@ public class SysVariablesController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@Auth
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysVariables entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -109,7 +105,7 @@ public class SysVariablesController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@Auth
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -130,7 +126,7 @@ public class SysVariablesController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@Auth
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

@@ -142,7 +142,7 @@ itour.routeTemplate = function(){
 			},*/
   			dataGrid:{
   				title:'路线模板',
-	   			url:'routeTemplate/dataList',
+	   			url:'routeTemplate/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'customerId',title:'客户ID',align:'center',sortable:true,

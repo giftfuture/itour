@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,14 @@ import com.itour.entity.SysRoleRel;
  */
 @Service("sysRoleRelService")
 public class SysRoleRelService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(SysRoleRelService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
-	
+	/**
+	 * 
+	 * @param roleId
+	 * @param relType
+	 * @return
+	 */
 	public List<SysRoleRel> queryByRoleId(String roleId,Integer relType){
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("roleId", roleId);
@@ -32,7 +38,12 @@ public class SysRoleRelService<T> extends BaseService<T> {
 		return getDao().queryByRoleId(param);
 	}
 	
-	
+	/**
+	 * 
+	 * @param objId
+	 * @param relType
+	 * @return
+	 */
 	public List<SysRoleRel> queryByObjId(String objId,Integer relType){
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("objId", objId);
@@ -72,9 +83,6 @@ public class SysRoleRelService<T> extends BaseService<T> {
 		getDao().deleteByRoleId(param);
 	}
 	
-	
-	
-
 	@Autowired
     private SysRoleRelDao<T> mapper;
 

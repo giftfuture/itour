@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.entity.BaseEntity.STATE;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.MethodUtil;
 import com.itour.base.util.SessionUtils;
@@ -29,6 +32,7 @@ import com.itour.entity.SysUser;
 import com.itour.exception.ServiceException;
 import com.itour.service.SysRoleService;
 import com.itour.service.SysUserService;
+import com.itour.vo.SysRoleVo;
 import com.itour.vo.SysUserVo;
  
 @Controller
@@ -52,7 +56,8 @@ public class SysUserController extends BaseController{
 	 * @param classifyId
 	 * @return
 	 */
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView list(SysUserVo model,HttpServletRequest request) throws Exception{
 		return forword("server/sys/sysUser"); 
 	}
@@ -62,43 +67,18 @@ public class SysUserController extends BaseController{
 	 * json 列表页面
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  dataList(SysUserVo model,HttpServletResponse response) throws Exception{
-		List<SysUser> dataList = sysUserService.queryByList(model);
-		for(SysUser user: dataList){
-			List<SysRole> list = sysRoleService.queryByUserid(user.getId());
-			user.setRoleStr(rolesToStr(list));
-		}
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",model.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+	public EasyUIGrid  dataList(SysUserVo vo,HttpServletResponse response) throws Exception{
+		BasePage<SysUserVo> page = sysUserService.pagedQuery(vo);
+	  return dataGridAdapter.wrap(page);
 	}
 	
-	/**
-	 * 角色列表转成字符串
-	 * @param list
-	 * @return
-	 */
-	private String rolesToStr(List<SysRole> list){
-		if(list == null || list.isEmpty()){
-			return null;
-		}
-		StringBuffer str = new StringBuffer();
-		for(int i=0;i<list.size();i++){
-			SysRole role = list.get(i);
-			str.append(role.getRoleName());
-			if((i+1) < list.size()){
-				str.append(",");
-			}
-		}
-		return str.toString();
-	}
 	
 	/**
 	 * 添加或修改数据
@@ -107,10 +87,10 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysUser bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object>  context = new HashMap<String,Object>();
 		SysUser user = SessionUtils.getUser(request);
 		int count = sysUserService.getUserCountByEmail(bean.getEmail());
 		if(bean.getId() == null){
@@ -139,6 +119,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -153,6 +134,13 @@ public class SysUserController extends BaseController{
 		HtmlUtil.writerJson(response, context);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		sysUserService.delete(id);
@@ -167,6 +155,7 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/updatePwd", method = RequestMethod.POST)
 	public void updatePwd(String id,String oldPwd,String newPwd,HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -199,10 +188,11 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/userRole", method = RequestMethod.POST) 
+	@RequestMapping(value="/userRole") 
 	public ModelAndView  userRole(HttpServletRequest request) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		Map<String,Object> context = getRootMap();
 		return forword("server/sys/sysUserRole", context);
 	}
 	
@@ -212,8 +202,9 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/userList", method = RequestMethod.POST) 
+	@RequestMapping(value="/userList.json", method = RequestMethod.POST) 
 	public void  userList(SysUserVo model,HttpServletResponse response) throws Exception{
 		model.setState(STATE.ENABLE.key);
 		dataList(model, response);
@@ -225,6 +216,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getUser", method = RequestMethod.POST) 
 	public void getUser(String id,HttpServletResponse response)  throws Exception{
@@ -261,6 +253,7 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/addUserRole", method = RequestMethod.POST)
 	public void addUserRole(String id,String roleIds[],HttpServletResponse response) throws Exception{

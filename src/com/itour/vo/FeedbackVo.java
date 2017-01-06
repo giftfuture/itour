@@ -13,7 +13,7 @@ import com.itour.base.page.BasePage;
  */
 public class FeedbackVo extends BasePage implements Serializable {
 	
-		private java.lang.String id;//   	private Date createTime;//   	private java.lang.Integer status;//   	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
+		private java.lang.String id;//   	private String createTime;//   	private java.lang.Integer status;//   	private String updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
 	private String email;
 	private String mobile;
 		public java.lang.String getId() {
@@ -22,10 +22,10 @@ public class FeedbackVo extends BasePage implements Serializable {
 	public void setId(java.lang.String id) {
 		this.id = id;
 	}
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 	public java.lang.Integer getStatus() {
@@ -34,10 +34,10 @@ public class FeedbackVo extends BasePage implements Serializable {
 	public void setStatus(java.lang.Integer status) {
 		this.status = status;
 	}
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
 	public java.lang.String getTitle() {

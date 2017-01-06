@@ -17,6 +17,11 @@ import com.itour.vo.CustomerVo;
  */
 public class CustomerKit {
 	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public static Map<String, Object> toRecord(CustomerVo vo){
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("id", vo.getId());

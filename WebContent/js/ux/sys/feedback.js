@@ -142,7 +142,7 @@ itour.feedback = function(){
 			},*/
   			dataGrid:{
   				title:'反馈咨询',
-	   			url:'feedback/dataList',
+	   			url:'feedback/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 			/*		{field:'customerId',title:'客户ID',align:'center',sortable:true,
@@ -166,11 +166,11 @@ itour.feedback = function(){
 					},*/
 				{field:'content',title:'内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							if((row.content+"").length>30){
-								return (row.content+"").substring(0,30)+"....";
+							/*if((row.content).length>30){
+								return (row.content).substring(0,30)+"...";
 							}else{									
 								return row.content;
-							}
+							}*/
 						}
 					},
 					{field:'createTime',title:'反馈时间',align:'center',sortable:true,
@@ -198,11 +198,11 @@ itour.feedback = function(){
 						},*/
 					{field:'result',title:'审核意见',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if((row.result+"").length>30){
-									return (row.result+"").substring(0,30)+"....";
+								/*if((row.result).length>30){
+									return (row.result).substring(0,30)+"....";
 								}else{									
 									return row.result;
-								}
+								}*/
 							}
 						},
 					]],

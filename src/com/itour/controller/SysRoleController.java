@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
@@ -53,7 +56,8 @@ public class SysRoleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/role", method = RequestMethod.POST)
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/role")
 	public ModelAndView list(SysRoleVo model,HttpServletRequest request) throws Exception{
 		return forword("server/sys/sysRole"); 
 	}
@@ -62,18 +66,16 @@ public class SysRoleController extends BaseController{
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(SysRoleVo model,HttpServletResponse response) throws Exception{
-		List<SysRole> dataList = sysRoleService.queryByList(model);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",model.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+	public EasyUIGrid datalist(SysRoleVo vo,HttpServletResponse response) throws Exception{
+		BasePage<SysRoleVo> pagination = sysRoleService.pagedQuery(vo);
+		return dataGridAdapter.wrap(pagination); 
 	}
 	
 	/**
@@ -83,6 +85,7 @@ public class SysRoleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletResponse response) throws Exception{
@@ -102,6 +105,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -149,6 +153,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
@@ -161,6 +166,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/loadRoleList", method = RequestMethod.POST)
 	public void loadRoleList(HttpServletResponse response) throws Exception{

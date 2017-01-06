@@ -1,9 +1,8 @@
 package com.itour.convert;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
-import com.itour.base.page.BasePage;
+import com.itour.base.util.DateUtil;
+import com.itour.entity.RouteTemplate;
+import com.itour.vo.RouteTemplateVo;
 /**
  * 
  * <br>
@@ -12,6 +11,17 @@ import com.itour.base.page.BasePage;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class RouteTemplateKit{
-	
+	public static RouteTemplateVo toRecord(RouteTemplate rt){
+		RouteTemplateVo vo = new RouteTemplateVo();
+		vo.setCreateBy(rt.getCreateBy());
+		vo.setCreateTime(DateUtil.getDateYmdHs(rt.getCreateTime()));
+		vo.setCustomerId(rt.getCustomerId());
+		vo.setD1(rt.getD1());
+		vo.setId(rt.getId());
+		vo.setUpdateBy(rt.getUpdateBy());
+		vo.setUpdateTime(DateUtil.getDateYmdHs(rt.getUpdateTime()));
+		vo.setRemark(rt.getRemark());
+		return vo;
+	}
 }
 

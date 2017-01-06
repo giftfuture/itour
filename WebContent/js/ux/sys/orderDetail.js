@@ -146,7 +146,7 @@ itour.orderDetail = function(){
 			},
   			dataGrid:{
   				title:'订单详情',
-	   			url:'orderDetail/dataList',
+	   			url:'orderDetail/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'orderId',title:'订单号',align:'center',sortable:true,

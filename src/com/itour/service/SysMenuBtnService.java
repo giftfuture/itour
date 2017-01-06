@@ -2,7 +2,8 @@ package com.itour.service;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import com.itour.dao.SysMenuBtnDao;
  */
 @Service("sysMenuBtnService")
 public class SysMenuBtnService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(SysMenuBtnService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	public List<T> queryByAll(){
 		return getDao().queryByAll();

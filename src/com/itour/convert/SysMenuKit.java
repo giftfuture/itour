@@ -3,6 +3,7 @@ package com.itour.convert;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.itour.base.util.DateUtil;
 import com.itour.entity.SysMenu;
 
 
@@ -14,8 +15,8 @@ public class SysMenuKit{
 		record.put("url", menu.getUrl());
 		record.put("parentId", menu.getParentId());
 		record.put("deleted", menu.getDeleted());
-		record.put("createTime", menu.getCreateTime());
-		record.put("updateTime", menu.getUpdateTime());
+		record.put("createTime", DateUtil.getDateYmdHs(menu.getCreateTime()));
+		record.put("updateTime", DateUtil.getDateYmdHs(menu.getUpdateTime()));
 		record.put("rank", menu.getRank());
 		record.put("actions", menu.getActions());
 		record.put("createBy", menu.getCreateBy());

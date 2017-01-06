@@ -1,10 +1,8 @@
 package com.itour.convert;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
-import com.itour.base.page.BasePage;
+import com.itour.base.util.DateUtil;
+import com.itour.entity.Feedback;
+import com.itour.vo.FeedbackVo;
 /**
  * 
  * <br>
@@ -13,5 +11,20 @@ import com.itour.base.page.BasePage;
  */
 public class FeedbackKit{
 	
+	public static FeedbackVo toRecord(Feedback fb){
+		FeedbackVo vo = new FeedbackVo();
+		vo.setContent(fb.getContent());
+		vo.setCreateTime(DateUtil.getDateYmdHs(fb.getCreateTime()));
+		vo.setCustomerId(fb.getCustomerId());
+		vo.setCustomerName(fb.getCustomerName());
+		vo.setEmail(fb.getEmail());
+		vo.setId(fb.getId());
+		vo.setMobile(fb.getMobile());
+		vo.setResult(fb.getResult());
+		vo.setStatus(fb.getStatus());
+		vo.setTitle(fb.getTitle());
+		vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
+		return vo;
+	}
 }
 

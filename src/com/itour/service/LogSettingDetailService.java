@@ -1,7 +1,7 @@
 package com.itour.service;
 
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import com.itour.dao.LogSettingDetailDao;
  */
 @Service("logSettingDetailService")
 public class LogSettingDetailService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(LogSettingDetailService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 
 	@Autowired
     private LogSettingDetailDao<T> dao;

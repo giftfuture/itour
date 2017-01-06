@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.entity.LogOperation;
@@ -56,7 +57,8 @@ public class LogSettingDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView  list(LogSettingDetailVo page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
@@ -72,6 +74,7 @@ public class LogSettingDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public void  datalist(LogSettingDetailVo page,HttpServletResponse response) throws Exception{
@@ -90,6 +93,7 @@ public class LogSettingDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */	
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(LogSettingDetail entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -101,7 +105,13 @@ public class LogSettingDetailController extends BaseController{
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -116,7 +126,13 @@ public class LogSettingDetailController extends BaseController{
 		HtmlUtil.writerJson(response, context);
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

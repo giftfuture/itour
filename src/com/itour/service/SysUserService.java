@@ -3,15 +3,24 @@ package com.itour.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.convert.SysRoleKit;
+import com.itour.convert.SysUserKit;
+import com.itour.dao.SysRoleDao;
+import com.itour.dao.SysRoleRelDao;
 import com.itour.dao.SysUserDao;
+import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
 import com.itour.entity.SysRoleRel.RelType;
+import com.itour.vo.SysRoleVo;
 import com.itour.vo.SysUserVo;
 
 /**
@@ -23,11 +32,14 @@ import com.itour.vo.SysUserVo;
  */
 @Service("sysUserService")
 public class SysUserService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(SysUserService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
-
+	@Autowired
+	private SysRoleDao<SysRole> sysRoleDao;
+	
+	
 	@Override
 	public void delete(String[] ids) throws Exception {
 		super.delete(ids);
@@ -93,6 +105,26 @@ public class SysUserService<T> extends BaseService<T> {
 		getDao().updateCode(map);
 	};
 	/**
+	 * 分页查询
+	 * 
+	 * @param pageQuery 查询条件
+	 * @return 查询结果
+	 */
+	@SuppressWarnings("unchecked")
+	public BasePage<SysUserVo> pagedQuery(SysUserVo vo) {
+		List<SysUser> list = (List<SysUser>) mapper.queryByList(vo);
+		List<SysUserVo>	vos = Lists.newArrayList();
+		for(SysUser user:list){
+			List<SysRole> roleRels = sysRoleDao.queryByUserid(user.getId());
+			/*for(SysRole rr:roleRels){
+				sysRoleDao.queryById(rr.getRoleId());
+			}*/
+			user.setRoleStr(rolesToStr(roleRels));
+			vos.add(SysUserKit.toRecord(user));
+		}
+		return new BasePage<SysUserVo>(vo.getStart(), vo.getLimit(), vos, vo.getPager().getRowCount());
+	}
+	/**
 	 * 
 	 * @param email
 	 * @return
@@ -100,6 +132,26 @@ public class SysUserService<T> extends BaseService<T> {
 	public SysUser getUserByEmail(String email){
 	  return getDao().getUserByEmail(email);
 	};
+	
+	/**
+	 * 角色列表转成字符串
+	 * @param list
+	 * @return
+	 */
+	private String rolesToStr(List<SysRole> list){
+		if(list == null || list.isEmpty()){
+			return null;
+		}
+		StringBuffer str = new StringBuffer();
+		for(int i=0;i<list.size();i++){
+			SysRole role = list.get(i);
+			str.append(role.getRoleName());
+			if((i+1) < list.size()){
+				str.append(",");
+			}
+		}
+		return str.toString();
+	}
 	
 	@Autowired
     private SysUserDao<T> mapper;

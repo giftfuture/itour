@@ -145,7 +145,7 @@ itour.travelStyle = function(){
 			},*/
   			dataGrid:{
   				title:'旅行方式',
-	   			url:'travelStyle/dataList',
+	   			url:'travelStyle/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'type',title:'旅行方式',align:'center',sortable:true,

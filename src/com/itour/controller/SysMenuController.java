@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
@@ -55,8 +56,9 @@ public class SysMenuController extends BaseController{
 	 * @param classifyId
 	 * @return
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/menu", method = RequestMethod.POST)
+	@RequestMapping(value="/menu")
 	public ModelAndView menu(SysMenuVo model,HttpServletRequest request) throws Exception{
 	//	Map<String,Object>  context = getRootMap();
 	//	model.setDeleted(DELETED.NO.key);
@@ -73,13 +75,14 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid dataList(SysMenuVo vo,HttpServletResponse response) throws Exception{
-		List<SysMenu> dataList = sysMenuService.queryByList(vo);
-		dataGridAdapter.getPagination();
+		//List<SysMenu> dataList = sysMenuService.queryByList(vo);
+		//dataGridAdapter.getPagination();
 		BasePage<Map<String, Object>> pagination = sysMenuService.pagedQuery(vo);
-		return dataGridAdapter.wrap(pagination);
+		return dataGridAdapter.wrap(pagination); 
 		//设置页面数据
 		//Map<String,Object> jsonMap = new HashMap<String,Object>();
 		//jsonMap.put("total",model.getPager().getRowCount());
@@ -94,6 +97,7 @@ public class SysMenuController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/rootMenuJson", method = RequestMethod.POST) 
 	public void  rootMenu(String menuId,HttpServletResponse response) throws Exception{
@@ -113,6 +117,7 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysMenu bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -154,6 +159,7 @@ public class SysMenuController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -170,6 +176,13 @@ public class SysMenuController extends BaseController{
 		HtmlUtil.writerJson(response, context);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
@@ -181,6 +194,13 @@ public class SysMenuController extends BaseController{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getMenuTree", method = RequestMethod.POST)
 	public void getMenuTree(Integer id,HttpServletResponse response) throws Exception{

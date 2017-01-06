@@ -15,7 +15,7 @@ itour.logSettingDetail = function(){
 			},
   			dataGrid:{
   				title:'日志设置详情',
-	   			url:'logSettingDetail/dataList',
+	   			url:'logSettingDetail/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'detailCode',title:'',align:'center',sortable:true,

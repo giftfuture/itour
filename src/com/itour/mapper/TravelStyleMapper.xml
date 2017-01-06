@@ -33,9 +33,6 @@ where valid=1
 	<if test="alias != null and alias != ''">
 		and alias like CONCAT('%', #{alias}, '%')
 	</if>
-	<if test="valid != null">
-		and valid =#{valid}
-	</if>
 </trim>
 </sql>
 

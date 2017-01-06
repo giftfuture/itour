@@ -20,11 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.web.BaseController;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.base.page.BasePage;
 import com.itour.entity.LogSettingDetail;
 import com.itour.entity.OrderDetail;
 import com.itour.vo.OrderDetailVo;
+import com.itour.vo.RouteTemplateVo;
 import com.itour.service.OrderDetailService;
  
 /**
@@ -56,7 +60,8 @@ public class OrderDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/list", method = RequestMethod.POST) 
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list") 
 	public ModelAndView  list(OrderDetailVo page,HttpServletRequest request) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
@@ -69,18 +74,17 @@ public class OrderDetailController extends BaseController{
 	/**
 	 * @param url
 	 * @param classifyId
+	 * @return 
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(OrderDetailVo page,HttpServletResponse response) throws Exception{
-		List<OrderDetail> dataList = orderDetailService.queryByList(page);
-		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
-		jsonMap.put("total",page.getPager().getRowCount());
-		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+	public EasyUIGrid  datalist(OrderDetailVo vo,HttpServletResponse response) throws Exception{
+		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
+		BasePage<OrderDetailVo> page = orderDetailService.pagedQuery(vo);
+		return dataGridAdapter.wrap(page);
 	}
 	
 	/**
@@ -90,6 +94,7 @@ public class OrderDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(OrderDetail entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
@@ -111,6 +116,7 @@ public class OrderDetailController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public void getId(String id,HttpServletResponse response) throws Exception{
@@ -131,6 +137,7 @@ public class OrderDetailController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletResponse response) throws Exception{

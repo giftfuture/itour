@@ -1,11 +1,7 @@
 package com.itour.convert;
 
-import java.math.BigDecimal;
-
-import com.itour.base.page.BasePage;
-
-import java.io.File;
-import java.io.Serializable;
+import com.itour.entity.TravelItem;
+import com.itour.vo.TravelItemVo;
 /**
  * 
  * <br>
@@ -14,6 +10,37 @@ import java.io.Serializable;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelItemKit{
-
+	public static TravelItemVo toRecord(TravelItem tt){
+		TravelItemVo vo = new TravelItemVo();
+		vo.setContent(tt.getContent());
+		vo.setCover(tt.getCover());
+		vo.setDifficultyRate(tt.getDifficultyRate());
+		vo.setDiscount(tt.getDiscount());
+		vo.setElevation(tt.getElevation());
+		vo.setEquip(tt.getEquip());
+		vo.setExclude(tt.getExclude());
+		vo.setFeature(tt.getFeature());
+		vo.setFileselect(tt.getFileselect());
+		vo.setHappyValue(tt.getHappyValue());
+		vo.setHot(tt.isHot());
+		vo.setId(tt.getId());
+		vo.setItem(tt.getItem());
+		vo.setItemCode(tt.getItemCode());
+		vo.setItinerary(tt.getItinerary());
+		vo.setMap(tt.getMap());
+		vo.setMileage(tt.getMileage());
+		vo.setPhotos(tt.getPhotos());
+		vo.setRank(tt.getRank());
+		vo.setRcdDays(tt.getRcdDays());
+		vo.setTravelStyle(tt.getTravelStyle());
+		vo.setShortContent(tt.getShortContent());
+		vo.setSeason(tt.getSeason());
+		vo.setScope(tt.getScope());
+		vo.setRemark(tt.getRemark());
+		vo.setRecommandReason(tt.getRecommandReason());
+		vo.setRecommandEquip(tt.getRecommandEquip());
+		vo.setRecommandCrowd(tt.getRecommandCrowd());
+		return vo;
+	}
 }
 

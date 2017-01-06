@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ import com.itour.vo.SysMenuVo;
  */
 @Service("sysMenuService")
 public class SysMenuService<T> extends BaseService<T> {
-	private final static Logger log= Logger.getLogger(SysMenuService.class);
+	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 
 
 	@Autowired(required=false)
@@ -180,18 +181,13 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-
 	@SuppressWarnings("unchecked")
 	public BasePage<Map<String, Object>> pagedQuery(SysMenuVo vo) {
-	//	CustomerVo vo = new CustomerVo();
 		List<SysMenu> list = (List<SysMenu>) mapper.queryByList(vo);
-		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
-		//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
 		for(int i = 0; i < list.size(); i++) {
 			SysMenu menu = list.get(i);
 			records.add(SysMenuKit.toRecord(menu));
-			//map.put(authPermissionVo.getId(), authPermissionVo.getName());
 		}
 		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, vo.getPager().getRowCount());
 	}
