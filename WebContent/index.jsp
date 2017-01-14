@@ -12,7 +12,8 @@ pageContext.setAttribute("basePath",basePath);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>欢迎访问主角旅行</title>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
- <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+
+<!--  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script> -->
  <!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> -->
  <script type="text/javascript">
  jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();

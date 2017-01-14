@@ -1,16 +1,11 @@
 package com.itour.vo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
-/**
- * 
- * <br>
- * <b>作者：</b>fred.zhao<br>
- * <b>日期：</b> Feb 2, 2016 <br>
- */
-import com.itour.base.util.DateUtil;
+@JsonInclude(Include.NON_NULL)
 public class OrderDetailVo extends BasePage implements Serializable{
 	
 		private java.lang.String id;//   	private java.lang.Integer status;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//   	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}

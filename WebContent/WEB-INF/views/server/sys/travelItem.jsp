@@ -61,7 +61,7 @@
 	 </div>
 	 <!-- Edit Win&Form -->
 	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
-     	<form action="" class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data">
+     	<form action="" class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
     		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->

@@ -3,6 +3,8 @@ package com.itour.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 /**
  * 
@@ -10,6 +12,7 @@ import com.itour.base.page.BasePage;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+@JsonInclude(Include.NON_NULL)
 public class QuotationVo extends BasePage implements Serializable {
 	
 		private java.lang.String id;//   	private java.lang.String name;//   	private java.lang.String orderId;//   	private java.lang.String quotation;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String remark;//   	private java.lang.String type;//   1= 总价加利润,2= 明细报价	private BigDecimal totalPrice;//   	private java.lang.String formula;//   	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}

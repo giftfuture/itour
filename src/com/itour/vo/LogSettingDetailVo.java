@@ -1,8 +1,9 @@
 package com.itour.vo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 /**
  * 
@@ -10,6 +11,7 @@ import com.itour.base.page.BasePage;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+@JsonInclude(Include.NON_NULL)
 public class LogSettingDetailVo extends BasePage implements Serializable {
 	
 		private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creator;//   

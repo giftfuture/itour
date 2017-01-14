@@ -48,6 +48,9 @@ public class TravelItemService<T> extends BaseService<T> {
 		}
 		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
+	public TravelItem getByAlias(String alias)throws Exception{
+		return mapper.getByAlias(alias);
+	}
 	public TravelItemDao<T> getDao() {
 		return mapper;
 	}

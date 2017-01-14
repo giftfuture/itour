@@ -1,8 +1,9 @@
 package com.itour.vo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 /**
  * 
@@ -11,6 +12,7 @@ import com.itour.base.page.BasePage;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+@JsonInclude(Include.NON_NULL)
 public class TravelStyleVo extends BasePage implements Serializable{
 	
 		private java.lang.String id;//   	private java.lang.String type;//   

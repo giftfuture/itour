@@ -2,8 +2,10 @@ package com.itour.vo;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
-
+@JsonInclude(Include.NON_NULL)
 public class SysRoleVo extends BasePage implements Serializable{
 	
 		private String id;//   id主键	private String roleName;//   角色名称	private String createTime;//   创建时间	private Integer createBy;//   创建人	private String updateTime;//   修改时间	private Integer updateBy;//   修改人	private Integer state;//   状态0=可用 1=禁用	private String descr;//   角色描述

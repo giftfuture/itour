@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%    
 String path = request.getContextPath();    
 // 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
@@ -18,7 +19,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>徒步旅行</title>
 <style type="text/css">
 <!--
 body {
@@ -143,8 +144,8 @@ body {
       <tr>
         <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
             <tr>
-             <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td> -->
-              <td width="296" class="h2-24"><a href="${basePath }hiking/detail/${item.id}">${item.item}</a></td>
+             <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>ISO-8859-1 -->
+              <td width="296" class="h2-24"><a href="${basePath }hiking/detail/${item.alias}">${item.item}</a></td>
             </tr>
         </table></td>
       </tr>
@@ -152,7 +153,7 @@ body {
         <td class="f12-gao1">${item.shortContent}</td>
       </tr>
       <tr>
-        <td><a href="${basePath }hiking/detail/${item.id}"><img src="${item.cover}" width="353" height="166" /></a></td>
+        <td><a href="${basePath }hiking/detail/${item.alias}"><img src="${basePath }${item.cover}" width="353" height="166" /></a></td>
       </tr>
       <tr>
         <td><span class="f14-gao1">${item.content}</span></td>

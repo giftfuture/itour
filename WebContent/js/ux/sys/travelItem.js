@@ -12,9 +12,15 @@ itour.travelItem = function(){
 			savePhoto:function(){
 					itour.progress();//缓冲条
 					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
+					_this.uploadPhotoForm().ajaxForm();
 					itour.saveForm(_this.uploadPhotoForm(),function(data){
-						itour.closeProgress();//关闭缓冲条
-						_this.uploadPhotoWin().dialog('close');
+						///console.log(data);
+						//if(data.success){	
+							$.messager.alert('提示', data.msg, 'info',function(){								
+								itour.closeProgress();//关闭缓冲条
+								_this.uploadPhotoWin().dialog('close');
+							})
+						//}
 					});
 			},
 			initUploadForm:function(){
@@ -48,9 +54,11 @@ itour.travelItem = function(){
 				itour.loadPhotos('editPhoto',{'id':id},function(data){
 					itour.closeProgress();
 					var images = "";
-					//console.log(data.uris);
-					for(var i in data.uris){
-					  images+='<img alt="图片浏览" src="file:\\'+data.uris[i]+'" style="width:50px;height:50px;">';	
+					if(data.success){
+						//console.log(data.uris);
+						for(var i in data.uris){
+						  images+='<img alt="图片浏览" src="'+basePath+'/'+data.uris[i]+'" style="width:50px;height:50px;">';	
+						}
 					}
 					$("#previewPhotos").html(images);
 					_this.editPhotoWin().dialog('open'); 
@@ -193,42 +201,74 @@ itour.travelItem = function(){
 					{field:'id',checkbox:true},
 					{field:'itemCode',title:'项目代码',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.itemCode;
+							if((row.itemCode+"").length>30){
+								return (row.itemCode+"").substring(0,30)+"....";
+							}else{									
+								return row.itemCode;
+							}
 						}
 					},
 					{field:'item',title:'项目名称',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.item;
+								if((row.item+"").length>30){
+									return (row.item+"").substring(0,30)+"....";
+								}else{									
+									return row.item;
+								}
 							}
 						},
 					{field:'elevation',title:'海拔',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.elevation;
+								if((row.elevation+"").length>30){
+									return (row.elevation+"").substring(0,30)+"....";
+								}else{									
+									return row.elevation;
+								}
 							}
 						},
 					{field:'content',title:'详细描述',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.content;
+								if((row.content+"").length>30){
+									return (row.content+"").substring(0,30)+"....";
+								}else{									
+									return row.content;
+								}
 							}
 						},
 					{field:'photos',title:'美图',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.photos;
+								if((row.photos+"").length>30){
+									return (row.photos+"").substring(0,30)+"....";
+								}else{									
+									return row.photos;
+								}
 							}
 					},
 					{field:'mileage',title:'里程',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.mileage;
+								if((row.mileage+"").length>30){
+									return (row.mileage+"").substring(0,30)+"....";
+								}else{									
+									return row.mileage;
+								}
 							}
 						},
 					{field:'scope',title:'所属区域',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.scope;
+								if((row.scope+"").length>30){
+									return (row.scope+"").substring(0,30)+"....";
+								}else{									
+									return row.scope;
+								}
 							}
 						},
 					{field:'shortContent',title:'简短介绍',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.shortContent;
+								if((row.shortContent+"").length>30){
+									return (row.shortContent+"").substring(0,30)+"....";
+								}else{									
+									return row.shortContent;
+								}
 							}
 						},
 					{field:'rank',title:'推荐指数',align:'center',sortable:true,
@@ -248,13 +288,21 @@ itour.travelItem = function(){
 								if(value == 5){
 									return "极力推荐";
 								}else{									
-									return row.rank;
+									if((row.rank+"").length>30){
+										return (row.rank+"").substring(0,30)+"....";
+									}else{									
+										return row.rank;
+									}
 								}
 							}
 						},
 					{field:'recommandReason',title:'推荐原因',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.recommandReason;
+								if((row.recommandReason+"").length>30){
+									return (row.recommandReason+"").substring(0,30)+"....";
+								}else{									
+									return row.recommandReason;
+								}
 							}
 						},
 					/*{field:'discount',title:'折扣',align:'center',sortable:true,
@@ -264,7 +312,11 @@ itour.travelItem = function(){
 					},*/
 					{field:'rcdDays',title:'建议天数',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.rcdDays;
+								if((row.rcdDays+"").length>30){
+									return (row.rcdDays+"").substring(0,30)+"....";
+								}else{									
+									return row.rcdDays;
+								}
 							}
 						},
 					{field:'difficultyRate',title:'挑战度(1为最低,5为最高,依次递增)',align:'center',sortable:true,
@@ -284,7 +336,11 @@ itour.travelItem = function(){
 								if(value == 5){
 									return "难度爆棚";
 								}else{									
-									return row.difficultyRate;
+									if((row.difficultyRate+"").length>30){
+										return (row.difficultyRate+"").substring(0,30)+"....";
+									}else{									
+										return row.difficultyRate;
+									}
 								}
 							}
 						},
@@ -305,13 +361,21 @@ itour.travelItem = function(){
 								if(value == 5){
 									return "极乐无穷";
 								}else{									
-									return row.happyValue;
+									if((row.happyValue+"").length>30){
+										return (row.happyValue+"").substring(0,30)+"....";
+									}else{									
+										return row.happyValue;
+									}
 								}
 							}
 						},
 					{field:'recommandCrowd',title:'建议人群',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.recommandCrowd;
+								if((row.recommandCrowd+"").length>30){
+									return (row.recommandCrowd+"").substring(0,30)+"....";
+								}else{									
+									return row.recommandCrowd;
+								}
 							}
 						},				
 					{field:'remark',title:'备注(提醒建议)',align:'center',sortable:true,

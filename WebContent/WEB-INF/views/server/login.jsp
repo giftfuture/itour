@@ -71,9 +71,9 @@ label.iPhoneCheckLabelOn span {
 }
 </style>
  <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
-<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="js/plug-in/login/js/html5.js"></script>
 <!-- <script type="text/javascript" src="js/plug-in/login/js/iepng.js"></script>  -->
+<script type="text/javascript" src="js/plug-in/jquery/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/plug-in/login/js/iphone.check.js"></script>
 <script type="text/javascript" src="js/plug-in/login/js/jquery-jrumble.js"></script>
 <script type="text/javascript" src="js/plug-in/login/js/jquery.tipsy.js"></script>
@@ -137,11 +137,10 @@ label.iPhoneCheckLabelOn span {
    </div>
   </div>
   <!-- Link JScript-->
-  <script type="text/javascript" src="js/plug-in/jquery/jquery-1.8.3.min.js"></script>
-  <script type="text/javascript" src="js/plug-in/jquery/jquery.cookie.js"></script>
+<!--   
   <script type="text/javascript" src="js/plug-in/login/js/jquery-jrumble.js"></script>
   <script type="text/javascript" src="js/plug-in/login/js/jquery.tipsy.js"></script>
   <script type="text/javascript" src="js/plug-in/login/js/iphone.check.js"></script>
-  <script type="text/javascript" src="js/plug-in/login/js/login.js"></script>
+  <script type="text/javascript" src="js/plug-in/login/js/login.js"></script> -->
  </body>
 </html>

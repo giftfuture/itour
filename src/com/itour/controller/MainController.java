@@ -186,7 +186,7 @@ public class MainController extends BaseController {
 	 */
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=false)
-	@RequestMapping(value="/logout", method = RequestMethod.POST)
+	@RequestMapping(value="/logout")
 	public void  logout(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SessionUtils.removeUser(request);
 		response.sendRedirect("login");

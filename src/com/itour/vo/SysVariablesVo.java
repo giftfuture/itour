@@ -1,16 +1,17 @@
 package com.itour.vo;
 
-import com.itour.base.entity.BaseEntity;
-import com.itour.base.page.BasePage;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.itour.base.page.BasePage;
 /**
  * 
  * <br>
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+@JsonInclude(Include.NON_NULL)
 public class SysVariablesVo extends BasePage implements Serializable{
 	
 		/**

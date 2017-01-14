@@ -50,7 +50,7 @@ pageContext.setAttribute("basePath",basePath);
 	           </div>  
 	            
 	           <div class="fitem">  
-	               <label>昵称:</label>  
+	               <label>用户名:</label>  
 	               <input class="easyui-validatebox" type="text" name="nickName" data-options="required:true,validType:'length[1,10]'">
 	           </div>
 	            <div class="fitem">  

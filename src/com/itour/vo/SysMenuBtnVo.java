@@ -2,10 +2,12 @@ package com.itour.vo;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 
 
-
+@JsonInclude(Include.NON_NULL)
 public class SysMenuBtnVo extends BasePage implements Serializable{
 	
 		private String id;//   主键	private String menuid;//    菜单id关联 sys_menu.id	private String btnName;//   按钮名称	private String btnType;//   按钮类型，用于列表页显示的按钮	private String actionUrls;//   url注册，用"," 分隔 。用于权限控制URL

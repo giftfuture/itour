@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -162,7 +163,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(@RequestParam(value="", defaultValue = StringUtils.EMPTY) String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		SysMenu bean = sysMenuService.queryById(id);
 		if(bean  == null){

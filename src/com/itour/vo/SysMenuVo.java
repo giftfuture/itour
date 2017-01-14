@@ -3,10 +3,12 @@ package com.itour.vo;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 import com.itour.entity.SysMenuBtn;
 
-
+@JsonInclude(Include.NON_NULL)
 public class SysMenuVo extends BasePage implements Serializable{
 	
 		private String id;//   主键	private String name;//   菜单名称

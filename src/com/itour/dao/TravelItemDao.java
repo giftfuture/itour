@@ -4,6 +4,8 @@ package com.itour.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.TravelItem;
 /**
@@ -27,4 +29,11 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	List<TravelItem> queryByStyle(String style);
+	
+	/**
+	 * 
+	 * @param item
+	 * @return
+	 */
+	TravelItem getByAlias(@Param(value="alias")String alias);
 }

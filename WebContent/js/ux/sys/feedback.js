@@ -159,18 +159,18 @@ itour.feedback = function(){
 					{field:'mobile',title:'电话',align:'center',sortable:false,formatter:function(value,row,index){
 						return row.mobile;
 					}},
-				/*	{field:'title',title:'标题',align:'center',sortable:true,
+					{field:'title',title:'标题',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.title;
 						}
-					},*/
+					},
 				{field:'content',title:'内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							/*if((row.content).length>30){
-								return (row.content).substring(0,30)+"...";
+							if(row.content && row.content.length>30){
+								return row.content.substring(0,30)+"...";
 							}else{									
 								return row.content;
-							}*/
+							}
 						}
 					},
 					{field:'createTime',title:'反馈时间',align:'center',sortable:true,
@@ -198,11 +198,12 @@ itour.feedback = function(){
 						},*/
 					{field:'result',title:'审核意见',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								/*if((row.result).length>30){
-									return (row.result).substring(0,30)+"....";
+								//console.log(row.result);
+								if(row.result && row.result.length>30){
+									return row.result.substring(0,30)+"....";
 								}else{									
 									return row.result;
-								}*/
+								}
 							}
 						},
 					]],

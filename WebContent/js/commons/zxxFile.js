@@ -143,7 +143,18 @@ var ZXXFILE = {
 		if (this.upButton) {
 			this.upButton.addEventListener("click", function(e) { self.funUploadFile(e); }, false);	
 		} 
-		
+		/*
+		 $.ajax({
+			type:"PUT",//这里的参数可以是PUT、POST、GET和DELETE
+			url:"/appName/name",//请求地址，name就是你的参数
+			data:JSON.stringify($("#myform").serializaObject()),
+			dataType:"json",
+			contentYype:"application/json",//这个一定要设置
+			success:function(data){
+			//这里是成功获取信息后的处理方法
+			}
+			}); 
+		 * */
 	//	alert();
 	}
 	 

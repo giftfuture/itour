@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.collect.Mapxs;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.page.BasePage;
@@ -37,12 +39,8 @@ import com.itour.vo.SysRoleVo;
 public class SysRoleController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
-	// Servrice start
 	@Autowired 
 	private SysRoleService<SysRole> sysRoleService; 
-	
-	// Servrice start
 	@Autowired
 	private SysMenuService<SysMenu> sysMenuService; 
 	@Autowired
@@ -74,6 +72,7 @@ public class SysRoleController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid datalist(SysRoleVo vo,HttpServletResponse response) throws Exception{
+		//response.setContentType("application/json; charset=UTF-8");
 		BasePage<SysRoleVo> pagination = sysRoleService.pagedQuery(vo);
 		return dataGridAdapter.wrap(pagination); 
 	}
@@ -88,8 +87,8 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletResponse response) throws Exception{
-		if(bean.getId() == null){
+	public Object save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletResponse response) throws Exception{
+		if(StringUtils.isNotEmpty(bean.getId())){
 			sysRoleService.add(bean,menuIds,btnIds);
 		}else{
 			SysRole sr = sysRoleService.queryById(bean.getId());
@@ -98,7 +97,11 @@ public class SysRoleController extends BaseController{
 			else
 				sysRoleService.update(bean,menuIds,btnIds);
 		}
-		sendSuccessMessage(response, "保存成功~");
+		Map<String,Object> result = Mapxs.newMapx();
+		//sendSuccessMessage(response, "保存成功~");
+		result.put(SUCCESS, true);
+		result.put(MSG, "角色添加成功！");
+		return result;
 	}
 	/**
 	 * @param id

@@ -103,7 +103,7 @@ public class Pager {
 	public String getMysqlQueryCondition() {
 		String condition = "";
 		condition = " limit " + pageOffset + "," + pageTail;
-		System.out.println("####################="+condition);
+		//System.out.println("####################="+condition);
 		return condition;
 	}
 

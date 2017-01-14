@@ -44,48 +44,6 @@ public class HtmlUtil {
 		writer(response,result);
 	}
 	/**
-	 * net.sf.json write
-	 * @param response
-	 * @param object
-	 */
-	public static void writerJSON(HttpServletResponse response,Object object){
-			response.setContentType("application/json");
-			 /* JsonConfig jsonConfig = new JsonConfig();
-		        jsonConfig.registerJsonValueProcessor(Date.class,
-		                new JsonValueProcessor() {
-		                    *//**
-		                     * paramString -> 参数名 paramObject -> 参数值
-		                     *//*
-		                    @Override
-		                    public Object processObjectValue(String paramString,
-		                            Object paramObject, JsonConfig paramJsonConfig) {
-		                        if (paramObject == null) {
-		                            return null;
-		                        }
-		                        String ret = null;
-		                        try {
-		                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		                            ret = format.format((Date)paramObject);
-		                        } catch (Exception e) {
-		                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		                            ret = format.format((Date) paramObject);
-		                        }
-		                        return ret;
-		                    }
-		 
-		                    @Override
-		                    public Object processArrayValue(Object paramObject,JsonConfig paramJsonConfig) {
-		                        return null;
-		                    }
-		                });
-		//	net.sf.json.JSONObject.fromObject(object, jsonConfig);
-			net.sf.json.JSONObject jo =	net.sf.json.JSONObject.fromObject(object,jsonConfig) ;
-			//jo.put("updateTime", jo.get("updateTime"));
-			//jo.put("createTime", value)
-			String result = jo.toString();
-			writer(response,result);*/
-	}
-	/**
 	 * 
 	 * <br>
 	 * <b>功能：</b>输出HTML代码<br>

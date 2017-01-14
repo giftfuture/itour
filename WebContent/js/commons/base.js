@@ -47,6 +47,8 @@ var itour={
 	},
 	ajaxSubmit:function(form,option){
 		form.ajaxSubmit(option);
+		$(this).resetForm(); // 提交后重置表单
+		return false;
 	},
 	ajaxJson: function(url,option,callback){
 		$.ajax(url,{
@@ -69,6 +71,40 @@ var itour={
 			 		try{
 			 			itour.closeProgress();
 			 			var data = $.parseJSON(response.responseText);
+			 			//console.log(data);
+				 		//检查登录
+				 		if(!itour.checkLogin(data)){
+				 			return false;
+				 		}else{
+					 		itour.alert('提示', data.msg || "请求出现异常,请联系管理员",'error');
+					 	}
+			 		}catch(e){
+			 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
+			 		}
+			 	}
+		});
+	},
+	submitForm:function(form,callback,dataType){
+		var option =
+			{type:'post',
+			 	//url:form.attr("action"),
+			 	//dataType: dataType||'json',
+			 	//dataType:'script',
+			 	timeout:3000,
+			 	iframe: true,
+			 	headers : {"ClientCallMode" : "ajax"}, //添加请求头部
+			 	async:false,  //异步请求
+		 	   // contentType: "application/json; charset=utf-8", 
+			 	success:function(data){
+			 		var result= $.parseJSON(data);
+			 		if($.isFunction(callback)){
+			 			callback(result);
+			 		}
+			 	},
+			 	error:function(response, textStatus, errorThrown){
+			 		try{
+			 			itour.closeProgress();
+			 			var data = $.parseJSON(response.responseText);
 			 			console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
@@ -79,54 +115,26 @@ var itour={
 			 		}catch(e){
 			 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
 			 		}
-			 	},
-			 	complete:function(){
-			 	
-			 	}
-		});
-	},
-	submitForm:function(form,callback,dataType){
-			var option =
-			{
-			 	type:'post',
-			 	dataType: dataType||'json',
-			 	success:function(data){
-			 		if($.isFunction(callback)){
-			 			callback(data);
-			 		}
-			 	},
-			 	error:function(response, textStatus, errorThrown){
-			 		try{
-			 			itour.closeProgress();
-			 			var data = $.parseJSON(response.responseText);
-				 		//检查登录
-				 		if(!itour.checkLogin(data)){
-				 			return false;
-				 		}else{
-					 		itour.alert('提示', data.msg || "请求出现异常,请联系管理员",'error');
-					 	}
-			 		}catch(e){
-			 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
-			 		}
-			 	},
-			 	complete:function(){
 			 	}
 			 }
 			 itour.ajaxSubmit(form,option);
+			 return false;
 	},
 	saveForm:function(form,callback){
+	//	console.log(form.attr("action"));
 		if(form.form('validate')){
-			itour.progress('Please waiting','Save ing...');
+			itour.progress('Please waiting','Saving...');
 			//ajax提交form
 			itour.submitForm(form,function(data){
 				itour.closeProgress();
-			 	if(data.success){
+			 	if(data.success||data.success=="true"){
 			 		if(callback){
 				       	callback(data);
 				    }else{
 			       		itour.alert('提示','保存成功.','info');
 			        } 
 		        }else{
+		        	console.log("aaa");
 		       	   itour.alert('提示',data.msg,'error');  
 		        }
 			});

@@ -34,13 +34,13 @@
 				and id like CONCAT('%', #{id}, '%')
 			</if>
 			<if test="createTime != null ">
-	  <![CDATA[  and  DATE_FORMAT(create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
+	  <![CDATA[  and  DATE_FORMAT(feedback.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="status != null ">
 				and status = #{status}
 			</if>
 			<if test="updateTime != null">
-	 <![CDATA[  and  DATE_FORMAT(update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
+	 <![CDATA[  and  DATE_FORMAT(feedback.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="title != null and title != ''">
 				and title like CONCAT('%', #{title}, '%')
@@ -114,7 +114,7 @@
 		parameterType="com.itour.base.page.BasePage">
 		select
 		feedback.id, feedback.create_time, feedback.status, feedback.update_time, feedback.title, feedback.content, feedback.customer_id, feedback.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
-		from feedback	left join customers on feedback.customer_id = customers.id 
+		from feedback left join customers on feedback.customer_id = customers.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">
 			${pager.orderCondition}

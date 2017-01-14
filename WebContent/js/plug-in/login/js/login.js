@@ -70,7 +70,7 @@ function submit()
 	});
 	if (submit) {
 		hideTop();
-		loading('请稍候..', 1);
+		loading('请稍候', 1);
 		setTimeout("unloading()", 2000);
 		setTimeout("login()", 0);
 	}
@@ -215,7 +215,7 @@ function hideTop() {
 }
 //加载信息
 function loading(name, overlay) {
-	$('body').append('<div id="overlay"></div><div id="preloader">' + name + '..</div>');
+	$('body').append('<div id="overlay"></div><div id="preloader">' + name + '...</div>');
 	if (overlay == 1) {
 		$('#overlay').css('opacity', 0.1).fadeIn(function() {
 			$('#preloader').fadeIn();

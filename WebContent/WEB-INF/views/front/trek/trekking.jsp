@@ -152,6 +152,8 @@ a:active {
             </p>
             -------------------------------------------------------------------------------<br />
             <br />
+            <div>
+            <form action="">
             <strong>Fill in this form and you'll hear back from us in 48 hrs!：</strong><br />
             First Name:
             <input type="text" name="textfield" />
@@ -174,12 +176,14 @@ a:active {
               <br />
               <input type="submit" name="Submit" value="提交" />
               <input type="reset" name="Submit2" value="重置" />
+              </form>
+              </div>
               <br />
               <br />
             -------------------------------------------------------------------------------<br />
             <br />
             相关线路：<br />
-            【Trekking】贡嘎小环线5日<br />
+            【Trekking】${item.related}<br />
             【Off road】大香格里拉九日游 <br />
             ..........</p>
             <p>&nbsp;</p>

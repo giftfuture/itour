@@ -4,7 +4,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
 pageContext.setAttribute("basePath",basePath);    
 %>
- <script type="text/javascript" src="${basePath}js/jquery-2.1.1.min.js"></script>
  <script type="text/javascript">
  var basePath = '${basePath}';
 </script>

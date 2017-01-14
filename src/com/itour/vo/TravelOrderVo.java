@@ -2,10 +2,10 @@ package com.itour.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
-import com.itour.base.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 import com.itour.entity.OrderDetail;
 /**
@@ -14,6 +14,7 @@ import com.itour.entity.OrderDetail;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+@JsonInclude(Include.NON_NULL)
 public class TravelOrderVo extends BasePage implements Serializable{
 	/**
 	 * 

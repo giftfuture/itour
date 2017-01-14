@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +36,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
-import com.itour.base.util.RedProFile;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.TravelItem;
@@ -56,7 +58,6 @@ import com.itour.vo.TravelItemVo;
 @Controller
 @RequestMapping("/travelItem") 
 public class TravelItemController extends BaseController{
-	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
@@ -148,12 +149,12 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
-	@ResponseBody  
-	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST
-	public ModelAndView uploadPhoto(@RequestParam(value="id",required=false)String id,
+	  
+	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
+	public @ResponseBody String uploadPhotos(@RequestParam(value="id",required=false)String id,
 			@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
-			//@RequestParam(value="name",required=false) String name,
 			HttpServletRequest request,HttpServletResponse response) {
+		Map<String,Object>  context = new HashMap();
 		//Map<String,Object> resMap = new HashMap<String,Object>();
 		//MultipartFile fileselect = null;
 		try {
@@ -169,7 +170,7 @@ public class TravelItemController extends BaseController{
 			//Map<String,MultipartFile> file = (Map<String,MultipartFile>) multipartRequest.getFileMap(); 
 			//MultiValueMap<String,MultipartFile> its = multipartRequest.getMultiFileMap();
 			//List<MultipartFile> lll = multipartRequest.getFiles("fileselect");
-			String realPath = RedProFile.uploadPath();
+			String physicalPath = FilePros.physicalPath();// FilePros.uploadPtopath(multipartRequest);//FilePros.uploadPath();
 			TravelItem t = travelItemService.queryById(id);
 			StringBuffer photos = new StringBuffer();
 			if (t != null){
@@ -179,31 +180,34 @@ public class TravelItemController extends BaseController{
 			 OutputStream out = null;
 			// Iterator<String> it = multipartRequest.getFileNames();
 			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
-			 String fileName = "";
-			 String newfileName = "";
-			 File newfile = null;
+			 String picName = "";
+			 String newpicName = "";
+			 File directory = null;
+			 File uploadpic = null;
 			 String parpath = "";
 			for(MultipartFile f:multifiles){
 			    if (f.getOriginalFilename().length() > 0) {    
-		            fileName = f.getOriginalFilename();   
+			    	picName = f.getOriginalFilename();   
 		           // newfile =  new File(realPath);
-		            parpath = realPath+"\\"+t.getItemCode().replaceAll(" ", "")+"_"+t.getItem().replaceAll(" ", "");
-		            newfile = new File(parpath);
-		            if(!newfile.exists()||!newfile.isDirectory()){
-		            	newfile.mkdirs();
+		            parpath = physicalPath+t.getItemCode().replaceAll(" ", "")+"_"+t.getItem().replaceAll(" ", "");
+		            directory = new File(parpath);
+		            if(!directory.exists()||!directory.isDirectory()){
+		            	directory.mkdirs();
 		            }
-		            newfileName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+fileName.substring(fileName.indexOf("."));
-		            newfile = new File(parpath+"\\" +newfileName);
-		            photos.append("|"+newfileName);
-		            System.out.println("upload filename is " + fileName+"   newfilename="+newfileName);  
-		            out = new FileOutputStream(newfile);  
+		            newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
+		            uploadpic = new File(parpath+"\\"+newpicName );
+		            photos.append(StringUtils.isNotEmpty(photos.toString())?"|"+newpicName :newpicName );
+		            System.out.println("upload filename is " + picName+"   newfilename="+newpicName );  
+		            out = new FileOutputStream(uploadpic);  
 		            out.write(f.getBytes());  
 		            out.close();  
 		        }  
 			}
-			newfile = null;
-			fileName = null;
-			newfileName = null;
+			picName = null;
+			newpicName = null;
+			directory = null;
+			uploadpic = null;
+			parpath = null;
 			TravelItem ti = new TravelItem();
 			ti.setId(id);
 			ti.setPhotos(photos.toString());
@@ -253,14 +257,30 @@ public class TravelItemController extends BaseController{
 				//}
 
 			//}
+			if(out != null){
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			context.put(SUCCESS, true);
+			context.put("msg", "图片上传成功！");
 			}else{
 				System.out.println("##########不是上传文件对象#############");
+				context.put(SUCCESS, false);
+				context.put("msg", "上传文件类型非法!");
 			}
 		} catch (IOException e) {
+			context.put(SUCCESS, false);
+			context.put("msg", "上传文件出现IO异常!");
 			e.printStackTrace();
 		}catch(Exception e){
+			context.put(SUCCESS, false);
+			context.put("msg", "上传文件出错!");
 			e.printStackTrace();
 		}
+		
 	/*	try{	
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("text/html;charset=UTF-8");   
@@ -272,8 +292,11 @@ public class TravelItemController extends BaseController{
 	    } catch (IOException e) {  
 	        log.error("in batchImportApps,inputstream is null.");  
 	    } */
-		//return resMap;
-		return forward("server/sys/travelItem"); 
+		//response.setHeader("content-type", "text/text;charset=UTF-8");
+		String result = JsonUtils.encode(context);
+		return result;
+		//HtmlUtil.writerJson(response, result);
+		//return forward("server/sys/travelItem",context); 
 	}
 	/**
 	 * 获取待编辑,预览,删除的图片
@@ -284,23 +307,24 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
-	public Map<String,Object> editPhoto(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getPhotos(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		try {
 			TravelItem ti = travelItemService.queryById(id);
 			String photos =  ti.getPhotos();
 			String [] filenames = photos.split("\\|");
-			String realPath = RedProFile.uploadPath();
-			String parpath = realPath+"\\"+ti.getItemCode().replaceAll(" ", "")+"_"+ti.getItem().replaceAll(" ", "");
+			String diskPath = FilePros.physicalPath();//磁盘路径
+			String netPath = FilePros.uploadPtopath();//网络访问路径
+			String directory = ti.getItemCode().replaceAll(" ", "")+"_"+ti.getItem().replaceAll(" ", "");
+			String parpath = diskPath+"\\"+directory;
 			List<String> uris = new ArrayList<String>();
 			File newfile = null;
 			FileInputStream is = null;
 			BufferedInputStream imageStream = null;
 			OutputStream toClient = null;
 			for(String name:filenames){
-				if(StringUtils.isNotEmpty(name)&& !name.equals(","))
-				{	
-					newfile = new File(parpath+"\\" +name);
+				if(StringUtils.isNotEmpty(name)&& !name.equals(",")){	
+					newfile = new File(parpath+"\\"+name);
 					if(newfile.exists() && newfile.getName().equals(name)){
 						/*is = new FileInputStream(newfile);
 					    imageStream = new BufferedInputStream(is);
@@ -312,11 +336,11 @@ public class TravelItemController extends BaseController{
 				       // toClient = response.getOutputStream(); // 得到向客户端输出二进制数据的对象
 				      //  toClient.write(data); // 输出数据
 				      //  toClient.flush();
-						uris.add(newfile.getAbsolutePath());
+						uris.add(netPath+directory+"/"+newfile.getName());//newfile.getAbsolutePath()
 					}
 				}
 			}
-			if(is != null){			        	
+		/*	if(is != null){			        	
 				try {
 					is.close();
 				} catch (Exception e) {
@@ -330,7 +354,7 @@ public class TravelItemController extends BaseController{
 					
 					e.printStackTrace();
 				}
-			}
+			}*/
 			newfile = null;
 			imageStream = null;
 			toClient = null;
@@ -352,8 +376,9 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
-	public void saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletResponse response)throws Exception{
-		String realPath = RedProFile.uploadPath();
+	public Map<String,Object> saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletResponse response)throws Exception{
+		Map<String,Object> context = new HashMap<String,Object>();
+		String realPath = FilePros.uploadPath();
 		TravelItem ti = travelItemService.queryById(id);
 		String [] photos = StringUtils.isNotEmpty(ti.getPhotos()) ? ti.getPhotos().split("\\|"):null;
 		String [] names = fileNames.split(",");
@@ -382,6 +407,9 @@ public class TravelItemController extends BaseController{
 		}
 		ti.setPhotos(pnames.toString());
 		travelItemService.update(ti);
+		context.put(SUCCESS, true);
+		context.put("msg", "图片保存成功！");
+		return context;
 	}
 	/**
 	 * 
@@ -470,7 +498,7 @@ public class TravelItemController extends BaseController{
 		 modelAndView.addObject("error", exception.getMessage());  
 		 return modelAndView;  
 	 }  
-
+	 
 	
 	/**
 	* 返回项目在磁盘上的绝对路径
@@ -481,7 +509,7 @@ public class TravelItemController extends BaseController{
 	*/
 	private static String getAppPath(HttpServletRequest request, String path) {
 	if (StringUtil.isEmpty(path))
-	return null;
+	return "";
 	return request.getSession().getServletContext().getRealPath(path);
 
 	}

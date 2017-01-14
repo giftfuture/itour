@@ -11,25 +11,23 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
-import com.itour.entity.Customers;
 import com.itour.entity.TravelItem;
-import com.itour.vo.CustomerVo;
 import com.itour.service.CustomersService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
 
 @Controller
+//@RestController
 @RequestMapping("/hiking") 
 public class HikingController extends BaseController{
 	
@@ -63,13 +61,14 @@ public class HikingController extends BaseController{
 			map.put("alias", Constants.HIKING);
 		}
 		List<TravelItem> items = travelItemService.searchTravelItem(map);
-		/*for(TravelItem item:items){
-			String photos = item.getCover();
-			if(StringUtils.isNotEmpty(photos)){
-				String cover = Constants.basePhoto+ StringUtils.split("|")[0];
+		String uploadPtopath = FilePros.uploadPtopath();
+		for(TravelItem item:items){
+			String photo = item.getCover();
+			if(StringUtils.isNotEmpty(photo)){
+				String cover =uploadPtopath +item.getItemCode()+"_"+item.getItem()+"/"+ item.getCover();//Constants.basePhoto
 				item.setCover(cover);
 			}
-		}*/		
+		}
 		int rows = items.size()%Constants.perRow > 0 ? items.size()/Constants.perRow+1:items.size()/Constants.perRow;
 		map.clear();
 		map.put("count", items.size());
@@ -80,7 +79,7 @@ public class HikingController extends BaseController{
 			int end = Constants.perRow*(i+1)>items.size() ? items.size() : Constants.perRow*(i+1);
 			rowItems.put(i,items.subList(Constants.perRow*i, end));
 		}
-		map.put("items", rowItems);
+		map.put("items", rowItems);// return "redirect:/class/list.action";
 		return forward("front/trek/Trekkings",map); 
 	}
 	/**
@@ -88,14 +87,17 @@ public class HikingController extends BaseController{
 	 * @param id
 	 * @param request
 	 * @param response
-	 * @return
+	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+}   @RequestParam("alias") String alias,
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/detail/{id}", method = RequestMethod.GET) 
-	public ModelAndView detail(@PathVariable String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@ResponseBody
+	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
+	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		TravelItem travelitem =travelItemService.getByAlias(alias);// travelItemService.queryById(id);// 
+		//String related = travelitem.getr
 		Map<String,Object> map = new HashMap<String,Object>();
-		TravelItem item = travelItemService.queryById(id);
-		map.put("item", item);
+		map.put("item", travelitem);
 		return forward("front/trek/trekking",map); 
 	}
+	
 }

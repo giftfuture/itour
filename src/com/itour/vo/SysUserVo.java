@@ -1,12 +1,12 @@
 package com.itour.vo;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
-import com.itour.base.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 
-
+@JsonInclude(Include.NON_NULL)
 public class SysUserVo extends BasePage implements Serializable{
 	
 		/**

@@ -1,9 +1,9 @@
 package com.itour.vo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
 /**
  * 
@@ -11,6 +11,7 @@ import com.itour.base.page.BasePage;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+@JsonInclude(Include.NON_NULL)
 public class FeedbackVo extends BasePage implements Serializable {
 	
 		private java.lang.String id;//   	private String createTime;//   	private java.lang.Integer status;//   	private String updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
