@@ -10,14 +10,57 @@ import java.math.BigDecimal;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class RouteTemplate extends BaseEntity {
-	
-		/**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6504658958087999522L;
 	private java.lang.String id;//   	private java.lang.String d1;//   	private java.lang.String d2;//   	private java.lang.String d3;//   	private java.lang.String d4;//   	private java.lang.String d5;//   	private java.lang.String d6;//   	private java.lang.String d7;//   	private java.lang.String d8;//   	private java.lang.String d9;//   	private java.lang.String d10;//   	private java.lang.String d11;//   	private java.lang.String d12;//   	private java.lang.String d13;//   	private java.lang.String d14;//   	private java.lang.String d15;//   	private java.lang.String d16;//   	private java.lang.String d17;//   	private java.lang.String d18;//   	private java.lang.String d19;//   	private java.lang.String d20;//   	private java.lang.String d21;//   	private java.lang.String d22;//   	private java.lang.String d23;//   	private java.lang.String d24;//   	private java.lang.String d25;//   	private java.lang.String d26;//   	private java.lang.String d27;//   	private java.lang.String d28;//   	private java.lang.String d29;//   	private java.lang.String d30;//   	private java.lang.String d31;//   	private java.lang.String d32;//   	private java.lang.String d33;//   	private java.lang.String d34;//   	private java.lang.String d35;//   	private java.lang.String d36;//   	private java.lang.String d37;//   	private java.lang.String d38;//   	private java.lang.String d39;//   	private java.lang.String d40;//   	private java.lang.String d41;//   	private java.lang.String d42;//   	private java.lang.String d43;//   	private java.lang.String d44;//   	private java.lang.String d45;//   	private java.lang.String d46;//   	private java.lang.String d47;//   	private java.lang.String d48;//   	private java.lang.String d49;//   	private java.lang.String d50;//   	private java.lang.String d51;//   	private java.lang.String d52;//   	private java.lang.String d53;//   	private java.lang.String d54;//   	private java.lang.String d55;//   	private java.lang.String d56;//   	private java.lang.String d57;//   	private java.lang.String d58;//   	private java.lang.String d59;//   	private java.lang.String d60;//   	private java.lang.String customerId;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   
 	private String special;//线路特色
-	private String related;//相关线路	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//   	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	private String related;//相关线路
+	private String routeMap;//线路地图
+	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//   	private String travelStyle;//线路类别
+	private String travelItems;//线路中的景点
+	private String cover;//封面
+	private String title;//路线名称
+	private String shortContent;//简略介绍
+	private String alias;
+	
+	public String getAlias() {
+		return alias;
+	}
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+	public String getShortContent() {
+		return shortContent;
+	}
+	public void setShortContent(String shortContent) {
+		this.shortContent = shortContent;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}	public String getTravelItems() {
+		return travelItems;
+	}
+	public void setTravelItems(String travelItems) {
+		this.travelItems = travelItems;
+	}
+	public String getTravelStyle() {
+		return travelStyle;
+	}
+	public void setTravelStyle(String travelStyle) {
+		this.travelStyle = travelStyle;
+	}
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getD1() {
 		return d1;
 	}
@@ -425,5 +468,12 @@ public class RouteTemplate extends BaseEntity {
 	}
 	public void setRelated(String related) {
 		this.related = related;
-	}}
+	}
+	public String getRouteMap() {
+		return routeMap;
+	}
+	public void setRouteMap(String routeMap) {
+		this.routeMap = routeMap;
+	}
+}
 

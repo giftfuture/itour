@@ -56,10 +56,9 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView list(TravelStyleVo page,HttpServletRequest request) throws Exception{
-		/*Map<String,Object>  context = getRootMap();
-		List<TravelStyle> dataList = travelStyleService.queryByList(page);
-		context.put("dataList", dataList);//设置页面数据
-*/		return forward("server/sys/travelStyle"); 
+		 Map<String,Object>  context = getRootMap();
+		//context.put("dataList", dataList);//设置页面数据
+ 		return forward("server/sys/travelStyle",context); 
 	}
 	
 	
@@ -87,11 +86,22 @@ public class TravelStyleController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/allData", method = RequestMethod.POST) 
 	public void allData(HttpServletResponse response)throws Exception{
-		System.out.println("TravelStyleController#######allData###########");
 		List<TravelStyle> dataList = travelStyleService.queryByList(null);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);
 		HtmlUtil.writerJson(response, jsonMap);
+	}
+	/**
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/loadStyles", method = RequestMethod.GET) 
+	public List<HashMap<String,String>> loadStyles(HttpServletResponse response)throws Exception{
+		List<HashMap<String,String>> dataList = travelStyleService.loadStyles();
+		return dataList;
 	}
 	
 	/**

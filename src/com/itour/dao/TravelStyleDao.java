@@ -1,6 +1,7 @@
 package com.itour.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.itour.base.dao.BaseDao;
@@ -15,4 +16,10 @@ import com.itour.entity.TravelStyle;
 public interface TravelStyleDao<T> extends BaseDao<T> {
 	
 	List<TravelStyle> queryValid();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	List<HashMap<String,String>> loadStyles();
 }

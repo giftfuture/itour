@@ -16,11 +16,14 @@
 		<result column="customerName" property="customerName"/>
 		<result column="email" property="email"/>
 		<result column="mobile" property="mobile"/>
+		<result column="name" property="name" />
+		<result column="team_persons" property="teamPersons"/>
+		<result column="prefered_date" property="preferedDate"/>
 	</resultMap>
 
 	<!-- feedback table all fields -->
 	<sql id="Base_Column_List">
-		id, create_time, status, update_time, title, content, customer_id, result
+		id, create_time, status, update_time, title, content, customer_id, result,email,mobile,name,team_persons,prefered_date
 	</sql>
 	<sql id="Extend_Column_List">
 		id, create_time, status, update_time, title, content, customer_id, result,customerName,email,mobile
@@ -54,6 +57,21 @@
 			<if test="result != null and result != ''">
 				and result  like CONCAT('%', #{result}, '%')
 			</if>
+			<if test="email != null and email != ''">
+				and email like CONCAT('%', #{email}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				and name like CONCAT('%', #{name}, '%')
+			</if>
+			<if test="mobile != null">
+				and mobile= #{mobile}
+			</if>
+			<if test="preferedDate != null">
+				and prefered_date = #{preferedDate}
+			</if>
+			<if test="teamPersons != null">
+				and team_persons = #{teamPersons}
+			</if>
 		</trim>
 	</sql>
 
@@ -63,8 +81,8 @@
 		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
 			SELECT LAST_INSERT_ID() </selectKey> -->
 		insert into
-		feedback(id,create_time,status,update_time,title,content,customer_id,result)
-		values(#{id},now(),#{status},now(),#{title},#{content},#{customerId},#{result})
+		feedback(id,create_time,status,update_time,title,content,customer_id,result,mobile,name,email,team_persons,prefered_date)
+		values(#{id},now(),#{status},now(),#{title},#{content},#{customerId},#{result},#{mobile},#{name},#{email},#{teamPersons},#{preferedDate})
 	</insert>
 
 	<!-- 修改记录，只修改只不为空的字段 -->
@@ -85,6 +103,21 @@
 			</if>
 			<if test="result != null and result != '' ">
 				result=#{result},
+			</if>
+			<if test="email != null and email != '' ">
+				email=#{email},
+			</if>
+			<if test="name != null and name != '' ">
+				name=#{name},
+			</if>
+			<if test="mobile != null">
+				result=#{mobile},
+			</if>
+			<if test="teamPersons != null">
+				team_persons=#{teamPersons},
+			</if>
+			<if test="preferedDate != null ">
+				prefered_date=#{preferedDate}
 			</if>
 		</trim>
 		where id=#{id}

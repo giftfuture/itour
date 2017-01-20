@@ -1,8 +1,11 @@
 package com.itour.service;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,9 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
-import com.itour.convert.OrderDetailKit;
 import com.itour.convert.TravelItemKit;
 import com.itour.dao.TravelItemDao;
-import com.itour.entity.OrderDetail;
 import com.itour.entity.TravelItem;
-import com.itour.vo.OrderDetailVo;
 import com.itour.vo.TravelItemVo;
 
 /**
@@ -28,6 +28,7 @@ import com.itour.vo.TravelItemVo;
  */
 @Service("travelItemService")
 public class TravelItemService<T> extends BaseService<T> {
+	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	@Autowired
@@ -48,17 +49,59 @@ public class TravelItemService<T> extends BaseService<T> {
 		}
 		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
+	/**
+	 * 
+	 * @param alias
+	 * @return
+	 * @throws Exception
+	 */
 	public TravelItem getByAlias(String alias)throws Exception{
 		return mapper.getByAlias(alias);
 	}
 	public TravelItemDao<T> getDao() {
 		return mapper;
 	}
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
 	public List<TravelItem> searchTravelItem(Map map)throws Exception{
 	   return mapper.searchTravelItem(map);
 	}
-	
+	/**
+	 * 
+	 * @param scopeAlias
+	 * @return
+	 */
+	public 	List<TravelItem> queryByScopeAlias(String scopeAlias){
+		return mapper.queryByScopeAlias(scopeAlias);
+	};
+	/**
+	 * @param style
+	 * @return
+	 * @throws Exception
+	 */
 	public List<TravelItem> queryByStyle(String style)throws Exception{
 		return mapper.queryByStyle(style);
 	}
+	/**
+	 * 
+	 * @param ids
+	 * @return
+	 * @throws Exception
+	 */
+	public List<TravelItem> queryByIds(List<String> ids)throws Exception{
+		return mapper.queryByIds(ids);
+	};
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Map<String,String>> allScopes(){
+		List<Map<String,String>> maps = mapper.allScopes();
+		return maps;
+	};
 }

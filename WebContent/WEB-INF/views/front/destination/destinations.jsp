@@ -1,12 +1,8 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html >
 <html>
 <head>
 <base href=" <%=basePath%>">
@@ -66,12 +62,18 @@ body {
 </head>
 
 <body>
-<table width="200" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><img src="images/top-menu.jpg" width="1350" height="153" /></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+    <td>
+		 <%@include file="/front/header.jsp"  %>
+    </td>
   </tr>
 </table>
-<table width="1140" border="0" align="center" cellpadding="15" cellspacing="0">
+
+ <c:forEach items="${scopes}" var="scope" >
+ 	<c:out value="${scope.value}"></c:out>
+ </c:forEach>
+<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
   <tr>
     <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
   </tr>
@@ -133,31 +135,31 @@ body {
             <td width="162" valign="middle" bgcolor="#CCCCCC"><span class="STYLE2">线路搜索</span></td>
           </tr>
           <tr>
-            <td colspan="2" bgcolor="#CCCCCC"><span class="f14-gao1">旅游区域：
+            <td colspan="2" bgcolor="#CCCCCC"><span class="f14-gao1">
+            	旅游区域：
               <label>
-                  <select name="select5">
+              <form:form method="post">
+                 <select name="scopes" class="easyui-combobox"  id="scopes" style="width:100px;" data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes'">
                     <option>区域：</option>
-                    <option>四川</option>
-                    <option>西藏</option>
-                    <option>新疆</option>
-                    <option>云南</option>
                   </select>
-                  <select name="select5">
-                    <option>四姑娘山</option>
-                    <option>川西</option>
-                    <option>大香格里拉</option>
+                  <select name="sightSpots" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'item',method:'get',url:'${basePath}travelItem/queryByScope'">
+                     
                   </select>
                   <br />
                 旅行方式：
-                <select name="select5">
+                <select name="travelstyles" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'type',method:'get',url:'${basePath}travelStyle/loadStyles'">
                   <option selected="selected">-所有-</option>
-                  <option>观光摄影</option>
-                  <option>徒步</option>
-                  <option value=" ">登山</option>
-                  <option>自驾</option>
                 </select>
                 <br />
-                假期时间：<a href="#">所有</a> <a href="#">1-5天</a> <a href="#">6-9天</a> <a href="#">10-15天</a> <a href="#">16天+</a></label>
+                假期时间：<select name="vacation" class="easyui-combobox" style="width:100px;" data-options="">
+                 <option> -所有-</option>
+                 <option value="1-5">1-5天</option>
+                 <option value="6-9">6-9天</option>
+                 <option value="10-15">10-15天</option>
+                 <option value="16">16天+</option>
+                </select>
+                </form:form>
+                </label>
             </span></td>
           </tr>
           <tr>
@@ -172,7 +174,7 @@ body {
     <td width="865" valign="top"><table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
       <tr>
         <td width="648"><span class="STYLE5">四川</span></td>
-        <td width="432"><div align="right">12个目的地 | <a href="Destinations-sc.html">显示更多</a></div></td>
+        <td width="432"><div align="right">12个目的地 | <a href="${basePath }destination/toMoreDest">显示更多</a></div></td>
       </tr>
     </table>
       <table border="0" align="center" cellpadding="5" cellspacing="0">
@@ -190,7 +192,7 @@ body {
       <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
         <tr>
           <td width="648"><span class="STYLE5">西藏</span></td>
-          <td width="432"><div align="right">12个目的地 | <a href="Destinations-sc.html">显示更多</a></div></td>
+          <td width="432"><div align="right">12个目的地 | <a href="${basePath }destination/toMoreDest">显示更多</a></div></td>
         </tr>
       </table>
       <table border="0" align="center" cellpadding="5" cellspacing="0">
@@ -208,7 +210,7 @@ body {
       <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
         <tr>
           <td width="648"><span class="STYLE5">新疆</span></td>
-          <td width="432"><div align="right">12个目的地 | <a href="Destinations-sc.html">显示更多</a></div></td>
+          <td width="432"><div align="right">12个目的地 | <a href="${basePath }destination/toMoreDest">显示更多</a></div></td>
         </tr>
       </table>
       <table border="0" align="center" cellpadding="5" cellspacing="0">
@@ -226,7 +228,7 @@ body {
       <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
         <tr>
           <td width="648"><span class="STYLE5">云南</span></td>
-          <td width="432"><div align="right">12个目的地 | <a href="Destinations-sc.html">显示更多</a></div></td>
+          <td width="432"><div align="right">12个目的地 | <a href="${basePath }destination/toMoreDest">显示更多</a></div></td>
         </tr>
       </table>
       <table border="0" align="center" cellpadding="5" cellspacing="0">
@@ -244,7 +246,7 @@ body {
       <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
         <tr>
           <td width="648"><span class="STYLE5">黑龙江</span></td>
-          <td width="432"><div align="right">12个目的地 | <a href="Destinations-sc.html">显示更多</a></div></td>
+          <td width="432"><div align="right">12个目的地 | <a href="${basePath }destination/toMoreDest">显示更多</a></div></td>
         </tr>
       </table>
       <table border="0" align="center" cellpadding="5" cellspacing="0">
@@ -260,32 +262,24 @@ body {
       </table></td>
   </tr>
 </table>
-<br />
-<table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
+<%-- <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
     <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
     <td width="179" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
       <label>
-        <select name="select">
+        <select name="allScopes" class="easyui-combobox" style="width:150px;" data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes'">
           <option>全部區域</option>
-          <option>四川</option>
-          <option>西藏</option>
-          <option>新疆</option>
-          <option>云南</option>
         </select>
         <br />
         旅行方式：
-        <select name="select3">
+        <select  name="travelstyle" class="easyui-combobox"  style="width:150px;" data-options="valueField:'alias',textField:'type',method:'get',url:'${basePath}travelStyle/loadStyles'">
           <option selected="selected">-所有-</option>
-          <option>观光摄影</option>
-          <option>徒步</option>
-          <option value=" ">登山</option>
-          <option>自驾</option>
+           
         </select>
         <br />
         假期时间：<a href="#">
-          <select name="select2">
+          <select name="vacation">
             <option selected="selected">-所有-</option>
             <option>1-5天</option>
             <option>6-9天</option>
@@ -295,23 +289,8 @@ body {
         </a></label></td>
     <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
   </tr>
-</table>
-<p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
-  <tr>
-    <td width="611" height="105" valign="top" bgcolor="#666666"><table width="1100" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr>
-          <td width="883" height="30" bgcolor="#EFEFEF"><div align="center">www.iTours.com.cn</div></td>
-        </tr>
-        <tr>
-          <td height="30" bgcolor="#EFEFEF"><div align="center">Add: Huaqiao Building, #15 South Three Sections of Yihuan Road, Chengdu, Sichuan, China<br />
-            Tel: +86-28-85580038 / 85562905?<br />
-            E-mail: info@itours.com.cn </div></td>
-        </tr>
-      </tbody>
-    </table></td>
-  </tr>
-</table>
+</table> --%>
+<script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
+ <%@include file="/front/footer.jsp"  %>
 </body>
 </html>

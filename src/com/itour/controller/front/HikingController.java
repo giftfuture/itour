@@ -1,5 +1,6 @@
 package com.itour.controller.front;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
+import com.itour.entity.RouteTemplate;
 import com.itour.entity.TravelItem;
+import com.itour.entity.TravelStyle;
 import com.itour.service.CustomersService;
+import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
+import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
+import com.itour.vo.RouteTemplateVo;
 
 @Controller
 //@RestController
@@ -41,6 +47,10 @@ public class HikingController extends BaseController{
 	private CustomersService customersService; 
 	@Autowired 
 	private TravelItemService<TravelItem> travelItemService; 
+	@Autowired 
+	private RouteTemplateService routeTemplateService;
+	@Autowired 
+	private TravelStyleService travelStyleService;
 	/**
 	 * 
 	 * @param url
@@ -58,9 +68,27 @@ public class HikingController extends BaseController{
 		context.put("dataList", dataList);*/
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(StringUtils.isNotEmpty(Constants.travelStyles.get(Constants.HIKING))){			
-			map.put("alias", Constants.HIKING);
+			//map.put("alias", Constants.HIKING);
+		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HIKING);
+		String uploadPtopath = FilePros.uploadPtopath();
+		for(RouteTemplateVo rt:rtvos){
+			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
+			List<String> itids = Arrays.asList(itemIds.split(","));
+			List<TravelItem> items = travelItemService.queryByIds(itids);
+			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getItem()+"/"+items.get(0).getCover():"")));
 		}
-		List<TravelItem> items = travelItemService.searchTravelItem(map);
+		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
+		map.clear();
+		map.put("count", rtvos.size());
+		map.put("perRow", Constants.perRow);
+		map.put("rows", rows);
+		Map<Integer,List<RouteTemplateVo>> rts = new HashMap<Integer,List<RouteTemplateVo>>();
+		for(int i=0;i<rows;i++){
+			int end = Constants.perRow*(i+1)>rtvos.size() ? rtvos.size() : Constants.perRow*(i+1);
+			rts.put(i,rtvos.subList(Constants.perRow*i, end));
+		}
+		map.put("rts", rts);
+	/*	List<TravelItem> items = travelItemService.searchTravelItem(map);
 		String uploadPtopath = FilePros.uploadPtopath();
 		for(TravelItem item:items){
 			String photo = item.getCover();
@@ -79,7 +107,9 @@ public class HikingController extends BaseController{
 			int end = Constants.perRow*(i+1)>items.size() ? items.size() : Constants.perRow*(i+1);
 			rowItems.put(i,items.subList(Constants.perRow*i, end));
 		}
-		map.put("items", rowItems);// return "redirect:/class/list.action";
+			map.put("items", rowItems);*/
+			// return "redirect:/class/list.action";
+		}
 		return forward("front/trek/Trekkings",map); 
 	}
 	/**
@@ -93,10 +123,40 @@ public class HikingController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		TravelItem travelitem =travelItemService.getByAlias(alias);// travelItemService.queryById(id);// 
-		//String related = travelitem.getr
+		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		String mappath = FilePros.uploadMappath();
+		String coverpath = FilePros.uploadCoverpath();
+		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
+			rt.setRouteMap(mappath+rt.getRouteMap());
+		}
+		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
+			rt.setCover(coverpath+rt.getCover());
+		}
+		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
+			String [] ids =  rt.getRelated().split(",");
+			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVo rtp:relates){
+				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
+				if(ts != null){
+					rtp.setTravelStyleAlias(ts.getAlias());
+				}
+			}
+			 rt.setRelates(relates);
+		}
+		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
+		List<String> itids = Arrays.asList(itemIds.split(","));
+		List<TravelItem> items = travelItemService.queryByIds(itids);
+		String ptopath = FilePros.uploadPtopath();
+		for(TravelItem ti:items){
+			String photo = ti.getCover();
+			if(StringUtils.isNotEmpty(photo)){
+				String cover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+				ti.setCover(cover);
+			}
+		}
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("item", travelitem);
+		map.put("items", items);
+		map.put("rt", rt);
 		return forward("front/trek/trekking",map); 
 	}
 	

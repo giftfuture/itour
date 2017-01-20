@@ -1,15 +1,9 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href=" <%=basePath%>">
@@ -17,7 +11,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="cache-control" content="no-cache">  
  <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
+ <meta http-equiv="description" content=""> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>徒步旅行</title>
 <style type="text/css">
@@ -60,6 +54,8 @@ body {
 .STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
 -->
 </style>
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
 </head>
 
 <body>
@@ -108,27 +104,28 @@ body {
     <td width="94" bgcolor="#CCCCCC"><div align="center"><strong>快速搜索</strong></div></td>
     <td width="956" bgcolor="#CCCCCC" class="f14-gao1">区域：
       <label>
-        <select name="select3">
+        <select id="travelstyle" name="travelstyle" class="easyui-combobox"  style="width:150px;" data-options="valueField:'alias',textField:'type',method:'get',url:'${basePath}travelStyle/loadStyles'">
           <option>旅行方式：</option>
-          <option>旅行</option>
-          <option>徒步</option>
-          <option value=" ">登山</option>
-          <option>自驾</option>
-                        </select>
-        <select name="select">
+        </select>
+        <select class="easyui-combobox"  name="selectScopes" style="width:100px;"  data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes',
+        onSelect:function(o,n){
+        var url = '${basePath}travelItem/queryByScope?scopeAlias=n';
+        $('select[name=sightSpot]').combobox('reload',url);
+       }">
           <option>区域：</option>
-          <option>四川</option>
-          <option>西藏</option>
-          <option>新疆</option>
-          <option>云南</option>
-                        </select>
-        <select name="select2">
-          <option>四姑娘山</option>
-          <option>川西</option>
-          <option>大香格里拉</option>
-                </select>
+         
+        </select>
+        <select name="sightSpot" class="easyui-combobox" style="width:100px;"  data-options="valueField:'alias',textField:'item',method:'get'"> 
+        </select>
         <br />
-        天数：<a href="#">所有</a> <a href="#">3-5天</a> <a href="#">6-9天</a> <a href="#">10-15天</a> <a href="#">16天+</a></label></td>
+        假期天数：<select name="vacation" style="width:100px;">
+        	<option>-所有-</option>
+        	<option value="3-5">3-5天</option>
+        	<option value="6-9">6-9天</option>
+        	<option value="10-15">10-15天</option>
+        	<option value="16">16天+</option>
+        </select>
+</label></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -138,26 +135,26 @@ body {
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
-    <c:forEach items="${items.get(status.index)}" var="item" >
+    <c:forEach items="${rts.get(status.index)}" var="rt" >
     <td valign="top">
     <table width="353" border="0" align="left" cellpadding="0" cellspacing="0">
       <tr>
         <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
             <tr>
              <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>ISO-8859-1 -->
-              <td width="296" class="h2-24"><a href="${basePath }hiking/detail/${item.alias}">${item.item}</a></td>
+              <td width="296" class="h2-24"><a href="${basePath}hiking/detail/${rt.alias}">${rt.title}</a></td>
             </tr>
         </table></td>
       </tr>
       <tr>
-        <td class="f12-gao1">${item.shortContent}</td>
+        <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
       <tr>
-        <td><a href="${basePath }hiking/detail/${item.alias}"><img src="${basePath }${item.cover}" width="353" height="166" /></a></td>
+        <td><a href="${basePath }hiking/detail/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" /></a></td>
       </tr>
-      <tr>
+     <%--  <tr>
         <td><span class="f14-gao1">${item.content}</span></td>
-      </tr>
+      </tr> --%>
       <tr>
         <td>&nbsp;</td>
       </tr>
@@ -318,6 +315,7 @@ body {
     </table></td>
   </tr>
 </table>-->
+<script type="text/javascript" src="${basePath}js/ux/front/trek/trekkings.js"></script>
 <jsp:include page="/front/footer.jsp" />
 </body>
 </html>

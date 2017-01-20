@@ -175,6 +175,18 @@ public class EmailService {
 		System.out.println("收件人邮箱为："+email.getTo()+"发送成功！！");
 		return true;
 	}
+	private static boolean validEmail(String email){
+		 //String email = "cwj@163.cn";  
+		String regex = "[a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\\.[a-zA-Z]+)+";  
+		return email.matches(regex);  
+	  /* if (cwj1) {  
+	       System.out.println("是邮箱！");  
+	       
+	   }else {  
+	     System.out.println("不是邮箱！");  
+	   }  */
+	}
+	
 }
 class MyPasswordAuthenticator extends Authenticator {
 	private String user;
@@ -189,6 +201,5 @@ class MyPasswordAuthenticator extends Authenticator {
 	public PasswordAuthentication getPasswordAuthentication() {
 		return new PasswordAuthentication(user, pw);
 	}
-
 
 }

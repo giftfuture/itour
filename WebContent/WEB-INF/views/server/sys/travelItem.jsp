@@ -1,11 +1,11 @@
 <%@ page language="java"  pageEncoding="UTF-8" %>
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <!DOCTYPE HTML>
 <html>
  <head>
   <meta http-equiv="pragma" content="no-cache">  
  <meta http-equiv="cache-control" content="no-cache">  
  <meta http-equiv="expires" content="0">    
- <jsp:include page="../resource.jsp"></jsp:include>
  <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
  <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
   </head>

@@ -21,7 +21,8 @@ public class TravelItemVo extends BasePage implements Serializable{
 	 */
 	private static final long serialVersionUID = 6120210586713700033L;
 	private java.lang.String id;//   	private java.lang.String item;//   
-	private String alias;//旅行项目别名	private java.lang.String itemCode;//   	private BigDecimal elevation;//海拔   	private java.lang.String content;//   	private java.lang.String photos;//   	private java.lang.String remark;//   	private java.lang.String mileage;//   	private java.lang.String scope;//   	private java.lang.String shortContent;//   	private java.lang.Integer rank;//   	private java.lang.String recommandReason;//   	private BigDecimal discount;//  折扣 	private java.lang.Integer rcdDays;//   建议天数	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
+	private String alias;//旅行项目别名	private java.lang.String itemCode;//   	private BigDecimal elevation;//海拔   	private java.lang.String content;//   	private java.lang.String photos;//   	private java.lang.String remark;//   	private java.lang.String mileage;//   	private java.lang.String scope;//   
+	private String scopeAlias;	private java.lang.String shortContent;//   	private java.lang.Integer rank;//   	private java.lang.String recommandReason;//   	private BigDecimal discount;//  折扣 	private java.lang.Integer rcdDays;//   建议天数	private java.lang.Integer difficultyRate;//   (挑战度)1为最低,5为最高,依次递增	private java.lang.Integer happyValue;//   1为最低,5为最高,依次递增	private java.lang.String recommandCrowd;//   建议适合的人群及要求,注意事项
 	private String travelStyle;
 	private File[] fileselect;
 	private String cover;//封面图片
@@ -201,6 +202,11 @@ public class TravelItemVo extends BasePage implements Serializable{
 	}
 	public void setAlias(String alias) {
 		this.alias = alias;
-	}	
+	}	public String getScopeAlias() {
+		return scopeAlias;
+	}
+	public void setScopeAlias(String scopeAlias) {
+		this.scopeAlias = scopeAlias;
+	}
 }
 

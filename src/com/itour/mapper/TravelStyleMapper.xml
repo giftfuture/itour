@@ -100,5 +100,7 @@ select type,alias from travel_style where valid = 1
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-  	
+<select id="loadStyles" resultType="java.util.HashMap">
+select alias,type from travel_style where valid=1
+</select>  	
 </mapper>   

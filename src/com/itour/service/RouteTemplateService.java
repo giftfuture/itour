@@ -10,12 +10,9 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
-import com.itour.convert.QuotationKit;
 import com.itour.convert.RouteTemplateKit;
 import com.itour.dao.RouteTemplateDao;
-import com.itour.entity.Quotation;
 import com.itour.entity.RouteTemplate;
-import com.itour.vo.QuotationVo;
 import com.itour.vo.RouteTemplateVo;
 
 /**
@@ -45,10 +42,48 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
 	}
+	/**
+	 * 
+	 * @param style
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteTemplateVo> queryByStyle(String style)throws Exception{
+		List<RouteTemplate> list = mapper.queryByStyle(style);
+		List<RouteTemplateVo> vos = Lists.newArrayList();
+		for(RouteTemplate rt :list){
+			vos.add(RouteTemplateKit.toRecord(rt));
+		}
+		return vos;
+	}
+	/**
+	 * 
+	 * @param related
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteTemplateVo> queryByRelated(List<String> related)throws Exception{
+		List<RouteTemplate> list = mapper.queryByRelated(related);
+		List<RouteTemplateVo> vos = Lists.newArrayList();
+		for(RouteTemplate rt:list){
+			vos.add(RouteTemplateKit.toRecord(rt));
+		}
+		return vos;
+	}
+	
+	/**
+	 * 
+	 * @param alias
+	 * @return
+	 * @throws Exception
+	 */
+	public RouteTemplateVo queryByAlias(String alias)throws Exception{
+		RouteTemplate rt = mapper.queryByAlias(alias);
+		return RouteTemplateKit.toRecord(rt);
+	}
 	
 	@Autowired
     private RouteTemplateDao<T> mapper;
-
 		
 	public RouteTemplateDao<T> getDao() {
 		return mapper;

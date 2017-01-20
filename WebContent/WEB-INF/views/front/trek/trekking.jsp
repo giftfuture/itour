@@ -1,22 +1,18 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%    
-String path = request.getContextPath();    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-pageContext.setAttribute("basePath",basePath);    
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title></title>
-<meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod　overland, Motercycle tours ">
-<meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
-<script type="text/javascript" src="${basePath}Scripts/flashobject.js"></script>
-<script src="${basePath}Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
-<link href="${basePath}css/qzx.css" rel="stylesheet" type="text/css" />
-<link href="${basePath}css/bodylink.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+<title>徒步旅行</title>
+<meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod　overland, Motercycle tours "/>
+<meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours"/>
+<%-- <script type="text/javascript" src="${basePath}Scripts/flashobject.js"></script>
+<script src="${basePath}Scripts/AC_RunActiveContent.js" type="text/javascript"></script> --%>
+<link href="${basePath}/css/qzx.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/bodylink.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 <!--
 body {
@@ -52,7 +48,7 @@ a:active {
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
    <tr>
     <td>
-		 <jsp:include page="/front/header.jsp" />
+    <%@include file="/front/header.jsp"  %>
     </td>
   </tr>
 <!--   <tr>
@@ -87,22 +83,24 @@ a:active {
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
-    <td width="10" background="${basePath}images/shadowleft.gif"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
+    <td width="10"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
     <td class="rightlinks"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="lefttxt">
         <tr> 
           <td colspan="2"> Southwest-China-Adventures &gt; Trekking &gt;</td>
         </tr>
       </table>
+    
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="5">
         <tr> 
-          <td> <h1> ${item.item }</h1></td>
+          <td> <h1> ${rt.title} </h1></td>
+          <td><h1>线路特色：${rt.special }</h1></td>
         </tr>
       </table>
+      <c:forEach items="${items}" var="item" >
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="10" bgcolor="#CCCCCC" class="lefttxt">
-
         <tr>
           <td width="600" valign="top"><img src="${basePath}images/img/yading-03.jpg" width="600" height="338" /></td>
-          <td width="330" valign="middle"><p class="STYLE126"><span class="STYLE129">线路特色：</span><br />
+          <td width="330" valign="middle"><p class="STYLE126"><span class="STYLE129"></span><br />
             <strong><!-- *民族风情：母系氏族摩梭族，藏族风情<br />
           *沿线人迹罕致<br />
           *亚丁的三座雪山被誉为中国最美的雪山<br />
@@ -124,15 +122,14 @@ a:active {
            ${item.item}</p>
             <p>${item.content } </p>
             <p><span class="right">行程 ：</span><br />
-            ${item.itinerary }
-            <p><br />
-              <img src="${basePath}images/img/yading-05.jpg" width="600" height="338" /></p>
+            ${item.itinerary }</p>
+            <p><br /><img src="${basePath}images/img/yading-05.jpg" width="600" height="338" /></p>
             <p><img src="${basePath}images/img/yading-02.jpg" width="600" height="338" /></p>
             <p><img src="${basePath}images/img/yading-04.jpg" width="600" height="338" /></p>
             <p><img src="${basePath}images/img/yading-01.jpg" width="600" height="338" /><br />
             </p></td>
-          <td valign="top">行程地图：<br />
-            <img src="${basePath}images/img/EYmap_ChinaTours_EBC.jpg" width="328" height="239" /> 
+          <td valign="top">行程地图：<br /><!-- images/img/EYmap_ChinaTours_EBC.jpg -->
+            <img src="${basePath}${item.map}" width="328" height="239" /> 
             <br />
             <br />
             -------------------------------------------------------------------------------<br />
@@ -150,42 +147,36 @@ a:active {
               <span class="STYLE130"><strong>建议装备：</strong></span><br />
               ${item.recommandEquip }
             </p>
+             </table>
+             </c:forEach>
             -------------------------------------------------------------------------------<br />
             <br />
             <div>
-            <form action="">
-            <strong>Fill in this form and you'll hear back from us in 48 hrs!：</strong><br />
-            First Name:
-            <input type="text" name="textfield" />
-            <br />
-            Last　Name: 
-            <input type="text" name="textfield2" />
-            <br />
-            Number in my party:
-            <input name="textfield3" type="text" size="10" />
-            <br />
-            Preferred Date:
-            <input name="textfield4" type="text" size="15" />
-            <br />
-            Phone:
-            <input type="text" name="textfield5" />
-            <br />
-            Email: <input type="text" name="textfield6" />
-            <p>Do you have any specific requests or questions?<br />
-              <textarea name="textarea" cols="45" rows="5"></textarea>
-              <br />
-              <input type="submit" name="Submit" value="提交" />
-              <input type="reset" name="Submit2" value="重置" />
-              </form>
+            <form>
+            <table>
+            <tr><td colspan=2><strong>请填写表格，您将会在48小时内收到我们的回复!</strong></td></tr>
+            <tr><td style="text-align:right">姓名:</td><td><input name="name" class="easyui-textbox" data-options="required:true" style="width:150px;"/></td></tr>
+            <tr><td style="text-align:right">团队人数:</td><td><input name="teamPersons" size="10"  class="easyui-numberbox" style="width:150px;"/></td></tr>
+             <tr><td style="text-align:right"> 预订日期:</td><td><input name="preferedDate" class="easyui-datetimebox ui-text" data-options="editable:false,'focus': function(){}"   style="width:150px;" size="15" /></td></tr>           
+            <tr><td style="text-align:right">手机 :</td><td><input name="mobile"  class="easyui-numberbox " data-options="prompt:'请输入正确的手机号码。',validType:'phoneNum'"  style="width:150px;"/></td></tr>
+            <tr><td style="text-align:right">邮箱: </td><td><input class="easyui-textbox" name="email" data-options="validType:'email'" style="width:150px;"/></td></tr>
+            <tr><td>您有特别的请求或疑问吗？</td><td></td></tr>
+          	<tr><td colspan=2><textarea name="content" cols="45" rows="5"></textarea></td><td></td></tr>
+             <tr><td><input type="button" value="提交" /></td><td><input type="reset" value="重置" /></td></tr>
+            </table>  
+			</form>
               </div>
               <br />
               <br />
             -------------------------------------------------------------------------------<br />
             <br />
             相关线路：<br />
-            【Trekking】${item.related}<br />
-            【Off road】大香格里拉九日游 <br />
-            ..........</p>
+           
+            <c:forEach items="${rt.relates }" var="relate" >
+         	   【${relate.travelStyleAlias}】${relate.title }<br />
+       		  <!--   【Off road】大香格里拉九日游 <br /> -->
+            </c:forEach>
+           <p> ..........</p>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <p><br />
@@ -195,19 +186,22 @@ a:active {
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-      </table></td>
-    <td width="10" background="${basePath}images/shadowright.gif"><img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
+     </td>
+    <td width="10" background="${basePath}images/shadowright.gif">
+    <img src="${basePath}/images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
-    <td width="10" background="${basePath}images/shadowleft.gif"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
+    <td width="10" background="${basePath}images/shadowleft.gif">
+    <img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
     <td class="rightlinks"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td width="10" background="${basePath}images/shadowright.gif"><img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
+    <td width="10" background="${basePath}images/shadowright.gif">
+    <img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<%-- <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" height="16" background="${basePath}images/shadowleft.gif"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
@@ -231,7 +225,8 @@ a:active {
         <br /></td>
     <td background="${basePath}images/shadowright.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
   </tr>
-</table>
-<jsp:include page="/front/footer.jsp" />
+</table> --%>
+<script type="text/javascript" src="${basePath}js/ux/front/trek/trekking.js"></script>
+<%@include file="/front/footer.jsp" %>
 </body>
 </html>

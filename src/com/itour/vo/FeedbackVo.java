@@ -1,6 +1,7 @@
 package com.itour.vo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -17,7 +18,28 @@ public class FeedbackVo extends BasePage implements Serializable {
 		private java.lang.String id;//   	private String createTime;//   	private java.lang.Integer status;//   	private String updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
 	private String email;
 	private String mobile;
-		public java.lang.String getId() {
+	private String name;
+	private short teamPersons;
+	private String preferedDate;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public short getTeamPersons() {
+		return teamPersons;
+	}
+	public void setTeamPersons(short teamPersons) {
+		this.teamPersons = teamPersons;
+	}
+	public String getPreferedDate() {
+		return preferedDate;
+	}
+	public void setPreferedDate(String preferedDate) {
+		this.preferedDate = preferedDate;
+	}	public java.lang.String getId() {
 		return id;
 	}
 	public void setId(java.lang.String id) {

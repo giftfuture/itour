@@ -1,11 +1,5 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +10,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>更多目的地</title>
 <style type="text/css">
 <!--
 body {
@@ -62,12 +56,15 @@ body {
 .STYLE5 {font-family: "黑体"; font-size: 36px; font-weight: bold; color: #990000; }
 -->
 </style>
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-<table width="200" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><img src="images/top-menu.jpg" width="1350" height="153" /></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+    <td>
+	 <%@include file="/front/header.jsp"  %>
+    </td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="15" cellspacing="0">
@@ -201,18 +198,14 @@ body {
   </tr>
 </table>
 <br />
-<table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
+<%-- <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
     <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
     <td width="179" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
       <label>
-        <select name="select">
+        <select name="areas" class="easyui-combobox"  style="width:150px;" data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes'">
           <option>全部區域</option>
-          <option>四川</option>
-          <option>西藏</option>
-          <option>新疆</option>
-          <option>云南</option>
         </select>
         <br />
         旅行方式：
@@ -235,24 +228,10 @@ body {
         </a></label></td>
     <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
   </tr>
-</table>
+</table> --%>
 <p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
-  <tr>
-    <td width="611" height="105" valign="top" bgcolor="#666666"><table width="1100" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr>
-          <td width="883" height="30" bgcolor="#EFEFEF"><div align="center">www.iTours.com.cn</div></td>
-        </tr>
-        <tr>
-          <td height="30" bgcolor="#EFEFEF"><div align="center">Add: Huaqiao Building, #15 South Three Sections of Yihuan Road, Chengdu, Sichuan, China<br />
-            Tel: +86-28-85580038 / 85562905?<br />
-            E-mail: info@itours.com.cn </div></td>
-        </tr>
-      </tbody>
-    </table></td>
-  </tr>
-</table>
+<script type="text/javascript" src="${basePath}js/ux/front/destination/destinations-sc.js"></script>
+<%@include file="/front/footer.jsp"  %>
 </body>
 </html>
 

@@ -1,11 +1,7 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,7 +63,7 @@ body {
 </head>
 
 <body>
-<jsp:include page="/front/header.jsp" />
+ <%@include file="/front/header.jsp"  %>
 <table width="1140" border="0" align="center" cellpadding="30" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
@@ -127,7 +123,7 @@ body {
   </tr>
 </table>
 <br />
-<jsp:include page="/front/footer.jsp" />
+<%@include file="/front/footer.jsp" %>
 </body>
 </html>
 

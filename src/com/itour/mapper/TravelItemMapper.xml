@@ -31,12 +31,16 @@
 	<result column="itinerary" property="itinerary"/>
 	<result column="map" property="map"/>
 	<result column="season" property="season"/>
-	<result column="recommandEquip" property="recommand_equip"/>
+	<result column="recommand_equip" property="recommandEquip"/>
+	<result column="scope_alias" property="scopeAlias"/>
 </resultMap>
-       
+<resultMap id="allscopes" type="com.itour.base.util.MapParam">  
+    <result property="key" column="scopeAlias" />  
+    <result property="value" column="scope" />  
+</resultMap>  
 <!-- travel_item table all fields -->
 <sql id="Base_Column_List" >
-	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip
+	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope,scope_alias, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip
 </sql>
    
 <!-- 查询条件 -->
@@ -72,6 +76,9 @@ where 1=1
 	</if>
 	<if test="scope != null and scope != ''" >
 	    and scope =  #{scope}
+	</if>
+	<if test="scopeAlias != null and scopeAlias != ''">
+		and scope_alias =#{scopeAlias}
 	</if>
 	<if test="shortContent != null and shortContent != ''" >
 	    and short_content like CONCAT('%', #{shortContent}, '%')
@@ -112,48 +119,51 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip)
- values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},#{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip})
+  insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,scope_alias,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip)
+ values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{scopeAlias},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},#{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelItem" >
 	update travel_item set 
 	<trim  suffixOverrides="," >
-	<if test="item != null  ">
+	<if test="item != null and item != '' ">
 		item=#{item},
 	</if>
 	<if test="alias != null and alias != ''">
-		alias =#{alias}
+		alias =#{alias},
 	</if>
-	<if test="itemCode != null  ">
+	<if test="itemCode != null and itemCode != '' ">
 		item_code=#{itemCode},
 	</if>
 	<if test="elevation != null  ">
 		elevation=#{elevation},
 	</if>
-	<if test="content != null  ">
+	<if test="content != null and content != '' ">
 		content=#{content},
 	</if>
-	<if test="photos != null  ">
+	<if test="photos != null and photos != '' ">
 		photos=#{photos},
 	</if>
-	<if test="remark != null  ">
+	<if test="remark != null and remark != '' ">
 		remark=#{remark},
 	</if>
-	<if test="mileage != null  ">
+	<if test="mileage != null ">
 		mileage=#{mileage},
 	</if>
-	<if test="scope != null  ">
+	<if test="scope != null and scope != '' ">
 		scope=#{scope},
 	</if>
-	<if test="shortContent != null  ">
+	<if test="scopeAlias != null and scopeAlias != '' ">
+		scope_alias = #{scopeAlias},
+	</if>
+	<if test="shortContent != null and shortContent != '' ">
 		short_content=#{shortContent},
 	</if>
 	<if test="rank != null  ">
 		rank=#{rank},
 	</if>
-	<if test="recommandReason != null  ">
+	<if test="recommandReason != null and recommandReason != '' ">
 		recommand_reason=#{recommandReason},
 	</if>
 	<if test="discount != null  ">
@@ -211,7 +221,9 @@ where 1=1
 	select <include refid="Base_Column_List" /> 
 	 from travel_item where id = #{id}
 </select>
-
+<select id="allScopes" resultMap="allscopes">
+ select scope_alias scopeAlias,scope from travel_item group by scope
+</select>
 <select id="searchTravelItem" resultMap="BaseResultMap" parameterType="java.util.Map">
  	select ti.*
  	 from travel_item ti left join travel_style ts on ti.travel_style=ts.id 
@@ -239,7 +251,16 @@ where 1=1
 <select id="getByAlias" resultMap="BaseResultMap" parameterType="java.lang.String">
  	select <include refid="Base_Column_List"/> from travel_item where alias=#{alias}
 </select>
-
+<select id="queryByScopeAlias" resultMap="BaseResultMap" parameterType="java.lang.String">
+ 	select <include refid="Base_Column_List"/> from travel_item where scope_alias=#{scopeAlias}
+</select>
+<select id="queryByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/>
+from travel_item where travel_item.id in 
+<foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
+            #{ids}  
+</foreach>
+</select>  
 <!-- 获取该旅行方式下的施行项目 -->
 <select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List"/>

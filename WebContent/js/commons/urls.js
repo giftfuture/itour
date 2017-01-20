@@ -8,4 +8,11 @@ var urls= {
 	'msUrl':'/itour/',
 	'easyuiUrl':'/js/jquery-easyui-1.3.2'
 }
+$('input.easyui-datetimebox').datetimebox({
+    showSeconds: false
+});
+$("input.easyui-datetimebox").on('focus',function(){	
+	console.log(1111111111111111);
+	$(this).datetimebox('getValue');
+});
 //alert(urls['msUrl']);

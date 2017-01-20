@@ -21,6 +21,15 @@ public class RouteTemplateKit{
 		vo.setUpdateBy(rt.getUpdateBy());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(rt.getUpdateTime()));
 		vo.setRemark(rt.getRemark());
+		vo.setSpecial(rt.getSpecial());
+		vo.setRelated(rt.getRelated());
+		vo.setTravelStyle(rt.getTravelStyle());
+		vo.setRouteMap(rt.getRouteMap());
+		vo.setTravelItems(rt.getTravelItems());
+		vo.setCover(rt.getCover());
+		vo.setTitle(rt.getTitle());
+		vo.setAlias(rt.getAlias());
+		vo.setShortContent(rt.getShortContent());
 		return vo;
 	}
 }

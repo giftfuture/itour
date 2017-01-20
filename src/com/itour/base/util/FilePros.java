@@ -56,10 +56,26 @@ public class FilePros   {
 		//RequestAware ra = null;
 		//String path = request.getContextPath();    
 		//String ptopath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/images/upload_ptopath/";    
-		String ptopath = rb.getString("upload_ptopath");
+		String ptopath = rb.getString("item_pto_path");
 		return ptopath;
 	}
-	
+	/**
+	 * 路线地图
+	 * @param request
+	 * @return
+	 */
+	public static String uploadMappath(){
+		String mappath = rb.getString("route_map_path");
+		return mappath ;
+	}
+	/**
+	 * 路线封面图片
+	 * @return
+	 */
+	public static String uploadCoverpath(){
+		String mappath = rb.getString("route_cover_path");
+		return mappath ;
+	}
 	public static void main(String[] args) {
 		//String resourceFile = "jdbc";    
 //        创建一个默认的ResourceBundle对象   

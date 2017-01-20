@@ -23,6 +23,9 @@ public class FeedbackKit{
 		vo.setResult(fb.getResult());
 		vo.setStatus(fb.getStatus());
 		vo.setTitle(fb.getTitle());
+		vo.setName(fb.getName());
+		vo.setPreferedDate(DateUtil.getDateYmdHs(fb.getPreferedDate()));
+		vo.setTeamPersons(fb.getTeamPersons());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
 		return vo;
 	}

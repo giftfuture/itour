@@ -1,9 +1,6 @@
 package com.itour.controller;
 
-import java.text.SimpleDateFormat;
-import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,9 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
-import com.itour.base.util.DateUtil;
-import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Feedback;
 import com.itour.service.FeedbackService;
@@ -84,18 +81,45 @@ public class FeedbackController extends BaseController{
 		BasePage<FeedbackVo> page = feedbackService.pagedQuery(vo);
 		return dataGridAdapter.wrap(page);
 	}
-	
+	/**
+	 * 
+	 * @param entity
+	 * @param typeIds
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/add", method = RequestMethod.POST)
+	public String add(Feedback feedback,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = new HashMap<String,Object>();
+		//response.setContentType("text/html;charset=UTF-8"); 
+		if(feedback.getId()==null||StringUtils.isBlank(feedback.getId().toString())){
+			feedbackService.add(feedback);
+		}else{
+			Feedback fb = feedbackService.queryById(feedback.getId());
+			if(fb == null)
+				feedbackService.add(feedback);
+			else
+				feedbackService.update(feedback);
+		}
+		context.put(SUCCESS, true);
+		context.put("msg", "保存成功~");
+		String result = JsonUtils.encode(context);
+		return result;
+		//sendSuccessMessage(response, "保存成功~");
+	}
 	/**
 	 * 添加或修改数据
 	 * @param url
 	 * @param classifyId
-	 * @return
+	 * @return 
 	 * @throws Exception 
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(Feedback entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save( Feedback entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			feedbackService.add(entity);

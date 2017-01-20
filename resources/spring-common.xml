@@ -113,6 +113,11 @@
 			  	 <value>classpath:com/itour/mapper/*Mapper.xml</value> 
 			 </list>
 		</property>
+		<property name="plugins">  
+	       <array>  
+	          <bean class="com.itour.base.interceptor.MapInterceptor"/>  
+	       </array>  
+   		</property>
 	</bean>
 	
 	<!-- 扫描mapper.java  -->

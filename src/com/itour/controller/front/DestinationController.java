@@ -1,20 +1,21 @@
 package com.itour.controller.front;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.web.BaseController;
-import com.itour.entity.Customers;
-import com.itour.service.CustomersService;
 import com.itour.service.DestinationService;
+import com.itour.service.TravelItemService;
 import com.itour.vo.CustomerVo;
 
 @Controller
@@ -22,7 +23,8 @@ import com.itour.vo.CustomerVo;
 public class DestinationController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
+	@Autowired
+	private TravelItemService travelItemService;
 	// Servrice start
 	@Autowired
 	private DestinationService destService; 
@@ -30,12 +32,11 @@ public class DestinationController extends BaseController{
 	private DataGridAdapter dataGridAdapter;
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request) throws Exception{
-	/*	Map<String,Object>  context = getRootMap();
-		//page.setDeleted(DELETED.NO.key);
-		List<Customers> dataList = customersService.queryByList(page);
+	 	Map<String,Object>  context = getRootMap();
+	 	List<Map<String,String>> scopes = travelItemService.allScopes();
 		//设置页面数据
-		context.put("dataList", dataList);*/
-		return forward("front/destination/Destinations"); 
+		context.put("scopes", scopes); 
+		return forward("front/destination/destinations",context); 
 	}
 	/**
 	 * 
@@ -52,5 +53,15 @@ public class DestinationController extends BaseController{
 		//设置页面数据
 		context.put("dataList", dataList);*/
 		return forward("server/sys/customers"); 
+	}
+	
+	@RequestMapping("/toMoreDest") 
+	public ModelAndView toMoreDest(CustomerVo vo,HttpServletRequest request) throws Exception{
+	 	Map<String,Object>  context = getRootMap();
+		//page.setDeleted(DELETED.NO.key);
+		/*List<Customers> dataList = customersService.queryByList(page);*/
+		//设置页面数据
+		//context.put("dataList", dataList); 
+		return forward("front/destination/destinations-sc",context); 
 	}
 }

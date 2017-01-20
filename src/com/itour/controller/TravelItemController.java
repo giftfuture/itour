@@ -149,7 +149,6 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
-	  
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
 	public @ResponseBody String uploadPhotos(@RequestParam(value="id",required=false)String id,
 			@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
@@ -465,10 +464,23 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@Auth(verifyLogin=true,verifyURL=true)
+	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value="/queryByStyle", method = RequestMethod.POST)
+	@RequestMapping(value="/queryByScope", method = RequestMethod.GET)
+	public List<TravelItem> queryByScope(@RequestParam(value="scopeAlias")String scopeAlias,HttpServletResponse response)throws Exception{
+		List<TravelItem> travelItems = travelItemService.queryByScopeAlias(scopeAlias);
+		return travelItems ;
+	}
+	/**
+	 * 查询该区域的景点
+	 * @param travelStyle
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/queryByStyle", method = RequestMethod.GET)
 	public List<TravelItem> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletResponse response)throws Exception{
 		List<TravelItem> travelItems = travelItemService.queryByStyle(travelStyle);
 		return travelItems ;
@@ -485,6 +497,18 @@ public class TravelItemController extends BaseController{
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		travelItemService.delete(id);
 		sendSuccessMessage(response, "删除成功");
+	}
+	/**
+	 * 
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/allScopes", method = RequestMethod.GET)
+	public List<Map<String,String>> allScopes(HttpServletResponse response) throws Exception{
+		return travelItemService.allScopes();
 	}
 	
 	/**
@@ -511,6 +535,7 @@ public class TravelItemController extends BaseController{
 	if (StringUtil.isEmpty(path))
 	return "";
 	return request.getSession().getServletContext().getRealPath(path);
-
 	}
+	
+	
 }

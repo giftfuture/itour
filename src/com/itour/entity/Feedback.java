@@ -1,8 +1,9 @@
 package com.itour.entity;
 
-import com.itour.base.entity.BaseEntity;
-import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
+
+import com.itour.base.entity.BaseEntity;
 /**
  * 
  * <br>
@@ -12,10 +13,35 @@ import java.util.Date;
  */
 public class Feedback extends BaseEntity {
 	
-		private java.lang.String id;//   	private Date createTime;//   	private java.lang.Integer status;//   	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = -467544411280728177L;
+	private java.lang.String id;//   	private Date createTime;//   	private java.lang.Integer status;//   	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
 	private String email;
 	private String mobile;
-		public java.lang.String getId() {
+	private String name;
+	private short teamPersons;
+	private Timestamp preferedDate;
+		public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public short getTeamPersons() {
+		return teamPersons;
+	}
+	public void setTeamPersons(short teamPersons) {
+		this.teamPersons = teamPersons;
+	}
+	public Timestamp getPreferedDate() {
+		return preferedDate;
+	}
+	public void setPreferedDate(Timestamp preferedDate) {
+		this.preferedDate = preferedDate;
+	}
+	public java.lang.String getId() {
 		return id;
 	}
 	public void setId(java.lang.String id) {

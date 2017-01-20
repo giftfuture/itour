@@ -1,5 +1,6 @@
 package com.itour.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,9 @@ public class TravelStyleService<T> extends BaseService<T> {
 		}
 		return new BasePage<TravelStyleVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
-	
+	public List<HashMap<String,String>> loadStyles(){
+		return mapper.loadStyles();
+	};
 	@Autowired
     private TravelStyleDao<T> mapper;
 

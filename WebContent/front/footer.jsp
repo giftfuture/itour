@@ -1,42 +1,30 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-pageContext.setAttribute("basePath",basePath);    
-%>
- <script type="text/javascript">
- var basePath = '${basePath}';
-</script>
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
 <form name="searchForm" action="" method="post">
 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="30px" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
     <td width="50px" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
     <td width="50px" bgcolor="#CCCCCC" class="f14-gao1" >  
-  	<!-- <font color="#E2FAE4">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</font>   -->
        旅行方式：
-        <select name="travel_style">
+        <select name="travel_style" class="easyui-combobox"  style="width:100px;" data-options="valueField:'alias',textField:'type',method:'get',url:'${basePath}travelStyle/loadStyles'">
           <option selected="selected">-所有-</option>
         </select>
         <br />旅游区域：
       <label>
-        <select name="areas">
+        <select name="areas" class="easyui-combobox"  style="width:100px;" data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes'">
           <option>全部區域</option>
-          <option>四川</option>
-          <option>西藏</option>
-          <option>新疆</option>
-          <option>云南</option>
        </select>
         <br />
    
         假期天数：<a href="javascript:void(0)">
-<select name="vacation">
-  <option selected="selected">-所有-</option>
-  <option value="1-5">1-5天</option>
-  <option value="6-9">6-9天</option>
-  <option value="10-15">10-15天</option>
-  <option value="16">16天+</option>
-</select>
+	<select name="vacation" style="width:100px">
+	  <option selected="selected">-所有-</option>
+	  <option value="1-5">1-5天</option>
+	  <option value="6-9">6-9天</option>
+	  <option value="10-15">10-15天</option>
+	  <option value="16">16天+</option>
+	</select>
       </a></label></td>
     <td width="50px" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="搜索" /></td>
   </tr>
