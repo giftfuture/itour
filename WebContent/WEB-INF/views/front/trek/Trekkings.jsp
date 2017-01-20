@@ -54,8 +54,8 @@ body {
 .STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
 -->
 </style>
-<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
+<%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/package.js"></script> --%>
 </head>
 
 <body>
@@ -102,21 +102,14 @@ body {
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="94" bgcolor="#CCCCCC"><div align="center"><strong>快速搜索</strong></div></td>
-    <td width="956" bgcolor="#CCCCCC" class="f14-gao1">区域：
-      <label>
-        <select id="travelstyle" name="travelstyle" class="easyui-combobox"  style="width:150px;" data-options="valueField:'alias',textField:'type',method:'get',url:'${basePath}travelStyle/loadStyles'">
-          <option>旅行方式：</option>
-        </select>
-        <select class="easyui-combobox"  name="selectScopes" style="width:100px;"  data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes',
-        onSelect:function(o,n){
-        var url = '${basePath}travelItem/queryByScope?scopeAlias=n';
-        $('select[name=sightSpot]').combobox('reload',url);
-       }">
-          <option>区域：</option>
-         
-        </select>
-        <select name="sightSpot" class="easyui-combobox" style="width:100px;"  data-options="valueField:'alias',textField:'item',method:'get'"> 
-        </select>
+    <td width="956" bgcolor="#CCCCCC" class="f14-gao1">
+      <label>旅行方式：
+        <input id="travelstyle" name="travelstyle" class="easyui-combobox"  style="width:150px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false, method:'get',url:'${basePath}travelStyle/loadStyles'">
+       	 区域：
+        <input class="easyui-combobox" id="selectScopes" name="selectScopes" style="width:100px;"  data-options="valueField:'key',textField:'value',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}travelItem/allScopes',
+        onSelect:function(v){var urlurl = '${basePath}travelItem/queryByScope?scopeAlias='+v.key;
+        $('#sightSpot').combobox('reload',urlurl);}"><!-- $('#selectScopes').combobox('getValue') -->
+        <input id="sightSpot" name="sightSpot" class="easyui-combobox" style="width:100px;"  data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'"> 
         <br />
         假期天数：<select name="vacation" style="width:100px;">
         	<option>-所有-</option>
@@ -150,7 +143,7 @@ body {
         <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
       <tr>
-        <td><a href="${basePath }hiking/detail/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" /></a></td>
+        <td><a href="${basePath }hiking/detail/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
      <%--  <tr>
         <td><span class="f14-gao1">${item.content}</span></td>
@@ -316,6 +309,6 @@ body {
   </tr>
 </table>-->
 <script type="text/javascript" src="${basePath}js/ux/front/trek/trekkings.js"></script>
-<jsp:include page="/front/footer.jsp" />
+<%@include file="/front/footer.jsp" %>
 </body>
 </html>

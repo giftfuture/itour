@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
@@ -92,16 +93,19 @@ public class TravelStyleController extends BaseController{
 		HtmlUtil.writerJson(response, jsonMap);
 	}
 	/**
-	 * 
+	 * -所有-
 	 * @param response
 	 * @throws Exception
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/loadStyles", method = RequestMethod.GET) 
-	public List<HashMap<String,String>> loadStyles(HttpServletResponse response)throws Exception{
-		List<HashMap<String,String>> dataList = travelStyleService.loadStyles();
-		return dataList;
+	public List<Map<String,String>> loadStyles(HttpServletResponse response)throws Exception{
+		List<HashMap<String,String>> list = travelStyleService.loadStyles();
+		List<Map<String,String>> newlist = Lists.newArrayList();
+		newlist.add(new HashMap(){{put("alias","");put("type","-所有-");}});
+		newlist.addAll(list);
+		return newlist;
 	}
 	
 	/**

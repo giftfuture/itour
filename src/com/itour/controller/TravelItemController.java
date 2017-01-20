@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
@@ -501,14 +502,18 @@ public class TravelItemController extends BaseController{
 	/**
 	 * 
 	 * @param response
-	 * @return
+	 * @return全部區域
 	 * @throws Exception
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/allScopes", method = RequestMethod.GET)
 	public List<Map<String,String>> allScopes(HttpServletResponse response) throws Exception{
-		return travelItemService.allScopes();
+		List<Map<String,String>> list = travelItemService.allScopes();
+		List<Map<String,String>> newlist = Lists.newArrayList();
+		newlist.add(new HashMap(){{put("key","");put("value","全部區域");}});
+		newlist.addAll(list);
+		return newlist;
 	}
 	
 	/**

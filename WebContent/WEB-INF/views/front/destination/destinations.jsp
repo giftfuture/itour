@@ -139,20 +139,20 @@ body {
             	旅游区域：
               <label>
               <form:form method="post">
-                 <select name="scopes" class="easyui-combobox"  id="scopes" style="width:100px;" data-options="valueField:'key',textField:'value',method:'get',url:'${basePath}travelItem/allScopes'">
-                    <option>区域：</option>
-                  </select>
-                  <select name="sightSpots" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'item',method:'get',url:'${basePath}travelItem/queryByScope'">
+                 <input name="scopes" class="easyui-combobox"  id="scopes" style="width:100px;" data-options="valueField:'key',textField:'value',mode:'remote',panelHeight:'auto',editable:false, method:'get',url:'${basePath}travelItem/allScopes',
+                   onSelect:function(v){
+                   	var urlurl = '${basePath}travelItem/queryByScope?scopeAlias='+v.key;
+                   	if(v.key){
+                   	$('#sightSpots').combobox('reload',urlurl);
+                   }}">
+                  <input name="sightSpots" id="sightSpots" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'">
                      
-                  </select>
                   <br />
                 旅行方式：
-                <select name="travelstyles" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'type',method:'get',url:'${basePath}travelStyle/loadStyles'">
-                  <option selected="selected">-所有-</option>
-                </select>
+                <input name="travelstyles" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
                 <br />
-                假期时间：<select name="vacation" class="easyui-combobox" style="width:100px;" data-options="">
-                 <option> -所有-</option>
+                假期时间：<select name="vacation" class="easyui-combobox" style="width:100px;" data-options="panelHeight:'auto',editable:false,mode:'remote'">
+                 <option> -不限-</option>
                  <option value="1-5">1-5天</option>
                  <option value="6-9">6-9天</option>
                  <option value="10-15">10-15天</option>
