@@ -70,9 +70,6 @@ body {
   </tr>
 </table>
 
- <c:forEach items="${scopes}" var="scope" >
- 	<c:out value="${scope.value}"></c:out>
- </c:forEach>
 <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
   <tr>
     <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
@@ -80,6 +77,11 @@ body {
 </table>
 <br />
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+ <c:forEach items="${scopes}" var="scope" >
+ <tr>
+ 	<td><c:out value="${scope.value}"></c:out></td>
+ 	</tr>
+ </c:forEach>
   <tr>
     <td width="275" valign="top"><div align="center">
       <table width="230" border="0" cellspacing="0" cellpadding="5">
@@ -90,7 +92,7 @@ body {
             <td><table width="200" border="0" align="center" cellpadding="4" cellspacing="0">
                 <tr>
                   <td width="10"><img src="images/arrow4-2.gif" width="10" height="10" /></td>
-                  <td width="174"><strong>四川</strong></td>
+              <td width="174"><strong>四川</strong></td>
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
@@ -129,6 +131,7 @@ body {
               </table></td>
           </tr>
         </table>
+        
         <table width="230" border="0" align="center" cellpadding="5" cellspacing="0">
           <tr>
             <td width="48" valign="middle" bgcolor="#CCCCCC"><div align="center" class="STYLE2"><img src="images/search.png" width="48" height="48" /></div></td>
@@ -146,7 +149,6 @@ body {
                    	$('#sightSpots').combobox('reload',urlurl);
                    }}">
                   <input name="sightSpots" id="sightSpots" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'">
-                     
                   <br />
                 旅行方式：
                 <input name="travelstyles" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
