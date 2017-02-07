@@ -12,6 +12,10 @@
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="${basePath}js/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <title>目的地</title>
 <style type="text/css">
 <!--
@@ -76,12 +80,23 @@ body {
   </tr>
 </table>
 <br />
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
- <c:forEach items="${scopes}" var="scope" >
- <tr>
- 	<td><c:out value="${scope.value}"></c:out></td>
- 	</tr>
- </c:forEach>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<div class="treebox">
+	<ul class="menu">
+	<c:forEach items="${scopes}" var="scope">
+		<li class="level1">
+			<a href="javascript:void(0)"><em class="ico ico1"><c:out value="${scope.value}"></c:out></em><i class="down"></i></a>
+			<ul class="level2">
+				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">导航选项</a></li>
+			</ul>
+		</li>
+		</c:forEach>
+	</ul>
+</div>
+ 
   <tr>
     <td width="275" valign="top"><div align="center">
       <table width="230" border="0" cellspacing="0" cellpadding="5">
