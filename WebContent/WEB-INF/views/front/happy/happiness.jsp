@@ -12,13 +12,9 @@
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
 <meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
 <meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
-
-
-
 <style type="text/css">
 <!--
 body {
@@ -343,55 +339,12 @@ body {
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-<table width="1100" border="0" align="center" cellpadding="20" cellspacing="0">
-  <tr>
-    <td><a href="#"><img src="images/page.gif" width="503" height="32" /></a></td>
-  </tr>
-</table>
-<p><br />
-</p>
-<!-- <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
-    <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
-    <td width="179" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
-      <label>
-        <select name="select">
-          <option>全部區域</option>
-          <option>四川</option>
-          <option>西藏</option>
-          <option>新疆</option>
-          <option>云南</option>
-        </select>
-        <br />
-        旅行方式：
-        <select name="select3">
-          <option selected="selected">-所有-</option>
-          <option>观光摄影</option>
-          <option>徒步</option>
-          <option value=" ">登山</option>
-          <option>自驾</option>
-        </select>
-        <br />
-        假期时间：<a href="#">
-          <select name="select2">
-            <option selected="selected">-所有-</option>
-            <option>1-5天</option>
-            <option>6-9天</option>
-            <option value=" ">10-15天</option>
-            <option>16天+</option>
-          </select>
-        </a></label></td>
-    <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
-  </tr>
-</table>
- -->
 
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57621520128a2c5c"></script> -->
 
-<script type="text/javascript" src="${basePath}js/ux/front/happiness/happiness.js"></script>
+<script type="text/javascript" src="${basePath}js/ux/front/happy/happiness.js"></script>
  <%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
