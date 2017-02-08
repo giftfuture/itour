@@ -1,19 +1,16 @@
-<%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
+ <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
 <form name="searchForm" action="" method="post">
 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="30px" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
     <td width="50px" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
     <td width="50px" bgcolor="#CCCCCC" class="f14-gao1" >  
-       旅行方式：
-        <input name="travel_style" class="easyui-combobox"  style="width:100px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+       旅行方式：<input name="travel_style" class="easyui-combobox"  style="width:100px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
         <br />旅游区域：
       <label>
         <input name="areas" class="easyui-combobox"  style="width:100px;" data-options="valueField:'key',textField:'value',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
-        <br />
-   
-        假期天数：<a href="javascript:void(0)">
+        <br />  假期天数：<a href="javascript:void(0)">
 	<select name="vacation" style="width:100px">
 	  <option selected="selected">-所有-</option>
 	  <option value="1-5">1-5天</option>
@@ -94,4 +91,4 @@
   </tr>
 </table>
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script>
-<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>
+<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  

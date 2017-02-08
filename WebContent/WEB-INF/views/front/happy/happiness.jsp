@@ -1,12 +1,8 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/WEB-INF/views/server/resource.jsp"  %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <base href=" <%=basePath%>">
@@ -77,9 +73,9 @@ body {
 </head>
 
 <body>
-<table width="200" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><img src="images/top-menu.jpg" width="1350" height="153" /></td>
+    <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
 </table>
 <br />
@@ -354,7 +350,7 @@ body {
 </table>
 <p><br />
 </p>
-<table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
+<!-- <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
     <td width="61" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
@@ -389,60 +385,14 @@ body {
     <td width="812" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="Search" /></td>
   </tr>
 </table>
-<p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
-  <tr>
-    <td width="611" height="105" valign="top" bgcolor="#666666"><table width="1100" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
-          <tbody>
-            <tr>
-              <td width="883" height="30" bgcolor="#EFEFEF"><div align="center">www.iTours.com.cn</div></td>
-            </tr>
-            <tr>
-              <td height="30" bgcolor="#EFEFEF"><div align="center">Add: Huaqiao Building, #15 South Three Sections of Yihuan Road, Chengdu, Sichuan, China<br />
-                Tel: +86-28-85580038 / 85562905?<br />
-                E-mail: info@itours.com.cn </div></td>
-            </tr>
-          </tbody>
-    </table></td>
-  </tr>
-</table>
-<br />
-<br />
-<br />
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">&nbsp;</td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">&nbsp;</td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
+ -->
 
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57621520128a2c5c"></script>
+<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57621520128a2c5c"></script> -->
 
-
-
-
+<script type="text/javascript" src="${basePath}js/ux/front/happiness/happiness.js"></script>
+ <%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
 

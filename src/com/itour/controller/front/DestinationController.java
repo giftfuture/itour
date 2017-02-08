@@ -1,5 +1,6 @@
 package com.itour.controller.front;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.web.BaseController;
+import com.itour.entity.TravelItem;
 import com.itour.service.DestinationService;
 import com.itour.service.TravelItemService;
 import com.itour.vo.CustomerVo;
@@ -30,12 +32,15 @@ public class DestinationController extends BaseController{
 	private DestinationService destService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request) throws Exception{
 	 	Map<String,Object>  context = getRootMap();
 	 	List<Map<String,String>> scopes = travelItemService.allScopes();
+	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());
 		//设置页面数据
 		context.put("scopes", scopes); 
+		context.put("items", items);
 		return forward("front/destination/destinations",context); 
 	}
 	/**
