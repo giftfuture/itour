@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%    
-String path = request.getContextPath();    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <!DOCTYPE html>
 <html>
  <head>
@@ -15,7 +10,7 @@ pageContext.setAttribute("basePath",basePath);
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>itour后台登录</title>
+  <title>itour后台入口</title>
  <!--  <link rel="shortcut icon" href="resources/fc/images/icon/favicon.ico"> -->
   <!--[if lt IE 9]>
    <script src="plug-in/login/js/html5.js"></script>
@@ -26,10 +21,10 @@ pageContext.setAttribute("basePath",basePath);
 	EvPNG.fix('div, ul, img, li, input'); //EvPNG.fix('包含透明PNG图片的标签'); 多个标签之间用英文逗号隔开。
 </script>
   <![endif]-->
-  <link href="js/plug-in/login/css/zice.style.css" rel="stylesheet" type="text/css" />
-  <link href="js/plug-in/login/css/buttons.css" rel="stylesheet" type="text/css" />
-  <link href="js/plug-in/login/css/icon.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="js/plug-in/login/css/tipsy.css" media="all" />
+  <link href="${basePath }js/plug-in/login/css/zice.style.css" rel="stylesheet" type="text/css" />
+  <link href="${basePath }js/plug-in/login/css/buttons.css" rel="stylesheet" type="text/css" />
+  <link href="${basePath }js/plug-in/login/css/icon.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="${basePath }js/plug-in/login/css/tipsy.css" media="all" />
   <style type="text/css">
 html {
 	background-image: none;
@@ -70,31 +65,30 @@ label.iPhoneCheckLabelOn span {
 	height: 51px;
 }
 </style>
- <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
-<script type="text/javascript" src="js/plug-in/login/js/html5.js"></script>
+<script type="text/javascript" src="${basePath }js/plug-in/login/js/html5.js"></script>
 <!-- <script type="text/javascript" src="js/plug-in/login/js/iepng.js"></script>  -->
-<script type="text/javascript" src="js/plug-in/jquery/jquery.cookie.js"></script>
-<script type="text/javascript" src="js/plug-in/login/js/iphone.check.js"></script>
-<script type="text/javascript" src="js/plug-in/login/js/jquery-jrumble.js"></script>
-<script type="text/javascript" src="js/plug-in/login/js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="js/plug-in/login/js/login.js"></script>
+<script type="text/javascript" src="${basePath }js/plug-in/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="${basePath }js/plug-in/login/js/iphone.check.js"></script>
+<script type="text/javascript" src="${basePath }js/plug-in/login/js/jquery-jrumble.js"></script>
+<script type="text/javascript" src="${basePath }js/plug-in/login/js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="${basePath }js/plug-in/login/js/login.js"></script>
  </head>
  <body>
   <div id="alertMessage"></div>
   <div id="successLogin"></div>
   <div class="text_success">
-   <img src="js/plug-in/login/images/loader_green.gif" alt="Please wait" />
+   <img src="${basePath }js/plug-in/login/images/loader_green.gif" alt="Please wait" />
    <span>登陆成功!请稍后....</span>
   </div>
   <div id="login">
-   <div class="ribbon" style="background-image:url(images/head2016.gif);"></div>
+   <div class="ribbon" style="background-image:url(${basePath }images/head2016.gif);"></div>
    <div class="inner">
     <div class="logo">
     	<span style=""><font face="微软雅黑">主角旅行后台管理</font></span>
      <!-- <img src="js/plug-in/login/images/toplogo.png"/> -->
     </div>
     <div class="formLogin"><!--  check="${basePath}main/checkuser" -->
-     <form name="formLogin" id="formLogin" action="${basePath}main/logIn" method="post" check="${basePath}main/checkuser">
+     <form name="formLogin" id="formLogin" action="" method="" check="${basePath}main/checkuser">
       <div class="tip">
        <input class="userName easyui-validatebox" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  data-options="required:true" nullmsg="请输入用户名!"/>
       </div>

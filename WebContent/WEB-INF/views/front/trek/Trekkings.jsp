@@ -1,8 +1,5 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +132,8 @@ body {
         <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
             <tr>
              <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>ISO-8859-1 -->
-              <td width="296" class="h2-24"><a href="${basePath}hiking/detail/${rt.alias}">${rt.title}</a></td>
+            <%--   <td width="296" class="h2-24"><a href="${basePath}hiking/detail/${rt.alias}">${rt.title}</a></td> --%>
+              <td width="296" class="h2-24"><a href="${basePath}hiking/hiking/${rt.alias}">${rt.title}</a></td>
             </tr>
         </table></td>
       </tr>
@@ -143,7 +141,7 @@ body {
         <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
       <tr>
-        <td><a href="${basePath }hiking/detail/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
+        <td><a href="${basePath }hiking/hiking/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
      <%--  <tr>
         <td><span class="f14-gao1">${item.content}</span></td>

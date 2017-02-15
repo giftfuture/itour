@@ -76,6 +76,8 @@ public class FilePros   {
 		String mappath = rb.getString("route_cover_path");
 		return mappath ;
 	}
+	
+	
 	public static void main(String[] args) {
 		//String resourceFile = "jdbc";    
 //        创建一个默认的ResourceBundle对象   

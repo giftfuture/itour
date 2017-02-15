@@ -1,13 +1,14 @@
 package com.itour.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
-import com.itour.base.dao.FblMapResultHandler;
 import com.itour.entity.TravelItem;
 /**
  * 
@@ -52,7 +53,8 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * 加载所有地区，省份 List<Map<String, String>>
 	 * @return
 	 */
-	 List<Map<String,String>> allScopes();/*{
+	@MapKey("scopeAlias")
+	 List<HashMap<String,String>> allScopes();/*{
 		FblMapResultHandler fbl = new FblMapResultHandler();  
 		//getSqlSession().select(NAMESPACE +"getAllSetDays",fbl);  
 		Map<String,String> map =fbl.getMappedResults();  

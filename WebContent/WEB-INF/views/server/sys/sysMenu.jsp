@@ -20,9 +20,9 @@
             <label class="ui-label">菜单名:</label> 
             <input name="name" class="easyui-box ui-text" style="width:100px;">
              <label class="ui-label">URL:</label> 
-            <input name="url" class="easyui-box ui-text" style="width:100px;">
+            <input name="url" class="easyui-box ui-text" style="width:100px;" data-options="editable:false,region:'north',split:true,border:false" >
              <label class="ui-label">创建时间:</label> 
-            <input name="createTime" class="easyui-datetimebox" style="width:100px;">
+            <input name="createTime" class="easyui-datetimebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
         </p>
         <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  

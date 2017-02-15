@@ -37,8 +37,20 @@ public class HtmlUtil {
 	 * @param response
 	 * @param object
 	 */
-	public static void writerJson(HttpServletResponse response,Object object){
+	public static void writerJson2(HttpServletResponse response,Object object){
 		response.setContentType("application/json");
+		String result = JsonUtils.encode(object);
+		// result = result == null ||result == "{\"msg\":\"1\",\"success\":true}" || result =="{\"total\":1,\"rows\":[{}]}"|| result.equals("{success=true, allType=true}") || result.equals("{}") ||result.length()<3 ? net.sf.json.JSONObject.fromObject(object).toString() :result ;
+		writer(response,result);
+	}
+	/**
+	 * fastjson write
+	 * @param response
+	 * @param object
+	 */
+	public static void writerJson(HttpServletResponse response,Object object){
+		//response.setContentType("application/json");
+		response.setContentType("text/html;charset=UTF-8");
 		String result = JsonUtils.encode(object);
 		// result = result == null ||result == "{\"msg\":\"1\",\"success\":true}" || result =="{\"total\":1,\"rows\":[{}]}"|| result.equals("{success=true, allType=true}") || result.equals("{}") ||result.length()<3 ? net.sf.json.JSONObject.fromObject(object).toString() :result ;
 		writer(response,result);
@@ -69,6 +81,7 @@ public class HtmlUtil {
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out= null;
 			out = response.getWriter();
+			//System.out.println(str);
 			out.print(str);
 			out.flush();
 			out.close();

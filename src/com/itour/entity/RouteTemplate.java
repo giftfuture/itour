@@ -24,7 +24,14 @@ public class RouteTemplate extends BaseEntity {
 	private String title;//路线名称
 	private String shortContent;//简略介绍
 	private String alias;
+	private String routeCode;//线路编号
 	
+	public String getRouteCode() {
+		return routeCode;
+	}
+	public void setRouteCode(String routeCode) {
+		this.routeCode = routeCode;
+	}
 	public String getAlias() {
 		return alias;
 	}

@@ -14,10 +14,11 @@
 	<result column="state" property="state"/>
 	<result column="descr" property="descr"/>
 	<result column="role_level" property="level"/>
+	<result column="number" property="number"/>
 </resultMap>
 <!-- sys_role table all fields -->
 <sql id="Base_Column_List" >
-	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level
+	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number
 </sql>
    
    
@@ -51,6 +52,9 @@ where 1=1
 	</if>
 	<if test="level != null and level != 0">
 		and role_level = #{level}	
+	</if>
+	<if test="number != null and number != 0">
+		and number = #{number}	
 	</if>
 </trim>
 </sql>

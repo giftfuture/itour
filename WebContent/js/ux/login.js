@@ -10,7 +10,7 @@ itour.login = function(){
 						itour.closeProgress();
 						if(data.success){
 							itour.alert('提示',data.msg,'info'); 
-					 		window.location= "/main/manage";
+					 		window.location= basePath+"main/manage";
 				        }else{
 				        	itour.alert('提示',data.msg,'error');  
 				        	itour.login.loadVrifyCode();//刷新验证码
@@ -32,9 +32,9 @@ itour.login = function(){
 			}
 			//验证码图片绑定点击事件
 			$(".vc-pic").click(itour.login.loadVrifyCode);
-			
-			var form = $("#loginForm");
-			form.submit(itour.login.toLogin);
+			//but_login
+			//var form = $("#loginForm");
+		//	form.submit(itour.login.toLogin);
 		}
 	}
 }();

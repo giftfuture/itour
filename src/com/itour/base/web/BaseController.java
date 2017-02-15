@@ -22,6 +22,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Maps;
 import com.itour.base.collect.Mapx;
 import com.itour.base.collect.Mapxs;
 import com.itour.base.json.JsonUtils;
@@ -77,7 +78,7 @@ public class BaseController {
 	  * @return
 	  */
 	public Map<String,Object> getRootMap(){
-		Map<String,Object> rootMap = new HashMap<String, Object>();
+		Map<String,Object> rootMap = Maps.newHashMap();
 		//result.put(SUCCESS, false);
 		//result.put(MSG, message);
 		//添加url到 Map中
@@ -95,7 +96,31 @@ public class BaseController {
 	public ModelAndView error(String errMsg){
 		return new ModelAndView("error"); 
 	}
-	
+	/**
+	 *
+	 * 提示成功信息
+	 *
+	 * @param message
+	 *
+	 */
+	public void successMessage(HttpServletResponse response,  String message) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(SUCCESS, true);
+		map.put(MSG, message);
+		//String result = JsonUtils.encode(map);
+		HtmlUtil.writerJson2(response,map);
+	}
+	/**
+	 * 
+	 * @param response
+	 * @param message
+	 */
+	public void failureMessage(HttpServletResponse response,  String message) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(SUCCESS, false);
+		map.put(MSG, message);
+		HtmlUtil.writerJson2(response,map);
+	}
 	/**
 	 *
 	 * 提示成功信息

@@ -51,10 +51,11 @@ var itour={
 		return false;
 	},
 	ajaxJson: function(url,option,callback){
-		$.ajax(url,{
+		$.ajax({url,
 				type:'post',
 			 	dataType:'json',
 			 	data:option,
+			 	sync:false,
 			 	success:function(data){
 			 		//console.log(data);
 			 		var checklogin = itour.checkLogin(data);
@@ -62,8 +63,9 @@ var itour={
 			 		//检查登录
 			 		if(!checklogin){
 			 			return false;
-			 		}		 	
+			 		}	
 			 		if($.isFunction(callback)){
+			 			//console.log(callback);
 			 			callback(data);
 			 		}
 			 	},
@@ -92,10 +94,12 @@ var itour={
 			 	//dataType:'script',
 			 	timeout:3000,
 			 	iframe: true,
-			 	headers : {"ClientCallMode" : "ajax"}, //添加请求头部
+			 	//headers : {"ClientCallMode" : "ajax"}, //添加请求头部
 			 	async:false,  //异步请求
 		 	   // contentType: "application/json; charset=utf-8", 
 			 	success:function(data){
+			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
+			 		//var result = data.match(reg);  
 			 		var result= $.parseJSON(data);
 			 		if($.isFunction(callback)){
 			 			callback(result);
@@ -105,7 +109,7 @@ var itour={
 			 		try{
 			 			itour.closeProgress();
 			 			var data = $.parseJSON(response.responseText);
-			 			console.log(data);
+			 			//console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
 				 			return false;
@@ -128,13 +132,14 @@ var itour={
 			itour.submitForm(form,function(data){
 				itour.closeProgress();
 			 	if(data.success||data.success=="true"){
-			 		if(callback){
-				       	callback(data);
-				    }else{
+			 		//console.log(callback);
+			 		//if($.isFunction(callback)){
+			 			//console.log(data);
+				    //   	callback(data);
+				   // }else{
 			       		itour.alert('提示','保存成功.','info');
-			        } 
+			      //  } 
 		        }else{
-		        	console.log("aaa");
 		       	   itour.alert('提示',data.msg,'error');  
 		        }
 			});
@@ -148,9 +153,10 @@ var itour={
 	getById:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
+			//console.log(data);
 			itour.closeProgress();
 			if(data.success){
-				if(callback){
+				if($.isFunction(callback)){
 			       	callback(data);
 			    }
 			}else{
@@ -166,9 +172,10 @@ var itour={
 	loadPhotos:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
+			//console.log(data);
 			itour.closeProgress();
 			if(data.success){
-				if(callback){
+				if($.isFunction(callback)){
 					//console.log("base:"+data)
 			       	callback(data);
 			    }
@@ -180,9 +187,10 @@ var itour={
 	deleteForm:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
+			//console.log(data);
 				itour.closeProgress();
 				if(data.success){
-					if(callback){
+					if($.isFunction(callback)){
 				       	callback(data);
 				    }
 				}else{

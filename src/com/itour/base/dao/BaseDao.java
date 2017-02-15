@@ -25,6 +25,5 @@ public interface BaseDao<T> {
 	
 	public BasePage<T> pagedQuery(BasePage page);
 	
-	
 	public T queryById(@Param(value="id")String id);
 }

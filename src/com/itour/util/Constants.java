@@ -15,8 +15,6 @@ import com.itour.dao.TravelStyleDao;
 import com.itour.entity.TravelStyle;
 
 public class Constants {
-	
-	
 	//ResourceBundle.getBundle("conf");
 	public static String basePhoto ="/images/";
 	//private TravelStyleDao baseDao;
@@ -24,7 +22,7 @@ public class Constants {
 	private static JdbcTemplate jdbcTemplate;
 	
 	public static final Map<String,String> travelStyles = new HashMap<String,String>(){{}};
-	
+	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
 	public static  int perRow = 3;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
 	
@@ -37,6 +35,7 @@ public class Constants {
 	public static final String DESTINATION = "destination";
 	public static final String HIKING = "hiking";
 	
+	public static final String ALARM_FILE_PATH = "";
 	public static final Set<String> TSTYLES = new HashSet<String>(){{
 		add(CUSTOMIZED);
 		add(CLIMB);

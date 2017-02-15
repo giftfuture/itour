@@ -19,7 +19,7 @@
         <p class="ui-fields">
 			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">创建人:</label><input name="createBy" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox" style="width:100px;">
+			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox"  data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
 	    </p>
 	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  

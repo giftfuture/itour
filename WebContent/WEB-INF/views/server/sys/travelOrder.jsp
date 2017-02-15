@@ -28,7 +28,7 @@
 				</select>
 			</p>
 		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;"></p>
+			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" data-options="editable:false,region:'north',split:true,border:false"  style="width:100px;"></p>
 	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 

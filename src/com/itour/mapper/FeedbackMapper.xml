@@ -37,13 +37,13 @@
 				and id like CONCAT('%', #{id}, '%')
 			</if>
 			<if test="createTime != null ">
-	  <![CDATA[  and  DATE_FORMAT(feedback.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
+	  <![CDATA[  and  DATE_FORMAT(feed_back.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="status != null ">
 				and status = #{status}
 			</if>
 			<if test="updateTime != null">
-	 <![CDATA[  and  DATE_FORMAT(feedback.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
+	 <![CDATA[  and  DATE_FORMAT(feed_back.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="title != null and title != ''">
 				and title like CONCAT('%', #{title}, '%')
@@ -81,13 +81,13 @@
 		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
 			SELECT LAST_INSERT_ID() </selectKey> -->
 		insert into
-		feedback(id,create_time,status,update_time,title,content,customer_id,result,mobile,name,email,team_persons,prefered_date)
+		feed_back(id,create_time,status,update_time,title,content,customer_id,result,mobile,name,email,team_persons,prefered_date)
 		values(#{id},now(),#{status},now(),#{title},#{content},#{customerId},#{result},#{mobile},#{name},#{email},#{teamPersons},#{preferedDate})
 	</insert>
 
 	<!-- 修改记录，只修改只不为空的字段 -->
 	<update id="update" parameterType="com.itour.entity.Feedback">
-		update feedback set update_time=now(),
+		update feed_back set update_time=now(),
 		<trim suffixOverrides=",">
 			<if test="status != null  ">
 				status=#{status},
@@ -125,20 +125,20 @@
 
 	<!-- 删除记录 -->
 	<delete id="delete" parameterType="java.lang.String">
-		delete from feedback where id = #{id}
+		delete from feed_back where id = #{id}
 	</delete>
 
 	<!-- 根据id查询 客户反馈 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
-		feedback.id, feedback.create_time, feedback.status, feedback.update_time, feedback.title, feedback.content, feedback.customer_id, feedback.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
-		from feedback left join customers on feedback.customer_id = customers.id where feedback.id = #{id}  
+		feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
+		from feed_back left join customers on feed_back.customer_id = customers.id where feed_back.id = #{id}  
 	</select>
 
 	<!-- 客户反馈 列表总数 -->
 	<select id="queryByCount" resultType="java.lang.Integer"
 		parameterType="com.itour.base.page.BasePage">
-		select count(1) from feedback
+		select count(1) from feed_back
 		<include refid="Example_Where_Clause" />
 	</select>
 
@@ -146,8 +146,8 @@
 	<select id="queryByList" resultMap="BaseResultMap"
 		parameterType="com.itour.base.page.BasePage">
 		select
-		feedback.id, feedback.create_time, feedback.status, feedback.update_time, feedback.title, feedback.content, feedback.customer_id, feedback.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
-		from feedback left join customers on feedback.customer_id = customers.id 
+		feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,customers.customer_name customerName 
+		from feed_back left join customers on feed_back.customer_id = customers.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">
 			${pager.orderCondition}

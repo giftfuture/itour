@@ -51,6 +51,13 @@ $("#but_login").click(function(e) {
 });
 //回车登录
 $(document).keydown(function(e){
+	 e = e || window.event;
+	  //阻止默认事件
+  /*   if(e.preventDefault){
+         e.preventDefault();
+     }else{
+         e.returnValue = false;
+     }*/
 	if(e.keyCode == 13) {
 		submit();
 	}
@@ -77,12 +84,12 @@ function submit()
 }
 //刷新验证码
 function changeImg(){
-    document.getElementById("validateCodeImg").src=basePath+"/ImageServlet?"+Math.random();
+    document.getElementById("validateCodeImg").src=basePath+"ImageServlet?"+Math.random();
 }
 //登录处理函数
 function login() {
 	setCookie();
-	var actionurl=$("#formLogin").attr("action");//提交路径
+	var actionurl=basePath+"main/logIn";//$("#formLogin").attr("action");//提交路径
 	var checkurl=$("#formLogin").attr("check");//验证路径
 	 var formData = new Object();
 	var data=$(":input").each(function(){
@@ -96,7 +103,7 @@ function login() {
 		url : actionurl,//checkurl,// 请求的action路径
 		data : formData,
 		error : function() {// 请求失败处理函数
-		  alert('登录处理函数出现错误');
+			alert('登录处理函数出现错误');
 		},
 		success : function(data) {
 			//console.log("data.success="+data.success);
@@ -107,7 +114,7 @@ function login() {
 			//	formSubmit();
 			//	alert("rraar"+actionurl);
 			//	$("#" + this.name).val("");
-				window.location.href=basePath+"/main/manage";
+				window.location.href=basePath+"main/manage";
 			} else {
 				showError(data.msg);
 			}

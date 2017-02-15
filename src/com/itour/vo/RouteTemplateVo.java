@@ -24,6 +24,7 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private java.lang.String id;//   	private java.lang.String d1;//   	private java.lang.String d2;//   	private java.lang.String d3;//   	private java.lang.String d4;//   	private java.lang.String d5;//   	private java.lang.String d6;//   	private java.lang.String d7;//   	private java.lang.String d8;//   	private java.lang.String d9;//   	private java.lang.String d10;//   	private java.lang.String d11;//   	private java.lang.String d12;//   	private java.lang.String d13;//   	private java.lang.String d14;//   	private java.lang.String d15;//   	private java.lang.String d16;//   	private java.lang.String d17;//   	private java.lang.String d18;//   	private java.lang.String d19;//   	private java.lang.String d20;//   	private java.lang.String d21;//   	private java.lang.String d22;//   	private java.lang.String d23;//   	private java.lang.String d24;//   	private java.lang.String d25;//   	private java.lang.String d26;//   	private java.lang.String d27;//   	private java.lang.String d28;//   	private java.lang.String d29;//   	private java.lang.String d30;//   	private java.lang.String d31;//   	private java.lang.String d32;//   	private java.lang.String d33;//   	private java.lang.String d34;//   	private java.lang.String d35;//   	private java.lang.String d36;//   	private java.lang.String d37;//   	private java.lang.String d38;//   	private java.lang.String d39;//   	private java.lang.String d40;//   	private java.lang.String d41;//   	private java.lang.String d42;//   	private java.lang.String d43;//   	private java.lang.String d44;//   	private java.lang.String d45;//   	private java.lang.String d46;//   	private java.lang.String d47;//   	private java.lang.String d48;//   	private java.lang.String d49;//   	private java.lang.String d50;//   	private java.lang.String d51;//   	private java.lang.String d52;//   	private java.lang.String d53;//   	private java.lang.String d54;//   	private java.lang.String d55;//   	private java.lang.String d56;//   	private java.lang.String d57;//   	private java.lang.String d58;//   	private java.lang.String d59;//   	private java.lang.String d60;//   	private java.lang.String customerId;//   	private String createTime;//   	private String updateTime;//   
 	private String special;//线路特色	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//  
 	private List<RouteTemplateVo> relates;//相关线路
+	private List<String> photoList;//照片
 	private String related;
 	private String routeMap;//线路地图
 	private String travelStyle;//线路类别
@@ -33,7 +34,21 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String title;//路线名称
 	private String shortContent;//简略介绍
 	private String alias;
+	private String routeCode;//线路编号
 	
+	
+	public List<String> getPhotoList() {
+		return photoList;
+	}
+	public void setPhotoList(List<String> photoList) {
+		this.photoList = photoList;
+	}
+	public void setRouteCode(String routeCode) {
+		this.routeCode = routeCode;
+	}
+	public String getRouteCode() {
+		return routeCode;
+	}
 	public String getAlias() {
 		return alias;
 	}

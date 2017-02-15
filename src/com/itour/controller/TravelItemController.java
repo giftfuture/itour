@@ -509,10 +509,10 @@ public class TravelItemController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/allScopes", method = RequestMethod.GET)
 	public List<Map<String,String>> allScopes(HttpServletResponse response) throws Exception{
-		List<Map<String,String>> list = travelItemService.allScopes();
+		List<HashMap<String,String>> maps = travelItemService.allScopes();
 		List<Map<String,String>> newlist = Lists.newArrayList();
 		newlist.add(new HashMap(){{put("key","");put("value","全部區域");}});
-		newlist.addAll(list);
+		newlist.addAll(maps);
 		return newlist;
 	}
 	

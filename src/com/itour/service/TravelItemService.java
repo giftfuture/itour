@@ -100,8 +100,8 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * 
 	 * @return
 	 */
-	public List<Map<String,String>> allScopes(){
-		List<Map<String,String>> maps = mapper.allScopes();
+	public List<HashMap<String,String>> allScopes(){
+		List<HashMap<String,String>> maps = mapper.allScopes();
 		return maps;
 	};
 }

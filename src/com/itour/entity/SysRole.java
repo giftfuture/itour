@@ -6,7 +6,16 @@ import com.itour.base.entity.BaseEntity;
 public class SysRole extends BaseEntity {
 	
 		private String id;//   id主键	private String roleName;//   角色名称	private java.sql.Timestamp createTime;//   创建时间	private Integer createBy;//   创建人	private java.sql.Timestamp updateTime;//   修改时间	private Integer updateBy;//   修改人	private Integer state;//   状态0=可用 1=禁用	private String descr;//   角色描述
-	private short level;//管理员级别,1=超级管理员，2.3.4=管理咒，站点管理员，测试管理员	public String getId() {	    return this.id;	}	public void setId(String id) {	    this.id=id;	}		public String getRoleName() {
+	private short level;//管理员级别,1=超级管理员，2.3.4=管理咒，站点管理员，测试管理员
+	private int number;//角色编号
+	
+		public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public String getId() {	    return this.id;	}	public void setId(String id) {	    this.id=id;	}		public String getRoleName() {
 		return roleName;
 	}
 	public void setRoleName(String roleName) {

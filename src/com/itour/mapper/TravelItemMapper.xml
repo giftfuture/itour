@@ -34,7 +34,7 @@
 	<result column="recommand_equip" property="recommandEquip"/>
 	<result column="scope_alias" property="scopeAlias"/>
 </resultMap>
-<resultMap id="allscopes" type="com.itour.base.util.MapParam">  
+<resultMap id="allscopes" type="java.util.HashMap">  
     <result property="key" column="scopeAlias" />  
     <result property="value" column="scope" />  
 </resultMap>  
@@ -221,12 +221,13 @@ where 1=1
 	select <include refid="Base_Column_List" /> 
 	 from travel_item where id = #{id}
 </select>
-<select id="allScopes" resultMap="allscopes">
+<!-- resultMap="allscopes"  -->
+<select id="allScopes"  resultType="hashmap">
  select scope_alias scopeAlias,scope from travel_item group by scope
-</select>
+</select>		
 <select id="searchTravelItem" resultMap="BaseResultMap" parameterType="java.util.Map">
  	select ti.*
- 	 from travel_item ti left join travel_style ts on ti.travel_style=ts.id 
+   	 from travel_item ti left join travel_style ts on ti.travel_style=ts.id 
  	 where 1=1
  	 <trim  suffixOverrides="," >
  	 <if test="alias != null and alias != ''">

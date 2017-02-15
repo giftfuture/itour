@@ -16,13 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
-import com.itour.entity.RouteTemplate;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
 import com.itour.service.CustomersService;
@@ -58,7 +59,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({"unchecked" })
 	@RequestMapping("/main") 
 	public ModelAndView goHiking(HttpServletRequest request,HttpServletResponse response) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
@@ -111,6 +112,65 @@ public class HikingController extends BaseController{
 			// return "redirect:/class/list.action";
 		}
 		return forward("front/trek/Trekkings",map); 
+	}
+	/**
+	 * 
+	 * @param alias
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/hiking/{alias}", method = RequestMethod.GET) 
+	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
+		rt.setTravelStyle(style.getType());
+		String mappath = FilePros.uploadMappath();
+		String coverpath = FilePros.uploadCoverpath();
+		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
+			rt.setRouteMap(mappath+rt.getRouteMap());
+		}
+		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
+			rt.setCover(coverpath+rt.getCover());
+		}
+		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
+			String [] ids =  rt.getRelated().split(",");
+			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVo rtp:relates){
+				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
+				if(ts != null){
+					rtp.setTravelStyleAlias(ts.getAlias());
+				}
+			}
+			 rt.setRelates(relates);
+		}
+		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
+		List<String> itids = Arrays.asList(itemIds.split(","));
+		List<TravelItem> items = travelItemService.queryByIds(itids);
+		String ptopath = FilePros.uploadPtopath();
+		List<String> photoList = Lists.newArrayList();
+		for(TravelItem ti:items){
+			String cover = ti.getCover();
+			if(StringUtils.isNotEmpty(cover)){
+				String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+				ti.setCover(realCover);
+			}
+			String photos = ti.getPhotos();
+			if(StringUtils.isNotEmpty(photos)){
+				List<String> array = Arrays.asList(photos.split("\\|"));
+				for(String name:array){
+					String realname = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ name;//Constants.basePhoto
+					photoList.add(realname);
+				}
+			}
+		}
+		rt.setPhotoList(photoList);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("items", items);
+		map.put("rt", rt);
+		return forward("front/trek/hiking",map); 
 	}
 	/**
 	 * 

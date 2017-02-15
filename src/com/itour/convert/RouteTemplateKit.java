@@ -30,6 +30,7 @@ public class RouteTemplateKit{
 		vo.setTitle(rt.getTitle());
 		vo.setAlias(rt.getAlias());
 		vo.setShortContent(rt.getShortContent());
+		vo.setRouteCode(rt.getRouteCode());
 		return vo;
 	}
 }

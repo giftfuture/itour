@@ -1,7 +1,5 @@
 <%@ page language="java" import="java.lang.*,java.util.Date" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -108,6 +106,34 @@ body {
           </tr>
         </table>
         </td>
+        <td rowspan=2>
+        		<c:forEach var="sortitem" items="${sortedItems}" varStatus="">
+		        <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
+		      <tr>
+		        <td width="648"><span class="STYLE5"><c:out value="${sortitem.key }"></c:out></span></td>
+		        <td width="432"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
+		        <c:if test="${fn:length(sortitem.value)>= maxd}">
+		         | <a href="${basePath}destination/moredests">显示更多</a>
+		         </c:if>
+		        </div> </td>
+		      </tr>
+		    </table>
+		      <table border="0" align="center" cellpadding="5" cellspacing="0">
+		      <tr>
+			     <c:forEach items="${sortitem.value}" var="ti">
+			      	<td><c:out value="${ti.item}"></c:out><img alt="" src="${basePath }${ti.cover}"></td>
+			      </c:forEach>
+		       <!--  <td rowspan="2"><img src="images/Route001.jpg" width="420" height="233" /></td>
+		        <td><img src="images/Route001.jpg" width="197" height="110" /></td>
+		        <td><img src="images/Route001.jpg" width="197" height="110" /></td> -->
+		      </tr>
+		     <!--  <tr>
+		        <td><img src="images/Route001.jpg" width="197" height="110" /></td>
+		        <td><img src="images/Route001.jpg" width="197" height="110" /></td>
+		      </tr> -->
+		    </table>
+		    </c:forEach>
+        </td>
         </tr>
         <tr height="30%">
     	<td width="275" valign="top">
@@ -126,8 +152,7 @@ body {
                    onSelect:function(v){
                    	var urlurl = '${basePath}travelItem/queryByScope?scopeAlias='+v.key;
                    	if(v.key){
-                   	$('#sightSpots').combobox('reload',urlurl);
-                   }}">
+                   	$('#sightSpots').combobox('reload',urlurl);}}">
                   <input name="sightSpots" id="sightSpots" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'">
                   <br />
                 旅行方式：
@@ -155,7 +180,7 @@ body {
         <img src="images/未标题-2 拷贝.jpg" width="229" height="374" />
         </div></td>
     <td width="70%" valign="top">
-    <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
+    <%-- <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
       <tr>
         <td width="648"><span class="STYLE5">四川</span></td>
         <td width="432"><div align="right">12个目的地 | <a href="${basePath }destination/toMoreDest">显示更多</a></div></td>
@@ -224,7 +249,7 @@ body {
           <td><img src="images/Route001.jpg" width="197" height="110" /></td>
           <td><img src="images/Route001.jpg" width="197" height="110" /></td>
         </tr>
-      </table>
+      </table> 
       <p>&nbsp;</p>
       <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
         <tr>
@@ -242,7 +267,9 @@ body {
           <td><img src="images/Route001.jpg" width="197" height="110" /></td>
           <td><img src="images/Route001.jpg" width="197" height="110" /></td>
         </tr>
-      </table></td>
+      </table>--%>
+      
+      </td>
   </tr>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>

@@ -1,16 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
-<%    
-String path = request.getContextPath();    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<!DOCTYPE HTML>
 <html>
   <head>
-     <title>itour</title>
+     <title>itour后台管理界面</title>
      <base href="<%=basePath%>">
 	 <meta http-equiv="pragma" content="no-cache">  
 	 <meta http-equiv="cache-control" content="no-cache">  
@@ -19,10 +12,6 @@ pageContext.setAttribute("basePath",basePath);
 	 <meta http-equiv="description" content="This is my page"> 
 	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <link rel="stylesheet" type="text/css" href="css/main.css">
-     <script type="text/javascript">
-		var basePath = '${basePath}';
-	</script>
-  	 <jsp:include page="/WEB-INF/views/server/resource.jsp"></jsp:include>
      <script type="text/javascript" src="js/ux/main/main.js"></script>
   </head>
   <body class="easyui-layout">

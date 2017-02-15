@@ -19,8 +19,8 @@
  	 	<p class="ui-fields">
  	 	   <label class="ui-label">账号:</label> 
  	 	   <input name="email" class="easyui-box ui-text" style="width:100px;">
-            <label class="ui-label">状态: </label><input name="state" class="easyui-box ui-text" style="width:100px;">
-            <label class="ui-label">授予角色: </label><input name="roleStr" class="easyui-box ui-text" style="width:100px;">
+            <label class="ui-label">状态: </label><select name="state" class="easyui-combobox ui-text" style="width:100px;"><option>--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>
+            <label class="ui-label">授予角色: </label><input name="roleStr" class="easyui-combobox"  style="width:100px;" data-options="valueField:'number',textField:'roleName',mode:'remote',panelHeight:'auto',editable:false,method:'post',url:'${basePath}sysRole/loadRoleList'">
         </p>
         <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  

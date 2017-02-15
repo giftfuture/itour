@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.ShowHappyDao">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.itour.entity.ShowHappy">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="status" property="status" />
+		<result column="update_time" property="updateTime" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="customer" property="customer" />
+		<result column="result" property="result" />
+		<result column="signature" property="signature" />
+		<result column="area" property="area"/>
+		<result column="route" property="route"/>
+		<result column="tour_time" property="tourTime"/>
+	</resultMap>
+
+	<!-- feedback table all fields -->
+	<sql id="Base_Column_List">
+		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and show_happy.id like CONCAT('%', #{id}, '%')
+			</if>
+			<if test="createTime != null ">
+	  <![CDATA[  and  DATE_FORMAT(show_happy.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
+			</if>
+			<if test="status != null and status != 0">
+				and status = #{status}
+			</if>
+			<if test="updateTime != null">
+	 <![CDATA[  and  DATE_FORMAT(show_happy.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
+			</if>
+				<if test="tourTime != null">
+	 <![CDATA[  and  DATE_FORMAT(tour_time,'%Y-%m-%d')  = DATE_FORMAT( #{tourTime},'%Y-%m-%d') ]]>
+			</if>
+			<if test="title != null and title != ''">
+				and title like CONCAT('%', #{title}, '%')
+			</if>
+			<if test="content != null and content != ''">
+				and content like CONCAT('%', #{content}, '%')
+			</if>
+			<if test="customer != null and customer != ''">
+				and customer like CONCAT('%', #{customer}, '%')
+			</if>
+			<if test="result != null and result != ''">
+				and result  like CONCAT('%', #{result}, '%')
+			</if>
+			<if test="area != null and area != ''">
+				and area like CONCAT('%', #{area}, '%')
+			</if>
+			<if test="route != null and route != ''">
+				and route like CONCAT('%', #{route}, '%')
+			</if>
+			<if test="signature != null and signature != ''">
+				and signature like CONCAT('%', #{signature}, '%')
+			</if>
+		</trim>
+	</sql>
+	<!-- 修改记录，只修改只不为空的字段 -->
+	<update id="update" parameterType="com.itour.entity.ShowHappy">
+		update show_happy set update_time=now(),
+		<trim suffixOverrides=",">
+			<if test="status != null and status != 0 ">
+				status=#{status},
+			</if>
+			<if test="title != null and title != '' ">
+				title=#{title},
+			</if>
+			<if test="content != null and content != '' ">
+				content=#{content},
+			</if>
+			<if test="customer != null and customer != '' ">
+				customer=#{customer},
+			</if>
+			<if test="result != null and result != '' ">
+				result=#{result},
+			</if>
+			<if test="signature != null and signature != '' ">
+				signature=#{signature},
+			</if>
+			<if test="area != null and area != '' ">
+				area=#{area},
+			</if>
+			<if test="route != null and route !='' ">
+				route=#{route},
+			</if>
+			<if test="tourTime != null ">
+				tour_time=#{tourTime}
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<!-- 插入记录 -->
+	<insert id="add" parameterType="com.itour.entity.ShowHappy">
+		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
+			SELECT LAST_INSERT_ID() </selectKey> -->
+		insert into
+		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time)
+		values(#{id},#{customer},now(),now(),#{status},#{content},#{title},#{result},#{signature},#{area},#{route},#{tourTime})
+	</insert>
+
+
+	<!-- 删除记录 -->
+	<delete id="delete" parameterType="java.lang.String">
+		delete from show_happy where id = #{id}
+	</delete>
+
+	<!-- 根据id查询 幸福分享 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
+		 content,result,signature,area,tour_time,route_template.title route
+		from show_happy left join route_template on show_happy.route = route_template.id where show_happy.id = #{id}  
+	</select>
+
+	<!-- 幸福分享 列表总数 -->
+	<select id="queryByCount" resultType="java.lang.Integer"
+		parameterType="com.itour.base.page.BasePage">
+		select count(1) from show_happy
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<!-- 查询幸福分享列表 -->
+	<select id="queryByList" resultMap="BaseResultMap"
+		parameterType="com.itour.base.page.BasePage">
+		select show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
+		 content,result,signature,area,tour_time,route_template.title route
+		from show_happy left join route_template on show_happy.route = route_template.id 
+		<include refid="Example_Where_Clause" />
+		<if test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+</mapper>   

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Random;
 
@@ -15,7 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*import com.itour.base.util.File;
+import com.itour.base.util.FileInputStream;*/
 import com.itour.base.util.SessionUtils;
+import com.itour.util.Constants;
 
 public class ImageServlet extends HttpServlet {
 
@@ -170,4 +175,50 @@ public class ImageServlet extends HttpServlet {
 		return new Color(r, g, b);
 	}
 
+	/**
+	 * "<div class='pic'><img alt='显示图片'src='${ctx}/alaram/alaram!viewImages.action?alaramPic="+ pic +"'></img></div>"
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public String viewImages(HttpServletRequest request, HttpServletResponse response){
+		//pic为读取到图片的存储路径（数据库中存储的字段值）
+		String pic = request.getParameter("alaramPic");
+		ServletOutputStream out = null;
+		FileInputStream ips = null;
+		try {
+			// ALARM_FILE_PATH为本地图片存放路径， imagePath为图片的真实路径  Const.ALARM_FILE_PATH
+			String imagePath = Constants.ALARM_FILE_PATH  + pic;
+			ips = new FileInputStream(new File(imagePath));
+			response.setContentType("multipart/form-data");
+			out = response.getOutputStream();
+			//读取文件流
+			int i = 0;
+			byte[] buffer = new byte[4096];
+			while ((i = ips.read(buffer)) != -1) {
+			//写文件流
+			out.write(buffer, 0, i);
+		}
+		out.flush();
+			ips.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (ips != null) {
+				try {
+					ips.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
 }

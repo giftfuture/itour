@@ -9,7 +9,6 @@ var YDataGrid = function(config){
 			'remove': actionUrl.remove||'delete',
 			'updatePwd':actionUrl.updatePwd||'updatePwd'
 		}
-		
 		//Grid DataList
 		var Grid = $('#data-list');
 		//Form
@@ -33,18 +32,21 @@ var YDataGrid = function(config){
 			},
 			//add按钮事件
 			add: function(callback){
-				Win.edit.css("display","inline");
+				//Win.edit.css("display","inline");
+				Win.edit.show();
 				Win.edit.dialog('open');
 				Form.edit.resetForm();
 				//回调函数
 				if(jQuery.isFunction(callback)){
+					console.log(callback);
 					callback();
 				}
 			},
 			//edit 按钮事件
 			edit:  function(callback){
 				//Win.edit.removeAttr("display");
-				Win.edit.css("display","inline");
+				//Win.edit.css("display","inline");
+				Win.edit.show();
 				var record = Utils.getCheckedRows();
 				if (Utils.checkSelectOne(record)){
 					itour.progress();
@@ -67,7 +69,7 @@ var YDataGrid = function(config){
 			refresh: function(callback){
 				var param = Form.search.serializeObject();
 				//Grid.datagrid("resize");
-				console.log(param);
+				//console.log(param);
 				Grid.datagrid('reload',param);
 				//回调函数
 				if(jQuery.isFunction(callback)){
@@ -117,7 +119,7 @@ var YDataGrid = function(config){
 				 }
 			},
 			//关闭按钮事件
-			close : function (callback){
+			close:function (callback){
 				$.messager.confirm('确认','你确认关闭窗口?',function(r){  
 				    if (r){  
 				     	Win.edit.dialog('close');
@@ -272,8 +274,7 @@ var YDataGrid = function(config){
 					Grid.datagrid('uncheckAll');
 				},
 				onSelect:function(rowIndex, rowData){
-					//选择一行
-					var rows = Grid.datagrid('getRows');
+					var rows = Grid.datagrid('getRows');//选择一行
 					$.each(rows,function(i){
 						if(i != rowIndex){
 							Grid.datagrid('uncheckRow',i);
@@ -291,9 +292,13 @@ var YDataGrid = function(config){
 			var _url = urls['msUrl'] + 'main/getActionBtn';
 			var data = {'url':window.location.href};
 			//查询页面授权的btnType
+			//console.log(_url);
+			//console.log(data);
 			itour.ajaxJson(_url,data,function(data){
+				//console.log(data);
 				if(data.success){
 					if(data.allType){
+						//console.log(tbars);
 						Grid.datagrid({'toolbar':tbars});
 					}else{
 						var newBars = [];
@@ -320,7 +325,7 @@ var YDataGrid = function(config){
 			});
 		}
 		
-		//初始话form
+		//初始化form
 		var initForm = function(){
 			if(Form.search && Form.search[0]){
 				Form.search.find("#btn-search").click(Events.search); //保存事件
@@ -349,7 +354,6 @@ var YDataGrid = function(config){
 				Win.edit.find("#btn-close").click(Events.close);//关闭窗口
 			}
 		}
-		
 		//this 返回属性
 		this.win = Win;
 		this.form = Form;

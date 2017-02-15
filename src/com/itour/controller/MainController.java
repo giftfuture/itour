@@ -114,7 +114,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/logIn", method = RequestMethod.POST)
-	public void toLogin(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public void logIn(String email,String pwd,String verifyCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	/*	Map<String,Object> context = getRootMap();
 		SysUser u = SessionUtils.getUser(request);
 		if(u !=null){
@@ -129,34 +129,33 @@ public class MainController extends BaseController {
 		String vcode  = SessionUtils.getValidateCode(request);
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isBlank(verifyCode)){
-			sendFailureMessage(response, "验证码不能为空.");
+	 		failureMessage(response, "验证码不能为空.");
 			return;
 		}
 		//判断验证码是否正确
-	 	if(!verifyCode.toLowerCase().equals(vcode)){
-	 	//if(!verifyCode.toLowerCase().equals(vcode) || verifyCode.toLowerCase() != vcode){
-			sendFailureMessage(response, "验证码输入错误.");
+	 	if(!verifyCode.toLowerCase().equals(vcode)){   
+	 		failureMessage(response, "验证码输入错误.");
 			return;
 		} 
 		//email="admin@qq.com";
 		//pwd="admin";
 		if(StringUtils.isBlank(email)){
-			sendFailureMessage(response, "账号不能为空.");
+			failureMessage(response, "账号不能为空.");
 			return;
 		}
 		if(StringUtils.isBlank(pwd)){
-			sendFailureMessage(response, "密码不能为空.");
+			failureMessage(response, "密码不能为空.");
 			return;
 		}
 		 String msg = "用户登录日志:";
 		 SysUser user = sysUserService.queryLogin(email,MethodUtil.encryptSHA(pwd));
 		if(user == null){//记录错误登录日志
 			logger.debug(msg+"["+email+"]"+"账号或者密码输入错误.");
-			sendFailureMessage(response, "账号或者密码输入错误.");
+			failureMessage(response, "账号或者密码输入错误.");
 			return;
 		}
 		if(STATE.DISABLE.key == user.getState()){
-			sendFailureMessage(response, "账号已被禁用.");
+			failureMessage(response, "账号已被禁用.");
 			return;
 		}
 		//登录次数加1 修改登录时间
@@ -174,8 +173,9 @@ public class MainController extends BaseController {
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		logger.debug(message);
 		//return forword("/main/main",context);
-		sendSuccessMessage(response, message);
+		successMessage(response, message);
 		//return new ModelAndView("redirect:/main/manage","map",context);
+		//return "redirect:/main/manage";
 	}
 	
 	/**

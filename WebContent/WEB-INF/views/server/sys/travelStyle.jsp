@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <!DOCTYPE HTML>
 <html>
-  <head>
+<head>
  <base href="<%=basePath%>">
  <meta http-equiv="pragma" content="no-cache">  
  <meta http-equiv="cache-control" content="no-cache">  
@@ -29,11 +29,11 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="出行方式" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:320px;">  
+     <div id="edit-win" class="easyui-dialog" title="旅行方式" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:320px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">旅行方式</div>
+		     	   <div class="ftitle">旅行方式</div> 
 					<div class="fitem">
 						<label>旅行方式:</label>
 						<input name="type" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写旅行方式">

@@ -17,7 +17,7 @@
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox ui-text" style="width:100px;">
+			<label class="ui-label">创建时间:</label><input name="createTime" class="easyui-datetimebox ui-text" data-options="editable:false,region:'north',split:true,border:false"  style="width:100px;">
 			<label class="ui-label">状态:</label>
 			<select name="status" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>
