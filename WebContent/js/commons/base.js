@@ -58,7 +58,7 @@ var itour={
 			 	sync:false,
 			 	success:function(data){
 			 		//console.log(data);
-			 		var checklogin = itour.checkLogin(data);
+			 		var checklogin = itour.checkLogin($(data).text());
 			 		//console.log(checklogin);
 			 		//检查登录
 			 		if(!checklogin){
@@ -66,13 +66,13 @@ var itour={
 			 		}	
 			 		if($.isFunction(callback)){
 			 			//console.log(callback);
-			 			callback(data);
+			 			callback($(data).text());
 			 		}
 			 	},
 			 	error:function(response, textStatus, errorThrown){
 			 		try{
 			 			itour.closeProgress();
-			 			var data = $.parseJSON(response.responseText);
+			 			var data = $.parseJSON($(response.responseText).text());
 			 			//console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
@@ -96,19 +96,21 @@ var itour={
 			 	iframe: true,
 			 	//headers : {"ClientCallMode" : "ajax"}, //添加请求头部
 			 	async:false,  //异步请求
-		 	   // contentType: "application/json; charset=utf-8", 
+		 	   // contentType: "application/json; charset=utf-8", 								
 			 	success:function(data){
 			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
 			 		//var result = data.match(reg);  
-			 		var result= $.parseJSON(data);
+			 		//console.log(data+"    "+result);
+			 		var jsondata= $.parseJSON($(data).text());
 			 		if($.isFunction(callback)){
-			 			callback(result);
+			 			//console.log(callback);
+			 			callback(jsondata);
 			 		}
 			 	},
 			 	error:function(response, textStatus, errorThrown){
 			 		try{
 			 			itour.closeProgress();
-			 			var data = $.parseJSON(response.responseText);
+			 			var data = $.parseJSON($(response.responseText).text());
 			 			//console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
@@ -131,16 +133,17 @@ var itour={
 			//ajax提交form
 			itour.submitForm(form,function(data){
 				itour.closeProgress();
-			 	if(data.success||data.success=="true"){
+				var jsondata = $.parseJSON($(data).text());
+			 	if(jsondata.success||jsondata.success=="true"){
 			 		//console.log(callback);
-			 		//if($.isFunction(callback)){
+			 		if($.isFunction(callback)){
 			 			//console.log(data);
-				    //   	callback(data);
-				   // }else{
+				       	callback(jsondata);
+				    }else{
 			       		itour.alert('提示','保存成功.','info');
-			      //  } 
+			        } 
 		        }else{
-		       	   itour.alert('提示',data.msg,'error');  
+		       	   itour.alert('提示',jsondata.msg,'error');  
 		        }
 			});
 		 }
@@ -155,12 +158,13 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 			itour.closeProgress();
-			if(data.success){
+			var jsondata = $.parseJSON($(data).text());
+			if(jsondata.success){
 				if($.isFunction(callback)){
-			       	callback(data);
+			       	callback(jsondata);
 			    }
 			}else{
-				itour.alert('提示',data.msg,'error');  
+				itour.alert('提示',jsondata.msg,'error');  
 			}
 		});
 	},
@@ -174,13 +178,14 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 			itour.closeProgress();
-			if(data.success){
+			var jsondata = $.parseJSON($(data).text());
+			if(jsondata.success){
 				if($.isFunction(callback)){
 					//console.log("base:"+data)
-			       	callback(data);
+			       	callback(jsondata);
 			    }
 			}else{
-				itour.alert('提示',data.msg,'error');  
+				itour.alert('提示',jsondata.msg,'error');  
 			}
 		});
 	},
@@ -189,12 +194,13 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 				itour.closeProgress();
-				if(data.success){
+				var jsondata = $.parseJSON($(data).text());
+				if(jsondata.success){
 					if($.isFunction(callback)){
-				       	callback(data);
+				       	callback(jsondata);
 				    }
 				}else{
-					itour.alert('提示',data.msg,'error');  
+					itour.alert('提示',jsondata.msg,'error');  
 				}
 		});
 	}

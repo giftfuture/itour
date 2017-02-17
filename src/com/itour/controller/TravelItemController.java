@@ -511,7 +511,7 @@ public class TravelItemController extends BaseController{
 	public List<Map<String,String>> allScopes(HttpServletResponse response) throws Exception{
 		List<HashMap<String,String>> maps = travelItemService.allScopes();
 		List<Map<String,String>> newlist = Lists.newArrayList();
-		newlist.add(new HashMap(){{put("key","");put("value","全部區域");}});
+		newlist.add(new HashMap(){{put("scopeAlias","");put("scope","全部區域");}});
 		newlist.addAll(maps);
 		return newlist;
 	}

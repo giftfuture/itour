@@ -85,7 +85,14 @@ public class BaseController {
 		//rootMap.putAll(URLUtils.getUrlMap());
 		return rootMap;
 	}
-	
+	public Map<String,String> getHashMap(){
+		Map<String,String> map = Maps.newHashMap();
+		//result.put(SUCCESS, false);
+		//result.put(MSG, message);
+		//添加url到 Map中
+		//rootMap.putAll(URLUtils.getUrlMap());
+		return map;
+	}
 	public ModelAndView forward(String viewName,Map context){
 		return new ModelAndView(viewName,context); 
 	}

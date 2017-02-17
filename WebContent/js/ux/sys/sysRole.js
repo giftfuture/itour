@@ -112,7 +112,6 @@ itour.sysRole = function(){
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
-			
 			_this.menu.tree({
 				url:'sysMenu/getMenuTree',
 				checkbox:true

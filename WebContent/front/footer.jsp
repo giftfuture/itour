@@ -7,9 +7,9 @@
     <td width="50px" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
     <td width="50px" bgcolor="#CCCCCC" class="f14-gao1" >  
        旅行方式：<input name="travel_style" class="easyui-combobox"  style="width:100px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
-        <br />旅游区域：
       <label>
-        <input name="areas" class="easyui-combobox"  style="width:100px;" data-options="valueField:'key',textField:'value',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
+        <br />旅游区域：
+        <input name="areas" class="easyui-combobox"  style="width:100px;" data-options="valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
         <br />  假期天数：<a href="javascript:void(0)">
 	<select name="vacation" style="width:100px">
 	  <option selected="selected">-所有-</option>

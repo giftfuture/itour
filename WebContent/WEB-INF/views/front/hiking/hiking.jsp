@@ -1,60 +1,12 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html class="gr__itours_com_cn">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>徒步旅行路线</title>
-<link rel="stylesheet" href="${basePath}css/easyzoom/example.css" />
-<link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
-<link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
-<link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
-<script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/plug-in/easyzoom.js"></script>
-<script type="text/javascript">
-<!-- Google Analytics tracking code -->
-var _gaq=[['_setAccount','UA-2508361-9'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
-function copyUrl(){
-	var clipBoardContent=this.location.href;
-	//window.clipboardData.setData("Text",clipBoardContent);
-	  if (window.clipboardData) 
-        {
-            window.clipboardData.setData("Text", clipBoardContent);
-        }else{
-            var flashcopier = 'flashcopier';
-            if(!document.getElementById(flashcopier)) 
-            {
-              var divholder = document.createElement('div');
-              divholder.id = flashcopier;
-              document.body.appendChild(divholder);
-            }
-            document.getElementById(flashcopier).innerHTML = '';
-            var divinfo = '<embed src="${basePath}/flash/_clipboard.swf" FlashVars="clipboard='+encodeURIComponent(clipBoardContent)+'" width="0" height="0" type="application/x-shockwave-flash"></embed>';
-            document.getElementById(flashcopier).innerHTML = divinfo;
-        }
-}
-function addFavorite() {
-    var url = window.location;
-    var title = document.title;
-    //var ua = navigator.userAgent.toLowerCase();
-    if (document.all) { 
-    	window.external.AddFavorite(url,title); 
-    }else if (window.sidebar){ 
-    window.sidebar.addPanel(title, url, ""); 
-    }else if(window.opera && window.print){
-    	var elem = document.createElement('a');
-    	ele.setAttribute('href',url);
-    	ele.setAttribute('title',title);
-    	ele.setAttribute('rel','sidebar');
-    	elem.click();
-    }else{
-    	alert('加入收藏夹失败，请使用Ctrl+D进行添加');
-    }
-}
-</script>
 <style type="text/css">
 <!--
 body {
@@ -113,75 +65,49 @@ body {
 -->
 </style>
 </head>
-<body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="200" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
 </table>
 <br />
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td class="h1-black">${rt.title}</td>
+    <td class="h1-black">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</td>
   </tr>
 </table>
 <br />
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="600"><img src="${basePath}images/Route001.jpg" width="600" height="338" /></td>
+        <td width="600"><img src="images/Route001.jpg" width="600" height="338" /></td>
       </tr>
       <tr>
         <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
-            <div align="center">
-<!--滚动图片 start-->
-<DIV class=rollphotos>
-<DIV class=blk_29>
-<DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
-<DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
-<c:forEach items="${rt.photoList}" var="photo">
-<DIV class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 
-border=0></A> 
-</DIV>
-</c:forEach>
-<!-- 图片列表 end --></DIV>
-<DIV class=RightBotton id=RightArr><img src="${basePath}images/arrow01-2.gif" width="20" height="40" /></DIV></DIV>
-
-
-<SCRIPT language=javascript type=text/javascript>
-		<!--//--><![CDATA[//><!--
-		var scrollPic_02 = new ScrollPic();
-		scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
-		scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
-		scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
-		scrollPic_02.frameWidth     = 908;//显示框宽度
-		scrollPic_02.pageWidth      = 152; //翻页宽度
-		scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
-		scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
-		scrollPic_02.autoPlay       = false; //自动播放
-		scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
-		scrollPic_02.initialize(); //初始化
-		//--><!]]>
-</SCRIPT>
-</DIV>
-<!--滚动图片 end-->
-</div>
+              <td><img src="images/arrow01-1.gif" width="20" height="40" /></td>
+              <td><div align="center"><img src="images/Route001.jpg" width="100" height="55" /></div></td>
+              <td><div align="center"><img src="images/Route001.jpg" width="100" height="55" /></div></td>
+              <td><div align="center"><img src="images/Route001.jpg" width="100" height="55" /></div></td>
+              <td><div align="center"><img src="images/Route001.jpg" width="100" height="55" /></div></td>
+              <td><div align="center"><img src="images/Route001.jpg" width="100" height="55" /></div></td>
+              <td><img src="images/arrow01-2.gif" width="20" height="40" /></td>
             </tr>
         </table></td>
       </tr>
+
     </table></td>
     <td width="476" valign="top"><div align="center"><span class="STYLE2">这条线路适合我吗？</span>
     </div>
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
         <tr>
           <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
-          <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126"><strong>徒步 </strong><a href="#">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
-          <td width="350" class="STYLE126">${rt.routeCode}</td>
+          <td width="350" class="STYLE126">tb0001</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
@@ -205,11 +131,7 @@ border=0></A>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步难度</strong></div></td>
-          <td class="STYLE126"><img src="${basePath}images/shoe-1.gif" width="16" height="16" />
-          <img src="${basePath}images/shoe-1.gif" width="16" height="16" /> 
-          <img src="${basePath}images/shoe-1.gif" width="16" height="16" /> 
-          <img src="${basePath}images/shoe-1.gif" width="16" height="16" /> 
-          <img src="${basePath}images/shoe-2.gif" width="16" height="16" /> <a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126"><img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-1.gif" width="16" height="16" /> <img src="images/shoe-2.gif" width="16" height="16" /> <a href="#">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
@@ -225,14 +147,14 @@ border=0></A>
     <br />
     <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="https://www.facebook.com/login.php">分享至FB</a></td>
-        <td><img src="${basePath}images/share.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="javascript:copyUrl()">复制链接</a></td>
-        <td><img src="${basePath}images/favorite01.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:addFavorite()">收藏本页</a></td>
-        <td><img src="${basePath}images/print.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:print()">打印页面</a></td>
+        <td><img src="images/facebook.png" width="24" height="24" /></td>
+        <td><a href="#">分享至FB</a></td>
+        <td><img src="images/share.png" width="24" height="24" /></td>
+        <td><a href="#">复制链接</a></td>
+        <td><img src="images/favorite01.png" width="24" height="24" /></td>
+        <td><a href="#">收藏本页</a></td>
+        <td><img src="images/print.png" width="24" height="24" /></td>
+        <td><a href="#">打印页面</a></td>
       </tr>
     </table></td>
   </tr>
@@ -240,22 +162,22 @@ border=0></A>
 <br />
 <br />
 <br />
-<div id="tab-container" class='tab-container' width="100%" border="0" cellpadding="3" cellspacing="1">
- <ul class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#review">整体概览</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#detail-route">详细行程</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#need-know">行前需知</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#feed-back">客户反馈</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#feed-back">咨询预定</a></li>
- </ul>
- <div class='panel-container'>
-  <div id="review">
-  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">整体概览</span></div></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">详细行程</span></div></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">行前需知</span></div></td>
+    <td width="110" bgcolor="#F0F0F0"><div align="center"><span class="STYLE2">客户反馈</span></div></td>
+    <td width="533">&nbsp;</td>
+    <td width="84"><strong>咨询预定</strong></td>
+  </tr>
+</table>
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td width="761" valign="top" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
             <br />
@@ -270,22 +192,18 @@ border=0></A>
             。去幾天~隨便您<br />
             。一兩個人OK，三五好友也行，公司出行更好<br />
             。隨時為您安排私密出團 </span><br />
-          <br />  
+          <br />
         </td>
         <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
-   			<div class="easyzoom easyzoom--overlay">
-				<a href="${basePath}images/map-002.jpg">
-					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
-				</a>
-			</div>
-          </div>
+                <img src="img-test/map-002.jpg" width="260" height="127" /><br />
+          点击图片放大</div>
             <br />
             <br />
         </td>
       </tr>
     </table>
       <br />
-      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
+      <table width="1100" border="0" align="center" cellpadding="5" cellspacing="1">
         <tr>
           <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>天数</strong></strong></div></td>
           <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>行程</strong></strong></div></td>
@@ -345,25 +263,23 @@ border=0></A>
       <br /></td>
   </tr>
   <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-  </div>
-  <div id="detail-route" style="display:none">
-  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<br />
+<br />
+<table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
+    <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
   </tr>
 </table>
-  </div>
-  <div id="need-know" style="display:none">
-  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td valign="top"><p>★<strong>没有最好的行程，只有最适合您的旅程。</strong><br />
             ★我们了解您的疑虑，所以只需告诉我们您的需求，其它 的我们帮你搞定。 <br />
@@ -398,30 +314,30 @@ border=0></A>
             <table width="600" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
-                <td width="264"><span class="STYLE3"><img src="${basePath}images/tailor.gif" width="134" height="32" /></span></td>
+                <td width="264"><span class="STYLE3"><img src="images/tailor.gif" width="134" height="32" /></span></td>
               </tr>
             </table>            </td>
         </tr>
       </table></td>
   </tr>
   <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-  </div>
-  <div id="feed-back" style="display:none">
-  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<br />
+<br />
+<table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
+    <td width="32"><img src="images/ask03.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
               <tr>
@@ -470,7 +386,7 @@ border=0></A>
           <td width="733" valign="top"><table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
               <tr>
                 <td width="32"><div align="center"></div>
-                    <img src="${basePath}images/man.gif" width="32" height="32" /></td>
+                    <img src="images/man.gif" width="32" height="32" /></td>
                 <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年6月16日 08：11 </span></td>
               </tr>
               <tr>
@@ -488,7 +404,7 @@ border=0></A>
             </table>
               <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
                 <tr>
-                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
+                  <td width="32"><div align="center"><img src="images/woman.png" width="32" height="32" /></div></td>
                   <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年5月12日 12：11 </span></td>
                 </tr>
                 <tr>
@@ -507,7 +423,7 @@ border=0></A>
             <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
                 <tr>
                   <td width="32"><div align="center"></div>
-                      <img src="${basePath}images/man.gif" width="32" height="32" /></td>
+                      <img src="images/man.gif" width="32" height="32" /></td>
                   <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年2月1日 23：30 </span></td>
                 </tr>
                 <tr>
@@ -525,7 +441,7 @@ border=0></A>
               </table>
             <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
                 <tr>
-                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
+                  <td width="32"><div align="center"><img src="images/woman.png" width="32" height="32" /></div></td>
                   <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年1月2日 19：50 </span></td>
                 </tr>
                 <tr>
@@ -558,21 +474,20 @@ border=0></A>
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-  </div>
-  </div>
-  </div>
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<br />
+<br />
+<table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="32"><img src="${basePath}images/msg02.png" width="32" height="32" /></td>
+    <td width="32"><img src="images/msg02.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程回忆幸福<span class="STYLE14">——将幸福定格</span></span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td valign="top"><span class="STYLE126"><strong><br />
             </strong></span>
@@ -601,7 +516,7 @@ border=0></A>
                   </table></td>
                   <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
+                        <td width="260"><div align="center"><img src="images/Route001.jpg" width="305" height="165" /></div></td>
                       </tr>
                   </table></td>
                 </tr>
@@ -635,7 +550,7 @@ border=0></A>
                   </table></td>
                   <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
+                        <td width="260"><div align="center"><img src="images/Route001.jpg" width="305" height="165" /></div></td>
                       </tr>
                   </table></td>
                 </tr>
@@ -653,23 +568,23 @@ border=0></A>
       </table></td>
   </tr>
   <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
 <br />
 <br />
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
+    <td width="32"><span class="h2-24"><img src="images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 01 </strong></td>
             <td width="972"><span class="STYLE9">成都-四姑娘山</span><span class="STYLE148"><strong> 310km 住：四姑娘山鎮 </strong></span></td>
@@ -683,7 +598,7 @@ border=0></A>
                 </span></span>
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
-                    <td><div align="center"><img src="${basePath}images/Route001.jpg" width="271" height="152" /></div></td>
+                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
                   </tr>
                   <tr>
                     <td class="STYLE126"><div align="center">巴郎山</div></td>
@@ -691,7 +606,7 @@ border=0></A>
               </table></td>
           </tr>
         </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+        <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 02 </strong></td>
             <td width="972"><span class="STYLE148"><strong><span class="STYLE126">徒步：海子溝</span> 30km 住：四姑娘山镇</strong></span></td>
@@ -703,8 +618,8 @@ border=0></A>
                 <span class="STYLE126">【海子沟】</span>：风景如画<br />
                 <table width="300" border="0" cellspacing="1" cellpadding="5">
                   <tr>
-                    <td><div align="center"><img src="${basePath}images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"><img src="${basePath}images/Route001.jpg" width="271" height="152" /></div></td>
+                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
+                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
                     <td><div align="center"></div></td>
                   </tr>
                   <tr>
@@ -763,7 +678,7 @@ border=0></A>
               </table></td>
           </tr>
         </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+        <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 05</strong></td>
             <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
@@ -787,7 +702,7 @@ border=0></A>
               </table></td>
           </tr>
         </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+        <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 06</strong></td>
             <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
@@ -817,18 +732,18 @@ border=0></A>
 </table>
 <br />
 <br />
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath }images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td>★衣：高原的陽光很美也易傷人，墨鏡帶沿的帽子防曬露等是必要的，帶件外套，陽光下的溫度和陰涼處都有很大的差別，隨時加衣；<br />
 ★食：飲食和內地差別不大，各種菜系基本都有，有興趣還可以品嘗地道的藏餐以及印度尼泊爾等風味，個別景點需要我們為您準備路餐；<br />
@@ -839,12 +754,75 @@ border=0></A>
     <p>&nbsp;</p></td>
   </tr>
   <tr>
-    <td><img src="${basePath }images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
 <br />
 <br />
 <br />
+<table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+    <td width="48" bgcolor="#CCCCCC"><img src="images/search.png" width="48" height="48" /></td>
+    <td width="103" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
+    <td width="959" bgcolor="#CCCCCC" class="f14-gao1">旅游区域：
+      <label>
+        <select name="select">
+          <option>区域：</option>
+          <option>四川</option>
+          <option>西藏</option>
+          <option>新疆</option>
+          <option>云南</option>
+        </select>
+        <select name="select2">
+          <option>四姑娘山</option>
+          <option>川西</option>
+          <option>大香格里拉</option>
+        </select>
+        <input type="submit" name="Submit" value="Search" />
+        <br />
+        旅行方式：
+        <select name="select3">
+          <option selected="selected">-所有-</option>
+          <option>观光摄影</option>
+          <option>徒步</option>
+          <option value=" ">登山</option>
+          <option>自驾</option>
+        </select>
+        <br />
+        假期时间：<a href="#">所有</a> <a href="#">1-5天</a> <a href="#">6-9天</a> <a href="#">10-15天</a> <a href="#">16天+</a></label></td>
+  </tr>
+</table>
+<br />
+<br />
+<br />
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+  </tr>
+  <tr>
+    <td background="images/frame1-2.gif">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>
+</table>
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+  </tr>
+  <tr>
+    <td background="images/frame1-2.gif">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

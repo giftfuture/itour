@@ -47,6 +47,7 @@ public class SysRoleController extends BaseController{
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	
 	/**
 	 * 
 	 * @param url

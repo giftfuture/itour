@@ -23,4 +23,10 @@ public interface SysRoleDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @return
 	 */
 	public List<SysMenuBtn> queryByUserid(String userid);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int maxNumber();
 }

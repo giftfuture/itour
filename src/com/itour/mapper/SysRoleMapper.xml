@@ -59,21 +59,26 @@ where 1=1
 </trim>
 </sql>
    
-
+<select id="maxNumber" resultType="java.lang.Integer">
+select max(number) as number from sys_role 
+</select>
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.SysRole" >
 <!--   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level)
- values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},#{state},#{descr},#{level})
+  <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="number">
+	select max(number)+1 as number from sys_role 
+  </selectKey>
+  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number)
+ values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},#{state},#{descr},#{level},#{number})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.SysRole" >
 	update sys_role set updateTime=now(),
 	<trim  suffixOverrides="," >
-	<if test="roleName != null  and roleName != '' ">
+	<if test="roleName != null and roleName != '' ">
 		roleName=#{roleName},
 	</if>
 	<if test="createBy != null  ">

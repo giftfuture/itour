@@ -36,6 +36,13 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	List<TravelItem> queryByScopeAlias(@Param(value="scopeAlias")String scopeAlias);
+	
+	/**
+	 * 
+	 * @param scope
+	 * @return
+	 */
+	List<TravelItem> queryByScope(@Param(value="scope")String scope);
 	/**
 	 * 
 	 * @param ids

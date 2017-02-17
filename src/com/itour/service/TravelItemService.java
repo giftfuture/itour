@@ -78,6 +78,15 @@ public class TravelItemService<T> extends BaseService<T> {
 	public 	List<TravelItem> queryByScopeAlias(String scopeAlias){
 		return mapper.queryByScopeAlias(scopeAlias);
 	};
+	
+	/**
+	 * 
+	 * @param scope
+	 * @return
+	 */
+	public 	List<TravelItem> queryByScope(String scope){
+		return mapper.queryByScope(scope);
+	}
 	/**
 	 * @param style
 	 * @return

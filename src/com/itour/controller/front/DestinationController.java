@@ -64,12 +64,14 @@ public class DestinationController extends BaseController{
 	 				list = travelItemService.queryByScopeAlias(key);
 	 				if(list != null && list.size() > Constants.maxDestinations){
 	 					sublist = list.subList(0, Constants.maxDestinations);
-	 					String ptopath = FilePros.uploadPtopath();
-	 					for(TravelItem ti:sublist){
-	 						if(StringUtils.isNotEmpty(ti.getCover())){	 							
-	 							String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
-	 							ti.setCover(realCover);
-	 						}
+	 				}else{
+	 					sublist = list;
+	 				}
+	 				String ptopath = FilePros.uploadPtopath();
+	 				for(TravelItem ti:sublist){
+	 					if(StringUtils.isNotEmpty(ti.getCover())){	 							
+	 						String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+	 						ti.setCover(realCover);
 	 					}
 	 				}
 	 			}
@@ -82,7 +84,7 @@ public class DestinationController extends BaseController{
 	 			}
 	 		}
 	 	}
-	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());
+	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		
 		//设置页面数据
 		context.put("scopes", scopes); 
 		context.put("items", items);
@@ -103,9 +105,29 @@ public class DestinationController extends BaseController{
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object>  context = getRootMap();
-	 	TravelItem item = travelItemService.getByAlias(alias);
-		context.put("item", item); 
-		return forward("front/destination/destinations-sc",context); 
+	 	List<HashMap<String,String>> allScopes = travelItemService.allScopes();
+	 	Map<String,String> scopes = Maps.newHashMap();
+	 	for(Map<String,String> scope:allScopes){
+	 		String key= "";
+	 		String value="";
+	 		Iterator<String> it = scope.keySet().iterator();
+	 		while(it.hasNext()){
+	 			String next = it.next();
+	 			if(next.equalsIgnoreCase("scope")){
+	 				value = scope.get(next);
+	 			}
+	 			if(next.equalsIgnoreCase("scopeAlias")){
+	 				key = scope.get(next);
+	 			}
+	 			if(StringUtils.isNoneEmpty(key,value)){	 				
+	 				scopes.put(key, value);
+	 			}
+	 		}
+	 	}
+	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		
+		context.put("scopes", scopes); 
+		context.put("items", items);
+		return forward("front/destination/destdetail",context); 
 	}
 	/**
 	 * 
@@ -116,12 +138,19 @@ public class DestinationController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/moredests", method = RequestMethod.GET) 
-	public ModelAndView moredests(String scopeAlias,HttpServletRequest request) throws Exception{
-	 	Map<String,Object>  context = getRootMap();
-	 	List<TravelItem> list = travelItemService.queryByScopeAlias(scopeAlias);
-		//page.setDeleted(DELETED.NO.key);
-		context.put("list", list); 
-		return forward("front/destination/destinations-sc",context); 
+	@RequestMapping(value="/moredests/{scope}", method = RequestMethod.GET) 
+	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request) throws Exception{
+	 	Map<String,Object> context = getRootMap();
+	 	List<TravelItem> list = travelItemService.queryByScope(scope);//.queryByScopeAlias(scopeAlias);
+	 	String ptopath = FilePros.uploadPtopath();
+		for(TravelItem ti:list){
+				if(StringUtils.isNotEmpty(ti.getCover())){	 							
+					String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+					ti.setCover(realCover);
+				}
+			}
+		context.put("dests",scope); 	
+		context.put("list",list); 	
+		return forward("front/destination/moredests",context);   
 	}
 }

@@ -59,7 +59,7 @@ body {
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
    <tr>
     <td>
-		 <jsp:include page="/front/header.jsp" />
+		 <%@include file="/front/header.jsp"  %>
     </td>
   </tr>
   <tr>

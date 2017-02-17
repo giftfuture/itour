@@ -145,7 +145,14 @@ public class SysRoleService<T> extends BaseService<T> {
 	public List<T> queryByUserid(String userid){
 		return getDao().queryByUserid(userid);
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
+	public int maxNumber(){
+		return getDao().maxNumber();
+	}
+	
 	@Autowired
     private SysRoleDao<T> mapper;
 

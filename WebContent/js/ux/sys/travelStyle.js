@@ -151,7 +151,12 @@ itour.travelStyle = function(){
 							formatter:function(value,row,index){
 								return row.type;
 							}
-						},
+					},
+					{field:'alias',title:'英文简称',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.alias;
+							}
+					},
 					{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.remark+"").length>30){

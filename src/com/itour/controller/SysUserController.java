@@ -75,7 +75,7 @@ public class SysUserController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid  dataList(SysUserVo vo,HttpServletResponse response) throws Exception{
-		BasePage<SysUserVo> page = sysUserService.pagedQuery(vo);
+	  BasePage<SysUserVo> page = sysUserService.pagedQuery(vo);
 	  return dataGridAdapter.wrap(page);
 	}
 	
