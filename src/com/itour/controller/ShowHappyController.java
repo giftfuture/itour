@@ -1,6 +1,8 @@
 package com.itour.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,10 +26,15 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
 import com.itour.convert.ShowHappyKit;
 import com.itour.entity.ShowHappy;
+import com.itour.entity.TravelItem;
+import com.itour.entity.TravelStyle;
 import com.itour.service.ShowHappyService;
+import com.itour.util.Constants;
+import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.ShowHappyVo;
 
 /**
@@ -46,10 +55,39 @@ public class ShowHappyController extends BaseController{
 	private ShowHappyService showHappyService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	/**
+	 * 
+	 * @param vo
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/main") 
-	public ModelAndView main(ShowHappyVo vo,HttpServletRequest request) throws Exception{
-		return forward("front/happy/happiness"); 
+	public ModelAndView main(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
+		Map<String,Object> context = getRootMap();
+		ShowHappyVo vo = new ShowHappyVo();
+		vo.setPage(pageNo);
+		vo.getPager().setPageSize(Constants.perPage);
+		vo.getPager().setPageId(pageNo);
+		BasePage<Map<String, Object>> page = showHappyService.pagedQuery(vo);
+		context.put("records", page.getRecords());
+		context.put("pageNo",pageNo);
+		context.put("total",page.getTotal());
+		//context.put("rows",page.getRows());
+		return forward("front/happy/happiness",context); 
 	}
+	/**
+	 * 
+	 * @param vo
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/sharehappy") 
+	public ModelAndView sharehappy(ShowHappyVo vo,HttpServletRequest request) throws Exception{
+		return forward("front/happy/sharehappy"); 
+	}
+	
 	/**
 	 * 
 	 * @param url
@@ -85,6 +123,22 @@ public class ShowHappyController extends BaseController{
 	}
 	/**
 	 * 
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+}   @RequestParam("title") String alias,
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/detail/{title}", method = RequestMethod.GET) 
+	public ModelAndView detail(@PathVariable("title") String title,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+	//	map.put("items", items);
+	//	map.put("rt", rt);
+		return forward("front/happy/happydetail",context); 
+	}
+	/**
+	 * 
 	 * @param entity
 	 * @param typeIds
 	 * @param response
@@ -94,7 +148,7 @@ public class ShowHappyController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public String add(ShowHappyVo showhappy,HttpServletResponse response) throws Exception{
-		Map<String,Object> context = Maps.newHashMap();
+		Map<String,Object> context = getRootMap();
 		//response.setContentType("text/html;charset=UTF-8"); 
 		if(showhappy.getId()==null||StringUtils.isBlank(showhappy.getId().toString())){
 			showHappyService.add(ShowHappyKit.toEntity(showhappy));
@@ -122,7 +176,7 @@ public class ShowHappyController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(ShowHappyVo showhappy,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		//Map<String,Object>  context = Maps.newHashMap();
+		Map<String,Object> context = getRootMap();
 		if(showhappy.getId()==null||StringUtils.isEmpty(showhappy.getId().toString())){
 			showHappyService.add(ShowHappyKit.toEntity(showhappy));
 		}else{
@@ -146,7 +200,7 @@ public class ShowHappyController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = Maps.newHashMap();
+		Map<String,Object> context = getRootMap();
 		ShowHappy entity  = showHappyService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");

@@ -16,56 +16,6 @@
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 36px;
-	color: #666666;
-}
-.f24 {
-	font-size: 24px;
-	line-height: 40px;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE1 {color: #FF0000}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE3 {
-	color: #990000;
-	font-weight: bold;
-}
-.STYLE6 {	color: #FFFFFF;
-	font-weight: bold;
-}
-.STYLE7 {color: #CCCCCC}
-.STYLE9 {font-size: 14px; line-height: 30px; color: #333333; font-family: "微软雅黑"; }
--->
-</style>
 </head>
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

@@ -11,43 +11,11 @@
 <script src="${basePath}Scripts/AC_RunActiveContent.js" type="text/javascript"></script> --%>
 <link href="${basePath}/css/qzx.css" rel="stylesheet" type="text/css" />
 <link href="${basePath}/css/bodylink.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-<!--
-body {
-	background-color: #993333;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-a:link {
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: none;
-}
-a:active {
-	text-decoration: none;
-}
-.STYLE126 {font-size: 14px}
-.STYLE129 {
-	color: #000000;
-	font-weight: bold;
-}
-.STYLE130 {color: #000000}
-.STYLE134 {font-size: 24px}
--->
-</style>
 </head>
 <body>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
    <tr>
-    <td>
-    <%@include file="/front/header.jsp"  %>
-    </td>
+    <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
 <!--   <tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>

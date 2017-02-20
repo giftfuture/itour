@@ -14,52 +14,6 @@
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
 <title>目的地</title>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 36px;
-	color: #666666;
-}
-.f24 {
-	font-size: 24px;
-	line-height: 40px;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE5 {font-family: "黑体"; font-size: 36px; font-weight: bold; color: #990000; }
-.STYLE6 {
-	color: #FFFFFF;
-	font-weight: bold;
-}
-.STYLE7 {color: #FF0000}
--->
-</style>
 </head>
 
 <body>

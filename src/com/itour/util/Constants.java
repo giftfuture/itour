@@ -23,6 +23,7 @@ public class Constants {
 	
 	public static final Map<String,String> travelStyles = new HashMap<String,String>(){{}};
 	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
+	public static final int perPage = 3;//前端回忆幸福每页数据
 	public static  int perRow = 3;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
 	

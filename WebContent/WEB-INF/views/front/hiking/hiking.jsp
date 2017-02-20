@@ -1,69 +1,10 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="gr__itours_com_cn">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>徒步旅行路线</title>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 36px;
-	color: #666666;
-}
-.f24 {
-	font-size: 24px;
-	line-height: 40px;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE126 {font-size: 14px}
-.STYLE129 {	color: #000000;
-	font-weight: bold;
-}
-.STYLE140 {color: #666666}
-.STYLE148 {color: #990000}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE3 {font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #990000; }
-.STYLE7 {color: #990000; font-weight: bold; }
-.STYLE9 {
-	font-size: 14px;
-	font-weight: bold;
-	color: #990000;
-}
-.STYLE10 {color: #FF0000}
-.STYLE12 {font-size: 14px; font-weight: bold; }
-.STYLE13 {color: #999999}
-.STYLE14 {color: #000000}
--->
-</style>
 </head>
 <table width="200" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -817,12 +758,6 @@ body {
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-
-
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

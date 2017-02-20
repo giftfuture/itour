@@ -1,73 +1,14 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
 <meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
 <meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 36px;
-	color: #666666;
-}
-.f24 {
-	font-size: 24px;
-	line-height: 40px;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE126 {font-size: 14px}
-.STYLE148 {color: #990000}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE17 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #990000; }
-.STYLE18 {font-family: "微软雅黑"}
-.STYLE19 {
-	color: #990000;
-	font-family: "微软雅黑";
-	font-weight: bold;
-}
-.STYLE20 {color: #990000; font-family: "微软雅黑"; }
-.STYLE22 {color: #666666; font-family: "微软雅黑"; }
--->
-</style>
 </head>
-
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -75,41 +16,44 @@ body {
   </tr>
 </table>
 <br />
-<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center">回憶幸福~將幸福定格</div></td>
   </tr>
 </table>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="${basePath }images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
-        <td valign="top"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+        <td valign="top">
+        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="955">※  旅行  是流動的歷程<br />
               ※  感動  是霎那的永恆 <br />
               ※  回憶  是一輩子的幸福風景</td>
-            <td width="105">《<strong>分享回憶</strong>》</td>
+            <td width="105"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></td>
           </tr>
         </table></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath }images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
 <br />
 <br />
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="${basePath }images/frame1-2.gif">
+    <c:forEach var="record" items="${records }">
+    <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td valign="top"><table width="1000" border="0" cellspacing="0" cellpadding="20">
               <tr>
@@ -129,223 +73,31 @@ body {
                 <td width="691" valign="top"><table width="667" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
                   <tr>
                     <td valign="top">&nbsp;</td>
-                    <td><span class="STYLE19">四姑娘約會四姑娘山 </span><span class="STYLE22">2016-6-28</span></td>
+                    <td><span class="STYLE19">${record.title } </span><span class="STYLE22">${record.tourTime }</span></td>
                   </tr>
                   <tr>
                     <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
-                    <td width="576"><span class="STYLE18">此次出遊，飽覽大自然，擴張我的生命深度與廣度。 或許是有許多第一次的經歷 特有感觸吧！
-                      此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<a href="happiness-001.html">走进她的回憶</a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
+                    <td width="576"><span class="STYLE18">${record.content}<a href="${basePath }showhappy/detail/${record.title}">走进她的回憶</a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
                   </tr>
                   <tr>
                     <td valign="top">&nbsp;</td>
-                    <td><div align="right" class="STYLE20">文斐 From 台湾</div></td>
+                    <td><div align="right" class="STYLE20">${record.signature } From ${record.area }</div></td>
                   </tr>
                 </table></td>
               </tr>
             </table>
           </td>
         </tr>
-      </table></td>
+      </table>
+      </c:forEach>
+      </td>
   </tr>
   <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath }images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
 </table>
-<p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td valign="top"><table width="1000" border="0" cellspacing="0" cellpadding="20">
-          <tr>
-            <td width="316"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-              <tr>
-                <td width="260"><table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="181" height="111"><img src="images/Route001.jpg" width="305" height="165" /></td>
-                    <td width="11" rowspan="2" valign="bottom"><img src="images/tu-k-02.gif" width="11" height="122" /></td>
-                  </tr>
-                  <tr>
-                    <td><div align="right"><img src="images/tu-k-01.gif" width="191" height="9" /></div></td>
-                  </tr>
-                </table></td>
-              </tr>
-            </table></td>
-            <td width="691" valign="top"><table width="667" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><span class="STYLE19">四姑娘約會四姑娘山 </span><span class="STYLE22">2016-6-28</span></td>
-              </tr>
-              <tr>
-                <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
-                <td width="576"><span class="STYLE18">此次出遊，飽覽大自然，擴張我的生命深度與廣度。 或許是有許多第一次的經歷 特有感觸吧！
-                  此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<a href="happiness-001.html">走进她的回憶</a><a href="#"></a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
-              </tr>
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><div align="right" class="STYLE20">文斐 From 台湾</div></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td valign="top"><table width="1000" border="0" cellspacing="0" cellpadding="20">
-          <tr>
-            <td width="316"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-              <tr>
-                <td width="260"><table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="181" height="111"><img src="images/Route001.jpg" width="305" height="165" /></td>
-                    <td width="11" rowspan="2" valign="bottom"><img src="images/tu-k-02.gif" width="11" height="122" /></td>
-                  </tr>
-                  <tr>
-                    <td><div align="right"><img src="images/tu-k-01.gif" width="191" height="9" /></div></td>
-                  </tr>
-                </table></td>
-              </tr>
-            </table></td>
-            <td width="691" valign="top"><table width="667" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><span class="STYLE19">四姑娘約會四姑娘山 </span><span class="STYLE22">2016-6-28</span></td>
-              </tr>
-              <tr>
-                <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
-                <td width="576"><span class="STYLE18">此次出遊，飽覽大自然，擴張我的生命深度與廣度。 或許是有許多第一次的經歷 特有感觸吧！
-                  此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<a href="happiness-001.html">走进她的回憶</a><a href="#"></a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
-              </tr>
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><div align="right" class="STYLE20">文斐 From 台湾</div></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td valign="top"><table width="1000" border="0" cellspacing="0" cellpadding="20">
-          <tr>
-            <td width="316"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-              <tr>
-                <td width="260"><table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="181" height="111"><img src="images/Route001.jpg" width="305" height="165" /></td>
-                    <td width="11" rowspan="2" valign="bottom"><img src="images/tu-k-02.gif" width="11" height="122" /></td>
-                  </tr>
-                  <tr>
-                    <td><div align="right"><img src="images/tu-k-01.gif" width="191" height="9" /></div></td>
-                  </tr>
-                </table></td>
-              </tr>
-            </table></td>
-            <td width="691" valign="top"><table width="667" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><span class="STYLE19">四姑娘約會四姑娘山 </span><span class="STYLE22">2016-6-28</span></td>
-              </tr>
-              <tr>
-                <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
-                <td width="576"><span class="STYLE18">此次出遊，飽覽大自然，擴張我的生命深度與廣度。 或許是有許多第一次的經歷 特有感觸吧！
-                  此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<a href="happiness-001.html">走进她的回憶</a><a href="#"></a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
-              </tr>
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><div align="right" class="STYLE20">文斐 From 台湾</div></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td valign="top"><table width="1000" border="0" cellspacing="0" cellpadding="20">
-          <tr>
-            <td width="316"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-              <tr>
-                <td width="260"><table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="181" height="111"><img src="images/Route001.jpg" width="305" height="165" /></td>
-                    <td width="11" rowspan="2" valign="bottom"><img src="images/tu-k-02.gif" width="11" height="122" /></td>
-                  </tr>
-                  <tr>
-                    <td><div align="right"><img src="images/tu-k-01.gif" width="191" height="9" /></div></td>
-                  </tr>
-                </table></td>
-              </tr>
-            </table></td>
-            <td width="691" valign="top"><table width="667" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><span class="STYLE19">四姑娘約會四姑娘山 </span><span class="STYLE22">2016-6-28</span></td>
-              </tr>
-              <tr>
-                <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
-                <td width="576"><span class="STYLE18">此次出遊，飽覽大自然，擴張我的生命深度與廣度。 或許是有許多第一次的經歷 特有感觸吧！
-                  此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<a href="happiness-001.html">走进她的回憶</a><a href="#"></a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
-              </tr>
-              <tr>
-                <td valign="top">&nbsp;</td>
-                <td><div align="right" class="STYLE20">文斐 From 台湾</div></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-
-
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57621520128a2c5c"></script> -->
-
 <script type="text/javascript" src="${basePath}js/ux/front/happy/happiness.js"></script>
- <%@include file="/front/footer.jsp"  %>  
+<%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
 

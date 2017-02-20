@@ -113,7 +113,7 @@ public class SysRoleController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object> ();
+		Map<String,Object> context = getRootMap();
 		SysRole bean  = sysRoleService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");

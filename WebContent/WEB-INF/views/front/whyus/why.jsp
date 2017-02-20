@@ -11,63 +11,16 @@
  <meta http-equiv="description" content="This is my page"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Why Us</title>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 30px;
-	color: #666666;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
-.STYLE148 {
-	color: #990000;
-	font-family: "微软雅黑";
-}
-.STYLE17 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #990000; }
-.STYLE19 {	color: #990000;
-	font-family: "微软雅黑";
-	font-weight: bold;
-}
-.STYLE13 {font-size: 36px}
--->
-</style>
 </head>
 
 <body>
  <%@include file="/front/header.jsp"  %>
-<table width="1140" border="0" align="center" cellpadding="30" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="30" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
   </tr>
 </table>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>

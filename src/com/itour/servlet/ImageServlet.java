@@ -11,7 +11,6 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.Servlet;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itour.base.util.FileInputStream;*/
 import com.itour.base.util.SessionUtils;
 import com.itour.util.Constants;
-
 public class ImageServlet extends HttpServlet {
-
 	/**
 	 * 
 	 */
@@ -37,7 +34,7 @@ public class ImageServlet extends HttpServlet {
 
 	// 验证码字符个数
 	private int codeCount = 4;
-
+	//
 	private int x = 0;
 
 	// 字体高度

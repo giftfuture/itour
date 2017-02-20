@@ -11,56 +11,13 @@
  <meta http-equiv="description" content=""> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>徒步旅行</title>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 36px;
-	color: #666666;
-}
-.f24 {
-	font-size: 24px;
-	line-height: 40px;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
--->
-</style>
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script> --%>
 </head>
-
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
    <tr>
-    <td>
-		 <%@include file="/front/header.jsp"  %>
-    </td>
+    <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
     <td><img src="images/banner-trekking.jpg" width="100%" height="100%" /></td>

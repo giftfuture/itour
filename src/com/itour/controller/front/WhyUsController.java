@@ -19,9 +19,21 @@ public class WhyUsController extends BaseController {
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value="/why")
 	public ModelAndView why(){
 		return forward("front/whyus/why");
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="/aboutus")
+	public ModelAndView aboutus(){
+		return forward("front/whyus/aboutus");
+	}
 }
