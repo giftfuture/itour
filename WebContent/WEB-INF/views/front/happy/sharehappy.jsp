@@ -49,6 +49,10 @@
           </tr>
         </table></td>
       </tr>
+      <tr><td>验证码： <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true" nullmsg="请输入验证码!"/><br/>
+           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
+           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
+      <tr><td><input type="submit" value="确定"></td><td><input type="button" value="取消"></td></tr>
     </table></td>
   </tr>
   <tr>

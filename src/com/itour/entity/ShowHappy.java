@@ -20,8 +20,15 @@ public class ShowHappy extends BaseEntity {
 	private String area;
 	private java.util.Date tourTime;//旅行时间
 	private String route;//该晒图所属路线
+	private String cover;//分享的封面图片
 	
 	
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
 	public java.util.Date getTourTime() {
 		return tourTime;
 	}

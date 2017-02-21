@@ -112,6 +112,27 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true">
 		<servlet-name>ImageServlet</servlet-name>
 		<url-pattern>/ImageServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>RandomCodeServlet</servlet-name>
+		<servlet-class>com.itour.servlet.RandomCodeServlet</servlet-class>
+		<init-param>
+			<param-name>width</param-name>
+			<param-value>95</param-value>
+		</init-param>
+		<init-param>
+			<param-name>height</param-name>
+			<param-value>23</param-value>
+		</init-param>
+		<init-param>
+			<param-name>codeCount</param-name>
+			<param-value>6</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>RandomCodeServlet</servlet-name>
+		<url-pattern>/RandomCodeServlet</url-pattern>
+	</servlet-mapping>
 	<!-- 图片验证码配置结束 -->
 	
 	

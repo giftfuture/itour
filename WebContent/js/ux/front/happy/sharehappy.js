@@ -12,6 +12,15 @@ $(document).ready(function() {
     }  
   });  
 });  
+//刷新验证码
+/*function changeImg(){
+    document.getElementById("validateCodeImg").src=basePath+"ImageServlet?"+Math.random();
+}
+*/
+function changeValidateCode() {  
+    var timenow = new Date().getTime();//这是为了防止每次刷新的时候验证码相同
+    $("#validateCode").attr("src",basePath+"/RandomCodeServlet?d="+timenow);  
+  } 
 //图片上传  
 function sendFile(file, editor, $editable){  
       
