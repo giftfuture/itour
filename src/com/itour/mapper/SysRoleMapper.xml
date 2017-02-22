@@ -24,7 +24,7 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where state=0
 <trim  suffixOverrides="," >
 	<if test="id != null" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -43,9 +43,6 @@ where 1=1
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
 	    and updateBy like CONCAT('%', #{updateBy}, '%')
-	</if>
-	<if test="state != null" >
-	    and state =  #{state}
 	</if>
  	<if test="descr != null and descr != ''" >
 	    and descr like CONCAT('%', #{descr}, '%')
@@ -71,7 +68,7 @@ select max(number) as number from sys_role
 	select max(number)+1 as number from sys_role 
   </selectKey>
   insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number)
- values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},#{state},#{descr},#{level},#{number})
+ values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},0,#{descr},#{level},#{number})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->

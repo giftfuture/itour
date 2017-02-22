@@ -14,17 +14,18 @@
 	<result column="per_price" property="perPrice"/>
 	<result column="count" property="count"/>
 	<result column="order_id" property="orderId"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
        
 <!-- order_detail table all fields -->
 <sql id="Base_Column_List" >
-	 id, status, create_time, update_time, content, remark, per_price, count, order_id
+	 id, status, create_time, update_time, content, remark, per_price, count, order_id,is_valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -63,8 +64,8 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id)
- values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId})
+  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id,is_valid)
+ values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId},1)
 </insert>
 
  
@@ -72,24 +73,27 @@ where 1=1
 <update id="update" parameterType="com.itour.entity.OrderDetail" >
 	update order_detail set update_time=now(),
 	<trim  suffixOverrides="," >
-	<if test="status != null  ">
-		status=#{status},
-	</if>
-	<if test="content != null and content != '' ">
-		content=#{content},
-	</if>
-	<if test="remark != null and remark != '' ">
-		remark=#{remark},
-	</if>
-	<if test="perPrice != null  ">
-		per_price=#{perPrice},
-	</if>
-	<if test="count != null ">
-		count=#{count},
-	</if>
-	<if test="orderId != null and orderId != '' ">
-		order_id=#{orderId},
-	</if>
+		<if test="isValid != null">
+			is_valid = #{isValid}
+		</if>
+		<if test="status != null  ">
+			status=#{status},
+		</if>
+		<if test="content != null and content != '' ">
+			content=#{content},
+		</if>
+		<if test="remark != null and remark != '' ">
+			remark=#{remark},
+		</if>
+		<if test="perPrice != null  ">
+			per_price=#{perPrice},
+		</if>
+		<if test="count != null ">
+			count=#{count},
+		</if>
+		<if test="orderId != null and orderId != '' ">
+			order_id=#{orderId},
+		</if>
 	</trim> where id=#{id}
 </update>
 

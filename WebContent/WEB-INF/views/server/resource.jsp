@@ -58,8 +58,8 @@ $("input.easyui-datetimebox").focus(function(){
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
+<meta http-equiv="cache-control" content="no-cache">  
+<meta http-equiv="expires" content="0">      
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="mobile-agent" content="format=html5; url=http://www.itours.com.cn/" />
 <meta http-equiv="mobile-agent" content="format=xhtml; url=http://www.itours.com.cn/" />
@@ -118,11 +118,7 @@ body {
 .STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
 .STYLE3 {font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #990000; }
 .STYLE7 {color: #990000; font-weight: bold; }
-.STYLE9 {
-	font-size: 14px;
-	font-weight: bold;
-	color: #990000;
-}
+.STYLE9 {font-size: 14px;font-weight: bold;color: #990000;}
 .STYLE10 {color: #FF0000}
 .STYLE12 {font-size: 14px; font-weight: bold; }
 .STYLE13 {color: #999999}

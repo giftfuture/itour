@@ -24,6 +24,7 @@ import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.RouteTemplate;
+import com.itour.entity.SysRole;
 import com.itour.service.RouteTemplateService;
 import com.itour.vo.QuotationVo;
 import com.itour.vo.RouteTemplateVo;
@@ -47,9 +48,7 @@ public class RouteTemplateController extends BaseController{
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
-	
-	
-	
+
 	/**
 	 * 
 	 * @param url
@@ -140,5 +139,20 @@ public class RouteTemplateController extends BaseController{
 		routeTemplateService.delete(id);
 		sendSuccessMessage(response, "删除成功");
 	}
+    
+	/**
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/loadRoutes", method = RequestMethod.POST)
+	public void loadRoutes(HttpServletResponse response) throws Exception{
+		RouteTemplateVo vo = new RouteTemplateVo();
+		List<RouteTemplate> list = routeTemplateService.queryByList(vo);
+		HtmlUtil.writerJson(response, list);
+	}
 
+	
 }

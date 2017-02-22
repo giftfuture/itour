@@ -36,7 +36,7 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1  and deleted =  0
+where deleted =  0
 <trim  suffixOverrides="," >
 	<if test="id != null and id !=''" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -77,7 +77,7 @@ select max(rank+1) as rank from sys_menu
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into sys_menu(id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by)
-  values(#{id},#{name},#{url},#{parentId},#{deleted},now(),now(),#{rank},#{actions},#{createBy},#{updateBy})
+  values(#{id},#{name},#{url},#{parentId},0,now(),now(),#{rank},#{actions},#{createBy},#{updateBy})
 </insert>
 
  

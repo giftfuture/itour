@@ -30,7 +30,7 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where state=0
 <trim  suffixOverrides="," >
 	<if test="id != null" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -40,9 +40,6 @@ where 1=1
 	</if>
 	 <if test="nickName != null and nickName != ''" >
 	    and nickName like CONCAT('%', #{nickName}, '%')
-	</if>
-	<if test="state != null" >
-	    and state =  #{state}
 	</if>
 	<if test="loginCount != null" >
 	    and loginCount =  #{loginCount}
@@ -75,7 +72,7 @@ where 1=1
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into sys_user(id,email,pwd,nickName,state,loginCount,loginTime,deleted,createTime,updateTime,createBy,updateBy)
- values(#{id},#{email},#{pwd},#{nickName},#{state},#{loginCount},#{loginTime},#{deleted},now(),now(),#{createBy},#{updateBy})
+ values(#{id},#{email},#{pwd},#{nickName},0,#{loginCount},#{loginTime},#{deleted},now(),now(),#{createBy},#{updateBy})
 </insert>
 <!-- 记录重置密码时邮箱验证码和过期时间 -->
 <update id="updateCode"  parameterType="java.util.HashMap" >

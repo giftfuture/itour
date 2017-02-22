@@ -29,7 +29,15 @@ public class TravelItem extends BaseEntity {
 	private String season;//建议季节
 	private String recommandEquip;
 	private boolean hot;//1=热门景点，0=非热点
-		public String getScopeAlias() {
+	private boolean isValid;
+	
+		public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
+	public String getScopeAlias() {
 		return scopeAlias;
 	}
 	public void setScopeAlias(String scopeAlias) {

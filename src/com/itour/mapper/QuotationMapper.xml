@@ -15,17 +15,18 @@
 	<result column="type" property="type"/>
 	<result column="total_price" property="totalPrice"/>
 	<result column="formula" property="formula"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
        
 <!-- quotation table all fields -->
 <sql id="Base_Column_List" >
-	 id, name, order_id, quotation, create_time, update_time, remark, type, total_price, formula
+	 id, name, order_id, quotation, create_time, update_time, remark, type, total_price, formula,is_valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -66,35 +67,38 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into quotation(id,name,order_id,quotation,create_time,update_time,remark,type,total_price,formula)
- values(#{id},#{name},#{orderId},#{quotation},now(),now(),#{remark},#{type},#{totalPrice},#{formula})
+  insert into quotation(id,name,order_id,quotation,create_time,update_time,remark,type,total_price,formula,is_valid)
+ values(#{id},#{name},#{orderId},#{quotation},now(),now(),#{remark},#{type},#{totalPrice},#{formula},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.Quotation" >
 	update quotation set update_time=now(),
 	<trim  suffixOverrides="," >
-	<if test="name != null and name != '' ">
-		name=#{name},
-	</if>
-	<if test="orderId != null and orderId != '' ">
-		order_id=#{orderId},
-	</if>
-	<if test="quotation != null and quotation != '' ">
-		quotation=#{quotation},
-	</if>
-	<if test="remark != null and remark != '' ">
-		remark=#{remark},
-	</if>
-	<if test="type != null and type != '' ">
-		type=#{type},
-	</if>
-	<if test="totalPrice != null  ">
-		total_price=#{totalPrice},
-	</if>
-	<if test="formula != null and formula != '' ">
-		formula=#{formula},
-	</if>
+		<if test="isValid != null">
+			is_valid=#{isValid},
+		</if>
+		<if test="name != null and name != '' ">
+			name=#{name},
+		</if>
+		<if test="orderId != null and orderId != '' ">
+			order_id=#{orderId},
+		</if>
+		<if test="quotation != null and quotation != '' ">
+			quotation=#{quotation},
+		</if>
+		<if test="remark != null and remark != '' ">
+			remark=#{remark},
+		</if>
+		<if test="type != null and type != '' ">
+			type=#{type},
+		</if>
+		<if test="totalPrice != null  ">
+			total_price=#{totalPrice},
+		</if>
+		<if test="formula != null and formula != '' ">
+			formula=#{formula},
+		</if>
 	</trim> where id=#{id}
 </update>
 

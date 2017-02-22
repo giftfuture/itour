@@ -34,7 +34,15 @@ public class TravelItemVo extends BasePage implements Serializable{
 	private String season;//建议季节
 	private String recommandEquip;
 	private boolean hot;//1=热门景点，0=非热点
-		public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	private boolean isValid;
+	
+	
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public String getItinerary() {
 		return itinerary;
 	}

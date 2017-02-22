@@ -35,7 +35,15 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String shortContent;//简略介绍
 	private String alias;
 	private String routeCode;//线路编号
+	private boolean isValid;
 	
+	
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
 	
 	public List<String> getPhotoList() {
 		return photoList;

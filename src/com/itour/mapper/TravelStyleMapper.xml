@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itour.dao.TravelStyleDao" > 
 <!-- Result Map-->
 <resultMap id="BaseResultMap" type="com.itour.entity.TravelStyle" >
@@ -21,9 +19,6 @@
 <sql id="Example_Where_Clause">
 where valid=1
 <trim  suffixOverrides="," >
-	<if test="id != null and id != ''" >
-	    and id like CONCAT('%', #{id}, '%')
-	</if>
 	<if test="type != null and type != ''" >
 	    and type like CONCAT('%', #{type}, '%')
 	</if>
@@ -42,7 +37,7 @@ where valid=1
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into travel_style(id,type,alias,remark,valid)
- values(#{id},#{type},#{alias},#{remark},#{valid})
+ values(#{id},#{type},#{alias},#{remark},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->

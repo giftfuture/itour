@@ -24,35 +24,26 @@
     <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td valign="top"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+         <tr><td>标题：<input type="text" class="easyui-textbox" name="title"/></td><td>
+          <span class="STYLE148">　<span class="STYLE23">旅行線路：</span>
+            	<input name="route" class="easyui-combobox"  style="width:100px;" data-options="valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:true,method:'POST',url:'${basePath}routeTemplate/loadRoutes'"></td></tr>
           <tr>
-            <td><span class="STYLE23">旅行時間： </span><span class="STYLE22"><span class="STYLE148">2016-6-28</span> <span class="STYLE148">　<span class="STYLE23">旅行線路：</span>領略自然之美——四姑娘山登山12日游 　　<span class="STYLE23">回憶人：</span><span class="STYLE20">文斐 From 台湾</span></span></span></td>
-            </tr>
-          <tr>
-            <td><table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
-              <tr>
-                <td><img src="images/facebook.png" width="24" height="24" /></td>
-                <td><a href="#">分享至FB</a></td>
-                <td><img src="images/share.png" width="24" height="24" /></td>
-                <td><a href="#">复制链接</a></td>
-                <td><img src="images/favorite01.png" width="24" height="24" /></td>
-                <td><a href="#">收藏本页</a></td>
-                <td><img src="images/print.png" width="24" height="24" /></td>
-                <td><a href="#">打印页面</a></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td><img src="images/IMG_2413_副本_副本.jpg" width="1072" height="602" /></td>
-          </tr>
-          <tr>
-            <td><div id="summernote">  </div></td>
+            <td colspan=2><div id="summernote">  </div></td>
           </tr>
         </table></td>
       </tr>
-      <tr><td>验证码： <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true" nullmsg="请输入验证码!"/><br/>
+       <tr>
+            <td><span class="STYLE23">旅行時間： </span><span class="STYLE22"><span class="STYLE148">
+             <input name="tourTime" class="easyui-datetimebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"/></span> 
+           </span></td><td>
+            	<span class="STYLE23">回憶人：</span>
+            	<span class="STYLE20"><input type="text" class="easyui-textbox" name="signature"/> From <input type="text" class="easyui-textbox" name="area"/></span></td>
+            </tr>
+      <tr><td colspan=2>验证码： <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true" nullmsg="请输入验证码!"/><br/>
            <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
            &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
-      <tr><td><input type="submit" value="确定"></td><td><input type="button" value="取消"></td></tr>
+      <tr><td><a href="javascript:void(0);" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">保存</a></td>
+      <td><a href="javascript:void(0);" class="easyui-linkbutton" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消</a></td></tr>
     </table></td>
   </tr>
   <tr>

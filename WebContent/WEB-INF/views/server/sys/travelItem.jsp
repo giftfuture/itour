@@ -3,9 +3,6 @@
 <!DOCTYPE HTML>
 <html>
  <head>
-  <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">    
  <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
  <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
   </head>
@@ -120,7 +117,7 @@
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
 					</div>	
-					<script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>		
+						
 					<div class="fitem">
 						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
@@ -154,6 +151,6 @@
   			</div>
      	</form>
   	 </div>
-	  
+<script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>		  
   </body>
 </html>

@@ -25,7 +25,15 @@ public class TravelOrderVo extends BasePage implements Serializable{
 	
 	
 	private List<OrderDetail> orderItems;
-		public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
+	private boolean isValid;
+	
+	
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
 		return budget;
 	}
 	public void setBudget(BigDecimal budget) {

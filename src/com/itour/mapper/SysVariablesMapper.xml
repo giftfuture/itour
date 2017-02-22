@@ -12,21 +12,19 @@
 	<result column="var_hostip" property="varHostip"/>
 	<result column="remark" property="remark"/>
 	<result column="var_project" property="varProject"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
        
 <!-- sys_variables table all fields -->
 <sql id="Base_Column_List" >
-	 id, var_name, var_value, var_hostname, var_hostip, remark, var_project
+	 id, var_name, var_value, var_hostname, var_hostip, remark, var_project,is_valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
-	<if test="id != null and id != ''" >
-	    and id =  #{id}
-	</if>
 	<if test="varName != null and varName != ''" >
 	    and var_name like CONCAT('%', #{varName}, '%')
 	</if>
@@ -54,38 +52,41 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_variables(id,var_name,var_value,var_hostname,var_hostip,remark,var_project)
- values(#{id},#{varName},#{varValue},#{varHostname},#{varHostip},#{remark},#{varProject})
+  insert into sys_variables(id,var_name,var_value,var_hostname,var_hostip,remark,var_project,is_valid)
+ values(#{id},#{varName},#{varValue},#{varHostname},#{varHostip},#{remark},#{varProject},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.SysVariables" >
 	update sys_variables set 
 	<trim  suffixOverrides="," >
-	<if test="varName != null  ">
-		var_name=#{varName},
-	</if>
-	<if test="varValue != null  ">
-		var_value=#{varValue},
-	</if>
-	<if test="varHostname != null  ">
-		var_hostname=#{varHostname},
-	</if>
-	<if test="varHostip != null  ">
-		var_hostip=#{varHostip},
-	</if>
-	<if test="remark != null  ">
-		remark=#{remark},
-	</if>
-	<if test="varProject != null  ">
-		var_project=#{varProject},
-	</if>
+		<if test="isValid!=null">
+			is_valid=#{isValid},
+		</if>
+		<if test="varName != null  ">
+			var_name=#{varName},
+		</if>
+		<if test="varValue != null  ">
+			var_value=#{varValue},
+		</if>
+		<if test="varHostname != null  ">
+			var_hostname=#{varHostname},
+		</if>
+		<if test="varHostip != null  ">
+			var_hostip=#{varHostip},
+		</if>
+		<if test="remark != null  ">
+			remark=#{remark},
+		</if>
+		<if test="varProject != null  ">
+			var_project=#{varProject},
+		</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	 from sys_variables where id = #{id}
+	delete from sys_variables where id = #{id}
 </delete>
  
 <!-- 根据id查询 系统变量 -->

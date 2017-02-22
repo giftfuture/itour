@@ -70,6 +70,12 @@ public class ShowHappyController extends BaseController{
 		vo.getPager().setPageSize(Constants.perPage);
 		vo.getPager().setPageId(pageNo);
 		BasePage<Map<String, Object>> page = showHappyService.pagedQuery(vo);
+		//List<Map<String, Object>> records = page.getRecords();
+		for(Map<String, Object> map:page.getRecords()){
+			if(map.get("content").toString().length()> 30){
+				map.put("content", map.get("content").toString().substring(0, 30)+"...");
+			}
+		}
 		context.put("records", page.getRecords());
 		context.put("pageNo",pageNo);
 		context.put("total",page.getTotal());

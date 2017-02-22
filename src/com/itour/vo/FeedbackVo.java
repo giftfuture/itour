@@ -21,7 +21,14 @@ public class FeedbackVo extends BasePage implements Serializable {
 	private String name;
 	private short teamPersons;
 	private String preferedDate;
+	private boolean isValid;
 	
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
 	public String getName() {
 		return name;
 	}

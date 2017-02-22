@@ -23,7 +23,14 @@ public class Feedback extends BaseEntity {
 	private String name;
 	private short teamPersons;
 	private Timestamp preferedDate;
-		public String getName() {
+	private boolean isValid;
+		public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {

@@ -18,16 +18,17 @@
 		<result column="route" property="route"/>
 		<result column="tour_time" property="tourTime"/>
 		<result column="cover" property="cover"/>
+		<result column="is_valid" property="isValid"/>
 	</resultMap>
 
 	<!-- feedback table all fields -->
 	<sql id="Base_Column_List">
-		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover
+		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover,is_valid
 	</sql>
 
 	<!-- 查询条件 -->
 	<sql id="Example_Where_Clause">
-		where 1=1
+		where is_valid=1
 		<trim suffixOverrides=",">
 			<if test="id != null and id != ''">
 				and show_happy.id like CONCAT('%', #{id}, '%')
@@ -71,6 +72,9 @@
 	<update id="update" parameterType="com.itour.entity.ShowHappy">
 		update show_happy set update_time=now(),
 		<trim suffixOverrides=",">
+			<if test="isValid != null">
+				is_valid=#{isValid},
+			</if>
 			<if test="status != null and status != 0 ">
 				status=#{status},
 			</if>
@@ -110,8 +114,8 @@
 		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
 			SELECT LAST_INSERT_ID() </selectKey> -->
 		insert into
-		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time,cover)
-		values(#{id},#{customer},now(),now(),#{status},#{content},#{title},#{result},#{signature},#{area},#{route},#{tourTime},#{cover})
+		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time,cover,is_valid)
+		values(#{id},#{customer},now(),now(),#{status},#{content},#{title},#{result},#{signature},#{area},#{route},#{tourTime},#{cover},1)
 	</insert>
 
 
@@ -122,7 +126,7 @@
 
 	<!-- 根据id查询 幸福分享 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
+		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
 		 content,result,signature,area,tour_time,route_template.title route
 		from show_happy left join route_template on show_happy.route = route_template.id where show_happy.id = #{id}  
 	</select>
@@ -137,7 +141,7 @@
 	<!-- 查询幸福分享列表 -->
 	<select id="queryByList" resultMap="BaseResultMap"
 		parameterType="com.itour.base.page.BasePage">
-		select show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
+		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
 		 show_happy.cover,content,result,signature,area,tour_time,route_template.title route
 		from show_happy left join route_template on show_happy.route = route_template.id 
 		<include refid="Example_Where_Clause" />

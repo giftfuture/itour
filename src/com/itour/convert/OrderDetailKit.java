@@ -21,6 +21,7 @@ public class OrderDetailKit{
 		vo.setRemark(od.getRemark());
 		vo.setStatus(od.getStatus());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(od.getUpdateTime()));
+		vo.setValid(od.isValid());
 		return vo;
 	}
 }

@@ -82,6 +82,7 @@
 	<result column="short_content" property="shortContent"/>
 	<result column="alias" property="alias"/>
 	<result column="route_code" property="routeCode"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
        
 <!-- route_template table all fields -->
@@ -92,7 +93,7 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
 	    and id = #{id}
@@ -331,8 +332,8 @@ where 1=1
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias})
+  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -555,12 +556,15 @@ where 1=1
 	<if test="alias != null and alias != ''">
 		and alias = #{alias}
 	</if>
+	<if test="isValid != null">
+		is_valid=#{isValid}
+	</if>
 	</trim> where id=#{id}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	 from route_template where id = #{id}
+	delete from route_template where id = #{id}
 </delete>
  
 <!-- 根据id查询 路线模板 -->

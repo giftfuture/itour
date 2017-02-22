@@ -17,7 +17,15 @@ public class ShowHappyVo extends BasePage{
 	private java.util.Date tourTime;//旅行时间
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
+	private boolean isValid;
 	
+	
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
 	
 	public String getCover() {
 		return cover;

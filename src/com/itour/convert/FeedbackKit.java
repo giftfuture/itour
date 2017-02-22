@@ -27,6 +27,7 @@ public class FeedbackKit{
 		vo.setPreferedDate(DateUtil.getDateYmdHs(fb.getPreferedDate()));
 		vo.setTeamPersons(fb.getTeamPersons());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
+		vo.setValid(fb.isValid());
 		return vo;
 	}
 }

@@ -33,6 +33,7 @@
 	<result column="season" property="season"/>
 	<result column="recommand_equip" property="recommandEquip"/>
 	<result column="scope_alias" property="scopeAlias"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
 <resultMap id="allscopes" type="java.util.HashMap">  
     <result property="key" column="scopeAlias" />  
@@ -40,12 +41,12 @@
 </resultMap>  
 <!-- travel_item table all fields -->
 <sql id="Base_Column_List" >
-	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope,scope_alias, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip
+	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope,scope_alias, short_content, rank, recommand_reason, discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip,is_valid
 </sql>
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -119,95 +120,98 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,scope_alias,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip)
- values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{scopeAlias},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},#{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip})
+  insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,scope_alias,short_content,rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,recommand_equip,is_valid)
+ values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{scopeAlias},#{shortContent},#{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},#{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelItem" >
 	update travel_item set 
 	<trim  suffixOverrides="," >
-	<if test="item != null and item != '' ">
-		item=#{item},
-	</if>
-	<if test="alias != null and alias != ''">
-		alias =#{alias},
-	</if>
-	<if test="itemCode != null and itemCode != '' ">
-		item_code=#{itemCode},
-	</if>
-	<if test="elevation != null  ">
-		elevation=#{elevation},
-	</if>
-	<if test="content != null and content != '' ">
-		content=#{content},
-	</if>
-	<if test="photos != null and photos != '' ">
-		photos=#{photos},
-	</if>
-	<if test="remark != null and remark != '' ">
-		remark=#{remark},
-	</if>
-	<if test="mileage != null ">
-		mileage=#{mileage},
-	</if>
-	<if test="scope != null and scope != '' ">
-		scope=#{scope},
-	</if>
-	<if test="scopeAlias != null and scopeAlias != '' ">
-		scope_alias = #{scopeAlias},
-	</if>
-	<if test="shortContent != null and shortContent != '' ">
-		short_content=#{shortContent},
-	</if>
-	<if test="rank != null  ">
-		rank=#{rank},
-	</if>
-	<if test="recommandReason != null and recommandReason != '' ">
-		recommand_reason=#{recommandReason},
-	</if>
-	<if test="discount != null  ">
-		discount=#{discount},
-	</if>
-	<if test="rcdDays != null  ">
-		rcd_days=#{rcdDays},
-	</if>
-	<if test="difficultyRate != null  ">
-		difficulty_rate=#{difficultyRate},
-	</if>
-	<if test="happyValue != null  ">
-		happy_value=#{happyValue},
-	</if>
-	<if test="recommandCrowd != null  ">
-		recommand_crowd=#{recommandCrowd},
-	</if>
-	<if test="travelStyle != null  and travelStyle != ''">
-		travel_style=#{travelStyle},
-	</if>
-	<if test="cover != null and cover != ''">
-		cover=#{cover},
-	</if>
-	<if test="feature != null and feature != ''">
-		feature=#{feature},
-	</if>
-	<if test="equip != null and equip != ''">
-		equip=#{equip},
-	</if>
-	<if test="exclude != null and exclude !=''">
-		exclude=#{exclude},
-	</if>
-	<if test="itinerary != null and itinerary !=''">
-		itinerary=#{itinerary},
-	</if>
-	<if test="map != null and map !=''">
-		map=#{map},
-	</if>
-	<if test="season != null and season != ''">
-		season=#{season},
-	</if>
-	<if test="recommandEquip != null and recommandEquip != '' ">
-		recommand_equip=#{recommandEquip}
-	</if>
+		<if test="isValid != null">
+			is_valid=#{isValid},
+		</if>
+		<if test="item != null and item != '' ">
+			item=#{item},
+		</if>
+		<if test="alias != null and alias != ''">
+			alias =#{alias},
+		</if>
+		<if test="itemCode != null and itemCode != '' ">
+			item_code=#{itemCode},
+		</if>
+		<if test="elevation != null  ">
+			elevation=#{elevation},
+		</if>
+		<if test="content != null and content != '' ">
+			content=#{content},
+		</if>
+		<if test="photos != null and photos != '' ">
+			photos=#{photos},
+		</if>
+		<if test="remark != null and remark != '' ">
+			remark=#{remark},
+		</if>
+		<if test="mileage != null ">
+			mileage=#{mileage},
+		</if>
+		<if test="scope != null and scope != '' ">
+			scope=#{scope},
+		</if>
+		<if test="scopeAlias != null and scopeAlias != '' ">
+			scope_alias = #{scopeAlias},
+		</if>
+		<if test="shortContent != null and shortContent != '' ">
+			short_content=#{shortContent},
+		</if>
+		<if test="rank != null  ">
+			rank=#{rank},
+		</if>
+		<if test="recommandReason != null and recommandReason != '' ">
+			recommand_reason=#{recommandReason},
+		</if>
+		<if test="discount != null  ">
+			discount=#{discount},
+		</if>
+		<if test="rcdDays != null  ">
+			rcd_days=#{rcdDays},
+		</if>
+		<if test="difficultyRate != null  ">
+			difficulty_rate=#{difficultyRate},
+		</if>
+		<if test="happyValue != null  ">
+			happy_value=#{happyValue},
+		</if>
+		<if test="recommandCrowd != null  ">
+			recommand_crowd=#{recommandCrowd},
+		</if>
+		<if test="travelStyle != null  and travelStyle != ''">
+			travel_style=#{travelStyle},
+		</if>
+		<if test="cover != null and cover != ''">
+			cover=#{cover},
+		</if>
+		<if test="feature != null and feature != ''">
+			feature=#{feature},
+		</if>
+		<if test="equip != null and equip != ''">
+			equip=#{equip},
+		</if>
+		<if test="exclude != null and exclude !=''">
+			exclude=#{exclude},
+		</if>
+		<if test="itinerary != null and itinerary !=''">
+			itinerary=#{itinerary},
+		</if>
+		<if test="map != null and map !=''">
+			map=#{map},
+		</if>
+		<if test="season != null and season != ''">
+			season=#{season},
+		</if>
+		<if test="recommandEquip != null and recommandEquip != '' ">
+			recommand_equip=#{recommandEquip}
+		</if>
 	</trim> where id=#{id}
 </update>
 

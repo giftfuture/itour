@@ -26,17 +26,18 @@
 	<result column="pay_time" property="payTime"/>
 	<result column="pay_terminal" property="payTerminal"/>
 	<result column="budget" property="budget"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
        
 <!-- travel_order table all fields -->
 <sql id="Base_Column_List" >
-	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, is_payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget
+	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, is_payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,is_valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -110,68 +111,71 @@ where 1=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,is_payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget)
- values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{isPayed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget})
+  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,is_payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget,is_valid)
+ values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{isPayed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelOrder" >
 	update travel_order set update_time=now(),
 	<trim  suffixOverrides="," >
-	<if test="orderName != null  ">
-		order_name=#{orderName},
-	</if>
-	<if test="orderNo != null  ">
-		order_no=#{orderNo},
-	</if>
-	<if test="orderStatus != null  ">
-		order_status=#{orderStatus},
-	</if>
-	<if test="receiver != null  ">
-		receiver=#{receiver},
-	</if>
-	<if test="receiverMobile != null  ">
-		receiver_mobile=#{receiverMobile},
-	</if>
-	<if test="remark != null  ">
-		remark=#{remark},
-	</if>
-	<if test="customerId != null  ">
-		customer_id=#{customerId},
-	</if>
-	<if test="expectedDepart != null  ">
-		expected_depart=#{expectedDepart},
-	</if>
-	<if test="expectedBack != null  ">
-		expected_back=#{expectedBack},
-	</if>
-	<if test="totalStaff != null  ">
-		total_staff=#{totalStaff},
-	</if>
-	<if test="isPayed != null  ">
-		is_payed=#{isPayed},
-	</if>
-	<if test="payType != null  ">
-		pay_type=#{payType},
-	</if>
-	<if test="payPlatform != null  ">
-		pay_platform=#{payPlatform},
-	</if>
-	<if test="bank != null  ">
-		bank=#{bank},
-	</if>
-	<if test="payAccount != null  ">
-		pay_account=#{payAccount},
-	</if>
-	<if test="payTime != null  ">
-		pay_time=#{payTime},
-	</if>
-	<if test="payTerminal != null  ">
-		pay_terminal=#{payTerminal},
-	</if>
-	<if test="budget != null" >
-     budget =  #{budget},
-	</if>
+		<if test="isValid != null">
+			is_valid=#{isValid},
+		</if>
+		<if test="orderName != null  ">
+			order_name=#{orderName},
+		</if>
+		<if test="orderNo != null  ">
+			order_no=#{orderNo},
+		</if>
+		<if test="orderStatus != null  ">
+			order_status=#{orderStatus},
+		</if>
+		<if test="receiver != null  ">
+			receiver=#{receiver},
+		</if>
+		<if test="receiverMobile != null  ">
+			receiver_mobile=#{receiverMobile},
+		</if>
+		<if test="remark != null  ">
+			remark=#{remark},
+		</if>
+		<if test="customerId != null  ">
+			customer_id=#{customerId},
+		</if>
+		<if test="expectedDepart != null  ">
+			expected_depart=#{expectedDepart},
+		</if>
+		<if test="expectedBack != null  ">
+			expected_back=#{expectedBack},
+		</if>
+		<if test="totalStaff != null  ">
+			total_staff=#{totalStaff},
+		</if>
+		<if test="isPayed != null  ">
+			is_payed=#{isPayed},
+		</if>
+		<if test="payType != null  ">
+			pay_type=#{payType},
+		</if>
+		<if test="payPlatform != null  ">
+			pay_platform=#{payPlatform},
+		</if>
+		<if test="bank != null  ">
+			bank=#{bank},
+		</if>
+		<if test="payAccount != null  ">
+			pay_account=#{payAccount},
+		</if>
+		<if test="payTime != null  ">
+			pay_time=#{payTime},
+		</if>
+		<if test="payTerminal != null  ">
+			pay_terminal=#{payTerminal},
+		</if>
+		<if test="budget != null" >
+	     budget =  #{budget},
+		</if>
 	</trim> where id=#{id}
 </update>
 

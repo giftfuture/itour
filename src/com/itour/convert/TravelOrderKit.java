@@ -35,6 +35,7 @@ public class TravelOrderKit{
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
 		tv.setUpdateTime(DateUtil.getDateYmdHs(to.getUpdateTime()));
+		tv.setValid(to.isValid());
 		return tv;
 	}
 }

@@ -40,6 +40,7 @@ public class TravelItemKit{
 		vo.setRecommandReason(tt.getRecommandReason());
 		vo.setRecommandEquip(tt.getRecommandEquip());
 		vo.setRecommandCrowd(tt.getRecommandCrowd());
+		vo.setValid(tt.isValid());
 		return vo;
 	}
 }

@@ -27,6 +27,7 @@ public class ShowHappyKit {
 		record.put("route", vo.getRoute());
 		record.put("tourTime",vo.getTourTime());
 		record.put("cover", vo.getCover());
+		record.put("isValid", vo.isValid());
 		return record;
 	}
 	/**
@@ -49,6 +50,7 @@ public class ShowHappyKit {
 		sh.setTitle(vo.getTitle());
 		sh.setTourTime(vo.getTourTime());
 		sh.setCover(vo.getCover());
+		sh.setValid(vo.isValid());
 		return sh;
 	}
 	/**
@@ -71,6 +73,7 @@ public class ShowHappyKit {
 		vo.setTourTime(sh.getTourTime());
 		vo.setUpdateTime(sh.getUpdateTime());
 		vo.setCover(sh.getCover());
+		vo.setValid(sh.isValid());
 		return vo;
 	}
 	/**
@@ -93,6 +96,7 @@ public class ShowHappyKit {
 		record.put("route", sh.getRoute());
 		record.put("tourTime",sh.getTourTime());
 		record.put("cover", sh.getCover());
+		record.put("isValid", sh.isValid());
 		return record;
 	}
 }

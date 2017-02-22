@@ -9,17 +9,18 @@
 	<result column="roleId" property="roleId"/>
 	<result column="objId" property="objId"/>
 	<result column="relType" property="relType"/>
+	<result column="is_valid" property="isValid"/>
 </resultMap>
        
 <!-- sys_role_rel table all fields -->
 <sql id="Base_Column_List" >
-	id, roleId,objId,relType
+	id, roleId,objId,relType,is_valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where 1=1
+where is_valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''">
 		and id like CONCAT('%', #{id}, '%')
@@ -42,32 +43,35 @@ where 1=1
   <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_role_rel(id,roleId,objId,relType)
- values(#{id},#{roleId},#{objId},#{relType})
+  insert into sys_role_rel(id,roleId,objId,relType,is_valid)
+ values(#{id},#{roleId},#{objId},#{relType},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="Object" >
 	update sys_role_rel set 
 	<trim  suffixOverrides="," >
-	<if test="objId != null and objId != '' ">
-		objId=#{objId},
-	</if>
-	<if test="relType != null  ">
-		relType=#{relType},
-	</if>
+		<if test="isValid != null">
+			is_valid=#{isValid},
+		</if>
+		<if test="objId != null and objId != '' ">
+			objId=#{objId},
+		</if>
+		<if test="relType != null  ">
+			relType=#{relType},
+		</if>
 	</trim> where roleId=#{roleId}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete 	from sys_role_rel where roleId = #{roleId}
+	delete from sys_role_rel where roleId = #{roleId}
 </delete>
  
  
 <!-- 删除记录 -->
 <delete id="deleteByRoleId" parameterType="java.lang.String">
-	delete 	from sys_role_rel where roleId = #{roleId}
+	delete from sys_role_rel where roleId = #{roleId}
 	<if test="relType != null" >
 		and relType =  #{relType}
 	</if>
@@ -76,7 +80,7 @@ where 1=1
  
 <!-- 删除记录 -->
 <delete id="deleteByObjId" parameterType="java.lang.String">
-	delete 	from sys_role_rel where objId = #{objId}
+	delete	from sys_role_rel where objId = #{objId}
 	<if test="relType != null" >
 		and relType =  #{relType}
 	</if>
