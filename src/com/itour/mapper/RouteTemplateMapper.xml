@@ -83,11 +83,23 @@
 	<result column="alias" property="alias"/>
 	<result column="route_code" property="routeCode"/>
 	<result column="is_valid" property="isValid"/>
+	<result column="rcd_days" property="rcdDays"/>
+	<result column="mileage" property="mileage"/>
+	<result column="arrive" property="arrive"/>
+	<result column="departure" property="departure"/>
+	<result column="mount_style" property="mountStyle"/>
+	<result column="trek_distance" property="trekDistance"/>
+	<result column="transportation" property="transportation"/>
 </resultMap>
        
-<!-- route_template table all fields -->
+<!-- route_template table all fields   -->
 <sql id="Base_Column_List" >
-	 route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26, d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50, d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, customer_id, create_time, update_time, create_by, update_by, route_template.remark,special,related,route_map,travel_style,travel_items
+	 route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,
+	  d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,
+	   d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,
+	    d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, customer_id, create_time, update_time, create_by, update_by, 
+	    route_template.remark,special,related,route_map,travel_style,travel_items,rcd_days,mileage,arrive,departure,
+	    mount_style,trek_distance,transportation
 </sql>
    
    
@@ -323,6 +335,27 @@ where is_valid=1
 	<if test="travelItems != null and travelItems != ''">
 		and travel_items=#{travelItems}
 	</if>
+	<if test="rcd_days != null">
+		and rcd_days=#{rcdDays}
+	</if>
+	<if test="mileage != null">
+		and mileage=#{mileage}
+	</if>
+	<if test="arrive != null and arrive != ''">
+		and arrive=#{arrive}
+	</if>
+	<if test="departure != null and departure != ''">
+		and departure=#{departure}
+	</if>
+	<if test="mount_style != null and mount_style != ''">
+		and mount_style=#{mountStyle}
+	</if>
+	<if test="trek_distance != null">
+		and trek_distance=#{trekDistance}
+	</if>
+	<if test="transportation != null and transportation != ''">
+		and transportation=#{transportation}
+	</if>
 </trim>
 </sql>
    
@@ -332,8 +365,8 @@ where is_valid=1
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1)
+  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->

@@ -1,8 +1,12 @@
 package com.itour.controller;
 
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,27 +18,32 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.common.collect.Maps;
 import com.itour.base.annotation.Auth;
+import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
+import com.itour.base.util.IDGenerator;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.ShowHappyKit;
 import com.itour.entity.ShowHappy;
 import com.itour.entity.TravelItem;
-import com.itour.entity.TravelStyle;
 import com.itour.service.ShowHappyService;
 import com.itour.util.Constants;
-import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.ShowHappyVo;
 
 /**
@@ -47,7 +56,6 @@ import com.itour.vo.ShowHappyVo;
 @Controller
 @RequestMapping("/showhappy") 
 public class ShowHappyController extends BaseController{
-	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
@@ -71,11 +79,6 @@ public class ShowHappyController extends BaseController{
 		vo.getPager().setPageId(pageNo);
 		BasePage<Map<String, Object>> page = showHappyService.pagedQuery(vo);
 		//List<Map<String, Object>> records = page.getRecords();
-		for(Map<String, Object> map:page.getRecords()){
-			if(map.get("content").toString().length()> 30){
-				map.put("content", map.get("content").toString().substring(0, 30)+"...");
-			}
-		}
 		context.put("records", page.getRecords());
 		context.put("pageNo",pageNo);
 		context.put("total",page.getTotal());
@@ -107,7 +110,6 @@ public class ShowHappyController extends BaseController{
 		return forward("server/sys/showhappy"); 
 	}
 	
-	
 	/**
 	 * @param url
 	 * @param classifyId
@@ -136,11 +138,28 @@ public class ShowHappyController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/detail/{title}", method = RequestMethod.GET) 
-	public ModelAndView detail(@PathVariable("title") String title,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/detail/{shCode}", method = RequestMethod.GET) 
+	public ModelAndView detail(@PathVariable("shCode") String shCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-	//	map.put("items", items);
-	//	map.put("rt", rt);
+		ShowHappy sh = showHappyService.queryByCode(shCode);
+		String content = sh.getContent();
+		String shareHappyPath = FilePros.shareHappyPath();
+		if(StringUtils.isNotEmpty(content)){
+			List<String> imgs = ImageFilter.getsrcList(content);
+			if(imgs.size()>0){
+				for(String fileName:imgs){ 
+					String path = shareHappyPath+File.separatorChar+(sh.getId()+"_"+sh.getTitle())+File.separatorChar+fileName;
+					File ff = new File(path);  
+	    			if(ff.exists()&&!ff.isDirectory()){//文件根目录不存在时创建  
+	    			   String bytesrc =	ImageFilter.GetImageStr(path,ImageFilter.base64ImgExt.get(fileName.substring(fileName.indexOf("."))));
+	    				content = content.replace(fileName, bytesrc);  
+	    			}
+				}
+			}
+				sh.setContent(content);
+			}
+		Map<String,Object> record = ShowHappyKit.toRecord(sh);
+		context.put("sh", record);
 		return forward("front/happy/happydetail",context); 
 	}
 	/**
@@ -153,24 +172,31 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String add(ShowHappyVo showhappy,HttpServletResponse response) throws Exception{
+	public void add(@RequestBody ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		//response.setContentType("text/html;charset=UTF-8"); 
-		if(showhappy.getId()==null||StringUtils.isBlank(showhappy.getId().toString())){
-			showHappyService.add(ShowHappyKit.toEntity(showhappy));
-		}else{
-			ShowHappy fb = showHappyService.queryById(showhappy.getId());
-			if(fb == null)
-				showHappyService.add(ShowHappyKit.toEntity(showhappy));
-			else
-				showHappyService.update(ShowHappyKit.toEntity(showhappy));
+		String vcode = SessionUtils.getHappyValidateCode(request);
+		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
+	 	if(StringUtils.isEmpty(showhappy.getVerifyCode())){
+	 		failureMessage(response, "验证码不能为空.");
+			return;
 		}
+		//判断验证码是否正确
+	 	if(!showhappy.getVerifyCode().toLowerCase().equals(vcode)){   
+	 		failureMessage(response, "验证码输入错误.");
+			return;
+		} 
+		String shareHappyPath = FilePros.shareHappyPath();
+		String uuid = IDGenerator.getUUID();
+		ClassReflectUtil.setIdKeyValue(showhappy,"id",uuid);
+		showhappy.setShCode(IDGenerator.code(19));
+		ImageFilter.writeBase64Image(showhappy,shareHappyPath);
+		showHappyService.addShowHappy(ShowHappyKit.toEntity(showhappy));
 		context.put(SUCCESS, true);
 		context.put("msg", "保存成功~");
 		String result = JsonUtils.encode(context);
-		return result;
-		//sendSuccessMessage(response, "保存成功~");
+		successMessage(response, result);
 	}
+	
 	/**
 	 * 添加或修改数据
 	 * @param url
@@ -182,7 +208,7 @@ public class ShowHappyController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(ShowHappyVo showhappy,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object> context = getRootMap();
+		//Map<String,Object> context = getRootMap();
 		if(showhappy.getId()==null||StringUtils.isEmpty(showhappy.getId().toString())){
 			showHappyService.add(ShowHappyKit.toEntity(showhappy));
 		}else{

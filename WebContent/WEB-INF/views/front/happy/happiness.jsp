@@ -77,7 +77,7 @@
                   </tr>
                   <tr>
                     <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
-                    <td width="576"><span class="STYLE18">${record.content}<a href="${basePath }showhappy/detail/${record.title}">走进她的回憶</a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
+                    <td width="576"><span class="STYLE18">${record.shortContent}<a href="${basePath }showhappy/detail/${record.shCode}">走进她的回憶</a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
                   </tr>
                   <tr>
                     <td valign="top">&nbsp;</td>

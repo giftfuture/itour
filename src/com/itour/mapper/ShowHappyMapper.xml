@@ -19,19 +19,24 @@
 		<result column="tour_time" property="tourTime"/>
 		<result column="cover" property="cover"/>
 		<result column="is_valid" property="isValid"/>
+		<result column="short_content" property="shortContent"/>
+		<result column="sh_code" property="shCode"/>
 	</resultMap>
 
 	<!-- feedback table all fields -->
 	<sql id="Base_Column_List">
-		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover,is_valid
+		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover,is_valid,short_content,sh_code
 	</sql>
 
 	<!-- 查询条件 -->
 	<sql id="Example_Where_Clause">
-		where is_valid=1
+		where show_happy.is_valid=1
 		<trim suffixOverrides=",">
-			<if test="id != null and id != ''">
-				and show_happy.id like CONCAT('%', #{id}, '%')
+			<if test="shortContent != null and shortContent != ''">
+				and show_happy.short_content=like CONCAT('%', #{shortContent}, '%')
+			</if>
+			<if test="shCode != null and shCode !=''">
+				and sh_code=#{shCode}
 			</if>
 			<if test="createTime != null ">
 	  <![CDATA[  and  DATE_FORMAT(show_happy.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
@@ -84,6 +89,9 @@
 			<if test="content != null and content != '' ">
 				content=#{content},
 			</if>
+			<if test="shortContent != null and shortContent != ''">
+				short_content=#{shortContent},
+			</if>
 			<if test="customer != null and customer != '' ">
 				customer=#{customer},
 			</if>
@@ -114,8 +122,8 @@
 		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
 			SELECT LAST_INSERT_ID() </selectKey> -->
 		insert into
-		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time,cover,is_valid)
-		values(#{id},#{customer},now(),now(),#{status},#{content},#{title},#{result},#{signature},#{area},#{route},#{tourTime},#{cover},1)
+		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time,cover,is_valid,short_content,sh_code)
+		values(#{id},#{customer},now(),now(),#{status},#{content},#{title},#{result},#{signature},#{area},#{route},#{tourTime},#{cover},1,#{shortContent},#{shCode})
 	</insert>
 
 
@@ -127,10 +135,15 @@
 	<!-- 根据id查询 幸福分享 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
-		 content,result,signature,area,tour_time,route_template.title route
-		from show_happy left join route_template on show_happy.route = route_template.id where show_happy.id = #{id}  
+		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,route_template.title route
+		from show_happy left join route_template on show_happy.route = route_template.route_code where show_happy.id = #{id}  
 	</select>
-
+	<!-- 根据shCode查询 幸福分享 -->
+	<select id="queryByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
+		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,route_template.title route
+		from show_happy left join route_template on show_happy.route = route_template.route_code where show_happy.sh_code = #{shCode}  
+	</select>
 	<!-- 幸福分享 列表总数 -->
 	<select id="queryByCount" resultType="java.lang.Integer"
 		parameterType="com.itour.base.page.BasePage">
@@ -142,7 +155,7 @@
 	<select id="queryByList" resultMap="BaseResultMap"
 		parameterType="com.itour.base.page.BasePage">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
-		 show_happy.cover,content,result,signature,area,tour_time,route_template.title route
+		 show_happy.sh_code,show_happy.short_content,show_happy.cover,content,result,signature,area,tour_time,route_template.title route
 		from show_happy left join route_template on show_happy.route = route_template.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">

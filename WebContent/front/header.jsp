@@ -1,13 +1,4 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%-- <%    
-String path = request.getContextPath();    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-pageContext.setAttribute("basePath",basePath);    
-%> --%>
-<%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
- <%-- <%-- <script type="text/javascript" src="${basePath}js/jquery-2.1.1.min.js"></script> --%> 
 <link href="${basePath}css/index.css" rel="stylesheet" type="text/css" />
     <div id="top-menu" width="100%" height="153" >
     <table width="100%" align="center" style="border:0;cursor:pointer">
@@ -23,7 +14,7 @@ pageContext.setAttribute("basePath",basePath);
     	<td><a href="${basePath }light/main">輕驢行</a></td>
     	<td><a href="${basePath }showhappy/main">回憶興福</a></td>
     	<td><a href="${basePath }destination/main">目的地</a></td>
-    	<td><a href="${basePath}whyus/why">Why Us</a></td>
+    	<td><a href="${basePath}whyus/why">关于我们</a></td>
     	</tr>
     </table>
      </div>

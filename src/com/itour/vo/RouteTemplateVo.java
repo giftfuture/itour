@@ -14,6 +14,9 @@ import com.itour.entity.RouteTemplate;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
+//import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
 public class RouteTemplateVo extends BasePage implements Serializable{
 	
@@ -37,7 +40,56 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String routeCode;//线路编号
 	private boolean isValid;
 	
+	private int rcdDays;//建议天数
+	private float mileage;//海拔
+	private String mountStyle;//山峰类型
+	private String departure;//出发地
+	private String arrive;//到达地
+	private float trekDistance;//徒步距离
+	private String transportation;//交通工具
 	
+	public float getTrekDistance() {
+		return trekDistance;
+	}
+	public void setTrekDistance(float trekDistance) {
+		this.trekDistance = trekDistance;
+	}
+	public String getTransportation() {
+		return transportation;
+	}
+	public void setTransportation(String transportation) {
+		this.transportation = transportation;
+	}
+	public float getMileage() {
+		return mileage;
+	}
+	public void setMileage(float mileage) {
+		this.mileage = mileage;
+	}
+	public String getMountStyle() {
+		return mountStyle;
+	}
+	public void setMountStyle(String mountStyle) {
+		this.mountStyle = mountStyle;
+	}
+	public String getDeparture() {
+		return departure;
+	}
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
+	public String getArrive() {
+		return arrive;
+	}
+	public void setArrive(String arrive) {
+		this.arrive = arrive;
+	}
+	public int getRcdDays() {//rcd_days
+		return rcdDays;
+	}
+	public void setRcdDays(int rcdDays) {
+		this.rcdDays = rcdDays;
+	}
 	public boolean isValid() {
 		return isValid;
 	}

@@ -21,6 +21,11 @@
 			 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<!--  <constructor-arg value="UTF-8" index="0"></constructor-arg> -->
 				<property name="objectMapper" ref="myObjectMapper"></property>
+				<!-- <property name="dateFormat"> 
+					<bean class="java.text.SimpleDateFormat"> 
+						<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"></constructor-arg> 
+					</bean> 
+				</property>  -->
 				<property name="supportedMediaTypes">
 					<list>
 						<!-- <value>text/html;charset=UTF-8</value> -->

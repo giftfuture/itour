@@ -4,12 +4,8 @@
 <html>
   <head>
  <base href="<%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -20,11 +16,11 @@
 			<label class="ui-label">标题:</label><input name="title" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">状态:</label>
 				<select name="status" class="easyui-box ui-text" style="width:100px;">
-						   <option value="">--请选择--</option>
-						   <option value="1">待审核</option>
-						   <option value="2">审核通过</option>
-						   <option value="3">审核未通过</option>
-						</select>
+				   <option value="">--请选择--</option>
+				   <option value="1">待审核</option>
+				   <option value="2">审核通过</option>
+				   <option value="3">审核未通过</option>
+				</select>
 			<!-- <input name="status" class="easyui-box ui-text" style="width:100px;"/> -->
 			<label class="ui-label">晒出日期:</label><input name="createTime" class="easyui-datetimebox ui-text" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
 			<label class="ui-label">旅行日期:</label><input name="tourTime" class="easyui-datetimebox ui-text"  data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">

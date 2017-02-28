@@ -151,10 +151,9 @@ public class TravelItemController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
-	public @ResponseBody String uploadPhotos(@RequestParam(value="id",required=false)String id,
-			@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
+	public @ResponseBody String uploadPhotos(@RequestParam(value="id",required=false)String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			HttpServletRequest request,HttpServletResponse response) {
-		Map<String,Object>  context = new HashMap();
+		Map<String,Object>  context = getRootMap();
 		//Map<String,Object> resMap = new HashMap<String,Object>();
 		//MultipartFile fileselect = null;
 		try {

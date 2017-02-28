@@ -161,7 +161,8 @@ select<include refid="Base_Column_List" />  from sys_menu where deleted= 0 order
 
 <!-- 获取子菜单-->
 <select id="getChildMenu"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is not null and parentId != ''
+	select  <include refid="Base_Column_List" /> 
+	 from sys_menu where deleted= 0 and parentId is not null and parentId != ''
 	 <if test="parentId != null and parentId != ''" >
       and  parentId = #{parentId}
     </if>   

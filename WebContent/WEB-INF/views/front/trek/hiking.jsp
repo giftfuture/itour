@@ -3,20 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>徒步旅行路线</title>
 <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/plug-in/easyzoom.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/plug-in/easytab/jquery.easytabs.min.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/plug-in/easytab/jquery.hashchange.min.js"></script>
 <script type="text/javascript">
 <!-- Google Analytics tracking code -->
 var _gaq=[['_setAccount','UA-2508361-9'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 s.parentNode.insertBefore(g,s)}(document,'script'));
+function printff(){
+	//window.print();
+	document.execCommand("print") ;
+}
 function copyUrl(){
 	var clipBoardContent=this.location.href;
 	//window.clipboardData.setData("Text",clipBoardContent);
@@ -39,11 +45,11 @@ function copyUrl(){
 function addFavorite() {
     var url = window.location;
     var title = document.title;
-    //var ua = navigator.userAgent.toLowerCase();
+    //var ua = navigator.userAgent.toLowerCase();window.external.ImportExportFavorites(true,)
     if (document.all) { 
     	window.external.AddFavorite(url,title); 
     }else if (window.sidebar){ 
-    window.sidebar.addPanel(title, url, ""); 
+    	window.sidebar.addPanel(title, url, ""); 
     }else if(window.opera && window.print){
     	var elem = document.createElement('a');
     	ele.setAttribute('href',url);
@@ -55,71 +61,9 @@ function addFavorite() {
     }
 }
 </script>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.h1-black {
-	font-family: "黑体";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
-}
-.h1-2 {
-	font-family: "黑体";
-	font-size: 36px;
-	color: #666666;
-}
-.f24 {
-	font-size: 24px;
-	line-height: 40px;
-}
-.h2-24 {
-	font-family: "黑体";
-	font-size: 24px;
-}
-.f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
-}
-.f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
-}
-.STYLE126 {font-size: 14px}
-.STYLE129 {	color: #000000;
-	font-weight: bold;
-}
-.STYLE140 {color: #666666}
-.STYLE148 {color: #990000}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
-.STYLE3 {font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #990000; }
-.STYLE7 {color: #990000; font-weight: bold; }
-.STYLE9 {
-	font-size: 14px;
-	font-weight: bold;
-	color: #990000;
-}
-.STYLE10 {color: #FF0000}
-.STYLE12 {font-size: 14px; font-weight: bold; }
-.STYLE13 {color: #999999}
-.STYLE14 {color: #000000}
--->
-</style>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td> <%@include file="/front/header.jsp"  %></td>
-  </tr>
-</table>
-<br />
+ <%@include file="/front/header.jsp"  %>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td class="h1-black">${rt.title}</td>
@@ -148,8 +92,6 @@ border=0></A>
 </c:forEach>
 <!-- 图片列表 end --></DIV>
 <DIV class=RightBotton id=RightArr><img src="${basePath}images/arrow01-2.gif" width="20" height="40" /></DIV></DIV>
-
-
 <SCRIPT language=javascript type=text/javascript>
 		<!--//--><![CDATA[//><!--
 		var scrollPic_02 = new ScrollPic();
@@ -228,11 +170,11 @@ border=0></A>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" /></td>
         <td><a target="_blank" href="https://www.facebook.com/login.php">分享至FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="javascript:copyUrl()">复制链接</a></td>
+        <td><a target="_blank" href="copyUrl()">复制链接</a></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:addFavorite()">收藏本页</a></td>
+        <td><a target="_blank"  href="addFavorite()">收藏本页</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:print()">打印页面</a></td>
+        <td><a target="_blank"  href="printff()">打印页面</a></td>
       </tr>
     </table></td>
   </tr>

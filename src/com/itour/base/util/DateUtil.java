@@ -21,19 +21,30 @@ import org.apache.commons.lang3.StringUtils;
  *
  */
 
-public class DateUtil
-{
-	static java.text.SimpleDateFormat sdfShort = new java.text.SimpleDateFormat("yyyyMMdd");
-	static java.text.SimpleDateFormat sdfLong = new java.text.SimpleDateFormat("yyyy-MM-dd");
-	static java.text.SimpleDateFormat sdfYmdHs = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-	static java.text.SimpleDateFormat sdfLongCn = new java.text.SimpleDateFormat("yyyy年MM月dd日");
-	static java.text.SimpleDateFormat sdfShortU = new java.text.SimpleDateFormat("MMM dd",Locale.ENGLISH);
-	static java.text.SimpleDateFormat sdfLongU = new java.text.SimpleDateFormat("MMM dd,yyyy",Locale.ENGLISH);
-	static java.text.SimpleDateFormat sdfLongTime = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
-	public static java.text.SimpleDateFormat sdfLongTimePlus = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	public static java.text.SimpleDateFormat sdfShortLongTimePlusCn = new java.text.SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-	static java.text.SimpleDateFormat sdfLongTimePlusMill = new java.text.SimpleDateFormat("yyyyMMddHHmmssSSSS");
-	static java.text.SimpleDateFormat sdfMd = new java.text.SimpleDateFormat("MM月dd日");
+public class DateUtil{
+	public static String ymd = "yyyyMMdd";
+	public static String y_m_d = "yyyy-MM-dd";
+	public static String ymdhm = "yyyy-MM-dd HH:mm";
+	public static String ymdcn ="yyyy年MM月dd日";
+	public static String mmd = "MMM dd";
+	public static String mmddyy = "MMM dd,yyyy";
+	public static String ymdhms = "yyyyMMddHHmmss";
+	public static String y_m_dhm ="yyyy-MM-dd HH:mm:ss";
+	public static String ymdhscn = "yyyy年MM月dd日 HH:mm";
+	public static String longTimePlusMill = "yyyyMMddHHmmssSSSS";
+	public static String md = "MM月dd日";
+	
+	public static java.text.SimpleDateFormat sdfShort = new java.text.SimpleDateFormat(ymd);
+	public static java.text.SimpleDateFormat sdfLong = new java.text.SimpleDateFormat(y_m_d);
+	public static java.text.SimpleDateFormat sdfYmdHs = new java.text.SimpleDateFormat(ymdhm);
+	public static java.text.SimpleDateFormat sdfLongCn = new java.text.SimpleDateFormat(ymdcn);
+	public static java.text.SimpleDateFormat sdfShortU = new java.text.SimpleDateFormat(mmd,Locale.ENGLISH);
+	public static java.text.SimpleDateFormat sdfLongU = new java.text.SimpleDateFormat(mmddyy,Locale.ENGLISH);
+	public static java.text.SimpleDateFormat sdfLongTime = new java.text.SimpleDateFormat(ymdhms);
+	public static java.text.SimpleDateFormat sdfLongTimePlus = new java.text.SimpleDateFormat(y_m_dhm);
+	public static java.text.SimpleDateFormat sdfShortLongTimePlusCn = new java.text.SimpleDateFormat(ymdhscn);
+	public static java.text.SimpleDateFormat sdfLongTimePlusMill = new java.text.SimpleDateFormat(longTimePlusMill);
+	public static java.text.SimpleDateFormat sdfMd = new java.text.SimpleDateFormat(md);
 	private static long DAY_IN_MILLISECOND = 0x5265c00L;
 
 	public DateUtil()

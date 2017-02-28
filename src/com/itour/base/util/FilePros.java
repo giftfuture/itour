@@ -27,7 +27,7 @@ import javax.servlet.http.Part;
 
 public class FilePros   {
 
-	private static final String resourceFile = "jdbc";    
+	private static final String resourceFile = "conf";    
 	private static final ResourceBundle rb = ResourceBundle.getBundle(resourceFile);
 	/**
 	 * 上传图片的磁盘存放路径
@@ -47,6 +47,16 @@ public class FilePros   {
 		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
 		return propath;
 	}
+	
+	/**
+	 * 回忆幸福的上传图片
+	 * @return
+	 */
+	public static String shareHappyPath(){
+		String sharePath = rb.getString("share_happy_path");
+		return sharePath;
+	}
+	
 	/**
 	 * 上传图片的本项目相关的存储路径
 	 * @param request

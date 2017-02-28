@@ -57,7 +57,7 @@ itour.travelItem = function(){
 					if(data.success){
 						//console.log(data.uris);
 						for(var i in data.uris){
-						  images+='<img alt="图片浏览" src="'+basePath+'/'+data.uris[i]+'" style="width:50px;height:50px;">';	
+						  images+='<img alt="图片浏览" src="'+basePath+data.uris[i]+'" style="width:50px;height:50px;">';	
 						}
 					}
 					$("#previewPhotos").html(images);

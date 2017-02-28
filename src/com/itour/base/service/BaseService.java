@@ -18,14 +18,14 @@ public abstract class BaseService<T>{
 		return mapper;
 	}
 	
-	public void add(T t)  throws Exception{
+	public String add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增
 		String uuid = IDGenerator.getUUID();// UUID.randomUUID().toString();
 		//System.out.println("uuid="+uuid);
 		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
 		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
 		getDao().add(t);
-		//return uuid;
+		return uuid;
 	}
 	
 	public void update(T t)  throws Exception{

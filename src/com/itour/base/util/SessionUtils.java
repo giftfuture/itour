@@ -24,6 +24,8 @@ public final class SessionUtils {
 
 	private static final String SESSION_VALIDATECODE = "session_validatecode";//验证码
 	
+	private static final String HAPPY_VALIDATECODE = "happy_validatecode";//晒回忆幸福验证码
+	
 	
 	private static final String SESSION_ACCESS_URLS = "session_access_urls"; //系统能够访问的URL
 	
@@ -103,6 +105,33 @@ public final class SessionUtils {
 		removeAttr(request, SESSION_USER);
 	 }
 	 
+	 /**
+	  * 设置验证码 到session
+	  * @param request
+	  * @param user
+	  */
+	 public static void setHappyValidateCode(HttpServletRequest request,String validateCode){
+		 request.getSession(true).setAttribute(HAPPY_VALIDATECODE, validateCode);
+	 }
+	 
+	 
+	 /**
+	  * 从session中获取验证码
+	  * @param request
+	  * @return SysUser
+	  */
+	 public static String getHappyValidateCode(HttpServletRequest request){
+		return (String)request.getSession(true).getAttribute(HAPPY_VALIDATECODE);
+	 }
+	 
+	 /**
+	  * 从session中获删除验证码
+	  * @param request
+	  * @return SysUser
+	  */
+	 public static void removeHappyValidateCode(HttpServletRequest request){
+		removeAttr(request, HAPPY_VALIDATECODE);
+	 }
 	 
 	 /**
 	  * 设置验证码 到session

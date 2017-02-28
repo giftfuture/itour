@@ -145,7 +145,7 @@ itour.showhappy = function(){
 	   			url:'showhappy/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
-			/*		{field:'customerId',title:'客户ID',align:'center',sortable:true,
+					/*{field:'customerId',title:'客户ID',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.customerId;
 						}

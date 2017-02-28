@@ -84,7 +84,7 @@
 		  </c:forEach>
         </td>
         </tr>
-        <tr height="30%">
+<%--         <tr height="30%">
     	<td width="275" valign="top">
    		 <div align="center">
         <table width="275" height="30%" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -124,11 +124,10 @@
             </span></td>
           </tr>
         </table>
-        <br />
         <span class="STYLE7">备注：向下面这个图片用灰线隔一下</span><br />
-        <img src="images/未标题-2 拷贝.jpg" width="229" height="374" />
+        <img src="${basePath }images/adddddd.jpg" width="229" height="374" />
         </div></td>
-  </tr>
+  </tr> --%>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
  <%@include file="/front/footer.jsp"  %>  

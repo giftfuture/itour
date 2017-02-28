@@ -3,12 +3,14 @@ package com.itour.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
+import com.itour.base.jdbc.JDBCDao;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
 import com.itour.convert.ShowHappyKit;
@@ -33,7 +35,12 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public ShowHappyDao getDao(){
 		return mapper;
 	}
-	
+	public void addShowHappy(ShowHappy sh)throws Exception{
+		 mapper.add(sh);
+	}
+	public ShowHappy queryByCode(String shCode){
+		return (ShowHappy) mapper.queryByCode(shCode);
+	}
 	/**
 	 * 分页查询
 	 * 

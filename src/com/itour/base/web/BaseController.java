@@ -7,8 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -267,7 +268,7 @@ public class BaseController {
 			logger.error(e.toString(), e);
 		}
 	}
-
+	
 	/**
 	 * 包装异常
 	 * @param e 异常信息
@@ -282,4 +283,6 @@ public class BaseController {
 		error.put("@failure", Boolean.TRUE);//failure|success
 		return error;
 	}
+
+
 }

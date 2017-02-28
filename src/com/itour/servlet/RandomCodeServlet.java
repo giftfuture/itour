@@ -137,11 +137,15 @@ public class RandomCodeServlet extends HttpServlet {
             g.setColor(new Color(20+random.nextInt(110),20+random.nextInt(110),20+random.nextInt(110)));   
             g.drawString(String.valueOf(ctmp),15*i+10,16);   
         }   
-  
-        HttpSession session = request.getSession(true);   
-        session.setAttribute("rand",sRand);   
+    	// 禁止图像缓存。
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/jpeg");
+        SessionUtils.setHappyValidateCode(request, sRand.toString().toLowerCase());
         g.dispose();   
         ImageIO.write(image, "JPEG", response.getOutputStream());   
+        response.getOutputStream().close();
     } 
 	
 }

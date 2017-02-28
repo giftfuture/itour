@@ -14,6 +14,7 @@ public class RouteTemplate extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 6504658958087999522L;
+	
 	private java.lang.String id;//   	private java.lang.String d1;//   	private java.lang.String d2;//   	private java.lang.String d3;//   	private java.lang.String d4;//   	private java.lang.String d5;//   	private java.lang.String d6;//   	private java.lang.String d7;//   	private java.lang.String d8;//   	private java.lang.String d9;//   	private java.lang.String d10;//   	private java.lang.String d11;//   	private java.lang.String d12;//   	private java.lang.String d13;//   	private java.lang.String d14;//   	private java.lang.String d15;//   	private java.lang.String d16;//   	private java.lang.String d17;//   	private java.lang.String d18;//   	private java.lang.String d19;//   	private java.lang.String d20;//   	private java.lang.String d21;//   	private java.lang.String d22;//   	private java.lang.String d23;//   	private java.lang.String d24;//   	private java.lang.String d25;//   	private java.lang.String d26;//   	private java.lang.String d27;//   	private java.lang.String d28;//   	private java.lang.String d29;//   	private java.lang.String d30;//   	private java.lang.String d31;//   	private java.lang.String d32;//   	private java.lang.String d33;//   	private java.lang.String d34;//   	private java.lang.String d35;//   	private java.lang.String d36;//   	private java.lang.String d37;//   	private java.lang.String d38;//   	private java.lang.String d39;//   	private java.lang.String d40;//   	private java.lang.String d41;//   	private java.lang.String d42;//   	private java.lang.String d43;//   	private java.lang.String d44;//   	private java.lang.String d45;//   	private java.lang.String d46;//   	private java.lang.String d47;//   	private java.lang.String d48;//   	private java.lang.String d49;//   	private java.lang.String d50;//   	private java.lang.String d51;//   	private java.lang.String d52;//   	private java.lang.String d53;//   	private java.lang.String d54;//   	private java.lang.String d55;//   	private java.lang.String d56;//   	private java.lang.String d57;//   	private java.lang.String d58;//   	private java.lang.String d59;//   	private java.lang.String d60;//   	private java.lang.String customerId;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   
 	private String special;//线路特色
 	private String related;//相关线路
@@ -26,8 +27,56 @@ public class RouteTemplate extends BaseEntity {
 	private String alias;
 	private String routeCode;//线路编号
 	private boolean isValid;
+	private int rcdDays;//建议天数
+	private float mileage;//海拔
+	private String mountStyle;//山峰类型
+	private String departure;//出发地
+	private String arrive;//到达地
+	private float trekDistance;//徒步距离
+	private String transportation;//交通工具
 	
-	
+	public float getTrekDistance() {
+		return trekDistance;
+	}
+	public void setTrekDistance(float trekDistance) {
+		this.trekDistance = trekDistance;
+	}
+	public String getTransportation() {
+		return transportation;
+	}
+	public void setTransportation(String transportation) {
+		this.transportation = transportation;
+	}
+	public float getMileage() {
+		return mileage;
+	}
+	public void setMileage(float mileage) {
+		this.mileage = mileage;
+	}
+	public String getMountStyle() {
+		return mountStyle;
+	}
+	public void setMountStyle(String mountStyle) {
+		this.mountStyle = mountStyle;
+	}
+	public String getDeparture() {
+		return departure;
+	}
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
+	public String getArrive() {
+		return arrive;
+	}
+	public void setArrive(String arrive) {
+		this.arrive = arrive;
+	}
+	public int getRcdDays() {//rcd_days
+		return rcdDays;
+	}
+	public void setRcdDays(int rcdDays) {
+		this.rcdDays = rcdDays;
+	}
 	public boolean isValid() {
 		return isValid;
 	}

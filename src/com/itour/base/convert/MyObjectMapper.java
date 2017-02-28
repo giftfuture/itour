@@ -29,7 +29,8 @@ public class MyObjectMapper extends ObjectMapper {
 
 		// 当找不到对应的序列化器时 忽略此字段
 		this.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-
+		 //目标类中找不到json字符串中属性时直接忽略  
+      //  this.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		// 支持结束
 		this.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		this.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

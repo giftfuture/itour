@@ -24,8 +24,9 @@ public class JdbcTest {
 				return res.getInt(0);
 			}});*/
 		JdbcTemplate bean = (JdbcTemplate) SpringContextUtil.getBean("jdbcTemplate",JdbcTemplate.class);
-		DataSource ds = bean.getDataSource();
-		System.out.println(ds);
+		//DataSource ds = bean.getDataSource();
+		//bean.update("update sys_role_rel set id=(select replace(uuid(), '-', '')) ");
+		//System.out.println(ds);
 	}
 
 }

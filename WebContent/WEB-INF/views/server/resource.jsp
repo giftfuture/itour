@@ -28,6 +28,7 @@
 <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/easyloader.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/urls.js?v=<%=getTimestamp%>"></script>
 <script type="text/javascript" src="${basePath}js/commons/base.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/__.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/YDataGrid.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-wysiwyg.js"></script>

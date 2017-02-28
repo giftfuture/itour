@@ -21,7 +21,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.itour.entity.SysUser;
 
-public class JDBCDao extends JdbcDaoSupport{
+public class JDBCDao<T> extends JdbcDaoSupport{
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;  

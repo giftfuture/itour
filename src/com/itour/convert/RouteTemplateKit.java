@@ -31,6 +31,13 @@ public class RouteTemplateKit{
 		vo.setAlias(rt.getAlias());
 		vo.setShortContent(rt.getShortContent());
 		vo.setRouteCode(rt.getRouteCode());
+		vo.setArrive(rt.getArrive());
+		vo.setDeparture(rt.getDeparture());
+		vo.setTransportation(rt.getTransportation());
+		vo.setTrekDistance(rt.getTrekDistance());
+		vo.setMileage(rt.getMileage());
+		vo.setMountStyle(rt.getMountStyle());
+		vo.setRcdDays(rt.getRcdDays());
 		return vo;
 	}
 }

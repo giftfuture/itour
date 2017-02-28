@@ -22,6 +22,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.IDGenerator;
 import com.itour.base.web.BaseController;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysRole;
@@ -94,7 +95,8 @@ public class RouteTemplateController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(RouteTemplate entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+		//Map<String,Object>  context = new HashMap<String,Object>();
+		entity.setRouteCode(IDGenerator.code(16));
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			routeTemplateService.add(entity);
 		}else{

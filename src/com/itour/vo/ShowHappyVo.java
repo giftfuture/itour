@@ -1,7 +1,16 @@
 package com.itour.vo;
 
-import com.itour.base.page.BasePage;
+import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.itour.base.page.BasePage;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
+@JsonInclude(Include.NON_NULL)
 public class ShowHappyVo extends BasePage{
 	
 	private String id;
@@ -18,8 +27,37 @@ public class ShowHappyVo extends BasePage{
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
 	private boolean isValid;
+	private String verifyCode;
+	private List<MultipartFile> imagefiles;
+	private String shortContent;
+	private String shCode;
 	
+	public String getShCode() {
+		return shCode;
+	}
+	public void setShCode(String shCode) {
+		this.shCode = shCode;
+	}
 	
+	public String getShortContent() {
+		return shortContent;
+	}
+	public void setShortContent(String shortContent) {
+		this.shortContent = shortContent;
+	}
+	
+	public List<MultipartFile> getImagefiles() {
+		return imagefiles;
+	}
+	public void setImagefiles(List<MultipartFile> imagefiles) {
+		this.imagefiles = imagefiles;
+	}
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
 	public boolean isValid() {
 		return isValid;
 	}

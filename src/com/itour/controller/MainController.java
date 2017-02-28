@@ -126,7 +126,7 @@ public class MainController extends BaseController {
 				return;
 			}
 		}*/
-		String vcode  = SessionUtils.getValidateCode(request);
+		String vcode = SessionUtils.getValidateCode(request);
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isBlank(verifyCode)){
 	 		failureMessage(response, "验证码不能为空.");

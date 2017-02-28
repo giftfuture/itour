@@ -22,7 +22,21 @@ public class ShowHappy extends BaseEntity {
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
 	private boolean isValid;
+	private String shortContent;
+	private String shCode;
 	
+	public String getShCode() {
+		return shCode;
+	}
+	public void setShCode(String shCode) {
+		this.shCode = shCode;
+	}
+	public String getShortContent() {
+		return shortContent;
+	}
+	public void setShortContent(String shortContent) {
+		this.shortContent = shortContent;
+	}
 	public boolean isValid() {
 		return isValid;
 	}
