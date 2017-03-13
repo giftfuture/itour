@@ -37,7 +37,6 @@
             </tr>
         </table></td>
       </tr>
-
     </table></td>
     <td width="476" valign="top"><div align="center"><span class="STYLE2">这条线路适合我吗？</span>
     </div>

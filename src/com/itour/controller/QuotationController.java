@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.web.BaseController;
@@ -95,7 +96,7 @@ public class QuotationController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(Quotation entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+		Map<String,Object> context =getRootMap();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			quotationService.add(entity);
 		}else{
@@ -116,14 +117,15 @@ public class QuotationController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+		Map<String,Object>  context = getRootMap();
 		Quotation entity  = quotationService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return new HashMap<String,Object>();
 		}
+		String data = JsonUtils.encode(entity);
 		context.put(SUCCESS, true);
-		context.put("data", entity);
+		context.put("data", data);
 		return context;
 	}
 	

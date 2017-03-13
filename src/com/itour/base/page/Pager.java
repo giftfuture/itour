@@ -9,12 +9,12 @@ import java.util.ArrayList;
 // oracle,sqlserver,mysql分页技术
 public class Pager {
 
-	private int pageId = 1; // 当前页
-	private int rowCount = 0; // 总行数
+	private long pageId = 1; // 当前页
+	private long rowCount = 0; // 总行数
 	private int pageSize = 10; // 页大小
-	private int pageCount = 0; // 总页数
-	private int pageOffset = 0;// 当前页起始记录
-	private int pageTail = 0;// 当前页到达的记录
+	private long pageCount = 0; // 总页数
+	private long pageOffset = 0;// 当前页起始记录
+	private long pageTail = 0;// 当前页到达的记录
 	private String orderField;
 	private boolean orderDirection;
 
@@ -23,9 +23,9 @@ public class Pager {
 	// 开始分页数字
 	private int startIndex = 0;
 	// 结束分页数字
-	private int endIndex = 0;
+	private long endIndex = 0;
 
-	private int[] indexs;
+	private long[] indexs;
 
 
 	public int getLength() {
@@ -36,9 +36,9 @@ public class Pager {
 		this.length = length;
 	}
 
-	public int[] getIndexs() {
-		int len = getEndIndex() - getStartIndex() + 1;
-		indexs = new int[len];
+	public long[] getIndexs() {
+		long len = getEndIndex() - getStartIndex() + 1;
+		indexs = new long[(int) len];
 		//ArrayList a;
 		for (int i = 0; i < len; i++) {
 			indexs[i] = (getStartIndex() + i);
@@ -46,12 +46,12 @@ public class Pager {
 		return indexs;
 	}
 
-	public void setIndexs(int[] indexs) {
+	public void setIndexs(long[] indexs) {
 		this.indexs = indexs;
 	}
 
 	public int getStartIndex() {
-		startIndex = pageId - (length / 2);
+		startIndex =(int) pageId - (length / 2);
 		if (startIndex < 1) {
 			startIndex = 1;
 		}
@@ -62,7 +62,7 @@ public class Pager {
 		this.startIndex = startIndex;
 	}
 
-	public int getEndIndex() {
+	public long getEndIndex() {
 		if (getStartIndex() < 1) {
 			setStartIndex(1);
 		}
@@ -84,7 +84,6 @@ public class Pager {
 		// if(this.pageId> this.pageCount)
 		// this.pageId = this.pageCount;
 		// this.pageOffset=(this.pageId-1)*this.pageSize+1;
-
 		// this.pageTail=this.pageOffset+this.pageSize-1;
 		this.pageCount = (this.rowCount % this.pageSize == 0) && pageCount > 1 ? this.rowCount / this.pageSize : this.rowCount / this.pageSize + 1;
 		// Mysql 算法  
@@ -127,23 +126,23 @@ public class Pager {
 		this.pageCount = pageCount;
 	}
 
-	public int getPageCount() {
+	public long getPageCount() {
 		return pageCount;
 	}
 
-	public void setPageId(int pageId) {
+	public void setPageId(long pageId) {
 		this.pageId = pageId;
 	}
 
-	public int getPageId() {
+	public long getPageId() {
 		return pageId;
 	}
 
-	public void setPageOffset(int pageOffset) {
+	public void setPageOffset(long pageOffset) {
 		this.pageOffset = pageOffset;
 	}
 
-	public int getPageOffset() {
+	public long getPageOffset() {
 		return pageOffset;
 	}
 
@@ -155,20 +154,20 @@ public class Pager {
 		return pageSize;
 	}
 
-	public void setPageTail(int pageTail) {
+	public void setPageTail(long pageTail) {
 		this.pageTail = pageTail;
 	}
 
-	public int getPageTail() {
+	public long getPageTail() {
 		return pageTail;
 	}
 
-	public void setRowCount(int rowCount) {
+	public void setRowCount(long rowCount) {
 		this.rowCount = rowCount;
 		this.doPage();
 	}
 
-	public int getRowCount() {
+	public long getRowCount() {
 		return rowCount;
 	}
 

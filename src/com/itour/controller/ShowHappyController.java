@@ -189,6 +189,8 @@ public class ShowHappyController extends BaseController{
 		String uuid = IDGenerator.getUUID();
 		ClassReflectUtil.setIdKeyValue(showhappy,"id",uuid);
 		showhappy.setShCode(IDGenerator.code(19));
+		String fileName = showhappy.getSurface().getName();
+		showhappy.setCover(fileName);
 		ImageFilter.writeBase64Image(showhappy,shareHappyPath);
 		showHappyService.addShowHappy(ShowHappyKit.toEntity(showhappy));
 		context.put(SUCCESS, true);

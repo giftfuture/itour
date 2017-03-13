@@ -150,6 +150,96 @@ itour.routeTemplate = function(){
 							return row.customerId;
 						}
 					},
+					{field:'routeCode',title:'线路编号',align:'center',sortable:true,//线路编号
+						formatter:function(value,row,index){
+							return row.routeCode;
+						}
+					},
+					{field:'cover',title:'封面',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.cover;
+						}
+					},
+					{field:'title',title:'线路名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.title;
+						}
+					},
+					{field:'rcdDays',title:'建议(浏览)时间',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.rcdDays;
+						}
+					},
+					{field:'mileage',title:'最高海拔',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.mileage;
+						}
+					},
+					{field:'departure',title:'出发地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.departure;
+						}
+					},
+					{field:'arrive',title:'完成地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.arrive;
+						}
+					},
+					{field:'transportation',title:'交通工具',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.transportation;
+						}
+					},
+					{field:'trekDistance',title:'徒步里程',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.trekDistance;
+						}
+					},
+					{field:'mountStyle',title:'山峰类型',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.mountStyle;
+						}
+					},
+					{field:'shortContent',title:'内容简略',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.shortContent;
+						}
+					},
+					{field:'special',title:'特别之外',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.special;
+						}
+					},
+					{field:'related',title:'相关线路',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.related;
+						}
+					},
+					{field:'routeMap',title:'路线地图',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.routeMap;
+						}
+					},
+					{field:'travelStyle',title:'线路类别',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.travelStyle;
+						}
+					},
+					{field:'travelItems',title:'包含景点',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.travelItems;
+						}
+					},
+					{field:'difficultyRate',title:'旅行难度',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.difficultyRate;
+						}
+					},
+					{field:'quotoForm',title:'详细价目表',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">价目详情</a>';
+						}
+					},
 					{field:'d1',title:'模板1',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.d1;

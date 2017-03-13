@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.RouteTemplate;
+import com.itour.vo.RouteTemplateVo;
 /**
  * 
  * <br>
@@ -34,5 +35,17 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	RouteTemplate queryByAlias(@Param(value="alias")String alias);
+	/**
+	 * 
+	 * @param id
+	 * @param quoteForm
+	 */
+	public void update(RouteTemplate entity);//updateQuoteForm
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public RouteTemplateVo selectById(@Param(value="id")String id);
 }

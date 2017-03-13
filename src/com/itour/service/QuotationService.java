@@ -28,7 +28,6 @@ import com.itour.vo.QuotationVo;
 @Service("quotationService")
 public class QuotationService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-
 	/**
 	 * 分页查询
 	 * 

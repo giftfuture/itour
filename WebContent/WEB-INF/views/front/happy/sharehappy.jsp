@@ -25,7 +25,8 @@ function ww4(date){
     <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="images/frame1-2.gif">
+    <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
        <tr>
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -33,12 +34,15 @@ function ww4(date){
          <tr><td>标题：<input type="text" class="easyui-textbox" name="title"/></td><td>
           <span class="STYLE23">旅行線路：</span>
             	<input id="route" name="route" class="easyui-combobox"  style="width:100px;" data-options="valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'"></td></tr>
-          <tr>
+         <tr>
+            <td colspan=2>封面图片：<input type="file" name="surface" size="30" multiple="multiple" accept="image/*" /></td>
+       </tr>
+        <tr>
             <td colspan=2><div id="content"></div></td>
        </tr>
        <tr>
             <td><span class="STYLE23">旅行時間：</span><span class="STYLE22"><span class="STYLE148">
-             <input name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"/></span> 
+             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,required:true,validType:'checkDate'" style="width:100px;"/></span> 
            </span></td><td>
             	<span class="STYLE23">回憶人：</span>
             	<span class="STYLE20"><input type="text" class="easyui-textbox" name="signature"/>来自<input type="text" class="easyui-textbox" name="area"/></span></td>
@@ -52,7 +56,8 @@ function ww4(date){
     </td>
   </tr>
 </table>
-</td></tr></table>
+</td></tr>
+</table>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/sharehappy.js"></script>
 <%@include file="/front/footer.jsp"  %>  
 </body>

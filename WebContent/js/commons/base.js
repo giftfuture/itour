@@ -51,6 +51,7 @@ var itour={
 		return false;
 	},
 	ajaxJson: function(url,option,callback){
+	//	console.log(url+"   "+option);
 		$.ajax({url,
 				type:'post',
 			 	dataType:'json',
@@ -58,7 +59,7 @@ var itour={
 			 	sync:false,
 			 	success:function(data){
 			 		//console.log(data);
-			 		var checklogin = itour.checkLogin($(data).text());
+			 		var checklogin = itour.checkLogin(data);//$(data).text()
 			 		//console.log(checklogin);
 			 		//检查登录
 			 		if(!checklogin){
@@ -66,7 +67,7 @@ var itour={
 			 		}	
 			 		if($.isFunction(callback)){
 			 			//console.log(callback);
-			 			callback($(data).text());
+			 			callback(data);//$(data).text()
 			 		}
 			 	},
 			 	error:function(response, textStatus, errorThrown){
@@ -101,7 +102,7 @@ var itour={
 			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
 			 		//var result = data.match(reg);  
 			 		//console.log(data+"    "+result);
-			 		var jsondata= $.parseJSON($(data).text());
+			 		var jsondata= $.parseJSON(data);//$(data).text()
 			 		if($.isFunction(callback)){
 			 			//console.log(callback);
 			 			callback(jsondata);
@@ -133,7 +134,7 @@ var itour={
 			//ajax提交form
 			itour.submitForm(form,function(data){
 				itour.closeProgress();
-				var jsondata = $.parseJSON($(data).text());
+				var jsondata = $.parseJSON(data);//$(data).text()
 			 	if(jsondata.success||jsondata.success=="true"){
 			 		//console.log(callback);
 			 		if($.isFunction(callback)){
@@ -156,9 +157,9 @@ var itour={
 	getById:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
-			//console.log(data);
+			console.log(data);
 			itour.closeProgress();
-			var jsondata = $.parseJSON($(data).text());
+			var jsondata = $.parseJSON(data);//$(data).text()
 			if(jsondata.success){
 				if($.isFunction(callback)){
 			       	callback(jsondata);
@@ -178,7 +179,7 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 			itour.closeProgress();
-			var jsondata = $.parseJSON($(data).text());
+			var jsondata = $.parseJSON(data);//$(data).text()
 			if(jsondata.success){
 				if($.isFunction(callback)){
 					//console.log("base:"+data)
@@ -194,7 +195,7 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 				itour.closeProgress();
-				var jsondata = $.parseJSON($(data).text());
+				var jsondata = $.parseJSON(data);//$(data).text()
 				if(jsondata.success){
 					if($.isFunction(callback)){
 				       	callback(jsondata);

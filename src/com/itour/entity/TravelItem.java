@@ -11,6 +11,7 @@ import java.io.File;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelItem extends BaseEntity {
+	
 	/**
 	 * 
 	 */

@@ -1,5 +1,8 @@
 package com.itour.convert;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.RouteTemplate;
 import com.itour.vo.RouteTemplateVo;
@@ -38,6 +41,18 @@ public class RouteTemplateKit{
 		vo.setMileage(rt.getMileage());
 		vo.setMountStyle(rt.getMountStyle());
 		vo.setRcdDays(rt.getRcdDays());
+		vo.setDifficultyRate(rt.getDifficultyRate());
+		List<Integer> diff = Lists.newArrayList();
+		for(int i=0;i<rt.getDifficultyRate();i++){
+			diff.add(1);
+		}
+		vo.setDiffRate(diff);
+		List<Integer> undiffRate = Lists.newArrayList();
+		for(int i=0;i<5-rt.getDifficultyRate();i++){
+			undiffRate.add(1);
+		}
+		vo.setUndiffRate(undiffRate);
+		vo.setQuotoForm(rt.getQuotoForm());
 		return vo;
 	}
 }

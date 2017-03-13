@@ -10,10 +10,15 @@ import com.itour.base.collect.Mapx;
 import com.itour.base.collect.Mapxs;
 
 public class BasePage<T> implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8046146400130594259L;
+
 	// =================================Fields================================================
-	private Integer page = 1;
+	private long page ;
 	
-	private Integer rows =10;
+	private int rows ;
 	
 	private String sort;
 	
@@ -32,6 +37,7 @@ public class BasePage<T> implements Serializable{
 	/** 当前页脚数据 */
 	private List<T> footer;
 	
+	
 	/** 查询参数 */
 	private Mapx filters = Mapxs.newMapx();
 	/**
@@ -42,7 +48,8 @@ public class BasePage<T> implements Serializable{
 	public Pager getPager() {
 		pager.setPageId(getPage());
 		pager.setPageSize(getRows());
-		pager.doPage();
+		//pager.setRowCount(getTotal());					
+		//pager.doPage();
 		String orderField="";
 		if(StringUtils.isNotBlank(sort)){
 			orderField = sort;
@@ -77,6 +84,10 @@ public class BasePage<T> implements Serializable{
 			this.limit = limit;
 			this.records = records;
 			this.total = total;
+			
+			//this.setTotal(total);
+			//this.getPager().setRowCount(total);
+			//this.setPager(this.getPager());
 		}
 		
 		public BasePage(int start, int limit, List<T> records, long total,List<T> footer) {
@@ -144,19 +155,19 @@ public class BasePage<T> implements Serializable{
 			this.filters = filters;
 		}
 		
-		public Integer getPage() {
+		public long getPage() {
 			return page;
 		}
 	
-		public void setPage(Integer page) {
+		public void setPage(long page) {
 			this.page = page;
 		}
 	
-		public Integer getRows() {
+		public int getRows() {
 			return rows;
 		}
 	
-		public void setRows(Integer rows) {
+		public void setRows(int rows) {
 			this.rows = rows;
 		}
 	

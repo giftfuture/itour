@@ -37,9 +37,7 @@ import com.itour.vo.RouteTemplateVo;
 //@RestController
 @RequestMapping("/hiking") 
 public class HikingController extends BaseController{
-	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	
@@ -109,9 +107,8 @@ public class HikingController extends BaseController{
 			rowItems.put(i,items.subList(Constants.perRow*i, end));
 		}
 			map.put("items", rowItems);*/
-			// return "redirect:/class/list.action";
 		}
-		return forward("front/trek/Trekkings",map); 
+		return forward("front/trek/trekkings",map); 
 	}
 	/**
 	 * 
@@ -177,7 +174,8 @@ public class HikingController extends BaseController{
 	 * @param id
 	 * @param request
 	 * @param response
-	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+}   @RequestParam("alias") String alias,
+	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+} 
+	 * @RequestParam("alias") String alias,
 	 * @throws Exception
 	 */
 	@ResponseBody
@@ -220,4 +218,64 @@ public class HikingController extends BaseController{
 		return forward("front/trek/trekking",map); 
 	}
 	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/toQuote1",method = RequestMethod.GET) 
+	@ResponseBody
+	public ModelAndView toQuote1(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		//context.put("items", items);
+		//context.put("rt", rt);
+		return forward("front/quote/quote_step1",context); 
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/toQuote2",method = RequestMethod.GET) 
+	@ResponseBody
+	public ModelAndView toQuote2(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		//context.put("items", items);
+		//context.put("rt", rt);
+		return forward("front/quote/quote_step2",context); 
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/toQuote3",method = RequestMethod.GET) 
+	@ResponseBody
+	public ModelAndView toQuote3(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		//context.put("items", items);
+		//context.put("rt", rt);
+		return forward("front/quote/quote_step3",context); 
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/toQuote4",method = RequestMethod.GET) 
+	@ResponseBody
+	public ModelAndView toQuote4(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		//context.put("items", items);
+		//context.put("rt", rt);
+		return forward("front/quote/quote_step4",context); 
+	}
 }

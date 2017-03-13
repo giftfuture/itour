@@ -6,8 +6,6 @@
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
-<meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
-<meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
 </head>
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -61,8 +59,8 @@
                   <tr>
                     <td width="260"><table border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                          <td width="181" height="111"><img src="images/Route001.jpg" width="305" height="165" /></td>
-                          <td width="11" rowspan="2" valign="bottom"><img src="images/tu-k-02.gif" width="11" height="122" /></td>
+                          <td width="181" height="111"><img src="${basePath }${record.cover}" width="305" height="165" /></td>
+                          <td width="11" rowspan="2" valign="bottom"><img src="${basePath}images/tu-k-02.gif" width="11" height="122" /></td>
                         </tr>
                         <tr>
                           <td><div align="right"><img src="images/tu-k-01.gif" width="191" height="9" /></div></td>
@@ -76,7 +74,7 @@
                     <td><span class="STYLE19">${record.title } </span><span class="STYLE22">${record.tourTime }</span></td>
                   </tr>
                   <tr>
-                    <td width="20" valign="top"><div align="center"><img src="images/quote-1.gif" /></div></td>
+                    <td width="20" valign="top"><div align="center"><img src="${basePath }images/quote-1.gif" /></div></td>
                     <td width="576"><span class="STYLE18">${record.shortContent}<a href="${basePath }showhappy/detail/${record.shCode}">走进她的回憶</a>》》<img src="images/quote-2.gif" width="18" height="14" /></span></td>
                   </tr>
                   <tr>

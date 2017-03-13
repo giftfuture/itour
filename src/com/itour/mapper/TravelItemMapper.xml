@@ -228,7 +228,12 @@ where is_valid=1
 <!-- resultMap="allscopes"  -->
 <select id="allScopes"  resultType="hashmap">
  select scope_alias scopeAlias,scope from travel_item group by scope
-</select>		
+</select>	
+
+<select id="allItems"  resultType="hashmap">
+ select alias ,item from travel_item 
+</select>	
+	
 <select id="searchTravelItem" resultMap="BaseResultMap" parameterType="java.util.Map">
  	select ti.*
    	 from travel_item ti left join travel_style ts on ti.travel_style=ts.id 

@@ -25,7 +25,14 @@ public class FeedbackVo extends BasePage implements Serializable {
 	private short teamPersons;
 	private String preferedDate;
 	private boolean isValid;
+	private String route;//路线
 	
+	public String getRoute() {
+		return route;
+	}
+	public void setRoute(String route) {
+		this.route = route;
+	}
 	public boolean isValid() {
 		return isValid;
 	}
@@ -79,7 +86,7 @@ public class FeedbackVo extends BasePage implements Serializable {
 	public void setTitle(java.lang.String title) {
 		this.title = title;
 	}
-	public java.lang.Object getContent() {
+	public java.lang.String getContent() {
 		return content;
 	}
 	public void setContent(java.lang.String content) {

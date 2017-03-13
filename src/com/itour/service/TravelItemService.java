@@ -113,4 +113,9 @@ public class TravelItemService<T> extends BaseService<T> {
 		List<HashMap<String,String>> maps = mapper.allScopes();
 		return maps;
 	};
+	
+	public List<HashMap<String,String>> allItems(){
+		List<HashMap<String,String>> maps = mapper.allItems();
+		return maps;
+	};
 }

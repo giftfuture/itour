@@ -24,7 +24,14 @@ public class Feedback extends BaseEntity {
 	private short teamPersons;
 	private Timestamp preferedDate;
 	private boolean isValid;
-		public boolean isValid() {
+	private String route;//路线
+	
+	public String getRoute() {
+		return route;
+	}
+	public void setRoute(String route) {
+		this.route = route;
+	}	public boolean isValid() {
 		return isValid;
 	}
 	public void setValid(boolean isValid) {

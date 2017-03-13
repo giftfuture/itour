@@ -1,5 +1,9 @@
 package com.itour.convert;
 
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+
 import com.itour.base.util.DateUtil;
 import com.itour.entity.Feedback;
 import com.itour.vo.FeedbackVo;
@@ -28,7 +32,33 @@ public class FeedbackKit{
 		vo.setTeamPersons(fb.getTeamPersons());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
 		vo.setValid(fb.isValid());
+		vo.setRoute(fb.getRoute());
 		return vo;
+	}
+	
+	public static Feedback toEntity(FeedbackVo fb){
+		Feedback bean = new Feedback();
+		try {
+			bean.setContent(fb.getContent());
+			bean.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getCreateTime()));
+			bean.setCustomerId(fb.getCustomerId());
+			bean.setCustomerName(fb.getCustomerName());
+			bean.setEmail(fb.getEmail());
+			bean.setId(fb.getId());
+			bean.setMobile(fb.getMobile());
+			bean.setResult(fb.getResult());
+			bean.setStatus(fb.getStatus());
+			bean.setTitle(fb.getTitle());
+			bean.setName(fb.getName());
+			bean.setPreferedDate(new Timestamp(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getPreferedDate()).getTime()));
+			bean.setTeamPersons(fb.getTeamPersons());
+			bean.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getUpdateTime()));
+			bean.setValid(fb.isValid());
+			bean.setRoute(fb.getRoute());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return bean;
 	}
 }
 

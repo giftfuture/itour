@@ -8,18 +8,13 @@ import com.itour.base.page.BasePage;
 
 public interface BaseDao<T> {
 
-	
 	public void add(T t);
-	
 	
 	public void update(T t);
 	
-	
 	public void delete(@Param(value="id")String id);
-	
 
 	public int queryByCount(BasePage page);
-	
 	
 	public List<T> queryByList(BasePage page);
 	

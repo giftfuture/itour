@@ -468,7 +468,10 @@ public class TravelItemController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/queryByScope", method = RequestMethod.GET)
 	public List<TravelItem> queryByScope(@RequestParam(value="scopeAlias")String scopeAlias,HttpServletResponse response)throws Exception{
-		List<TravelItem> travelItems = travelItemService.queryByScopeAlias(scopeAlias);
+		List<TravelItem> travelItems = Lists.newArrayList();
+		if(StringUtils.isNotEmpty(scopeAlias) && !scopeAlias.equalsIgnoreCase("undefined")){			
+			travelItems = travelItemService.queryByScopeAlias(scopeAlias);
+		}
 		return travelItems ;
 	}
 	/**
@@ -514,6 +517,21 @@ public class TravelItemController extends BaseController{
 		newlist.addAll(maps);
 		return newlist;
 	}
+	
+	/**
+	 * 
+	 * @param response
+	 * @return全部區域
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/allItems", method = RequestMethod.GET)
+	public List<HashMap<String,String>> allItems(HttpServletResponse response) throws Exception{
+		List<HashMap<String,String>> maps = travelItemService.allItems();
+		return maps;
+	}
+	
 	
 	/**
 	 * 

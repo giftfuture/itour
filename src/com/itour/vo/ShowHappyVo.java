@@ -1,5 +1,6 @@
 package com.itour.vo;
 
+import java.io.File;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -26,12 +27,20 @@ public class ShowHappyVo extends BasePage{
 	private java.util.Date tourTime;//旅行时间
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
+	private MultipartFile surface;//封面图片文件
 	private boolean isValid;
 	private String verifyCode;
 	private List<MultipartFile> imagefiles;
 	private String shortContent;
 	private String shCode;
 	
+	
+	public MultipartFile getSurface() {
+		return surface;
+	}
+	public void setSurface(MultipartFile surface) {
+		this.surface = surface;
+	}
 	public String getShCode() {
 		return shCode;
 	}

@@ -109,5 +109,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-4.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/html2image-0.9.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/elasticsearch-2.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jts-1.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

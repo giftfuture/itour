@@ -68,5 +68,6 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 		return map;
 	};*/
 	/*   */
-	
+	@MapKey("alias")
+	public List<HashMap<String,String>> allItems();
 }

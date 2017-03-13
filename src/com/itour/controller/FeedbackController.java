@@ -1,6 +1,7 @@
 package com.itour.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,20 +12,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.page.Pager;
 import com.itour.base.web.BaseController;
+import com.itour.convert.FeedbackKit;
 import com.itour.entity.Feedback;
 import com.itour.service.FeedbackService;
+import com.itour.util.Constants;
 import com.itour.vo.CustomerVo;
 import com.itour.vo.FeedbackVo;
 
@@ -60,8 +65,49 @@ public class FeedbackController extends BaseController{
 	public ModelAndView  list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		return forward("server/sys/feedback"); 
 	}
-	
-	
+	/**
+	 * 
+	 * @param vo
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/pagination", method = RequestMethod.POST) 
+	public 	String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,String route,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		FeedbackVo fv = new FeedbackVo();
+		fv.setRoute(route);
+		fv.setPage(pageNo);
+		fv.setRows(Constants.fbperPage);
+		//fv.setLimit(Constants.fbperPage);
+		fv.getPager().setPageId(pageNo);
+		fv.getPager().setPageSize(Constants.fbperPage);
+		fv.getPager().setOrderField("prefered_date");
+		fv.getPager().setOrderDirection(false);
+		List<Feedback> list = (List<Feedback>) feedbackService.queryByList(fv);
+		int count = feedbackService.queryByCount(fv);
+		List<FeedbackVo> records = Lists.newArrayList();
+		for(Feedback fb:list) {
+			records.add(FeedbackKit.toRecord(fb));
+		}
+		BasePage<FeedbackVo> page = new BasePage<FeedbackVo>(fv.getStart(), fv.getLimit(), records, count);
+		//Pager pager = new Pager();
+		page.setPage(pageNo);
+		Pager pager = page.getPager();
+		pager.setPageId(pageNo);
+		pager.setPageSize(Constants.fbperPage);
+		pager.setRowCount(page.getTotal());
+		//page.getPager()
+		//page.setTotalPage(page.getPager().getPageCount());
+		//page.getPager().getPageCount();
+		page.setPager(pager);
+		context.put(SUCCESS, true);
+		context.put("result", page);
+		String result = JsonUtils.encode(context);
+		return result;
+	}
 	/**
 	 * @param url
 	 * @param classifyId
@@ -92,7 +138,7 @@ public class FeedbackController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public String add(Feedback feedback,HttpServletResponse response) throws Exception{
-		Map<String,Object> context = new HashMap<String,Object>();
+		Map<String,Object> context = getRootMap();
 		//response.setContentType("text/html;charset=UTF-8"); 
 		if(feedback.getId()==null||StringUtils.isBlank(feedback.getId().toString())){
 			feedbackService.add(feedback);
@@ -120,7 +166,7 @@ public class FeedbackController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(Feedback entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+		Map<String,Object>  context =getRootMap();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			feedbackService.add(entity);
 		}else{
@@ -143,7 +189,7 @@ public class FeedbackController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+		Map<String,Object>  context = getRootMap();
 		Feedback entity  = feedbackService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");

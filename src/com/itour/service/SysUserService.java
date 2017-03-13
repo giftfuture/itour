@@ -117,9 +117,6 @@ public class SysUserService<T> extends BaseService<T> {
 		List<SysUserVo>	vos = Lists.newArrayList();
 		for(SysUser user:list){
 			List<SysRole> roleRels = sysRoleDao.queryByUserid(user.getId());
-			/*for(SysRole rr:roleRels){
-				sysRoleDao.queryById(rr.getRoleId());
-			}*/
 			user.setRoleStr(rolesToStr(roleRels));
 			vos.add(SysUserKit.toRecord(user));
 		}

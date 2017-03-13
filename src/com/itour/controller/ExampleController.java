@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.web.BaseController;
 
 @Controller
-@Scope("prototype")
-public class ExampleController {
+public class ExampleController  extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	private int singletonInt=1;
     

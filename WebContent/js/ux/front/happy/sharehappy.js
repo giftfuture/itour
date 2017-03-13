@@ -20,8 +20,18 @@ $(document).ready(function() {
                     ['height', ['height']],  
                     ['insert', ['picture', 'video']]  
                 ], 
-  });  
+  }); 
+    $("#tourTime").datebox({  
+        onSelect:function(date){  
+            var nowDate = new Date();  
+            if(date>nowDate){  
+            	alert("选择晒旅行幸福的日期应在当前日期或之前" );
+                $("#tourTime").datebox("setValue","");  
+            }  
+        }  
+    }); 
 });  
+
 //刷新验证码
 /*function changeImg(){
     document.getElementById("validateCodeImg").src=basePath+"ImageServlet?"+Math.random();
@@ -150,10 +160,20 @@ function sendFile(file, editor, $editable){
         //setTimeout(function(){$(".note-alarm").remove();},3000);  
         }  
   }); 
-    
-   // var text="${text}";   
-  //  $('#summernote').code(text); // 给编辑器赋值
-    
-    //var str= $('#summernote').code();  //取值 
-    
  }  
+
+// var text="${text}";   
+//  $('#summernote').code(text); // 给编辑器赋值
+
+//var str= $('#summernote').code();  //取值 
+$.extend($.fn.datebox.defaults.rules,{  
+	checkDate:{  //只有在datebox的input框获取焦点的时候才会显示提示，如果禁用了输入则不会生效
+		validator:function(value, param){      
+			var nowDate = new Date();  
+			var dateList = value.split("/");  
+			var chooseData = new Date(dateList[2],dateList[0]-1,dateList[1]);   
+			return nowDate>=chooseData;  
+		},  
+		message:"晒旅行幸福的日期应在当前日期之前"  
+	}     
+}); 

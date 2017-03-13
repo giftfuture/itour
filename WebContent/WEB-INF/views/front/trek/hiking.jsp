@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@page import="com.itour.vo.RouteTemplateVo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,69 +8,28 @@
 <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
+<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/plug-in/easyzoom.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/plug-in/easytab/jquery.easytabs.min.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/plug-in/easytab/jquery.hashchange.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/easyzoom.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <script type="text/javascript">
-<!-- Google Analytics tracking code -->
-var _gaq=[['_setAccount','UA-2508361-9'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
-function printff(){
-	//window.print();
-	document.execCommand("print") ;
-}
-function copyUrl(){
-	var clipBoardContent=this.location.href;
-	//window.clipboardData.setData("Text",clipBoardContent);
-	  if (window.clipboardData) 
-        {
-            window.clipboardData.setData("Text", clipBoardContent);
-        }else{
-            var flashcopier = 'flashcopier';
-            if(!document.getElementById(flashcopier)) 
-            {
-              var divholder = document.createElement('div');
-              divholder.id = flashcopier;
-              document.body.appendChild(divholder);
-            }
-            document.getElementById(flashcopier).innerHTML = '';
-            var divinfo = '<embed src="${basePath}/flash/_clipboard.swf" FlashVars="clipboard='+encodeURIComponent(clipBoardContent)+'" width="0" height="0" type="application/x-shockwave-flash"></embed>';
-            document.getElementById(flashcopier).innerHTML = divinfo;
-        }
-}
-function addFavorite() {
-    var url = window.location;
-    var title = document.title;
-    //var ua = navigator.userAgent.toLowerCase();window.external.ImportExportFavorites(true,)
-    if (document.all) { 
-    	window.external.AddFavorite(url,title); 
-    }else if (window.sidebar){ 
-    	window.sidebar.addPanel(title, url, ""); 
-    }else if(window.opera && window.print){
-    	var elem = document.createElement('a');
-    	ele.setAttribute('href',url);
-    	ele.setAttribute('title',title);
-    	ele.setAttribute('rel','sidebar');
-    	elem.click();
-    }else{
-    	alert('加入收藏夹失败，请使用Ctrl+D进行添加');
-    }
-}
+
 </script>
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td class="h1-black">${rt.title}</td>
+    <td class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
 </table>
-<br />
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
@@ -86,9 +46,8 @@ function addFavorite() {
 <DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 <DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
-<DIV class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 
-border=0></A> 
-</DIV>
+<div class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></A> 
+</div>
 </c:forEach>
 <!-- 图片列表 end --></DIV>
 <DIV class=RightBotton id=RightArr><img src="${basePath}images/arrow01-2.gif" width="20" height="40" /></DIV></DIV>
@@ -110,10 +69,8 @@ border=0></A>
 </DIV>
 <!--滚动图片 end-->
 </div>
-            </tr>
-        </table></td>
-      </tr>
-    </table></td>
+      </tr></table></td>
+      </tr></table></td>
     <td width="476" valign="top"><div align="center"><span class="STYLE2">这条线路适合我吗？</span>
     </div>
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
@@ -127,39 +84,42 @@ border=0></A>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126">8天7夜 <strong> </strong><a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="#">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
-          <td class="STYLE126">4800米</td>
+          <td class="STYLE126">${rt.mileage}米</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
-          <td class="STYLE126">成都 <a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">${rt.departure }<a href="#">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
-          <td class="STYLE126">成都</td>
+          <td class="STYLE126">${rt.arrive }</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>交通方式</strong></div></td>
-          <td class="STYLE126">飞机、汽车</td>
+          <td class="STYLE126">${rt.transportation }</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步难度</strong></div></td>
-          <td class="STYLE126"><img src="${basePath}images/shoe-1.gif" width="16" height="16" />
-          <img src="${basePath}images/shoe-1.gif" width="16" height="16" /> 
-          <img src="${basePath}images/shoe-1.gif" width="16" height="16" /> 
-          <img src="${basePath}images/shoe-1.gif" width="16" height="16" /> 
-          <img src="${basePath}images/shoe-2.gif" width="16" height="16" /> <a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">
+          <c:forEach items="${rt.diffRate}" var="dr">
+          	 <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
+          </c:forEach>
+          <c:forEach items="${rt.undiffRate}" var="rd">
+         	 <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
+          </c:forEach>
+           <a href="#">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
-          <td class="STYLE126">25km</td>
+          <td class="STYLE126">${rt.trekDistance }km</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
-          <td class="STYLE126">非技术型山峰 <a href="#">Explain&gt;&gt; </a></td>
+          <td class="STYLE126">${rt.mountStyle } <a href="#">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />
@@ -168,13 +128,13 @@ border=0></A>
     <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="https://www.facebook.com/login.php">分享至FB</a></td>
+        <td><a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="copyUrl()">复制链接</a></td>
+        <td><a target="_blank" href="javascript:copyUrl()">复制链接</a></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="addFavorite()">收藏本页</a></td>
+        <td><a target="_blank"  href="javascript:addFavorite()">收藏本页</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="printff()">打印页面</a></td>
+        <td><a target="_blank"  href="javascript:printff()">打印页面</a></td>
       </tr>
     </table></td>
   </tr>
@@ -188,16 +148,16 @@ border=0></A>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#detail-route">详细行程</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#need-know">行前需知</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#feed-back">客户反馈</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#feed-back">咨询预定</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li>
  </ul>
  <div class='panel-container'>
-  <div id="review">
+ <div id="review">
   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="${basePath}images/frame1-2.gif"><table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td width="761" valign="top" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
             <br />
@@ -221,12 +181,14 @@ border=0></A>
 				</a>
 			</div>
           </div>
-            <br />
-            <br />
         </td>
       </tr>
     </table>
-      <br />
+	</td>
+	</tr>
+	</table>
+  </div>
+  <div id="detail-route" style="display:none">
       <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
         <tr>
           <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>天数</strong></strong></div></td>
@@ -278,329 +240,7 @@ border=0></A>
           <td valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
       </table>
-      <br />
-      <table width="1100" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
-        </tr>
-      </table>  
-      <br /></td>
-  </tr>
-  <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-  </div>
-  <div id="detail-route" style="display:none">
-  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
-  </tr>
-</table>
-  </div>
-  <div id="need-know" style="display:none">
-  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td valign="top"><p>★<strong>没有最好的行程，只有最适合您的旅程。</strong><br />
-            ★我们了解您的疑虑，所以只需告诉我们您的需求，其它 的我们帮你搞定。 <br />
-            ★想去哪~帶你去，去幾天~隨便您，一兩個人OK，三五好友亦可，多人同行也行。<br />
-            ★用车：越野車、商務車、旅行巴士，要什么随你挑。經驗豐富的司機為您保駕護航。<br />
-            ★酒店：三至五星級酒店，你說了算。<br />
-            ★用餐：享用各種美食。<br />
-            ★導遊：專業導遊服務 <br />
-            <br />
-            <span class="STYLE7">No Shopping， No 自费。</span><br />
-            <br />
-            <span class="STYLE7">害怕这样的行程所费不赀吗？ 
-              2016~2017 经济型的参考价格：</span></p>
-              <table width="541" border="0" cellspacing="0" cellpadding="2">
-                <tr>
-                  <td width="84"><div align="right" class="STYLE126">4人：</div></td>
-                  <td width="457" class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
-                </tr>
-                <tr>
-                  <td><div align="right" class="STYLE126">6人：</div></td>
-                  <td class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
-                </tr>
-                <tr>
-                  <td><div align="right" class="STYLE126">10人以上：</div></td>
-                  <td class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
-                </tr>
-              </table>
-            <span class="STYLE126"> 备注：以上价格包含行程策划、全程用车及基3星级酒店。暂未包含美食、门票、导游等其它服务 。需要更多的服务？告诉我们就行。<br />
-              <br />
-              <span class="STYLE148">随时出发，随时联系，你负责旅行，杂事儿我们搞定：）</span><br />
-            </span>
-            <table width="600" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
-                <td width="264"><span class="STYLE3"><img src="${basePath}images/tailor.gif" width="134" height="32" /></span></td>
-              </tr>
-            </table>            </td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-  </div>
-  <div id="feed-back" style="display:none">
-  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
-  </tr>
-</table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-              <tr>
-                <td height="30" colspan="2" bgcolor="#CCCCCC" class="STYLE140"><div align="center" class="STYLE3">快速询问</div>
-                    <div align="center"></div></td>
-              </tr>
-              <tr>
-                <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield3222" />
-                    <select name="select5" id="select">
-                      <option value="Mr">先生</option>
-                      <option value="Ms">女士</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield24222" />
-                    <a href="#">Explains</a>&gt;&gt; </td>
-              </tr>
-              <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield222222" />
-                    <a href="#">Explains</a>&gt;&gt; </td>
-              </tr>
-              <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><label>
-                  <textarea name="textarea" cols="30" rows="5"></textarea>
-                </label></td>
-              </tr>
-              <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input name="textfield232222" type="text" size="8" />
-                  Confirm Code:3052</td>
-              </tr>
-              <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><input type="submit" name="Submit2222" value="Send" /></td>
-              </tr>
-              <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
-                <td bgcolor="#F0F0F0" class="STYLE140">*我们会对您的资料保密。</td>
-              </tr>
-          </table></td>
-          <td width="733" valign="top"><table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-              <tr>
-                <td width="32"><div align="center"></div>
-                    <img src="${basePath}images/man.gif" width="32" height="32" /></td>
-                <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年6月16日 08：11 </span></td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td>Re：9月是秋季，正好是最佳时期</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>
-              <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                <tr>
-                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
-                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年5月12日 12：11 </span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                <tr>
-                  <td width="32"><div align="center"></div>
-                      <img src="${basePath}images/man.gif" width="32" height="32" /></td>
-                  <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年2月1日 23：30 </span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>Re：9月是秋季，正好是最佳时期</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                <tr>
-                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
-                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年1月2日 19：50 </span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <a href="#">252条 上一页 1 2 3 4 5 6 7 8 9 10 。。。41
-              <select name="select4">
-                <option selected="selected">1</option>
-                <option>2</option>
-                <option value=" ">3</option>
-                <option>4</option>
-                <option>.。。</option>
-              </select>
-              下一页 <br />
-            </a><span class="STYLE10">备注：每页4条，按日期从后往前排，有留言发邮箱通知</span></td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-  </div>
-  </div>
-  </div>
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="32"><img src="${basePath}images/msg02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程回忆幸福<span class="STYLE14">——将幸福定格</span></span></span></td>
-  </tr>
-</table>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td valign="top"><span class="STYLE126"><strong><br />
-            </strong></span>
-              <table width="1000" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="569" valign="top"><table width="547" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                      <tr>
-                        <td width="78" bgcolor="#f0f0f0"><div align="center"><strong>线路：</strong></div></td>
-                        <td width="455"><a href="#">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</a></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>客户：</strong></div></td>
-                        <td>台湾 文斐 4人</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>日期：</strong></div></td>
-                        <td>2016年6月16日</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><span class="STYLE12">内容：</span></div></td>
-                        <td>此次出遊，飽覽大自然，擴張我的生命深度與廣度。 <br />
-                          或許是有許多第一次的經歷 特有感觸吧！<br />
-                          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<br />
-                          <a href="#">展开</a>》》</td>
-                      </tr>
-                  </table></td>
-                  <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
-                      </tr>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <table width="1000" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="569" valign="top"><table width="547" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                      <tr>
-                        <td width="78" bgcolor="#f0f0f0"><div align="center"><strong>线路：</strong></div></td>
-                        <td width="455"><a href="#">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</a></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>客户：</strong></div></td>
-                        <td>台湾 文斐 4人</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>日期：</strong></div></td>
-                        <td>2016年6月16日</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><span class="STYLE12">内容：</span></div></td>
-                        <td>此次出遊，飽覽大自然，擴張我的生命深度與廣度。 <br />
-                          或許是有許多第一次的經歷 特有感觸吧！<br />
-                          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<br />
-                          <a href="#">展开</a>》》</td>
-                      </tr>
-                  </table></td>
-                  <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
-                      </tr>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <span class="STYLE126"><a href="#">更多》》</a><br />
-              注：更多则转到专门的客反馈页面<br />
-              <br />
-              </span>
-              <div align="center"></div></td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table>
-<br />
-<br />
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
@@ -657,7 +297,7 @@ border=0></A>
               </table></td>
           </tr>
         </table>
-        <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 03 </strong></td>
             <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
@@ -681,7 +321,7 @@ border=0></A>
               </table></td>
           </tr>
         </table>
-        <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
             <td width="78" class="STYLE148"><strong>Day 04</strong></td>
             <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
@@ -757,9 +397,111 @@ border=0></A>
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-<br />
-<br />
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <br />
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
+        </tr>
+      </table>  
+<%-- <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+    <td width="32"><img src="${basePath}images/msg02.png" width="32" height="32" /></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程回忆幸福<span class="STYLE14">——将幸福定格</span></span></span></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
+  </tr>
+  <tr>
+    <td background="${basePath}images/frame1-2.gif">
+    <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+          <td valign="top"><span class="STYLE126"><strong><br />
+            </strong></span>
+              <table width="1000" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="569" valign="top"><table width="547" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
+                      <tr>
+                        <td width="78" bgcolor="#f0f0f0"><div align="center"><strong>线路：</strong></div></td>
+                        <td width="455"><a href="#">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</a></td>
+                      </tr>
+                      <tr>
+                        <td bgcolor="#f0f0f0"><div align="center"><strong>客户：</strong></div></td>
+                        <td>台湾 文斐 4人</td>
+                      </tr>
+                      <tr>
+                        <td bgcolor="#f0f0f0"><div align="center"><strong>日期：</strong></div></td>
+                        <td>2016年6月16日</td>
+                      </tr>
+                      <tr>
+                        <td bgcolor="#f0f0f0"><div align="center"><span class="STYLE12">内容：</span></div></td>
+                        <td>此次出遊，飽覽大自然，擴張我的生命深度與廣度。 <br />
+                          或許是有許多第一次的經歷 特有感觸吧！<br />
+                          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<br />
+                          <a href="#">展开</a>》》</td>
+                      </tr>
+                  </table></td>
+                  <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
+                      </tr>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="569" valign="top"><table width="547" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
+                      <tr>
+                        <td width="78" bgcolor="#f0f0f0"><div align="center"><strong>线路：</strong></div></td>
+                        <td width="455"><a href="#">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</a></td>
+                      </tr>
+                      <tr>
+                        <td bgcolor="#f0f0f0"><div align="center"><strong>客户：</strong></div></td>
+                        <td>台湾 文斐 4人</td>
+                      </tr>
+                      <tr>
+                        <td bgcolor="#f0f0f0"><div align="center"><strong>日期：</strong></div></td>
+                        <td>2016年6月16日</td>
+                      </tr>
+                      <tr>
+                        <td bgcolor="#f0f0f0"><div align="center"><span class="STYLE12">内容：</span></div></td>
+                        <td>此次出遊，飽覽大自然，擴張我的生命深度與廣度。 <br />
+                          或許是有許多第一次的經歷 特有感觸吧！<br />
+                          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<br />
+                          <a href="#">展开</a>》》</td>
+                      </tr>
+                  </table></td>
+                  <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
+                      </tr>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+            <span class="STYLE126"><a href="#">更多》》</a><br />
+              注：更多则转到专门的客反馈页面<br />
+              <br />
+              </span>
+              <div align="center"></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>
+</table> --%>
+  </div>
+  <div id="need-know" style="display:none">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
@@ -781,12 +523,275 @@ border=0></A>
     <p>&nbsp;</p></td>
   </tr>
   <tr>
-    <td><img src="${basePath }images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath }images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
 </table>
-<br />
-<br />
-<br />
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+  </tr>
+  <tr>
+    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+          <td valign="top"><p>★<strong>没有最好的行程，只有最适合您的旅程。</strong><br />
+            ★我们了解您的疑虑，所以只需告诉我们您的需求，其它 的我们帮你搞定。 <br />
+            ★想去哪~帶你去，去幾天~隨便您，一兩個人OK，三五好友亦可，多人同行也行。<br />
+            ★用车：越野車、商務車、旅行巴士，要什么随你挑。經驗豐富的司機為您保駕護航。<br />
+            ★酒店：三至五星級酒店，你說了算。<br />
+            ★用餐：享用各種美食。<br />
+            ★導遊：專業導遊服務 <br />
+            <br />
+            <span class="STYLE7">No Shopping， No 自费。</span><br />
+            <br />
+            <span class="STYLE7">害怕这样的行程所费不赀吗？ 
+              2016~2017 经济型的参考价格：</span></p>
+              <table width="541" border="0" cellspacing="0" cellpadding="2">
+                <tr>
+                  <td width="84"><div align="right" class="STYLE126">4人：</div></td>
+                  <td width="457" class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
+                </tr>
+                <tr>
+                  <td><div align="right" class="STYLE126">6人：</div></td>
+                  <td class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
+                </tr>
+                <tr>
+                  <td><div align="right" class="STYLE126">10人以上：</div></td>
+                  <td class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
+                </tr>
+              </table>
+            <span class="STYLE126"> 备注：以上价格包含行程策划、全程用车及基3星级酒店。暂未包含美食、门票、导游等其它服务 。需要更多的服务？告诉我们就行。<br />
+              <br />
+              <span class="STYLE148">随时出发，随时联系，你负责旅行，杂事儿我们搞定：）</span><br />
+            </span>
+            <table width="600" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
+                <td width="264"><span class="STYLE3"><img src="${basePath}images/tailor.gif" width="134" height="32" /></span></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>
+</table>
+  </div>
+  <div id="feed-back" style="display:none">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+    <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+  </tr>
+  <tr>
+    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+          <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+              <tr>
+                <td height="30" colspan="2" bgcolor="#CCCCCC" class="STYLE140"><div align="center" class="STYLE3">快速询问</div>
+                    <div align="center"></div></td>
+              </tr>
+              <tr>
+                <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield3222" />
+                    <select name="select5" id="select">
+                      <option value="Mr">先生</option>
+                      <option value="Ms">女士</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
+                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield24222" />
+                    <a href="#">Explains</a>&gt;&gt; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
+                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield222222" />
+                    <a href="#">Explains</a>&gt;&gt; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><label>
+                  <textarea name="textarea" cols="30" rows="5"></textarea>
+                </label></td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
+                <td bgcolor="#F0F0F0" class="STYLE126"><input name="textfield232222" type="text" size="8" />
+                  Confirm Code:3052</td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><input type="submit" name="Submit2222" value="Send" /></td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
+                <td bgcolor="#F0F0F0" class="STYLE140">*我们会对您的资料保密。</td>
+              </tr>
+          </table></td>
+          <td width="733" valign="top"><div>
+<%--         <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
+                <tr>
+                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
+                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年5月12日 12：11 </span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+             <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
+                <tr>
+                  <td width="32"><div align="center"></div>
+                      <img src="images/man.gif" width="32" height="32" /></td>
+                  <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年2月1日 23：30 </span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>Re：9月是秋季，正好是最佳时期</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+            <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
+                <tr>
+                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
+                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年1月2日 19：50 </span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table> --%>
+         	
+			    <ul id='fbpage'></ul>
+			</div>
+		
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
+  </tr>
+</table>
+  </div>
+  <div id="consulting" style="display:none;">
+   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+	  <tr>
+	    <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
+	    <td width="1028"><span class="h2-24"><span class="STYLE148"><span 
+	class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
+	  </tr>
+	</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+  </tr>
+  <tr>
+    <td background="images/frame1-2.gif">
+	<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+          <td valign="top"><br />
+          <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
+              <tr>
+                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
+                <td width="529"><span class="STYLE126"> 1.</span>海子沟门票50元<br />
+                    <span class="STYLE126">2.</span>长坪沟户外门票150元<br />
+                    <span class="STYLE126">3.毕棚沟门票80元/人
+                      观光车 70元/人</span></td>
+                <td width="444">350元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
+                <td><span class="STYLE126"> 全程中文导游 </span></td>
+                <td>450元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
+                </strong></div></td>
+                <td>1.贵山商务酒店 2夜<br />
+                  2.露营 2夜 <br />
+                  3.汶川大酒店 1夜<br />
+                  <span class="STYLE10"></span></td>
+                <td>420元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
+                </strong></div></td>
+                <td><span class="STYLE126"> 全程用车</span><br /></td>
+                <td>1100元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
+                          <br />
+                </strong></div></td>
+                <td><label> 早餐酒店用<br />
+                  正餐 共11餐，特色餐2餐（<span class="STYLE126">钦善斋药膳火锅 </span>、道地四川火锅）</label>              </td>
+                <td>500元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
+                <td><span class="STYLE126">
+                  <label></label>
+                </span><span class="STYLE126">内宾旅游意外保险 </span></td>
+                <td>10元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
+                <td><span class="STYLE126">旅行社综合服务费</span></td>
+                <td>200元/人</td>
+              </tr>
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
+                <td>成都川剧表演 </td>
+                <td>200元/人</td>
+              </tr>
+
+              <tr>
+                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
+                <td>大人：3230元/人*4人<br />
+                  小孩：2330元/人*2人（小孩不含门票） </td>
+                <td>&nbsp;</td>
+              </tr>
+			  <tr><td><a href="${basePath}hiking/toQuote2">预定</a></td></tr>	
+            </table>          
+            <br /></td></tr>
+      </table>
+      </td>
+      </tr>
+      </table>
+  </div>
+  </div>
+  </div>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

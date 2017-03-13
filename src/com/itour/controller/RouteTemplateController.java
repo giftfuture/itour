@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,11 +24,13 @@ import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.QuoteForm;
 import com.itour.entity.RouteTemplate;
-import com.itour.entity.SysRole;
+import com.itour.entity.SysUser;
+import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
-import com.itour.vo.QuotationVo;
 import com.itour.vo.RouteTemplateVo;
  
 /**
@@ -40,16 +43,14 @@ import com.itour.vo.RouteTemplateVo;
 @Controller
 @RequestMapping("/routeTemplate") 
 public class RouteTemplateController extends BaseController{
-	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
 	// Servrice start
 	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private RouteTemplateService<RouteTemplate> routeTemplateService; 
-	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
-
+	@Autowired
+	private QuoteFormService quoteFormService;
 	/**
 	 * 
 	 * @param url
@@ -118,7 +119,7 @@ public class RouteTemplateController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+		Map<String,Object>  context = getRootMap();
 		RouteTemplate entity  = routeTemplateService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
@@ -128,7 +129,55 @@ public class RouteTemplateController extends BaseController{
 		context.put("data", entity);
 		return context;
 	}
-	
+	/**
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/quoteEdit",method = RequestMethod.GET)
+	public ModelAndView quoteEdit(String id,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		RouteTemplateVo bean  = routeTemplateService.selectById(id);
+		if(bean  == null){
+			sendFailureMessage(response, "没有找到对应的记录!");
+		}
+		//String quotoForm = entity.getQuotoForm();
+		context.put(SUCCESS, true);
+		//context.put("quotoForm", quotoForm);
+		context.put("bean", bean);
+		return forward("server/sys/quoteEdit",context);
+	}
+	/**
+	 * @param id
+	 * @param response模压苛
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/updateQuoteForm", method = RequestMethod.POST)
+	public void updateQuoteForm(@RequestBody QuoteForm quoteForm,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		try {
+			QuoteForm qf = quoteFormService.queryByRtId(quoteForm.getRouteTemplate());
+			SysUser user = SessionUtils.getUser(request);
+			if(user != null){
+				quoteForm.setUpdateBy(user.getId());
+			}
+			if(qf == null){		
+				quoteForm.setCreateBy(user.getId());
+				quoteFormService.add(quoteForm);
+			}else{
+				quoteForm.setId(qf.getId());
+				quoteForm.setValid(true);
+				quoteFormService.update(quoteForm);				
+			}
+			sendSuccessMessage(response, "报价单内容更新成功!");
+		} catch (Exception e) {
+			sendFailureMessage(response, "报价单内容更新出错!");
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * @param id
 	 * @param response

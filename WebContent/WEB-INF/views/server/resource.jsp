@@ -125,6 +125,7 @@ body {
 .STYLE13 {color: #999999}
 .STYLE14 {color: #000000}
 .STYLE140 {color: #666666}
+.STYLE23 {width:267px;}
 -->
 </style>
 

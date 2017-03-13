@@ -2,6 +2,7 @@ package com.itour.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ import com.itour.vo.RouteTemplateVo;
 @Service("routeTemplateService")
 public class RouteTemplateService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
 	/**
 	 * 分页查询
 	 * 
@@ -80,6 +80,23 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public RouteTemplateVo queryByAlias(String alias)throws Exception{
 		RouteTemplate rt = mapper.queryByAlias(alias);
 		return RouteTemplateKit.toRecord(rt);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param quoteForm
+	 */
+	public void updateQuoteForm(RouteTemplate entity){
+		mapper.update(entity);
+	};
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public RouteTemplateVo selectById(@Param(value="id")String id){
+		return mapper.selectById(id);
 	}
 	
 	@Autowired

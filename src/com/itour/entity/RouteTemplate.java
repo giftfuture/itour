@@ -34,7 +34,21 @@ public class RouteTemplate extends BaseEntity {
 	private String arrive;//到达地
 	private float trekDistance;//徒步距离
 	private String transportation;//交通工具
+	private int difficultyRate;//难度
+	private String quotoForm;//报价单表
 	
+	public String getQuotoForm() {
+		return quotoForm;
+	}
+	public void setQuotoForm(String quotoForm) {
+		this.quotoForm = quotoForm;
+	}
+	public int getDifficultyRate() {
+		return difficultyRate;
+	}
+	public void setDifficultyRate(int difficultyRate) {
+		this.difficultyRate = difficultyRate;
+	}
 	public float getTrekDistance() {
 		return trekDistance;
 	}
