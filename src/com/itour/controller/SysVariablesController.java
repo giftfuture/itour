@@ -26,6 +26,9 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
 import com.itour.entity.SysVariables;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.SysVariablesService;
 import com.itour.vo.SysVariablesVo;
  
@@ -47,6 +50,14 @@ public class SysVariablesController extends BaseController{
 	private SysVariablesService<SysVariables> sysVariablesService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

@@ -48,9 +48,9 @@ itour.logSettingDetail = function(){
 								return row.createTime;
 							}
 						},
-					{field:'creator',title:'',align:'center',sortable:true,
+					{field:'creater',title:'',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.creator;
+								return row.creater;
 							}
 						},
 					]]

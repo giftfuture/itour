@@ -25,6 +25,9 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.QuoteForm;
 import com.itour.entity.SysUser;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.vo.QuoteFormVo;
 
@@ -38,7 +41,14 @@ public class QuoteFormController extends BaseController {
 	private QuoteFormService  quoteFormService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

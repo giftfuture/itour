@@ -40,6 +40,9 @@ import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
 import com.itour.vo.SysUserVo;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysUserService;
@@ -62,7 +65,14 @@ public class MainController extends BaseController {
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	private String verifyCode;
 	/**
 	 * 登录页面

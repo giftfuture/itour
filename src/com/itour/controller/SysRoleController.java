@@ -31,6 +31,9 @@ import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
 import com.itour.entity.SysUser;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysRoleRelService;
 import com.itour.service.SysRoleService;
@@ -49,6 +52,14 @@ public class SysRoleController extends BaseController{
 	private SysRoleRelService<SysRoleRel> sysRoleRelService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	
 	/**
 	 * 

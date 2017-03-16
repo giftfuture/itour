@@ -29,6 +29,9 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.QuoteForm;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysUser;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.vo.RouteTemplateVo;
@@ -51,6 +54,14 @@ public class RouteTemplateController extends BaseController{
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
 	private QuoteFormService quoteFormService;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

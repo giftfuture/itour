@@ -26,6 +26,9 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
 import com.itour.entity.TravelItem;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
 import com.itour.vo.TravelItemVo;
@@ -39,7 +42,14 @@ public class DestinationController extends BaseController{
 	private TravelItemService travelItemService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/main") 
 	public ModelAndView main(TravelItemVo vo,HttpServletRequest request) throws Exception{

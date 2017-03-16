@@ -48,9 +48,9 @@ itour.logOperation = function(){
 								return row.url;
 							}
 						},
-					{field:'creator',title:'',align:'center',sortable:true,
+					{field:'creater',title:'',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.creator;
+								return row.creater;
 							}
 						},
 					{field:'createTime',title:'',align:'center',sortable:true,

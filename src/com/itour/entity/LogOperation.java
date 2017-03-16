@@ -15,7 +15,7 @@ public class LogOperation extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 8826233846469737958L;
-	private java.lang.String operCode;//   	private java.lang.String logCode;//   	private java.lang.String operationType;//   	private java.lang.String primaryKeyvalue;//   	private java.lang.String content;//   	private java.lang.String url;//   	private java.lang.String creator;//   	private java.util.Date createTime;//   
+	private java.lang.String operCode;//   	private java.lang.String logCode;//   	private java.lang.String operationType;//   	private java.lang.String primaryKeyvalue;//   	private java.lang.String content;//   	private java.lang.String url;//   	private java.lang.String creater;//   	private java.util.Date createTime;//   
 	public java.lang.String getOperCode() {
 		return operCode;
 	}
@@ -52,11 +52,11 @@ public class LogOperation extends BaseEntity {
 	public void setUrl(java.lang.String url) {
 		this.url = url;
 	}
-	public java.lang.String getCreator() {
-		return creator;
+	public java.lang.String getCreater() {
+		return creater;
 	}
-	public void setCreator(java.lang.String creator) {
-		this.creator = creator;
+	public void setCreater(java.lang.String creater) {
+		this.creater = creater;
 	}
 	public java.util.Date getCreateTime() {
 		return createTime;

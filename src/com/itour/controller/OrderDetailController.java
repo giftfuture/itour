@@ -24,6 +24,9 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.OrderDetail;
 import com.itour.entity.SysUser;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.OrderDetailService;
 import com.itour.vo.OrderDetailVo;
  
@@ -46,7 +49,14 @@ public class OrderDetailController extends BaseController{
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	
 	
 	/**

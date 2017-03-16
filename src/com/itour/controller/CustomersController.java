@@ -26,6 +26,9 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.Customers;
 import com.itour.entity.SysUser;
 import com.itour.service.CustomersService;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.vo.CustomerVo;
  
 /**
@@ -46,6 +49,16 @@ public class CustomersController extends BaseController{
 	private CustomersService customersService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

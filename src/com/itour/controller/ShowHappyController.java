@@ -43,6 +43,9 @@ import com.itour.convert.ShowHappyKit;
 import com.itour.entity.ShowHappy;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.ShowHappyService;
 import com.itour.util.Constants;
 import com.itour.vo.ShowHappyVo;
@@ -64,6 +67,14 @@ public class ShowHappyController extends BaseController{
 	private ShowHappyService showHappyService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param vo

@@ -30,6 +30,9 @@ import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
 import com.itour.exception.ServiceException;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.SysRoleService;
 import com.itour.service.SysUserService;
 import com.itour.vo.SysRoleVo;
@@ -50,6 +53,14 @@ public class SysUserController extends BaseController{
 	private SysRoleService<SysRole> sysRoleService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * ilook 首页
 	 * @param url

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonInclude(Include.NON_NULL)
 public class LogSettingDetailVo extends BasePage implements Serializable {
 	
-		private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creator;//   
+		private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creater;//   
 	public java.lang.String getDetailCode() {
 		return detailCode;
 	}
@@ -54,11 +54,11 @@ public class LogSettingDetailVo extends BasePage implements Serializable {
 	public void setCreateTime(java.util.Date createTime) {
 		this.createTime = createTime;
 	}
-	public java.lang.String getCreator() {
-		return creator;
+	public java.lang.String getCreater() {
+		return creater;
 	}
-	public void setCreator(java.lang.String creator) {
-		this.creator = creator;
-	}	
+	public void setCreater(java.lang.String creater) {
+		this.creater = creater;
+	}
 }
 

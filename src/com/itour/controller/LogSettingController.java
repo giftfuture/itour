@@ -83,25 +83,6 @@ public class LogSettingController extends BaseController{
 	}
 	
 	/**
-	 * 添加或修改数据
-	 * @param url
-	 * @param classifyId
-	 * @return
-	 * @throws Exception 
-	 */
-	@Auth(verifyLogin=true,verifyURL=true)
-	@ResponseBody
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(LogSetting entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
-		if(entity.getLogCode()==null||StringUtils.isBlank(entity.getLogCode().toString())){
-			logSettingService.add(entity);
-		}else{
-			logSettingService.update(entity);
-		}
-		sendSuccessMessage(response, "保存成功~");
-	}
-	/**
 	 * 
 	 * @param id
 	 * @param response
@@ -111,7 +92,7 @@ public class LogSettingController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+		Map<String,Object>  context = getRootMap();
 		LogSetting entity  = logSettingService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");

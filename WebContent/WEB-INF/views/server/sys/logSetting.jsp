@@ -3,13 +3,6 @@
 <!DOCTYPE HTML>
 <html>
   <head>
- <base href="<%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -54,7 +47,7 @@
 					</div>
 					<div class="fitem">
 						<label></label>
-						<input name="creator" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写creator">
+						<input name="creater" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写creater">
 					</div>
 					<div class="fitem">
 						<label></label>

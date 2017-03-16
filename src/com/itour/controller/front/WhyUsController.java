@@ -10,6 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.web.BaseController;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 
 @Controller 
 @RequestMapping("/whyus")
@@ -18,7 +21,14 @@ public class WhyUsController extends BaseController {
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @return

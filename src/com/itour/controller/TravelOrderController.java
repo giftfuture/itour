@@ -28,6 +28,9 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelOrder;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.TravelOrderService;
 import com.itour.vo.TravelOrderVo;
 import com.itour.vo.TravelStyleVo;
@@ -50,6 +53,14 @@ public class TravelOrderController extends BaseController{
 	private TravelOrderService<TravelOrder> travelOrderService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

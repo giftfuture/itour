@@ -33,6 +33,9 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
 import com.itour.vo.SysMenuVo;
@@ -52,6 +55,14 @@ public class SysMenuController extends BaseController{
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * @param url
 	 * @param classifyId

@@ -14,6 +14,9 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Customers;
 import com.itour.service.CustomersService;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.vo.CustomerVo;
 
 @Controller
@@ -26,6 +29,14 @@ public class SelfdriveController  extends BaseController{
 	// Servrice start
 	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private CustomersService customersService; 
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();

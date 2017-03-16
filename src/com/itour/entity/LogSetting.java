@@ -15,7 +15,7 @@ public class LogSetting extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 3676699435719703726L;
-	private java.lang.String logCode;//   	private java.lang.String tableName;//   	private java.lang.String function;//   	private java.lang.String urlTeimplate;//   	private java.lang.String creator;//   	private java.lang.String deletescriptTemplate;//   	private java.lang.String updatescriptTemplate;//   	private java.util.Date createTime;//   
+	private java.lang.String logCode;//   	private java.lang.String tableName;//   	private java.lang.String function;//   	private java.lang.String urlTeimplate;//   	private java.lang.String creater;//   	private java.lang.String deletescriptTemplate;//   	private java.lang.String updatescriptTemplate;//   	private java.util.Date createTime;//   
 	public java.lang.String getLogCode() {
 		return logCode;
 	}
@@ -40,11 +40,12 @@ public class LogSetting extends BaseEntity {
 	public void setUrlTeimplate(java.lang.String urlTeimplate) {
 		this.urlTeimplate = urlTeimplate;
 	}
-	public java.lang.String getCreator() {
-		return creator;
+	
+	public java.lang.String getCreater() {
+		return creater;
 	}
-	public void setCreator(java.lang.String creator) {
-		this.creator = creator;
+	public void setCreater(java.lang.String creater) {
+		this.creater = creater;
 	}
 	public java.lang.String getDeletescriptTemplate() {
 		return deletescriptTemplate;

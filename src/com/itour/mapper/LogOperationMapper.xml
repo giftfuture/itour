@@ -11,13 +11,13 @@
 	<result column="primary_keyvalue" property="primaryKeyvalue"/>
 	<result column="content" property="content"/>
 	<result column="url" property="url"/>
-	<result column="creator" property="creator"/>
+	<result column="creater" property="creater"/>
 	<result column="create_time" property="createTime"/>
 </resultMap>
        
 <!-- log_operation table all fields -->
 <sql id="Base_Column_List" >
-	 oper_code, log_code, operation_type, primary_keyvalue, content, url, creator, create_time
+	 oper_code, log_code, operation_type, primary_keyvalue, content, url, creater, create_time
 </sql>
    
    
@@ -43,8 +43,8 @@ where 1=1
 	<if test="url != null and url != ''" >
 	    and url =  #{url}
 	</if>
-	<if test="creator != null and creator != ''" >
-	    and creator =  #{creator}
+	<if test="creater != null and creater != ''" >
+	    and creater =  #{creater}
 	</if>
 	<if test="createTime != null and createTime != ''" >
 	    and create_time =  #{createTime}
@@ -58,13 +58,13 @@ where 1=1
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into log_operation(oper_code,log_code,operation_type,primary_keyvalue,content,url,creator,create_time)
- values(#{operCode},#{logCode},#{operationType},#{primaryKeyvalue},#{content},#{url},#{creator},now())
+  insert into log_operation(oper_code,log_code,operation_type,primary_keyvalue,content,url,creater,create_time)
+ values(#{operCode},#{logCode},#{operationType},#{primaryKeyvalue},#{content},#{url},#{creater},now())
 </insert>
 
 <!-- 根据id，修改记录-->  
  <update id="update" parameterType="java.util.Map" >
-  update log_operation set log_code=#{logCode},operation_type=#{operationType},primary_keyvalue=#{primaryKeyvalue},content=#{content},url=#{url},creator=#{creator},create_time=now() where oper_code=#{operCode}
+  update log_operation set log_code=#{logCode},operation_type=#{operationType},primary_keyvalue=#{primaryKeyvalue},content=#{content},url=#{url},creater=#{creater},create_time=now() where oper_code=#{operCode}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -86,8 +86,8 @@ where 1=1
 	<if test="url != null  ">
 		url=#{url},
 	</if>
-	<if test="creator != null  ">
-		creator=#{creator},
+	<if test="creater != null and creater !='' ">
+		creater=#{creater},
 	</if>
 	<if test="createTime != null  ">
 		create_time=#{createTime},

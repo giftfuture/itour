@@ -28,6 +28,9 @@ import com.itour.entity.QuoteForm;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
 import com.itour.service.CustomersService;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
@@ -56,6 +59,14 @@ public class HikingController extends BaseController{
 	private TravelStyleService travelStyleService;
 	@Autowired
 	private QuoteFormService quoteFormService;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

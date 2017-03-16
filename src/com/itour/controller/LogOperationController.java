@@ -81,25 +81,7 @@ public class LogOperationController extends BaseController{
 		HtmlUtil.writerJson(response, jsonMap);
 	}
 	
-	/**
-	 * 添加或修改数据
-	 * @param url
-	 * @param classifyId
-	 * @return
-	 * @throws Exception 
-	 */
-	@Auth(verifyLogin=true,verifyURL=true)
-	@ResponseBody
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(LogOperation entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
-		if(entity.getOperCode()==null||StringUtils.isBlank(entity.getOperCode().toString())){
-			logOperationService.add(entity);
-		}else{
-			logOperationService.update(entity);
-		}
-		sendSuccessMessage(response, "保存成功~");
-	}
+
 	/**
 	 * 
 	 * @param id
@@ -110,7 +92,7 @@ public class LogOperationController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+		Map<String,Object>  context = getRootMap();
 		LogOperation entity  = logOperationService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");

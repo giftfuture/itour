@@ -46,6 +46,9 @@ import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.TravelItemService;
 import com.itour.vo.OrderDetailVo;
 //import com.alibaba.fastjson.JSONObject;
@@ -68,6 +71,14 @@ public class TravelItemController extends BaseController{
 	private TravelItemService<TravelItem> travelItemService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

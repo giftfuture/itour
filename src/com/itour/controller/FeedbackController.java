@@ -30,6 +30,9 @@ import com.itour.convert.FeedbackKit;
 import com.itour.entity.Feedback;
 import com.itour.entity.SysUser;
 import com.itour.service.FeedbackService;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.util.Constants;
 import com.itour.vo.CustomerVo;
 import com.itour.vo.FeedbackVo;
@@ -53,7 +56,14 @@ public class FeedbackController extends BaseController{
 	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param url

@@ -27,6 +27,9 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Quotation;
 import com.itour.entity.SysUser;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.QuotationService;
 import com.itour.vo.FeedbackVo;
 import com.itour.vo.QuotationVo;
@@ -49,7 +52,14 @@ public class QuotationController extends BaseController{
 	private QuotationService<Quotation> quotationService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	
 	
 	

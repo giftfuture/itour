@@ -38,9 +38,9 @@ itour.logSetting = function(){
 								return row.urlTeimplate;
 							}
 						},
-					{field:'creator',title:'',align:'center',sortable:true,
+					{field:'creater',title:'',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.creator;
+								return row.creater;
 							}
 						},
 					{field:'deletescriptTemplate',title:'',align:'center',sortable:true,

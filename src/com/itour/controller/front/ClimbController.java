@@ -15,6 +15,9 @@ import com.itour.base.web.BaseController;
 import com.itour.controller.CustomersController;
 import com.itour.entity.Customers;
 import com.itour.service.CustomersService;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.vo.CustomerVo;
 
 @Controller
@@ -24,7 +27,14 @@ public class ClimbController  extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
 	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	// Servrice start
 	@Autowired
 	private CustomersService customersService; 

@@ -19,6 +19,9 @@ import com.itour.base.web.BaseController;
 import com.itour.entity.Customers;
 import com.itour.entity.TravelItem;
 import com.itour.service.CustomersService;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.TravelItemService;
 import com.itour.vo.CustomerVo;
 
@@ -28,6 +31,14 @@ public class HotSightController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	// Servrice start
 	@Autowired//自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelItemService<TravelItem> travelItemService; 

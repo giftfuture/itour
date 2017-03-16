@@ -18,6 +18,9 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.controller.TravelStyleController;
 import com.itour.entity.TravelStyle;
 import com.itour.vo.TravelStyleVo;
+import com.itour.service.LogOperationService;
+import com.itour.service.LogSettingDetailService;
+import com.itour.service.LogSettingService;
 import com.itour.service.TravelStyleService;
 
 @Controller
@@ -32,6 +35,14 @@ public class CommonController {
 	private TravelStyleService<TravelStyle> travelStyleService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
+	@Autowired
+	private LogSettingService logSettingService;
+	
+	@Autowired
+	private LogSettingDetailService logSettingDetailService;
+	
+	@Autowired
+	private LogOperationService logOperationService;
 	/**
 	 * 
 	 * @param response
