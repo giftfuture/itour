@@ -51,7 +51,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		//		Auth auth = method.getMethod().getAnnotation(Auth.class);
 				////验证登陆超时问题  auth = null，默认验证 
 				if(auth == null || auth.verifyLogin()){
-					String path = request.getServletPath();
+					//String path = request.getServletPath();
 					SysUser user =SessionUtils.getUser(request);
 					if(user == null){
 						String baseUri = request.getContextPath();

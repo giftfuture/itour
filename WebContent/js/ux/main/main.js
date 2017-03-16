@@ -1,5 +1,4 @@
 $package('itour.main');
-
 itour.main = function(){
 	return {
 		treeSelect:function(){

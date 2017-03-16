@@ -4,8 +4,8 @@
 <html>
 <head>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
-<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
+ <meta http-equiv="description" content="${rt.title }"> 
+<title>${rt.title}</title>
 </head>
 
 <body>
@@ -15,7 +15,8 @@
     <td><img src="images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td background="images/frame1-2.gif">
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td width="685"><table width="1053" border="0" cellpadding="0" cellspacing="0">
           <tr>
@@ -32,7 +33,7 @@
 </table>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td class="h1-black">四姑娘山海子沟徒步、长坪沟穿越毕棚沟<span class="STYLE27"> 第一次方案 </span></td>
+    <td class="h1-black">${rt.title}<span class="STYLE27"></span></td>
   </tr>
 </table>
 <br />
@@ -526,7 +527,7 @@
     <td><label></label>
       <table border="0" cellspacing="0" cellpadding="3">
         <tr>
-          <td><input type="submit" name="Submit2" value="返回上页修改" /></td>
+          <td><input type="button" onclick="javascript:go(-1)" name="Submit2" value="返回上页修改" /></td>
           <td><input type="submit" name="Submit22" value="算算呗 ：）" /></td>
         </tr>
         <tr>

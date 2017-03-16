@@ -24,7 +24,9 @@ import com.itour.base.page.BasePage;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.SysUser;
 import com.itour.entity.TravelOrder;
 import com.itour.service.TravelOrderService;
 import com.itour.vo.TravelOrderVo;
@@ -61,7 +63,10 @@ public class TravelOrderController extends BaseController{
 		/*Map<String,Object>  context = getRootMap();
 		List<TravelOrder> dataList = travelOrderService.queryByList(page);
 		context.put("dataList", dataList);//设置页面数据
-*/		return forward("server/sys/travelOrder"); 
+		 */	
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的list方法");
+		return forward("server/sys/travelOrder"); 
 	}
 	
 	
@@ -75,9 +80,11 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(TravelOrderVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(TravelOrderVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<TravelOrder> dataList = travelOrderService.queryByList(page);
 		BasePage<TravelOrderVo> pagination = travelOrderService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 
 	}
 	
@@ -91,7 +98,7 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(TravelOrder entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save(TravelOrder entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 /*		TravelOrder to = new TravelOrder();
 		to.setId(entity.getId());
 		to.setOrderNo(entity.getOrderNo());
@@ -131,6 +138,8 @@ public class TravelOrderController extends BaseController{
 				travelOrderService.update(entity);
 			}
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -144,8 +153,8 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
 		TravelOrder entity  = travelOrderService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
@@ -153,6 +162,8 @@ public class TravelOrderController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的getId方法");
 		return context;
 	}
 	
@@ -165,9 +176,25 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		travelOrderService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		travelOrderService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 }

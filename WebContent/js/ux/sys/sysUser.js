@@ -37,6 +37,7 @@ itour.sysUser = function(){
 		    	save:'sysUser/save', //新增&修改 保存Action  
 				getId:'sysUser/getId',//编辑获取的Action
 				remove:'sysUser/delete',//删除数据的Action}
+				logicremove:'sysUser/logicdelete',//逻辑删除Action
 				updatePwd:'sysUser/updatePwd'//修改密码的action
 		    },
   			dataGrid:{
@@ -75,7 +76,8 @@ itour.sysUser = function(){
 								_this.editPwdWin().window('open'); 
 							}
 						}},
-					{id:'btndelete',text:'删除',btnType:'remove'}
+					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
 				]
 			}
 		},

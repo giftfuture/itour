@@ -11,9 +11,9 @@
  	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">项目代码:</label>
+			<label class="ui-label">景点代码:</label>
 			<input name="itemCode" class="easyui-box ui-text" style="width:110px;"/>
-			<label class="ui-label">旅游项目:</label>
+			<label class="ui-label">景点名称:</label>
 			<input name="item" class="easyui-box ui-text" style="width:108px;"/>
 			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
 			<select name="elevation" class="easyui-box ui-text" style="width:100px;">
@@ -102,13 +102,13 @@
 				</div>
      	</form>
 	 </div>  
-     <div id="edit-win" title="旅行项目" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
+     <div id="edit-win" title="旅行景点" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">旅行项目</div>
+		     	   <div class="ftitle">旅行景点</div>
 					<div class="fitem">
-						<label>项目名称:</label><input name="item" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写项目名称">
+						<label>景点名称:</label><input name="item" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写项目名称">
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">

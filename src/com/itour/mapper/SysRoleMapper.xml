@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itour.dao.SysRoleDao" > 
 <!-- Result Map-->
 <resultMap id="BaseResultMap" type="com.itour.entity.SysRole" >
@@ -15,16 +13,17 @@
 	<result column="descr" property="descr"/>
 	<result column="role_level" property="level"/>
 	<result column="number" property="number"/>
+	<result column="deleted" property="deleted"/>
 </resultMap>
 <!-- sys_role table all fields -->
 <sql id="Base_Column_List" >
-	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number
+	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number,deleted
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where state=0
+where deleted=0
 <trim  suffixOverrides="," >
 	<if test="id != null" >
 	    and id like CONCAT('%', #{id}, '%')
@@ -50,6 +49,9 @@ where state=0
 	<if test="level != null and level != 0">
 		and role_level = #{level}	
 	</if>
+	<if test="state !=null">
+		and state=#{state}
+	</if>
 	<if test="number != null and number != 0">
 		and number = #{number}	
 	</if>
@@ -67,8 +69,8 @@ select max(number) as number from sys_role
   <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="number">
 	select max(number)+1 as number from sys_role 
   </selectKey>
-  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number)
- values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},0,#{descr},#{level},#{number})
+  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number,deleted)
+ values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},0,#{descr},#{level},#{number},0)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -91,8 +93,11 @@ select max(number) as number from sys_role
 		descr=#{descr},
 	</if>
 	<if test="level != null and level != 0">
-		and role_level = #{level}	
+		role_level = #{level},	
 	</if>
+	<!-- <if test="deleted!=null">
+		deleted=#{deleted},
+	</if> -->
 	</trim> where id=#{id}
 </update>
 
@@ -100,7 +105,10 @@ select max(number) as number from sys_role
 <delete id="delete" parameterType="java.lang.String">
 	delete from sys_role where id = #{id}
 </delete>
- 
+ <!-- 逻辑删除 禁用-->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_role set deleted=1 where id = #{id}
+</update>
 <!-- 根据id查询 系统角色 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
@@ -131,13 +139,13 @@ select max(number) as number from sys_role
 <!-- 查询所有角色列表 -->
 <select id="queryAllList" resultMap="BaseResultMap" >
 	select  <include refid="Base_Column_List"/>
-	from sys_role where state = 0 
+	from sys_role where deleted = 0 
 </select>
 
 <!-- 查询所有角色列表 -->
 <select id="queryByUserid" resultMap="BaseResultMap"  parameterType="java.lang.String">
 	select  <include refid="Base_Column_List"/>
-	from sys_role r where state = 0 
+	from sys_role r where deleted = 0 
 	AND EXISTS (
 		SELECT 1 FROM  sys_role_rel rel WHERE rel.roleId = r.id  AND rel.relType = 1 AND rel.objId = #{userid}
 	)

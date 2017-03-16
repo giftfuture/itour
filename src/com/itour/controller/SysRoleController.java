@@ -24,11 +24,13 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
+import com.itour.entity.SysUser;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysRoleRelService;
 import com.itour.service.SysRoleService;
@@ -57,7 +59,9 @@ public class SysRoleController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/role")
-	public ModelAndView list(SysRoleVo model,HttpServletRequest request) throws Exception{
+	public ModelAndView role(SysRoleVo model,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的role方法");
 		return forward("server/sys/sysRole"); 
 	}
 	
@@ -72,9 +76,11 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(SysRoleVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(SysRoleVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//response.setContentType("application/json; charset=UTF-8");
 		BasePage<SysRoleVo> pagination = sysRoleService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 
 	}
 	
@@ -88,7 +94,7 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public Object save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletResponse response) throws Exception{
+	public Object save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(StringUtils.isNotEmpty(bean.getId())){
 			sysRoleService.add(bean,menuIds,btnIds);
 		}else{
@@ -102,6 +108,8 @@ public class SysRoleController extends BaseController{
 		//sendSuccessMessage(response, "保存成功~");
 		result.put(SUCCESS, true);
 		result.put(MSG, "角色添加成功！");
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的save方法");
 		return result;
 	}
 	/**
@@ -112,12 +120,12 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		SysRole bean  = sysRoleService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		//获取权限关联的菜单
 		String[] menuIds = null;
@@ -145,8 +153,10 @@ public class SysRoleController extends BaseController{
 		Map<String,Object> data = BeanUtils.describe(bean);
 		data.put("menuIds", menuIds);
 		data.put("btnIds", btnIds);
-		context.put(SUCCESS, true);
 		context.put("data", data);
+		context.put(SUCCESS, true);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的getId方法");
 		return context;
 	}
 	
@@ -159,11 +169,27 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		sysRoleService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		sysRoleService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 	/**
 	 * 
 	 * @param response
@@ -172,8 +198,10 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/loadRoleList", method = RequestMethod.POST)
-	public void loadRoleList(HttpServletResponse response) throws Exception{
+	public void loadRoleList(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<SysRole>  roloList = sysRoleService.queryAllList();
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的loadRoleList方法");
 		HtmlUtil.writerJson(response, roloList);
 	}
 

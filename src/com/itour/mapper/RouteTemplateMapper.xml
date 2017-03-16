@@ -701,7 +701,10 @@ update route_template set quoto_form=#{quotoForm},update_time=#{updateTime},upda
 <delete id="delete" parameterType="java.lang.String">
 	delete from route_template where id = #{id}
 </delete>
- 
+ <!-- 逻辑删除 -->
+<update id="logicdelete" parameterType="java.lang.String">
+	update route_template set is_valid=0 where id = #{id}
+</update>
 <!-- 根据id查询 路线模板 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> where route_template.id = #{id}
@@ -715,6 +718,10 @@ update route_template set quoto_form=#{quotoForm},update_time=#{updateTime},upda
 <select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List"/>
 from route_template inner join travel_style on route_template.travel_style = travel_style.id where travel_style.alias=#{travelStyle}
+</select>
+<select id="selectByRouteCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/>
+from route_template inner join travel_style on route_template.travel_style = travel_style.id where travel_style.route_code=#{routeCode}
 </select>
 <!-- 根据别名查询该路线 -->
 <select id="queryByAlias"  resultMap="BaseResultMap" parameterType="java.lang.String">

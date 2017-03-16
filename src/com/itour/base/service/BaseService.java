@@ -42,6 +42,14 @@ public abstract class BaseService<T>{
 		}
 	}
 	
+	public void logicdelete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			getDao().logicdelete(id);
+		}
+	}
 	public int queryByCount(BasePage page)throws Exception{
 		return getDao().queryByCount(page);
 	}

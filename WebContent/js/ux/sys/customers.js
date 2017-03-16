@@ -19,7 +19,8 @@ itour.customers = function(){
 				var defaultBtns= [
 					{"btnName":"添加","menuid":"10","actionUrls":"customers/save","btnType":"add"},
 					{"btnName":"修改","menuid":"10","actionUrls":"customers/getId|customers/save","btnType":"edit"},
-					{"btnName":"删除","menuid":"10","actionUrls":"customers/delete","btnType":"remove"}
+					{"btnName":"删除","menuid":"10","actionUrls":"customers/delete","btnType":"remove"},
+					{"btnName":"删除","menuid":"10","actionUrls":"customers/logicdelete","btnType":"logicremove"}
 				];
 				var tbline = $(".tb-line:visible");
 				var btnType = $("input[name='btnType']",tbline);
@@ -128,6 +129,7 @@ itour.customers = function(){
 			action:{
   				save:'customers/save', //新增&修改 保存Action  
   				getId:'customers/getId',//编辑获取的Action
+  				logicremove:'customers/logicdelete',//逻辑删除Action
   				remove:'customers/delete'//删除数据的Action
   			},
   			dataGrid:{
@@ -259,6 +261,7 @@ itour.customers = function(){
 					toolbar:[{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{
 									id:'btnback',
 									text:'back',

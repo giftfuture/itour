@@ -19,6 +19,7 @@ itour.routeTemplate = function(){
 			var defaultBtns= [
 				{"btnName":"添加","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/save","btnType":"add"},
 				{"btnName":"修改","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/getId|routeTemplate/save","btnType":"edit"},
+				{"btnName":"删除","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/logicdelete","btnType":"logicremove"},
 				{"btnName":"删除","menuid":"74BDAEA713D841549B840E502C4F150B","actionUrls":"routeTemplate/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
@@ -127,6 +128,7 @@ itour.routeTemplate = function(){
 		action:{
 				save:'routeTemplate/save', //新增&修改 保存Action  
 				getId:'routeTemplate/getId',//编辑获取的Action
+				logicremove:'routeTemplate/logicdelete',//逻辑删除Action
 				remove:'routeTemplate/delete'//删除数据的Action
 			},
 		/*config:{
@@ -574,6 +576,7 @@ itour.routeTemplate = function(){
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{id:'btnback',
 									text:'back',
 									disabled: true,

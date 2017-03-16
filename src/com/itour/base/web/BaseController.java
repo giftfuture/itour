@@ -137,7 +137,7 @@ public class BaseController {
 	 *
 	 */
 	public void sendSuccessMessage(HttpServletResponse response,  String message) {
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = getRootMap();
 		result.put(SUCCESS, true);
 		result.put(MSG, message);
 		HtmlUtil.writerJson(response, result);
@@ -151,7 +151,7 @@ public class BaseController {
 	 *
 	 */
 	public void sendFailureMessage(HttpServletResponse response,String message) {
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = getRootMap();
 		result.put(SUCCESS, false);
 		result.put(MSG, message);
 		HtmlUtil.writerJson(response, result);

@@ -97,9 +97,10 @@ itour.travelItem = function(){
 		//设置默认按钮数据
 		addDefBtns:function(){
 			var defaultBtns= [
-				{"btnName":"添加","menuid":"13","actionUrls":"save","btnType":"add"},
-				{"btnName":"修改","menuid":"13","actionUrls":"getId|save","btnType":"edit"},
-				{"btnName":"删除","menuid":"13","actionUrls":"delete","btnType":"remove"}
+				{"btnName":"添加","menuid":"13","actionUrls":"travelItem/save","btnType":"add"},
+				{"btnName":"修改","menuid":"13","actionUrls":"travelItem/getId|travelItem/save","btnType":"edit"},
+				{"btnName":"删除","menuid":"13","actionUrls":"travelItem/logicdelete","btnType":"logicremove"},
+				{"btnName":"删除","menuid":"13","actionUrls":"travelItem/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
@@ -189,17 +190,17 @@ itour.travelItem = function(){
 			}
 		},
 		action:{
-				save:'save', //新增&修改 保存Action  
-				getId:'getId',//编辑获取的Action
-				remove:'delete',//删除数据的Action
-				uploadPhoto:'uploadPhoto'
+				save:'travelItem/save', //新增&修改 保存Action  
+				getId:'travelItem/getId',//编辑获取的Action
+				remove:'travelItem/delete',//删除数据的Action
+				uploadPhoto:'travelItem/uploadPhoto'
 			},
   			dataGrid:{
   				title:'旅行项目',
-	   			url:'dataList.json',
+	   			url:'travelItem/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'itemCode',title:'项目代码',align:'center',sortable:true,
+					{field:'itemCode',title:'景点代码',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							if((row.itemCode+"").length>30){
 								return (row.itemCode+"").substring(0,30)+"....";
@@ -208,7 +209,7 @@ itour.travelItem = function(){
 							}
 						}
 					},
-					{field:'item',title:'项目名称',align:'center',sortable:true,
+					{field:'item',title:'景点名称',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.item+"").length>30){
 									return (row.item+"").substring(0,30)+"....";
@@ -392,6 +393,7 @@ itour.travelItem = function(){
 						{id:'btnadd',text:'添加',btnType:'add'},
 						{id:'btnedit',text:'修改',btnType:'edit'},
 						{id:'btndelete',text:'删除',btnType:'remove'},
+						{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 						{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-edit',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){

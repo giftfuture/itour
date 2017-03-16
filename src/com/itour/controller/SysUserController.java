@@ -59,6 +59,8 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView list(SysUserVo model,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的list方法");
 		return forward("server/sys/sysUser"); 
 	}
 	
@@ -74,8 +76,10 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  dataList(SysUserVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  dataList(SysUserVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	  BasePage<SysUserVo> page = sysUserService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的dataList方法");
 	  return dataGridAdapter.wrap(page);
 	}
 	
@@ -112,6 +116,8 @@ public class SysUserController extends BaseController{
 			}
 			sysUserService.update(bean);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -122,7 +128,7 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
@@ -131,6 +137,8 @@ public class SysUserController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", bean);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的getId方法");
 		return context;
 	}
 	
@@ -142,11 +150,27 @@ public class SysUserController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		sysUserService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		sysUserService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 	
 	/**
 	 * 添加或修改数据
@@ -177,7 +201,8 @@ public class SysUserController extends BaseController{
  		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
 		sendSuccessMessage(response, "密码更新成功");
-	
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的updatePwd方法");
 	}
 	
 
@@ -193,6 +218,8 @@ public class SysUserController extends BaseController{
 	@RequestMapping(value="/userRole") 
 	public ModelAndView  userRole(HttpServletRequest request) throws Exception{
 		Map<String,Object> context = getRootMap();
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的userRole方法");
 		return forward("server/sys/sysUserRole", context);
 	}
 	
@@ -205,9 +232,11 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/userList.json", method = RequestMethod.POST) 
-	public void  userList(SysUserVo model,HttpServletResponse response) throws Exception{
+	public void  userList(SysUserVo model,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		model.setState(STATE.ENABLE.key);
-		dataList(model, response);
+		dataList(model,request,response);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的userList方法");
 	}
 
 	/**
@@ -219,7 +248,7 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getUser", method = RequestMethod.POST) 
-	public Map<String,Object> getUser(String id,HttpServletResponse response)  throws Exception{
+	public Map<String,Object> getUser(String id,HttpServletRequest request,HttpServletResponse response)  throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
@@ -242,6 +271,8 @@ public class SysUserController extends BaseController{
 		data.put("roleIds", roleIds);
 		context.put("data", data);
 		context.put(SUCCESS, true);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的getUser方法");
 		return context;
 	}
 	
@@ -255,8 +286,10 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/addUserRole", method = RequestMethod.POST)
-	public void addUserRole(String id,String roleIds[],HttpServletResponse response) throws Exception{
+	public void addUserRole(String id,String roleIds[],HttpServletRequest request,HttpServletResponse response) throws Exception{
 		sysUserService.addUserRole(id, roleIds);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的addUserRole方法");
 		sendSuccessMessage(response, "保存成功");
 	}
 }

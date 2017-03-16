@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
-<%@page import="com.itour.vo.RouteTemplateVo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,11 +129,11 @@
         <td><img src="${basePath}images/facebook.png" width="24" height="24" /></td>
         <td><a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="javascript:copyUrl()">复制链接</a></td>
+        <td><a target="_blank" href="javascript:itour.hiking.copyUrl()">复制链接</a></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:addFavorite()">收藏本页</a></td>
+        <td><a target="_blank"  href="javascript:itour.hiking.addFavorite()">收藏本页</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:printff()">打印页面</a></td>
+        <td><a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
       </tr>
     </table></td>
   </tr>
@@ -189,7 +188,10 @@
 	</table>
   </div>
   <div id="detail-route" style="display:none">
-      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
+  <script type="text/javascript">
+ 	$("#detail-route").load();
+  </script>
+<!--       <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
         <tr>
           <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>天数</strong></strong></div></td>
           <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>行程</strong></strong></div></td>
@@ -239,14 +241,14 @@
           <td valign="middle" class="STYLE126">&nbsp;</td>
           <td valign="middle" class="STYLE126">&nbsp;</td>
         </tr>
-      </table>
-      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+      </table> -->
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<%-- <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
@@ -394,9 +396,9 @@
           </tr>
       </table></td></tr>
   <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
-</table>
+</table> --%>
       <br />
       <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
@@ -573,7 +575,7 @@
       </table></td>
   </tr>
   <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath}images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
 </table>
   </div>
@@ -589,7 +591,9 @@
     <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="${basePath}images/frame1-2.gif">
+    <form name="fastask"  class="ui-form">
+    <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
               <tr>
@@ -598,37 +602,47 @@
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield3222" />
-                    <select name="select5" id="select">
-                      <option value="Mr">先生</option>
-                      <option value="Ms">女士</option>
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="name"  data-options="required:true,validType:'string'"/><!--  -->
+                    <select name="sex" id="select">
+                      <option value="1">先生</option>
+                      <option value="0">女士</option>
                     </select>
+                    <label></label>
                 </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield24222" />
+                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" class="easyui-validatebox textbox" name="email" data-options="required:true,validType:'email'"/>
                     <a href="#">Explains</a>&gt;&gt; </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="textfield222222" />
+                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="mobile" class="easyui-validatebox textbox" data-options="validType:'phoneNum'"/>
                     <a href="#">Explains</a>&gt;&gt; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>标题</strong>:</div></td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><label>
+                  <input type="text" name="title" />
+                </label></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE140"><label>
-                  <textarea name="textarea" cols="30" rows="5"></textarea>
+                  <textarea name="content" cols="30" rows="5" ></textarea>
                 </label></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input name="textfield232222" type="text" size="8" />
-                  Confirm Code:3052</td>
+                <td bgcolor="#F0F0F0" class="STYLE126"><div class="tip">
+     		 	<input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true,message:'请输入验证码!'"/><br/>
+           		<img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
+           		&nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">看不清，换一张</a>
+      </div></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><input type="submit" name="Submit2222" value="Send" /></td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><input type="button" name="SubmitSend" value="Send" /></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
@@ -636,68 +650,13 @@
               </tr>
           </table></td>
           <td width="733" valign="top"><div>
-<%--         <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                <tr>
-                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
-                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年5月12日 12：11 </span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-             <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                <tr>
-                  <td width="32"><div align="center"></div>
-                      <img src="images/man.gif" width="32" height="32" /></td>
-                  <td width="669"><strong>張三豐</strong> <span class="STYLE140">2016年2月1日 23：30 </span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>Re：9月是秋季，正好是最佳时期</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                <tr>
-                  <td width="32"><div align="center"><img src="${basePath}images/woman.png" width="32" height="32" /></div></td>
-                  <td width="669"><strong>洋子</strong> <span class="STYLE13">2016年1月2日 19：50 </span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><span class="STYLE148">請問我想9月去這條線路可以嗎？我們大概一行25人。</span></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td><strong>主角旅行</strong>（2016-6-16）<strong>Re：</strong>9月是秋季，正好是最佳时期</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table> --%>
-         	
+         		<div id="fbcontent"></div>
 			    <ul id='fbpage'></ul>
 			</div>
 		
             </td>
         </tr>
-      </table></td>
+      </table></form></td>
   </tr>
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
@@ -714,7 +673,7 @@
 	</table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif">
@@ -782,7 +741,7 @@
                   小孩：2330元/人*2人（小孩不含门票） </td>
                 <td>&nbsp;</td>
               </tr>
-			  <tr><td><a href="${basePath}hiking/toQuote2">预定</a></td></tr>	
+			  <tr><td><a href="${basePath}hiking/toQuote2/${rt.alias}">预定</a></td></tr>	
             </table>          
             <br /></td></tr>
       </table>

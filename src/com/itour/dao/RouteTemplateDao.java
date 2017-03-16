@@ -48,4 +48,11 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public RouteTemplateVo selectById(@Param(value="id")String id);
+	
+	/**
+	 * 
+	 * @param routeCode
+	 * @return
+	 */
+	public RouteTemplateVo selectByRouteCode(@Param(value="routeCode")String routeCode);
 }

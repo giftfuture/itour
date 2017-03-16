@@ -20,6 +20,7 @@ itour.sysMenu = function(){
 			var defaultBtns= [
 				{"btnName":"添加","menuid":'2',"actionUrls":"sysMenu/save","btnType":"add"},
 				{"btnName":"修改","menuid":'2',"actionUrls":"sysMenu/getId|sysMenu/save","btnType":"edit"},
+				{"btnName":"删除","menuid":"2","actionUrls":"sysMenu/logicdelete","btnType":"logicremove"},
 				{"btnName":"删除","menuid":'2',"actionUrls":"sysMenu/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
@@ -102,6 +103,7 @@ itour.sysMenu = function(){
   			action:{
   				save:'sysMenu/save', //新增&修改 保存Action  
   				getId:'sysMenu/getId',//编辑获取的Action
+  				logicremove:'sysMenu/logicdelete',//逻辑删除Action
   				remove:'sysMenu/delete'//删除数据的Action
   			},
   			event:{
@@ -143,6 +145,7 @@ itour.sysMenu = function(){
 					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 					{
 						id:'btnback',
 						text:'back',

@@ -131,7 +131,10 @@
 	<delete id="delete" parameterType="java.lang.String">
 		delete from show_happy where id = #{id}
 	</delete>
-
+<!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update show_happy set is_valid=0 where id = #{id}
+</update>
 	<!-- 根据id查询 幸福分享 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,

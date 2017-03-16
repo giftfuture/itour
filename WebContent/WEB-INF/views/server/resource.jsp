@@ -22,6 +22,9 @@
 <!-- <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script> -->
 <script type="text/javascript" src="${basePath}js/commons/jquery-migrate-1.1.0.min.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/jquery.form.js"></script>
+<script type="text/javascript" src="${basePath}js/validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${basePath}js/validate/messages_zh_TW.min.js"></script>
+<script type="text/javascript" src="${basePath}js/validate/messages_zh.min.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script>
 <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>

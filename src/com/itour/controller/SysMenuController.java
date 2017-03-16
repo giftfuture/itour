@@ -66,6 +66,8 @@ public class SysMenuController extends BaseController{
 	//	List<SysMenu> dataList = sysMenuService.queryByList(model);
 		//设置页面数据
 	//	context.put("dataList", dataList);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的menu方法");
 		return forward("server/sys/sysMenu"); 
 	}
 	
@@ -79,10 +81,12 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid dataList(SysMenuVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid dataList(SysMenuVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<SysMenu> dataList = sysMenuService.queryByList(vo);
 		//dataGridAdapter.getPagination();
 		BasePage<Map<String, Object>> pagination = sysMenuService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 
 		//设置页面数据
 		//Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -101,11 +105,13 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/rootMenuJson", method = RequestMethod.POST) 
-	public void  rootMenu(String menuId,HttpServletResponse response) throws Exception{
+	public void  rootMenu(String menuId,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<SysMenu> dataList = sysMenuService.getRootMenu(menuId);
 		if(dataList==null){
 			dataList = new ArrayList<SysMenu>();
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的rootMenuJson方法");
 		HtmlUtil.writerJson(response, dataList);
 	}
 	
@@ -152,6 +158,8 @@ public class SysMenuController extends BaseController{
 				sysMenuService.update(bean);
 			//}
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -163,7 +171,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(@RequestParam(value="", defaultValue = StringUtils.EMPTY) String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(@RequestParam(value="", defaultValue = StringUtils.EMPTY) String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = new HashMap<String,Object>();
 		SysMenu bean = sysMenuService.queryById(id);
 		if(bean  == null){
@@ -174,6 +182,8 @@ public class SysMenuController extends BaseController{
 		bean.setBtns(btns);
 		context.put(SUCCESS, true);
 		context.put("data", bean);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的getId方法");
 		return context;
 	}
 	
@@ -186,15 +196,35 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(id != null && id.length > 0){
 			sysMenuService.delete(id);
 			sendSuccessMessage(response, "删除成功");
 		}else{
 			sendFailureMessage(response, "未选中记录");
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的delete方法");
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		if(id != null && id.length > 0){
+			sysMenuService.logicdelete(id);
+			sendSuccessMessage(response, "删除成功");
+		}else{
+			sendFailureMessage(response, "未选中记录");
+		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的logicdelete方法");
+	}
 	/**
 	 * 
 	 * @param id
@@ -204,8 +234,10 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getMenuTree", method = RequestMethod.POST)
-	public void getMenuTree(Integer id,HttpServletResponse response) throws Exception{
+	public void getMenuTree(Integer id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<TreeNode> menuTree = treeMenu();
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的getMenuTree方法");
 		HtmlUtil.writerJson(response, menuTree);
 	}
 	

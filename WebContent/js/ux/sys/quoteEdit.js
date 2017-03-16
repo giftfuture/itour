@@ -80,33 +80,6 @@ itour.quoteEdit = function(){
 		    newTd7.innerHTML = '<input id="shuliang'+id+'" type="text" value="1" onBlur="onlyNum(this);"/>';
 		     
 		},*/
-		
-	config:{
-		event:{
-				add : function(){
-					_this.delAllLine(true);//清空已有的数据
-					_box.handler.add();//调用add方法
-				var parentId =$('#search_parentId').val();
-				if(parentId){
-					$("#edit_parentId").val(parentId);
-				}
-			},
-			edit:function(){
-				_this.delAllLine(true);
-				_box.handler.edit(function(result){
-					$.each(result.data.btns,function(i,btn){
-						_this.addLine(btn);
-					});
-				});
-			},
-			save:function(){
-				
-			}
-		},
-		action:{
-	 			//save:'routeTemplate/updateQuoteForm', //新增&修改 保存Action  
-			}
-		},
 		dinnerPlus:function(){
 			var insertDinner="<tbody><tr><td><a name='addspecialdinner'><img src=images/add.gif width=16 height=16 ></a></td><td rowspan=3>安排特色餐： <select name=province><option>四川</option> <option>云南</option> <option>西藏</option><option>新疆</option> </select></td></tr></tbody>"+
 			"<tbody><tr><td><input name=district size=10 type=text></td>"+

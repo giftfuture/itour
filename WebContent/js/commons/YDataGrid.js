@@ -7,6 +7,7 @@ var YDataGrid = function(config){
 			'save': actionUrl.save ||'save',
 			'getId': actionUrl.getId||'getId',
 			'remove': actionUrl.remove||'delete',
+			'logicremove': actionUrl.remove||'logicdelete',
 			'updatePwd':actionUrl.updatePwd||'updatePwd'
 		}
 		//Grid DataList
@@ -100,6 +101,30 @@ var YDataGrid = function(config){
 					});
 				}
 			},//保存调用方法
+			//逻辑删除记录
+			logicremove: function(callback){
+				var records = Utils.getCheckedRows();
+				if (Utils.checkSelect(records)){
+					$.messager.confirm('提示','确认删除记录?',function(r){  
+					    if (r){
+					    	itour.progress();
+					    	var arr = [],idKey = dataGrid.idField || 'id'; //主键名称
+					    	$.each(records,function(i,record){
+					    		arr.push('id='+record[idKey]);
+					    	});
+					    	var data = arr.join("&");
+					   		itour.logicdeleteForm(Action.logicremove,data,function(result){
+								itour.closeProgress();
+								Events.refresh();
+								//回调函数
+								if(jQuery.isFunction(callback)){
+									callback(result);
+								}
+							});
+					    }  
+					});
+				}
+			},//保存调用方法
 			save: function(callback){
 				if(Form.edit.form('validate')){
 					itour.progress();
@@ -176,6 +201,8 @@ var YDataGrid = function(config){
 			refresh: evt.refresh || Handler.refresh,
 			//删除记录
 			remove: evt.remove || Handler.remove,
+			//逻辑删除记录
+			logicremove:evt.logicremove||Handler.logicremove,
 			//保存调用方法
 			save: evt.save || Handler.save,
 			//关闭按钮事件
@@ -205,13 +232,19 @@ var YDataGrid = function(config){
 						btnType:'remove',
 						handler:Events.remove
 					   };
+		var bar_logicremove = { id:'btnlogicremove',
+						text:'删除',
+						iconCls:'icon-remove',
+						btnType:'logicremove',
+						handler:Events.logicremove
+					   };
 	/*	var bar_upload={id:'btnupload',
 						text:'上传图片',
 					//	iconCls:'icon_upload',
 						btnType:'upload',
 						handler:Events.uploadImg
 					  };*/
-		var toolbarConfig = [bar_add,bar_edit,bar_remove];
+		var toolbarConfig = [bar_add,bar_edit,bar_remove,bar_logicremove];
 		var getToolbar = function (){
 			var tbars = [];
 			if (dataGrid.toolbar != undefined && dataGrid.toolbar.length > 0) {
@@ -230,6 +263,10 @@ var YDataGrid = function(config){
 					}
 					if(bar.btnType=='remove'){
 						tbars.push({id:bar.id || bar_remove.id,text:bar.text || bar_remove.text ,iconCls: bar.iconCls || bar_remove.iconCls,btnType: bar.btnType || bar_remove.btnType,handler:bar.handler || bar_remove.handler});
+						continue;
+					}
+					if(bar.btnType=='logicremove'){
+						tbars.push({id:bar.id || bar_logicremove.id,text:bar.text || bar_logicremove.text ,iconCls: bar.iconCls || bar_logicremove.iconCls,btnType: bar.btnType || bar_logicremove.btnType,handler:bar.handler || bar_logicremove.handler});
 						continue;
 					}
 			/*		if(bar.btnType=='upload'){

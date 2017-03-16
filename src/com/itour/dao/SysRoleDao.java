@@ -2,6 +2,8 @@ package com.itour.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itour.base.dao.BaseDao;
 
 /**
@@ -22,7 +24,7 @@ public interface SysRoleDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 *根据用户Id查询权限
 	 * @return
 	 */
-	public List<SysMenuBtn> queryByUserid(String userid);
+	public List<SysMenuBtn> queryByUserid(@Param(value="userid")String userid);
 	
 	/**
 	 * 

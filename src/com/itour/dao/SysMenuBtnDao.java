@@ -2,6 +2,8 @@ package com.itour.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itour.base.dao.BaseDao;
 
 /**
@@ -11,13 +13,16 @@ import com.itour.base.dao.BaseDao;
  */
 public interface SysMenuBtnDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
-	public List<SysMenuBtn> queryByMenuid(String menuid);
+	public List<SysMenuBtn> queryByMenuid(@Param(value="menuid")String menuid);
 	
-	public List<SysMenuBtn> queryByMenuUrl(String url); 
+	public List<SysMenuBtn> queryByMenuUrl(@Param(value="url")String url); 
 	
-	public void deleteByMenuid(String menuid);
+	public void deleteByMenuid(@Param(value="menuid")String menuid);
 	
-	public List<SysMenuBtn> getMenuBtnByUser(String userid); 
+	public void logicdeleteByMenuid(@Param(value="menuid")String menuid);
+	
+	public List<SysMenuBtn> getMenuBtnByUser(@Param(value="userid")String userid); 
 	
 	public List<SysMenuBtn> queryByAll();
+	
 }

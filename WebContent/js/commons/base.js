@@ -73,16 +73,16 @@ var itour={
 			 	error:function(response, textStatus, errorThrown){
 			 		try{
 			 			itour.closeProgress();
-			 			var data = $.parseJSON($(response.responseText).text());
+			 			var data = $.parseJSON(response.responseText);//$(response.responseText).text()
 			 			//console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
 				 			return false;
 				 		}else{
-					 		itour.alert('提示', data.msg || "请求出现异常,请联系管理员",'error');
+					 		itour.alert('提示', data.msg || "ajaxJson请求出现异常,请联系管理员",'error');
 					 	}
 			 		}catch(e){
-			 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
+			 			itour.alert('提示',"ajaxJson catch请求出现异常,请联系管理员.",'error');
 			 		}
 			 	}
 		});
@@ -102,7 +102,7 @@ var itour={
 			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
 			 		//var result = data.match(reg);  
 			 		//console.log(data+"    "+result);
-			 		var jsondata= $.parseJSON(data);//$(data).text()
+			 		var jsondata= $.parseJSON($(data).text());//$(data).text()
 			 		if($.isFunction(callback)){
 			 			//console.log(callback);
 			 			callback(jsondata);
@@ -111,16 +111,16 @@ var itour={
 			 	error:function(response, textStatus, errorThrown){
 			 		try{
 			 			itour.closeProgress();
-			 			var data = $.parseJSON($(response.responseText).text());
-			 			//console.log(data);
+			 			var data = $.parseJSON($(response.responseText).text());//$(response.responseText).text()
+			 			console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
 				 			return false;
 				 		}else{
-					 		itour.alert('提示', data.msg || "请求出现异常,请联系管理员",'error');
+					 		itour.alert('提示', data.msg || "submitForm请求出现异常,请联系管理员",'error');
 					 	}
 			 		}catch(e){
-			 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
+			 			itour.alert('提示',"catch请求出现异常,请联系管理员.",'error');
 			 		}
 			 	}
 			 }
@@ -135,6 +135,7 @@ var itour={
 			itour.submitForm(form,function(data){
 				itour.closeProgress();
 				var jsondata = $.parseJSON(data);//$(data).text()
+				//console.log(data);
 			 	if(jsondata.success||jsondata.success=="true"){
 			 		//console.log(callback);
 			 		if($.isFunction(callback)){
@@ -144,7 +145,7 @@ var itour={
 			       		itour.alert('提示','保存成功.','info');
 			        } 
 		        }else{
-		       	   itour.alert('提示',jsondata.msg,'error');  
+		       	   itour.alert('提示',jsondata.msg||"saveForm请求出现异常,请联系管理员.",'error');  
 		        }
 			});
 		 }
@@ -157,15 +158,15 @@ var itour={
 	getById:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
-			console.log(data);
+		//	console.log(data);
 			itour.closeProgress();
-			var jsondata = $.parseJSON(data);//$(data).text()
-			if(jsondata.success){
+		//	var jsondata = $.parseJSON(data);//$(data).text()
+			if(data.success){
 				if($.isFunction(callback)){
-			       	callback(jsondata);
+			       	callback(data);
 			    }
 			}else{
-				itour.alert('提示',jsondata.msg,'error');  
+				itour.alert('提示',data.msg||"getById请求出现异常,请联系管理员.",'error');  
 			}
 		});
 	},
@@ -179,14 +180,14 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 			itour.closeProgress();
-			var jsondata = $.parseJSON(data);//$(data).text()
-			if(jsondata.success){
+			//var jsondata = $.parseJSON(data);//$(data).text()
+			if(data.success){
 				if($.isFunction(callback)){
 					//console.log("base:"+data)
-			       	callback(jsondata);
+			       	callback(data);
 			    }
 			}else{
-				itour.alert('提示',jsondata.msg,'error');  
+				itour.alert('提示',data.msg||"请求照片出现异常,请联系管理员.",'error');  
 			}
 		});
 	},
@@ -195,13 +196,28 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 			//console.log(data);
 				itour.closeProgress();
-				var jsondata = $.parseJSON(data);//$(data).text()
-				if(jsondata.success){
+				//var jsondata = $.parseJSON(data);//$(data).text()
+				if(data.success){
 					if($.isFunction(callback)){
-				       	callback(jsondata);
+				       	callback(data);
 				    }
 				}else{
-					itour.alert('提示',jsondata.msg,'error');  
+					itour.alert('提示',data.msg||"deleteForm请求出现异常,请联系管理员.",'error');  
+				}
+		});
+	},
+	logicdeleteForm:function(url,option,callback){
+		itour.progress();
+		itour.ajaxJson(url,option,function(data){
+			//console.log(data);
+				itour.closeProgress();
+				//var jsondata = $.parseJSON(data);//$(data).text()
+				if(data.success){
+					if($.isFunction(callback)){
+				       	callback(data);
+				    }
+				}else{
+					itour.alert('提示',data.msg||"logicdeleteForm请求出现异常,请联系管理员.",'error');  
 				}
 		});
 	}

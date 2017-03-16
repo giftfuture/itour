@@ -53,7 +53,6 @@ public class MapInterceptor implements Interceptor,ResultHandler  {
 
 	@Override
 	public void handleResult(ResultContext arg0) {
-		// TODO Auto-generated method stub
 		
 	} 
     /** 
@@ -63,7 +62,6 @@ public class MapInterceptor implements Interceptor,ResultHandler  {
      * @return 
      */  
     private Object handleResultSet(ResultSet resultSet, MapParam mapParam) {  
-        // TODO Auto-generated method stub  
         if (resultSet != null) {  
             //拿到Key对应的字段  
             String keyField = (String) mapParam.get(MapParam.KEY_FIELD);  

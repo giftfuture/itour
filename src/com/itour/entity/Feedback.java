@@ -25,7 +25,21 @@ public class Feedback extends BaseEntity {
 	private Timestamp preferedDate;
 	private boolean isValid;
 	private String route;//路线
+	private boolean sex;//true=male,false=female
+	private boolean publicShow;//公开展示
 	
+	public boolean isPublicShow() {
+		return publicShow;
+	}
+	public void setPublicShow(boolean publicShow) {
+		this.publicShow = publicShow;
+	}
+	public boolean isSex() {
+		return sex;
+	}
+	public void setSex(boolean sex) {
+		this.sex = sex;
+	}
 	public String getRoute() {
 		return route;
 	}

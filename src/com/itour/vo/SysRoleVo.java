@@ -15,8 +15,15 @@ public class SysRoleVo extends BasePage implements Serializable{
 		private String id;//   id主键	private String roleName;//   角色名称	private String createTime;//   创建时间	private Integer createBy;//   创建人	private String updateTime;//   修改时间	private Integer updateBy;//   修改人	private Integer state;//   状态0=可用 1=禁用	private String descr;//   角色描述
 	private short level;//管理员级别,1=超级管理员，2.3.4=管理咒，站点管理员，测试管理员
 	private int number;//角色编号
+	private int deleted;
 	
 	
+	public int getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
+	}
 	public int getNumber() {
 		return number;
 	}

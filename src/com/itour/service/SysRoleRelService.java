@@ -62,7 +62,17 @@ public class SysRoleRelService<T> extends BaseService<T> {
 		param.put("relType", relType);
 		getDao().deleteByObjId(param);
 	}
-	
+	/**
+	 * 根据关联对象id,关联类型删除 
+	 * @param objId
+	 * @param relType
+	 */
+	public void logicdeleteByObjId(String objId,Integer relType){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("objId", objId);
+		param.put("relType", relType);
+		getDao().logicdeleteByObjId(param);
+	}
 	/**
 	 * 根据角色id删除 
 	 * @param roleId
@@ -70,7 +80,13 @@ public class SysRoleRelService<T> extends BaseService<T> {
 	public void deleteByRoleId(String roleId){
 		deleteByRoleId(roleId,null);
 	}
-	
+	/**
+	 * 根据角色id删除 
+	 * @param roleId
+	 */
+	public void logicdeleteByRoleId(String roleId){
+		logicdeleteByRoleId(roleId,null);
+	}
 	/**
 	 *  根据角色id,关联类型删除 
 	 * @param roleId
@@ -83,6 +99,17 @@ public class SysRoleRelService<T> extends BaseService<T> {
 		getDao().deleteByRoleId(param);
 	}
 	
+	/**
+	 *  根据角色id,关联类型删除 
+	 * @param roleId
+	 * @param relType
+	 */
+	public void logicdeleteByRoleId(String roleId,Integer relType){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("roleId", roleId);
+		param.put("relType", relType);
+		getDao().logicdeleteByRoleId(param);
+	}
 	@Autowired
     private SysRoleRelDao<T> mapper;
 

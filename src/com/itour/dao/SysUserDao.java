@@ -2,6 +2,8 @@ package com.itour.dao;
 
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.SysUser;
 import com.itour.vo.SysUserVo;
@@ -27,7 +29,7 @@ public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param email
 	 * @return
 	 */
-	int getUserCountByEmail(String email);
+	int getUserCountByEmail(@Param(value="email")String email);
 	
 	/**
 	 * 
@@ -41,5 +43,5 @@ public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param email
 	 * @return
 	 */
-	SysUser getUserByEmail(String email);
+	SysUser getUserByEmail(@Param(value="email")String email);
 }

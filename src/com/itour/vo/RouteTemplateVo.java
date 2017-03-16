@@ -52,7 +52,14 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private List<Integer> diffRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private List<Integer> undiffRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private String quotoForm;//报价单表
+	private String beriefTrip;//详细日程
 	
+	public String getBeriefTrip() {
+		return beriefTrip;
+	}
+	public void setBeriefTrip(String beriefTrip) {
+		this.beriefTrip = beriefTrip;
+	}
 	public String getCity() {
 		return city;
 	}

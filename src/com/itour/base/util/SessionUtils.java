@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -26,12 +27,12 @@ public final class SessionUtils {
 	
 	private static final String HAPPY_VALIDATECODE = "happy_validatecode";//晒回忆幸福验证码
 	
-	
 	private static final String SESSION_ACCESS_URLS = "session_access_urls"; //系统能够访问的URL
 	
 	
 	private static final String SESSION_MENUBTN_MAP = "session_menubtn_map"; //系统菜单按钮
 
+	
 	
 	/**
 	  * 设置session的值
@@ -40,7 +41,9 @@ public final class SessionUtils {
 	  * @param value
 	  */
 	 public static void setAttr(HttpServletRequest request,String key,Object value){
-		 request.getSession(true).setAttribute(key, value);
+		 HttpSession session = request.getSession(true);
+		 session.setMaxInactiveInterval(60*60);//一小时
+		 session.setAttribute(key, value);
 	 }
 	 
 	 
@@ -51,7 +54,10 @@ public final class SessionUtils {
 	  * @param value
 	  */
 	 public static Object getAttr(HttpServletRequest request,String key){
-		 return request.getSession(true).getAttribute(key);
+		 HttpSession session = request.getSession(false);
+			if(session!=null)
+				return session.getAttribute(key);
+			return null;
 	 }
 	 
 	 /**
@@ -60,7 +66,9 @@ public final class SessionUtils {
 	  * @param key
 	  */
 	 public static void removeAttr(HttpServletRequest request,String key){
-		 request.getSession(true).removeAttribute(key);
+		 HttpSession session = request.getSession(false);
+			if(session!=null)
+			 session.removeAttribute(key);
 	 }
 	 
 	 /**
@@ -69,7 +77,9 @@ public final class SessionUtils {
 	  * @param user
 	  */
 	 public static void setUser(HttpServletRequest request,SysUser user){
-		 request.getSession(true).setAttribute(SESSION_USER, user);
+		 HttpSession session = request.getSession(true);
+		 session.setMaxInactiveInterval(60*60);//一小时
+		 session.setAttribute(SESSION_USER, user);
 	 }
 	 
 	 
@@ -79,7 +89,10 @@ public final class SessionUtils {
 	  * @return SysUser
 	  */
 	 public static SysUser getUser(HttpServletRequest request){
-		return (SysUser)request.getSession(true).getAttribute(SESSION_USER);
+		 HttpSession session = request.getSession(false);
+			if(session!=null)
+			return (SysUser)session.getAttribute(SESSION_USER);
+			return null;
 	 }
 	 
 	 /**
@@ -111,7 +124,9 @@ public final class SessionUtils {
 	  * @param user
 	  */
 	 public static void setHappyValidateCode(HttpServletRequest request,String validateCode){
-		 request.getSession(true).setAttribute(HAPPY_VALIDATECODE, validateCode);
+		 HttpSession session = request.getSession(true);
+		 session.setMaxInactiveInterval(60*60);//一小时
+		 session.setAttribute(HAPPY_VALIDATECODE, validateCode);
 	 }
 	 
 	 
@@ -121,7 +136,10 @@ public final class SessionUtils {
 	  * @return SysUser
 	  */
 	 public static String getHappyValidateCode(HttpServletRequest request){
-		return (String)request.getSession(true).getAttribute(HAPPY_VALIDATECODE);
+		 HttpSession session = request.getSession(false);
+		 if(session!=null)
+			return(String)session.getAttribute(HAPPY_VALIDATECODE);
+			return null;
 	 }
 	 
 	 /**
@@ -139,7 +157,9 @@ public final class SessionUtils {
 	  * @param user
 	  */
 	 public static void setValidateCode(HttpServletRequest request,String validateCode){
-		 request.getSession(true).setAttribute(SESSION_VALIDATECODE, validateCode);
+		 HttpSession session = request.getSession(true);
+		 session.setMaxInactiveInterval(60*60);//一小时
+		 session.setAttribute(SESSION_VALIDATECODE, validateCode);
 	 }
 	 
 	 
@@ -149,7 +169,10 @@ public final class SessionUtils {
 	  * @return SysUser
 	  */
 	 public static String getValidateCode(HttpServletRequest request){
-		return (String)request.getSession(true).getAttribute(SESSION_VALIDATECODE);
+		 HttpSession session = request.getSession(false);
+		 if(session!=null)
+			return (String)session.getAttribute(SESSION_VALIDATECODE);
+			return null;
 	 }
 	 
 	 

@@ -3,8 +3,6 @@
 <!DOCTYPE HTML>
 <html>
   <head>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -27,7 +25,6 @@
       </form>  
      </div> 
      <!--  Search panel end -->
-
      <!-- Data List -->
      <div region="center" border="false" >
      <table id="data-list"></table>
@@ -77,7 +74,13 @@
 					<div class="fitem">
 						<label>审核意见</label>
 						<textarea rows="5" cols="30" name="result" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写result"></textarea>
-					<!-- 	<input name="result" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写result"> -->
+					</div> 
+					<div class="fitem">
+						<label>是否公开展示</label>
+						<select name="publicShow">
+						   <option value="0">否</option>
+						   <option value="1">是</option>
+						</select>
 					</div> 
   			</div>
      	</form>

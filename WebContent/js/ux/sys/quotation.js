@@ -30,6 +30,7 @@ itour.quotation = function(){
 			var defaultBtns= [
 				{"btnName":"添加","menuid":'38E4B204A09D49E89358A1D1D5E463B6',"actionUrls":"quotation/save","btnType":"add"},
 				{"btnName":"修改","menuid":'38E4B204A09D49E89358A1D1D5E463B6',"actionUrls":"quotation/getId|quotation/save","btnType":"edit"},
+				{"btnName":"删除","menuid":"38E4B204A09D49E89358A1D1D5E463B6","actionUrls":"quotation/logicdelete","btnType":"logicremove"},
 				{"btnName":"删除","menuid":'38E4B204A09D49E89358A1D1D5E463B6',"actionUrls":"quotation/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
@@ -139,6 +140,7 @@ itour.quotation = function(){
 		action:{
 				save:'quotation/save', //新增&修改 保存Action  
 				getId:'quotation/getId',//编辑获取的Action
+				logicremove:'quotation/logicdelete',//逻辑删除Action
 				remove:'quotation/delete'//删除数据的Action
 			},
   			dataGrid:{
@@ -200,6 +202,7 @@ itour.quotation = function(){
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{
 									id:'btnback',
 									text:'back',

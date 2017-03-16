@@ -78,8 +78,20 @@ public class Pager {
 	public Pager() {
 		this.orderDirection = true;
 	}
-
 	protected void doPage() {
+		// //如果输入也页面编号（pageId）大于总页数，将pageId设置为pageCount;
+		// if(this.pageId> this.pageCount)
+		// this.pageId = this.pageCount;
+		// this.pageOffset=(this.pageId-1)*this.pageSize+1;
+		// this.pageTail=this.pageOffset+this.pageSize-1;
+		this.pageSize = this.pageSize== 0 ? 10 : this.pageSize;
+		this.pageCount = (this.rowCount % this.pageSize == 0) && (this.rowCount/this.pageSize >1) ? this.rowCount / this.pageSize : this.rowCount / this.pageSize + 1;
+		// Mysql 算法  
+		this.pageOffset = (this.pageId - 1) * this.pageSize;
+		this.pageTail = this.pageSize== 0 ? 10 :this.pageSize;//
+		//this.pageOffset + this.pageSize > this.rowCount ? this.rowCount%this.pageSize == 0 ? this.pageSize : this.rowCount%this.pageSize :this.pageOffset + this.pageSize;
+	}
+/*	protected void doPage() {
 		// //如果输入也页面编号（pageId）大于总页数，将pageId设置为pageCount;
 		// if(this.pageId> this.pageCount)
 		// this.pageId = this.pageCount;
@@ -89,7 +101,7 @@ public class Pager {
 		// Mysql 算法  
 		this.pageOffset = (this.pageId - 1) * this.pageSize;
 		this.pageTail = this.pageOffset + this.pageSize > this.rowCount ? this.rowCount%this.pageSize == 0 ? this.pageSize : this.rowCount%this.pageSize :this.pageOffset + this.pageSize;
-	}
+	}*/
 
 	public String getOrderCondition() {
 		String condition = "";
@@ -98,10 +110,12 @@ public class Pager {
 		}
 		return condition;
 	}
-
+	
 	public String getMysqlQueryCondition() {
-		String condition = "";
-		condition = " limit " + pageOffset + "," + pageTail;
+		doPage();
+		//this.pageOffset = (this.pageId - 1) * this.pageSize;
+		//this.pageTail= this.pageOffset + this.pageSize > this.rowCount ? this.rowCount%this.pageSize == 0 ? this.pageSize : this.rowCount%this.pageSize :this.pageOffset + this.pageSize;
+		String condition = " limit " + pageOffset + "," + pageTail;
 		//System.out.println("####################="+condition);
 		return condition;
 	}

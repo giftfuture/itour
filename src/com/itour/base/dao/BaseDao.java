@@ -13,6 +13,8 @@ public interface BaseDao<T> {
 	public void update(T t);
 	
 	public void delete(@Param(value="id")String id);
+	
+	public void logicdelete(@Param(value="id")String id);
 
 	public int queryByCount(BasePage page);
 	

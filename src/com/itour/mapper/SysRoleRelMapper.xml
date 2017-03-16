@@ -17,7 +17,6 @@
 	id, roleId,objId,relType,is_valid
 </sql>
    
-   
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
 where is_valid=1
@@ -67,8 +66,11 @@ where is_valid=1
 <delete id="delete" parameterType="java.lang.String">
 	delete from sys_role_rel where roleId = #{roleId}
 </delete>
- 
- 
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_role_rel set is_valid=0 where id = #{id}
+</update>
+ 			
 <!-- 删除记录 -->
 <delete id="deleteByRoleId" parameterType="java.lang.String">
 	delete from sys_role_rel where roleId = #{roleId}
@@ -76,17 +78,29 @@ where is_valid=1
 		and relType =  #{relType}
 	</if>
 </delete>
+ <!-- 通过角色ID逻辑删除记录 -->
+<update id="logicdeleteByRoleId" parameterType="java.lang.String">
+	update sys_role_rel set is_valid=0 where roleId = #{roleId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</update>
  
- 
-<!-- 删除记录 -->
+<!-- 通过objId删除记录 -->
 <delete id="deleteByObjId" parameterType="java.lang.String">
 	delete	from sys_role_rel where objId = #{objId}
 	<if test="relType != null" >
 		and relType =  #{relType}
 	</if>
 </delete>
-
-<!-- 删除记录 -->
+<!-- 通过objId逻辑删除记录 -->
+<update id="logicdeleteByObjId" parameterType="java.lang.String">
+	update sys_role_rel set is_valid=0 where objId = #{objId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</update>
+<!-- 通过角色ID查询记录 -->
 <select id="queryByRoleId" resultMap="BaseResultMap"  parameterType="java.lang.String">
 	select
 	<include refid="Base_Column_List"/>
@@ -97,7 +111,7 @@ where is_valid=1
 </select>
  
  
-<!-- 删除记录 -->
+<!-- 通过objId查询记录 -->
 <select id="queryByObjId" resultMap="BaseResultMap" parameterType="java.lang.String">
 	select 
 	<include refid="Base_Column_List"/>

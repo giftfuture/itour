@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	getCookie();
+	//getCookie();
 	onfocus();
 	$(".on_off_checkbox").iphoneStyle();
 	$('.tip a ').tipsy({
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	});
 
 });
-$('.userload').click(function(e) {
+$('.userload').click(function(e){
 	$('.formLogin').animate({
 		opacity : 1,
 		left : '0'
@@ -45,7 +45,7 @@ $('#forgetpass').click(function(e) {
 	});
 });
 // 点击登录
-$("#but_login").click(function(e) {
+$("#but_login").click(function(e){
 	//console.log("btn_login click trigger");
 	submit();
 });
@@ -63,10 +63,9 @@ $(document).keydown(function(e){
 	}
 });
 //表单提交
-function submit()
-{
+function submit(){
 	var submit = true;
-	$("input[nullmsg]").each(function() {
+	$("input[nullmsg]").each(function(){
 		if ($("#" + this.name).val() == "") {
 			showError($("#" + this.name).attr("nullmsg"), 500);
 			jrumble();
@@ -79,7 +78,7 @@ function submit()
 		hideTop();
 		loading('请稍候', 1);
 		setTimeout("unloading()", 2000);
-		setTimeout("login()", 0);
+		setTimeout("login()", 1);
 	}
 }
 //刷新验证码
@@ -88,7 +87,7 @@ function changeImg(){
 }
 //登录处理函数
 function login() {
-	setCookie();
+	//setCookie();
 	var actionurl=basePath+"main/logIn";//$("#formLogin").attr("action");//提交路径
 	var checkurl=$("#formLogin").attr("check");//验证路径
 	 var formData = new Object();
@@ -103,7 +102,7 @@ function login() {
 		url : actionurl,//checkurl,// 请求的action路径
 		data : formData,
 		error : function() {// 请求失败处理函数
-			alert('登录处理函数出现错误');
+			itour.alert('提示','登录处理函数出现错误','info');
 		},
 		success : function(data) {
 			//console.log("data.success="+data.success);
@@ -117,6 +116,7 @@ function login() {
 				window.location.href=basePath+"main/manage";
 			} else {
 				showError(data.msg);
+				window.location= basePath+"main/login";
 			}
 		}
 	});
@@ -128,7 +128,7 @@ function formSubmit(){
 //设置cookie
 function setCookie()
 {
-	if ($('#on_off').val() == '1') {
+	if ($('#on_off').val() == '1'){
 		$("input[iscookie='true']").each(function() {
 			$.cookie(this.name, $("#"+this.name).val(), "/",24);
 			$.cookie("COOKIE_NAME","true", "/",24);
@@ -144,15 +144,13 @@ function setCookie()
 function getCookie()
 {
 	var COOKIE_NAME=$.cookie("COOKIE_NAME");
-	if (COOKIE_NAME !=null) {
+	if (COOKIE_NAME !=null){
 		$("input[iscookie='true']").each(function() {
 			$($("#"+this.name).val( $.cookie(this.name)));
 		});
 		$("#on_off").attr("checked", true);
 		$("#on_off").val("1");
-	} 
-	else
-	{
+	} else{
 		$("#on_off").attr("checked", false);
 		$("#on_off").val("0");
 	}

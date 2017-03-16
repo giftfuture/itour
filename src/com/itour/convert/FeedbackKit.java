@@ -18,7 +18,9 @@ public class FeedbackKit{
 	public static FeedbackVo toRecord(Feedback fb){
 		FeedbackVo vo = new FeedbackVo();
 		vo.setContent(fb.getContent());
-		vo.setCreateTime(DateUtil.getDateYmdHs(fb.getCreateTime()));
+		if(fb.getCreateTime() !=null){	
+			vo.setCreateTime(DateUtil.getDateYmdHs(fb.getCreateTime()));
+		}
 		vo.setCustomerId(fb.getCustomerId());
 		vo.setCustomerName(fb.getCustomerName());
 		vo.setEmail(fb.getEmail());
@@ -28,11 +30,17 @@ public class FeedbackKit{
 		vo.setStatus(fb.getStatus());
 		vo.setTitle(fb.getTitle());
 		vo.setName(fb.getName());
-		vo.setPreferedDate(DateUtil.getDateYmdHs(fb.getPreferedDate()));
 		vo.setTeamPersons(fb.getTeamPersons());
-		vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
+		if(fb.getPreferedDate() !=null){	
+			vo.setPreferedDate(DateUtil.getDateYmdHs(fb.getPreferedDate()));
+		}
+		if(fb.getUpdateTime() !=null){
+			vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
+		}
 		vo.setValid(fb.isValid());
 		vo.setRoute(fb.getRoute());
+		vo.setSex(fb.isSex());
+		vo.setPublicShow(fb.isPublicShow());
 		return vo;
 	}
 	
@@ -40,7 +48,9 @@ public class FeedbackKit{
 		Feedback bean = new Feedback();
 		try {
 			bean.setContent(fb.getContent());
-			bean.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getCreateTime()));
+			if(fb.getCreateTime() !=null){				
+				bean.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getCreateTime()));
+			}
 			bean.setCustomerId(fb.getCustomerId());
 			bean.setCustomerName(fb.getCustomerName());
 			bean.setEmail(fb.getEmail());
@@ -50,11 +60,17 @@ public class FeedbackKit{
 			bean.setStatus(fb.getStatus());
 			bean.setTitle(fb.getTitle());
 			bean.setName(fb.getName());
-			bean.setPreferedDate(new Timestamp(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getPreferedDate()).getTime()));
 			bean.setTeamPersons(fb.getTeamPersons());
-			bean.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getUpdateTime()));
+			if(fb.getPreferedDate() !=null){
+				bean.setPreferedDate(new Timestamp(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getPreferedDate()).getTime()));
+			}
+			if(fb.getUpdateTime() !=null){
+				bean.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getUpdateTime()));
+			}
 			bean.setValid(fb.isValid());
 			bean.setRoute(fb.getRoute());
+			bean.setSex(fb.isSex());
+			bean.setPublicShow(fb.isPublicShow());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

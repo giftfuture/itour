@@ -19,6 +19,7 @@ itour.feedback = function(){
 				var defaultBtns= [
 					{"btnName":"添加","menuid":'E2A9CF59E2F144A2B863ECA27EC8BDDF',"actionUrls":"feedback/save","btnType":"add"},
 					{"btnName":"修改","menuid":'E2A9CF59E2F144A2B863ECA27EC8BDDF',"actionUrls":"feedback/getId|feedback/save","btnType":"edit"},
+					{"btnName":"删除","menuid":"E2A9CF59E2F144A2B863ECA27EC8BDDF","actionUrls":"feedback/logicdelete","btnType":"logicremove"},
 					{"btnName":"删除","menuid":'E2A9CF59E2F144A2B863ECA27EC8BDDF',"actionUrls":"feedback/delete","btnType":"remove"}
 				];
 				var tbline = $(".tb-line:visible");
@@ -128,6 +129,7 @@ itour.feedback = function(){
 			action:{
   				save:'feedback/save', //新增&修改 保存Action  
   				getId:'feedback/getId',//编辑获取的Action
+  				logicremove:'feedback/logicdelete',//逻辑删除Action
   				remove:'feedback/delete'//删除数据的Action
   			},
 			/*event:{
@@ -190,7 +192,7 @@ itour.feedback = function(){
 									return "审核未通过";
 								}
 							}
-						},
+					},
 				/*	{field:'updateTime',title:'更新时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateTime;
@@ -206,11 +208,22 @@ itour.feedback = function(){
 								}
 							}
 						},
+						{field:'publicShow',title:'是否公开展示',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								//console.log(row.result);
+								if(row.publicShow){
+									return "是";
+								}else{									
+									return "否";
+								}
+							}
+						}
 					]],
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{
 									id:'btnback',
 									text:'back',

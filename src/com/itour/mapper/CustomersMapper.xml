@@ -148,7 +148,10 @@ where is_valid=1
 <delete id="delete" parameterType="java.lang.String">
 	delete  from customers where id = #{id}
 </delete>
- 
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update customers set is_valid=0 where id = #{id}
+</update>
 <!-- 根据id查询 客户信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 

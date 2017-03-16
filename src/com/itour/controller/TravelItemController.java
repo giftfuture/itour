@@ -41,8 +41,10 @@ import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
+import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.service.TravelItemService;
 import com.itour.vo.OrderDetailVo;
@@ -76,6 +78,8 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView list(TravelItemVo page,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的list方法");
 		return forward("server/sys/travelItem"); 
 	}
 	
@@ -94,6 +98,8 @@ public class TravelItemController extends BaseController{
 		TravelItem ti = new TravelItem();
 		ti.setCover(cover);
 		travelItemService.update(ti);	
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的updateCover方法");
 		return forward("server/sys/travelItem"); 
 	}
 	
@@ -107,9 +113,11 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(TravelItemVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(TravelItemVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<TravelItem> dataList = travelItemService.queryByList(page);
 		BasePage<TravelItemVo> page = travelItemService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的dataList方法");
 		return dataGridAdapter.wrap(page);
 	}
 	
@@ -125,7 +133,7 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(TravelItem entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save(TravelItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	File[]  ff = fileselect;
 		//System.out.println(ff != null ? ff.length:0);
 		//Map<String,Object>  context = new HashMap<String,Object>();
@@ -138,6 +146,8 @@ public class TravelItemController extends BaseController{
 			else
 				travelItemService.update(entity);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	//headers = "content-type=application/x-www-form-urlencoded",
@@ -293,6 +303,8 @@ public class TravelItemController extends BaseController{
 	    } */
 		//response.setHeader("content-type", "text/text;charset=UTF-8");
 		String result = JsonUtils.encode(context);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的uploadPhoto方法");
 		return result;
 		//HtmlUtil.writerJson(response, result);
 		//return forward("server/sys/travelItem",context); 
@@ -306,7 +318,7 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
-	public Map<String,Object> getPhotos(@RequestParam(value="id")String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getPhotos(@RequestParam(value="id")String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		try {
 			TravelItem ti = travelItemService.queryById(id);
@@ -363,6 +375,8 @@ public class TravelItemController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的editPhoto方法");
 		return context;
 	}
 	
@@ -375,8 +389,8 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
-	public Map<String,Object> saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletResponse response)throws Exception{
-		Map<String,Object> context = new HashMap<String,Object>();
+	public Map<String,Object> saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletRequest request,HttpServletResponse response)throws Exception{
+		Map<String,Object> context = getRootMap();
 		String realPath = FilePros.uploadPath();
 		TravelItem ti = travelItemService.queryById(id);
 		String [] photos = StringUtils.isNotEmpty(ti.getPhotos()) ? ti.getPhotos().split("\\|"):null;
@@ -408,6 +422,8 @@ public class TravelItemController extends BaseController{
 		travelItemService.update(ti);
 		context.put(SUCCESS, true);
 		context.put("msg", "图片保存成功！");
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的saveeditedPhoto方法");
 		return context;
 	}
 	/**
@@ -419,8 +435,8 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
 		TravelItem entity  = travelItemService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
@@ -428,6 +444,8 @@ public class TravelItemController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的getId方法");
 		return context;
 	}
 	/**
@@ -441,8 +459,8 @@ public class TravelItemController extends BaseController{
 	@ResponseBody
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/search", method = RequestMethod.POST)
-	public void searchTravelItem(@RequestParam(value="travelStyle")String travelStyle,@RequestParam(value="rcdDays")String rcdDays,@RequestParam(value="scope")String scope,HttpServletResponse response) throws Exception{
-		HashMap map = new HashMap();
+	public void searchTravelItem(@RequestParam(value="travelStyle")String travelStyle,@RequestParam(value="rcdDays")String rcdDays,@RequestParam(value="scope")String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = getRootMap();
 		if(StringUtils.isNotEmpty(travelStyle)){			
 			map.put("travelStyle", travelStyle);
 		}
@@ -456,6 +474,8 @@ public class TravelItemController extends BaseController{
 			map.put("rcdDays", rcdDays);
 		}
 		travelItemService.searchTravelItem(map);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的search方法");
 	}
 	
 	/**
@@ -467,11 +487,13 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryByScope", method = RequestMethod.GET)
-	public List<TravelItem> queryByScope(@RequestParam(value="scopeAlias")String scopeAlias,HttpServletResponse response)throws Exception{
+	public List<TravelItem> queryByScope(@RequestParam(value="scopeAlias")String scopeAlias,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		List<TravelItem> travelItems = Lists.newArrayList();
 		if(StringUtils.isNotEmpty(scopeAlias) && !scopeAlias.equalsIgnoreCase("undefined")){			
 			travelItems = travelItemService.queryByScopeAlias(scopeAlias);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByScope方法");
 		return travelItems ;
 	}
 	/**
@@ -484,8 +506,10 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryByStyle", method = RequestMethod.GET)
-	public List<TravelItem> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletResponse response)throws Exception{
+	public List<TravelItem> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		List<TravelItem> travelItems = travelItemService.queryByStyle(travelStyle);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByStyle方法");
 		return travelItems ;
 	}
 	/**
@@ -497,8 +521,25 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		travelItemService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的delete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		travelItemService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的logicdelete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -510,11 +551,13 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/allScopes", method = RequestMethod.GET)
-	public List<Map<String,String>> allScopes(HttpServletResponse response) throws Exception{
+	public List<Map<String,String>> allScopes(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<HashMap<String,String>> maps = travelItemService.allScopes();
 		List<Map<String,String>> newlist = Lists.newArrayList();
 		newlist.add(new HashMap(){{put("scopeAlias","");put("scope","全部區域");}});
 		newlist.addAll(maps);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allScopes方法");
 		return newlist;
 	}
 	
@@ -527,8 +570,10 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/allItems", method = RequestMethod.GET)
-	public List<HashMap<String,String>> allItems(HttpServletResponse response) throws Exception{
+	public List<HashMap<String,String>> allItems(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<HashMap<String,String>> maps = travelItemService.allItems();
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allItems方法");
 		return maps;
 	}
 	
@@ -555,7 +600,7 @@ public class TravelItemController extends BaseController{
 	*/
 	private static String getAppPath(HttpServletRequest request, String path) {
 	if (StringUtil.isEmpty(path))
-	return "";
+		return "";
 	return request.getSession().getServletContext().getRealPath(path);
 	}
 	

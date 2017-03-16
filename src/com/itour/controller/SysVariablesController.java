@@ -22,7 +22,9 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.SysUser;
 import com.itour.entity.SysVariables;
 import com.itour.service.SysVariablesService;
 import com.itour.vo.SysVariablesVo;
@@ -56,6 +58,8 @@ public class SysVariablesController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/list") 
 	public ModelAndView list(SysVariablesVo page,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的list方法");
 		return forward("server/sys/sysVariables"); 
 	}
 	
@@ -70,8 +74,10 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(SysVariablesVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(SysVariablesVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		BasePage<SysVariables> pagination = sysVariablesService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 
 	}
 	
@@ -85,8 +91,8 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(SysVariables entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+	public void save(SysVariables entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			sysVariablesService.add(entity);
 		}else{
@@ -96,6 +102,8 @@ public class SysVariablesController extends BaseController{
 			else
 				sysVariablesService.update(entity);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -108,8 +116,8 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
 		SysVariables entity  = sysVariablesService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
@@ -117,6 +125,8 @@ public class SysVariablesController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的getId方法");
 		return context;
 	}
 	
@@ -129,9 +139,25 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		sysVariablesService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		sysVariablesService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 }

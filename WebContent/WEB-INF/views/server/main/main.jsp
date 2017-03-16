@@ -4,13 +4,6 @@
 <html>
   <head>
      <title>itour后台管理界面</title>
-     <base href="<%=basePath%>">
-	 <meta http-equiv="pragma" content="no-cache">  
-	 <meta http-equiv="cache-control" content="no-cache">  
-	 <meta http-equiv="expires" content="0">      
-	 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
-	 <meta http-equiv="description" content="This is my page"> 
-	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <link rel="stylesheet" type="text/css" href="css/main.css">
      <script type="text/javascript" src="js/ux/main/main.js"></script>
   </head>

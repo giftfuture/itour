@@ -42,6 +42,7 @@ itour.sysRole = function(){
 			action:{
 				save:'sysRole/save', //新增&修改 保存Action  
 				getId:'sysRole/getId',//编辑获取的Action
+				logicremove:'sysRole/logicdelete',//逻辑删除Action
 				remove:'sysRole/delete'//删除数据的Action
 			},
 			event:{
@@ -106,7 +107,13 @@ itour.sysRole = function(){
 							}
 						}}
 						
-				]]
+				]],
+				toolbar:[
+							{id:'btnadd',text:'添加',btnType:'add'},
+							{id:'btnedit',text:'修改',btnType:'edit'},
+							{id:'btndelete',text:'删除',btnType:'remove'},
+							{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
+						]
 			}
 		},
 		init:function(){

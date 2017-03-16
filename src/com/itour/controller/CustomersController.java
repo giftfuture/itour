@@ -1,13 +1,12 @@
 package com.itour.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.itour.base.web.BaseController;
-import com.itour.base.util.HtmlUtil;
-import com.itour.base.util.IDGenerator;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
-import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.IDGenerator;
+import com.itour.base.util.SessionUtils;
+import com.itour.base.web.BaseController;
 import com.itour.entity.Customers;
-import com.itour.entity.SysMenu;
+import com.itour.entity.SysUser;
 import com.itour.service.CustomersService;
 import com.itour.vo.CustomerVo;
  
@@ -62,6 +57,8 @@ public class CustomersController extends BaseController{
 	@RequestMapping(value = "/list") 
 	public ModelAndView list(CustomerVo vo,HttpServletRequest request) throws Exception{
 		request.isUserInRole("");
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的list方法");
 		return forward("server/sys/customers"); 
 	}
 	
@@ -75,7 +72,7 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/dataList.json", method = RequestMethod.POST) 
 	@ResponseBody
-	public EasyUIGrid datalist(CustomerVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//BasePage page = dataGridAdapter.getPagination();
 		BasePage<Map<String, Object>> pagination = customersService.pagedQuery(vo);
 		//List<Customers> dataList = customersService.queryByList(page);
@@ -89,6 +86,8 @@ public class CustomersController extends BaseController{
 	 //   JSONObject jsonObj = JSONObject.parseObject(cust.toString());
 	 //   System.out.println(jsonObj);
 	 //	HtmlUtil.writerJSON(response,jsonMap);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的dataList方法");
 		return dataGridAdapter.wrap(pagination);
 	}
 	
@@ -102,7 +101,7 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public void save(Customers entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save(Customers entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setCustomerId(IDGenerator.getUUID());
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -115,14 +114,16 @@ public class CustomersController extends BaseController{
 			else
 				customersService.update(entity);
 		}
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/getId", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
 		Customers entity  = customersService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
@@ -130,6 +131,8 @@ public class CustomersController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的getId方法");
 		return context;
 	}
 	
@@ -137,9 +140,20 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		customersService.delete(id);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-
+	
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value = "/logicdelete", method = RequestMethod.POST)
+	@ResponseBody
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		customersService.logicdelete(id);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 }

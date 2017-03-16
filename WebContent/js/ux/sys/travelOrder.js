@@ -19,6 +19,7 @@ itour.travelOrder = function(){
 				var defaultBtns= [
 					{"btnName":"添加","menuid":"11","actionUrls":"travelOrder/save","btnType":"add"},
 					{"btnName":"修改","menuid":"11","actionUrls":"travelOrder/getId|travelOrder/save","btnType":"edit"},
+					{"btnName":"删除","menuid":"11","actionUrls":"travelOrder/logicdelete","btnType":"logicremove"},
 					{"btnName":"删除","menuid":"11","actionUrls":"travelOrder/delete","btnType":"remove"}
 				];
 				var tbline = $(".tb-line:visible");
@@ -128,6 +129,7 @@ itour.travelOrder = function(){
 			action:{
   				save:'travelOrder/save', //新增&修改 保存Action  
   				getId:'travelOrder/getId',//编辑获取的Action
+  				logicremove:'travelOrder/logicdelete',//逻辑删除Action
   				remove:'travelOrder/delete'//删除数据的Action
   			},
 		/*config:{
@@ -296,6 +298,7 @@ itour.travelOrder = function(){
 								{id:'btnadd',text:'添加',btnType:'add',disabled:true},
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{
 									id:'btnback',
 									text:'back',

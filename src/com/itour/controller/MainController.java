@@ -74,6 +74,8 @@ public class MainController extends BaseController {
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,Map<String,Object>  context) throws Exception{
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的login方法");
 		return forward("/server/login");
 	}
 	/**
@@ -87,7 +89,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/checkuser", method = RequestMethod.POST)
-	public void checkuser(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception {
+	public void checkuser(SysUserVo user, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		int count = sysUserService.getUserCountByEmail(user.getEmail());
 		if (count >= 1) {
 				//设置User到Session
@@ -100,6 +102,9 @@ public class MainController extends BaseController {
 		} else {
 			sendFailureMessage(response, "用户名或密码错误!");
 		}
+		//SysUser user = SessionUtils.getUser(request);
+		//logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的login方法");
+		logger.info("########checkuser执行"+user.getNickName());
 	}
 	
 	/**
@@ -172,6 +177,8 @@ public class MainController extends BaseController {
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		logger.debug(message);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的logIn方法");
 		//return forword("/main/main",context);
 		successMessage(response, message);
 		//return new ModelAndView("redirect:/main/manage","map",context);
@@ -188,7 +195,9 @@ public class MainController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/logout")
 	public void  logout(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
 		SessionUtils.removeUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的logout方法，退出登录状态");
 		response.sendRedirect("login");
 	}
 	
@@ -216,6 +225,8 @@ public class MainController extends BaseController {
 			result.put("types", actionTypes);
 		}
 		result.put(SUCCESS, true);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的getActionBtn方法");
 		return result;
 	}
 	 
@@ -253,6 +264,8 @@ public class MainController extends BaseController {
 		}
 		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的modifyPwd方法");
 		sendSuccessMessage(response, "密码更新成功");
 	}
 	
@@ -265,7 +278,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/manage") 
-	public ModelAndView main(HttpServletRequest request,HttpServletResponse response,Map<String,Object> context){
+	public ModelAndView manage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> context){
 		SysUser user = SessionUtils.getUser(request);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -300,6 +313,7 @@ public class MainController extends BaseController {
 			context.put("menuList", menuList);
 			//SessionUtils.setAccessUrl(request, accessUrls);
 		}
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的manage方法");
 		return forward("server/main/main",context); 
 	}
 	

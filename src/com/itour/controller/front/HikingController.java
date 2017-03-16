@@ -16,20 +16,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
 import com.google.common.collect.Lists;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
+import com.itour.entity.QuoteForm;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
 import com.itour.service.CustomersService;
+import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
+import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
 import com.itour.vo.RouteTemplateVo;
 
@@ -40,7 +43,8 @@ public class HikingController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
-	
+	@Autowired
+    private FreeMarkerConfig freeMarkerConfig;//获取FreemarkerConfig的实例
 	// Servrice start
 	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private CustomersService customersService; 
@@ -50,6 +54,8 @@ public class HikingController extends BaseController{
 	private RouteTemplateService routeTemplateService;
 	@Autowired 
 	private TravelStyleService travelStyleService;
+	@Autowired
+	private QuoteFormService quoteFormService;
 	/**
 	 * 
 	 * @param url
@@ -118,6 +124,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/hiking/{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -143,6 +150,17 @@ public class HikingController extends BaseController{
 			}
 			 rt.setRelates(relates);
 		}
+		QuoteForm qf = quoteFormService.queryByRtId(rt.getId());
+		String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
+		rt.setBeriefTrip(beriefTrip);
+		String ftlName = "";
+		Boolean flag =(Boolean)FreeMarkerUtil.htmlFileHasExist(request, Constants.FREEMARKER_PATH, ftlName).get("exist");
+        if(!flag){//如何静态文件不存在，重新生成
+            Map<String,Object> map = getRootMap();
+            map.put("beriefTrip", beriefTrip);//这里包含业务逻辑请求等
+          //  mv.addAllAttributes(map);
+            FreeMarkerUtil.createHtml(freeMarkerConfig, "beriefTrip.ftl", request, map, Constants.FREEMARKER_PATH, ftlName);//根据模板生成静态页面
+        }
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItem> items = travelItemService.queryByIds(itids);
@@ -240,12 +258,13 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote2",method = RequestMethod.GET) 
+	@RequestMapping(value="/toQuote2/{alias}",method = RequestMethod.GET) 
 	@ResponseBody
-	public ModelAndView toQuote2(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ModelAndView toQuote2(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
+		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
 		//context.put("items", items);
-		//context.put("rt", rt);
+		context.put("rt", rt);
 		return forward("front/quote/quote_step2",context); 
 	}
 	/**

@@ -14,6 +14,7 @@ itour.UserRole = function(){
 		config:{
 			action:{
 				save:'sysUser/addUserRole',
+				logicremove:'sysUser/logicdelete',//逻辑删除Action
 				getId:'sysUser/getUser'
 			},
   			dataGrid:{

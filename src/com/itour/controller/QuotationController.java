@@ -23,8 +23,10 @@ import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Quotation;
+import com.itour.entity.SysUser;
 import com.itour.service.QuotationService;
 import com.itour.vo.FeedbackVo;
 import com.itour.vo.QuotationVo;
@@ -65,6 +67,8 @@ public class QuotationController extends BaseController{
 		List<Quotation> dataList = quotationService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的getId方法");
 		return forward("server/sys/quotation"); 
 	}
 	
@@ -79,9 +83,11 @@ public class QuotationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(QuotationVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(QuotationVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<Quotation> dataList = quotationService.queryByList(vo);
 		BasePage<QuotationVo> page = quotationService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的datalist方法");
 		return dataGridAdapter.wrap(page);
 	}
 	
@@ -95,7 +101,7 @@ public class QuotationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(Quotation entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save(Quotation entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context =getRootMap();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			quotationService.add(entity);
@@ -106,6 +112,8 @@ public class QuotationController extends BaseController{
 			else
 				quotationService.update(entity);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -116,7 +124,7 @@ public class QuotationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		Quotation entity  = quotationService.queryById(id);
 		if(entity  == null){
@@ -126,6 +134,8 @@ public class QuotationController extends BaseController{
 		String data = JsonUtils.encode(entity);
 		context.put(SUCCESS, true);
 		context.put("data", data);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的getId方法");
 		return context;
 	}
 	
@@ -139,9 +149,26 @@ public class QuotationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		quotationService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-
+	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		quotationService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 }

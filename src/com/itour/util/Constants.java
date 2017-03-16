@@ -27,7 +27,7 @@ public class Constants {
 	public static final int fbperPage = 4;//前端反馈每页数据量
 	public static  int perRow = 3;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
-	
+	public static final String FREEMARKER_PATH="";
 	public static final String CUSTOMIZED = "customized";
 	public static final String CLIMB = "climb";
 	public static final String SELFDRIVE = "selfdrive";

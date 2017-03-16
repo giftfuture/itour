@@ -38,6 +38,10 @@ public class SysMenuBtnService<T> extends BaseService<T> {
 		getDao().deleteByMenuid(menuid);
 	}
 	
+	public void logicdeleteByMenuid(String menuid){
+		getDao().logicdeleteByMenuid(menuid);
+	}
+	
 	public List<T> getMenuBtnByUser(String userid){
 		return getDao().getMenuBtnByUser(userid);
 	}

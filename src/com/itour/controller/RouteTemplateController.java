@@ -65,6 +65,8 @@ public class RouteTemplateController extends BaseController{
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的list方法");
 		return forward("server/sys/routeTemplate"); 
 	}
 	
@@ -79,9 +81,11 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(RouteTemplateVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(RouteTemplateVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		BasePage<RouteTemplateVo> page = routeTemplateService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的datalist方法");
 		return dataGridAdapter.wrap(page);
 	}
 	
@@ -95,7 +99,7 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(RouteTemplate entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save(RouteTemplate entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setRouteCode(IDGenerator.code(16));
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -107,6 +111,8 @@ public class RouteTemplateController extends BaseController{
 			else
 				routeTemplateService.update(entity);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -118,7 +124,7 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		RouteTemplate entity  = routeTemplateService.queryById(id);
 		if(entity  == null){
@@ -127,6 +133,8 @@ public class RouteTemplateController extends BaseController{
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的getId方法");
 		return context;
 	}
 	/**
@@ -137,7 +145,7 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/quoteEdit",method = RequestMethod.GET)
-	public ModelAndView quoteEdit(String id,HttpServletResponse response) throws Exception{
+	public ModelAndView quoteEdit(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		RouteTemplateVo bean  = routeTemplateService.selectById(id);
 		if(bean  == null){
@@ -147,11 +155,13 @@ public class RouteTemplateController extends BaseController{
 		context.put(SUCCESS, true);
 		//context.put("quotoForm", quotoForm);
 		context.put("bean", bean);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的quoteEdit方法");
 		return forward("server/sys/quoteEdit",context);
 	}
 	/**
 	 * @param id
-	 * @param response模压苛
+	 * @param response
 	 * @throws Exception
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
@@ -177,6 +187,8 @@ public class RouteTemplateController extends BaseController{
 			sendFailureMessage(response, "报价单内容更新出错!");
 			e.printStackTrace();
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的updateQuoteForm方法");
 	}
 	/**
 	 * @param id
@@ -186,11 +198,26 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		routeTemplateService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-    
+	/**
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		routeTemplateService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 	/**
 	 * 
 	 * @param response

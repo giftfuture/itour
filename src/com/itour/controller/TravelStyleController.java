@@ -23,7 +23,9 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.SysUser;
 import com.itour.entity.SysVariables;
 import com.itour.entity.TravelStyle;
 import com.itour.service.TravelStyleService;
@@ -59,7 +61,9 @@ public class TravelStyleController extends BaseController{
 	public ModelAndView list(TravelStyleVo page,HttpServletRequest request) throws Exception{
 		 Map<String,Object>  context = getRootMap();
 		//context.put("dataList", dataList);//设置页面数据
- 		return forward("server/sys/travelStyle",context); 
+			SysUser sessionuser = SessionUtils.getUser(request);
+			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的list方法");
+		 return forward("server/sys/travelStyle",context); 
 	}
 	
 	
@@ -73,8 +77,10 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(TravelStyleVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(TravelStyleVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		BasePage<TravelStyleVo> pagination = travelStyleService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 
 	}
 	/**
@@ -86,10 +92,12 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/allData", method = RequestMethod.POST) 
-	public void allData(HttpServletResponse response)throws Exception{
+	public void allData(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		List<TravelStyle> dataList = travelStyleService.queryByList(null);
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的allData方法");
 		HtmlUtil.writerJson(response, jsonMap);
 	}
 	/**
@@ -100,11 +108,13 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/loadStyles", method = RequestMethod.GET) 
-	public List<Map<String,String>> loadStyles(HttpServletResponse response)throws Exception{
+	public List<Map<String,String>> loadStyles(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		List<HashMap<String,String>> list = travelStyleService.loadStyles();
 		List<Map<String,String>> newlist = Lists.newArrayList();
 		newlist.add(new HashMap(){{put("alias","");put("type","-所有-");}});
 		newlist.addAll(list);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的loadStyles方法");
 		return newlist;
 	}
 	
@@ -118,7 +128,7 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(TravelStyle entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+	public void save(TravelStyle entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setValid(true);
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -130,6 +140,8 @@ public class TravelStyleController extends BaseController{
 			else
 				travelStyleService.update(entity);
 		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -141,15 +153,17 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId")
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap();
+	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
 		TravelStyle entity  = travelStyleService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的getId方法");
 		return context;
 	}
 	
@@ -162,9 +176,25 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete")
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		travelStyleService.delete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的delete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
-
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete")
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		travelStyleService.logicdelete(id);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的logicdelete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
 }

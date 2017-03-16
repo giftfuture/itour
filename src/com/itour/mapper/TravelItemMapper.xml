@@ -219,7 +219,10 @@ where is_valid=1
 <delete id="delete" parameterType="java.lang.String">
 	delete from travel_item where id = #{id}
 </delete>
- 
+ <!-- 逻辑删除 -->
+<update id="logicdelete" parameterType="java.lang.String">
+	update travel_item set is_valid=0 where id = #{id}
+</update>
 <!-- 根据id查询 旅行项目 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
@@ -271,7 +274,7 @@ where is_valid=1
 select <include refid="Base_Column_List"/>
 from travel_item where travel_item.id in 
 <foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
-            #{ids}  
+      #{ids}  
 </foreach>
 </select>  
 <!-- 获取该旅行方式下的施行项目 -->

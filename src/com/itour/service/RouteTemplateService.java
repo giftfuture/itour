@@ -95,10 +95,17 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @param id
 	 * @return
 	 */
-	public RouteTemplateVo selectById(@Param(value="id")String id){
+	public RouteTemplateVo selectById(String id){
 		return mapper.selectById(id);
 	}
-	
+	/**
+	 * 
+	 * @param routeCode
+	 * @return
+	 */
+	public RouteTemplateVo selectByRouteCode(String routeCode){
+		return mapper.selectByRouteCode(routeCode);
+	}
 	@Autowired
     private RouteTemplateDao<T> mapper;
 		

@@ -16,6 +16,10 @@ public interface SysRoleRelDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
 	public void deleteByObjId(java.util.Map<String, Object> param);
 	
+	public void logicdeleteByRoleId(java.util.Map<String, Object> param);
+	
+	public void logicdeleteByObjId(java.util.Map<String, Object> param);
+	
 	public List<SysRoleRel> queryByRoleId(java.util.Map<String, Object> param);
 	
 	public List<SysRoleRel> queryByObjId(java.util.Map<String, Object> param);

@@ -1,6 +1,5 @@
 package com.itour.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +24,11 @@ import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.page.Pager;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.FeedbackKit;
 import com.itour.entity.Feedback;
+import com.itour.entity.SysUser;
 import com.itour.service.FeedbackService;
 import com.itour.util.Constants;
 import com.itour.vo.CustomerVo;
@@ -63,6 +64,8 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView  list(CustomerVo vo,HttpServletRequest request) throws Exception{
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的list方法");
 		return forward("server/sys/feedback"); 
 	}
 	/**
@@ -75,7 +78,7 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/pagination", method = RequestMethod.POST) 
-	public 	String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,String route,HttpServletResponse response) throws Exception{
+	public 	String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,String route,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		FeedbackVo fv = new FeedbackVo();
 		fv.setRoute(route);
@@ -106,6 +109,8 @@ public class FeedbackController extends BaseController{
 		context.put(SUCCESS, true);
 		context.put("result", page);
 		String result = JsonUtils.encode(context);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的pagination方法");
 		return result;
 	}
 	/**
@@ -118,13 +123,15 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(FeedbackVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(vo.getCreateTime() != null){
 			//String createTime = DateUtil.getDateYmdHs(vo.getCreateTime());
 			//Timestamp createTime =  new Timestamp(vo.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
 			vo.setCreateTime(vo.getCreateTime());
 		}
 		BasePage<FeedbackVo> page = feedbackService.pagedQuery(vo);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的dataList方法");
 		return dataGridAdapter.wrap(page);
 	}
 	/**
@@ -137,21 +144,39 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String add(Feedback feedback,HttpServletResponse response) throws Exception{
+	public String add(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
+		String result = "";
 		//response.setContentType("text/html;charset=UTF-8"); 
-		if(feedback.getId()==null||StringUtils.isBlank(feedback.getId().toString())){
-			feedbackService.add(feedback);
+		String vcode = SessionUtils.getValidateCode(request);
+		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
+	 	if(StringUtils.isBlank(vo.getVerifyCode())){
+	 		context.put(SUCCESS, false);
+	 		context.put(MSG, "验证码不能为空.");
+	 		result = JsonUtils.encode(context);
+			return result;
+		}
+		//判断验证码是否正确
+	 	if(!vo.getVerifyCode().toLowerCase().equals(vcode)){   
+	 		context.put(SUCCESS, false);
+	 		context.put(MSG, "验证码输入错误.");
+	 		result = JsonUtils.encode(context);
+			return result;
+		} 
+		if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
+			feedbackService.add(FeedbackKit.toEntity(vo));
 		}else{
-			Feedback fb = feedbackService.queryById(feedback.getId());
+			Feedback fb = feedbackService.queryById(vo.getId());
 			if(fb == null)
-				feedbackService.add(feedback);
+				feedbackService.add(FeedbackKit.toEntity(vo));
 			else
-				feedbackService.update(feedback);
+				feedbackService.update(FeedbackKit.toEntity(vo));
 		}
 		context.put(SUCCESS, true);
 		context.put("msg", "保存成功~");
-		String result = JsonUtils.encode(context);
+		result = JsonUtils.encode(context);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的add方法");
 		return result;
 		//sendSuccessMessage(response, "保存成功~");
 	}
@@ -165,8 +190,8 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(Feedback entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context =getRootMap();
+	public void save(Feedback entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context =getRootMap();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			feedbackService.add(entity);
 		}else{
@@ -176,6 +201,8 @@ public class FeedbackController extends BaseController{
 			else
 				feedbackService.update(entity);
 		}
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的save方法");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -188,24 +215,42 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
+	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		Feedback entity  = feedbackService.queryById(id);
 		if(entity  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			//sendFailureMessage(response, "没有找到对应的记录!");
+			context.put(SUCCESS, false);
+			context.put(MSG, "没有找到对应的记录!");
+			String result = JsonUtils.encode(context);
+			return result;
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		return context;
+		String result = JsonUtils.encode(context);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的getId方法");
+		return result;
 	}
 	
 	
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		feedbackService.delete(id);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的delete方法");
+		sendSuccessMessage(response, "删除成功");
+	}
+	
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		feedbackService.logicdelete(id);
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的logicdelete方法");
 		sendSuccessMessage(response, "删除成功");
 	}
 

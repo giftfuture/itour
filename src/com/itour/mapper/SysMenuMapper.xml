@@ -23,7 +23,6 @@
 	<result column="subCount" property="subCount"/>
 </resultMap>
 
-
 <!-- sys_menu table all fields -->
 <sql id="Base_Column_List" >
 	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by
@@ -110,10 +109,13 @@ select max(rank+1) as rank from sys_menu
 </update>
 
 <!-- 删除记录 -->
-<update id="delete" parameterType="java.lang.String">
-	update sys_menu set deleted = 1 where id = #{id}
+<delete id="delete" parameterType="java.lang.String">
+	delete from sys_menu where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_menu set deleted=1 where id = #{id}
 </update>
- 
 <!-- 根据id查询 系统菜单 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> from sys_menu where id = #{id}
@@ -141,9 +143,6 @@ select max(rank+1) as rank from sys_menu
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-
-
-	
 <!-- 查询所有有效系统菜单列表 -->
 <select id="queryByAll" resultMap="BaseResultMap">
 select<include refid="Base_Column_List" />  from sys_menu where deleted= 0 order by rank desc

@@ -3,13 +3,6 @@
 <!DOCTYPE html>
 <html>
  <head>
- <base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>itour后台入口</title>
  <!--  <link rel="shortcut icon" href="resources/fc/images/icon/favicon.ico"> -->
   <!--[if lt IE 9]>
@@ -96,7 +89,7 @@ label.iPhoneCheckLabelOn span {
        <input class="password easyui-validatebox" name="pwd" type="password"  value='admin' id="pwd" title="密码" nullmsg="请输入密码!" data-options="required:true"/>
       </div>
       <div class="tip">
-      <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true" nullmsg="请输入验证码!"/><br/>
+      <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true,message:'请输入验证码!'"/><br/>
            <img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="changeImg()">
            &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeImg()">看不清，换一张</a>
       </div>
