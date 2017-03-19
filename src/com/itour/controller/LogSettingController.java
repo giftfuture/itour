@@ -1,10 +1,7 @@
 package com.itour.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,15 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itour.base.web.BaseController;
-import com.itour.base.util.HtmlUtil;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
-import com.itour.base.entity.BaseEntity.DELETED;
-import com.itour.entity.LogOperation;
+import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.page.BasePage;
+import com.itour.base.web.BaseController;
 import com.itour.entity.LogSetting;
-import com.itour.vo.LogSettingVo;
 import com.itour.service.LogSettingService;
+import com.itour.vo.LogSettingVo;
  
 /**
  * 
@@ -73,13 +69,15 @@ public class LogSettingController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(LogSettingVo page,HttpServletResponse response) throws Exception{
-		List<LogSetting> dataList = logSettingService.queryByList(page);
+	public EasyUIGrid  datalist(LogSettingVo vo,HttpServletResponse response) throws Exception{
+		/*List<LogSetting> dataList = logSettingService.queryByList(page);
 		//设置页面数据
-		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		Map<String,Object> jsonMap = getRootMap();
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
-		HtmlUtil.writerJson(response, jsonMap);
+		HtmlUtil.writerJson(response, jsonMap);*/
+		BasePage<Map<String, Object>> pagination = logSettingService.pagedQuery(vo);
+		return dataGridAdapter.wrap(pagination);
 	}
 	
 	/**

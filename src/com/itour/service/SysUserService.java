@@ -2,6 +2,7 @@ package com.itour.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,18 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
-import com.itour.convert.SysRoleKit;
 import com.itour.convert.SysUserKit;
 import com.itour.dao.SysRoleDao;
-import com.itour.dao.SysRoleRelDao;
 import com.itour.dao.SysUserDao;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
-import com.itour.entity.SysUser;
 import com.itour.entity.SysRoleRel.RelType;
-import com.itour.vo.SysRoleVo;
+import com.itour.entity.SysUser;
 import com.itour.vo.SysUserVo;
 
 /**
@@ -86,9 +85,10 @@ public class SysUserService<T> extends BaseService<T> {
 	 * @param roleIds
 	 * @throws Exception
 	 */
-	public void addUserRole(String userId,String[] roleIds) throws Exception{
+	public List<String> addUserRole(String userId,String[] roleIds) throws Exception{
+		List<String> list = Lists.newArrayList();
 		if(userId == null ||  roleIds == null || roleIds.length < 1 ){ 
-			return;
+			return list;
 		}
 		//清除关联关系
 		sysRoleRelService.deleteByObjId(userId, RelType.USER.key);
@@ -97,8 +97,9 @@ public class SysUserService<T> extends BaseService<T> {
 			rel.setRoleId(roleId);
 			rel.setObjId(userId);
 			rel.setRelType(RelType.USER.key);
-			sysRoleRelService.add(rel);
+			list.add(sysRoleRelService.add(rel));
 		}
+		return list;
 	}
 
 	public void updateCode(HashMap map){

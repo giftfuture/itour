@@ -25,6 +25,8 @@ import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.Quotation;
 import com.itour.entity.SysUser;
 import com.itour.service.LogOperationService;
@@ -108,22 +110,33 @@ public class QuotationController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(Quotation entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> context =getRootMap();
+		//Map<String,Object> context =getRootMap();
+		String quId = "";
+		Quotation qo = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			quotationService.add(entity);
+			quId = quotationService.add(entity);
 		}else{
-			Quotation qo = quotationService.queryById(entity.getId());
-			if(qo == null)
-				quotationService.add(entity);
-			else
+				qo = quotationService.queryById(entity.getId());
+			if(qo == null){
+				quId = quotationService.add(entity);
+			}else{
 				quotationService.update(entity);
+			}
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的save方法");
+		if(StringUtils.isNotEmpty(quId)){			
+			String logid = logSettingService.add(new LogSetting("quotation","报价单","quotation/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",quId,JsonUtils.encode(entity),"","quotation/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("quotation","报价单","quotation/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",qo!= null?qo.getId():"",JsonUtils.encode(qo),JsonUtils.encode(entity),"quotation/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -131,6 +144,7 @@ public class QuotationController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -139,13 +153,15 @@ public class QuotationController extends BaseController{
 		Quotation entity  = quotationService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		String data = JsonUtils.encode(entity);
 		context.put(SUCCESS, true);
 		context.put("data", data);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的getId方法");
+		String logId = logSettingService.add(new LogSetting("quotation","报价单","quotation/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","quotation/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -156,6 +172,7 @@ public class QuotationController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -163,6 +180,8 @@ public class QuotationController extends BaseController{
 		quotationService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的delete方法");
+		String logId = logSettingService.add(new LogSetting("quotation","报价单","quotation/delete",sessionuser.getId(),"delete from quotation where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"quotation/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	
@@ -172,6 +191,7 @@ public class QuotationController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -179,6 +199,8 @@ public class QuotationController extends BaseController{
 		quotationService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("quotation","报价单","quotation/logicdelete",sessionuser.getId(),"update quotation set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"quotation/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 }

@@ -1,21 +1,8 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>Southwest-China-Adventures.com</title>
 <meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
 <meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
@@ -23,40 +10,10 @@ pageContext.setAttribute("basePath",basePath);
 <script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
 <link href="css/qzx.css" rel="stylesheet" type="text/css" />
 <link href="css/bodylink.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-<!--
-body {
-	background-color: #993333;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-a:link {
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: none;
-}
-a:active {
-	text-decoration: none;
-}
-.STYLE126 {font-size: 14px}
-.STYLE129 {
-	color: #000000;
-	font-weight: bold;
-}
-.STYLE130 {color: #000000}
-.STYLE134 {font-size: 24px}
--->
-</style>
 </head>
-<BODY><body>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <!--DWLayoutTable-->
+<body>
+ <%@include file="/front/header.jsp"  %>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
     <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -281,37 +238,6 @@ Seasons£º</span>May--Oct<br />
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <!--DWLayoutTable-->
-  <tr>
-    <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
-    <td class="rightlinks"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
-  </tr>
-</table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <!--DWLayoutTable-->
-  <tr>
-    <td width="10" height="16" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
-    <td width="200" valign="top" class="title"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td valign="bottom"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
-  </tr>
-  <tr>
-    <td background="image/shadowleft.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td colspan="2" valign="top"><table width="960" height="60" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
-      <tr>
-        <td width="623" height="30" bgcolor="#EFEFEF"><div align="center">Southwest-China-Adventures.com</div></td>
-      </tr>
-      <tr>
-        <td height="30" bgcolor="#EFEFEF" class="TP05"><div align="center"> Add: Huaqiao Building, #15 South Three Sections of Yihuan Road, Chengdu, Sichuan, China<br />
-          Tel: +86-28-85580038 / 85562905 <br />
-          E-mail: olivierwagemans@hotmail.com </div></td>
-      </tr>
-    </table>
-        <br /></td>
-    <td background="image/shadowright.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-  </tr>
-</table>
+<%@include file="/front/footer.jsp" %>
 </body>
 </html>

@@ -4,6 +4,8 @@ package com.itour.convert;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
+import com.itour.base.util.DateUtil;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.vo.LogOperationVo;
@@ -18,31 +20,35 @@ public class LogOperationKit{
 	public static LogOperationVo toVo(LogOperation ls)throws Exception{
 		LogOperationVo vo = new LogOperationVo();
     	vo.setCreater(ls.getCreater());
-    	vo.setCreateTime(ls.getCreateTime());
+    	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhm));
     	vo.setLogCode(ls.getLogCode());
     	vo.setContent(ls.getContent());
+    	vo.setNewContent(ls.getNewContent());
     	vo.setOperationType(ls.getOperationType());
     	vo.setOperCode(ls.getOperCode());
     	vo.setPrimaryKeyvalue(ls.getPrimaryKeyvalue());
     	vo.setUrl(ls.getUrl());
+    	vo.setId(ls.getId());
     	return vo;
     }
     
     public static LogOperation toEntity(LogOperationVo ls)throws Exception{
     	LogOperation vo = new LogOperation();
     	vo.setCreater(ls.getCreater());
-    	vo.setCreateTime(ls.getCreateTime());
+    	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhm, ls.getCreateTime()));
     	vo.setLogCode(ls.getLogCode());
     	vo.setContent(ls.getContent());
+    	vo.setNewContent(ls.getNewContent());
     	vo.setOperationType(ls.getOperationType());
     	vo.setOperCode(ls.getOperCode());
     	vo.setPrimaryKeyvalue(ls.getPrimaryKeyvalue());
     	vo.setUrl(ls.getUrl());
+    	vo.setId(ls.getId());
     	return vo;
     }
     
     public static Map<String,Object> toRecord(LogOperation ls)throws Exception{
-    	Map<String,Object> record = new HashMap<String,Object>();
+    	Map<String,Object> record = Maps.newHashMap();
     	record.put("logCode", ls.getLogCode());
     	record.put("creater",ls.getCreater());
     	record.put("createTime",ls.getCreateTime());
@@ -50,7 +56,9 @@ public class LogOperationKit{
     	record.put("operationType", ls.getOperationType());
     	record.put("operCode", ls.getOperCode());
     	record.put("primaryKeyvalue", ls.getPrimaryKeyvalue());
+    	record.put("newContent", ls.getNewContent());
     	record.put("url", ls.getUrl());
+    	record.put("id", ls.getId());
     	return record;
     }
 }

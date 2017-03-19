@@ -48,9 +48,6 @@ public class HikingController extends BaseController{
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
     private FreeMarkerConfig freeMarkerConfig;//获取FreemarkerConfig的实例
-	// Servrice start
-	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private CustomersService customersService; 
 	@Autowired 
 	private TravelItemService<TravelItem> travelItemService; 
 	@Autowired 
@@ -82,7 +79,7 @@ public class HikingController extends BaseController{
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = getRootMap();
 		if(StringUtils.isNotEmpty(Constants.travelStyles.get(Constants.HIKING))){			
 			//map.put("alias", Constants.HIKING);
 		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HIKING);

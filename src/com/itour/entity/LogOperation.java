@@ -1,6 +1,8 @@
 package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
+import com.itour.base.util.IDGenerator;
+
 import java.math.BigDecimal;
 /**
  * 
@@ -15,7 +17,33 @@ public class LogOperation extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 8826233846469737958L;
-	private java.lang.String operCode;//   	private java.lang.String logCode;//   	private java.lang.String operationType;//   	private java.lang.String primaryKeyvalue;//   	private java.lang.String content;//   	private java.lang.String url;//   	private java.lang.String creater;//   	private java.util.Date createTime;//   
+	private String id;
+	private java.lang.String operCode;//   	private java.lang.String logCode;//   	private java.lang.String operationType;//   	private java.lang.String primaryKeyvalue;//   	private java.lang.String content;// 
+	private String newContent;//更新时新值	private java.lang.String url;//   	private java.lang.String creater;//   	private java.util.Date createTime;//   
+	public LogOperation(){}
+	public LogOperation(String logCode,String operationType,String primaryKeyvalue,String content,String newContent,String url,String creater){
+		this.operCode = IDGenerator.getUUID();
+		this.logCode = logCode;
+		this.operationType = operationType;
+		this.primaryKeyvalue = primaryKeyvalue;
+		this.content = content;
+		this.newContent = newContent;
+		this.url= url;
+		this.creater = creater; 
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getNewContent() {
+		return newContent;
+	}
+	public void setNewContent(String newContent) {
+		this.newContent = newContent;
+	}
 	public java.lang.String getOperCode() {
 		return operCode;
 	}

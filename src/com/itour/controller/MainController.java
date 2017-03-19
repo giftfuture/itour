@@ -27,6 +27,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.entity.BaseEntity.STATE;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.MethodUtil;
@@ -36,6 +37,8 @@ import com.itour.base.util.TreeUtil;
 import com.itour.base.util.URLUtils;
 import com.itour.base.util.RoleConstant.SuperAdmin;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
@@ -56,21 +59,16 @@ public class MainController extends BaseController {
 	// Servrice start
 	@Autowired
 	private SysMenuService<SysMenu> sysMenuService; 
-	
 	@Autowired 
 	private SysUserService<SysUser> sysUserService; 
-	
 	@Autowired
 	private SysMenuBtnService<SysMenuBtn> sysMenuBtnService;
-	
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
 	private LogSettingService logSettingService;
-	
 	@Autowired
 	private LogSettingDetailService logSettingDetailService;
-	
 	@Autowired
 	private LogOperationService logOperationService;
 	private String verifyCode;
@@ -126,6 +124,7 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/logIn", method = RequestMethod.POST)
@@ -183,12 +182,13 @@ public class MainController extends BaseController {
 		sysUserService.update(user);
 		//设置User到Session
 		SessionUtils.setUser(request,user);
-		
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		logger.debug(message);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的logIn方法");
+		//SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(user != null?("id:"+user .getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的logIn方法");
+		String logId = logSettingService.add(new LogSetting("sys_user","后台用户登录","main/logIn",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"登录",user.getId(),"",JsonUtils.encode(user),"main/logIn",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		//return forword("/main/main",context);
 		successMessage(response, message);
 		//return new ModelAndView("redirect:/main/manage","map",context);
@@ -201,6 +201,7 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/logout")
@@ -208,6 +209,8 @@ public class MainController extends BaseController {
 		SysUser sessionuser = SessionUtils.getUser(request);
 		SessionUtils.removeUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的logout方法，退出登录状态");
+		String logId = logSettingService.add(new LogSetting("sys_user","后台用户退出登录","main/logout",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"退出登录",sessionuser .getId(),"",JsonUtils.encode(sessionuser),"main/logout",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		response.sendRedirect("login");
 	}
 	
@@ -217,6 +220,7 @@ public class MainController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/getActionBtn", method = RequestMethod.POST)
@@ -237,6 +241,8 @@ public class MainController extends BaseController {
 		result.put(SUCCESS, true);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的getActionBtn方法");
+		String logId =logSettingService.add(new LogSetting("sys_user","获取Action下的按钮是否是管理员权限","main/getActionBtn",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"获取Action下的按钮是否是管理员权限",sessionuser .getId(),"",JsonUtils.encode(sessionuser),"main/getActionBtn",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return result;
 	}
 	 
@@ -248,6 +254,7 @@ public class MainController extends BaseController {
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/modifyPwd", method = RequestMethod.POST)
@@ -274,8 +281,10 @@ public class MainController extends BaseController {
 		}
 		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行MainController的modifyPwd方法");
+		SysUser newuser = sysUserService.queryById(user.getId());
+		logger.info("#####"+(user != null?("id:"+user .getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的modifyPwd方法");
+		String logId = logSettingService.add(new LogSetting("sys_user","更新密码","main/modifyPwd",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"更新密码",user .getId(),JsonUtils.encode(user),JsonUtils.encode(newuser),"main/modifyPwd",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "密码更新成功");
 	}
 	
@@ -285,45 +294,52 @@ public class MainController extends BaseController {
 	 * @param classifyId
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=false)
 	@RequestMapping(value="/manage") 
 	public ModelAndView manage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> context){
-		SysUser user = SessionUtils.getUser(request);
 		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} 
-		if(user == null){
-			//sendFailureMessage(response, "对不起,登录超时,请重新登录.");
-			//response.sendRedirect("login");
-			return new ModelAndView("redirect:/main/login");
-		}
-		//Map<String,Object>  context = getRootMap();
-		List<SysMenu> rootMenus = null;
-		List<SysMenu> childMenus = null;
-		List<SysMenuBtn> childBtns = null;
-		if(user != null){
-			//超级管理员
-			if(SuperAdmin.YES.key ==  user.getSuperAdmin()){
-				rootMenus = sysMenuService.getRootMenu(null);// 查询所有根节点
-				childMenus = sysMenuService.getChildMenu(null);//查询所有子节点
-				childBtns = sysMenuBtnService.queryByAll();//查询所有按钮
-			}else{
-				rootMenus = sysMenuService.getRootMenuByUser(user.getId() );//根节点
-				childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
-				childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
+			SysUser user = SessionUtils.getUser(request);
+			try {
+				request.setCharacterEncoding("UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} 
+			if(user == null){
+				//sendFailureMessage(response, "对不起,登录超时,请重新登录.");
+				//response.sendRedirect("login");
+				return new ModelAndView("redirect:/main/login");
 			}
-			buildData(childMenus,childBtns,request); //构建必要的数据
-			List<TreeNode> menuList = treeMenu(rootMenus,childMenus);
-			//TreeUtil treeutil = new TreeUtil(rootMenus,childMenus,childBtns);
-		//	List<String> accessUrls = TreeUtil.nodeUrls(treeutil);
-			context.put("user", user);
-			context.put("menuList", menuList);
-			//SessionUtils.setAccessUrl(request, accessUrls);
+			//Map<String,Object>  context = getRootMap();
+			List<SysMenu> rootMenus = null;
+			List<SysMenu> childMenus = null;
+			List<SysMenuBtn> childBtns = null;
+			if(user != null){
+				//超级管理员
+				if(SuperAdmin.YES.key ==  user.getSuperAdmin()){
+					rootMenus = sysMenuService.getRootMenu(null);// 查询所有根节点
+					childMenus = sysMenuService.getChildMenu(null);//查询所有子节点
+					childBtns = sysMenuBtnService.queryByAll();//查询所有按钮
+				}else{
+					rootMenus = sysMenuService.getRootMenuByUser(user.getId() );//根节点
+					childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
+					childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
+				}
+				buildData(childMenus,childBtns,request); //构建必要的数据
+				List<TreeNode> menuList = treeMenu(rootMenus,childMenus);
+				//TreeUtil treeutil = new TreeUtil(rootMenus,childMenus,childBtns);
+			//	List<String> accessUrls = TreeUtil.nodeUrls(treeutil);
+				context.put("user", user);
+				context.put("menuList", menuList);
+				//SessionUtils.setAccessUrl(request, accessUrls);
+			}
+			logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的manage方法");
+			String logId = logSettingService.add(new LogSetting("sys_user","登录成功，进入后台管理首页","main/manage",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"登录成功，进入后台管理首页",user.getId(),"",JsonUtils.encode(user),"main/manage",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的manage方法");
 		return forward("server/main/main",context); 
 	}
 	

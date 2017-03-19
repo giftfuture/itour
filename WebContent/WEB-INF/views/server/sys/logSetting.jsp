@@ -9,9 +9,9 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="logCode" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="tableName" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="function" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">日志码:</label><input name="logCode" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">表名:</label><input name="tableName" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">功能:</label><input name="function" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  

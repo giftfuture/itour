@@ -21,11 +21,14 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.entity.BaseEntity.STATE;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.MethodUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
@@ -102,12 +105,14 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysUser bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
 		int count = sysUserService.getUserCountByEmail(bean.getEmail());
+		String id = "";
 		if(bean.getId() == null){
 			if(count > 0){
 				throw new ServiceException("用户已存在.");
@@ -117,7 +122,7 @@ public class SysUserController extends BaseController{
 				bean.setCreateBy(user.getId());
 				bean.setUpdateBy(user.getId());
 			}
-			sysUserService.add(bean);
+			id = sysUserService.add(bean);
 		}else{
 			if(count > 1){
 				throw new ServiceException("用户已存在.");
@@ -127,8 +132,14 @@ public class SysUserController extends BaseController{
 			}
 			sysUserService.update(bean);
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的save方法");
+		logger.info("#####"+(user != null?("id:"+user .getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行SysUserController的save方法");
+		if(StringUtils.isNotEmpty(id)){			
+			String logid = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/save",user.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(bean),"","sysUser/save",user.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/save(update)",user.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"","",JsonUtils.encode(bean),"sysUser/save(update)",user.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -136,6 +147,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -144,12 +156,14 @@ public class SysUserController extends BaseController{
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", bean);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的getId方法");
+		String logId = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","sysUser/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -159,12 +173,15 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		sysUserService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的delete方法");
+		String logId = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/delete",sessionuser.getId(),"delete from sys_user where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysUser/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	
@@ -174,12 +191,15 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
 	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		sysUserService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/logicdelete",sessionuser.getId(),"update sys_user set deleted=1 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysUser/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	
@@ -190,6 +210,7 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/updatePwd", method = RequestMethod.POST)
@@ -211,9 +232,11 @@ public class SysUserController extends BaseController{
 		}
  		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
-		sendSuccessMessage(response, "密码更新成功");
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的updatePwd方法");
+		String logid = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/updatePwd",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"",oldPwd,JsonUtils.encode(bean),"sysUser/updatePwd",sessionuser.getId()));
+		sendSuccessMessage(response, "密码更新成功");
 	}
 	
 
@@ -256,15 +279,16 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getUser", method = RequestMethod.POST) 
 	public Map<String,Object> getUser(String id,HttpServletRequest request,HttpServletResponse response)  throws Exception{
-		Map<String,Object>  context = getRootMap();
+		Map<String,Object> context = getRootMap();
 		SysUser bean  = sysUserService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		String[] roleIds = null;
 		List<SysRoleRel>  roles  =sysUserService.getUserRole(bean.getId());
@@ -276,7 +300,7 @@ public class SysUserController extends BaseController{
 				i++;
 			}
 		}
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = getRootMap();
 		data.put("id", bean.getId());
 		data.put("email", bean.getEmail());
 		data.put("roleIds", roleIds);
@@ -284,6 +308,8 @@ public class SysUserController extends BaseController{
 		context.put(SUCCESS, true);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的getUser方法");
+		String logId = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/getUser",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看用户信息",bean.getId(),JsonUtils.encode(data),"","sysUser/getUser",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -294,13 +320,16 @@ public class SysUserController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/addUserRole", method = RequestMethod.POST)
 	public void addUserRole(String id,String roleIds[],HttpServletRequest request,HttpServletResponse response) throws Exception{
-		sysUserService.addUserRole(id, roleIds);
+		List<String> ids = sysUserService.addUserRole(id, roleIds);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的addUserRole方法");
+		String logid = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/addUserRole",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"新增用户角色",id,JsonUtils.encode(ids),"","sysUser/addUserRole",sessionuser.getId()));
 		sendSuccessMessage(response, "保存成功");
 	}
 }

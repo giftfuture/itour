@@ -40,6 +40,8 @@ import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.ShowHappyKit;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.ShowHappy;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
@@ -157,6 +159,7 @@ public class ShowHappyController extends BaseController{
 	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+}   @RequestParam("title") String alias,
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/detail/{shCode}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("shCode") String shCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -182,6 +185,8 @@ public class ShowHappyController extends BaseController{
 		context.put("sh", record);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的detail方法");
+		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/detail",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",(String)record.get("id"),JsonUtils.encode(record),"","showhappy/detail",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return forward("front/happy/happydetail",context); 
 	}
 	/**
@@ -191,6 +196,7 @@ public class ShowHappyController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
@@ -202,8 +208,7 @@ public class ShowHappyController extends BaseController{
 	 		failureMessage(response, "验证码不能为空.");
 			return;
 		}
-		//判断验证码是否正确
-	 	if(!showhappy.getVerifyCode().toLowerCase().equals(vcode)){   
+	 	if(!showhappy.getVerifyCode().toLowerCase().equals(vcode)){//判断验证码是否正确   
 	 		failureMessage(response, "验证码输入错误.");
 			return;
 		} 
@@ -220,6 +225,8 @@ public class ShowHappyController extends BaseController{
 		String result = JsonUtils.encode(context);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的add方法");
+		String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/add",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"新增",uuid,JsonUtils.encode(showhappy),"","showhappy/add",sessionuser.getId()));
 		successMessage(response, result);
 	}
 	
@@ -230,23 +237,33 @@ public class ShowHappyController extends BaseController{
 	 * @return 
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(ShowHappyVo showhappy,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> context = getRootMap();
+		String shId = "";
+		ShowHappy sh = null;
 		if(showhappy.getId()==null||StringUtils.isEmpty(showhappy.getId().toString())){
-			showHappyService.add(ShowHappyKit.toEntity(showhappy));
+			shId = showHappyService.add(ShowHappyKit.toEntity(showhappy));
 		}else{
-			ShowHappy sh = showHappyService.queryById(showhappy.getId());
+				sh = showHappyService.queryById(showhappy.getId());
 			if(sh == null){
-				showHappyService.add(ShowHappyKit.toEntity(showhappy));
+				shId = showHappyService.add(ShowHappyKit.toEntity(showhappy));
 			}else{
 				showHappyService.update(ShowHappyKit.toEntity(showhappy));
 			}
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的save方法");
+		if(StringUtils.isNotEmpty(shId)){			
+			String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",shId,JsonUtils.encode(showhappy),"","showhappy/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",sh!= null?sh.getId():"",JsonUtils.encode(sh),JsonUtils.encode(showhappy),"showhappy/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -256,6 +273,7 @@ public class ShowHappyController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -264,11 +282,13 @@ public class ShowHappyController extends BaseController{
 		ShowHappy entity  = showHappyService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
+		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","showhappy/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的getId方法");
 		return context;
 	}
@@ -279,6 +299,7 @@ public class ShowHappyController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -286,6 +307,8 @@ public class ShowHappyController extends BaseController{
 		showHappyService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的delete方法");
+		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/delete",sessionuser.getId(),"delete from show_happy where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"showhappy/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}	
 	/**
@@ -294,6 +317,7 @@ public class ShowHappyController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -301,6 +325,8 @@ public class ShowHappyController extends BaseController{
 		showHappyService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/logicdelete",sessionuser.getId(),"update show_happy set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"showhappy/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 

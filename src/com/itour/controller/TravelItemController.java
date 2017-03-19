@@ -44,6 +44,8 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.service.LogOperationService;
@@ -102,15 +104,18 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	//@ResponseBody
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/updateCover", method = RequestMethod.POST) 
-	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView updateCover(@RequestParam("cover") String cover ,TravelItemVo vo,HttpServletRequest request) throws Exception{
 		TravelItem ti = new TravelItem();
 		ti.setCover(cover);
 		travelItemService.update(ti);	
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的updateCover方法");
+		String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/updateCover",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"更新封面",vo!= null?vo.getId():"",JsonUtils.encode(vo),JsonUtils.encode(ti),"travelItem/updateCover",sessionuser.getId()));
 		return forward("server/sys/travelItem"); 
 	}
 	
@@ -141,24 +146,31 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-	//	File[]  ff = fileselect;
-		//System.out.println(ff != null ? ff.length:0);
-		//Map<String,Object>  context = new HashMap<String,Object>();
+		String id = "";
+		TravelItem ti = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			travelItemService.add(entity);
+			id = travelItemService.add(entity);
 		}else{
-			TravelItem ti = travelItemService.queryById(entity.getId());
+				ti = travelItemService.queryById(entity.getId());
 			if(ti == null)
-				travelItemService.add(entity);
+				id = travelItemService.add(entity);
 			else
 				travelItemService.update(entity);
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的save方法");
+		if(StringUtils.isNotEmpty(id)){			
+			String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(entity),"","travelItem/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",ti!= null?ti.getId():"",JsonUtils.encode(ti),JsonUtils.encode(entity),"travelItem/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	//headers = "content-type=application/x-www-form-urlencoded",
@@ -170,16 +182,15 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
 	public @ResponseBody String uploadPhotos(@RequestParam(value="id",required=false)String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object>  context = getRootMap();
-		//Map<String,Object> resMap = new HashMap<String,Object>();
-		//MultipartFile fileselect = null;
+		TravelItem ti = new TravelItem();
 		try {
 			if(request instanceof MultipartHttpServletRequest){
-			//MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;// resolver.resolveMultipart(request);
 			//MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;            
 		 //String filename =	multipartRequest.getHeader("X_FILENAME");
@@ -228,55 +239,9 @@ public class TravelItemController extends BaseController{
 			directory = null;
 			uploadpic = null;
 			parpath = null;
-			TravelItem ti = new TravelItem();
 			ti.setId(id);
 			ti.setPhotos(photos.toString());
 			travelItemService.update(ti);
-		/*	 String key = it.next();
-			  while(it.hasNext()) {    
-			         key = (String) it.next();    
-			        imgFile = multipartRequest.getFile(key);    
-			        if (imgFile.getOriginalFilename().length() > 0) {    
-			            String fileName = imgFile.getOriginalFilename();   
-			            System.err.println("filename is " + fileName);  
-			            out = new FileOutputStream(new File(realPath+"\\" + fileName));  
-			            out.write(imgFile.getBytes());  
-			            out.close();  
-			        }  
-			    }  
-			  imgFile = null;*/
-				//HttpHeaders map = multipartRequest.getRequestHeaders();
-			 //Object obj = multipartRequest.getAttribute("fileselect");
-			// HttpHeaders header= multipartRequest.getRequestHeaders();// multipartRequest.getHeader("fileselect");
-			// List<MultipartFile> files = multipartRequest.getFiles("fileselect");
-			//获得提交的所有的<img name=""/> 标签中的name,可实现多张上传
-			// Iterator<String> names= multipartRequest.getFileNames();
-
-			 //循环所有的<img name=""/> 标签中的name
-			//if (fileselect != null) {
-					//FileIO.uploadPhoto(id,fileselect.getInputStream());
-				//获取保存的路径，
-				//request.getSession().getServletContext().getRealPath("/upload/apk");
-				//String originFileName = fileselect.getOriginalFilename();
-				//File f = new File(realPath,originFileName);
-				//if (fileselect.isEmpty()) {
-					// 未选择文件
-					//resMap.put("status", StatusConstants.STATUS_PARM_IS_EMPTY);
-			//	} else{
-					// 文件原名称
-					/*try {
-						//这里使用Apache的FileUtils方法来进行保存
-						FileUtils.copyInputStreamToFile(fileselect.getInputStream(),
-								new File(realPath, originFileName));
-						resMap.put("status",StatusConstants.STATUS_OK);
-					} catch (IOException e) {
-						System.out.println("文件上传失败");
-						resMap.put("status", StatusConstants.STATUS_EXECPTION);
-						e.printStackTrace();
-					}*/
-				//}
-
-			//}
 			if(out != null){
 				try {
 					out.close();
@@ -300,22 +265,15 @@ public class TravelItemController extends BaseController{
 			context.put("msg", "上传文件出错!");
 			e.printStackTrace();
 		}
-		
-	/*	try{	
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setContentType("text/html;charset=UTF-8");   
-	    PrintWriter out1 = response.getWriter();  
-	    //FileUploadResp res = new FileUploadResp();  
-	    //res.setResult(0);  
-	    //res.setDesc("success.");  
-	    out1.write(JSONObject.fromObject(new Object()).toString());  
-	    } catch (IOException e) {  
-	        log.error("in batchImportApps,inputstream is null.");  
-	    } */
-		//response.setHeader("content-type", "text/text;charset=UTF-8");
 		String result = JsonUtils.encode(context);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的uploadPhoto方法");
+		try {
+			String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/uploadPhoto",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"上传图片",ti!= null?ti.getId():"","",JsonUtils.encode(ti),"travelItem/uploadPhoto",sessionuser.getId()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 		//HtmlUtil.writerJson(response, result);
 		//return forward("server/sys/travelItem",context); 
@@ -326,13 +284,14 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
 	public Map<String,Object> getPhotos(@RequestParam(value="id")String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
+		TravelItem ti = travelItemService.queryById(id);
 		try {
-			TravelItem ti = travelItemService.queryById(id);
 			String photos =  ti.getPhotos();
 			String [] filenames = photos.split("\\|");
 			String diskPath = FilePros.physicalPath();//磁盘路径
@@ -362,21 +321,6 @@ public class TravelItemController extends BaseController{
 					}
 				}
 			}
-		/*	if(is != null){			        	
-				try {
-					is.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if(toClient != null){				
-				try {
-					toClient.close();
-				} catch (Exception e) {
-					
-					e.printStackTrace();
-				}
-			}*/
 			newfile = null;
 			imageStream = null;
 			toClient = null;
@@ -388,6 +332,12 @@ public class TravelItemController extends BaseController{
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的editPhoto方法");
+		try {
+			String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/editPhoto",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"编辑图片",ti!= null?ti.getId():"","",JsonUtils.encode(ti),"travelItem/editPhoto",sessionuser.getId()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return context;
 	}
 	
@@ -397,6 +347,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
@@ -435,6 +386,8 @@ public class TravelItemController extends BaseController{
 		context.put("msg", "图片保存成功！");
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的saveeditedPhoto方法");
+		String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/saveeditedPhoto",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"保存编辑图片",ti!= null?ti.getId():"","",JsonUtils.encode(ti),"travelItem/saveeditedPhoto",sessionuser.getId()));
 		return context;
 	}
 	/**
@@ -443,6 +396,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -451,12 +405,14 @@ public class TravelItemController extends BaseController{
 		TravelItem entity  = travelItemService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的getId方法");
+		String logId = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","travelItem/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	/**
@@ -529,6 +485,7 @@ public class TravelItemController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -536,14 +493,18 @@ public class TravelItemController extends BaseController{
 		travelItemService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的delete方法");
+		String logId = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/delete",sessionuser.getId(),"delete from travel_item where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelItem/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
+
 	/**
 	 * 
 	 * @param id
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -551,6 +512,8 @@ public class TravelItemController extends BaseController{
 		travelItemService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/logicdelete",sessionuser.getId(),"update travel_item set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelItem/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**

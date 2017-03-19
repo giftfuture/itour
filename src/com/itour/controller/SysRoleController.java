@@ -18,14 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Maps;
 import com.itour.base.annotation.Auth;
 import com.itour.base.collect.Mapxs;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
@@ -102,25 +106,39 @@ public class SysRoleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public Object save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		SysRole sr = null;
+		String srId = "";
 		if(StringUtils.isNotEmpty(bean.getId())){
-			sysRoleService.add(bean,menuIds,btnIds);
+			srId = sysRoleService.add(bean,menuIds,btnIds);
 		}else{
-			SysRole sr = sysRoleService.queryById(bean.getId());
+				sr = sysRoleService.queryById(bean.getId());
 			if(sr == null)
-				sysRoleService.add(bean,menuIds,btnIds);
+				srId = sysRoleService.add(bean,menuIds,btnIds);
 			else
 				sysRoleService.update(bean,menuIds,btnIds);
 		}
-		Map<String,Object> result = Mapxs.newMapx();
+		Map<String,Object> result = getRootMap();
 		//sendSuccessMessage(response, "保存成功~");
 		result.put(SUCCESS, true);
 		result.put(MSG, "角色添加成功！");
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的save方法");
+		Map<String,Object> map = Maps.newHashMap();
+		map.put("sysRole",bean);
+		map.put("menuIds", menuIds);
+		map.put("btnIds", btnIds);
+		if(StringUtils.isNotEmpty(srId)){			
+			String logid = logSettingService.add(new LogSetting("sys_role","角色管理","sysRole/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",srId,JsonUtils.encode(map),"","sysRole/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("sys_role","角色管理","sysRole/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"",JsonUtils.encode(sr),JsonUtils.encode(map),"sysRole/save(update)",sessionuser.getId()));
+		}
 		return result;
 	}
 	/**
@@ -128,6 +146,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -168,6 +187,8 @@ public class SysRoleController extends BaseController{
 		context.put(SUCCESS, true);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的getId方法");
+		String logId = logSettingService.add(new LogSetting("sys_role","角色管理","sysRole/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(data),"","sysRole/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -177,6 +198,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -184,6 +206,8 @@ public class SysRoleController extends BaseController{
 		sysRoleService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的delete方法");
+		String logId = logSettingService.add(new LogSetting("sys_role","角色管理","sysRole/delete",sessionuser.getId(),"delete from sys_role where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysRole/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -192,6 +216,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -199,6 +224,8 @@ public class SysRoleController extends BaseController{
 		sysRoleService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("sys_role","角色管理","sysRole/logicdelete",sessionuser.getId(),"update sys_role set deleted=1 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysRole/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**

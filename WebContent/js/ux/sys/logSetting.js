@@ -18,42 +18,42 @@ itour.logSetting = function(){
 	   			url:'logSetting/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'logCode',title:'',align:'center',sortable:true,
+					{field:'logCode',title:'日志码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.logCode;
 							}
 						},
-					{field:'tableName',title:'',align:'center',sortable:true,
+					{field:'tableName',title:'表名',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.tableName;
 							}
 						},
-					{field:'function',title:'',align:'center',sortable:true,
+					{field:'function',title:'功能',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return value;// row.function;
 							}
 						},
-					{field:'urlTeimplate',title:'',align:'center',sortable:true,
+					{field:'urlTeimplate',title:'URL模板',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.urlTeimplate;
 							}
 						},
-					{field:'creater',title:'',align:'center',sortable:true,
+					{field:'creater',title:'操作人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.creater;
 							}
 						},
-					{field:'deletescriptTemplate',title:'',align:'center',sortable:true,
+					{field:'deletescriptTemplate',title:'删除脚本',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.deletescriptTemplate;
 							}
 						},
-					{field:'updatescriptTemplate',title:'',align:'center',sortable:true,
+					{field:'updatescriptTemplate',title:'更新脚本',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updatescriptTemplate;
 							}
 						},
-					{field:'createTime',title:'',align:'center',sortable:true,
+					{field:'createTime',title:'操作时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
 							}

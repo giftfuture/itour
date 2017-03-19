@@ -28,6 +28,8 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.FeedbackKit;
 import com.itour.entity.Feedback;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
 import com.itour.service.FeedbackService;
 import com.itour.service.LogOperationService;
@@ -151,12 +153,16 @@ public class FeedbackController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public String add(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
+		Feedback bean = FeedbackKit.toEntity(vo);
+		String fbId = "";
 		String result = "";
+		Feedback fb = null;
 		//response.setContentType("text/html;charset=UTF-8"); 
 		String vcode = SessionUtils.getValidateCode(request);
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
@@ -174,19 +180,26 @@ public class FeedbackController extends BaseController{
 			return result;
 		} 
 		if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
-			feedbackService.add(FeedbackKit.toEntity(vo));
+			fbId = feedbackService.add(bean);
 		}else{
-			Feedback fb = feedbackService.queryById(vo.getId());
+				fb = feedbackService.queryById(vo.getId());
 			if(fb == null)
-				feedbackService.add(FeedbackKit.toEntity(vo));
+				fbId = feedbackService.add(bean);
 			else
-				feedbackService.update(FeedbackKit.toEntity(vo));
+				feedbackService.update(bean);
 		}
 		context.put(SUCCESS, true);
 		context.put("msg", "保存成功~");
 		result = JsonUtils.encode(context);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的add方法");
+		if(StringUtils.isNotEmpty(fbId)){
+			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/add",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"新增",fbId,"",JsonUtils.encode(bean),"feedback/add",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		}else{
+			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/add(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"更新",fb!=null ?fb.getId():"",JsonUtils.encode(fb),JsonUtils.encode(bean),"feedback/add(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		}
 		return result;
 		//sendSuccessMessage(response, "保存成功~");
 	}
@@ -197,23 +210,32 @@ public class FeedbackController extends BaseController{
 	 * @return 
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(Feedback entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> context =getRootMap();
+		//Map<String,Object> context =getRootMap();
+		String fbId = "";
+		Feedback feedback = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			feedbackService.add(entity);
+			fbId = feedbackService.add(entity);
 		}else{
-			Feedback feedback = feedbackService.queryById(entity.getId());
+			feedback = feedbackService.queryById(entity.getId());
 			if(feedback == null)
-				feedbackService.add(entity);
+				fbId = feedbackService.add(entity);
 			else
 				feedbackService.update(entity);
 		}
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的save方法");
-		sendSuccessMessage(response, "保存成功~");
+		if(StringUtils.isNotEmpty(fbId)){
+			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/save",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"新增",fbId,"",JsonUtils.encode(entity),"feedback/save",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		}else{
+			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/save(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"更新",feedback!=null ?feedback.getId():"",JsonUtils.encode(feedback),JsonUtils.encode(entity),"feedback/save(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		}		sendSuccessMessage(response, "保存成功~");
 	}
 	
 	/**
@@ -222,6 +244,7 @@ public class FeedbackController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -240,10 +263,13 @@ public class FeedbackController extends BaseController{
 		String result = JsonUtils.encode(context);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的getId方法");
+		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/getId",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),"",JsonUtils.encode(entity),"feedback/getId",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return result;
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -251,9 +277,12 @@ public class FeedbackController extends BaseController{
 		feedbackService.delete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的delete方法");
+		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/delete",user.getId(),"delete from customers where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"feedback/delete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -261,6 +290,8 @@ public class FeedbackController extends BaseController{
 		feedbackService.logicdelete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/logicdelete",user.getId(),"update feed_back set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"feedback/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 

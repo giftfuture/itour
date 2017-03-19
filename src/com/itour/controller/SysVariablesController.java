@@ -20,10 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
 import com.itour.entity.SysVariables;
 import com.itour.service.LogOperationService;
@@ -99,22 +102,32 @@ public class SysVariablesController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysVariables entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		//Map<String,Object>  context = getRootMap();
+		String id = "";
+		SysVariables sv = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			sysVariablesService.add(entity);
+			id = sysVariablesService.add(entity);
 		}else{
-			SysVariables sv = sysVariablesService.queryById(entity.getId());
+				sv = sysVariablesService.queryById(entity.getId());
 			if(sv == null)
-				sysVariablesService.add(entity);
+				id = sysVariablesService.add(entity);
 			else
 				sysVariablesService.update(entity);
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的save方法");
+		if(StringUtils.isNotEmpty(id)){			
+			String logid = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(entity),"","sysVariables/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",sv!= null?sv.getId():"",JsonUtils.encode(sv),JsonUtils.encode(entity),"sysVariables/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -124,6 +137,7 @@ public class SysVariablesController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -132,12 +146,14 @@ public class SysVariablesController extends BaseController{
 		SysVariables entity  = sysVariablesService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的getId方法");
+		String logId = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","sysVariables/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -147,6 +163,7 @@ public class SysVariablesController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -154,6 +171,8 @@ public class SysVariablesController extends BaseController{
 		sysVariablesService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的delete方法");
+		String logId = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/delete",sessionuser.getId(),"delete from sys_variables where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysVariables/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -162,6 +181,7 @@ public class SysVariablesController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -169,6 +189,8 @@ public class SysVariablesController extends BaseController{
 		sysVariablesService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/logicdelete",sessionuser.getId(),"update sys_variables set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysVariables/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 }

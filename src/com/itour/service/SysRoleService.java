@@ -90,10 +90,11 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @param menuIds
 	 * @throws Exception
 	 */
-	public void add(SysRole role,String[] menuIds,String[] btnIds) throws Exception {
-		super.add((T)role);
+	public String add(SysRole role,String[] menuIds,String[] btnIds) throws Exception {
+		String id = super.add((T)role);
 		addRoleMenuRel(role.getId(),menuIds);
 		addRoleBtnRel(role.getId(),btnIds);
+		return id;
 	}
 
 	/**

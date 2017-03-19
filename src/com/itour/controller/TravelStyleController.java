@@ -21,10 +21,13 @@ import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
 import com.itour.entity.SysVariables;
 import com.itour.entity.TravelStyle;
@@ -136,23 +139,33 @@ public class TravelStyleController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(TravelStyle entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setValid(true);
+		String id = "";
+		TravelStyle ts = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			travelStyleService.add(entity);
+			id = travelStyleService.add(entity);
 		}else{
-			TravelStyle ts = travelStyleService.queryById(entity.getId());
+				ts = travelStyleService.queryById(entity.getId());
 			if(ts == null)
-				travelStyleService.add(entity);
+				id = travelStyleService.add(entity);
 			else
 				travelStyleService.update(entity);
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的save方法");
+		if(StringUtils.isNotEmpty(id)){			
+			String logid = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(entity),"","travelStyle/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",ts!= null?ts.getId():"",JsonUtils.encode(ts),JsonUtils.encode(entity),"travelStyle/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -161,6 +174,7 @@ public class TravelStyleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId")
@@ -175,6 +189,8 @@ public class TravelStyleController extends BaseController{
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的getId方法");
+		String logId = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","travelStyle/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -184,6 +200,7 @@ public class TravelStyleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete")
@@ -191,6 +208,8 @@ public class TravelStyleController extends BaseController{
 		travelStyleService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的delete方法");
+		String logId = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/delete",sessionuser.getId(),"delete from travel_style where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelStyle/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -199,6 +218,7 @@ public class TravelStyleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete")
@@ -206,6 +226,8 @@ public class TravelStyleController extends BaseController{
 		travelStyleService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/logicdelete",sessionuser.getId(),"update travel_style set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelStyle/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 }

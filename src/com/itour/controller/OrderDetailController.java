@@ -19,9 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.OrderDetail;
 import com.itour.entity.SysUser;
 import com.itour.service.LogOperationService;
@@ -104,22 +107,33 @@ public class OrderDetailController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(OrderDetail entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		//Map<String,Object>  context = getRootMap();
+		String odId="";
+		OrderDetail od = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			orderDetailService.add(entity);
+			odId = orderDetailService.add(entity);
 		}else{
-			OrderDetail od = orderDetailService.queryById(entity.getId());
-			if(od == null)
-				orderDetailService.add(entity);
-			else
+				od = orderDetailService.queryById(entity.getId());
+			if(od == null){
+				odId = orderDetailService.add(entity);
+			}else{
 				orderDetailService.update(entity);
+			}
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的save方法");
+		if(StringUtils.isNotEmpty(odId)){
+			String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logId,"新增",odId,JsonUtils.encode(entity),"","orderdetail/save",sessionuser.getId()));
+		}else{			
+			String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logId,"更新",odId,JsonUtils.encode(od),JsonUtils.encode(entity),"orderdetail/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -128,6 +142,7 @@ public class OrderDetailController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -136,12 +151,14 @@ public class OrderDetailController extends BaseController{
 		OrderDetail entity  = orderDetailService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的getId方法");
+		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/getId",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logId,"查看",id,JsonUtils.encode(entity),"","orderdetail/getId",sessionuser.getId()));
 		return context;
 	}
 	
@@ -151,6 +168,7 @@ public class OrderDetailController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -158,6 +176,8 @@ public class OrderDetailController extends BaseController{
 		orderDetailService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的delete方法");
+		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/delete",sessionuser.getId(),"delete from order_detail where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"orderdetail/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -166,6 +186,7 @@ public class OrderDetailController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -173,6 +194,8 @@ public class OrderDetailController extends BaseController{
 		orderDetailService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/logicdelete",sessionuser.getId(),"update order_detail set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"orderdetail/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 

@@ -1,6 +1,8 @@
 package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
+import com.itour.base.util.IDGenerator;
+
 import java.math.BigDecimal;
 /**
  * 
@@ -15,7 +17,25 @@ public class LogSetting extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 3676699435719703726L;
+	private String id;
 	private java.lang.String logCode;//   	private java.lang.String tableName;//   	private java.lang.String function;//   	private java.lang.String urlTeimplate;//   	private java.lang.String creater;//   	private java.lang.String deletescriptTemplate;//   	private java.lang.String updatescriptTemplate;//   	private java.util.Date createTime;//   
+	public LogSetting(){}
+	public LogSetting(String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate){
+		this.logCode = IDGenerator.getUUID();
+		this.tableName = tableName;
+		this.function = function;
+		this.urlTeimplate = urlTeimplate;
+		this.creater = creater;
+		this.deletescriptTemplate = deletescriptTemplate;
+		this.updatescriptTemplate = updatescriptTemplate;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public java.lang.String getLogCode() {
 		return logCode;
 	}

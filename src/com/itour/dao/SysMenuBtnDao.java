@@ -21,7 +21,7 @@ public interface SysMenuBtnDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	
 	public void logicdeleteByMenuid(@Param(value="menuid")String menuid);
 	
-	public List<SysMenuBtn> getMenuBtnByUser(@Param(value="userid")String userid); 
+	public List<SysMenuBtn> getMenuBtnByUser(@Param(value="userId")String userId); 
 	
 	public List<SysMenuBtn> queryByAll();
 	

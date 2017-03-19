@@ -20,16 +20,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.TreeUtil;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
@@ -119,7 +123,7 @@ public class SysMenuController extends BaseController{
 	public void  rootMenu(String menuId,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<SysMenu> dataList = sysMenuService.getRootMenu(menuId);
 		if(dataList==null){
-			dataList = new ArrayList<SysMenu>();
+			dataList = Lists.newArrayList();
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的rootMenuJson方法");
@@ -135,11 +139,13 @@ public class SysMenuController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(SysMenu bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
+		String id = "";
 		//设置菜单按钮数据
 		List<SysMenuBtn> btns = getReqBtns(request);
 		bean.setBtns(btns);
@@ -152,7 +158,7 @@ public class SysMenuController extends BaseController{
 				bean.setUpdateBy(user.getId());
 			}
 			bean.setDeleted(DELETED.NO.key);
-			sysMenuService.add(bean);
+			id = sysMenuService.add(bean);
 		}else{
 			//SysMenu sm = sysMenuService.queryById(bean.getId());
 		/*	if(sm == null){
@@ -171,6 +177,13 @@ public class SysMenuController extends BaseController{
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的save方法");
+		if(StringUtils.isNotEmpty(id)){			
+			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(bean),"","sysMenu/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"",JsonUtils.encode(sm),JsonUtils.encode(bean),"sysMenu/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -179,15 +192,16 @@ public class SysMenuController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public Map<String,Object> getId(@RequestParam(value="", defaultValue = StringUtils.EMPTY) String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = new HashMap<String,Object>();
+		Map<String,Object>  context = getRootMap();
 		SysMenu bean = sysMenuService.queryById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		List<SysMenuBtn> btns = sysMenuBtnService.queryByMenuid(id);
 		bean.setBtns(btns);
@@ -195,6 +209,8 @@ public class SysMenuController extends BaseController{
 		context.put("data", bean);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的getId方法");
+		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","sysMenu/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -204,6 +220,7 @@ public class SysMenuController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -216,6 +233,8 @@ public class SysMenuController extends BaseController{
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的delete方法");
+		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/delete",sessionuser.getId(),"delete from sys_menu where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysMenu/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 	}
 	/**
 	 * 
@@ -223,6 +242,7 @@ public class SysMenuController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -234,6 +254,8 @@ public class SysMenuController extends BaseController{
 			sendFailureMessage(response, "未选中记录");
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
+		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/logicdelete",sessionuser.getId(),"update sys_menu set deleted=1 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysMenu/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的logicdelete方法");
 	}
 	/**

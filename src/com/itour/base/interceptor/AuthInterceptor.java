@@ -73,7 +73,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				//验证URL权限
 				if(auth.verifyURL()){		
 					//判断是否超级管理员
-				//	if(!SessionUtils.isAdmin(request)){
+					if(!SessionUtils.isAdmin(request)){
 						if(!SessionUtils.isAccessUrl(request, StringUtils.trim(menuUrl))){					
 							//日志记录
 							String userMail = SessionUtils.getUser(request).getEmail();
@@ -86,7 +86,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 							HtmlUtil.writerJson(response, result);
 							return false;
 						}
-					//}
+					}
 				}
 		}
 		return super.preHandle(request, response, handler);

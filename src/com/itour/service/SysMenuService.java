@@ -75,9 +75,10 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @param menu
 	 * @throws Exception
 	 */
-	public void add(SysMenu menu) throws Exception {
-		 super.add((T)menu);
+	public String add(SysMenu menu) throws Exception {
+		String id = super.add((T)menu);
 		saveBtns(menu,menu.getBtns());
+		return id;
 	}
 
 
@@ -104,9 +105,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getRootMenu(String menuId){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("menuId", menuId);
-		return mapper.getRootMenu(map);
+		return mapper.getRootMenu(menuId);
 	}
 	
 	/**
@@ -114,9 +113,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getChildMenu(String parentId){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("parentId", parentId);
-		return mapper.getChildMenu(map);
+		return mapper.getChildMenu(parentId);
 	}
 	
 	/**
@@ -125,9 +122,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getRootMenuByUser(String userId){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("userId", userId);
-		return getDao().getRootMenuByUser(map);
+		return getDao().getRootMenuByUser(userId);
 	}
 	
 	
@@ -137,9 +132,9 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getChildMenuByUser(String userId){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("userId", userId);
-		return getDao().getChildMenuByUser(map);
+		//Map<String, String> map = new HashMap<String, String>();
+		//map.put("userId", userId);
+		return getDao().getChildMenuByUser(userId);
 	}
 	
 	
@@ -149,9 +144,9 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public List<T> getMenuByRoleId(String roleId){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("roleId", roleId);
-		return getDao().getMenuByRoleId(map);
+		//Map<String, String> map = new HashMap<String, String>();
+		//map.put("roleId", roleId);
+		return getDao().getMenuByRoleId(roleId);
 	}
 	
 	

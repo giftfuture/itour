@@ -20,12 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelOrder;
 import com.itour.service.LogOperationService;
@@ -80,7 +83,6 @@ public class TravelOrderController extends BaseController{
 		return forward("server/sys/travelOrder"); 
 	}
 	
-	
 	/**
 	 * @param url
 	 * @param classifyId
@@ -106,6 +108,7 @@ public class TravelOrderController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
@@ -131,26 +134,35 @@ public class TravelOrderController extends BaseController{
 		to.setRemark(entity.getRemark());
 		to.setTotalStaff(entity.getTotalStaff());*/
 		//Map<String,Object>  context = new HashMap<String,Object>();
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+		String id = "";
+		TravelOrder to = null;
+		if(StringUtils.isNotEmpty(entity.getId())){
 			entity.setOrderNo(IDGenerator.getUUID());
 			entity.setOrderStatus(1);
 			entity.setCustomerId(IDGenerator.getUUID());
 			entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+DateUtil.format(entity.getExpectedDepart(), DateUtil.sdfShortLongTimePlusCn));
-			travelOrderService.add(entity);
+			id = travelOrderService.add(entity);
 		}else{
-			TravelOrder to = travelOrderService.queryById(entity.getId());
+				to = travelOrderService.queryById(entity.getId());
 			if(to == null){
 				entity.setOrderNo(IDGenerator.getUUID());
 				entity.setOrderStatus(1);
 				entity.setCustomerId(IDGenerator.getUUID());
-				entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+entity.getExpectedDepart());
-				travelOrderService.add(entity);
+				entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--dfd黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+entity.getExpectedDepart());
+				id = travelOrderService.add(entity);
 			}else{
 				travelOrderService.update(entity);
 			}
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的save方法");
+		if(StringUtils.isNotEmpty(id)){			
+			String logid = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(entity),"","travelOrder/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",to!= null?to.getId():"",JsonUtils.encode(to),JsonUtils.encode(entity),"travelOrder/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -161,6 +173,7 @@ public class TravelOrderController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -169,12 +182,14 @@ public class TravelOrderController extends BaseController{
 		TravelOrder entity  = travelOrderService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的getId方法");
+		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","travelOrder/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
@@ -184,6 +199,7 @@ public class TravelOrderController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -191,6 +207,8 @@ public class TravelOrderController extends BaseController{
 		travelOrderService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的delete方法");
+		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/delete",sessionuser.getId(),"delete from travel_order where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelOrder/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -199,6 +217,7 @@ public class TravelOrderController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -206,6 +225,8 @@ public class TravelOrderController extends BaseController{
 		travelOrderService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/logicdelete",sessionuser.getId(),"update travel_order set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelOrder/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 }

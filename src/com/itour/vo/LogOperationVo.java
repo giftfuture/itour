@@ -21,7 +21,15 @@ public class LogOperationVo extends BasePage implements Serializable {
 		/**
 	 * 
 	 */
-	private java.lang.String operCode;//   	private java.lang.String logCode;//   	private java.lang.String operationType;//   	private java.lang.String primaryKeyvalue;//   	private java.lang.String content;//   	private java.lang.String url;//   	private java.lang.String creater;//   	private java.util.Date createTime;//   
+	private String id;
+	private java.lang.String operCode;//   	private java.lang.String logCode;//   	private java.lang.String operationType;//   	private java.lang.String primaryKeyvalue;//   	private java.lang.String content;//  
+	private String newContent;//新值	private java.lang.String url;//   	private java.lang.String creater;//   	private String createTime;//   
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public java.lang.String getOperCode() {
 		return operCode;
 	}
@@ -64,11 +72,16 @@ public class LogOperationVo extends BasePage implements Serializable {
 	public void setCreater(java.lang.String creater) {
 		this.creater = creater;
 	}
-	public java.util.Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(java.util.Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
-	}	
+	}	public String getNewContent() {
+		return newContent;
+	}
+	public void setNewContent(String newContent) {
+		this.newContent = newContent;
+	}
 }
 

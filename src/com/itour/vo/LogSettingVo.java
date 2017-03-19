@@ -20,7 +20,15 @@ public class LogSettingVo extends BasePage implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3676699435719703726L;
-	private java.lang.String logCode;//   	private java.lang.String tableName;//   	private java.lang.String function;//   	private java.lang.String urlTeimplate;//   	private java.lang.String creater;//   	private java.lang.String deletescriptTemplate;//   	private java.lang.String updatescriptTemplate;//   	private java.util.Date createTime;//   
+	private String id;
+	private java.lang.String logCode;//   	private java.lang.String tableName;//   	private java.lang.String function;//   	private java.lang.String urlTeimplate;//   	private java.lang.String creater;//   	private java.lang.String deletescriptTemplate;//   	private java.lang.String updatescriptTemplate;//   	private java.lang.String createTime;//  
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public java.lang.String getLogCode() {
 		return logCode;
 	}
@@ -64,10 +72,10 @@ public class LogSettingVo extends BasePage implements Serializable {
 	public void setUpdatescriptTemplate(java.lang.String updatescriptTemplate) {
 		this.updatescriptTemplate = updatescriptTemplate;
 	}
-	public java.util.Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(java.util.Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}	
 }

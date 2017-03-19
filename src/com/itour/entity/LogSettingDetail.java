@@ -16,6 +16,16 @@ public class LogSettingDetail extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -4397332882365975876L;
 	private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creater;//   
+	
+	public LogSettingDetail(){}
+	public LogSettingDetail(String logCode,String columnName,String columnText,String columnDatatype,String creater){
+		this.columnDatatype = columnDatatype;
+		this.logCode = logCode;
+		this.columnName = columnName;
+		this.columnText = columnText;
+		this.creater = creater;
+	}
+	
 	public java.lang.String getDetailCode() {
 		return detailCode;
 	}

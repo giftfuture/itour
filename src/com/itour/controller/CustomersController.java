@@ -19,11 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Customers;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
 import com.itour.service.CustomersService;
 import com.itour.service.LogOperationService;
@@ -52,7 +55,6 @@ public class CustomersController extends BaseController{
 	
 	@Autowired
 	private LogSettingService logSettingService;
-	
 	
 	@Autowired
 	private LogSettingDetailService logSettingDetailService;
@@ -111,27 +113,39 @@ public class CustomersController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public void save(Customers entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setCustomerId(IDGenerator.getUUID());
+		String customerId = "";
+		Customers cust = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 			//entity.setId(IDGenerator.getLongId());
-			customersService.add(entity);
+			customerId = customersService.add(entity);
 		}else{
-			Customers cust = customersService.queryById(entity.getId());
-			if(cust == null)
-				customersService.add(entity);
-			else
+				cust = customersService.queryById(entity.getId());
+			if(cust == null){
+				customerId = customersService.add(entity);
+			}else{
 				customersService.update(entity);
+			}
 		}
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的save方法");
+		if(StringUtils.isNotEmpty(customerId)){
+			String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/save",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"新增",customerId,"",JsonUtils.encode(entity),"customers/save",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		}else{			
+			String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/save(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+			logOperationService.add(new LogOperation(logId,"更新",cust!=null?cust.getId():"",JsonUtils.encode(cust),JsonUtils.encode(entity),"customers/save(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/getId", method = RequestMethod.POST)
 	@ResponseBody
@@ -140,16 +154,19 @@ public class CustomersController extends BaseController{
 		Customers entity  = customersService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的getId方法");
+		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/getId",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","customers/getId",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
@@ -157,9 +174,12 @@ public class CustomersController extends BaseController{
 		customersService.delete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的delete方法");
+		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/delete",user.getId(),"delete from customers where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"customers/delete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/logicdelete", method = RequestMethod.POST)
 	@ResponseBody
@@ -167,6 +187,8 @@ public class CustomersController extends BaseController{
 		customersService.logicdelete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/logicdelete",user.getId(),"update customers set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"customers/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 }

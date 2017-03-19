@@ -21,11 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
 import com.itour.entity.QuoteForm;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysUser;
@@ -107,23 +110,33 @@ public class RouteTemplateController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public void save(RouteTemplate entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setRouteCode(IDGenerator.code(16));
+		RouteTemplate rt = null;
+		String rtId = "";
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			routeTemplateService.add(entity);
+			rtId = routeTemplateService.add(entity);
 		}else{
-			RouteTemplate rt = routeTemplateService.queryById(entity.getId());
+			rt = routeTemplateService.queryById(entity.getId());
 			if(rt == null)
-				routeTemplateService.add(entity);
+				rtId = routeTemplateService.add(entity);
 			else
 				routeTemplateService.update(entity);
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
+		if(StringUtils.isNotEmpty(rtId)){			
+			String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",rtId,JsonUtils.encode(entity),"","routeTemplate/save",sessionuser.getId()));
+		}else{
+			String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save(update)",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",rt!= null?rt.getId():"",JsonUtils.encode(rt),JsonUtils.encode(entity),"routeTemplate/save(update)",sessionuser.getId()));
+		}
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -132,6 +145,7 @@ public class RouteTemplateController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
@@ -140,12 +154,14 @@ public class RouteTemplateController extends BaseController{
 		RouteTemplate entity  = routeTemplateService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return getRootMap();
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的getId方法");
+		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","routeTemplate/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return context;
 	}
 	/**
@@ -153,11 +169,12 @@ public class RouteTemplateController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/quoteEdit",method = RequestMethod.GET)
 	public ModelAndView quoteEdit(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		Map<String,Object> context = getRootMap();
 		RouteTemplateVo bean  = routeTemplateService.selectById(id);
 		if(bean  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
@@ -168,6 +185,8 @@ public class RouteTemplateController extends BaseController{
 		context.put("bean", bean);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的quoteEdit方法");
+		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/quoteEdit",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","routeTemplate/quoteEdit",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return forward("server/sys/quoteEdit",context);
 	}
 	/**
@@ -175,37 +194,48 @@ public class RouteTemplateController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/updateQuoteForm", method = RequestMethod.POST)
 	public void updateQuoteForm(@RequestBody QuoteForm quoteForm,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		try {
 			QuoteForm qf = quoteFormService.queryByRtId(quoteForm.getRouteTemplate());
+			String qfId = "";
 			SysUser user = SessionUtils.getUser(request);
 			if(user != null){
 				quoteForm.setUpdateBy(user.getId());
 			}
 			if(qf == null){		
 				quoteForm.setCreateBy(user.getId());
-				quoteFormService.add(quoteForm);
+				qfId = quoteFormService.add(quoteForm);
 			}else{
 				quoteForm.setId(qf.getId());
 				quoteForm.setValid(true);
 				quoteFormService.update(quoteForm);				
 			}
-			sendSuccessMessage(response, "报价单内容更新成功!");
+			SysUser sessionuser = SessionUtils.getUser(request);
+			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的updateQuoteForm方法");
+			if(StringUtils.isNotEmpty(qfId)){			
+				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/updateQuoteForm",sessionuser.getId(),"",""));
+				logOperationService.add(new LogOperation(logid,"新增",qfId,JsonUtils.encode(quoteForm),"","routeTemplate/updateQuoteForm",sessionuser.getId()));
+				sendSuccessMessage(response, "详细价目表内容添加成功!");
+			}else{
+				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/updateQuoteForm(update)",sessionuser.getId(),"",""));
+				logOperationService.add(new LogOperation(logid,"更新",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(quoteForm),"routeTemplate/updateQuoteForm(update)",sessionuser.getId()));
+				sendSuccessMessage(response, "详细价目表内容更新成功!");
+			}
 		} catch (Exception e) {
-			sendFailureMessage(response, "报价单内容更新出错!");
+			sendFailureMessage(response, "详细价目表内容更新出错!");
 			e.printStackTrace();
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的updateQuoteForm方法");
 	}
 	/**
 	 * @param id
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
@@ -213,6 +243,8 @@ public class RouteTemplateController extends BaseController{
 		routeTemplateService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的delete方法");
+		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/delete",sessionuser.getId(),"delete from route_template where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"routeTemplate/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
@@ -220,6 +252,7 @@ public class RouteTemplateController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
@@ -227,6 +260,8 @@ public class RouteTemplateController extends BaseController{
 		routeTemplateService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的logicdelete方法");
+		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/logicdelete",sessionuser.getId(),"update route_template set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"routeTemplate/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		sendSuccessMessage(response, "删除成功");
 	}
 	/**
