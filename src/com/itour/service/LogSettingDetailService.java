@@ -20,11 +20,11 @@ public class LogSettingDetailService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 
 	@Autowired
-    private LogSettingDetailDao<T> dao;
+    private LogSettingDetailDao<T> mapper;
 
 		
 	public LogSettingDetailDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

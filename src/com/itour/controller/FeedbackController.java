@@ -252,11 +252,7 @@ public class FeedbackController extends BaseController{
 		Map<String,Object>  context = getRootMap();
 		Feedback entity  = feedbackService.queryById(id);
 		if(entity  == null){
-			//sendFailureMessage(response, "没有找到对应的记录!");
-			context.put(SUCCESS, false);
-			context.put(MSG, "没有找到对应的记录!");
-			String result = JsonUtils.encode(context);
-			return result;
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
@@ -273,26 +269,26 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		feedbackService.delete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的delete方法");
 		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/delete",user.getId(),"delete from customers where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"feedback/delete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
-	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		feedbackService.logicdelete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的logicdelete方法");
 		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/logicdelete",user.getId(),"update feed_back set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"feedback/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 
 }

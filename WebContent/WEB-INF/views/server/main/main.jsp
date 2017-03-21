@@ -23,11 +23,11 @@
 	<div data-options="region:'west',split:true,title:'功能导航'" style="width:200px;">
 		<div id="tree-box" class="easyui-accordion" data-options="fit:true,border:false">
 			<c:forEach var="item" items="${menuList}">
-			<div title="${item.text}">
-				<c:forEach var="node" items="${item.children}">
-				<a class="menu-item" href="${basePath}${node.url}">${node.text}</a>
-				</c:forEach>
-			</div>
+				<div title="${item.text}">
+					<c:forEach var="node" items="${item.children}">
+					<a class="menu-item" href="${basePath}${node.url}">${node.text}</a>
+					</c:forEach>
+				</div>
 			</c:forEach>
 		</div>
 	</div>

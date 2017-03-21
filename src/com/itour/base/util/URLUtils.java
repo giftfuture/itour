@@ -73,9 +73,9 @@ public class URLUtils {
 		if(menuUrl == null || actionUrls == null || accessUrls == null ){
 			return;
 		}
-		String url = "save| action |/user/manger/abcd";
+		//String url = "save| action |/user/manger/abcd";
 		String[] actions =StringUtils.split(actionUrls , "|");
-		String menuUri = StringUtils.substringBeforeLast(menuUrl, "/");
+		//String menuUri = StringUtils.substringBeforeLast(menuUrl, "/");
 		for(String action : actions){
 			action = StringUtils.trim(action);
 			if(!StringUtils.startsWith(action, "/"))

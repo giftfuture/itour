@@ -110,10 +110,10 @@ where valid=1
 		<if test="elseCost!=null and elseCost!=''">and else_cost like CONCAT('%', #{remark}, '%')</if>
 		<if test="elsecostAsadult!=null and elsecostAsadult!=''">and elsecost_asadult=#{elsecostAsadult}</if>
 		<if test="presented!=null and presented!=''">and presented like CONCAT('%', #{presented}, '%')</if>
-		<if test="createTime != null" >
+		<if test="createTime != null and createTime !=''" >
 		   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 		</if>
-		<if test="updateTime != null" >
+		<if test="updateTime != null and updateTime !=''" >
 		   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 		</if>
 </trim>

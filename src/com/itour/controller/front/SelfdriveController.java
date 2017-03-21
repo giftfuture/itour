@@ -65,11 +65,10 @@ public class SelfdriveController  extends BaseController{
 	private LogOperationService logOperationService;
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
-			//	routeTemplateService.queryByStyle(style)
 			Map<String,Object> map = getRootMap();
 			if(StringUtils.isNotEmpty(Constants.travelStyles.get(Constants.SELFDRIVE))){			
 				//map.put("alias", Constants.HIKING);
-				List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HIKING);
+				List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.SELFDRIVE);
 				String uploadPtopath = FilePros.uploadPtopath();
 				for(RouteTemplateVo rt:rtvos){
 					String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
@@ -160,7 +159,7 @@ public class SelfdriveController  extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/selfdrive/hiking",map); 
+		return forward("front/selfdrive/list",map); 
 	}
 	/**
 	 * 
@@ -208,7 +207,7 @@ public class SelfdriveController  extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/selfdrive/trekking",map); 
+		return forward("front/selfdrive/detail",map); 
 	}
 	
 	/**

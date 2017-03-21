@@ -243,7 +243,7 @@ In China, you can find many roads and places deserve driving
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-
+<script type="text/javascript" src="${basePath}js/ux/front/light/light.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>
 </html>

@@ -149,12 +149,11 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		RouteTemplate entity  = routeTemplateService.queryById(id);
 		if(entity  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return getRootMap();
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
@@ -162,7 +161,7 @@ public class RouteTemplateController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的getId方法");
 		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","routeTemplate/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		return context;
+		return JsonUtils.encode(context);
 	}
 	/**
 	 * @param id
@@ -239,13 +238,13 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		routeTemplateService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的delete方法");
 		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/delete",sessionuser.getId(),"delete from route_template where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"routeTemplate/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 	/**
 	 * @param id
@@ -256,13 +255,13 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
-	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		routeTemplateService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的logicdelete方法");
 		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/logicdelete",sessionuser.getId(),"update route_template set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"routeTemplate/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 	/**
 	 * 

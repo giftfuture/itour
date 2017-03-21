@@ -232,7 +232,7 @@ public class MainController extends BaseController {
 			result.put("allType", true);
 		}else{
 			String menuUrl = URLUtils.getReqUri(url);
-			menuUrl = StringUtils.remove(menuUrl,request.getContextPath());
+			menuUrl = StringUtils.remove(menuUrl,request.getContextPath()+"/");
 			//获取权限按钮
 			actionTypes = SessionUtils.getMemuBtnListVal(request, StringUtils.trim(menuUrl));
 			result.put("allType", false);
@@ -364,8 +364,7 @@ public class MainController extends BaseController {
 		//菜单对应的按钮
 		Map<String,List<String>> menuBtnMap = new HashMap<String,List<String>>(); 
 		for(SysMenu menu: childMenus){
-			//判断URL是否为空
-			if(StringUtils.isNotBlank(menu.getUrl())){
+			if(StringUtils.isNotBlank(menu.getUrl())){//判断URL是否为空
 				List<String> btnTypes = new ArrayList<String>();
 				for(SysMenuBtn btn  : childBtns){
 					if(menu.getId().equals(btn.getMenuid())){

@@ -38,16 +38,16 @@
 			<if test="shCode != null and shCode !=''">
 				and sh_code=#{shCode}
 			</if>
-			<if test="createTime != null ">
+			<if test="createTime != null and createTime !=''">
 	  <![CDATA[  and  DATE_FORMAT(show_happy.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="status != null and status != 0">
 				and status = #{status}
 			</if>
-			<if test="updateTime != null">
+			<if test="updateTime != null and updateTime !=''">
 	 <![CDATA[  and  DATE_FORMAT(show_happy.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
 			</if>
-				<if test="tourTime != null">
+				<if test="tourTime != null and tourTime !=''">
 	 <![CDATA[  and  DATE_FORMAT(tour_time,'%Y-%m-%d')  = DATE_FORMAT( #{tourTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="title != null and title != ''">

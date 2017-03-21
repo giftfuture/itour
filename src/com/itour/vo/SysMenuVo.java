@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonInclude(Include.NON_NULL)
 public class SysMenuVo extends BasePage implements Serializable{
 	
-		private String id;//   主键	private String name;//   菜单名称
+	@JsonInclude(Include.NON_NULL)	private String id;//   主键	private String name;//   菜单名称
 	private String url;//   系统url	private String parentId;//   父id 关联sys_menu.id	private Integer deleted;//   是否删除,0=未删除，1=已删除	private java.sql.Timestamp createTime;//   创建时间
 	private java.sql.Timestamp updateTime;//   修改时间	private Integer rank;//   排序
 	private String actions; //注册Action 按钮|分隔

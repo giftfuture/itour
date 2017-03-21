@@ -13,13 +13,14 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
+  <img src="images/climb.jpg" width="100%" height="100%" />
 <table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
     <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="845" height="40"><p class="righttxt"><strong><font size="+3">Southwest-China-Adventures.com</font> </strong></p></td>
+         <td width="845" height="40"><p class="righttxt"><strong><font size="+3">Southwest-China-Adventures.com</font> </strong></p></td>
         <td width="115"><img src="img-test/China.jpg" width="40" height="24" /><img src="img-test/ok.gif" width="31" height="24" /><img src="img-test/Belgium.jpg" width="32" height="24" /></td>
       </tr>
     </table></td>
@@ -243,6 +244,7 @@ In China, you can find many roads and places deserve driving
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
+<script type="text/javascript" src="${basePath}js/ux/front/climb/climb.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>
 </html>

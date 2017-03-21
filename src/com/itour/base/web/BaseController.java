@@ -142,7 +142,13 @@ public class BaseController {
 		result.put(MSG, message);
 		HtmlUtil.writerJson(response, result);
 	}
-
+	
+	public String removeSuccessMessage(HttpServletResponse response) {
+		Map<String, Object> result = getRootMap();
+		result.put(SUCCESS, true);
+		result.put(MSG, "删除成功！");
+		return JsonUtils.encode(result);
+	}
 	/**
 	 *
 	 * 提示失败信息
@@ -155,6 +161,18 @@ public class BaseController {
 		result.put(SUCCESS, false);
 		result.put(MSG, message);
 		HtmlUtil.writerJson(response, result);
+	}
+	public String sendFailureResult(HttpServletResponse response,String message) {
+		Map<String, Object> result = getRootMap();
+		result.put(SUCCESS, false);
+		result.put(MSG, message);
+		return JsonUtils.encode(result);
+	}
+	public String sendSuccessResult(HttpServletResponse response,String message) {
+		Map<String, Object> result = getRootMap();
+		result.put(SUCCESS, true);
+		result.put(MSG, message);
+		return JsonUtils.encode(result);
 	}
 	/**
 	 *

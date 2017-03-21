@@ -44,16 +44,16 @@ where deleted=0
 	<if test="loginCount != null" >
 	    and loginCount =  #{loginCount}
 	</if>
-	<if test="loginTime != null" >
+	<if test="loginTime != null and loginTime != ''" >
 	     and DATE_FORMAT(loginTime,'%Y-%m-%d') = DATE_FORMAT(#{loginTime},'%Y-%m-%d') 
 	</if>
 	<if test="deleted != null" >
 	    and deleted =  #{deleted}
 	</if>
-	<if test="createTime != null" >
+	<if test="createTime != null and createTime != ''" >
 	    and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
-	<if test="updateTime != null" >
+	<if test="updateTime != null and updateTime != ''" >
 	     and DATE_FORMAT(updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="createBy != null" >

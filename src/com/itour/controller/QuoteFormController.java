@@ -133,12 +133,11 @@ public class QuoteFormController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		QuoteForm entity  = quoteFormService.queryById(id);
 		if(entity  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return getRootMap();
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		String data = JsonUtils.encode(entity);
 		context.put(SUCCESS, true);
@@ -147,7 +146,7 @@ public class QuoteFormController extends BaseController {
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuoteFormController的getId方法");
 		String logId = logSettingService.add(new LogSetting("quote_form","详细价目表","quoteForm/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","quoteForm/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		return context;
+		return JsonUtils.encode(context);
 	}
 	
 	
@@ -161,13 +160,13 @@ public class QuoteFormController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		quoteFormService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuoteFormController的delete方法");
 		String logId = logSettingService.add(new LogSetting("quote_form","详细价目表","quoteForm/delete",sessionuser.getId(),"delete from quote_form where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"quoteForm/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 	/**
 	 * 
@@ -179,13 +178,13 @@ public class QuoteFormController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
-	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		quoteFormService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuoteFormController的logicdelete方法");
 		String logId = logSettingService.add(new LogSetting("quote_form","详细价目表","quoteForm/logicdelete",sessionuser.getId(),"update quote_form set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"quoteForm/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 
 }

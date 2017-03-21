@@ -1,40 +1,50 @@
 package com.itour.base.util;
 
-import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
-import javax.servlet.AsyncContext;
-import javax.servlet.DispatcherType;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUpgradeHandler;
-import javax.servlet.http.Part;
 
 public class FilePros   {
 
 	private static final String resourceFile = "conf";    
 	private static final ResourceBundle rb = ResourceBundle.getBundle(resourceFile);
+    //属性文件的路径
+    static String profilepath=ClassLoader.getSystemResource("").getPath()+"/conf.properties";
+    /**
+    * 采用静态方法
+    */
+    private static Properties props = new Properties();
+    static {
+        try {
+        	InputStream is = ClassLoader.getSystemResourceAsStream("conf.properties");
+            props.load(is);//new FileInputStream(profilepath)
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        } catch (IOException e) {       
+            System.exit(-1);
+        }
+    }
+    /**
+     * 
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    public static String read(String key)throws Exception{
+    	return rb.getString(key);
+    }
 	/**
 	 * 上传图片的磁盘存放路径
 	 * @return
 	 */
 	public static String uploadPath(){
-		
 		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
 		return rb.getString("upload_path");
 	}
@@ -86,8 +96,28 @@ public class FilePros   {
 		String mappath = rb.getString("route_cover_path");
 		return mappath ;
 	}
-	
-	
+
+	    /**
+	    * 更新properties文件的键值对
+	    * 如果该主键已经存在，更新该主键的值；
+	    * 如果该主键不存在，则插件一对键值。
+	    * @param keyname 键名
+	    * @param keyvalue 键值
+	    */
+    public static void updateProperties(String keyname,String keyvalue) {
+        try {
+           // props.load(new FileInputStream(profilepath));
+            // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
+            // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
+            OutputStream fos = new FileOutputStream(profilepath);           
+            props.setProperty(keyname, keyvalue);
+            // 以适合使用 load 方法加载到 Properties 表中的格式，
+            // 将此 Properties 表中的属性列表（键和元素对）写入输出流
+            props.store(fos, "Update '" + keyname + "' value");
+        } catch (IOException e) {
+            System.err.println("属性文件更新错误");
+        }
+	}
 	public static void main(String[] args) {
 		//String resourceFile = "jdbc";    
 //        创建一个默认的ResourceBundle对象   

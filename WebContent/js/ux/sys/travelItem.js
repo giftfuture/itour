@@ -100,7 +100,7 @@ itour.travelItem = function(){
 				{"btnName":"添加","menuid":"13","actionUrls":"travelItem/save","btnType":"add"},
 				{"btnName":"修改","menuid":"13","actionUrls":"travelItem/getId|travelItem/save","btnType":"edit"},
 				{"btnName":"删除","menuid":"13","actionUrls":"travelItem/logicdelete","btnType":"logicremove"},
-				{"btnName":"删除","menuid":"13","actionUrls":"travelItem/delete","btnType":"remove"}
+				{"btnName":"物理删除","menuid":"13","actionUrls":"travelItem/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
@@ -392,7 +392,7 @@ itour.travelItem = function(){
 					toolbar:[
 						{id:'btnadd',text:'添加',btnType:'add'},
 						{id:'btnedit',text:'修改',btnType:'edit'},
-						{id:'btndelete',text:'删除',btnType:'remove'},
+						{id:'btndelete',text:'物理删除',btnType:'remove'},
 						{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 						{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-edit',handler:function(){
 							var selected = _box.utils.getCheckedRows();

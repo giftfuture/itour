@@ -18,6 +18,10 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.swf"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -126,14 +130,14 @@
     <br />
     <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
-        <td><img src="${basePath}images/share.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="javascript:itour.hiking.copyUrl()">复制链接</a></td>
-        <td><img src="${basePath}images/favorite01.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:itour.hiking.addFavorite()">收藏本页</a></td>
-        <td><img src="${basePath}images/print.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
+        <td><img src="${basePath}images/facebook.png" width="24" height="24" />
+        <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
+        <td><img src="${basePath}images/share.png" width="24" height="24" />
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td>
+        <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">收藏本页</a></td>
+        <td><img src="${basePath}images/print.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
       </tr>
     </table></td>
   </tr>

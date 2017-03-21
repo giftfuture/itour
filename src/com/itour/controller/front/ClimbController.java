@@ -46,7 +46,6 @@ import com.itour.vo.RouteTemplateVo;
 @Controller
 @RequestMapping("/climb") 
 public class ClimbController  extends BaseController{
-	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
@@ -93,7 +92,7 @@ public class ClimbController  extends BaseController{
 			rts.put(i,rtvos.subList(Constants.perRow*i, end));
 		}
 		map.put("rts", rts);
-		return forward("front/climb/climb",map); 
+		return forward("front/climb/main",map); 
 	}
 	/**
 	 * 
@@ -164,7 +163,7 @@ public class ClimbController  extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/climb/hiking",map); 
+		return forward("front/climb/climb",map); 
 	}
 	/**
 	 * 
@@ -212,7 +211,7 @@ public class ClimbController  extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/climb/trekking",map); 
+		return forward("front/climb/detail",map); 
 	}
 	
 	/**

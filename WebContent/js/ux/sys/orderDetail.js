@@ -31,7 +31,7 @@ itour.orderDetail = function(){
 				{"btnName":"添加","menuid":'0BFBE5C0E2BF4A579A65B45FCD52B74D',"actionUrls":"orderDetail/save","btnType":"add"},
 				{"btnName":"修改","menuid":'0BFBE5C0E2BF4A579A65B45FCD52B74D',"actionUrls":"orderDetail/getId|orderDetail/save","btnType":"edit"},
 				{"btnName":"删除","menuid":"0BFBE5C0E2BF4A579A65B45FCD52B74D","actionUrls":"orderDetail/logicdelete","btnType":"logicremove"},
-				{"btnName":"删除","menuid":'0BFBE5C0E2BF4A579A65B45FCD52B74D',"actionUrls":"orderDetail/delete","btnType":"remove"}
+				{"btnName":"物理删除","menuid":'0BFBE5C0E2BF4A579A65B45FCD52B74D',"actionUrls":"orderDetail/delete","btnType":"remove"}
 			];
 			var tbline = $(".tb-line:visible");
 			var btnType = $("input[name='btnType']",tbline);
@@ -209,7 +209,7 @@ itour.orderDetail = function(){
 									}},*/
 									{id:'btnadd',text:'添加',btnType:'add'},
 									{id:'btnedit',text:'修改',btnType:'edit'},
-									{id:'btndelete',text:'删除',btnType:'remove'},
+									{id:'btndelete',text:'物理删除',btnType:'remove'},
 									{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 									{
 										id:'btnback',

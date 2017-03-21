@@ -76,7 +76,7 @@ itour.sysUser = function(){
 								_this.editPwdWin().window('open'); 
 							}
 						}},
-					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btndelete',text:'物理删除',btnType:'remove'},
 					{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
 				]
 			}

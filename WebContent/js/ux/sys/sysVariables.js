@@ -33,7 +33,7 @@ itour.sysVariables = function(){
 					{"btnName":"添加","menuid":"7A776ACD16D546A2866B1D79509383F8","actionUrls":"sysVariables/save","btnType":"add"},
 					{"btnName":"修改","menuid":"7A776ACD16D546A2866B1D79509383F8","actionUrls":"sysVariables/getId|sysVariables/save","btnType":"edit"},
 					{"btnName":"删除","menuid":"7A776ACD16D546A2866B1D79509383F8","actionUrls":"sysVariables/logicdelete","btnType":"logicremove"},
-					{"btnName":"删除","menuid":"7A776ACD16D546A2866B1D79509383F8","actionUrls":"sysVariables/delete","btnType":"remove"}
+					{"btnName":"物理删除","menuid":"7A776ACD16D546A2866B1D79509383F8","actionUrls":"sysVariables/delete","btnType":"remove"}
 				];
 				var tbline = $(".tb-line:visible");
 				var btnType = $("input[name='btnType']",tbline);
@@ -188,7 +188,7 @@ itour.sysVariables = function(){
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
-								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btndelete',text:'物理删除',btnType:'remove'},
 								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{
 									id:'btnback',

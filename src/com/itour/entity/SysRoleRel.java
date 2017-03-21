@@ -9,7 +9,7 @@ public class SysRoleRel extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 6080631663815131651L;
-	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//   关联主键 type=0管理sys_menu.id, type=1关联sys_user.id	private Integer relType;//   关联类型 0=菜单,1=用户
+	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//   关联主键 relType=0管理sys_menu.id, relType=1关联sys_user.id,relType=2,sys_menu_btn.id	private Integer relType;//   关联类型 0=菜单,1=用户,2=按钮
 	private boolean isValid;//是否有效
 	
 	

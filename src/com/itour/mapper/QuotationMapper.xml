@@ -40,10 +40,10 @@ where is_valid=1
 	<if test="quotation != null and quotation != ''" >
 	    and quotation like CONCAT('%', #{quotation}, '%')
 	</if>
-	<if test="createTime != null" >
+	<if test="createTime != null and createTime !=''" >
 	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
-	<if test="updateTime != null" >
+	<if test="updateTime != null and updateTime !=''" >
 	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="remark != null and remark != ''" >

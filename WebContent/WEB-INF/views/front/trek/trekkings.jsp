@@ -103,46 +103,6 @@
       </tr>
     </table></td>
     </c:forEach>
-   <!--  <td valign="top"><table width="353" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-              <td width="296" class="h2-24">贡嘎山</td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td class="f12-gao1">四姑娘山是户外天堂，非常适合开展徒步登山活动，人生必去。</td>
-      </tr>
-      <tr>
-        <td><img src="images/ad-index-01.gif" width="353" height="166" /></td>
-      </tr>
-      <tr>
-        <td><span class="f14-gao1">&gt;&gt;四姑娘山长坪沟穿越毕棚沟经典7日<br />
-          &gt;&gt;四姑娘山二峰攀登+长坪沟徒步8日</span></td>
-      </tr>
-    </table></td>
-    <td valign="top"><table width="353" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-              <td width="296" class="h2-24">稻城亚丁</td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td class="f12-gao1">四姑娘山是户外天堂，非常适合开展徒步登山活动，人生必去。</td>
-      </tr>
-      <tr>
-        <td><img src="images/ad-index-01.gif" width="353" height="166" /></td>
-      </tr>
-      <tr>
-        <td><span class="f14-gao1">&gt;&gt;重走洛克道：泸沽湖穿越亚丁13日<br />
-          &gt;&gt;深入亚丁雪山大转山</span></td>
-      </tr>
-    </table></td> -->
   </tr></c:forEach>
 </table>
 <!--<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">

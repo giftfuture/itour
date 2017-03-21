@@ -37,9 +37,9 @@
 <sql id="Example_Where_Clause">
 where deleted =  0
 <trim  suffixOverrides="," >
-	<if test="id != null and id !=''" >
+	<!-- <if test="id != null and id !=''" >
 	    and id like CONCAT('%', #{id}, '%')
-	</if>
+	</if> -->
 	 <if test="name != null and name != ''" >
 	 	and name like CONCAT('%', #{name}, '%')
 	</if>
@@ -47,14 +47,14 @@ where deleted =  0
 	    and url like CONCAT('%', #{url}, '%')
 	</if>
 	<if test="parentId != null and parentId != ''" >
-	    and parentId  like CONCAT('%', #{parentId}, '%')
+	    and parentId = #{parentId}
 	</if>
 	<!-- 如果parentId为空,这查询顶级菜单 -->
-	<if test="parentId == null" >
+	<if test="parentId == null or parentId ==''" >
 	    and parentId is null or parentId = '' 
 	</if>
 	
-	<if test="createTime != null" >
+	<if test="createTime != null and createTime !=''" >
 	     and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="rank != null" >
@@ -78,7 +78,6 @@ select max(rank+1) as rank from sys_menu
   insert into sys_menu(id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by)
   values(#{id},#{name},#{url},#{parentId},0,now(),now(),#{rank},#{actions},#{createBy},#{updateBy})
 </insert>
-
  
  <!-- 修改记录，只修改值不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.SysMenu" >

@@ -42,10 +42,10 @@ where is_valid=1
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
 	</if>
-	<if test="createTime != null" >
+	<if test="createTime != null and createTime !=''" >
 	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
-	<if test="updateTime != null" >
+	<if test="updateTime != null and createTime !=''" >
 	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="orderName != null and orderName != ''" >
@@ -69,10 +69,10 @@ where is_valid=1
 	<if test="customerId != null and customerId != ''" >
 	    and customer_id like CONCAT('%', #{customerId}, '%')
 	</if>
-	<if test="expectedDepart != null" >
+	<if test="expectedDepart != null and expectedDepart != ''" >
 	   and DATE_FORMAT(expected_depart,'%Y-%m-%d') = DATE_FORMAT(#{expectedDepart},'%Y-%m-%d') 
 	</if>
-	<if test="expectedBack != null" >
+	<if test="expectedBack != null and expectedBack != ''" >
 	   and DATE_FORMAT(expected_back,'%Y-%m-%d') = DATE_FORMAT(#{expectedBack},'%Y-%m-%d') 
 	</if>
 	<if test="totalStaff != null" >
@@ -93,7 +93,7 @@ where is_valid=1
 	<if test="payAccount != null and payAccount != ''" >
 	    and pay_account like CONCAT('%', #{payAccount}, '%')
 	</if>
-	<if test="payTime != null" >
+	<if test="payTime != null and payTime != ''" >
 	   and DATE_FORMAT(pay_time,'%Y-%m-%d') = DATE_FORMAT(#{payTime},'%Y-%m-%d') 
 	</if>
 	<if test="payTerminal != null and payTerminal != ''" >

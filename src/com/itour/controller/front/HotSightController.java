@@ -75,7 +75,7 @@ public class HotSightController extends BaseController{
 		context.put("dataList", dataList);*/
 		Map<String,Object>  map = getRootMap();
 		//map.put("alias", Constants.HIKING);
-		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.CLIMB);
+		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HOTSIGHT);
 		String uploadPtopath = FilePros.uploadPtopath();
 		for(RouteTemplateVo rt:rtvos){
 			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
@@ -94,7 +94,7 @@ public class HotSightController extends BaseController{
 			rts.put(i,rtvos.subList(Constants.perRow*i, end));
 		}
 		map.put("rts", rts);
-		return forward("front/hotsight/hotsight",map); 
+		return forward("front/hotsight/main",map); 
 	}
 	/**
 	 * 
@@ -165,7 +165,7 @@ public class HotSightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/hotsight/hiking",map); 
+		return forward("front/hotsight/hotsight",map); 
 	}
 	/**
 	 * 
@@ -213,7 +213,7 @@ public class HotSightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/hotsight/trekking",map); 
+		return forward("front/hotsight/detail",map); 
 	}
 	
 	/**

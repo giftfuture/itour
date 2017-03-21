@@ -196,12 +196,11 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(@RequestParam(value="", defaultValue = StringUtils.EMPTY) String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String getId(@RequestParam(value="", defaultValue = StringUtils.EMPTY) String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		SysMenu bean = sysMenuService.queryById(id);
 		if(bean  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return getRootMap();
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		List<SysMenuBtn> btns = sysMenuBtnService.queryByMenuid(id);
 		bean.setBtns(btns);
@@ -211,7 +210,7 @@ public class SysMenuController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的getId方法");
 		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","sysMenu/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		return context;
+		return JsonUtils.encode(context);
 	}
 	
 	/**
@@ -224,7 +223,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(id != null && id.length > 0){
 			sysMenuService.delete(id);
 			sendSuccessMessage(response, "删除成功");
@@ -235,6 +234,7 @@ public class SysMenuController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的delete方法");
 		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/delete",sessionuser.getId(),"delete from sys_menu where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysMenu/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		return removeSuccessMessage(response);
 	}
 	/**
 	 * 
@@ -246,7 +246,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
-	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(id != null && id.length > 0){
 			sysMenuService.logicdelete(id);
 			sendSuccessMessage(response, "删除成功");
@@ -257,6 +257,7 @@ public class SysMenuController extends BaseController{
 		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/logicdelete",sessionuser.getId(),"update sys_menu set deleted=1 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysMenu/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的logicdelete方法");
+		return removeSuccessMessage(response);
 	}
 	/**
 	 * 

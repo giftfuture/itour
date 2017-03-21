@@ -149,12 +149,11 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/getId", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
 		Customers entity  = customersService.queryById(id);
 		if(entity  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return getRootMap();
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
@@ -162,7 +161,7 @@ public class CustomersController extends BaseController{
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的getId方法");
 		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/getId",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","customers/getId",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		return context;
+		return JsonUtils.encode(context);
 	}
 	
 	
@@ -170,25 +169,25 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		customersService.delete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的delete方法");
 		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/delete",user.getId(),"delete from customers where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"customers/delete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/logicdelete", method = RequestMethod.POST)
 	@ResponseBody
-	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		customersService.logicdelete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的logicdelete方法");
 		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/logicdelete",user.getId(),"update customers set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"customers/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 }

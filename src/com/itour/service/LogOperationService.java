@@ -58,11 +58,11 @@ public class LogOperationService<T> extends BaseService<T> {
 	}
 	
 	@Autowired
-    private LogOperationDao<T> dao;
+    private LogOperationDao<T> mapper;
 
 		
 	public LogOperationDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 
 }

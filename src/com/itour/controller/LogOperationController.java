@@ -103,9 +103,9 @@ public class LogOperationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletResponse response) throws Exception{
 		logOperationService.delete(id);
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 
 }

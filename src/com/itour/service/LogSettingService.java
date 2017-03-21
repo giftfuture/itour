@@ -28,10 +28,10 @@ public class LogSettingService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 
 	@Autowired
-    private LogSettingDao<T> dao;
+    private LogSettingDao<T> mapper;
 
 	public LogSettingDao<T> getDao() {
-		return dao;
+		return mapper;
 	}
 	/**
 	 * 分页查询

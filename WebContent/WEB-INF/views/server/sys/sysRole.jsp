@@ -11,7 +11,7 @@
  	 	<p class="ui-fields">
             <label class="ui-label">角色名:</label> 
             <input name="roleName" class="easyui-box ui-text" style="width:100px;">
-                        <label class="ui-label">状态: </label><select name="state" class="easyui-combobox ui-text" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"><option>--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>
+                        <label class="ui-label">状态: </label><select name="state" class="easyui-combobox ui-text" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"><option value="">--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>
              <label class="ui-label">创建时间: </label><input name="createTime" class="easyui-datetimebox" style="width:100px;" data-options="editable:false,region:'north',split:true,border:false" >
         </p>  
         <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>

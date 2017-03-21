@@ -106,13 +106,12 @@ itour.sysRole = function(){
 								return row.descr;
 							}
 						}}
-						
 				]],
 				toolbar:[
-							{id:'btnadd',text:'添加',btnType:'add'},
-							{id:'btnedit',text:'修改',btnType:'edit'},
-							{id:'btndelete',text:'删除',btnType:'remove'},
-							{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
+						{id:'btnadd',text:'添加',btnType:'add'},
+						{id:'btnedit',text:'修改',btnType:'edit'},
+						{id:'btndelete',text:'物理删除',btnType:'remove'},
+						{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
 						]
 			}
 		},

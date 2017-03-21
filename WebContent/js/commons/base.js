@@ -101,8 +101,11 @@ var itour={
 			 	success:function(data){
 			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
 			 		//var result = data.match(reg);  
-			 		//console.log(data+"    "+result);
-			 		var jsondata= $.parseJSON($(data).text());//$(data).text()
+			 		if(data.indexOf('pre')>0){
+			 			data = $(data).text();
+			 		}
+			 		//console.log(data);
+			 		var jsondata= data;//.parseJSON(data);//$(data).text()
 			 		if($.isFunction(callback)){
 			 			//console.log(callback);
 			 			callback(jsondata);
@@ -111,8 +114,14 @@ var itour={
 			 	error:function(response, textStatus, errorThrown){
 			 		try{
 			 			itour.closeProgress();
-			 			var data = $.parseJSON($(response.responseText).text());//$(response.responseText).text()
-			 			console.log(data);
+			 			var data = '';
+			 			if(response.responseText.indexOf('pre')>0){//&&response.responseText.indexOf('</pre>')>0
+			 				//console.log($(response.responseText).text());
+			 				data = $(response.responseText).text();//$(response.responseText).text()
+			 			}else{
+			 				data = response.responseText;
+			 			}
+			 			//console.log(data);
 				 		//检查登录
 				 		if(!itour.checkLogin(data)){
 				 			return false;
@@ -128,16 +137,17 @@ var itour={
 			 return false;
 	},
 	saveForm:function(form,callback){
-	//	console.log(form.attr("action"));
+		//console.log(form);
 		if(form.form('validate')){
 			itour.progress('Please waiting','Saving...');
 			//ajax提交form
 			itour.submitForm(form,function(data){
 				itour.closeProgress();
-				var jsondata = $.parseJSON(data);//$(data).text()
+			//	console.log(data);
+				var jsondata =$.parseJSON(data);//$(data).text()
 				//console.log(data);
 			 	if(jsondata.success||jsondata.success=="true"){
-			 		//console.log(callback);
+			 	//	console.log(data+"     "+callback);
 			 		if($.isFunction(callback)){
 			 			//console.log(data);
 				       	callback(jsondata);
@@ -160,13 +170,14 @@ var itour={
 		itour.ajaxJson(url,option,function(data){
 		//	console.log(data);
 			itour.closeProgress();
-		//	var jsondata = $.parseJSON(data);//$(data).text()
-			if(data.success){
+			//var jsondata = $.parseJSON(data);//$(data).text()
+			if(data.success||data.success=="true"){
 				if($.isFunction(callback)){
-			       	callback(data);
+					//console.log("data:"+data);
+					callback(data);
 			    }
 			}else{
-				itour.alert('提示',data.msg||"getById请求出现异常,请联系管理员.",'error');  
+				itour.alert('提示',jsondata.msg||"getById请求出现异常,请联系管理员.",'error');  
 			}
 		});
 	},
@@ -181,9 +192,9 @@ var itour={
 			//console.log(data);
 			itour.closeProgress();
 			//var jsondata = $.parseJSON(data);//$(data).text()
-			if(data.success){
+			if(data.success||data.success=="true"){
 				if($.isFunction(callback)){
-					//console.log("base:"+data)
+					//console.log("data:"+data);
 			       	callback(data);
 			    }
 			}else{
@@ -194,11 +205,15 @@ var itour={
 	deleteForm:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
-			//console.log(data);
 				itour.closeProgress();
 				//var jsondata = $.parseJSON(data);//$(data).text()
-				if(data.success){
+			//	console.log(data);
+				/*if(data.indexOf('pre')>0){
+		 			data = $(data).text();
+		 		}*/
+				if(data.success||data.success=="true"){
 					if($.isFunction(callback)){
+						//console.log(callback);
 				       	callback(data);
 				    }
 				}else{
@@ -209,11 +224,15 @@ var itour={
 	logicdeleteForm:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
-			//console.log(data);
+		//	console.log(data);
+			/*if(data.indexOf('pre')>0){
+				data = $(data).text();
+			}*/
 				itour.closeProgress();
 				//var jsondata = $.parseJSON(data);//$(data).text()
-				if(data.success){
+				if(data.success||data.success=="true"){
 					if($.isFunction(callback)){
+						//console.log(callback);
 				       	callback(data);
 				    }
 				}else{

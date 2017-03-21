@@ -1,21 +1,8 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%    
-String path = request.getContextPath();    
-// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
-// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。    
-pageContext.setAttribute("basePath",basePath);    
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Southwest-China-Adventures.com</title>
 <meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
 <meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
@@ -23,34 +10,9 @@ pageContext.setAttribute("basePath",basePath);
 <script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
 <link href="css/qzx.css" rel="stylesheet" type="text/css" />
 <link href="css/bodylink.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-<!--
-body {
-	background-color: #993333;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-a:link {
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: none;
-}
-a:active {
-	text-decoration: none;
-}
-.STYLE130 {color: #000000}
-.STYLE134 {font-size: 24px}
-.STYLE135 {color: #990000}
--->
-</style>
 </head>
-<BODY><body>
+<body>
+ <%@include file="/front/header.jsp"  %>
 <table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
@@ -155,5 +117,7 @@ Professional knowledge along with practical work experiences to make satisfied t
     <td background="image/shadowright.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
   </tr>
 </table>
+<script type="text/javascript" src="${basePath}js/ux/front/hotsight/hotsight.js"></script>
+<%@include file="/front/footer.jsp" %>
 </body>
 </html>

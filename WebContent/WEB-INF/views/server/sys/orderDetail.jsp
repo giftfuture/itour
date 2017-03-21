@@ -11,6 +11,7 @@
         <p class="ui-fields">
 			<label class="ui-label">状态:</label>
 			<select name="status" class="easyui-box ui-text" style="width:100px;">
+				<option value="">--请选择--</option>
 				<option value="1">待处理</option>
 				<option value="2">处理中</option>
 				<option value="3">处理完成</option>

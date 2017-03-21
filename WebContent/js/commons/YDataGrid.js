@@ -7,7 +7,7 @@ var YDataGrid = function(config){
 			'save': actionUrl.save ||'save',
 			'getId': actionUrl.getId||'getId',
 			'remove': actionUrl.remove||'delete',
-			'logicremove': actionUrl.remove||'logicdelete',
+			'logicremove': actionUrl.logicremove||'logicdelete',
 			'updatePwd':actionUrl.updatePwd||'updatePwd'
 		}
 		//Grid DataList
@@ -39,7 +39,7 @@ var YDataGrid = function(config){
 				Form.edit.resetForm();
 				//回调函数
 				if(jQuery.isFunction(callback)){
-					console.log(callback);
+					//console.log(callback);
 					callback();
 				}
 			},
@@ -93,9 +93,11 @@ var YDataGrid = function(config){
 								itour.closeProgress();
 								Events.refresh();
 								//回调函数
-								if(jQuery.isFunction(callback)){
+								itour.alert('提示',result.msg||'删除成功.','info');
+							/*	if(jQuery.isFunction(callback)){
+									console.log(result);
 									callback(result);
-								}
+								}*/
 							});
 					    }  
 					});
@@ -117,9 +119,11 @@ var YDataGrid = function(config){
 								itour.closeProgress();
 								Events.refresh();
 								//回调函数
-								if(jQuery.isFunction(callback)){
+								itour.alert('提示',result.msg||'删除成功.','info');
+								/*if(jQuery.isFunction(callback)){
+									console.log(result);
 									callback(result);
-								}
+								}*/
 							});
 					    }  
 					});
@@ -227,7 +231,7 @@ var YDataGrid = function(config){
 						handler: Events.edit
 						};
 		var bar_remove = { id:'btnremove',
-						text:'删除',
+						text:'物理删除',
 						iconCls:'icon-remove',
 						btnType:'remove',
 						handler:Events.remove
@@ -247,6 +251,7 @@ var YDataGrid = function(config){
 		var toolbarConfig = [bar_add,bar_edit,bar_remove,bar_logicremove];
 		var getToolbar = function (){
 			var tbars = [];
+			//console.log(dataGrid.toolbar);
 			if (dataGrid.toolbar != undefined && dataGrid.toolbar.length > 0) {
 				for (var i = 0; i < dataGrid.toolbar.length; i++) {
 					var bar = dataGrid.toolbar[i];
@@ -326,14 +331,15 @@ var YDataGrid = function(config){
 		//初始化Grid按钮 按钮控制
 		var initTbar = function(){
 			var tbars = getToolbar();
+			//console.log(tbars);	
 			var _url = urls['msUrl'] + 'main/getActionBtn';
-			var data = {'url':window.location.href};
-			//查询页面授权的btnType
-			//console.log(_url);
-			//console.log(data);
-			itour.ajaxJson(_url,data,function(data){
+			var params = {'url':window.location.href};
+			//查询页面授权的btnType  
+			//console.log(_url);	
+			//console.log(data);	
+			itour.ajaxJson(_url,params,function(data){
 				//console.log(data);
-				if(data.success){
+				if(data.success||data.success=='true'){
 					if(data.allType){
 						//console.log(tbars);
 						Grid.datagrid({'toolbar':tbars});
@@ -347,17 +353,19 @@ var YDataGrid = function(config){
 								newBars.push(bar);
 							}else{
 								//判断btnType是否存在,存在则显示
+								//console.log($.inArray(bar.btnType, data.types));
 								if($.inArray(bar.btnType, data.types) >= 0 ){
 									newBars.push(bar);
 								}	
 							}
 						}
+						//console.log(newBars);
 						if(newBars.length > 0){
 							Grid.datagrid({'toolbar':newBars});
 						}
 					}
 				}else{
-					itour.alert('提示',data.msg);
+					itour.alert('提示',data.msg,'info');
 				}
 			});
 		}

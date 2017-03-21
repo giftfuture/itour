@@ -146,12 +146,11 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		OrderDetail entity  = orderDetailService.queryById(id);
 		if(entity  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return getRootMap();
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
@@ -159,7 +158,7 @@ public class OrderDetailController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的getId方法");
 		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/getId",sessionuser.getId(),"",""));
 		logOperationService.add(new LogOperation(logId,"查看",id,JsonUtils.encode(entity),"","orderdetail/getId",sessionuser.getId()));
-		return context;
+		return JsonUtils.encode(context);
 	}
 	
 	/**
@@ -172,13 +171,13 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		orderDetailService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的delete方法");
 		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/delete",sessionuser.getId(),"delete from order_detail where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"orderdetail/delete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 	/**
 	 * 
@@ -190,13 +189,13 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
-	public void logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		orderDetailService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的logicdelete方法");
 		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/logicdelete",sessionuser.getId(),"update order_detail set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"orderdetail/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		sendSuccessMessage(response, "删除成功");
+		return removeSuccessMessage(response);
 	}
 
 }

@@ -32,7 +32,7 @@ public class Constants {
 	public static final String CLIMB = "climb";
 	public static final String SELFDRIVE = "selfdrive";
 	public static final String LIGHT = "light";
-	public static final String SIGHTPHOTO = "sightphoto";
+	public static final String HOTSIGHT = "hotsight";
 	public static final String HAPPINESS = "happiness";
 	public static final String DESTINATION = "destination";
 	public static final String HIKING = "hiking";
@@ -43,7 +43,7 @@ public class Constants {
 		add(CLIMB);
 		add(SELFDRIVE);
 		add(LIGHT);
-		add(SIGHTPHOTO);
+		add(HOTSIGHT);
 		add(HAPPINESS);
 		add(DESTINATION);
 		add(HIKING);

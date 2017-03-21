@@ -71,7 +71,7 @@ public class LightController extends BaseController{
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  map = getRootMap();
 		//map.put("alias", Constants.HIKING);
-		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HIKING);
+		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.LIGHT);
 		String uploadPtopath = FilePros.uploadPtopath();
 		for(RouteTemplateVo rt:rtvos){
 			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
@@ -90,7 +90,7 @@ public class LightController extends BaseController{
 			rts.put(i,rtvos.subList(Constants.perRow*i, end));
 		}
 		map.put("rts", rts);
-		return forward("front/light/light",map); 
+		return forward("front/light/main",map); 
 	}
 	/**
 	 * 
@@ -161,7 +161,7 @@ public class LightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/light/hiking",map); 
+		return forward("front/light/light",map); 
 	}
 	/**
 	 * 
@@ -209,7 +209,7 @@ public class LightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/light/trekking",map); 
+		return forward("front/light/detail",map); 
 	}
 	
 	/**

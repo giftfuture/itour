@@ -20,7 +20,7 @@ itour.travelOrder = function(){
 					{"btnName":"添加","menuid":"11","actionUrls":"travelOrder/save","btnType":"add"},
 					{"btnName":"修改","menuid":"11","actionUrls":"travelOrder/getId|travelOrder/save","btnType":"edit"},
 					{"btnName":"删除","menuid":"11","actionUrls":"travelOrder/logicdelete","btnType":"logicremove"},
-					{"btnName":"删除","menuid":"11","actionUrls":"travelOrder/delete","btnType":"remove"}
+					{"btnName":"物理删除","menuid":"11","actionUrls":"travelOrder/delete","btnType":"remove"}
 				];
 				var tbline = $(".tb-line:visible");
 				var btnType = $("input[name='btnType']",tbline);
@@ -297,7 +297,7 @@ itour.travelOrder = function(){
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add',disabled:true},
 								{id:'btnedit',text:'修改',btnType:'edit'},
-								{id:'btndelete',text:'删除',btnType:'remove'},
+								{id:'btndelete',text:'物理删除',btnType:'remove'},
 								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{
 									id:'btnback',

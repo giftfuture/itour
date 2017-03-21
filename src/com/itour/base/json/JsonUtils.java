@@ -42,6 +42,7 @@ public class JsonUtils {
 				return new JsonPrimitive(source.getTime());
 			}
 		});
+		builder.registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory());
 		builder.registerTypeHierarchyAdapter(java.util.Date.class, new JsonDeserializer<java.util.Date>() {
 			public Date deserialize(JsonElement element, Type type, JsonDeserializationContext context)
 					throws JsonParseException {
@@ -173,5 +174,36 @@ public class JsonUtils {
 		}
 		return null;
 	}
+/*	public static String toJSONString(Object object, boolean filterNull, SerializerFeature[] features) {
+		SerializeWriter out = new SerializeWriter();
+		JSONSerializer serializer = new JSONSerializer(out);
+		for (int i = 0; i < features.length; i++) {
+		SerializerFeature feature = features[i];
+		serializer.config(feature, true);
+		}
+		serializer.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		serializer.config(SerializerFeature.WriteDateUseDateFormat, true);
+		//根据PropertyName判断是否序列化
+		serializer.getPropertyPreFilters().add(new PropertyPreFilter() {
+		public boolean apply(JSONSerializer serializer, Object object, String name) {
+		try {
+			if (((object instanceof Map)) || ((object instanceof Iterable))) {
+			return true;
+			}
+			Field f = object.getClass().getDeclaredField(name);
+			if (!f.isAccessible()) {
+				f.setAccessible(true);
+			}
+			Object val = f.get(object);
+			return Hibernate.isInitialized(val);
+		} catch (NoSuchFieldException localNoSuchFieldException) {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 
+		}
+		public static String toJSONString(Object object) {
+			return toJSONString(object, false, new SerializerFeature[0]);
+		}*/
 }

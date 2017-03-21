@@ -31,13 +31,13 @@ where deleted=0
 	 <if test="roleName != null and roleName != ''" >
 	    and roleName like CONCAT('%', #{roleName}, '%')
 	</if>
-	<if test="createTime != null" >
+	<if test="createTime != null and createTime != ''" >
 	     and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="createBy != null and createBy != ''" >
 	    and createBy like CONCAT('%', #{createBy}, '%')
 	</if>
-	<if test="updateTime != null" >
+	<if test="updateTime != null and updateTime != ''" >
 	     and DATE_FORMAT(updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
