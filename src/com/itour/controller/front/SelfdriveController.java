@@ -63,6 +63,7 @@ public class SelfdriveController  extends BaseController{
 	private LogSettingDetailService logSettingDetailService;
 	@Autowired
 	private LogOperationService logOperationService;
+	
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 			Map<String,Object> map = getRootMap();
@@ -159,7 +160,7 @@ public class SelfdriveController  extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/selfdrive/list",map); 
+		return forward("front/selfdrive/detail",map); 
 	}
 	/**
 	 * 

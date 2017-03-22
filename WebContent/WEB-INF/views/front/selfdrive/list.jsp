@@ -25,217 +25,125 @@
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
-    <td width="10" height="16" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
-    <td width="758" valign="top" class="title"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td width="218" valign="bottom" class="righttxt">language: English | French </td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
-  </tr>
-  <tr>
-    <td background="image/shadowleft.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td colspan="2" valign="top"><table width="960" height="23" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
-      <tr>
-        <td width="623" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE134"><a href="trekking.html">Trekking</a>¡¡ |¡¡ <a href="offroad.html">Off road</a>¡¡| ¡¡ <a href="Classic.html">Classic Tours</a>¡¡  |   ¡¡<a href="Customized-Tours.html">Customized Tours </a><a href="http://www.itours.com.cn/booking/booking-swca.php"></a>¡¡| ¡¡<a href="aboutus.html">Why Us</a></div></td>
-      </tr>
-    </table></td>
-    <td background="image/shadowright.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-  </tr>
-</table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <!--DWLayoutTable-->
-  <tr>
-    <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
+    <td width="10"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
     <td class="rightlinks"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="lefttxt">
         <tr> 
-          <td colspan="2"> Southwest-China-Adventures &gt;Motorbike Tours&gt;</td>
+          <td colspan="2"> Southwest-China-Adventures &gt; Trekking &gt;</td>
         </tr>
       </table>
+    
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="5">
         <tr> 
-          <td> <h1> Motorcycle tour around Sichuan China</h1></td>
+          <td> <h1> ${rt.title} </h1></td>
+          <td><h1>线路特色：${rt.special }</h1></td>
         </tr>
       </table>
+      <c:forEach items="${items}" var="item" >
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="10" bgcolor="#CCCCCC" class="lefttxt">
-
         <tr>
-          <td width="600" valign="top"><img src="img-test/motor-01.jpg" width="600" height="338" /></td>
-          <td width="330" valign="middle"><p class="STYLE126"><span class="STYLE129"><strong>Features</strong>£º</span><br />
-            <strong>* along the minority nationalities amorous feelings<br />
-* snow-capped mountains, grasslands, canyon, the most beautiful water<br />
-* enjoy freedom and passion on motorcycle <br />
-          <br />
-            </strong><span class="STYLE129">Days£º</span> 17 days (Can be changed to 8-30 days&nbsp;)¡¡¡¡<span class="STYLE129"><br />
-Seasons£º</span>May--Oct<br />
-<span class="STYLE129">Number of travelers  £º</span>2 or more people can make a private customized tour. </p>
-            <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php">Reservation</a>&gt;&gt;</p></td>
+          <td width="600" valign="top"><img src="${basePath}images/img/yading-03.jpg" width="600" height="338" /></td>
+          <td width="330" valign="middle"><p class="STYLE126"><span class="STYLE129"></span><br />
+            <strong><!-- *民族风情：母系氏族摩梭族，藏族风情<br />
+          *沿线人迹罕致<br />
+          *亚丁的三座雪山被誉为中国最美的雪山<br />
+          *也可根据时间调整抵达或离开的城市<br />
+          *可加入丽江、虎跳峡、梅里雪山等地的观光或徒步，依你的情况来调整日程。 --> ${item.feature }</strong></p>
+            <p class="STYLE126"><span class="STYLE129">天数：</span> ${item.rcdDays}天 (徒步8天，此行程可调整为13-25天&nbsp;)
+            　　<span class="STYLE129"><br />
+难度：</span>${item.difficultyRate} 　　　　<br />
+<span class="STYLE129">最高海拔：</span> ${item.mileage }米<span class="STYLE129"><br />
+季节：</span>${item.season}<br />
+<span class="STYLE129">人数：</span>${item.recommandCrowd}</p>
+        <!--   <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php"><strong>开始私人定制</strong></a>&gt;&gt;</p> -->
+          </td>
         </tr>
       </table>
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="10" class="lefttxt">
         <tr> 
-          <td width="620" valign="top"><p><strong>In China, you can find many roads and places deserve driving 
-                    and traveling. £º            </strong></p>
-            <table width="555" border="0" cellpadding="0" cellspacing="0" class="righttxt">
-              <tr>
-                <td width="26">tx </td>
-                <td width="352">Routine</td>
-                <td width="78">Distance </td>
-                <td width="99">Accommodation </td>
-              </tr>
-              <tr>
-                <td>D1</td>
-                <td>Arrive Chengdu . Get the driving license</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>D2</td>
-                <td>Panda, Motorcycle trial run </td>
-                <td>&nbsp;</td>
-                <td>Chengdu</td>
-              </tr>
-              <tr>
-                <td>D3</td>
-                <td>Chengdu - Ludin <br />
-                  <br /></td>
-                <td>290km</td>
-                <td>Ludin </td>
-              </tr>
-              <tr>
-                <td>D4</td>
-                <td>Luding	- Mt.Zheduo - 	</td>
-                <td>124km</td>
-                <td>Xinduqiao</td>
-              </tr>
-              <tr>
-                <td>D5</td>
-                <td>Xinduqiao - Danba		</td>
-                <td>150km</td>
-                <td>Danba </td>
-              </tr>
-              <tr>
-                <td>D6</td>
-                <td>Danba -	Mt siguniang	</td>
-                <td>120km</td>
-                <td>Mt siguniang </td>
-              </tr>
-              <tr>
-                <td>D7</td>
-                <td>Mt siguniang - Maerkang	</td>
-                <td>186km</td>
-                <td>Maerkang </td>
-              </tr>
-              <tr>
-                <td>D8</td>
-                <td>Maerkang - Miyaluo - Wenchuan	</td>
-                <td>210km</td>
-                <td>Wenchuan</td>
-              </tr>
-              <tr>
-                <td>D9</td>
-                <td>Wenchuan - Heishui </td>
-                <td>160km</td>
-                <td>Heishui</td>
-              </tr>
-              <tr>
-                <td>D10</td>
-                <td>Heishui - Hongyuan </td>
-                <td>163km</td>
-                <td>Hongyuan</td>
-              </tr>
-              <tr>
-                <td>D11</td>
-                <td>Hongyuan - Ruoergai </td>
-                <td>140km</td>
-                <td>Ruoergai</td>
-              </tr>
-              <tr>
-                <td>D12</td>
-                <td>Ruoergai - Jiuzhai </td>
-                <td>228km</td>
-                <td>Jiuzhai </td>
-              </tr>
-              <tr>
-                <td>D13</td>
-                <td>Sightseeing in Jiuzhai valley <br /></td>
-                <td>&nbsp;</td>
-                <td>Jiuzhai </td>
-              </tr>
-              <tr>
-                <td>D14</td>
-                <td>Jiuzhaigou - Songpan</td>
-                <td>140km</td>
-                <td>Songpan </td>
-              </tr>
-              <tr>
-                <td>D15</td>
-                <td>Songpan - Dujiangyan
-<br /></td>
-                <td>260km</td>
-                <td>Dujiangyan</td>
-              </tr>
-              <tr>
-                <td>D16</td>
-                <td>Dujiangyan - Chengdu <br />
-<br /></td>
-                <td>70km</td>
-                <td>Chengdu</td>
-              </tr>
-              <tr>
-                <td>D17</td>
-                <td> Depature	</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>
-            <p><br />
-              <br />
-            <strong>*The above itinerary is for your reference and it can be flexibly changed according to your specific request.</strong></p>
-            <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php">Reservation</a>&gt;&gt;</p>
-            <p><br />
-            </p>
-            <p><img src="img-test/motor-02.jpg" width="600" height="338" /> </p>
-            <p><img src="img-test/Motorcycle-Tours-Sichuan/001.jpg" width="600" height="338" /><br />
-              <br />
-              <img src="img-test/Motorcycle-Tours-Sichuan/003.jpg" width="600" height="338" /><br />
-              <br />
-              <img src="img-test/Motorcycle-Tours-Sichuan/004.jpg" width="600" height="338" /><br />
-              <br />
-              <img src="img-test/Motorcycle-Tours-Sichuan/005.jpg" width="600" height="338" /><br />
-              <br />
-              <img src="img-test/Motorcycle-Tours-Sichuan/006.jpg" width="600" height="338" /></p></td>
-          <td valign="top"><br />
-          <br />
+          <td width="620" valign="top"><p><br />
+           ${item.item}</p>
+            <p>${item.content } </p>
+            <p><span class="right">行程 ：</span><br />
+            ${item.itinerary }</p>
+            <p><br /><img src="${basePath}images/img/yading-05.jpg" width="600" height="338" /></p>
+            <p><img src="${basePath}images/img/yading-02.jpg" width="600" height="338" /></p>
+            <p><img src="${basePath}images/img/yading-04.jpg" width="600" height="338" /></p>
+            <p><img src="${basePath}images/img/yading-01.jpg" width="600" height="338" /><br />
+            </p></td>
+          <td valign="top">行程地图：<br /><!-- images/img/EYmap_ChinaTours_EBC.jpg -->
+            <img src="${basePath}${item.map}" width="328" height="239" /> 
+            <br />
             <br />
             -------------------------------------------------------------------------------<br />
             <br />
-            <p><strong><span class="STYLE130">What's included:</span></strong><br />
-1. Hotel as listed in the itinerary, twin-bed room including 
-              breakfast. <br />
-2. Meals as listed in the itinerary including soft drink and 
-              local beer. <br />
-3. A private bus transfer and luggage transfers. <br />
-4. 250CC full-equipped new motorcycle made in China. <br />
-5. Fuel and toll fee. <br />
-6. Professional machinist <br />
-7. Experienced Guide <br />
-8. Bottles of water and soft drinks prepared during the drive. <br />
-9. Travel accident life insurance; Motorcycle insurance.<br />
-10. Domestic flight tickets. (Chengdu-Lijiang-Chengdu return)</p>
-            <p><span class="STYLE130"><strong>Not included:</strong></span><br />
-              international airfare<br />
-              medical, travel, and trip interruption insurance<br />
-              passport and visa fees<br />
-              activities not included on the trip itinerary<br />
-          souvenirs, laundry, items of a personal nature </p></td>
+            <p><strong><span class="STYLE130">配备:</span><br />
+				${item.equip}
+             </strong></p>
+            <p><span class="STYLE130"><strong>不包括:</strong></span><br />
+             	${item.exclude }
+              <br />
+              </p>
+              <p>
+              -------------------------------------------------------------------------------<br />
+              <br />
+              <span class="STYLE130"><strong>建议装备：</strong></span><br />
+              ${item.recommandEquip }
+            </p>
+             </table>
+             </c:forEach>
+            -------------------------------------------------------------------------------<br />
+            <br />
+            <div>
+            <form>
+            <table>
+            <tr><td colspan=2><strong>请填写表格，您将会在48小时内收到我们的回复!</strong></td></tr>
+            <tr><td style="text-align:right">姓名:</td><td><input name="name" class="easyui-textbox" data-options="required:true" style="width:150px;"/></td></tr>
+            <tr><td style="text-align:right">团队人数:</td><td><input name="teamPersons" size="10"  class="easyui-numberbox" style="width:150px;"/></td></tr>
+             <tr><td style="text-align:right"> 预订日期:</td><td><input name="preferedDate" class="easyui-datetimebox ui-text" data-options="editable:false,'focus': function(){}"   style="width:150px;" size="15" /></td></tr>           
+            <tr><td style="text-align:right">手机 :</td><td><input name="mobile"  class="easyui-numberbox " data-options="prompt:'请输入正确的手机号码。',validType:'phoneNum'"  style="width:150px;"/></td></tr>
+            <tr><td style="text-align:right">邮箱: </td><td><input class="easyui-textbox" name="email" data-options="validType:'email'" style="width:150px;"/></td></tr>
+            <tr><td>您有特别的请求或疑问吗？</td><td></td></tr>
+          	<tr><td colspan=2><textarea name="content" cols="45" rows="5"></textarea></td><td></td></tr>
+             <tr><td><input type="button" value="提交" /></td><td><input type="reset" value="重置" /></td></tr>
+            </table>  
+			</form>
+              </div>
+              <br />
+              <br />
+            -------------------------------------------------------------------------------<br />
+            <br />
+            相关线路：<br />
+           
+            <c:forEach items="${rt.relates }" var="relate" >
+         	   【${relate.travelStyleAlias}】${relate.title }<br />
+       		  <!--   【Off road】大香格里拉九日游 <br /> -->
+            </c:forEach>
+           <p> ..........</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><br />
+            </p></td>
         </tr>
         <tr> 
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-      </table></td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
+     </td>
+    <td width="10" background="${basePath}images/shadowright.gif">
+    <img src="${basePath}/images/shadowright.gif" width="10" height="8" /></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <!--DWLayoutTable-->
+  <tr>
+    <td width="10" background="${basePath}images/shadowleft.gif">
+    <img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
+    <td class="rightlinks"><!--DWLayoutEmptyCell-->&nbsp;</td>
+    <td width="10" background="${basePath}images/shadowright.gif">
+    <img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/list.js"></script>

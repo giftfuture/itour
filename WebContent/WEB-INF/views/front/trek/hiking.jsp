@@ -79,7 +79,7 @@
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
         <tr>
           <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
-          <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
@@ -87,7 +87,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
@@ -95,7 +95,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
-          <td class="STYLE126">${rt.departure }<a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
@@ -114,7 +114,7 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
          	 <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
-           <a href="#">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="深色鞋子标识徒步难度等级">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
@@ -122,7 +122,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
-          <td class="STYLE126">${rt.mountStyle } <a href="#">Explain&gt;&gt; </a></td>
+          <td class="STYLE126">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />
@@ -163,24 +163,15 @@
     <td background="${basePath}images/frame1-2.gif"><table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td width="761" valign="top" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
-            <br />
-          * 四姑娘山被譽為東方的阿爾卑斯，是戶外運動者的天堂。此線路可以欣賞長坪溝，海子溝風光。<br />
-          <br />
-          * 長坪溝穿越畢棚溝是中國十大最佳徒步線路之一。<br />
-          <br />
-          * 專業領隊及向導為您提供后勤補給及穿越保障。您只需要輕裝上陣即可 ：）<br />
-          <br />
+       	  ${rt.designConcept }
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
-            。想去哪~帶你去<br />
-            。去幾天~隨便您<br />
-            。一兩個人OK，三五好友也行，公司出行更好<br />
-            。隨時為您安排私密出團 </span><br />
+          ${rt.customizedService }</span>
           <br />  
         </td>
         <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
    			<div class="easyzoom easyzoom--overlay">
 				<a href="${basePath}images/map-002.jpg">
-					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
+					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />		
 				</a>
 			</div>
           </div>
@@ -617,12 +608,12 @@
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" class="easyui-validatebox textbox" name="email" data-options="required:true,validType:'email'"/>
-                    <a href="#">Explains</a>&gt;&gt; </td>
+                    <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt; </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="mobile" class="easyui-validatebox textbox" data-options="validType:'phoneNum'"/>
-                    <a href="#">Explains</a>&gt;&gt; </td>
+                    <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>标题</strong>:</div></td>

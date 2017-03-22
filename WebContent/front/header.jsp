@@ -12,6 +12,7 @@
     	<td><a href="${basePath }climb/main">登山</a></td>
     	<td><a href="${basePath }selfdrive/main">自駕</a></td>
     	<td><a href="${basePath }light/main">輕驢行</a></td>
+    	<%-- <td><a href="${basePath }customized/main">定制</a></td> --%>
     	<td><a href="${basePath }showhappy/main">回憶興福</a></td>
     	<td><a href="${basePath }destination/main">目的地</a></td>
     	<td><a href="${basePath}whyus/why">关于我们</a></td>

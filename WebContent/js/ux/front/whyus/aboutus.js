@@ -1,5 +1,5 @@
-$package('itour.climbmain');
-itour.climbmain = function(){
+$package('itour.aboutus');
+itour.aboutus = function(){
 	var _this = {
 		init:function(){
 		 	//$("select[name='selectScopes']").combobox({ 
@@ -15,5 +15,5 @@ itour.climbmain = function(){
 }();
 
 $(function(){
-	itour.climbmain.init();
+	itour.aboutus.init();
 });

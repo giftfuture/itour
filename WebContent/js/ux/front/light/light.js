@@ -1,5 +1,5 @@
-$package('itour.trekking');
-itour.trekking = function(){
+$package('itour.light');
+itour.light = function(){
 	var _this = {
 			feedback:function(){
 				$.ajax({type:'post',
@@ -39,5 +39,5 @@ itour.trekking = function(){
 }();
 
 $(function(){
-	itour.trekking.init();
+	itour.light.init();
 });

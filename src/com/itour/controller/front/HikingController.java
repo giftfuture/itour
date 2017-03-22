@@ -72,7 +72,7 @@ public class HikingController extends BaseController{
 	 * @throws Exception 
 	 */
 	@SuppressWarnings({"unchecked" })
-	@RequestMapping("/main") 
+	@RequestMapping(value="/main", method = RequestMethod.GET) 
 	public ModelAndView goHiking(HttpServletRequest request,HttpServletResponse response) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);

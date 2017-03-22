@@ -1,13 +1,15 @@
 package com.itour.base.util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.ResourceBundle;
+
+import org.apache.commons.lang3.StringUtils;
+
 
 
 public class FilePros   {
@@ -15,12 +17,12 @@ public class FilePros   {
 	private static final String resourceFile = "conf";    
 	private static final ResourceBundle rb = ResourceBundle.getBundle(resourceFile);
     //属性文件的路径
-    static String profilepath=ClassLoader.getSystemResource("").getPath()+"/conf.properties";
+	//static String profilepath=ClassLoader.getSystemResource("").getPath()+"/conf.properties";
     /**
     * 采用静态方法
     */
     private static Properties props = new Properties();
-    static {
+/*    static {
         try {
         	InputStream is = ClassLoader.getSystemResourceAsStream("conf.properties");
             props.load(is);//new FileInputStream(profilepath)
@@ -30,7 +32,7 @@ public class FilePros   {
         } catch (IOException e) {       
             System.exit(-1);
         }
-    }
+    }*/
     /**
      * 
      * @param key
@@ -104,19 +106,201 @@ public class FilePros   {
 	    * @param keyname 键名
 	    * @param keyvalue 键值
 	    */
-    public static void updateProperties(String keyname,String keyvalue) {
+    public static void updateProperties(String key,String value) {
         try {
+        	String path = getWEB_INF()+"classes/conf.properties";
+        	File f = new File(path);
+        	//System.out.println(f.exists());
            // props.load(new FileInputStream(profilepath));
             // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
             // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
-            OutputStream fos = new FileOutputStream(profilepath);           
-            props.setProperty(keyname, keyvalue);
+        	Iterator<String> keys = rb.keySet().iterator();
+        	while(keys.hasNext()){
+        		String name = keys.next();
+        		props.put(name, rb.getString(name));
+        	}
+            OutputStream fos = new FileOutputStream(f);  
+            //InputStream is = new FileInputStream(f)	;
+            //Reader reader = new InputStreamReader(is);
+           // System.out.println("####"+f.length());
+           // System.out.println("####"+is.available());
+           // System.out.println("####"+new FileOutputStream(f).getChannel().size());
+            //TestLoad.class.getResourceAsSteam("myprops.properties");
+            // props.load(is);
+           // props.setProperty(keyname, keyvalue);
             // 以适合使用 load 方法加载到 Properties 表中的格式，
             // 将此 Properties 表中的属性列表（键和元素对）写入输出流
-            props.store(fos, "Update '" + keyname + "' value");
+            props.put(key, value);
+            props.store(fos, "");
         } catch (IOException e) {
-            System.err.println("属性文件更新错误");
+            System.err.println("属性文件更新错误");		
         }
+	}
+	/**
+
+	 * 获取当前对象的路径
+
+	 * @param object
+
+	 * @return path
+
+	 */
+
+	public static String getObjectPath(Object object){
+
+		return object.getClass().getResource(".").getFile().toString();
+
+	}
+
+	/**
+
+	 * 获取到项目的路径
+
+	 * @return path
+
+	 */
+
+	public static String getProjectPath(){
+
+		return System.getProperty("user.dir");
+
+	}
+
+	/**
+
+	 * 获取 root目录
+
+	 * @return path
+
+	 */
+
+	public static String getRootPath(){
+
+		return getWEB_INF().replace("WEB-INF/", "");
+
+	}
+
+	/**
+
+	 * 获取输出HTML目录
+
+	 * @return
+
+	 */
+
+	public static String getHTMLPath(){
+
+		return getFreePath() + "html/html/";
+
+	}
+
+	/**
+
+	 * 获取输出FTL目录
+
+	 * @return
+
+	 */
+
+	public static String getFTLPath(){
+
+		return getFreePath() + "html/ftl/";
+
+	}
+
+	/**
+
+	 * 获取 web-inf目录
+
+	 * @return path
+
+	 */
+
+	public static String getWEB_INF(){
+		return getClassPath().replace("classes/", "");
+
+	}
+
+	/**
+
+	 * 获取模版文件夹路径
+
+	 * @return path
+
+	 */
+
+	public static String getFreePath(){
+
+		return getWEB_INF() + "ftl/";
+
+	}
+
+	/**
+
+	 * 文本换行，因为Linux  和 Windows 的换行符不一样
+
+	 * @return
+
+	 */
+
+	public static String nextLine(){
+		 String nextLine = System.getProperty("line.separator");
+		 return nextLine;
+	}
+
+	/**
+
+	 * 获取images 路径
+
+	 * @return
+
+	 */
+
+	public static String getImages(){
+		return getRootPath() + "images/" ;
+	}
+
+	/**
+
+	 * 获取sitemap 路径
+
+	 * @return
+
+	 */
+
+	public static String getSiteMapPath(){
+		return getRootPath() + "txt/sitemap" ;
+	}
+
+	/**
+
+	 * 获取Txt 路径
+
+	 * @return
+
+	 */
+
+	public static String getTxt(){
+		return getRootPath() + "txt" ;
+	}
+
+	/**
+
+	 * 获取到classes目录
+
+	 * @return path
+
+	 */
+
+	public static String getClassPath(){
+		String systemName = System.getProperty("os.name");
+		//判断当前环境，如果是Windows 要截取路径的第一个 '/'
+		if(!StringUtils.isBlank(systemName) && systemName.indexOf("Windows") !=-1){
+			return FilePros.class.getResource("/").getFile().toString().substring(1);
+		}else{
+			return FilePros.class.getResource("/").getFile().toString();
+		}
+
 	}
 	public static void main(String[] args) {
 		//String resourceFile = "jdbc";    
@@ -129,7 +313,8 @@ public class FilePros   {
 //        假如你是在非Web项目中使用，则一定要写资源文件的路径，也就是包路径必须存在。
 //        如果是Web项目，不写包路径可以，此时将资源文件放在WEB-INF\classes\目录下就可以。
 	//ResourceBundle rb = ResourceBundle.getBundle(resourceFile);
-	System.out.println(uploadPath());//这里是分大小写的，嘿嘿输出值为
+	File f = new File(getWEB_INF()+"classes/conf.properties");
+	System.out.println(f.exists());//这里是分大小写的，嘿嘿输出值为
 		
 	}
 }

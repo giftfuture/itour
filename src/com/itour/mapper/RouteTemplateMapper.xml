@@ -92,6 +92,9 @@
 	<result column="transportation" property="transportation"/>
 	<result column="difficulty_rate" property="difficultyRate"/>
 	<result column="quoto_form" property="quotoForm"/>
+	<result column="design_concept" property="designConcept"/>
+	<result column="customized_service" property="customizedService"/>
+	<result column="before_instruction" property="beforeInstruction"/>
 </resultMap>
        <!-- Result Map-->
 <resultMap id="BaseResultMapVo" type="com.itour.vo.RouteTemplateVo" >
@@ -185,6 +188,9 @@
 	<result column="customer_name" property="customerName"/>
 	<result column="city" property="city"/>
 	<result column="district" property="district"/>
+	<result column="design_concept" property="designConcept"/>
+	<result column="customized_service" property="customizedService"/>
+	<result column="before_instruction" property="beforeInstruction"/>
 </resultMap>
        
 <!-- route_template table all fields   -->
@@ -194,7 +200,7 @@
 	   d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,
 	    d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
 	    route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
-	    route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form
+	    route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 </sql>
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
@@ -458,8 +464,8 @@ where is_valid=1
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm})
+  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -690,6 +696,15 @@ where is_valid=1
 	</if>
 	<if test="isValid != null">
 		is_valid=#{isValid},
+	</if>
+	<if test="customizedService != null and customizedService != ''">
+		 customized_service=#{customizedService},
+	</if>
+	<if test="designConcept != null and designConcept != ''">
+		design_concept = #{designConcept},
+	</if>
+	<if test="beforeInstruction != null and beforeInstruction != ''">
+		before_instruction = #{beforeInstruction},
 	</if>
 	</trim> where id=#{id}
 </update>

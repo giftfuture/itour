@@ -69,9 +69,6 @@
       <tr>
         <td><a href="${basePath }light/light/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
-     <%--  <tr>
-        <td><span class="f14-gao1">${item.content}</span></td>
-      </tr> --%>
       <tr>
         <td>&nbsp;</td>
       </tr>

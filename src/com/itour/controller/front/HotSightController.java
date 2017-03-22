@@ -165,7 +165,7 @@ public class HotSightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/hotsight/hotsight",map); 
+		return forward("front/hotsight/detail",map); 
 	}
 	/**
 	 * 

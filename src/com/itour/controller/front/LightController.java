@@ -161,7 +161,7 @@ public class LightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
-		return forward("front/light/light",map); 
+		return forward("front/light/detail",map); 
 	}
 	/**
 	 * 

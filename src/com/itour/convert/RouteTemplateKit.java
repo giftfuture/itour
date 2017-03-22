@@ -53,6 +53,9 @@ public class RouteTemplateKit{
 		}
 		vo.setUndiffRate(undiffRate);
 		vo.setQuotoForm(rt.getQuotoForm());
+		vo.setDesignConcept(rt.getDesignConcept());
+		vo.setCustomizedService(rt.getCustomizedService());
+		vo.setBeforeInstruction(rt.getBeforeInstruction());
 		return vo;
 	}
 }

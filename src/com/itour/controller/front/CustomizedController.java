@@ -44,8 +44,9 @@ import com.itour.vo.CustomerVo;
 import com.itour.vo.RouteTemplateVo;
 
 @Controller
-@RequestMapping("/climb") 
-public class ClimbController  extends BaseController{
+@RequestMapping("/customized") 
+public class CustomizedController  extends BaseController{
+	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired
 	private DataGridAdapter dataGridAdapter;

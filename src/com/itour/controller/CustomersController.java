@@ -33,6 +33,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.vo.CustomerVo;
+import com.itour.vo.RouteTemplateVo;
  
 /**
  * 
@@ -189,5 +190,30 @@ public class CustomersController extends BaseController{
 		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/logicdelete",user.getId(),"update customers set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"customers/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
+	}
+	/**线路和报价单
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/rtQuote",method = RequestMethod.GET)
+	public ModelAndView rtQuote(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		Customers bean  = customersService.queryById(id);
+		if(bean  == null){
+			sendFailureMessage(response, "没有找到对应的记录!");
+		}
+		//String quotoForm = entity.getQuotoForm();
+		context.put(SUCCESS, true);
+		//context.put("quotoForm", quotoForm);
+		context.put("bean", bean);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的quoteEdit方法");
+		String logId = logSettingService.add(new LogSetting("rtQuote","线路和报价单","customers/rtQuote",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","customers/rtQuote",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
+		return forward("server/sys/rtQuote",context);
 	}
 }

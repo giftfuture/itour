@@ -36,7 +36,28 @@ public class RouteTemplate extends BaseEntity {
 	private String transportation;//交通工具
 	private int difficultyRate;//难度
 	private String quotoForm;//报价单表
+	private String designConcept;//设计理念
+	private String customizedService;//定制服务
+	private String beforeInstruction;//行前须知
 	
+	public String getBeforeInstruction() {
+		return beforeInstruction;
+	}
+	public void setBeforeInstruction(String beforeInstruction) {
+		this.beforeInstruction = beforeInstruction;
+	}
+	public String getCustomizedService() {
+		return customizedService;
+	}
+	public void setCustomizedService(String customizedService) {
+		this.customizedService = customizedService;
+	}
+	public String getDesignConcept() {
+		return designConcept;
+	}
+	public void setDesignConcept(String designConcept) {
+		this.designConcept = designConcept;
+	}
 	public String getQuotoForm() {
 		return quotoForm;
 	}

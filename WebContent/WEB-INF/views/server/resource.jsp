@@ -9,16 +9,19 @@
     application.setAttribute("basePath", basePath);
     pageContext.setAttribute("basePath", basePath);
     long getTimestamp=new Date().getTime();
-    Counter CountFileHandler=new Counter();//创建对象  
-    int count=0;  
-    if(application.getAttribute("count")==null){  
-	    count=CountFileHandler.readFile(request.getRealPath("/")+"count.txt");//读取文件获取数据赋给count  
-	    application.setAttribute("count",new Integer(count));  
+    Counter counthandler=new Counter();//创建对象  
+    int count=1;  														
+    application.setAttribute("count",count); 
+  /*   if(application.getAttribute("count")==null|| count == 0){  
+	    count=counthandler.readCount();//读取文件获取数据赋给count  
+	    application.setAttribute("count",count);  
   	}  
- 	 count=(Integer)application.getAttribute("count");  
-	  if(session.isNew()) ++count;  
-	  application.setAttribute("count",count);  
-	  CountFileHandler.writeFile(request.getRealPath("/")+"count.txt",count);//更新文件记录  
+ 	  //count=(Integer)application.getAttribute("count");  
+	  if(session.isNew()){ 
+		  application.setAttribute("count", ++count);  
+		  counthandler.writeCount(count+"");//更新文件记录  
+	  } */
+	  //System.out.println("count="+count);
 %>
 <!-- 公共资源CSS,JS  -->
 <link rel="stylesheet" type="text/css" href="${basePath}js/jquery-easyui-1.5.1/themes/bootstrap/easyui.css">
@@ -77,7 +80,7 @@ $("input.easyui-datetimebox").focus(function(){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="mobile-agent" content="format=html5; url=http://www.itours.com.cn/" />
 <meta http-equiv="mobile-agent" content="format=xhtml; url=http://www.itours.com.cn/" />
-    <p>我们的友谊海枯石不烂！ 你是第 <%=count %> 位访客</p>  
+    <p>我们的友谊海枯石不烂！ 您是第 <%=application.getAttribute("count") %> 位访客</p>  
 <style type="text/css">
 <!--
 body {

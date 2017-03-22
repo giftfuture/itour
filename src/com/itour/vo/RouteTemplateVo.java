@@ -53,7 +53,29 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private List<Integer> undiffRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private String quotoForm;//报价单表
 	private String beriefTrip;//详细日程
+	private String designConcept;//设计理念
+	private String customizedService;//定制服务
+	private String beforeInstruction;
 	
+	public String getBeforeInstruction() {
+		return beforeInstruction;
+	}
+	public void setBeforeInstruction(String beforeInstruction) {
+		this.beforeInstruction = beforeInstruction;
+	}
+	
+	public String getCustomizedService() {
+		return customizedService;
+	}
+	public void setCustomizedService(String customizedService) {
+		this.customizedService = customizedService;
+	}
+	public String getDesignConcept() {
+		return designConcept;
+	}
+	public void setDesignConcept(String designConcept) {
+		this.designConcept = designConcept;
+	}
 	public String getBeriefTrip() {
 		return beriefTrip;
 	}

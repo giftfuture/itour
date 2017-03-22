@@ -1,5 +1,5 @@
-$package('itour.trekkings');
-itour.trekkings = function(){
+$package('itour.hotsightmain');
+itour.hotsightmain = function(){
 	var _this = {
 		init:function(){
 		 	//$("select[name='selectScopes']").combobox({ 
@@ -15,5 +15,5 @@ itour.trekkings = function(){
 }();
 
 $(function(){
-	itour.trekkings.init();
+	itour.hotsightmain.init();
 });

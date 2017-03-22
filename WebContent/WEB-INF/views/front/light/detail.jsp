@@ -18,6 +18,10 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.swf"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -75,7 +79,7 @@
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
         <tr>
           <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
-          <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
@@ -83,7 +87,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
@@ -91,7 +95,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
-          <td class="STYLE126">${rt.departure }<a href="#">Explain&gt;&gt;</a></td>
+          <td class="STYLE126">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
@@ -110,7 +114,7 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
          	 <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
-           <a href="#">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="深色鞋子标识徒步难度等级">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
@@ -118,7 +122,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
-          <td class="STYLE126">${rt.mountStyle } <a href="#">Explain&gt;&gt; </a></td>
+          <td class="STYLE126">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />
@@ -126,14 +130,14 @@
     <br />
     <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
-        <td><img src="${basePath}images/share.png" width="24" height="24" /></td>
-        <td><a target="_blank" href="javascript:itour.hiking.copyUrl()">复制链接</a></td>
-        <td><img src="${basePath}images/favorite01.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:itour.hiking.addFavorite()">收藏本页</a></td>
-        <td><img src="${basePath}images/print.png" width="24" height="24" /></td>
-        <td><a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
+        <td><img src="${basePath}images/facebook.png" width="24" height="24" />
+        <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
+        <td><img src="${basePath}images/share.png" width="24" height="24" />
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td>
+        <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">收藏本页</a></td>
+        <td><img src="${basePath}images/print.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
       </tr>
     </table></td>
   </tr>
@@ -159,19 +163,9 @@
     <td background="${basePath}images/frame1-2.gif"><table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td width="761" valign="top" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
-            <br />
-          * 四姑娘山被譽為東方的阿爾卑斯，是戶外運動者的天堂。此線路可以欣賞長坪溝，海子溝風光。<br />
-          <br />
-          * 長坪溝穿越畢棚溝是中國十大最佳徒步線路之一。<br />
-          <br />
-          * 專業領隊及向導為您提供后勤補給及穿越保障。您只需要輕裝上陣即可 ：）<br />
-          <br />
+       		${rt.designConcept }
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
-            。想去哪~帶你去<br />
-            。去幾天~隨便您<br />
-            。一兩個人OK，三五好友也行，公司出行更好<br />
-            。隨時為您安排私密出團 </span><br />
-          <br />  
+          ${rt.customizedService }</span>
         </td>
         <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
    			<div class="easyzoom easyzoom--overlay">
@@ -191,316 +185,6 @@
   <script type="text/javascript">
  	$("#detail-route").load();
   </script>
-<!--       <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
-        <tr>
-          <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>天数</strong></strong></div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center"><strong><strong>行程</strong></strong></div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center">里程</div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center">景点</div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center">住宿</div></td>
-        </tr>
-        <tr>
-          <td width="40" valign="middle" class="STYLE126"><div align="center">1</div></td>
-          <td width="431" valign="middle" class="STYLE126">成都-四姑娘山</td>
-          <td width="45" valign="middle" class="STYLE126">310km</td>
-          <td width="372" valign="middle" class="STYLE126">【巴郎山】</td>
-          <td width="106" valign="middle" class="STYLE126">四姑娘山镇</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">2</div></td>
-          <td valign="middle" class="STYLE126">徒步：海子溝</td>
-          <td valign="middle" class="STYLE126">30km</td>
-          <td valign="middle" class="STYLE126">【海子沟】</td>
-          <td valign="middle" class="STYLE126">四姑娘山镇</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">3</div></td>
-          <td valign="middle" class="STYLE126">日隆-10km-喇嘛寺-5km-枯树滩-7km-木骡子</td>
-          <td valign="middle" class="STYLE126">22Km</td>
-          <td valign="middle" class="STYLE126">【<a href="Destinations-sgnscpg.html" target="_blank">长坪沟</a>】</td>
-          <td valign="middle" class="STYLE126">露营</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">4</div></td>
-          <td valign="middle" class="STYLE126">木骡子-3km-水打坝-11m-叉子沟尾营地  </td>
-          <td valign="middle" class="STYLE126">14km</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">露营</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">5</div></td>
-          <td valign="middle" class="STYLE126">叉子沟尾-垭口-三颗树-白龙瀑布-卓玛湖-上海子接待站-理县</td>
-          <td valign="middle" class="STYLE126">23km</td>
-          <td valign="middle" class="STYLE126">【毕棚沟】</td>
-          <td valign="middle" class="STYLE126">理县/汶川</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">6</div></td>
-          <td valign="middle" class="STYLE126">返回成都</td>
-          <td valign="middle" class="STYLE126">200k</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-        </tr>
-      </table> -->
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
-  </tr>
-</table>
-<%-- <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="78" class="STYLE148"><strong>Day 01 </strong></td>
-            <td width="972"><span class="STYLE9">成都-四姑娘山</span><span class="STYLE148"><strong> 310km 住：四姑娘山鎮 </strong></span></td>
-          </tr>
-          <tr>
-            <td valign="top">&nbsp;</td>
-            <td valign="top"><span class="STYLE126">成都出發，翻越巴郎山，抵達四姑娘山，適應高原海拔。<br />
-                  <br />
-              【巴郎山】海拔5040米，但其景色极为美丽，白云如海，雪山连绵，草甸起伏<span class="STYLE10">。（备注：调用景区的简述和图片 可选图片）<br />
-                <br />
-                </span></span>
-                <table width="300" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <td><div align="center"><img src="${basePath}images/Route001.jpg" width="271" height="152" /></div></td>
-                  </tr>
-                  <tr>
-                    <td class="STYLE126"><div align="center">巴郎山</div></td>
-                  </tr>
-              </table></td>
-          </tr>
-        </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="78" class="STYLE148"><strong>Day 02 </strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">徒步：海子溝</span> 30km 住：四姑娘山镇</strong></span></td>
-          </tr>
-          <tr>
-            <td valign="top">&nbsp;</td>
-            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
-                <br />
-                <span class="STYLE126">【海子沟】</span>：风景如画<br />
-                <table width="300" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <td><div align="center"><img src="${basePath}images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"><img src="${basePath}images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-                  <tr>
-                    <td class="STYLE126"><div align="center">海子沟</div></td>
-                    <td class="STYLE126"><div align="center">海子沟徒步</div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-              </table></td>
-          </tr>
-        </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="78" class="STYLE148"><strong>Day 03 </strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
-          </tr>
-          <tr>
-            <td valign="top">&nbsp;</td>
-            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
-                <br />
-                <span class="STYLE126">【海子沟】</span>：风景如画<br />
-                <table width="300" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-                  <tr>
-                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
-                    <td class="STYLE126"><div align="center">长坪沟</div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-              </table></td>
-          </tr>
-        </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="78" class="STYLE148"><strong>Day 04</strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
-          </tr>
-          <tr>
-            <td valign="top">&nbsp;</td>
-            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
-                <br />
-                <span class="STYLE126">【海子沟】</span>：风景如画<br />
-                <table width="300" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-                  <tr>
-                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
-                    <td class="STYLE126"><div align="center">长坪沟</div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-              </table></td>
-          </tr>
-        </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="78" class="STYLE148"><strong>Day 05</strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
-          </tr>
-          <tr>
-            <td valign="top">&nbsp;</td>
-            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
-                <br />
-                <span class="STYLE126">【海子沟】</span>：风景如画<br />
-                <table width="300" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-                  <tr>
-                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
-                    <td class="STYLE126"><div align="center">长坪沟</div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-              </table></td>
-          </tr>
-        </table>
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="78" class="STYLE148"><strong>Day 06</strong></td>
-            <td width="972"><span class="STYLE148"><strong><span class="STYLE126">四姑娘山镇-10km-喇嘛寺-5km-枯树滩-7km-木骡子 22km 住：木骡子营地 </span></strong></span></td>
-          </tr>
-          <tr>
-            <td valign="top">&nbsp;</td>
-            <td valign="top">海子沟口徒步一天。可带一些干粮，晚上回四姑娘山镇上住。<br />
-                <br />
-                <span class="STYLE126">【海子沟】</span>：风景如画<br />
-                <table width="300" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"><img src="images/Route001.jpg" width="271" height="152" /></div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-                  <tr>
-                    <td class="STYLE126"><div align="center">长坪沟徒步</div></td>
-                    <td class="STYLE126"><div align="center">长坪沟</div></td>
-                    <td><div align="center"></div></td>
-                  </tr>
-              </table></td>
-          </tr>
-      </table></td></tr>
-  <tr>
-    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
-  </tr>
-</table> --%>
-      <br />
-      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
-        </tr>
-      </table>  
-<%-- <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-  <tr>
-    <td width="32"><img src="${basePath}images/msg02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程回忆幸福<span class="STYLE14">——将幸福定格</span></span></span></td>
-  </tr>
-</table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/frame1-2.gif">
-    <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td valign="top"><span class="STYLE126"><strong><br />
-            </strong></span>
-              <table width="1000" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="569" valign="top"><table width="547" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                      <tr>
-                        <td width="78" bgcolor="#f0f0f0"><div align="center"><strong>线路：</strong></div></td>
-                        <td width="455"><a href="#">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</a></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>客户：</strong></div></td>
-                        <td>台湾 文斐 4人</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>日期：</strong></div></td>
-                        <td>2016年6月16日</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><span class="STYLE12">内容：</span></div></td>
-                        <td>此次出遊，飽覽大自然，擴張我的生命深度與廣度。 <br />
-                          或許是有許多第一次的經歷 特有感觸吧！<br />
-                          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<br />
-                          <a href="#">展开</a>》》</td>
-                      </tr>
-                  </table></td>
-                  <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
-                      </tr>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="569" valign="top"><table width="547" border="0" cellpadding="2" cellspacing="2" class="STYLE126">
-                      <tr>
-                        <td width="78" bgcolor="#f0f0f0"><div align="center"><strong>线路：</strong></div></td>
-                        <td width="455"><a href="#">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</a></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>客户：</strong></div></td>
-                        <td>台湾 文斐 4人</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><strong>日期：</strong></div></td>
-                        <td>2016年6月16日</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor="#f0f0f0"><div align="center"><span class="STYLE12">内容：</span></div></td>
-                        <td>此次出遊，飽覽大自然，擴張我的生命深度與廣度。 <br />
-                          或許是有許多第一次的經歷 特有感觸吧！<br />
-                          此次行程迥異於以往的觀光旅遊團，所以感覺與想法特多。<br />
-                          <a href="#">展开</a>》》</td>
-                      </tr>
-                  </table></td>
-                  <td width="431"><table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td width="260"><div align="center"><img src="${basePath}images/Route001.jpg" width="305" height="165" /></div></td>
-                      </tr>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            <span class="STYLE126"><a href="#">更多》》</a><br />
-              注：更多则转到专门的客反馈页面<br />
-              <br />
-              </span>
-              <div align="center"></div></td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>
-</table> --%>
   </div>
   <div id="need-know" style="display:none">
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -613,12 +297,12 @@
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" class="easyui-validatebox textbox" name="email" data-options="required:true,validType:'email'"/>
-                    <a href="#">Explains</a>&gt;&gt; </td>
+                    <a href="javascript:void(0)" title="${合法的电子邮箱}">Explains</a>&gt;&gt; </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="mobile" class="easyui-validatebox textbox" data-options="validType:'phoneNum'"/>
-                    <a href="#">Explains</a>&gt;&gt; </td>
+                    <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>标题</strong>:</div></td>
