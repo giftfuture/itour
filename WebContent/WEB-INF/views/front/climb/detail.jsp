@@ -193,75 +193,7 @@
     <td width="1028"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath }images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td>★衣：高原的陽光很美也易傷人，墨鏡帶沿的帽子防曬露等是必要的，帶件外套，陽光下的溫度和陰涼處都有很大的差別，隨時加衣；<br />
-★食：飲食和內地差別不大，各種菜系基本都有，有興趣還可以品嘗地道的藏餐以及印度尼泊爾等風味，個別景點需要我們為您準備路餐；<br />
-★住：酒店與內地別無二致，酒店配套設施略少一些，但客房和內地同樣舒適，星級酒店配備氧氣瓶等供氧設備；<br />
-★行：我們的常規觀光行程所達之處，路況都非常好一般都使用空調冷巴，旅途中，坐在舒適的座椅上，窗外全是風景。</td>
-        </tr>
-      </table>
-    <p>&nbsp;</p></td>
-  </tr>
-  <tr>
-    <td><img src="${basePath }images/frame1-3.gif" width="100%" height="7" /></td>
-  </tr>
-</table>
-  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td valign="top"><p>★<strong>没有最好的行程，只有最适合您的旅程。</strong><br />
-            ★我们了解您的疑虑，所以只需告诉我们您的需求，其它 的我们帮你搞定。 <br />
-            ★想去哪~帶你去，去幾天~隨便您，一兩個人OK，三五好友亦可，多人同行也行。<br />
-            ★用车：越野車、商務車、旅行巴士，要什么随你挑。經驗豐富的司機為您保駕護航。<br />
-            ★酒店：三至五星級酒店，你說了算。<br />
-            ★用餐：享用各種美食。<br />
-            ★導遊：專業導遊服務 <br />
-            <br />
-            <span class="STYLE7">No Shopping， No 自费。</span><br />
-            <br />
-            <span class="STYLE7">害怕这样的行程所费不赀吗？ 
-              2016~2017 经济型的参考价格：</span></p>
-              <table width="541" border="0" cellspacing="0" cellpadding="2">
-                <tr>
-                  <td width="84"><div align="right" class="STYLE126">4人：</div></td>
-                  <td width="457" class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
-                </tr>
-                <tr>
-                  <td><div align="right" class="STYLE126">6人：</div></td>
-                  <td class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
-                </tr>
-                <tr>
-                  <td><div align="right" class="STYLE126">10人以上：</div></td>
-                  <td class="STYLE126">淡季价（几月-几月）400元/人，旺季价（几月-几月）600元/人 起 </td>
-                </tr>
-              </table>
-            <span class="STYLE126"> 备注：以上价格包含行程策划、全程用车及基3星级酒店。暂未包含美食、门票、导游等其它服务 。需要更多的服务？告诉我们就行。<br />
-              <br />
-              <span class="STYLE148">随时出发，随时联系，你负责旅行，杂事儿我们搞定：）</span><br />
-            </span>
-            <table width="600" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
-                <td width="264"><span class="STYLE3"><img src="${basePath}images/tailor.gif" width="134" height="32" /></span></td>
-              </tr>
-            </table></td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td><img src="${basePath}images/frame1-3.gif" width="100%" height="7" /></td>
-  </tr>
-</table>
+${rt.beforeInstruction }
   </div>
   <div id="feed-back" style="display:none">
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -272,7 +204,7 @@
 </table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath}images/frame1-2.gif">

@@ -218,6 +218,15 @@ itour.travelItem = function(){
 								}
 							}
 						},
+						{field:'hot',title:'是否热门',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								if(row.hot){
+									return "是";
+								}else{									
+									return "否";
+								}
+							}
+						},
 					{field:'elevation',title:'海拔',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.elevation+"").length>30){

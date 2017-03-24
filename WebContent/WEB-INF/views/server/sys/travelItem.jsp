@@ -15,6 +15,11 @@
 			<input name="itemCode" class="easyui-box ui-text" style="width:110px;"/>
 			<label class="ui-label">景点名称:</label>
 			<input name="item" class="easyui-box ui-text" style="width:108px;"/>
+			<label class="ui-label">是否热门:</label>
+			<select name="hot" class="easyui-box ui-text" style="width:108px;">
+				<option value="0">否</option>
+			 	<option value="1">是</option>
+			 </select>
 			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
 			<select name="elevation" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>

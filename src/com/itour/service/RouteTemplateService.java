@@ -73,6 +73,20 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	
 	/**
 	 * 
+	 * @param travelItems
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteTemplateVo> queryByItems(String travelItems)throws Exception{
+		List<RouteTemplate> list = mapper.queryByItems(travelItems);
+		List<RouteTemplateVo> vos = Lists.newArrayList();
+		for(RouteTemplate rt:list){
+			vos.add(RouteTemplateKit.toRecord(rt));
+		}
+		return vos;
+	}
+	/**
+	 * 
 	 * @param alias
 	 * @return
 	 * @throws Exception

@@ -57,6 +57,8 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String customizedService;//定制服务
 	private String beforeInstruction;
 	
+	
+	
 	public String getBeforeInstruction() {
 		return beforeInstruction;
 	}

@@ -76,6 +76,14 @@ where valid=1
 		 and id = #{id} 
 	 </if>
 </select>
+<!-- 根据id查询 旅行方式 #{_parameter,jdbcType=VARCHAR}  -->
+<select id="queryByAlias"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from travel_style where valid = 1
+	 <if test="alias != null and alias != ''">
+		 and alias = #{alias} 
+	 </if>
+</select>
 <select id="queryValid"  resultMap="BaseResultMap">
 select type,alias from travel_style where valid = 1
 </select>

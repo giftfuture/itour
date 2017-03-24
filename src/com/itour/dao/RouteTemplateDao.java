@@ -29,6 +29,13 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	List<RouteTemplate> queryByRelated(List<String> ids);
+	
+	/**
+	 * 
+	 * @param travelItems
+	 * @return
+	 */
+	List<RouteTemplate> queryByItems(@Param(value="travelItems")String travelItems);
 	/**
 	 * 
 	 * @param alias

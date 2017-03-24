@@ -12,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.google.common.collect.Maps;
-import com.itour.base.util.SystemVariable;
-import com.itour.dao.TravelStyleDao;
-import com.itour.entity.TravelStyle;
 
 public class Constants {
 	//ResourceBundle.getBundle("conf");
@@ -27,6 +24,7 @@ public class Constants {
 	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
 	public static final int perPage = 3;//前端回忆幸福每页数据
 	public static final int fbperPage = 4;//前端反馈每页数据量
+	public static final int hotview = 4;//首页显示的热门景点
 	public static  int perRow = 3;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
 	public static final String FREEMARKER_PATH="";
@@ -38,9 +36,9 @@ public class Constants {
 	public static final String HAPPINESS = "happiness";
 	public static final String DESTINATION = "destination";
 	public static final String HIKING = "hiking";
-	
 	public static final String ALARM_FILE_PATH = "";
 	private static final ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
+	//
 	public static final Set<String> TSTYLES = new HashSet<String>(){{
 		add(CUSTOMIZED);
 		add(CLIMB);
@@ -51,7 +49,13 @@ public class Constants {
 		add(DESTINATION);
 		add(HIKING);
 	}};
-	
+	//
+	public static final Map<String,String> HOTTYLES = new HashMap<String,String>(){{
+		put(CLIMB,"登山");
+		put(SELFDRIVE,"自驾");
+		put(LIGHT,"轻旅行");
+		put(HIKING,"徒步");
+	}};
 	public static void init(){
 		basePhoto= bundle == null || StringUtils.isEmpty(bundle.getString("basePhoto")) ? basePhoto : bundle.getString("basePhoto");
 		perRow = bundle == null ||StringUtils.isEmpty(bundle.getString("perRow")) ? perRow :  Integer.valueOf( bundle.getString("perRow"));

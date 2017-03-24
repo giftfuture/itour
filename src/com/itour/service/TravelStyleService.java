@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,22 @@ public class TravelStyleService<T> extends BaseService<T> {
 		}
 		return new BasePage<TravelStyleVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
+	/**
+	 * 
+	 * @param alias
+	 * @return
+	 */
+	public TravelStyle queryByAlias(String alias){
+		List<TravelStyle> list = mapper.queryByAlias(alias);
+		if(list != null && list.size()>= 1){
+			return list.get(0);
+		}
+		return new TravelStyle();
+	};
+	/**
+	 * 
+	 * @return
+	 */
 	public List<HashMap<String,String>> loadStyles(){
 		return mapper.loadStyles();
 	};

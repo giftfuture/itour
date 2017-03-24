@@ -722,7 +722,11 @@ update route_template set quoto_form=#{quotoForm},update_time=#{updateTime},upda
 </update>
 <!-- 根据id查询 路线模板 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" /> where route_template.id = #{id}
+	select <include refid="Base_Column_List" />  from route_template where route_template.id = #{id}
+</select>
+<!-- 根据包含景点模糊查询路线模板 -->
+<select id="queryByItems"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> from route_template where travel_items like CONCAT('%', #{travelItems}, '%')  
 </select>
 <!-- 根据id查询 路线模板 -->
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
@@ -743,14 +747,14 @@ from route_template inner join travel_style on route_template.travel_style = tra
 	select <include refid="Base_Column_List" /> 
 	 from route_template where alias = #{alias}
 </select>
-<!-- 获取该旅行方式下的施行项目 -->
+<!-- 获取该旅行方式下的相关 -->
 <select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List"/>
 from route_template where route_template.id in
 <foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
     #{ids}  
 </foreach>
-</select>
+</select> 
 <!-- 路线模板 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from route_template 

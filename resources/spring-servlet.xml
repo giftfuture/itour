@@ -13,6 +13,8 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<!-- Configures the @Controller programming model -->
 	<!-- Enables the Spring MVC @Controller programming model -->
+	
+   <!--   <mvc:view-controller path="/" view-name="index"/>  --> 
    <mvc:annotation-driven  conversion-service="conversionService">
 	   	<mvc:message-converters register-defaults="true"> 
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
