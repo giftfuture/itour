@@ -2,6 +2,7 @@ package com.itour.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -62,4 +63,12 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public RouteTemplateVo selectByRouteCode(@Param(value="routeCode")String routeCode);
+	
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	public List<RouteTemplateVo> searchRts(Map map);
+	
 }

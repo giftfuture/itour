@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
-<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
+<title>回忆幸福详情</title>
 <meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
 <meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
 </head>
@@ -29,14 +28,22 @@
           <tr>
             <td><table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
               <tr>
-                <td><img src="images/facebook.png" width="24" height="24" /></td>
+           <!--      <td><img src="images/facebook.png" width="24" height="24" /></td>
                 <td><a href="#">分享至FB</a></td>
                 <td><img src="images/share.png" width="24" height="24" /></td>
                 <td><a href="#">复制链接</a></td>
                 <td><img src="images/favorite01.png" width="24" height="24" /></td>
                 <td><a href="#">收藏本页</a></td>
                 <td><img src="images/print.png" width="24" height="24" /></td>
-                <td><a href="#">打印页面</a></td>
+                <td><a href="#">打印页面</a></td> -->
+                <td><img src="${basePath}images/facebook.png" width="24" height="24" />
+		        <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
+		        <td><img src="${basePath}images/share.png" width="24" height="24" />
+		        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td>
+		        <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
+		        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">收藏本页</a></td>
+		        <td><img src="${basePath}images/print.png" width="24" height="24" />
+		        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
               </tr>
             </table></td>
           </tr>

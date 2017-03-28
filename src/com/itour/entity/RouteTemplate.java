@@ -24,7 +24,7 @@ public class RouteTemplate extends BaseEntity {
 	private String cover;//封面
 	private String title;//路线名称
 	private String shortContent;//简略介绍
-	private String alias;
+	private String alias;//线路别称
 	private String routeCode;//线路编号
 	private boolean isValid;
 	private int rcdDays;//建议天数
@@ -39,7 +39,20 @@ public class RouteTemplate extends BaseEntity {
 	private String designConcept;//设计理念
 	private String customizedService;//定制服务
 	private String beforeInstruction;//行前须知
-	
+	private java.lang.String scope;//地域   
+	private String scopeAlias;//地域简称
+	public java.lang.String getScope() {
+		return scope;
+	}
+	public void setScope(java.lang.String scope) {
+		this.scope = scope;
+	}
+	public String getScopeAlias() {
+		return scopeAlias;
+	}
+	public void setScopeAlias(String scopeAlias) {
+		this.scopeAlias = scopeAlias;
+	}
 	public String getBeforeInstruction() {
 		return beforeInstruction;
 	}

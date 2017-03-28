@@ -257,7 +257,7 @@ ${rt.beforeInstruction }
       </div></td>
               </tr>
               <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><input type="hidden" name="route" value="${rt.routeCode}"/></td>
                 <td bgcolor="#F0F0F0" class="STYLE140"><input type="button" name="SubmitSend" value="Send" /></td>
               </tr>
               <tr>

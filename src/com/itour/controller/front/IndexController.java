@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
@@ -67,7 +68,6 @@ public class IndexController extends BaseController {
 		Map<String,String> params = Maps.newHashMap();
 		params.put("hot","1");
 		List<TravelItem> hots = travelItemService.searchTravelItem(map);
-		//List<String> hotIds = Lists.newArrayList();
 		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
 		for(TravelItem ti:hots){			
 			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
@@ -111,15 +111,38 @@ public class IndexController extends BaseController {
 		map.put("mapvo",mapvo);
 		return forward("index",map); 
 	}
-		@SuppressWarnings("unchecked")
-	@RequestMapping(value="/search",method = RequestMethod.GET) 
-	public ModelAndView search(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/search",method = RequestMethod.POST) 
+	public ModelAndView searchRt(@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("areas")String scopeAlias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  map = getRootMap();
 		Map<String,String> params = Maps.newHashMap();
+		Map<String,String> shparams = Maps.newHashMap();
+		if(StringUtils.isNotEmpty(travelStyle)){			
+			params.put("travelStyle", travelStyle);
+		}
+		if(StringUtils.isNotEmpty(scopeAlias)){			
+			params.put("scopeAlias", scopeAlias);
+		}
+		if(StringUtils.isNotEmpty(rcdDays)){
+			if(rcdDays.indexOf('-')>0){
+				params.put("rcdDays1", rcdDays.split("-")[0]);
+				params.put("rcdDays2", rcdDays.split("-")[1]);
+			}else{
+				params.put("rcdDays", rcdDays);
+			}
+		}
 		String physicalPath = FilePros.physicalPath();
-		params.put("hot","1");
-		List<TravelItem> hots = travelItemService.searchTravelItem(map);
-		//List<String> hotIds = Lists.newArrayList();
+		List<RouteTemplateVo> searchRts = routeTemplateService.searchRts(params);
+		ShowHappyVo pagevo = new ShowHappyVo();
+		 pagevo.setPage(1);
+		 BasePage<Map<String, Object>> page = showHappyService.pagedQuery(pagevo);
+		 if(page.getRecords() != null && page.getRecords().size() >=1){
+		 	map.put("showhappy", page.getRecords().get(0));
+		 };
+	 	shparams.put("hot","1");
+		List<TravelItem> hots = travelItemService.searchTravelItem(shparams);
 		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
 		for(TravelItem ti:hots){			
 			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
@@ -132,31 +155,15 @@ public class IndexController extends BaseController {
 					if(hotrtVos.size() >= Constants.hotview){
 						break;
 					}
-					//String parpath = physicalPath+t.getItemCode().replaceAll(" ", "")+"_"+rt.getItem().replaceAll(" ", "");
 					hotrtVos.add(rt);
 				}	
 			}
 		}
-		Map<String,RouteTemplateVo> mapvo = Maps.newHashMap();
-		Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
-		while(it.hasNext()){
-			String style = it.next();
-			TravelStyle ts = travelStyleService.queryByAlias(style);
-			if(StringUtils.isNotEmpty(ts.getAlias())){
-				List<RouteTemplateVo> ttvo =  routeTemplateService.queryByStyle(ts.getAlias());
-				if(ttvo != null && ttvo.size() >= 1){
-					mapvo.put(ts.getType(),ttvo.get(0));
-				}
-			}
+		if(hotrtVos.size() >= Constants.hotview){
+			hotrtVos = hotrtVos.subList(0, Constants.hotview);
 		}
-		 ShowHappyVo pagevo = new ShowHappyVo();
-		 pagevo.setPage(1);
-		 BasePage<Map<String, Object>> page = showHappyService.pagedQuery(pagevo);
-		 if(page.getRecords() != null && page.getRecords().size() >=1){
-		 	map.put("showhappy", page.getRecords().get(0));
-		 };
 		map.put("hotrtVos", hotrtVos);
-		map.put("mapvo",mapvo);
-		return forward("index",map); 
+		map.put("searchRts", searchRts);
+		return forward("front/search",map); 
 	}
 }

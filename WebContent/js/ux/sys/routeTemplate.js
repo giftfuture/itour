@@ -202,7 +202,7 @@ itour.routeTemplate = function(){
 							return row.mountStyle;
 						}
 					},
-					{field:'shortContent',title:'内容简略',align:'center',sortable:true,
+					{field:'shortContent',title:'简略内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.shortContent;
 						}

@@ -1,11 +1,9 @@
 package com.itour.vo;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.itour.base.page.BasePage;
 /**
  * 
  * <br>
@@ -15,6 +13,9 @@ import com.itour.base.page.BasePage;
  */
 //import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.itour.base.page.BasePage;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
 public class RouteTemplateVo extends BasePage implements Serializable{
@@ -35,7 +36,8 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String travelStyle;//线路类别
 	private String travelStyleAlias;
 	private String travelItems;//线路中的景点
-	private String cover;//封面
+	private String cover;//封面图片
+	private File coverImg;//
 	private String title;//路线名称
 	private String shortContent;//简略介绍
 	private String alias;
@@ -56,7 +58,27 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String designConcept;//设计理念
 	private String customizedService;//定制服务
 	private String beforeInstruction;
+	private java.lang.String scope;//地域   
+	private String scopeAlias;//地域简称
 	
+	public File getCoverImg() {
+		return coverImg;
+	}
+	public void setCoverImg(File coverImg) {
+		this.coverImg = coverImg;
+	}
+	public java.lang.String getScope() {
+		return scope;
+	}
+	public void setScope(java.lang.String scope) {
+		this.scope = scope;
+	}
+	public String getScopeAlias() {
+		return scopeAlias;
+	}
+	public void setScopeAlias(String scopeAlias) {
+		this.scopeAlias = scopeAlias;
+	}
 	
 	
 	public String getBeforeInstruction() {

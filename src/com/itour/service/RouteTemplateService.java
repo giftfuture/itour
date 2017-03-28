@@ -1,7 +1,10 @@
 package com.itour.service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
 import com.itour.convert.RouteTemplateKit;
 import com.itour.dao.RouteTemplateDao;
+import com.itour.dao.TravelItemDao;
 import com.itour.entity.RouteTemplate;
 import com.itour.vo.RouteTemplateVo;
 
@@ -38,6 +42,11 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
 		for(RouteTemplate fb:list) {
+			if(StringUtils.isNotEmpty(fb.getTravelItems())){
+				 String[] params = fb.getTravelItems().split(",");
+				String travelItems = tiDao.travelItems(Arrays.asList(params));
+				fb.setTravelItems(travelItems);
+			}
 			records.add(RouteTemplateKit.toRecord(fb));
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
@@ -120,11 +129,23 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public RouteTemplateVo selectByRouteCode(String routeCode){
 		return mapper.selectByRouteCode(routeCode);
 	}
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	public List<RouteTemplateVo> searchRts(Map map)throws Exception{
+		return mapper.searchRts(map);
+	};
 	@Autowired
     private RouteTemplateDao<T> mapper;
 		
 	public RouteTemplateDao<T> getDao() {
 		return mapper;
 	}
-
+	@Autowired
+	private TravelItemDao<T> tiDao;
+	public TravelItemDao<T> gettiDao() {
+		return tiDao;
+	}
 }

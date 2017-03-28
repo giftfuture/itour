@@ -1,6 +1,6 @@
  <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
-<form name="searchForm" action="" method="post">
+<form name="searchForm" action="search" method="post">
 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="30px" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
@@ -11,15 +11,15 @@
         <br />旅游区域：
         <input name="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
         <br />  假期天数：<a href="javascript:void(0)">
-	<select class="easyui-combobox"   data-options="width:130,height:20" name="vacation" style="width:100px">
-	  <option selected="selected">-所有-</option>
+	<select class="easyui-combobox"   data-options="width:130,height:20" name="vacation">
+	  <option selected="selected" value="">-所有-</option>
 	  <option value="1-5">1-5天</option>
 	  <option value="6-9">6-9天</option>
 	  <option value="10-15">10-15天</option>
 	  <option value="16">16天+</option>
 	</select>
       </a></label></td>
-    <td width="50px" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" name="Submit" value="搜索" /></td>
+    <td width="50px" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" id="searchbtn" value="搜索" /></td>
   </tr>
 </table>
 </form>

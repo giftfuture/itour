@@ -70,7 +70,7 @@
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                <input id="fileImage" type="file" size="30" name="fileselect" multiple="multiple" accept="image/*"  />
+                                <input id="fileImage" type="file" name="fileselect" size="30"  multiple="multiple" accept="image/*"  />
                             </div>
                             <div id="preview" class="upload_preview"></div>
                         </div>

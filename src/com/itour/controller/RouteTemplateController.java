@@ -1,5 +1,6 @@
 package com.itour.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.convert.RouteTemplateKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.QuoteForm;
@@ -107,35 +112,44 @@ public class RouteTemplateController extends BaseController{
 	 * 添加或修改数据
 	 * @param url
 	 * @param classifyId
-	 * @return
+	 * @return Integer[] typeIds,
 	 * @throws Exception 
 	 */
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(RouteTemplate entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public void save(RouteTemplateVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = new HashMap<String,Object>();
-		entity.setRouteCode(IDGenerator.code(16));
+		vo.setRouteCode(IDGenerator.code(16));
 		RouteTemplate rt = null;
 		String rtId = "";
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			rtId = routeTemplateService.add(entity);
+		String rtCoverPath = FilePros.rtCoverPath();
+		String uuid = IDGenerator.getUUID();
+		ClassReflectUtil.setIdKeyValue(vo,"id",uuid);
+		vo.setRouteCode(IDGenerator.code(19));
+		String fileName = vo.getCoverImg().getName();
+		vo.setCover(fileName);
+		String path = rtCoverPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getTitle();
+		ImageFilter.writeBase64Image(vo.getCoverImg(),path);
+		RouteTemplate bean = RouteTemplateKit.toEntity(vo);
+		if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
+			rtId = routeTemplateService.add(bean);
 		}else{
-			rt = routeTemplateService.queryById(entity.getId());
+			rt = routeTemplateService.queryById(vo.getId());
 			if(rt == null)
-				rtId = routeTemplateService.add(entity);
+				rtId = routeTemplateService.add(bean);
 			else
-				routeTemplateService.update(entity);
+				routeTemplateService.update(bean);
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
 		if(StringUtils.isNotEmpty(rtId)){			
 			String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save",sessionuser.getId(),"",""));
-			logOperationService.add(new LogOperation(logid,"新增",rtId,JsonUtils.encode(entity),"","routeTemplate/save",sessionuser.getId()));
+			logOperationService.add(new LogOperation(logid,"新增",rtId,JsonUtils.encode(bean),"","routeTemplate/save",sessionuser.getId()));
 		}else{
 			String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save(update)",sessionuser.getId(),"",""));
-			logOperationService.add(new LogOperation(logid,"更新",rt!= null?rt.getId():"",JsonUtils.encode(rt),JsonUtils.encode(entity),"routeTemplate/save(update)",sessionuser.getId()));
+			logOperationService.add(new LogOperation(logid,"更新",rt!= null?rt.getId():"",JsonUtils.encode(rt),JsonUtils.encode(bean),"routeTemplate/save(update)",sessionuser.getId()));
 		}
 		sendSuccessMessage(response, "保存成功~");
 	}

@@ -95,30 +95,31 @@ if($.browser.msie){
   <tr>
     <td width="766" valign="top"><table border="0" align="center" cellpadding="15" cellspacing="0">
       <tr>
-      <c:if test="${not empty mapvo }">
-	      <c:forEach items="${mapvo}" var="entry" varStatus="status">
+      <c:if test="${not empty searchRts }">
+	      <c:forEach items="${searchRts}" var="entry" varStatus="status">
+	        <c:if test="${status.index != 0 && status.index%4==0 }"></tr><tr></c:if>
 	        <td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0" class="f14-gao1">
 	            <tr>
 	              <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
 	                  <tr>
 	                    <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-	                    <td width="296" class="h2-24"><a href="${basePath}hiking/main" class="STYLE3">${entry['key']}</a></td>
+	                  <%--   <td width="296" class="h2-24"><a href="${basePath}hiking/main" class="STYLE3">${entry['key']}</a></td> --%>
 	                  </tr>
 	              </table></td>
 	            </tr>
 	            <tr>
-	              <td><span class="STYLE7">${entry['value'].title }</span></td>
+	              <td><span class="STYLE7">${entry.title }</span></td>
 	            </tr>
 	            <tr>
-	              <td><img src="${entry['value'].cover }" width="353" height="166" /></td>
+	              <td><img src="${entry.cover }" width="353" height="166" /></td>
 	            </tr>
 	            <tr>
-	              <td class="STYLE8"><a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}">${entry['value'].title }</a><br />
-	              ${entry['value'].shortContent}<br><a href="${basePath }${entry['value'].travelStyleAlias }/main">More》》</a>
+	              <td class="STYLE8"><a href="${basePath }${entry.travelStyleAlias }/${entry.travelStyleAlias }/${entry.alias}">${entry.title }</a><br />
+	              ${entry.shortContent}<br><a href="${basePath }${entry.travelStyleAlias }/main">More》》</a>
 	              </td>
 	            </tr>
 	        </table></td>
-	        <c:if test="${status.index%4==0 }"></tr><tr></c:if>
+	      
 	        </c:forEach>
         </c:if>
       </tr>

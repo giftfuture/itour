@@ -22,6 +22,7 @@ import javax.imageio.stream.ImageOutputStream;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Maps;
+import com.itour.entity.RouteTemplate;
 import com.itour.vo.ShowHappyVo;
 
 import gui.ava.html.image.generator.HtmlImageGenerator;
@@ -255,7 +256,6 @@ public class ImageFilter {
         //    return false;  
         return false;  
     }  
-    
 	/** 
      * 替换html中的base64图片数据为实际图片 
      * @param html 
@@ -263,7 +263,27 @@ public class ImageFilter {
      * @param serRoot 服务器路径 
      * @return 
      */  
-    public static void writeBase64Image(ShowHappyVo showhappy,String serRoot){  
+    public static void writeBase64Image(File cover,String serRoot){  
+        try {
+            	File directory = new File(serRoot);  
+    			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
+    				directory.mkdirs();  
+    			} 
+    			String ext = cover.getName().substring(cover.getName().indexOf('.'));
+    			String baseimage = GetImageStr(cover,base64ImgExt.get(ext));
+                convertBase64DataToImage(baseimage, serRoot+File.separatorChar+cover.getName());//转成文件  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    } 
+	/** 
+     * 替换html中的base64图片数据为实际图片 
+     * @param html 
+     * @param fileRoot 本地路径 
+     * @param serRoot 服务器路径 
+     * @return 
+     */  
+    public static void writeSHBase64Image(ShowHappyVo showhappy,String serRoot){  
         try {
 		String html = showhappy.getContent();
      // Pattern pattern = Pattern.compile("\\<img[^>]*src=\"data:image/[^>]*>");  
@@ -358,6 +378,29 @@ public class ImageFilter {
         // 读取图片字节数组
         try {
             InputStream in = new FileInputStream(imgFilePath);
+            data = new byte[in.available()];
+            in.read(data);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // 对字节数组Base64编码
+        BASE64Encoder encoder = new BASE64Encoder();
+        return header + encoder.encode(data);// 返回Base64编码过的字节数组字符串
+    }
+    /**
+     * 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+     * @param imgFilePath
+     * @return
+     */
+    public static String GetImageStr(File imgFile,String type) {
+    	  //为编码添加头文件字符串  
+        String header = "data:image/"+type+";base64,"; 
+        byte[] data = null;
+        // 读取图片字节数组
+        try {
+            InputStream in = new FileInputStream(imgFile);
             data = new byte[in.available()];
             in.read(data);
             in.close();

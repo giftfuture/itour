@@ -68,6 +68,14 @@ public class FilePros   {
 		String sharePath = rb.getString("share_happy_path");
 		return sharePath;
 	}
+	/**
+	 * 路线模板封面图
+	 * @return
+	 */
+	public static String rtCoverPath(){
+		String rtCover = rb.getString("rtcover_path");
+		return rtCover;
+	}
 	
 	/**
 	 * 上传图片的本项目相关的存储路径

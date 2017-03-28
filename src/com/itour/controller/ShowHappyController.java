@@ -218,7 +218,7 @@ public class ShowHappyController extends BaseController{
 		showhappy.setShCode(IDGenerator.code(19));
 		String fileName = showhappy.getSurface().getName();
 		showhappy.setCover(fileName);
-		ImageFilter.writeBase64Image(showhappy,shareHappyPath);
+		ImageFilter.writeSHBase64Image(showhappy,shareHappyPath);
 		showHappyService.addShowHappy(ShowHappyKit.toEntity(showhappy));
 		context.put(SUCCESS, true);
 		context.put("msg", "保存成功~");

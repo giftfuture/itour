@@ -232,7 +232,7 @@ where is_valid=1
 </update>
 <!-- 根据id查询 旅行项目 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" /> 
+select <include refid="Base_Column_List" /> 
 	 from travel_item where id = #{id}
 </select>
 <!-- resultMap="allscopes"  -->
@@ -302,5 +302,13 @@ from travel_item inner join travel_style on travel_item.travel_style = travel_st
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-  	
+ <select id="travelItems" parameterType="java.util.List" resultType="String">
+<!-- call splitString(#{tsIds},',');
+select group_concat(item) item from travel_item where id in
+(select * from tmp_split); -->
+select group_concat(item) item from travel_item where id in
+<foreach collection="list" item="tsIds" index="index" open="(" separator="," close=")">  
+      #{tsIds}  
+</foreach>
+</select>  	
 </mapper>   

@@ -97,6 +97,7 @@ if($.browser.msie){
       <tr>
       <c:if test="${not empty mapvo }">
 	      <c:forEach items="${mapvo}" var="entry" varStatus="status">
+	       <c:if test="${status.index != 0 && status.index%4==0 }"></tr><tr></c:if>
 	        <td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0" class="f14-gao1">
 	            <tr>
 	              <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
@@ -118,7 +119,6 @@ if($.browser.msie){
 	              </td>
 	            </tr>
 	        </table></td>
-	        <c:if test="${status.index%4==0 }"></tr><tr></c:if>
 	        </c:forEach>
         </c:if>
       </tr>

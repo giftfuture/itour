@@ -30,29 +30,30 @@ function ww4(date){
        <tr>
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-         <tr><td>标题：<input type="text" class="easyui-textbox" name="title"/></td><td>
-          <span class="STYLE23">旅行線路：</span>
-            	<input id="route" name="route" class="easyui-combobox"  style="width:100px;" data-options="valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'"></td></tr>
-         <tr>
-            <td colspan=2>封面图片：<input type="file" name="surface" size="30" multiple="multiple" accept="image/*" /></td>
-       </tr>
-        <tr>
-            <td colspan=2><div id="content"></div></td>
-       </tr>
-       <tr>
-            <td><span class="STYLE23">旅行時間：</span><span class="STYLE22"><span class="STYLE148">
-             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,required:true,validType:'checkDate'" style="width:100px;"/></span> 
-           </span></td><td>
-            	<span class="STYLE23">回憶人：</span>
-            	<span class="STYLE20"><input type="text" class="easyui-textbox" name="signature"/>来自<input type="text" class="easyui-textbox" name="area"/></span></td>
-       </tr>
-      <tr><td colspan=2>验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-validatebox" title="验证码" data-options="required:true" nullmsg="请输入验证码!"/><br/>
-           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
-           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
-      <tr><td><a href="javascript:sharehappy()" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">保存</a></td>
-      <td><a href="javascript:void(0);" class="easyui-linkbutton" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消</a></td></tr>
-    </table><div id="alertMessage"></div></form:form> 
+	        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+	         <tr><td>标题：<input type="text" class="easyui-textbox" name="title"/></td><td>
+	          <span class="STYLE23">旅行線路：</span>
+	            	<input id="route" name="route" class="easyui-combobox"  style="width:100px;" data-options="valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'"></td></tr>
+	         <tr>
+	            <td colspan=2>封面图片：<input type="file" name="surface" size="30" multiple="multiple" accept="image/*" /></td>
+	       </tr>
+	        <tr>
+	            <td colspan=2><div id="content"></div></td>
+	       </tr>
+	       <tr>
+	            <td><span class="STYLE23">旅行時間：</span><span class="STYLE22"><span class="STYLE148">
+	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,required:true,validType:'checkDate'" style="width:100px;"/></span> 
+	           </span></td><td>
+	            	<span class="STYLE23">回憶人：</span>
+	            	<span class="STYLE20"><input type="text" class="easyui-textbox" name="signature"/>来自<input type="text" class="easyui-textbox" name="area"/></span></td>
+	       </tr>
+	      <tr><td colspan=2>验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-validatebox" title="验证码" data-options="required:true" nullmsg="请输入验证码!"/><br/>
+	           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
+	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
+	      <tr><td><a href="javascript:sharehappy()" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">保存</a></td>
+	      <td><a href="javascript:void(0);" class="easyui-linkbutton" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消</a></td></tr>
+	    </table><div id="alertMessage"></div>
+    </form:form> 
     </td>
   </tr>
 </table>

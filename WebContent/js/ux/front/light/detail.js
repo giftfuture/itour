@@ -167,6 +167,7 @@ itour.lightdetail = function(){
 			},ajaxSubmit:function (form,option){
 				form.ajaxSubmit(option);
 				$(this).resetForm(); // 提交后重置表单
+				_this.fbpagination(1);
 				return false;
 			},submitform:function (){
 			    document.forms["fastask"].method="post";
@@ -219,7 +220,7 @@ itour.lightdetail = function(){
 			        message: '请输入正确的手机号码。'   
 			    }
 			})
-			   $('#tab-container').easytabs({ 
+	     $('#tab-container').easytabs({ 
 	    	 // uiTabs: true,
 	    	  animate: true,
 	    	  animationSpeed: 1000,
@@ -258,4 +259,6 @@ itour.lightdetail = function(){
 $(function(){
 	   itour.lightdetail.init();
 	   itour.lightdetail.copyUrl();
+	   //itour.lightdetail.printff();
+	 //  itour.lightdetail.addFavorite();
 });

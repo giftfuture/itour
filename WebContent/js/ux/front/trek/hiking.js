@@ -167,6 +167,7 @@ itour.hiking = function(){
 			},ajaxSubmit:function (form,option){
 				form.ajaxSubmit(option);
 				$(this).resetForm(); // 提交后重置表单
+				_this.fbpagination(1);
 				return false;
 			},submitform:function (){
 			    document.forms["fastask"].method="post";

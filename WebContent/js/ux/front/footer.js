@@ -4,11 +4,11 @@ itour.footer = function(){
 		search:function(){
 			try{
 				var form = $("#searchForm");
-				$.post('/travelItem/searchTravelItem',{'travelStyle':$("select[name='travel_style']").val(),
-					'rcdDays':$("select[name='vacation']").val(),
-					'scope':$("select[name='areas']").val()
+				$.post('search',{'travelStyle':$("select[name='travel_style']").combobox("getValue"),
+					'rcdDays':$("select[name='vacation']").combobox("getValue"),
+					'scopeAlias':$("select[name='areas']").combobox("getValue")
 					},function(){
-					
+						
 				});
 			}catch(e){
 				
@@ -38,6 +38,7 @@ itour.footer = function(){
 				window.top.location =  window.self.location;
 			}
 			_this.travelStyle;
+			//$("#searchForm").submit(_this.search);
 			//验证码图片绑定点击事件
 			//var form = $("#loginForm");
 			//form.submit(itour.login.toLogin);

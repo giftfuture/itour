@@ -99,7 +99,7 @@ public class FeedbackController extends BaseController{
 		//fv.setLimit(Constants.fbperPage);
 		fv.getPager().setPageId(pageNo);
 		fv.getPager().setPageSize(Constants.fbperPage);
-		fv.getPager().setOrderField("prefered_date");
+		fv.getPager().setOrderField("create_time");
 		fv.getPager().setOrderDirection(false);
 		List<Feedback> list = (List<Feedback>) feedbackService.queryByList(fv);
 		int count = feedbackService.queryByCount(fv);
@@ -191,7 +191,7 @@ public class FeedbackController extends BaseController{
 		context.put(SUCCESS, true);
 		context.put("msg", "保存成功~");
 		result = JsonUtils.encode(context);
-		SysUser user = SessionUtils.getUser(request);
+	/*	SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的add方法");
 		if(StringUtils.isNotEmpty(fbId)){
 			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/add",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
@@ -199,7 +199,7 @@ public class FeedbackController extends BaseController{
 		}else{
 			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/add(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 			logOperationService.add(new LogOperation(logId,"更新",fb!=null ?fb.getId():"",JsonUtils.encode(fb),JsonUtils.encode(bean),"feedback/add(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		}
+		}*/
 		return result;
 		//sendSuccessMessage(response, "保存成功~");
 	}

@@ -70,4 +70,10 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	/*   */
 	@MapKey("alias")
 	public List<HashMap<String,String>> allItems();
+	/**
+	 * 
+	 * @param tsIds
+	 * @return
+	 */
+	public String travelItems(List<String> tsIds);
 }

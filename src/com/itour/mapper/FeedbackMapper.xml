@@ -79,10 +79,10 @@
 			<if test="route != null and route !=''">
 				and route = #{route}
 			</if>
-			<if test="sex != null">
+			<if test="sex != null and sex !=''">
 				and sex = #{sex}
 			</if>
-			<if test="publicShow != null">
+			<if test="publicShow != null and publicShow != ''">
 			    and public_show=#{publicShow}
 			</if>
 		</trim>
@@ -138,10 +138,10 @@
 			<if test="route != null and route !=''">
 				route=#{route},
 			</if>
-			<if test="sex != null">
+			<if test="sex != null and sex != ''">
 			   sex = #{sex},
 			</if>
-			<if test="publicShow != null">
+			<if test="publicShow != null and publicShow != ''">
 		       public_show=#{publicShow},
 			</if>
 		</trim>
