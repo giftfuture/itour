@@ -3,12 +3,18 @@ var curIndex=0;
 var timeInterval=2000;
 var arr=new Array();
 //arr[0]="images/Route001.jpg";
-arr[1]="images/Route001.jpg";
+/*arr[1]="images/Route001.jpg";
 arr[2]="images/Route002.jpg";
 arr[3]="images/Route003.jpg";
 arr[4]="images/Route004.jpg";
 arr[5]="images/Route005.jpg";
-arr[6]="images/Route006.jpg";
+arr[6]="images/Route006.jpg";*/
+arr[1]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
+arr[2]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
+arr[3]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
+arr[4]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
+arr[5]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
+arr[6]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
 setInterval(changeImg,timeInterval);
 function changeImg()
 {

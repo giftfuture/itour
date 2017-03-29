@@ -33,13 +33,14 @@
 				<option value="8">8000米以上</option>
 			</select>
 			<label class="ui-label">所属省市:</label>
-			<select name="scope" class="easyui-box ui-text" style="width:100px;">
+			 <input name="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
+		<!-- 	<select name="scope" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="四川">四川</option>
 				<option value="云南">云南</option>
 				<option value="西藏">西藏</option>
 				<option value="新疆">新疆</option>
-			</select>
+			</select> -->
 			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>
 			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>
 			<label class="ui-label">里&nbsp;&nbsp;程:</label>

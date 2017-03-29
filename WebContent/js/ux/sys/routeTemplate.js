@@ -598,7 +598,40 @@ itour.routeTemplate = function(){
 					_this.delAllLine(false);
 				});
 			});
-			
+			$("#travelItems").combobox({
+				url:'travelItem/allItems',
+				//url:'sysRole/userRole',
+				valueField:'alias',
+				textField:'item',
+				multiple:true,
+				formatter:function(row){
+				   var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.alias+"' value="+row.alias+">"+row.item+"<span>"
+				   return s;  
+				},
+				onSelect:function(record){
+					$("#selectId_"+record.alias).attr("checked", true);
+				},
+				onUnselect:function(record){
+					$("#selectId_"+record.alias).attr("checked", false);
+				}
+			});
+			$("#related").combobox({
+				url:'sysRole/loadRoleList',
+				//url:'sysRole/userRole',
+				valueField:'id',
+				textField:'roleName',
+				multiple:true,
+				formatter:function(row){
+				   var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.id+"'>"+row.roleName+"<span>"
+				   return s;  
+				},
+				onSelect:function(record){
+					$("#selectId_"+record.id).attr("checked", true);
+				},
+				onUnselect:function(record){
+					$("#selectId_"+record.id).attr("checked", false);
+				}
+			});
 		}
 	}
 	return _this;

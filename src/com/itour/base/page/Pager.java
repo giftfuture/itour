@@ -87,7 +87,7 @@ public class Pager {
 		this.pageSize = this.pageSize== 0 ? 10 : this.pageSize;
 		this.pageCount = (this.rowCount % this.pageSize == 0) && (this.rowCount/this.pageSize >1) ? this.rowCount / this.pageSize : this.rowCount / this.pageSize + 1;
 		// Mysql 算法  
-		this.pageOffset = (this.pageId - 1) * this.pageSize;
+		this.pageOffset = this.pageId >=1? (this.pageId - 1) * this.pageSize : 0;
 		this.pageTail = this.pageSize== 0 ? 10 :this.pageSize;//
 		//this.pageOffset + this.pageSize > this.rowCount ? this.rowCount%this.pageSize == 0 ? this.pageSize : this.rowCount%this.pageSize :this.pageOffset + this.pageSize;
 	}

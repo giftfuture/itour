@@ -533,7 +533,24 @@ public class TravelItemController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allScopes方法");
 		return newlist;
 	}
-	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/scopelist", method = RequestMethod.GET)
+	public List<Map<String,String>> scopelist(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		List<HashMap<String,String>> maps = travelItemService.allScopes();
+		List<Map<String,String>> newlist = Lists.newArrayList();
+		newlist.addAll(maps);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allScopes方法");
+		return newlist;
+	}
 	/**
 	 * 
 	 * @param response
@@ -549,7 +566,6 @@ public class TravelItemController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allItems方法");
 		return maps;
 	}
-	
 	
 	/**
 	 * 

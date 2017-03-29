@@ -126,7 +126,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param tsIds
 	 * @return
 	 */
-	public String travelItems(@Param(value="tsIds")String tsIds){
+	public String travelItems(List<String> tsIds){
 		return mapper.travelItems(tsIds);
 	};
 }
