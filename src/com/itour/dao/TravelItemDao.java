@@ -49,6 +49,13 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	List<TravelItem> queryByIds(List<String> ids);
+	
+	/**
+	 * 
+	 * @param alias
+	 * @return
+	 */
+	List<TravelItem> queryByAlias(List<String> alias);
 	/**
 	 * 
 	 * @param item

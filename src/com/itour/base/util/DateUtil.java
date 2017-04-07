@@ -37,7 +37,7 @@ public class DateUtil{
 	public static java.text.SimpleDateFormat sdfShort = new java.text.SimpleDateFormat(ymd);
 	public static java.text.SimpleDateFormat sdfLong = new java.text.SimpleDateFormat(y_m_d);
 	public static java.text.SimpleDateFormat sdfYmdHs = new java.text.SimpleDateFormat(ymdhm);
-	public static java.text.SimpleDateFormat sdfLongCn = new java.text.SimpleDateFormat(ymdcn);
+	public static java.text.SimpleDateFormat sdfYmdCn = new java.text.SimpleDateFormat(ymdcn);
 	public static java.text.SimpleDateFormat sdfShortU = new java.text.SimpleDateFormat(mmd,Locale.ENGLISH);
 	public static java.text.SimpleDateFormat sdfLongU = new java.text.SimpleDateFormat(mmddyy,Locale.ENGLISH);
 	public static java.text.SimpleDateFormat sdfLongTime = new java.text.SimpleDateFormat(ymdhms);
@@ -72,13 +72,13 @@ public class DateUtil{
 			return "";
 		}
 	}
-	public static String getDateYmdHs(Date date)
+	public static String getDateYmdCn(Date date)
 	{
 		String nowDate = "";
 		try
 		{	
 			if(date != null)
-				nowDate = sdfYmdHs.format(date);
+				nowDate = sdfYmdCn.format(date);
 			return nowDate;
 		}
 		catch (Exception e)
@@ -87,19 +87,13 @@ public class DateUtil{
 			return "";
 		}
 	}
-	/**
-	 * @author Pablo
-	 * Descrption:ȡ�õ�ǰ����getgetg get Date format Example：2008年-05月-15日
-	 * @return String
-	 * @throws java.lang.Exception
-	 */
-	public static String getDateLongCn(Date date)
+	public static String getDateYmdHs(Date date)
 	{
 		String nowDate = "";
 		try
 		{	
 			if(date != null)
-				nowDate = sdfLongCn.format(date);
+				nowDate = sdfYmdHs.format(date);
 			return nowDate;
 		}
 		catch (Exception e)
@@ -2834,7 +2828,7 @@ public class DateUtil{
 			System.out.println(null + "1");
 			System.out.println(convertDateToDay(new Date()));
 			Date nows =new Date();
-			System.out.println("============"+getDateLongCn(nows));
+			System.out.println("============"+getDateYmdCn(nows));
 			System.out.println("============0000000000000000000000000000000");
 			System.out.println("============stringToDate="+stringToDate("2009-11-18 19:14:31","yyyy-MM-dd h24:mi:ss"));
 			

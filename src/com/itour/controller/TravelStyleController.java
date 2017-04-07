@@ -143,7 +143,7 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(TravelStyle entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelStyle entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setValid(true);
 		String id = "";
@@ -166,7 +166,7 @@ public class TravelStyleController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",ts!= null?ts.getId():"",JsonUtils.encode(ts),JsonUtils.encode(entity),"travelStyle/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	/**
 	 * 

@@ -106,7 +106,7 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(SysVariables entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(SysVariables entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		String id = "";
 		SysVariables sv = null;
@@ -128,7 +128,7 @@ public class SysVariablesController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",sv!= null?sv.getId():"",JsonUtils.encode(sv),JsonUtils.encode(entity),"sysVariables/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	/**

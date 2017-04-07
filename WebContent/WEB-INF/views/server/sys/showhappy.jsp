@@ -3,7 +3,6 @@
 <!DOCTYPE HTML>
 <html>
   <head>
- <base href="<%=basePath%>">
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
   </head>
@@ -22,8 +21,8 @@
 				   <option value="3">审核未通过</option>
 				</select>
 			<!-- <input name="status" class="easyui-box ui-text" style="width:100px;"/> -->
-			<label class="ui-label">晒出日期:</label><input name="createTime" class="easyui-datetimebox ui-text" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
-			<label class="ui-label">旅行日期:</label><input name="tourTime" class="easyui-datetimebox ui-text"  data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
+			<label class="ui-label">晒出日期:</label><input name="createTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
+			<label class="ui-label">旅行日期:</label><input name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
 	    </p>
 	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -61,7 +60,7 @@
 					</div>
 			 		<div class="fitem">
 						<label>旅行日期</label>
-						<input name="tourTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写旅行日期">
+						<input name="tourTime" type="text" maxlength="" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,required:true" missingMessage="请填写旅行日期">
 					</div>  	
 					<div class="fitem">
 						<label>晒出人</label>

@@ -118,8 +118,7 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public void save(Customers entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object>  context = new HashMap<String,Object>();
+	public String save(Customers entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		entity.setCustomerId(IDGenerator.getUUID());
 		String customerId = "";
 		Customers cust = null;
@@ -143,7 +142,7 @@ public class CustomersController extends BaseController{
 			String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/save(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 			logOperationService.add(new LogOperation(logId,"更新",cust!=null?cust.getId():"",JsonUtils.encode(cust),JsonUtils.encode(entity),"customers/save(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	@SuppressWarnings("unchecked")

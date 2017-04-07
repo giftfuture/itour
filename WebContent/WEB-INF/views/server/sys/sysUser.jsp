@@ -69,7 +69,7 @@
 	           </div> 
 	           <div class="fitem">  
 	               <label>确认密码:</label>  
-	              <input id="rpwd" name="rpwd" type="password" class="easyui-validatebox"   required="required" validType="equals['#newPwd']" />
+	              <input id="rpwd" name="rpwd" type="password" class="easyui-validatebox"   required="required" data-options="validType:equals['#newPwd']" />
 	           </div> 
 	         </div>
      	</form>

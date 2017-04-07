@@ -5,7 +5,7 @@
 <head>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
+<title></title>
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
@@ -19,7 +19,7 @@
         <td width="685"><table width="1053" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
-            <td width="1021"><span class="STYLE148"><span class="STYLE24">来自：</span>台湾 刘先生 <span class="STYLE24">团号：</span>itours160701a <span class="STYLE149">出团日期：</span>2016-7-2 <span class="STYLE149">人数：</span>4大2小 </span></td>
+            <td width="1021"><span class="STYLE148"><span class="STYLE24">来自：</span>台湾 刘先生 <span class="STYLE24">团号：</span>${bean.groupCode } <span class="STYLE149">出团日期：</span>${bean.groupDate }<span class="STYLE149">人数：</span>4大2小 </span></td>
           </tr>
         </table></td>
       </tr>

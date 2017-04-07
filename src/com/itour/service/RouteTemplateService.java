@@ -5,19 +5,22 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
 import com.itour.convert.RouteTemplateKit;
 import com.itour.dao.RouteTemplateDao;
 import com.itour.dao.TravelItemDao;
+import com.itour.dao.TravelStyleDao;
 import com.itour.entity.RouteTemplate;
+import com.itour.entity.TravelItem;
+import com.itour.entity.TravelStyle;
 import com.itour.vo.RouteTemplateVo;
 
 /**
@@ -46,6 +49,15 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				 String[] params = fb.getTravelItems().split(",");
 				String travelItems = tiDao.travelItems(Arrays.asList(params));
 				fb.setTravelItems(travelItems);
+			}
+			if(StringUtils.isNotEmpty(fb.getSimilars())){
+				String[] similars = fb.getSimilars().split(",");
+				List<RouteTemplate> simlist = mapper.queryByRelated(Arrays.asList(similars));
+				List<String> sims = Lists.newArrayList();
+				for(RouteTemplate rt:simlist){
+					sims.add(rt.getTitle());
+				}
+				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
 			}
 			records.add(RouteTemplateKit.toRecord(fb));
 		}
@@ -104,7 +116,20 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		RouteTemplate rt = mapper.queryByAlias(alias);
 		return RouteTemplateKit.toRecord(rt);
 	}
-	
+	/**
+	 * 
+	 * @param vo
+	 */
+	public void uploadCover(RouteTemplate vo){
+		mapper.uploadCover(vo);
+	};
+	/**
+	 * 
+	 * @param vo
+	 */
+	public void uploadMap(RouteTemplate vo){
+		mapper.uploadMap(vo);
+	};
 	/**
 	 * 
 	 * @param id
@@ -119,14 +144,34 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public RouteTemplateVo selectById(String id){
-		return mapper.selectById(id);
+		RouteTemplateVo vo =  mapper.selectById(id);
+		String ts = vo.getTravelItems();
+		List<TravelItem> list = tiDao.queryByIds(Arrays.asList(ts.split(",")));
+		List<String> alias = Lists.newArrayList();
+		for(TravelItem ti:list){
+			alias.add(ti.getAlias());
+		}
+		//StringUtils.collectionToDelimitedString(list, ",");  
+		//StringUtils.join(list.toArray(), ","); 
+		vo.setTravelItems(Joiner.on(",").join(alias));
+		String related = vo.getRelated();
+		List<RouteTemplate> rts = mapper.queryByRelated(Arrays.asList(related.split(",")));
+		List<String> relates = Lists.newArrayList();
+		for(RouteTemplate rt:rts){
+			relates.add(rt.getRouteCode());
+		}
+		TravelStyle tstyle =(TravelStyle)tsDao.queryById(vo.getTravelStyle());
+		vo.setTravelStyle(tstyle!=null?tstyle.getAlias():"");
+		vo.setRelated(Joiner.on(",").join(relates));
+		return vo;
 	}
+
 	/**
 	 * 
 	 * @param routeCode
 	 * @return
 	 */
-	public RouteTemplateVo selectByRouteCode(String routeCode){
+	public RouteTemplate selectByRouteCode(String routeCode){
 		return mapper.selectByRouteCode(routeCode);
 	}
 	/**
@@ -136,6 +181,9 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 */
 	public List<RouteTemplateVo> searchRts(Map map)throws Exception{
 		return mapper.searchRts(map);
+	};
+	public 	List<RouteTemplateVo> queryAll()throws Exception{
+		return mapper.queryAll();
 	};
 	@Autowired
     private RouteTemplateDao<T> mapper;
@@ -148,4 +196,11 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public TravelItemDao<T> gettiDao() {
 		return tiDao;
 	}
+	@Autowired
+	private TravelStyleDao<T> tsDao;
+	public TravelStyleDao<T> gettsDao(){
+		return tsDao;
+	}
+	
+	
 }

@@ -112,7 +112,7 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(TravelOrder entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelOrder entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 /*		TravelOrder to = new TravelOrder();
 		to.setId(entity.getId());
 		to.setOrderNo(entity.getOrderNo());
@@ -163,7 +163,7 @@ public class TravelOrderController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",to!= null?to.getId():"",JsonUtils.encode(to),JsonUtils.encode(entity),"travelOrder/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	

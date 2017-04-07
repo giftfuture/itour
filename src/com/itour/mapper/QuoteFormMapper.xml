@@ -8,6 +8,7 @@
 	<result column="id" property="id"/>
 	<result column="route_template" property="routeTemplate"/>
 	<result column="berief_trip" property="beriefTrip"/>
+	<result column="show_trip" property="showTrip"/>
 	<result column="adults" property="adults"/>
 	<result column="children" property="children"/>
 	<result column="update_time" property="updateTime"/>
@@ -51,15 +52,17 @@
 	<result column="create_by" property="createBy"/>
 	<result column="update_by" property="updateBy"/>
 	<result column="create_time" property="createTime"/>
+	<result column="group_code" property="groupCode"/>
+	<result column="group_date" property="groupDate"/>
 </resultMap>
        
 <!-- quotation table all fields -->
 <sql id="Base_Column_List" >
-	  id, route_template, berief_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
+	  id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
 	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
-	  presented,valid
+	  presented,valid,group_code,group_date
 </sql>
    
    
@@ -69,6 +72,7 @@ where valid=1
 <trim  suffixOverrides="," >
 		<if test="routeTemplate != null and routeTemplate != ''">and route_template like CONCAT('%', #{routeTemplate}, '%')</if>
 		<if test="beriefTrip != null and beriefTrip != ''">and berief_trip like CONCAT('%', #{beriefTrip}, '%')</if>
+		<if test="showTrip != null and showTrip  != ''">and show_trip like CONCAT('%', #{showTrip}, '%')</if>
 		<if test="adults != null">and adults=#{adults}</if>
 		<if test="children != null">and children=#{children}</if>
 		<if test="remark != null and remark != ''" >
@@ -116,6 +120,10 @@ where valid=1
 		<if test="updateTime != null and updateTime !=''" >
 		   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 		</if>
+		<if test="groupCode !=null and groupCode!=''">and group_code =#{groupCode}</if>
+		<if test="groupDate != null and groupDate !=''" >
+		   and DATE_FORMAT(group_date,'%Y-%m-%d') = DATE_FORMAT(#{groupDate},'%Y-%m-%d') 
+		</if>
 </trim>
 </sql>
    
@@ -125,16 +133,16 @@ where valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into quote_form(id,route_template, berief_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
+  insert into quote_form(id,route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
 	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
-	  presented,valid)
-      values(#{id},#{routeTemplate}, #{beriefTrip}, #{adults},#{children}, now(), now(), #{remark}, #{createBy}, #{updateBy}, #{isAsAdult},#{ticketBlock},#{travelDocs},
+	  presented,valid,group_code,group_date)
+      values(#{id},#{routeTemplate}, #{beriefTrip},#{showTrip}, #{adults},#{children}, now(), now(), #{remark}, #{createBy}, #{updateBy}, #{isAsAdult},#{ticketBlock},#{travelDocs},
 	  #{traveldocAsadult},#{tourGuide},#{tourguideAsadult},#{hotel},#{hotelAsadult},#{rentCar},#{rentcarAsadult},#{bigTraffic},#{bigTrafficSum},#{bigtrafficeAsadult},#{dinner},
 	  #{dinnerAsadult},#{insurance},#{insuranceAsadult},#{comprehensiveCosts},#{comphcostAsadult},#{recreation},#{recreationAsadult},#{itemGuide},#{itemguideAsadult},#{bathorseCost},
 	  #{bathcostAsadult},#{ridehorseCost},#{ridecostAsadult},#{climbRegisterCost},#{climbrcostAsadult},#{climbNexusCost},#{climbncostAsadult},#{elseCost},#{elsecostAsadult},
-	  #{presented},true)
+	  #{presented},true,#{groupCode},#{groupDate})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -143,6 +151,7 @@ where valid=1
 	<trim  suffixOverrides="," >
 		<if test="routeTemplate != null and routeTemplate != ''">route_template=#{routeTemplate},</if>
 		<if test="beriefTrip != null and beriefTrip != ''">berief_trip=#{beriefTrip},</if>
+		<if test="showTrip != null and showTrip  != ''">show_trip =#{showTrip},</if>
 		<if test="adults != null">adults=#{adults},</if>
 		<if test="children != null">children=#{children},</if>
 		<if test="remark != null and remark != ''">remark=#{remark},</if>
@@ -183,7 +192,9 @@ where valid=1
 		<if test="elseCost!=null and elseCost!=''">else_cost=#{elseCost},</if>
 		<if test="elsecostAsadult!=null and elsecostAsadult!=''">elsecost_asadult=#{elsecostAsadult},</if>
 		<if test="presented!=null and presented!=''">presented=#{presented},</if>
-		<if test="valid!=null">valid=#{valid},</if>		
+		<if test="groupCode!=null and groupCode!=''">group_code =#{groupCode},</if>
+		<if test="groupDate != null and groupDate !=''" >group_date= #{groupDate},</if>
+		<if test="valid!=null and valid !=''">valid=#{valid},</if>								
 	</trim> where id=#{id}
 </update>
 

@@ -43,9 +43,9 @@
 <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/easyloader.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/urls.js?v=<%=getTimestamp%>"></script>
-<script type="text/javascript" src="${basePath}js/commons/base.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/__.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/YDataGrid.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/base.js?v=<%=getTimestamp%>"></script>
+<script type="text/javascript" src="${basePath}js/commons/__.js?v=<%=getTimestamp%>"></script>
+<script type="text/javascript" src="${basePath}js/commons/YDataGrid.js?v=<%=getTimestamp%>"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-wysiwyg.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/AngularJS/angular.min.js"></script>
@@ -53,24 +53,16 @@
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote-zh-CN.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote-zh-TW.js"></script>
-<%-- <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script> --%>
+<script type="text/javascript" src="${basePath}js/plug-in/jquery.serialize-object.min.js"></script>
 <script type="text/javascript">
 var tougao="mrr";var lmname="JavaScript";var ourl="";
 (function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://www.itours.com.cn/"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
 var basePath = '${basePath}';
-//$('select[name=sightSpot]').combobox('reload','');
-$("input.easyui-datetimebox").datetimebox({
-    showSeconds: false
-});
-$("input.easyui-datetimebox").focus(function(){	
-	$(this).datetimebox('getValue');
-});
 </script>
 <base href=" <%=basePath%>">
 <meta charset="UTF-8">
 <meta name="applicable-device" content="pc">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
@@ -82,12 +74,13 @@ $("input.easyui-datetimebox").focus(function(){
 <meta http-equiv="mobile-agent" content="format=xhtml; url=http://www.itours.com.cn/" />
     <p>我们的友谊海枯石不烂！ 您是第 <%=application.getAttribute("count") %> 位访客</p>  
 <style type="text/css">
-<!--
 body {
 	margin-left: 0px;
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+	font-family: "黑体";
+	font-size:12px;
 }
 .h1-black {
 	font-family: "黑体";
@@ -143,6 +136,5 @@ body {
 .STYLE14 {color: #000000}
 .STYLE140 {color: #666666}
 .STYLE23 {width:267px;}
--->
 </style>
 

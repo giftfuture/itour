@@ -67,7 +67,6 @@ itour.travelItem = function(){
 					/*if(jQuery.isFunction(callback)){
 						callback(result);
 					}*/                        																									
-				
 				});
 			},
 			initEditForm:function(){
@@ -344,7 +343,7 @@ itour.travelItem = function(){
 									return "是个难关";							
 								}
 								if(value == 5){
-									return "难度爆棚";
+									return "难度爆表";
 								}else{									
 									if((row.difficultyRate+"").length>30){
 										return (row.difficultyRate+"").substring(0,30)+"....";

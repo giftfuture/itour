@@ -13,10 +13,9 @@ var YDataGrid = function(config){
 		//Grid DataList
 		var Grid = $('#data-list');
 		//Form
-		var Form = {search:$("#searchForm"),
-					edit:$("#editForm")};
+		var Form = {search:$("#searchForm"),editPhotoForm:$("#editPhotoForm"),
+					edit:$("#editForm"),multiDataForm:$("#multiDataForm")};
 		//var picForm = {edit:$("#multiDataForm")};
-		
 		//Win 窗口
 		var Win =  {edit:$("#edit-win")};
 		//var PhotoWin = {edit:$("#uploadphoto")};
@@ -44,7 +43,7 @@ var YDataGrid = function(config){
 				}
 			},
 			//edit 按钮事件
-			edit:  function(callback){
+			edit:function(callback){
 				//Win.edit.removeAttr("display");
 				//Win.edit.css("display","inline");
 				Win.edit.show();
@@ -57,6 +56,16 @@ var YDataGrid = function(config){
 					itour.getById(Action.getId,data,function(result){
 						itour.closeProgress();
 						Form.edit.form('load',result.data);
+						for(var name in CKEDITOR.instances){
+							CKEDITOR.instances[name].destroy();
+						}
+					//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
+					    var beforeInstruction = CKEDITOR.replace('beforeInstruction');
+					    beforeInstruction.setData(result.data.beforeInstruction);
+						var customizedService = CKEDITOR.replace('customizedService');
+						customizedService.setData(result.data.customizedService);
+						var designConcept = CKEDITOR.replace('designConcept');
+						designConcept.setData(result.data.designConcept);
 						$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 						Win.edit.dialog('open'); 
 						//回调函数
@@ -134,7 +143,19 @@ var YDataGrid = function(config){
 					itour.progress();
 					Form.edit.attr('action',Action.save);
 					var parentId =$('#search_parentId').val();
-					$("#edit_parentId").val(parentId)
+					$("#edit_parentId").val(parentId);
+				    //var beforeInstruction = CKEDITOR.replace("beforeInstruction", { "toolbar": "Basic" }); //显示编辑器
+				/*    beforeInstruction.document.getBody().getHtml();
+			            CKFinder.setupCKEditor(editor, "ckfinder/"); //设置图片管理组件
+			            //处理CKEDITOR的值
+			            function CKupdate() {
+			                for (instance in CKEDITOR.instances)
+			                    CKEDITOR.instances[instance].updateElement();
+			            }
+		            CKupdate(); //在提交表单前需要做以上处理
+*/ 					Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
+					Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
+					Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
 					itour.saveForm(Form.edit,function(data){
 						itour.closeProgress();
 						Win.edit.dialog('close');
@@ -142,7 +163,10 @@ var YDataGrid = function(config){
 					    Form.edit.resetForm();
 					     //回调函数
 						if(jQuery.isFunction(callback)){
+							//console.log(callback(data));
 							callback(data);
+						}else{
+							itour.alert('提示',data.msg||'保存成功！','info');
 						}
 					});
 				 }
@@ -191,7 +215,6 @@ var YDataGrid = function(config){
 		
 		//自定义事件
 		var evt= config.event || {};
-		
 		
 		//默认事件
 		var Events ={
@@ -350,7 +373,7 @@ var YDataGrid = function(config){
 							var bar = tbars[i];
 							//btnType 为空显示
 							if(!bar.btnType){
-								newBars.push(bar);
+								newBars.push(bar);		
 							}else{
 								//判断btnType是否存在,存在则显示
 								//console.log($.inArray(bar.btnType, data.types));
@@ -365,7 +388,7 @@ var YDataGrid = function(config){
 						}
 					}
 				}else{
-					itour.alert('提示',data.msg,'info');
+					itour.alert('提示',data.msg||'YDataGrid ajaxJson请求出现异常,请联系管理员','info');
 				}
 			});
 		}

@@ -109,7 +109,7 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(SysUser bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(SysUser bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
 		int count = sysUserService.getUserCountByEmail(bean.getEmail());
 		String id = "";
@@ -140,7 +140,8 @@ public class SysUserController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("sys_user","用户管理","sysUser/save(update)",user.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"","",JsonUtils.encode(bean),"sysUser/save(update)",user.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		//sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	/**
 	 * @param id

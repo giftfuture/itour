@@ -114,8 +114,7 @@ public class QuotationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(Quotation entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object> context =getRootMap();
+	public String save(Quotation entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String quId = "";
 		Quotation qo = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -137,7 +136,7 @@ public class QuotationController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("quotation","报价单","quotation/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",qo!= null?qo.getId():"",JsonUtils.encode(qo),JsonUtils.encode(entity),"quotation/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	/**
 	 * @param id

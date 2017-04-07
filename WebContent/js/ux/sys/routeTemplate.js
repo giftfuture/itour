@@ -2,6 +2,76 @@ $package('itour.routeTemplate');
 itour.routeTemplate = function(){
 	var _box = null;
 	var _this = {
+			uploadPhotoAction:'routeTemplate/uploadPhoto',
+			uploadPhotoForm:function(){
+				return $("#multiDataForm");
+			},
+			uploadPhotoWin:function(){//upload-photo
+				return $("#upload-photo");
+			},
+			savePhoto:function(){
+					itour.progress();//缓冲条
+					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
+					_this.uploadPhotoForm().ajaxForm();
+					itour.saveForm(_this.uploadPhotoForm(),function(data){
+						///console.log(data);
+						//if(data.success){	
+							itour.alert('提示', data.msg, 'info',function(){								
+								itour.closeProgress();//关闭缓冲条
+								_box.handler.refresh();
+								_this.uploadPhotoForm().resetForm();
+								_this.uploadPhotoWin().dialog('close');
+							})
+						//}
+					});
+			},
+			initUploadForm:function(){
+				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
+					_this.savePhoto();
+				});
+				_this.uploadPhotoWin().find("#win-close").click(function(){	
+					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
+					    if (r){  
+					     	_this.uploadPhotoWin().dialog('close');
+					    }  
+					});
+				});
+			},
+			uploadMapAction:'routeTemplate/uploadMap',
+			uploadMapForm:function(){
+				return $("#uploadMapForm");
+			},
+			uploadMapWin:function(){
+				return $("#upload-map");
+			},
+			saveMap:function(){
+					itour.progress();//缓冲条
+					_this.uploadMapForm().attr('action',_this.uploadMapAction);
+					_this.uploadMapForm().ajaxForm();
+					itour.saveForm(_this.uploadMapForm(),function(data){
+						///console.log(data);
+						//if(data.success){	
+						itour.alert('提示', data.msg||'地图保存成功！', 'info',function(){								
+								itour.closeProgress();//关闭缓冲条
+								_box.handler.refresh();
+								_this.uploadMapForm().resetForm();
+								_this.uploadMapWin().dialog('close');
+							})
+						//}
+					});
+			},
+			initUploadMapForm:function(){
+				_this.uploadMapWin().find("#mapSubmit").click(function(){
+					_this.saveMap();
+				});
+				_this.uploadMapWin().find("#win-close").click(function(){	
+					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
+					    if (r){  
+					     	_this.uploadMapWin().dialog('close');
+					    }  
+					});
+				});
+			},
 			toList:function(parentId){
 				_box.form.search.resetForm();
 				if(parentId){
@@ -86,7 +156,7 @@ itour.routeTemplate = function(){
 		//删除单行
 		delLine:function(line){
 			if(line){
-				var btnId = $("input[name='btnId']",line).val();
+		 		var btnId = $("input[name='btnId']",line).val();
 				if(btnId){
 					$("input[name='deleteFlag']",line).val(1); //设置删除状态
 					line.fadeOut();
@@ -128,30 +198,20 @@ itour.routeTemplate = function(){
 		action:{
 				save:'routeTemplate/save', //新增&修改 保存Action  
 				getId:'routeTemplate/getId',//编辑获取的Action
+				uploadPhoto:'routeTemplate/uploadPhoto',
 				logicremove:'routeTemplate/logicdelete',//逻辑删除Action
 				remove:'routeTemplate/delete'//删除数据的Action
 			},
-		/*config:{
-			event:{
-				add:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
-				},
-				edit:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
-				}
-			},*/
   			dataGrid:{
   				title:'路线模板',
 	   			url:'routeTemplate/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'customerId',title:'客户ID',align:'center',sortable:true,
+			/*		{field:'customerId',title:'客户ID',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.customerId;
 						}
-					},
+					},*/
 					{field:'routeCode',title:'线路编号',align:'center',sortable:true,//线路编号
 						formatter:function(value,row,index){
 							return row.routeCode;
@@ -164,57 +224,99 @@ itour.routeTemplate = function(){
 					},
 					{field:'title',title:'线路名称',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.title;
+							if((row.title+"").length>30){
+								return (row.title+"").substring(0,30)+"....";
+							}else{									
+								return row.title;
+							}
 						}
 					},
-					{field:'rcdDays',title:'建议(浏览)时间',align:'center',sortable:true,
+					{field:'quotoForm',title:'详细价目表',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">价目详情</a>';
+						}
+					},
+					{field:'rcdDays',title:'(建议)游览时间(天)',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.rcdDays;
 						}
 					},
-					{field:'mileage',title:'最高海拔',align:'center',sortable:true,
+					{field:'elevation',title:'最高海拔(米)',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.elevation;
+						}
+					},
+					{field:'mileage',title:'里程(公里)',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.mileage;
 						}
 					},
 					{field:'departure',title:'出发地',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.departure;
+							if((row.departure+"").length>30){
+								return (row.departure+"").substring(0,30)+"....";
+							}else{									
+								return row.departure;
+							}
 						}
 					},
 					{field:'arrive',title:'完成地',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.arrive;
+							if((row.arrive+"").length>30){
+								return (row.arrive+"").substring(0,30)+"....";
+							}else{									
+								return row.arrive;
+							}
 						}
 					},
 					{field:'transportation',title:'交通工具',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.transportation;
+							if((row.transportation+"").length>30){
+								return (row.transportation+"").substring(0,30)+"....";
+							}else{									
+								return row.transportation;
+							}
 						}
 					},
-					{field:'trekDistance',title:'徒步里程',align:'center',sortable:true,
+					{field:'trekDistance',title:'徒步里程(公里)',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.trekDistance;
 						}
 					},
 					{field:'mountStyle',title:'山峰类型',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.mountStyle;
+							if((row.mountStyle+"").length>30){
+								return (row.mountStyle+"").substring(0,30)+"....";
+							}else{									
+								return row.mountStyle;
+							}
 						}
 					},
 					{field:'shortContent',title:'简略内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.shortContent;
+							if((row.shortContent+"").length>30){
+								return (row.shortContent+"").substring(0,30)+"....";
+							}else{									
+								return row.shortContent;
+							}
 						}
 					},
-					{field:'special',title:'特别之外',align:'center',sortable:true,
+					{field:'special',title:'特色介绍',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.special;
+							if((row.special+"").length>30){
+								return (row.special+"").substring(0,30)+"....";
+							}else{									
+								return row.special;
+							}
 						}
 					},
 					{field:'related',title:'相关线路',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.related;
+						}
+					},{field:'similars',title:'相似线路',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.similars;
 						}
 					},
 					{field:'routeMap',title:'路线地图',align:'center',sortable:true,
@@ -234,15 +336,33 @@ itour.routeTemplate = function(){
 					},
 					{field:'difficultyRate',title:'旅行难度',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.difficultyRate;
+							if(value == 0){
+								return "热身难度";
+							}
+							if(value == 1){
+								return "一般难度";
+							}
+							if(value == 2){
+								return "略有挑战";								
+							}
+							if(value == 3){
+								return "难度适中";
+							}
+							if(value == 4){
+								return "是个难关";							
+							}
+							if(value == 5){
+								return "难度爆表";
+							}else{									
+								if((row.difficultyRate+"").length>30){
+									return (row.difficultyRate+"").substring(0,30)+"....";
+								}else{									
+									return row.difficultyRate;
+								}
+							}
 						}
 					},
-					{field:'quotoForm',title:'详细价目表',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">价目详情</a>';
-						}
-					},
-					{field:'d1',title:'模板1',align:'center',sortable:true,
+/*					{field:'d1',title:'模板1',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.d1;
 							}
@@ -541,15 +661,10 @@ itour.routeTemplate = function(){
 							formatter:function(value,row,index){
 								return row.d60;
 							}
-						},
+						},*/
 					{field:'createTime',title:'创建时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
-							}
-						},
-					{field:'updateTime',title:'更新时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.updateTime;
 							}
 						},
 					{field:'createBy',title:'创建人',align:'center',sortable:true,
@@ -557,6 +672,11 @@ itour.routeTemplate = function(){
 								return row.createBy;
 							}
 						},
+					{field:'updateTime',title:'更新时间',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.updateTime;
+						}
+					},
 					{field:'updateBy',title:'更新人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateBy;
@@ -575,6 +695,22 @@ itour.routeTemplate = function(){
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
+								{id:'btnedit',text:'上传封面',btnType:'upload',iconCls:'icon-edit',handler:function(){
+									var selected = _box.utils.getCheckedRows();
+									if (_box.utils.checkSelectOne(selected)){
+										_this.uploadPhotoForm().resetForm();
+										_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
+										_this.uploadPhotoWin().window('open'); 		
+									}
+								}},
+								{id:'btnedit',text:'上传地图',btnType:'upload',iconCls:'icon-edit',handler:function(){
+									var selected = _box.utils.getCheckedRows();
+									if (_box.utils.checkSelectOne(selected)){
+										_this.uploadMapForm().resetForm();
+										_this.uploadMapForm().find("input[name='id']").val(selected[0].id);
+										_this.uploadMapWin().window('open'); 		
+									}
+								}},
 								{id:'btndelete',text:'物理删除',btnType:'remove'},
 								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{id:'btnback',
@@ -588,9 +724,184 @@ itour.routeTemplate = function(){
 							]
 			}
 		},
+		params:{
+			fileInput: $("#fileImage").get(0),
+		//	dragDrop: $("#fileDragArea").get(0),
+			upButton: $("#fileSubmit").get(0),
+			url: 'routeTemplate/uploadPhoto',// _this.config.action.uploadPhoto,//$("#uploadForm").attr("action"),
+			filter: function(files) {
+				var arrFiles = [];
+				for (var i = 0, file; file = files[i]; i++) {
+					if (file.type.indexOf("image") == 0) {
+						if (file.size >= 5120000) {
+							itour.alert('提示','您这张"'+ file.name +'"图片大小过大，应小于5M','info');	
+						} else {
+							arrFiles.push(file);	
+						}			
+					} else {
+						itour.alert('提示','文件"' + file.name + '"不是图片。','info');	
+					}
+				}
+				return arrFiles;
+			},
+			onSelect: function(files) {
+				//console.log(files[0]);
+				var html = '',i = 0;
+				$("#preview").html('<div class="upload_loading"></div>');
+				var funAppendImage = function() {
+					file = files[i];
+					if(file) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							if(i==0){
+								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
+								'<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+								'</div>';
+								i++;
+								funAppendImage();
+							}
+						}
+						reader.readAsDataURL(file);
+					} else {
+						//console.log(html);
+						$("#preview").html(html);
+						if (html) {
+							//提交按钮显示
+							$("#fileSubmit").show();	
+						} else {
+							//提交按钮隐藏
+							$("#fileSubmit").hide();	
+						}
+					}
+				
+				};
+				funAppendImage();		
+			},
+			onDelete: function(file) {
+				$("#uploadList_" + file.index).fadeOut();
+			},
+			onDragOver: function() {
+				$(this).addClass("upload_drag_hover");
+			},
+			onDragLeave: function() {
+				$(this).removeClass("upload_drag_hover");
+			},
+			onProgress: function(file, loaded, total) {
+				var eleProgress = $("#uploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+				eleProgress.show().html(percent);
+			},
+			onSuccess: function(file, response) {
+				$("#uploadInf").append("<p>封面图片"+file.name+"上传成功，"  + response + "</p>");
+				Grid.datagrid('reload',param);
+				_this.config.datagrid('reload',param);
+				   Form.multiDataForm.resetForm();
+			},
+			onFailure: function(file) {
+				$("#uploadInf").append("<p>封面图片" + file.name + "上传失败！</p>");	
+				$("#uploadImage_" + file.index).css("opacity", 0.2);
+			},
+			onComplete: function() {
+				//提交按钮隐藏
+				$("#fileSubmit").hide();
+				//file控件value置空
+				$("#fileImage").val("");
+				$("#uploadInf").append("<p>当前图片上传完毕。</p>");
+			}
+		},
+		mapparams:{
+			fileInput: $("#mapfile").get(0),
+		//	dragDrop: $("#fileDragArea").get(0),
+			upButton: $("#mapSubmit").get(0),
+			url: 'routeTemplate/uploadMap',
+			filter: function(files){
+				var arrFiles = [];
+				for (var i = 0, file; file = files[i]; i++) {
+					if (file.type.indexOf("image") == 0) {
+						if (file.size >= 5120000) {
+							itour.alert('提示','您这张"'+ file.name +'"图片大小过大，应小于5M','info');	
+						} else {
+							arrFiles.push(file);	
+						}			
+					} else {
+						itour.alert('提示','文件"' + file.name + '"不是图片。','info');	
+					}
+				}
+				return arrFiles;
+			},
+			onSelect: function(files) {
+				//console.log(files[0]);
+				var html = '',i = 0;
+				$("#mappreview").html('<div class="upload_loading"></div>');
+				var funAppendImage = function() {
+					file = files[i];
+					if (file) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							if(i==0){
+								html = html + '<div id="mapuploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
+								'<img id="mapuploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								'<span id="mapuploadProgress_' + i + '" class="upload_progress"></span>' +
+								'</div>';
+								i++;
+								funAppendImage();
+							}
+						}
+						reader.readAsDataURL(file);
+					} else {
+						$("#mappreview").html(html);
+						if (html) {
+							//提交按钮显示
+							$("#mapSubmit").show();	
+						} else {
+							//提交按钮隐藏
+							$("#mapSubmit").hide();	
+						}
+					}
+				};
+				funAppendImage();		
+			},
+			onDelete: function(file) {
+				$("#mapuploadList_" + file.index).fadeOut();
+			},
+			onDragOver: function() {
+				$(this).addClass("upload_drag_hover");
+			},
+			onDragLeave: function() {
+				$(this).removeClass("upload_drag_hover");
+			},
+			onProgress: function(file, loaded, total) {
+				var eleProgress = $("#mapuploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+				eleProgress.show().html(percent);
+			},
+			onSuccess: function(file, response) {
+				$("#mapuploadInf").append("<p>路线地图"+file.name+"上传成功，"  + response + "</p>");
+				Grid.datagrid('reload',param);
+				_this.config.datagrid('reload',param);
+			   Form.uploadMapForm.resetForm();
+			},
+			onFailure: function(file) {
+				$("#mapuploadInf").append("<p>路线地图" + file.name + "上传失败！</p>");	
+				$("#mapuploadImage_" + file.index).css("opacity", 0.2);
+			},
+			onComplete: function() {
+				//提交按钮隐藏
+				$("#mapSubmit").hide();
+				//console.log("<p>当前地图图片上传完毕。</p>");
+				//file控件value置空
+				$("#mapfile").val("");
+				$("#mapuploadInf").append("<p>当前地图上传完毕。</p>");
+			}
+		},
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
+			this.initUploadForm();
+			this.initUploadMapForm();
+			var zxxfile = $.extend(ZXXFILE,this.params);
+			zxxfile.init();
+			var zxxmapfile = $.extend(uploadFile,this.mapparams);
+			zxxmapfile.init();
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
@@ -600,10 +911,11 @@ itour.routeTemplate = function(){
 			});
 			$("#travelItems").combobox({
 				url:'travelItem/allItems',
-				//url:'sysRole/userRole',
 				valueField:'alias',
 				textField:'item',
 				multiple:true,
+				method:'get',
+			    editable : false  ,
 				formatter:function(row){
 				   var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.alias+"' value="+row.alias+">"+row.item+"<span>"
 				   return s;  
@@ -616,27 +928,27 @@ itour.routeTemplate = function(){
 				}
 			});
 			$("#related").combobox({
-				url:'sysRole/loadRoleList',
-				//url:'sysRole/userRole',
-				valueField:'id',
-				textField:'roleName',
+				url:'routeTemplate/queryAll',
+			    editable : false,
+				valueField:'routeCode',
+				textField:'title',
 				multiple:true,
+				method:'get',
 				formatter:function(row){
-				   var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.id+"'>"+row.roleName+"<span>"
+				   var s = "<span><input type='checkbox' class='selectId' style='vertical-align: middle' id='selectId_"+row.routeCode+"' value="+row.routeCode+">"+row.title+"<span>"
 				   return s;  
 				},
 				onSelect:function(record){
-					$("#selectId_"+record.id).attr("checked", true);
+					$("#selectId_"+record.routeCode).attr("checked", true);
 				},
 				onUnselect:function(record){
-					$("#selectId_"+record.id).attr("checked", false);
+					$("#selectId_"+record.routeCode).attr("checked", false);
 				}
 			});
 		}
 	}
 	return _this;
 }();
-
 $(function(){
 	itour.routeTemplate.init();
 });

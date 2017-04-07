@@ -14,6 +14,7 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	private String id;
 	private String routeTemplate;//所属路线
 	private String beriefTrip;//简要行程
+	private String showTrip;//文本固定化的行程
 	private int adults;
 	private int children;
 	private boolean isAsAdult;
@@ -55,10 +56,30 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	private String remark;
 	private boolean valid;
 	private String createBy;
-	private Date createTime;
-	private Date updateTime;
+	private String createTime;
+	private String updateTime;
 	private String updateBy;
+	private String groupCode;//团号
+	private String groupDate;//出团日期
 	
+	public String getShowTrip() {
+		return showTrip;
+	}
+	public void setShowTrip(String showTrip) {
+		this.showTrip = showTrip;
+	}
+	public String getGroupCode() {
+		return groupCode;
+	}
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+	public String getGroupDate() {
+		return groupDate;
+	}
+	public void setGroupDate(String groupDate) {
+		this.groupDate = groupDate;
+	}
 	public String getId() {
 		return id;
 	}
@@ -215,16 +236,16 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
 	}
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
 	public String getUpdateBy() {

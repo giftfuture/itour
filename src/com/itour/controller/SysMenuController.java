@@ -143,7 +143,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(SysMenu bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(SysMenu bean,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
 		String id = "";
 		//设置菜单按钮数据
@@ -184,7 +184,7 @@ public class SysMenuController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"",JsonUtils.encode(sm),JsonUtils.encode(bean),"sysMenu/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	/**
 	 * 

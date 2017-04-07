@@ -62,7 +62,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param routeCode
 	 * @return
 	 */
-	public RouteTemplateVo selectByRouteCode(@Param(value="routeCode")String routeCode);
+	public RouteTemplate selectByRouteCode(@Param(value="routeCode")String routeCode);
 	
 	/**
 	 * 
@@ -70,5 +70,23 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public List<RouteTemplateVo> searchRts(Map map);
+	/**
+	 * 
+	 * @return
+	 */
+	List<RouteTemplateVo> queryAll();
+	/**
+	 * 
+	 * @param vo
+	 */
+	void uploadCover(RouteTemplate vo);
+	
+	/**
+	 * 
+	 * @param vo
+	 */
+	void uploadMap(RouteTemplate vo);
+	
+	//RouteTemplate queryByRouteCode(@Param(value="routeCode")String routeCode);
 	
 }

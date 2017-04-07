@@ -25,7 +25,7 @@ itour.selfdrivedetail = function(){
 								                '<td width="669"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
 								              '</tr>'+
 								              '<tr>'+
-								                '<td>'+(e.title?e.title:"")+'</td>'+
+								                '<td>'+(e.createTime?e.createTime:"")+'</td>'+
 								                '<td><span class="STYLE148">'+(e.content?e.content:"")+'</span></td>'+
 								              '</tr>'+
 								              '<tr>'+
@@ -220,16 +220,17 @@ itour.selfdrivedetail = function(){
 			        message: '请输入正确的手机号码。'   
 			    }
 			})
-			   $('#tab-container').easytabs({ 
+	   $('#tab-container').easytabs({ 
 	    	 // uiTabs: true,
 	    	  animate: true,
 	    	  animationSpeed: 1000,
-	    	 // defaultTab: "a#review",
+	    	  //defaultTab: "a#review",
 	    	  panelActiveClass: "active-content-div",
 	    	  tabActiveClass: "selected-tab",
 	    	//  tabs: "> div > a",
 	    	  updateHash: false,
-	    	  cycle: 2000
+	    	  event:'click',
+	    	  cycle: false
 	      }).bind('easytabs:after', function(evt, tab, panel, data) {
 	    	   if(tab.attr("href")=="#feed-back"){
 	    		  

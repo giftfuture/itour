@@ -1,9 +1,19 @@
 package com.itour.convert;
 
+import java.text.ParseException;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.itour.base.util.DateUtil;
 import com.itour.entity.QuoteForm;
 import com.itour.vo.QuoteFormVo;
 
 public class QuoteFormKit {
+	/**
+	 * 
+	 * @param qf
+	 * @return
+	 */
 	public static QuoteFormVo toVo(QuoteForm qf){
 		QuoteFormVo qfv = new QuoteFormVo();
 		qfv.setId(qf.getId());
@@ -12,6 +22,7 @@ public class QuoteFormKit {
 		qfv.setBathcostAsadult(qf.isBathcostAsadult());
 		qfv.setBathorseCost(qf.getBathorseCost());
 		qfv.setBeriefTrip(qf.getBeriefTrip());
+		qfv.setShowTrip(qf.getShowTrip());
 		qfv.setBigTraffic(qf.getBigTraffic());
 		qfv.setBigtrafficeAsadult(qf.isBigtrafficeAsadult());
 		qfv.setBigTrafficSum(qf.isBigTrafficSum());
@@ -23,7 +34,9 @@ public class QuoteFormKit {
 		qfv.setComphcostAsadult(qf.isComphcostAsadult());
 		qfv.setComprehensiveCosts(qf.getComprehensiveCosts());
 		qfv.setCreateBy(qf.getCreateBy());
-		qfv.setCreateTime(qf.getCreateTime());
+		if(qf.getCreateTime()!=null){
+			qfv.setCreateTime(DateUtil.getDateYmdHs(qf.getCreateTime()));
+		}
 		qfv.setDinner(qf.getDinner());
 		qfv.setDinnerAsadult(qf.isDinnerAsadult());
 		qfv.setElseCost(qf.getElseCost());
@@ -50,11 +63,21 @@ public class QuoteFormKit {
 		qfv.setTraveldocAsadult(qf.isTraveldocAsadult());
 		qfv.setTravelDocs(qf.getTravelDocs());
 		qfv.setUpdateBy(qf.getUpdateBy());
-		qfv.setUpdateTime(qf.getUpdateTime());
+		if(qf.getUpdateTime() !=null){
+			qfv.setUpdateTime(DateUtil.getDateYmdHs(qf.getUpdateTime()));
+		}
 		qfv.setValid(qf.isValid());
+		qfv.setGroupCode(qf.getGroupCode());
+		if(qf.getGroupDate()!=null){
+			qfv.setGroupDate(DateUtil.getDateYmdCn(qf.getGroupDate()));
+		}
 		return qfv;
 	}
-	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	public static QuoteForm toRecord(QuoteFormVo vo){
 		QuoteForm qfv = new QuoteForm();
 		qfv.setId(vo.getId());
@@ -63,6 +86,7 @@ public class QuoteFormKit {
 		qfv.setBathcostAsadult(vo.isBathcostAsadult());
 		qfv.setBathorseCost(vo.getBathorseCost());
 		qfv.setBeriefTrip(vo.getBeriefTrip());
+		qfv.setShowTrip(vo.getShowTrip());
 		qfv.setBigTraffic(vo.getBigTraffic());
 		qfv.setBigtrafficeAsadult(vo.isBigtrafficeAsadult());
 		qfv.setBigTrafficSum(vo.isBigTrafficSum());
@@ -74,7 +98,6 @@ public class QuoteFormKit {
 		qfv.setComphcostAsadult(vo.isComphcostAsadult());
 		qfv.setComprehensiveCosts(vo.getComprehensiveCosts());
 		qfv.setCreateBy(vo.getCreateBy());
-		qfv.setCreateTime(vo.getCreateTime());
 		qfv.setDinner(vo.getDinner());
 		qfv.setDinnerAsadult(vo.isDinnerAsadult());
 		qfv.setElseCost(vo.getElseCost());
@@ -101,8 +124,21 @@ public class QuoteFormKit {
 		qfv.setTraveldocAsadult(vo.isTraveldocAsadult());
 		qfv.setTravelDocs(vo.getTravelDocs());
 		qfv.setUpdateBy(vo.getUpdateBy());
-		qfv.setUpdateTime(vo.getUpdateTime());
 		qfv.setValid(vo.isValid());
+		qfv.setGroupCode(vo.getGroupCode());
+		try {
+			if(StringUtils.isNotEmpty(vo.getCreateTime())){			
+				qfv.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,vo.getCreateTime()));
+			}
+			if(StringUtils.isNotEmpty(vo.getUpdateTime())){			
+				qfv.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,vo.getUpdateTime()));
+			}
+			if(StringUtils.isNotEmpty(vo.getGroupDate())){
+				qfv.setGroupDate(DateUtil.fromStringToDate(DateUtil.ymdhms,vo.getGroupDate()));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return qfv;
 	}
 }

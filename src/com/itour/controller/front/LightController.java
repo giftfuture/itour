@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +22,15 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
 import com.google.common.collect.Lists;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.json.JsonUtils;
 import com.itour.base.util.FilePros;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
-import com.itour.controller.CustomersController;
-import com.itour.entity.Customers;
-import com.itour.entity.QuoteForm;
+import com.itour.entity.LogOperation;
+import com.itour.entity.LogSetting;
+import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
-import com.itour.service.CustomersService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
@@ -41,6 +41,7 @@ import com.itour.service.TravelStyleService;
 import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
 import com.itour.vo.CustomerVo;
+import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
 
 @Controller
@@ -126,8 +127,8 @@ public class LightController extends BaseController{
 			}
 			 rt.setRelates(relates);
 		}
-		QuoteForm qf = quoteFormService.queryByRtId(rt.getId());
-		String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
+		QuoteFormVo qf = quoteFormService.queryByRtId(rt.getId());
+	/*	String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
 		rt.setBeriefTrip(beriefTrip);
 		String ftlName = "";
 		Boolean flag =(Boolean)FreeMarkerUtil.htmlFileHasExist(request, Constants.FREEMARKER_PATH, ftlName).get("exist");
@@ -136,7 +137,7 @@ public class LightController extends BaseController{
             map.put("beriefTrip", beriefTrip);//这里包含业务逻辑请求等
           //  mv.addAllAttributes(map);
             FreeMarkerUtil.createHtml(freeMarkerConfig, "beriefTrip.ftl", request, map, Constants.FREEMARKER_PATH, ftlName);//根据模板生成静态页面
-        }
+        }*/
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItem> items = travelItemService.queryByIds(itids);
@@ -161,6 +162,7 @@ public class LightController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("items", items);
 		map.put("rt", rt);
+		map.put("qf", qf);
 		return forward("front/light/detail",map); 
 	}
 	/**
@@ -206,7 +208,7 @@ public class LightController extends BaseController{
 				ti.setCover(cover);
 			}
 		}
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map =getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);
 		return forward("front/light/detail",map); 
@@ -225,7 +227,7 @@ public class LightController extends BaseController{
 		Map<String,Object>  context = getRootMap();
 		//context.put("items", items);
 		//context.put("rt", rt);
-		return forward("front/quote/quote_step1",context); 
+		return forward("front/light/quote_step1",context); 
 	}
 	/**
 	 * 
@@ -238,10 +240,22 @@ public class LightController extends BaseController{
 	@ResponseBody
 	public ModelAndView toQuote2(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
-		//context.put("items", items);
-		context.put("rt", rt);
-		return forward("front/quote/quote_step2",context); 
+		RouteTemplateVo bean = routeTemplateService.queryByAlias(alias);
+		//RouteTemplateVo bean  = routeTemplateService.selectById(id);
+		if(bean == null){
+			context.put(SUCCESS, false);
+			context.put("bean", "没有找到对应的记录!");
+			return forward(request.getHeader("Referer"),context);
+		}
+		QuoteFormVo qf = quoteFormService.queryByRtId(bean.getId());
+		context.put(SUCCESS, true);
+		context.put("bean", bean);
+		context.put("qf", qf);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行LightController的toQuote2方法");
+		String logId = logSettingService.add(new LogSetting("route_template，quote_form","轻旅行","light/toQuote2",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logId,"查询",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(qf),"light/toQuote2",sessionuser.getId()));
+		return forward("front/light/quote_step2",context); 
 	}
 	/**
 	 * 
@@ -256,7 +270,7 @@ public class LightController extends BaseController{
 		Map<String,Object>  context = getRootMap();
 		//context.put("items", items);
 		//context.put("rt", rt);
-		return forward("front/quote/quote_step3",context); 
+		return forward("front/light/quote_step3",context); 
 	}
 	/**
 	 * 
@@ -271,7 +285,7 @@ public class LightController extends BaseController{
 		Map<String,Object>  context = getRootMap();
 		//context.put("items", items);
 		//context.put("rt", rt);
-		return forward("front/quote/quote_step4",context); 
+		return forward("front/light/quote_step4",context); 
 	}
 	
 }

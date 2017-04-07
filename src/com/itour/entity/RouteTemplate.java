@@ -41,6 +41,21 @@ public class RouteTemplate extends BaseEntity {
 	private String beforeInstruction;//行前须知
 	private java.lang.String scope;//地域   
 	private String scopeAlias;//地域简称
+	private String similars;//相似线路
+	private float elevation;
+	
+	public float getElevation() {
+		return elevation;
+	}
+	public void setElevation(float elevation) {
+		this.elevation = elevation;
+	}
+	public String getSimilars() {
+		return similars;
+	}
+	public void setSimilars(String similars) {
+		this.similars = similars;
+	}
 	public java.lang.String getScope() {
 		return scope;
 	}

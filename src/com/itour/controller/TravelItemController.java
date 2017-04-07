@@ -150,10 +150,10 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(TravelItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String id = "";
 		TravelItem ti = null;
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId().toString())){
 			id = travelItemService.add(entity);
 		}else{
 				ti = travelItemService.queryById(entity.getId());
@@ -171,15 +171,14 @@ public class TravelItemController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",ti!= null?ti.getId():"",JsonUtils.encode(ti),JsonUtils.encode(entity),"travelItem/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
-	//headers = "content-type=application/x-www-form-urlencoded",
 	/**
 	 * 
 	 * @param id
 	 * @param fileselect
 	 * @param request
-	 * @param response
+	 * @param responset 
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -423,7 +422,7 @@ public class TravelItemController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({})
 	@RequestMapping(value="/search", method = RequestMethod.POST)
 	public void searchTravelItem(@RequestParam(value="travelStyle")String travelStyle,@RequestParam(value="rcdDays")String rcdDays,@RequestParam(value="scope")String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
@@ -561,10 +560,10 @@ public class TravelItemController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/allItems", method = RequestMethod.GET)
 	public List<HashMap<String,String>> allItems(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		List<HashMap<String,String>> maps = travelItemService.allItems();
+		List<HashMap<String,String>> maplist = travelItemService.allItems();
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allItems方法");
-		return maps;
+		return maplist;
 	}
 	
 	/**

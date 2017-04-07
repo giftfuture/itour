@@ -21,7 +21,7 @@
         <td width="685"><table width="1053" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
-            <td width="1021"><span class="STYLE148"><span class="STYLE24">来自：</span>台湾 刘先生 <span class="STYLE24">团号：</span>itours160701a <span class="STYLE14">出团日期：</span>2016-7-2 <span class="STYLE14">人数：</span>4大2小 </span></td>
+            <td width="1021"><span class="STYLE148"><span class="STYLE24">来自：</span>${bean.city }${bean.district } ${bean.customerName}  <span class="STYLE24">团号：</span>${qf.groupCode }  <span class="STYLE14">出团日期：</span>${qf.groupDate }<span class="STYLE14">人数：</span>${qf.adults }大${qf.children }小 </span></td>
           </tr>
         </table></td>
       </tr>

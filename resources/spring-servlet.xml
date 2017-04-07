@@ -15,10 +15,17 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	
    <!--   <mvc:view-controller path="/" view-name="index"/>  --> 
-   <mvc:annotation-driven  conversion-service="conversionService">
+   <mvc:annotation-driven conversion-service="conversionService">
 	   	<mvc:message-converters register-defaults="true"> 
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg value="UTF-8" />
+				<property name="supportedMediaTypes">
+					<list>
+						  <value>text/html; charset=utf-8</value> 
+						  <value>application/json;charset=UTF-8</value>  
+						  <value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
 			</bean>
 			 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<!--  <constructor-arg value="UTF-8" index="0"></constructor-arg> -->
@@ -30,8 +37,9 @@
 				</property>  -->
 				<property name="supportedMediaTypes">
 					<list>
-						<!-- <value>text/html;charset=UTF-8</value> -->
-						  <value>application/json;charset=UTF-8</value>   
+						  <value>text/html; charset=utf-8</value> 
+						  <value>application/json;charset=UTF-8</value>  
+						  <value>text/plain;charset=UTF-8</value>
 					</list>
 				</property>
 			</bean>
@@ -43,6 +51,12 @@
 			<list>
 				<bean class="com.itour.base.convert.DateConverter" />
 				<bean class="com.itour.base.convert.MapxConverter" />
+				<bean class="com.itour.base.convert.BooleanConverter" />
+				<bean class="com.itour.base.convert.CharacterConverter" />
+				<bean class="com.itour.base.convert.ListxConverter" />
+				<bean class="com.itour.base.convert.NumberConverter" />
+				<bean class="com.itour.base.convert.StringConverter" />
+				<bean class="com.itour.base.convert.EnumConverter" />
 			</list>
 		</property>
 	</bean>

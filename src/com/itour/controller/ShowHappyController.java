@@ -200,17 +200,17 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public void add(@RequestBody ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String add(ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isEmpty(showhappy.getVerifyCode())){
-	 		failureMessage(response, "验证码不能为空.");
-			return;
+	 		//failureMessage(response, "验证码不能为空.");
+			return sendFailureResult(response, "保存出错~");
 		}
 	 	if(!showhappy.getVerifyCode().toLowerCase().equals(vcode)){//判断验证码是否正确   
-	 		failureMessage(response, "验证码输入错误.");
-			return;
+	 		//failureMessage(response, "验证码输入错误.");
+			return sendFailureResult(response, "保存出错~");
 		} 
 		String shareHappyPath = FilePros.shareHappyPath();
 		String uuid = IDGenerator.getUUID();
@@ -220,14 +220,12 @@ public class ShowHappyController extends BaseController{
 		showhappy.setCover(fileName);
 		ImageFilter.writeSHBase64Image(showhappy,shareHappyPath);
 		showHappyService.addShowHappy(ShowHappyKit.toEntity(showhappy));
-		context.put(SUCCESS, true);
-		context.put("msg", "保存成功~");
-		String result = JsonUtils.encode(context);
+		//String result = JsonUtils.encode(context);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的add方法");
 		String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/add",sessionuser.getId(),"",""));
 		logOperationService.add(new LogOperation(logid,"新增",uuid,JsonUtils.encode(showhappy),"","showhappy/add",sessionuser.getId()));
-		successMessage(response, result);
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	/**
@@ -241,8 +239,7 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(ShowHappyVo showhappy,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object> context = getRootMap();
+	public String save(ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String shId = "";
 		ShowHappy sh = null;
 		if(showhappy.getId()==null||StringUtils.isEmpty(showhappy.getId().toString())){
@@ -264,7 +261,7 @@ public class ShowHappyController extends BaseController{
 			String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logid,"更新",sh!= null?sh.getId():"",JsonUtils.encode(sh),JsonUtils.encode(showhappy),"showhappy/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	/**

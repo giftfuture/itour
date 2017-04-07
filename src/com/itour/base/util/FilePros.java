@@ -51,6 +51,14 @@ public class FilePros   {
 		return rb.getString("upload_path");
 	}
 	/**
+	 * 
+	 * @return
+	 */
+	public static String routeMapPath(){
+		return rb.getString("route_map_path");
+	}
+	
+	/**
 	 * 上传图片的物理路径
 	 * @return
 	 */

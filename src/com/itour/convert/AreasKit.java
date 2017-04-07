@@ -20,7 +20,7 @@ public class AreasKit {
 		areas.setPinyin(vo.getPinyin());
 		areas.setPosition(vo.getPosition());
 		areas.setShortname(vo.getShortname());
-		areas.setSort(vo.getSort());
+		areas.setSortnum(vo.getSortnum());
 		areas.setZipcode(vo.getZipcode());
 		return areas;
 	}
@@ -37,7 +37,7 @@ public class AreasKit {
 		areas.setPinyin(vo.getPinyin());
 		areas.setPosition(vo.getPosition());
 		areas.setShortname(vo.getShortname());
-		areas.setSort(vo.getSort());
+		areas.setSortnum(vo.getSortnum());
 		areas.setZipcode(vo.getZipcode());
 		return areas;
 	}
@@ -54,7 +54,7 @@ public class AreasKit {
 		map.put("pinyin", vo.getPinyin());
 		map.put("position", vo.getPosition());
 		map.put("shortname", vo.getShortname());
-		map.put("sort", vo.getSort()+"");
+		map.put("sortnum", vo.getSortnum()+"");
 		map.put("zipcode",vo.getZipcode());
 		return map;
 	}

@@ -92,16 +92,22 @@ public class ShowHappyKit {
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("id", sh.getId());
 		record.put("customer", sh.getCustomer());
-		record.put("createTime", DateUtil.getFomartDate(sh.getCreateTime(),DateUtil.ymdcn));
+		if(sh.getCreateTime() !=null){
+			record.put("createTime", DateUtil.getFomartDate(sh.getCreateTime(),DateUtil.ymdcn));
+		}
 		record.put("status", sh.getStatus());
-		record.put("updateTime", DateUtil.getFomartDate(sh.getUpdateTime(),DateUtil.ymdcn));
+		if(sh.getUpdateTime() !=null){
+			record.put("updateTime", DateUtil.getFomartDate(sh.getUpdateTime(),DateUtil.ymdcn));
+		}
 		record.put("area", sh.getArea());
 		record.put("content", sh.getContent());
 		record.put("result", sh.getResult());
 		record.put("signature", sh.getSignature());
 		record.put("title", sh.getTitle());
 		record.put("route", sh.getRoute());
-		record.put("tourTime",DateUtil.getFomartDate(sh.getTourTime(),DateUtil.ymdcn));
+		if(sh.getTourTime() !=null){
+			record.put("tourTime",DateUtil.getFomartDate(sh.getTourTime(),DateUtil.ymdcn));
+		}
 		record.put("cover", sh.getCover());
 		record.put("isValid", sh.isValid());
 		record.put("shortContent", sh.getShortContent());

@@ -10,7 +10,6 @@
  jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
  </script>
 </head>
-
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -25,23 +24,9 @@
     <input style="background:red;" type="button" value="4" onclick="changePho(this)" />
     <input style="background:red;" type="button" value="5" onclick="changePho(this)" />
     <input style="background:red;" type="button" value="6" onclick="changePho(this)" /></td></tr>
-  <tr><td><!--<video width="602px" height="345px" controls="controls">
-<source src="video/boshijie.mpg" type="video/mpg"></source>
-your browser does not support the video tag
-</video>  --></td></tr>
-<tr><td><!-- <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1"
- title="此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。">
-		<param name="movie" value="FLVPlayer_Progressive.swf" />
-		<param name="quality" value="high" />
-		<param name="wmode" value="opaque" />
-		<param name="scale" value="noscale" />
-		<param name="salign" value="lt" />
-		<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=video/boshijie.mpg&amp;autoPlay=false&amp;autoRewind=false" />
-		<param name="swfversion" value="8,0,0,0" />
-		
-		<param name="expressinstall" value="expressInstall.swf" />
-</object>  -->
-<!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 
+  <tr><td> </td></tr>
+<tr><td>
+<!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
 <script type="text/javascript">
 if($.browser.msie){ 
 	document.write('<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">'+
@@ -50,17 +35,29 @@ if($.browser.msie){
 			'<param name="wmode" value="opaque" />'+
 			'<param name="scale" value="noscale" />'+
 			'<param name="salign" value="lt" />'+
-			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/test&amp;autoPlay=false&amp;autoRewind=false" />'+
+			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/praise02.mp4&amp;autoPlay=false&amp;autoRewind=false" />'+
 			'<param name="swfversion" value="8,0,0,0" />'+
 			'<param name="expressinstall" value="expressInstall.swf" />'+
 			'</object>');
 	}else{
-		document.write('<video width="602px" height="345px" controls="controls">'+
-		'<source src="video/sc_135567145825hd_qqvga.mp4" type="video/mp4"></source>'+
+		 document.write('<div align="center" width="100%" height="50%"><video width="1000px" height="500px" controls="controls">'+
+		'<source src="video/praise01.mp4" type="video/mp4"></source>'+
 		'your browser does not support the video tag'+
-		'</video>');
+		'</video></div>'); 
+		//document.write('<iframe height=600 width=330 src="http://player.youku.com/embed/XNTcyMzIwMTE2" frameborder=0 allowfullscreen></iframe>');
+		//document.write('<iframe height=600 width=330 src="http://player.youku.com/player.php/Type/Folder/Fid/22127316/Ob/1/sid/XNjk1MDUyNzU2/v.swf" frameborder=0 allowfullscreen></iframe>');
+		document.write('<div align="center" width="100%" height="50%">'+
+		'<embed src="http://player.youku.com/player.php/Type/Folder/Fid/22127316/Ob/1/sid/XNjk1MDUyNzU2/v.swf" '+
+		'quality="high" width="1000px" height="500px" align="center" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></div>');
 	}
-</script> -->
+</script>  
+<!-- 
+<embed src="http://static.youku.com/v1.0.0149/v/swf/qplayer_rtmp.swf?VideoIDS=XNTg2ODcxMTM2ID&winType=adshow&isAutoPlay=true" quality="high" width="290" height="220" align="middle" title="嘉兴中安商贸园宣传片" wmode="transparent" allowScriptAccess="never" allowNetworking="internal" autostart="1" type="application/x-shockwave-flash"></embed> -->
+<!-- 视频常见几种比例：384×256、580×435、610×460 -->
+<%--   <video width="602px" height="345px" controls="controls">
+<source src="${basePath }video/praise.mp4" type="video/mp4"></source>
+your browser does not support the video tag
+</video> --%>
 </td></tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">

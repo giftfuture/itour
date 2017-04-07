@@ -11,7 +11,7 @@
         <br />旅游区域：
         <input name="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
         <br />  假期天数：<a href="javascript:void(0)">
-	<select class="easyui-combobox"   data-options="width:130,height:20" name="vacation">
+	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation">
 	  <option selected="selected" value="">-所有-</option>
 	  <option value="1-5">1-5天</option>
 	  <option value="6-9">6-9天</option>

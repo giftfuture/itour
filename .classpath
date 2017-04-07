@@ -113,5 +113,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jts-1.13.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-support-4.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pinyin4j-2.5.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itextpdf-5.3.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cpdetector_1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/htmllexer.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/htmlparser.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/chardet-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

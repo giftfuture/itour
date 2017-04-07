@@ -19,7 +19,7 @@ public class Areas extends BaseEntity {
 	private String lat;
 	private int level;
 	private String position;
-	private int sort;
+	private int sortnum;
 	private String brief;
 	public String getId() {
 		return id;
@@ -87,11 +87,11 @@ public class Areas extends BaseEntity {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public int getSort() {
-		return sort;
+	public int getSortnum() {
+		return sortnum;
 	}
-	public void setSort(int sort) {
-		this.sort = sort;
+	public void setSortnum(int sortnum) {
+		this.sortnum = sortnum;
 	}
 	public String getBrief() {
 		return brief;

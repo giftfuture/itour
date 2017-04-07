@@ -1,20 +1,14 @@
 var curIndex=0;
 //时间间隔(单位毫秒)，每秒钟显示一张，数组共有5张图片放在Photos文件夹下。
-var timeInterval=2000;
+var timeInterval=5000;
 var arr=new Array();
-//arr[0]="images/Route001.jpg";
-/*arr[1]="images/Route001.jpg";
+arr[0]="images/Route001.jpg";
+arr[1]="images/Route001.jpg";
 arr[2]="images/Route002.jpg";
 arr[3]="images/Route003.jpg";
 arr[4]="images/Route004.jpg";
 arr[5]="images/Route005.jpg";
-arr[6]="images/Route006.jpg";*/
-arr[1]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
-arr[2]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
-arr[3]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
-arr[4]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
-arr[5]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
-arr[6]="http://www.tudou.com/programs/view/fPUYRjFdE4E";
+arr[6]="images/Route006.jpg";
 setInterval(changeImg,timeInterval);
 function changeImg()
 {

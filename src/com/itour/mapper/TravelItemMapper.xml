@@ -284,6 +284,13 @@ from travel_item where travel_item.id in
       #{ids}  
 </foreach>
 </select>  
+<select id="queryByAlias" parameterType="java.util.List" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/>
+from travel_item where travel_item.alias in 
+<foreach collection="list" item="alias" index="index" open="(" separator="," close=")">  
+      #{alias}  
+</foreach>
+</select>  
 <!-- 获取该旅行方式下的施行项目 -->
 <select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List"/>

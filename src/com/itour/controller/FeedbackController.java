@@ -158,26 +158,18 @@ public class FeedbackController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public String add(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> context = getRootMap();
 		Feedback bean = FeedbackKit.toEntity(vo);
 		String fbId = "";
-		String result = "";
 		Feedback fb = null;
 		//response.setContentType("text/html;charset=UTF-8"); 
 		String vcode = SessionUtils.getValidateCode(request);
 		SessionUtils.removeValidateCode(request);//清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isBlank(vo.getVerifyCode())){
-	 		context.put(SUCCESS, false);
-	 		context.put(MSG, "验证码不能为空.");
-	 		result = JsonUtils.encode(context);
-			return result;
+			return sendFailureResult(response, "验证码不能为空~");
 		}
 		//判断验证码是否正确
 	 	if(!vo.getVerifyCode().toLowerCase().equals(vcode)){   
-	 		context.put(SUCCESS, false);
-	 		context.put(MSG, "验证码输入错误.");
-	 		result = JsonUtils.encode(context);
-			return result;
+		   return sendFailureResult(response, "验证码输入错误~");
 		} 
 		if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
 			fbId = feedbackService.add(bean);
@@ -188,9 +180,7 @@ public class FeedbackController extends BaseController{
 			else
 				feedbackService.update(bean);
 		}
-		context.put(SUCCESS, true);
-		context.put("msg", "保存成功~");
-		result = JsonUtils.encode(context);
+		
 	/*	SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的add方法");
 		if(StringUtils.isNotEmpty(fbId)){
@@ -200,7 +190,7 @@ public class FeedbackController extends BaseController{
 			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/add(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 			logOperationService.add(new LogOperation(logId,"更新",fb!=null ?fb.getId():"",JsonUtils.encode(fb),JsonUtils.encode(bean),"feedback/add(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		}*/
-		return result;
+		return sendSuccessResult(response, "保存成功~");
 		//sendSuccessMessage(response, "保存成功~");
 	}
 	/**
@@ -214,8 +204,7 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(Feedback entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object> context =getRootMap();
+	public String save(Feedback entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String fbId = "";
 		Feedback feedback = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -235,7 +224,8 @@ public class FeedbackController extends BaseController{
 		}else{
 			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/save(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 			logOperationService.add(new LogOperation(logId,"更新",feedback!=null ?feedback.getId():"",JsonUtils.encode(feedback),JsonUtils.encode(entity),"feedback/save(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		}		sendSuccessMessage(response, "保存成功~");
+		}	
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	/**

@@ -1,7 +1,10 @@
 package com.itour.controller;
 
 import java.io.File;
-import java.util.HashMap;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -16,16 +19,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.itour.base.annotation.Auth;
-import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
-import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
@@ -37,11 +44,16 @@ import com.itour.entity.LogSetting;
 import com.itour.entity.QuoteForm;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysUser;
+import com.itour.entity.TravelItem;
+import com.itour.entity.TravelStyle;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
+import com.itour.service.TravelItemService;
+import com.itour.service.TravelStyleService;
+import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
  
 /**
@@ -64,7 +76,10 @@ public class RouteTemplateController extends BaseController{
 	private QuoteFormService quoteFormService;
 	@Autowired
 	private LogSettingService logSettingService;
-	
+	@Autowired
+	private TravelItemService travelItemService;
+	@Autowired
+	private TravelStyleService travelStyleService; 
 	@Autowired
 	private LogSettingDetailService logSettingDetailService;
 	
@@ -107,51 +122,257 @@ public class RouteTemplateController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的datalist方法");
 		return dataGridAdapter.wrap(page);
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param fileselect
+	 * @param request
+	 * @param responset 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)
+	public @ResponseBody String uploadPhotos(@RequestParam(value="id")String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
+		HttpServletRequest request,HttpServletResponse response) {
+		Map<String,Object> context = getRootMap();
+		String rtCoverPath = FilePros.rtCoverPath();
+		try {
+			SysUser sessionuser = SessionUtils.getUser(request);
+			RouteTemplate rt = routeTemplateService.queryById(id);
+			RouteTemplateVo vo = RouteTemplateKit.toRecord(rt);
+			if(vo !=null){
+				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
+				//vo.setCover(fileName);
+				String path = rtCoverPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getTitle();
+				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
+				if(request instanceof MultipartHttpServletRequest){
+						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
+						OutputStream out = null;
+						List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
+						 String picName = "";
+						// String newpicName = "";
+						 File directory = null;
+						 File uploadpic = null;
+						 MultipartFile f = multifiles.get(0);
+					     if(f.getOriginalFilename().length() > 0) {    
+					    	picName = f.getOriginalFilename();   
+				            directory = new File(StringUtils.trim(path));
+				            if(!directory.exists()||!directory.isDirectory()){
+				            	directory.mkdirs();
+				            }
+				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
+				            uploadpic = new File(path+File.separatorChar+picName );
+				            System.out.println("路线ID="+id+"上传封面图片是" + picName);  
+				            out = new FileOutputStream(uploadpic);  
+				            out.write(f.getBytes());  
+				            out.close();  
+				        }  
+						rt.setCover(picName);
+						picName = null;
+						directory = null;
+						uploadpic = null;
+						rt.setUpdateBy(sessionuser.getId());;
+						routeTemplateService.uploadCover(rt);
+						if(out != null){
+							try {
+								out.close();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+						context.put(SUCCESS, true);
+						context.put("msg", "封面图片上传成功！");
+				}else{
+					System.out.println("##########不是上传文件对象#############");
+					context.put(SUCCESS, false);
+					context.put("msg", "上传封面文件类型非法!");
+				}
+			}
+			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的uploadPhoto方法");
+			try {
+				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/uploadPhoto",sessionuser.getId(),"",""));
+				logOperationService.add(new LogOperation(logid,"上传封面",rt!= null?rt.getId():"","",JsonUtils.encode(rt),"routeTemplate/uploadPhoto",sessionuser.getId()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			context.put(SUCCESS, false);
+			context.put("msg", "上传封面文件出现IO异常!");
+			e.printStackTrace();
+		}catch(Exception e){
+			context.put(SUCCESS, false);
+			context.put("msg", "上传封面文件出错!");
+			e.printStackTrace();
+		}
+		String result = JsonUtils.encode(context);
+		return result;
+	}
+	/**
+	 * 
+	 * @param id
+	 * @param fileselect
+	 * @param request
+	 * @param responset 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/uploadMap",method = RequestMethod.POST)
+	public @ResponseBody String uploadMap(@RequestParam(value="id")String id,@RequestParam(value="mapfile") MultipartFile mapfile,
+		HttpServletRequest request,HttpServletResponse response) {
+		Map<String,Object> context = getRootMap();
+		String routeMapPath = FilePros.routeMapPath();
+		try {
+			SysUser sessionuser = SessionUtils.getUser(request);
+			RouteTemplate rt = routeTemplateService.queryById(id);
+			RouteTemplateVo vo = RouteTemplateKit.toRecord(rt);
+			if(vo !=null){
+				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
+				//vo.setCover(fileName);
+				String path = routeMapPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getTitle();
+				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
+				if(request instanceof MultipartHttpServletRequest){
+						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
+						OutputStream out = null;
+						List<MultipartFile> multifiles = multipartRequest.getFiles("mapfile");
+						 String picName = "";
+						// String newpicName = "";
+						 File directory = null;
+						 File uploadpic = null;
+						 MultipartFile mf = multifiles.get(0);
+					     if(mf.getOriginalFilename().length() > 0) {    
+					    	picName = mf.getOriginalFilename();   
+				            directory = new File(StringUtils.trim(path));
+				            if(!directory.exists()||!directory.isDirectory()){
+				            	directory.mkdirs();
+				            }
+				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
+				            uploadpic = new File(path+File.separatorChar+picName );
+				            System.out.println("路线ID="+id+"上传地图图片是" + picName);  
+				            out = new FileOutputStream(uploadpic);  
+				            out.write(mf.getBytes());  
+				            out.close();  
+				        }  
+						rt.setRouteMap(picName);
+						rt.setUpdateBy(sessionuser.getId());;
+						routeTemplateService.uploadMap(rt);
+					/*	File[] files = directory.listFiles();
+						if(files !=null && files.length>0){
+							for(File f:files){
+								if(!f.getName().equals(picName)){
+									f.delete();
+								}
+							}
+						}*/
+						picName = null;
+						directory = null;
+						uploadpic = null;
+						if(out != null){
+							try {
+								out.close();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+						context.put(SUCCESS, true);
+						context.put("msg", "地图图片上传成功！");
+				}else{
+					System.out.println("##########不是上传文件对象#############");
+					context.put(SUCCESS, false);
+					context.put("msg", "上传地图文件类型非法!");
+				}
+			}
+			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的uploadMap方法");
+			try {
+				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/uploadMap",sessionuser.getId(),"",""));
+				logOperationService.add(new LogOperation(logid,"上传路线地图",rt!= null?rt.getId():"","",JsonUtils.encode(rt),"routeTemplate/uploadMap",sessionuser.getId()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			context.put(SUCCESS, false);
+			context.put("msg", "上传地图文件出现IO异常!");
+			e.printStackTrace();
+		}catch(Exception e){
+			context.put(SUCCESS, false);
+			context.put("msg", "上传地图文件出错!");
+			e.printStackTrace();
+		}
+		String result = JsonUtils.encode(context);
+		return result;
+	}
 	/**
 	 * 添加或修改数据
 	 * @param url
-	 * @param classifyId
-	 * @return Integer[] typeIds,
+	 * @param 56423498738365
+	 * @return  @RequestBody
 	 * @throws Exception 
 	 */
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
-	@ResponseBody
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(RouteTemplateVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/save", method = RequestMethod.POST//,
+//	headers={"content-type=application/json;"},//multipart/form-data
+	//produces=MediaType.APPLICATION_JSON_VALUE//.MULTIPART_FORM_DATA_VALUE
+	)
+	public @ResponseBody String save(RouteTemplate vo,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		//Map<String,Object>  context = new HashMap<String,Object>();
-		vo.setRouteCode(IDGenerator.code(16));
-		RouteTemplate rt = null;
-		String rtId = "";
-		String rtCoverPath = FilePros.rtCoverPath();
-		String uuid = IDGenerator.getUUID();
-		ClassReflectUtil.setIdKeyValue(vo,"id",uuid);
-		vo.setRouteCode(IDGenerator.code(19));
-		String fileName = vo.getCoverImg().getName();
-		vo.setCover(fileName);
-		String path = rtCoverPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getTitle();
-		ImageFilter.writeBase64Image(vo.getCoverImg(),path);
-		RouteTemplate bean = RouteTemplateKit.toEntity(vo);
-		if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
-			rtId = routeTemplateService.add(bean);
-		}else{
-			rt = routeTemplateService.queryById(vo.getId());
-			if(rt == null)
-				rtId = routeTemplateService.add(bean);
-			else
-				routeTemplateService.update(bean);
+		try {
+			RouteTemplate rt = null;
+			String rtId = "";
+			//RouteTemplate bean =null;
+			//String uuid = IDGenerator.getUUID();
+			//ClassReflectUtil.setIdKeyValue(vo,"id",uuid);
+			//vo.setRouteCode(IDGenerator.code(19));
+			//bean = RouteTemplateKit.toEntity(vo);
+			if(StringUtils.isNotEmpty(vo.getTravelItems())){
+				List<String> tis = Lists.newArrayList();
+				List<String> alias = Arrays.asList(vo.getTravelItems().split(","));
+				for(String a:alias){					
+					TravelItem ti = travelItemService.getByAlias(a);
+					tis.add(ti!=null?ti.getId():"");
+				}
+				vo.setTravelItems(Joiner.on(",").join(tis));
+			};
+			if(StringUtils.isNotEmpty(vo.getRelated())){
+				List<String> relates = Lists.newArrayList();
+				List<String> rels = Arrays.asList(vo.getRelated().split(","));
+				for(String rel:rels){
+					RouteTemplate t = routeTemplateService.selectByRouteCode(rel);
+					relates.add(t!=null?t.getId():"");
+				}
+				vo.setRelated(Joiner.on(",").join(relates));
+			}
+			if(StringUtils.isNotEmpty(vo.getTravelStyle())){
+				TravelStyle ts = travelStyleService.queryByAlias(vo.getTravelStyle());
+				vo.setTravelStyle(ts!=null?ts.getId():"");
+			}
+			if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
+				vo.setRouteCode(IDGenerator.code(16));
+				rtId = routeTemplateService.add(vo);
+			}else{
+				rt = routeTemplateService.queryById(vo.getId());
+				if(rt == null){
+					rtId = routeTemplateService.add(vo);
+				}else{
+					vo.setValid(true);
+					routeTemplateService.update(vo);
+				}
+			} 
+			SysUser sessionuser = SessionUtils.getUser(request);
+			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
+			if(StringUtils.isNotEmpty(rtId)){			
+				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save",sessionuser.getId(),"",""));
+				logOperationService.add(new LogOperation(logid,"新增",rtId,JsonUtils.encode(vo),"","routeTemplate/save",sessionuser.getId()));
+			}else{
+				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save(update)",sessionuser.getId(),"",""));
+				logOperationService.add(new LogOperation(logid,"更新",rt!= null?rt.getId():"",JsonUtils.encode(rt),JsonUtils.encode(vo),"routeTemplate/save(update)",sessionuser.getId()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			sendSuccessMessage(response, "保存出错~");
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
-		if(StringUtils.isNotEmpty(rtId)){			
-			String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save",sessionuser.getId(),"",""));
-			logOperationService.add(new LogOperation(logid,"新增",rtId,JsonUtils.encode(bean),"","routeTemplate/save",sessionuser.getId()));
-		}else{
-			String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save(update)",sessionuser.getId(),"",""));
-			logOperationService.add(new LogOperation(logid,"更新",rt!= null?rt.getId():"",JsonUtils.encode(rt),JsonUtils.encode(bean),"routeTemplate/save(update)",sessionuser.getId()));
-		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	
 	/**
@@ -165,7 +386,7 @@ public class RouteTemplateController extends BaseController{
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		RouteTemplate entity  = routeTemplateService.queryById(id);
+		RouteTemplateVo entity  = routeTemplateService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
@@ -189,13 +410,19 @@ public class RouteTemplateController extends BaseController{
 	public ModelAndView quoteEdit(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		RouteTemplateVo bean  = routeTemplateService.selectById(id);
-		if(bean  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
+		if(bean == null){
+			//return sendFailureMessage(response, "没有找到对应的记录!");
+			context.put(SUCCESS, false);
+			context.put("bean", "没有找到对应的记录!");
+		//	return forward("server/sys/quoteEdit",context);
+			return forward(request.getHeader("Referer"),context);
 		}
+		QuoteFormVo qf = quoteFormService.queryByRtId(id);
 		//String quotoForm = entity.getQuotoForm();
 		context.put(SUCCESS, true);
 		//context.put("quotoForm", quotoForm);
 		context.put("bean", bean);
+		context.put("qf", qf);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的quoteEdit方法");
 		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/quoteEdit",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
@@ -213,7 +440,13 @@ public class RouteTemplateController extends BaseController{
 	@RequestMapping(value="/updateQuoteForm", method = RequestMethod.POST)
 	public void updateQuoteForm(@RequestBody QuoteForm quoteForm,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		try {
-			QuoteForm qf = quoteFormService.queryByRtId(quoteForm.getRouteTemplate());
+		/*	List<TravelItem> list = travelItemService.queryByAlias(Arrays.asList(quoteForm.getTravelItems().split(",")));
+			List<String> alias = Lists.newArrayList();
+			for(TravelItem ti:list){
+				alias.add(ti.getItem());
+			}
+			quoteForm.setShowTrip(quoteForm.getShowTrip().replace(quoteForm.getTravelItems(), StringUtils.join(alias.toArray(), ",")));*/
+			QuoteFormVo qf = quoteFormService.queryByRtId(quoteForm.getRouteTemplate());
 			String qfId = "";
 			SysUser user = SessionUtils.getUser(request);
 			if(user != null){
@@ -290,6 +523,33 @@ public class RouteTemplateController extends BaseController{
 		List<RouteTemplate> list = routeTemplateService.queryByList(vo);
 		HtmlUtil.writerJson(response, list);
 	}
-
-	
+	/**
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/allRelatedRts", method = RequestMethod.GET)
+	public List<RouteTemplateVo> allRelatedRts(String rtId,HttpServletRequest request,HttpServletResponse response)throws Exception{
+		RouteTemplate rt = routeTemplateService.queryById(rtId);
+		List<String> related = Lists.newArrayList();
+		if(rt !=null){
+			related.addAll(Arrays.asList(rt.getRelated().split(",")));
+		}
+		List<RouteTemplateVo> list = routeTemplateService.queryByRelated(related);
+		return list;
+	}
+	/**
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/queryAll", method = RequestMethod.GET)
+	public List<RouteTemplateVo> queryAll(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		List<RouteTemplateVo> list = routeTemplateService.queryAll();
+		return list;
+	}
 }

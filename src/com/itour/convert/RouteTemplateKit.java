@@ -117,6 +117,8 @@ public class RouteTemplateKit{
 		vo.setBeforeInstruction(rt.getBeforeInstruction());
 		vo.setScope(rt.getScope());
 		vo.setScopeAlias(rt.getScopeAlias());
+		vo.setSimilars(rt.getSimilars());
+		vo.setElevation(rt.getElevation());
 		return vo;
 	}
 	public static RouteTemplate toEntity(RouteTemplateVo rt){
@@ -217,6 +219,8 @@ public class RouteTemplateKit{
 		vo.setBeforeInstruction(rt.getBeforeInstruction());
 		vo.setScope(rt.getScope());
 		vo.setScopeAlias(rt.getScopeAlias());
+		vo.setSimilars(rt.getSimilars());
+		vo.setElevation(rt.getElevation());
 		return vo;
 	}
 }

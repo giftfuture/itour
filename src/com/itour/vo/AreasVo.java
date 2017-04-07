@@ -16,8 +16,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
 public class AreasVo  extends BasePage implements Serializable{
-
-
 	/**
 	 * 
 	 */
@@ -33,7 +31,7 @@ public class AreasVo  extends BasePage implements Serializable{
 	private String lat;
 	private int level;
 	private String position;
-	private int sort;
+	private int sortnum;
 	private String brief;
 	public String getId() {
 		return id;
@@ -101,11 +99,11 @@ public class AreasVo  extends BasePage implements Serializable{
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public int getSort() {
-		return sort;
+	public int getSortnum() {
+		return sortnum;
 	}
-	public void setSort(int sort) {
-		this.sort = sort;
+	public void setSortnum(int sortnum) {
+		this.sortnum = sortnum;
 	}
 	public String getBrief() {
 		return brief;

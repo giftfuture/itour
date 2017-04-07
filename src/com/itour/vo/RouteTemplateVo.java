@@ -37,20 +37,20 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String travelStyleAlias;
 	private String travelItems;//线路中的景点
 	private String cover;//封面图片
-	private File coverImg;//
+	//private File coverImg;//
 	private String title;//路线名称
 	private String shortContent;//简略介绍
 	private String alias;
 	private String routeCode;//线路编号
 	private boolean isValid;
 	private int rcdDays;//建议天数
-	private float mileage;//海拔
+	private float mileage;//里程
 	private String mountStyle;//山峰类型
 	private String departure;//出发地
 	private String arrive;//到达地
 	private float trekDistance;//徒步距离
 	private String transportation;//交通工具
-	private Integer difficultyRate;//难度 (挑战度)1为最低,5为最高,依次递增
+	private int difficultyRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private List<Integer> diffRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private List<Integer> undiffRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private String quotoForm;//报价单表
@@ -60,13 +60,34 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String beforeInstruction;
 	private java.lang.String scope;//地域   
 	private String scopeAlias;//地域简称
+	private String similars;//相似线路
+	private float elevation;//海拔
+	private String areas;//地区
 	
-	public File getCoverImg() {
+	public float getElevation() {
+		return elevation;
+	}
+	public void setElevation(float elevation) {
+		this.elevation = elevation;
+	}
+	public String getAreas() {
+		return areas;
+	}
+	public void setAreas(String areas) {
+		this.areas = areas;
+	}
+	public String getSimilars() {
+		return similars;
+	}
+	public void setSimilars(String similars) {
+		this.similars = similars;
+	}
+/*	public File getCoverImg() {
 		return coverImg;
 	}
 	public void setCoverImg(File coverImg) {
 		this.coverImg = coverImg;
-	}
+	}*/
 	public java.lang.String getScope() {
 		return scope;
 	}
@@ -136,10 +157,10 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	public void setDiffRate(List<Integer> diffRate) {
 		this.diffRate = diffRate;
 	}
-	public Integer getDifficultyRate() {
+	public int getDifficultyRate() {
 		return difficultyRate;
 	}
-	public void setDifficultyRate(Integer difficultyRate) {
+	public void setDifficultyRate(int difficultyRate) {
 		this.difficultyRate = difficultyRate;
 	}
 	public float getTrekDistance() {

@@ -34,7 +34,6 @@ public class AreasService extends BaseService<Areas>{
 	 * @return 查询结果
 	 */
 
-	@SuppressWarnings("unchecked")
 	public BasePage<Map<String, String>> pagedQuery(AreasVo vo) {
 			List<Areas> list = mapper.queryByList(vo);
 			int count = mapper.queryByCount(vo);
@@ -44,6 +43,10 @@ public class AreasService extends BaseService<Areas>{
 				records.add(AreasKit.toRecord(areas));
 			}
 			return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
+	}
+	
+	public List<Areas> allAreas(){
+		return mapper.queryAll();
 	}
 	
 }

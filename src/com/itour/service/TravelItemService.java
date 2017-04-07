@@ -61,6 +61,9 @@ public class TravelItemService<T> extends BaseService<T> {
 	public TravelItemDao<T> getDao() {
 		return mapper;
 	}
+	public List<TravelItem> queryByAlias(List<String> alias){
+		return mapper.queryByAlias(alias);
+	};
 	/**
 	 * 
 	 * @param map

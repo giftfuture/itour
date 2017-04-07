@@ -13,7 +13,7 @@ var itour={
 	},
 	paserJson:function(str){
 		return eval("("+str+")");
-	},
+	},		
 	/*弹出框*/
 	alert:function(title, msg, icon, callback){
 		$.messager.alert(title,msg,icon,callback);
@@ -46,7 +46,57 @@ var itour={
 		return true;
 	},
 	ajaxSubmit:function(form,option){
+		//console.log(form.serializeJSON());
 		form.ajaxSubmit(option);
+		//__.post(form.attr("action"),form.serializeObject(),function(){
+		//});
+/*	$.ajax(	{type:'post',
+	 		url:form.attr("action"),
+		 	timeout:3000,
+		 	//iframe: true,
+		 	cache:false,
+		 	processData: false,
+		 	contentType: false,
+		 	data:form.serializeJSON(),//form.serializeJSON(),//JSON.stringify()
+		 //	headers : {"ClientCallMode" : "ajax"}, //添加请求头部
+		 //	dataType: "json",
+	       // contentType: "multipart/form-data;boundary=56423498738365",
+		 	async:false,  //异步请求					
+		 	success:function(data){								
+		 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
+		 		//var result = data.match(reg);  
+		 		if(data.indexOf('pre')>0){
+		 			data = $(data).text();
+		 		}
+		 		//console.log(data);
+		 		var jsondata= data;//.parseJSON(data);//$(data).text()
+		 		if($.isFunction(callback)){
+		 			//console.log(callback);
+		 			callback(jsondata);
+		 		}
+		 	},
+		 	error:function(response, textStatus, errorThrown){
+		 		try{
+		 			itour.closeProgress();
+		 			var data = '';
+		 			if(response.responseText.indexOf('pre')>0){//&&response.responseText.indexOf('</pre>')>0
+		 				//console.log($(response.responseText).text());
+		 				data = $(response.responseText).text();//$(response.responseText).text()
+		 			}else{
+		 				data = response.responseText;
+		 			}
+		 			//console.log(data);
+			 		//检查登录
+			 		if(!itour.checkLogin(data)){
+			 			return false;
+			 		}else{
+				 		itour.alert('提示', data.msg || "submitForm请求出现异常,请联系管理员",'error');
+				 	}
+		 		}catch(e){
+		 			itour.alert('提示',"catch请求出现异常,请联系管理员.",'error');
+		 		}
+		 	}
+		 });*/
 		$(this).resetForm(); // 提交后重置表单
 		return false;
 	},
@@ -57,6 +107,7 @@ var itour={
 			 	dataType:'json',
 			 	data:option,
 			 	sync:false,
+			 	cache:false,
 			 	success:function(data){
 			 		//console.log(data);
 			 		var checklogin = itour.checkLogin(data);//$(data).text()
@@ -88,27 +139,37 @@ var itour={
 		});
 	},
 	submitForm:function(form,callback,dataType){
+		//form.attr("travelItems","");//$("#travelItems").combobox('getValues').join(',')
+		//console.log(form.serializeObject());//form.serializeObject()
 		var option =
-			{type:'post',
+				{type:'post',
 			 	//url:form.attr("action"),
 			 	//dataType: dataType||'json',
 			 	//dataType:'script',
 			 	timeout:3000,
 			 	iframe: true,
-			 	//headers : {"ClientCallMode" : "ajax"}, //添加请求头部
-			 	async:false,  //异步请求
-		 	   // contentType: "application/json; charset=utf-8", 								
-			 	success:function(data){
+			 	cache:false,
+			 //	headers : {"ClientCallMode" : "ajax"}, //添加请求头部
+			 //	dataType: "json",
+			 	processData: false,
+		        //contentType: "application/json; charset=UTF-8",
+			 	contentType:false,
+		        //contentType: "multipart/form-data; charset=UTF-8",
+			 	async:false,  //异步请求	,
+			 	beforeSubmit:function(){
+			 		//form.attr("travelItems",$("#travelItems").combobox('getValues').join(','));
+			 	},
+			 	success:function(data){								
 			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
 			 		//var result = data.match(reg);  
 			 		if(data.indexOf('pre')>0){
 			 			data = $(data).text();
 			 		}
 			 		//console.log(data);
-			 		var jsondata= data;//.parseJSON(data);//$(data).text()
+			 		//var jsondata= data;//.parseJSON(data);//$(data).text()
 			 		if($.isFunction(callback)){
 			 			//console.log(callback);
-			 			callback(jsondata);
+			 			callback(data);
 			 		}
 			 	},
 			 	error:function(response, textStatus, errorThrown){
@@ -241,7 +302,6 @@ var itour={
 		});
 	}
 }
-
 /* 自定义密码验证*/
 $.extend($.fn.validatebox.defaults.rules, {  
     equals: {  

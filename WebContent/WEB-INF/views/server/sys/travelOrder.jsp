@@ -20,7 +20,7 @@
 				</select>
 			</p>
 		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">下单时间:</label><input name="createTime" class="easyui-datetimebox ui-text" data-options="editable:false,region:'north',split:true,border:false"  style="width:100px;"></p>
+			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"></p>
 	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
@@ -58,11 +58,11 @@
 					</div> -->
 					<div class="fitem">
 						<label>计划出行日:</label>
-						<input name="expectedDepart" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写expectedDepart">
+						<input name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写expectedDepart">
 					</div>
 					<div class="fitem">
 						<label>计划返程日:</label>
-						<input name="expectedBack" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写expectedBack">
+						<input name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写expectedBack">
 					</div>
 					<div class="fitem">
 						<label>出行人数:</label>

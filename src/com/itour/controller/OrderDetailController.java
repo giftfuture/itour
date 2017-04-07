@@ -47,7 +47,7 @@ public class OrderDetailController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired  
 	private OrderDetailService<OrderDetail> orderDetailService; 
 	
 	@Autowired
@@ -111,8 +111,7 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public void save(OrderDetail entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object>  context = getRootMap();
+	public String save(OrderDetail entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		OrderDetail od = null;
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
@@ -134,7 +133,7 @@ public class OrderDetailController extends BaseController{
 			String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/save(update)",sessionuser.getId(),"",""));
 			logOperationService.add(new LogOperation(logId,"更新",odId,JsonUtils.encode(od),JsonUtils.encode(entity),"orderdetail/save(update)",sessionuser.getId()));
 		}
-		sendSuccessMessage(response, "保存成功~");
+		return sendSuccessResult(response, "保存成功~");
 	}
 	/**
 	 * 

@@ -182,9 +182,14 @@
 	</table>
   </div>
   <div id="detail-route" style="display:none">
-  <script type="text/javascript">
- 	$("#detail-route").load();
-  </script>
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+    <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
+  </tr>
+  <tr><td colspan="2">${qf.showTrip }</td></tr>
+  <tr> <td colspan="2"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
+</table>
   </div>
   <div id="need-know" style="display:none">
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -236,12 +241,12 @@ ${rt.beforeInstruction }
                 <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="mobile" class="easyui-validatebox textbox" data-options="validType:'phoneNum'"/>
                     <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; </td>
               </tr>
-              <tr>
+          <!--     <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>标题</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE140"><label>
                   <input type="text" name="title" />
                 </label></td>
-              </tr>
+              </tr> -->
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE140"><label>
@@ -357,7 +362,12 @@ ${rt.beforeInstruction }
                   小孩：2330元/人*2人（小孩不含门票） </td>
                 <td>&nbsp;</td>
               </tr>
-			  <tr><td><a href="${basePath}hiking/toQuote2/${rt.alias}">预定</a></td></tr>	
+              <tr><td>相关路线：
+              <c:forEach items="${rt.relates}" var="relat"><br>
+              	<a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a>
+              </c:forEach>
+              </td></tr>
+			  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>	
             </table>          
             <br /></td></tr>
       </table>

@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +24,6 @@ import com.google.common.collect.Lists;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
-import com.itour.controller.CustomersController;
-import com.itour.entity.Customers;
-import com.itour.entity.QuoteForm;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
 import com.itour.service.CustomersService;
@@ -41,6 +37,7 @@ import com.itour.service.TravelStyleService;
 import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
 import com.itour.vo.CustomerVo;
+import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
 
 @Controller
@@ -129,7 +126,7 @@ public class CustomizedController  extends BaseController{
 			}
 			 rt.setRelates(relates);
 		}
-		QuoteForm qf = quoteFormService.queryByRtId(rt.getId());
+		QuoteFormVo qf = quoteFormService.queryByRtId(rt.getId());
 		String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
 		rt.setBeriefTrip(beriefTrip);
 		String ftlName = "";

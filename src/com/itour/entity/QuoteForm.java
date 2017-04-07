@@ -16,6 +16,8 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private String id;
 	private String routeTemplate;//所属路线
 	private String beriefTrip;//简要行程
+	private String showTrip;//文本固定化的行程
+	private String travelItems;//旅行景点
 	private int adults;
 	private int children;
 	private boolean isAsAdult;
@@ -59,7 +61,34 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private Date createTime;
 	private Date updateTime;
 	private String updateBy;
+	private String groupCode;//团号
+	private Date groupDate;//出团日期
 	
+	
+	public String getTravelItems() {
+		return travelItems;
+	}
+	public void setTravelItems(String travelItems) {
+		this.travelItems = travelItems;
+	}
+	public String getShowTrip() {
+		return showTrip;
+	}
+	public void setShowTrip(String showTrip) {
+		this.showTrip = showTrip;
+	}
+	public String getGroupCode() {
+		return groupCode;
+	}
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+	public Date getGroupDate() {
+		return groupDate;
+	}
+	public void setGroupDate(Date groupDate) {
+		this.groupDate = groupDate;
+	}
 	public String getId() {
 		return id;
 	}
