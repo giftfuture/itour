@@ -1,18 +1,14 @@
 package com.itour.listener;
-
-import java.net.InetAddress;
-import java.util.List;
-import java.util.Map;
-
+import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import com.alibaba.druid.pool.DruidDataSource;
+import com.itour.base.util.SessionUtils;
 import com.itour.base.util.SystemVariable;
 import com.itour.util.Constants;
 
@@ -32,7 +28,6 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 	   ServletContext servlet=event.getServletContext();
-	   //servlet.
 	   SystemVariable.init();
 	   Constants.init();
 	}

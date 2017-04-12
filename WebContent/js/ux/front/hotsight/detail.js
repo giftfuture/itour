@@ -210,7 +210,34 @@ itour.hotsightdetail = function(){
 			    }
 			return html;
 			},
+			checkedAll:function (name){//全选
+				  var names=document.getElementsByName(name);
+				  var len=names.length;
+				  if(len>0){
+				   for(var i=0;i<len;i++)
+				   names[i].checked=true;
+				  }
+			},
+			uncheckedAll:function (name){//全不选
+					var names=document.getElementsByName(name);
+					var len=names.length;
+					if(len>0){
+					    for(var i=0;i<len;i++)
+					    names[i].checked=false;
+					  }
+			},
 		init:function(){
+			$("input[name='route_checkall']").click(function(){
+				if($(this).attr("checked")){
+					_this.checkedAll("breakfast");
+					_this.checkedAll("lunch");
+					_this.checkedAll("dinner");
+				}else{
+					_this.uncheckedAll("breakfast");
+					_this.uncheckedAll("lunch");
+					_this.uncheckedAll("dinner");
+				}
+			});
 			//扩展easyui表单的验证  
 			$.extend($.fn.validatebox.defaults.rules, { 
 			    phoneNum: { //验证手机号   

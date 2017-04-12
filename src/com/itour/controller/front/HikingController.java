@@ -286,10 +286,6 @@ public class HikingController extends BaseController{
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
 		context.put("qf", qf);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行HikingController的toQuote2方法");
-		String logId = logSettingService.add(new LogSetting("route_template，quote_form","徒步旅行","hiking/toQuote2",sessionuser.getId(),"",""));
-		logOperationService.add(new LogOperation(logId,"查询",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(qf),"hiking/toQuote2",sessionuser.getId()));
 		return forward("front/trek/quote_step2",context); 
 	}
 	/**

@@ -2,6 +2,7 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+import java.util.Date;
 /**
  * 
  * <br>
@@ -10,10 +11,41 @@ import java.math.BigDecimal;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class OrderDetail extends BaseEntity {
-	
-		private java.lang.String id;//   	private java.lang.Integer status;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//  
-	private boolean isValid;
-		public boolean isValid() {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1844719160695732166L;
+	private java.lang.String id;//   
+	private java.lang.Integer status;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//  	private boolean isValid;
+	private int adults;
+	private int children;
+	private String groupCode;//团号
+	private Date groupDate;//出团日期
+		public int getAdults() {
+		return adults;
+	}
+	public void setAdults(int adults) {
+		this.adults = adults;
+	}
+	public int getChildren() {
+		return children;
+	}
+	public void setChildren(int children) {
+		this.children = children;
+	}
+	public String getGroupCode() {
+		return groupCode;
+	}
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+	public Date getGroupDate() {
+		return groupDate;
+	}
+	public void setGroupDate(Date groupDate) {
+		this.groupDate = groupDate;
+	}
+	public boolean isValid() {
 		return isValid;
 	}
 	public void setValid(boolean isValid) {

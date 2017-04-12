@@ -7,7 +7,6 @@
  <meta http-equiv="description" content="${rt.title }"> 
 <title>${rt.title}</title>
 </head>
-
 <body>
 <%@include file="/front/header.jsp"  %>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -48,232 +47,8 @@
           <td width="761" valign="top" class="STYLE126"><span class="STYLE3">简要行程</span><span class="STYLE2">：</span></td>
         </tr>
       </table>
-      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
-        <tr>
-          <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-              <div align="center"><strong><strong>天数</strong></strong></div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23">日期</td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23">星期</td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-              <div align="center"><strong><strong>行程</strong></strong></div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-              <div align="center">里程</div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-              <div align="center">景点</div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">餐食</div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-              <div align="center">住宿</div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">酒店</div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">元/间</div></td>
-        </tr>
-        <tr>
-          <td width="32" valign="middle" class="STYLE126"><div align="center">1</div></td>
-          <td width="53" valign="middle" class="STYLE126">2016-7-2</td>
-          <td width="33" valign="middle" class="STYLE126">周六</td>
-          <td width="341" valign="middle" class="STYLE126">成都-四姑娘山</td>
-          <td width="49" valign="middle" class="STYLE126">310km</td>
-          <td width="90" valign="middle" class="STYLE126">【巴郎山】</td>
-          <td width="109" valign="middle" class="STYLE126"><input name="checkbox73243222" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox73244222" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox73245222" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td width="66" valign="middle" class="STYLE126">四姑娘山镇</td>
-          <td width="114" valign="middle" class="STYLE126">贵山商务酒店</td>
-          <td width="102" valign="middle" class="STYLE126">120</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">2</div></td>
-          <td valign="middle" class="STYLE126">2016-7-3</td>
-          <td valign="middle" class="STYLE126">周日</td>
-          <td valign="middle" class="STYLE126">徒步：海子溝</td>
-          <td valign="middle" class="STYLE126">30km</td>
-          <td valign="middle" class="STYLE126">【海子沟】</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox7324322" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324422" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324522" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">四姑娘山镇</td>
-          <td valign="middle" class="STYLE126">贵山商务酒店</td>
-          <td valign="middle" class="STYLE126">120</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">3</div></td>
-          <td valign="middle" class="STYLE126">2016-7-4</td>
-          <td valign="middle" class="STYLE126">周一</td>
-          <td valign="middle" class="STYLE126">日隆-10km-喇嘛寺-5km-枯树滩-7km-木骡子</td>
-          <td valign="middle" class="STYLE126">22Km</td>
-          <td valign="middle" class="STYLE126">【<a href="Destinations-sgnscpg.html" target="_blank">长坪沟</a>】</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox7324332" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324432" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324532" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">0</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">4</div></td>
-          <td valign="middle" class="STYLE126">2016-7-5</td>
-          <td valign="middle" class="STYLE126">周二</td>
-          <td valign="middle" class="STYLE126">木骡子-3km-水打坝-11m-叉子沟尾营地  </td>
-          <td valign="middle" class="STYLE126">14km</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox7324342" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324442" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324542" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">0</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">5</div></td>
-          <td valign="middle" class="STYLE126">2016-7-6</td>
-          <td valign="middle" class="STYLE126">周三</td>
-          <td valign="middle" class="STYLE126">叉子沟尾-垭口-三颗树-白龙瀑布-卓玛湖-上海子接待站-理县</td>
-          <td valign="middle" class="STYLE126">23km</td>
-          <td valign="middle" class="STYLE126">【毕棚沟】</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox7324352" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324452" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324552" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">理县/汶川</td>
-          <td valign="middle" class="STYLE126">汶川大酒店</td>
-          <td valign="middle" class="STYLE126">200</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">6</div></td>
-          <td valign="middle" class="STYLE126">2016-7-7</td>
-          <td valign="middle" class="STYLE126">周四</td>
-          <td valign="middle" class="STYLE126">返回成都</td>
-          <td valign="middle" class="STYLE126">200k</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox7324362" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324462" type="checkbox" value="checkbox" checked="checked" />
-              <input name="checkbox7324562" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">成都</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">全选　全不选 </td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">*没选则表示不含</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-        </tr>
-      </table>
-      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1">
-        <tr>
-          <td height="31" valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center"><strong><strong>天数</strong></strong></div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center"><strong><strong>行程</strong></strong></div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center">里程</div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center">景点</div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">餐食</div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE129"><div align="center" class="STYLE18">
-            <div align="center">住宿</div>
-          </div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">酒店</div></td>
-          <td valign="middle" bgcolor="#F0F0F0" class="STYLE23"><div align="center">元/间</div></td>
-        </tr>
-        <tr>
-          <td width="32" valign="middle" class="STYLE126"><div align="center">1</div></td>
-          <td width="369" valign="middle" class="STYLE126">成都-四姑娘山</td>
-          <td width="42" valign="middle" class="STYLE126">310km</td>
-          <td width="176" valign="middle" class="STYLE126">【巴郎山】</td>
-          <td width="89" valign="middle" class="STYLE126"><input name="checkbox73243" type="checkbox" value="checkbox" />
-          <input name="checkbox73244" type="checkbox" value="checkbox" checked="checked" />
-          <input name="checkbox73245" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td width="77" valign="middle" class="STYLE126">四姑娘山镇</td>
-          <td width="122" valign="middle" class="STYLE126">贵山商务酒店</td>
-          <td width="104" valign="middle" class="STYLE126">120</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">2</div></td>
-          <td valign="middle" class="STYLE126">徒步：海子溝</td>
-          <td valign="middle" class="STYLE126">30km</td>
-          <td valign="middle" class="STYLE126">【海子沟】</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox732432" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732442" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732452" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">四姑娘山镇</td>
-          <td valign="middle" class="STYLE126">贵山商务酒店</td>
-          <td valign="middle" class="STYLE126">120</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">3</div></td>
-          <td valign="middle" class="STYLE126">日隆-10km-喇嘛寺-5km-枯树滩-7km-木骡子</td>
-          <td valign="middle" class="STYLE126">22Km</td>
-          <td valign="middle" class="STYLE126">【<a href="Destinations-sgnscpg.html" target="_blank">长坪沟</a>】</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox732433" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732443" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732453" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">0</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">4</div></td>
-          <td valign="middle" class="STYLE126">木骡子-3km-水打坝-11m-叉子沟尾营地  </td>
-          <td valign="middle" class="STYLE126">14km</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox732434" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732444" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732454" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">露营</td>
-          <td valign="middle" class="STYLE126">0</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">5</div></td>
-          <td valign="middle" class="STYLE126">叉子沟尾-垭口-三颗树-白龙瀑布-卓玛湖-上海子接待站-理县</td>
-          <td valign="middle" class="STYLE126">23km</td>
-          <td valign="middle" class="STYLE126">【毕棚沟】</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox732435" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732445" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732455" type="checkbox" value="checkbox" checked="checked" /></td>
-          <td valign="middle" class="STYLE126">理县/汶川</td>
-          <td valign="middle" class="STYLE126">汶川大酒店</td>
-          <td valign="middle" class="STYLE126">200</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126"><div align="center">6</div></td>
-          <td valign="middle" class="STYLE126">返回成都</td>
-          <td valign="middle" class="STYLE126">200k</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126"><input name="checkbox732436" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732446" type="checkbox" value="checkbox" checked="checked" />
-            <input name="checkbox732456" type="checkbox" value="checkbox" /></td>
-          <td valign="middle" class="STYLE126">成都</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-        </tr>
-        <tr>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">全选　全不选 </td>
-          <td valign="middle" class="STYLE126">&nbsp;</td>
-          <td valign="middle" class="STYLE126">*没选则表示不含</td>
-          <td valign="middle" class="STYLE126">根据前页填写 </td>
-        </tr>
-      </table>
-      <br />
-      <br /></td>
+       ${qf.showTrip }
+</td>
   </tr>
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
@@ -284,28 +59,28 @@
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td colspan="2">成本</td>
-    <td colspan="2">分项加价<br />
+    <td colspan="2" align="center"  style="width:200px">成本</td>
+    <td colspan="2" style="width:200px">分项加价<br />
       <span class="STYLE148">加总价 分项加价 </span></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td width="78"><strong>项目</strong></td>
-    <td width="639"><div align="center"><strong>成本及计算</strong></div></td>
-    <td width="39">大人</td>
-    <td width="39"><div align="center">小孩</div></td>
-    <td width="56">&nbsp;</td>
-    <td width="56">&nbsp;</td>
+    <td width="639"><strong>成本及计算</strong></td>
+    <td width="39">人数(大人)</td>
+    <td width="56">人数(小孩)</td>
+    <td width="39">报价(大人)</td>
+    <td width="56">报价(小孩)</td>
     <td width="664"><div align="center" class="STYLE10"><strong>说明</strong></div></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>人数： </strong></div></td>
-    <td><label>
-      大人：4人 小孩：2人（按小孩价格核算）</label></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><label><input name="adultsprice" type="hidden" value="${qf.adults }"/><input name="childrenprice" type="hidden" value="${qf.children }"/>
+      大人：${qf.adults }元/人 小孩：${qf.children }元/人（按小孩价格核算）</label></td>
+    <td style="width:150px"><input size="6" type="text" name="adults"  class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/>位</td>
+    <td style="width:150px"><input size="6" type="text" name="children" class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/>位</td>
+    <td><input size="6" type="text" id="quoteadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
+    <td><input size="6" type="text" id="quotechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
     <td><span class="STYLE10">。按前面 一页填写的数据 <br />
       。分项报价的内容</span></td>
   </tr>
@@ -315,15 +90,11 @@
       <span class="STYLE126">2.</span>长坪沟户外门票150元<br />
       <span class="STYLE126">3.毕棚沟门票80元/人
 观光车 70元/人</span></td>
-    <td>350</td>
+    <td>${350 }</td>
     <td>
       0</td>
-    <td><span class="STYLE126">
-      <input name="textfield32275" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield32276" type="text" size="6" />
-    </span></td>
+    <td><input size="6" type="text" id="quoteticketadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
+    <td><input size="6" type="text" id="quoteticketchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
     <td><span class="STYLE10">小孩 未勾选，则成本 为0 </span></td>
   </tr>
   <tr>
@@ -528,12 +299,12 @@
       <table border="0" cellspacing="0" cellpadding="3">
         <tr>
           <td><input type="button" onclick="javascript:go(-1)" name="Submit2" value="返回上页修改" /></td>
-          <td><input type="submit" name="Submit22" value="算算呗 ：）" /></td>
+          <td><input type="button" name="calculateSum" value="算算呗 " /></td>
         </tr>
-        <tr>
+  <%--       <tr>
           <td>链接1</td>
           <td><a href="${basePath}hiking/toQuote3">链接2</a></td>
-        </tr>
+        </tr> --%>
       </table></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

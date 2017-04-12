@@ -254,10 +254,6 @@ public class SelfdriveController  extends BaseController{
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
 		context.put("qf", qf);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SelfdriveController的toQuote2方法");
-		String logId = logSettingService.add(new LogSetting("route_template，quote_form","自驾","selfdrive/toQuote2",sessionuser.getId(),"",""));
-		logOperationService.add(new LogOperation(logId,"查询",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(qf),"selfdrive/toQuote2",sessionuser.getId()));
 		return forward("front/selfdrive/quote_step2",context); 
 	}
 	/**

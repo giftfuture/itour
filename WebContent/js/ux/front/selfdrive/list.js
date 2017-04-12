@@ -29,7 +29,6 @@ itour.selfdrive = function(){
 				 //$(document.forms[0]).ajaxSubmit(option);
 			 	 $(document.forms[0]).resetForm(); // 提交后重置表单
 				 return false;
-				
 			},
 		init:function(){
 			$("input[type='button']").click(_this.feedback);

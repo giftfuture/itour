@@ -2,17 +2,6 @@ $package('itour.orderDetail');
 itour.orderDetail = function(){
 	var _box = null;
 	var _this = {
-	/*	config:{
-			event:{
-				add:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
-				},
-				edit:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
-				}
-			},*/
 			toList:function(parentId){
 				_box.form.search.resetForm();
 				if(parentId){

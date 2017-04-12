@@ -229,10 +229,11 @@ var itour={
 	getById:function(url,option,callback){
 		itour.progress();
 		itour.ajaxJson(url,option,function(data){
-		//	console.log(data);
+	//		console.log(data);
 			itour.closeProgress();
 			//var jsondata = $.parseJSON(data);//$(data).text()
 			if(data.success||data.success=="true"){
+			//	console.log($.isFunction(callback)+callback);
 				if($.isFunction(callback)){
 					//console.log("data:"+data);
 					callback(data);
@@ -366,9 +367,7 @@ $.extend($.fn.validatebox.defaults.rules, {
      validator : function(value) {
       var cmccMobile = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
       var tel = /^\d{3,4}?\d{7,8}$/;
-      return tel.test(value)
-        || (value.length == 11 && cmccMobile
-          .test(value));
+      return tel.test(value)|| (value.length == 11 && cmccMobile.test(value));
      },
      message : "请正确填写您的联系电话."
     },

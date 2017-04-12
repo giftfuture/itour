@@ -55,20 +55,41 @@ var YDataGrid = function(config){
  					data[idKey] = (record[0][idKey]);
 					itour.getById(Action.getId,data,function(result){
 						itour.closeProgress();
+						//console.log(result.data);
 						Form.edit.form('load',result.data);
-						for(var name in CKEDITOR.instances){
-							CKEDITOR.instances[name].destroy();
+						try{
+							if(CKEDITOR.instances.length>0){
+								for(var name in CKEDITOR.instances){
+									CKEDITOR.instances[name].destroy();
+								}
+							}
+						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
+							if(result.data.beforeInstruction !=''){
+								var beforeInstruction = CKEDITOR.replace('beforeInstruction');
+								beforeInstruction.setData(result.data.beforeInstruction);
+							}
+							if(result.data.customizedService!=''){
+								var customizedService = CKEDITOR.replace('customizedService');
+								customizedService.setData(result.data.customizedService);
+							}
+							if(result.data.designConcept!=''){
+								var designConcept = CKEDITOR.replace('designConcept');
+								designConcept.setData(result.data.designConcept);
+							}
+							if(result.data.orderId!=''){
+								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
+							}
+						}catch(e){
+							console.log("name: " + e.name + 
+									 ",description: " +e.description+
+								      ",message: " + e.message + 
+								      ",lineNumber: " + e.lineNumber + 
+								      ",fileName: " + e.fileName + 
+								      ",stack: " + e.stack);
 						}
-					//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
-					    var beforeInstruction = CKEDITOR.replace('beforeInstruction');
-					    beforeInstruction.setData(result.data.beforeInstruction);
-						var customizedService = CKEDITOR.replace('customizedService');
-						customizedService.setData(result.data.customizedService);
-						var designConcept = CKEDITOR.replace('designConcept');
-						designConcept.setData(result.data.designConcept);
-						$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 						Win.edit.dialog('open'); 
 						//回调函数
+						//console.log(callback+jQuery.isFunction(callback));
 						if(jQuery.isFunction(callback)){
 							callback(result);
 						}
@@ -153,9 +174,20 @@ var YDataGrid = function(config){
 			                    CKEDITOR.instances[instance].updateElement();
 			            }
 		            CKupdate(); //在提交表单前需要做以上处理
-*/ 					Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
-					Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
-					Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
+*/ 				try{
+					if(CKEDITOR.instances.length>0){
+						Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
+						Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
+						Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
+					}
+				}catch(e){
+					console.log("name: " + e.name + 
+							 ",description: " +e.description+
+						      ",message: " + e.message + 
+						      ",lineNumber: " + e.lineNumber + 
+						      ",fileName: " + e.fileName + 
+						      ",stack: " + e.stack);
+				}
 					itour.saveForm(Form.edit,function(data){
 						itour.closeProgress();
 						Win.edit.dialog('close');

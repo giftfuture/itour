@@ -38,6 +38,7 @@ import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
+import com.itour.service.TravelOrderService;
 import com.itour.service.TravelStyleService;
 import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
@@ -70,6 +71,8 @@ public class ClimbController  extends BaseController{
 	// Servrice start
 	@Autowired
 	private CustomersService customersService; 
+	@Autowired
+	private TravelOrderService travelOrderService;
 	
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -254,10 +257,6 @@ public class ClimbController  extends BaseController{
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
 		context.put("qf", qf);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ClimbController的toQuote2方法");
-		String logId = logSettingService.add(new LogSetting("route_template，quote_form","爬山","climb/toQuote2",sessionuser.getId(),"",""));
-		logOperationService.add(new LogOperation(logId,"查询",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(qf),"selfdrive/toQuote2",sessionuser.getId()));
 		return forward("front/climb/quote_step2",context); 
 	}
 	/**

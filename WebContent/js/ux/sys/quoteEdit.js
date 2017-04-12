@@ -3,6 +3,7 @@ itour.quoteEdit = function(){
 	var _box = null;
 	var _this = {
 		saveQuoteForm:function(){
+			document.forms["quoteEditForm"].target="rfFrame";
 			var formData = new Object();
 			var actionurl=basePath+"routeTemplate/updateQuoteForm";
 			formData["routeTemplate"]  = $('input[name="rtId"]').val();
@@ -38,12 +39,162 @@ itour.quoteEdit = function(){
 			formData["ridecostAsadult"]=$("input[name='ridecostAsadult']").is(':checked');	
 			formData["climbRegisterCost"]=$("#climbregisterdiv").html();
 			formData["climbrcostAsadult"]=$("input[name='climbrcostAsadult']").is(':checked');	
-			formData["climbNexusCost"]=$("#climbnexusdiv").html();
+	  		formData["climbNexusCost"]=$("#climbnexusdiv").html();
 			formData["climbncostAsadult"]=$("input[name='climbncostAsadult']").is(':checked');	
 			formData["elseCost"]=$("#elseitemdiv").html();
 			formData["elsecostAsadult"]=$("input[name='elsecostAsadult']").is(':checked');	
 			formData["presented"]=$("input[name='presented']").val();
-			var showTrip="<table name='showTrip' width='80%' cellspacing='1' cellpadding='5' border='0' align='center'><thead><tr>"+
+			var sights = $("#addsightdiv").find("input[name='sight']");
+			var sightprices =  $("#addsightdiv").find("input[name='sightprice']");
+			var showTicket ="";
+			if(sights.length>0 && sightprices.length>0){
+				for(var i in sights){
+					showTicket+=(i+1)+"."+sights[i].value+"门票"+sightprices[i].value+"元/人<br/>";
+				}
+			}
+			formData["showTicket"]=showTicket;
+			var cards = $("#addcarddiv").find("input[name='card']");
+			var cardprices =  $("#addcarddiv").find("input[name='cardprice']");
+			var showTraveldoc = "";
+			if(cards.length>0 && cardprices.length>0){
+				for(var i in cards){
+					showTraveldoc+=(i+1)+"."+cards[i].value+"价格"+cardprices[i].value+"元/人<br/>";
+				}	
+			}
+	        formData["showTraveldoc"]=showTraveldoc;
+	        var showTourguide ="";
+	        var alltheway = $("#addGuideDiv").find("input[name='alltheway']");
+	        var choselanguage = $("#addGuideDiv").find("select[name='choselanguage']");
+	        var priceperday = $("#addGuideDiv").find("input[name='priceperday']");
+	      //  console.log(alltheway.length+"  "+ choselanguage.length+"  "+priceperday.length);
+			if(alltheway.length>0 && choselanguage.length>0 && priceperday.length>0){
+		        for(var i in alltheway){
+		        	//console.log(choselanguage[i].options[choselanguage[i].selectedIndex].value+"   "+choselanguage[i].selectedIndex);
+		        	showTourguide+=(i+1)+"."+alltheway[i].value+" "+$(choselanguage[i]).find("option:selected").val()+" "+priceperday[i].value+"元/天<br/>";
+		        }
+			}
+            formData["showTourguide"]=showTourguide;
+            var showHotel = "";
+            var stayposition = $("table[name='routetable']").find("input[name='stayposition']");
+            var hotel = $("table[name='routetable']").find("select[name='hotel']");
+            var selfhotel = $("table[name='routetable']").find("input[name='selfhotel']");
+            var hotelprice = $("table[name='routetable']").find("input[name='hotelprice']");
+            if(stayposition.length>0 &&hotel.length>0 &&selfhotel.length>0 &&hotelprice.length>0){
+            	showHotel+=(i+1)+"."+(selfhotel[i].value?selfhotel[i].value:hotel[i].options[hotel[i].selectedIndex].value)+"  "+hotelprice[i].value+"/间/夜<br/>"
+            }
+            formData["showHotel"]=showHotel;
+            var showRentcar = "";
+            var carway = $("#addcardiv").find("input[name='alltheway']");
+            var carprice = $("#addcardiv").find("input[name='carprice']");
+            var carstyle = $("#addcardiv").find("select[name='carstyle']");
+			if(carway.length>0 && carprice.length>0 && carstyle.length>0){
+	            for(var i in carway){
+	            	showRentcar+=(i+1)+"."+ carway[i].value+"  "+carprice[i].value+"  "+carstyle[i].options[carstyle[i].selectedIndex].value+"元/天<br/>";
+	            }
+			}
+            formData["showRentcar"]=showRentcar;
+            var showBigtraffic="";
+            var traffic=$("#addbigtrafficdiv").find("input[name='traffic']");
+            var trafficperprice =$("#addbigtrafficdiv").find("input[name='trafficperprice']");
+			if(traffice.length>0 && trafficperprice.length>0){
+	            for(var i in traffice){
+	            	showBigtraffic+=(i+1)+"."+traffic[i].value+" "+trafficperprice[i].value+"元/人<br/>";
+	            }
+			}
+            formData["showBigtraffic"]=showBigtraffic;
+            var showDinner = "";
+            var breakfast = $("input[name='breakfast']").is(':checked');
+            var lunch = $("input[name='lunch']").is(':checked');
+            var dinner = $("input[name='dinner']").is(':checked');
+            var singledinnerprice = $("#dinnerblock").find("input[name='singledinner']").val();
+            showDinner+="早餐酒店用，共"+breakfast.length+"餐,正餐共"+(lunch.length+dinner.length)+"餐，每餐价格"+singledinnerprice+"元/人<br/>";
+            var dinnername = $("#dinnerblock").find("input[name='dinnername']");
+            var dinnerprice = $("#dinnerblock").find("input[name='dinnerprice']");
+    		if(dinnername.length>0 && dinnerprice.length>0){
+    			showDinner+="特色餐"+dinnername.length+"餐（";
+	            for(var i in dinnername){
+	            	showDinner+=dinnername[i].value+"  "+dinnerprice[i].value+"元/人、";
+	            	if(i%2==0)showDinner+="<br/>";
+	            }
+	            showDinner+="）";
+    		}
+            formData["showDinner"]=showDinner;
+            var showInsurance = "";
+            var insuranceselect = $("#insurancediv").find("select[name='insuranceselect']");
+            var insuranceprice =  $("#insurancediv").find("input[name='insuranceprice']");
+            for(var i in insuranceselect){
+            	showInsurance+=insuranceselect[i].options[insuranceselect[i].selectedIndex].value+" "+insuranceprice[i].value+"元/人<br/>";
+            }
+            formData["showInsurance"]=showInsurance;
+            var showComphcost = "";
+            var feeName = $("#allfeesdiv").find("input[name='feeName']").val();
+            var feeperperson = $("#allfeesdiv").find("input[name='feeperperson']").val();
+            if(feeName.length>0 && feeperperson.length>0){
+            	showComphcost+=feeName[i].value+" "+feeperperson[i].value+"元/人<br/>";
+            }
+            formData["showComphcost"]=showComphcost;
+            var showRecreation = "";
+            var joyitem=$("#addjoysdiv").find("input[name='joyitem']");
+            var perjoyprice=$("#addjoysdiv").find("input[name='perjoyprice']");
+            if(joyitem.length > 0 && perjoyprice.length > 0){
+	            for(var i in joyitem){
+	            	showRecreation+=joyitem[i].value+"  "+perjoyprice[i].value+"元/人<br/>";
+	            }
+            }
+            formData["showRecreation"]=showRecreation;
+            var showItemguide = "";
+            var hikingitem = $("#hikingguidediv").find("input[name='hikingitem']");
+            var guidename = $("#hikingguidediv").find("input[name='guidename']");
+            var guideperday = $("#hikingguidediv").find("input[name='guideperday']");
+            if(hikingitem.length>0 && guidename.length>0 && guideperday.length>0){
+            	showItemguide+="项目："+hikingitem[i].value+"向导名："+guidename[i].value+"  "+guideperday[i].value+"元/天";
+            }
+            formData["showItemguide"]=showItemguide;
+            var showBathorse = "";
+            var bathorseCost=$("#bathorseCostdiv").find("input[name='bathorseCost']");
+            var bathorsenum=$("#bathorseCostdiv").find("input[name='bathorsenum']");
+            var bathorseprice=$("#bathorseCostdiv").find("input[name='bathorseprice']");
+            if(bathorseCost.length>0 && bathorsenum.length>0 && bathorseprice.length>0){
+            	showBathorse+=+"项目："+bathorseCost[i].value+"马匹数："+bathorsenum[i].value+"  "+bathorseprice[i].value+"元/天<br/>";
+            }
+            formData["showBathorse"]=showBathorse;
+            var showRidehorse = ""; 
+            var ridehorse = $("#ridehorseCostdiv").find("input[name='ridehorse']");
+            var ridehorseperday = $("#ridehorseCostdiv").find("input[name='ridehorseperday']");
+            if(ridehorse.length>0 && ridehorseperday.length>0){
+	            for(var i in ridehorse){
+	            	showRidehorse+="项目："+ridehorse[i].value+"  "+ridehorseperday[i].value+"元/天<br/>";
+	            }
+            }
+            formData["showRidehorse"]=showRidehorse;
+            var showClimbregister = "";
+            var climbRegister = $("#climbregisterdiv").find("input[name='climbRegister']");
+            var climbRegisterperday = $("#climbregisterdiv").find("input[name='climbRegisterperday']");
+            if(climbRegister.length>0 && climbRegisterperday.length>0){
+	            for(var i in climbRegister){
+	            	showClimbregister+="项目："+climbRegister[i].value+"   "+climbRegisterperday[i].value+"元/天<br/>";
+	            }
+            }
+            formData["showClimbregister"]=showClimbregister;
+            var showClimbnexus = "";
+            var climbnexus = $("#climbnexusdiv").find("input[name='climbnexus']");
+            var climbnexusperday = $("#climbnexusdiv").find("input[name='climbnexusperday']");
+            var climbnexusdays = $("#climbnexusdiv").find("input[name='climbnexusdays']");
+            if(climbnexus.length> 0 && climbnexusperday.length>0&& climbnexusdays.length>0){
+            	for(var i in climbnexus){
+            		showClimbnexus+="项目："+climbnexus[i].value+" 天数:"+climbnexusdays[i].value+" "+climbnexusperday[i].value+"元/天<br/>";
+            	}
+            }
+            formData["showClimbnexus"]=showClimbnexus;
+            var showElsecost = "";
+            var elseitem = $("#elseitemdiv").find("input[name='elseitem']");
+            var elseitemprice = $("#elseitemdiv").find("input[name='elseitemprice']");
+            var elseitemstyle = $("#elseitemdiv").find("select[name='elseitemstyle']");
+            if(elseitem.length> 0 && elseitemprice.length>0){
+            	showElsecost+="项目："+elseitem[i].value+"  "+showElsecost[i].value+"元/天"+elseitemstyle[i].options[elseitemstyle[i].selectedIndex].value+"<br/>";
+            }
+            formData["showElsecost"]= showElsecost;
+	  	 var showTrip="<table name='showTrip' width='80%' cellspacing='1' cellpadding='5' border='0' align='center'><thead><tr>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' height='31'><div class='style18' align='center'><div align='center'><strong><strong>天数</strong></strong></div></div></td>"+
           "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'>日期</td>"+
           "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'>星期</td>"+
@@ -55,14 +206,14 @@ itour.quoteEdit = function(){
           "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'><div align='center'>酒店</div></td>"+
           "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'><div align='center'>元/间</div></td></tr></thead>"+
           "<tbody>";
-	    var beriefTrip="";
+	        var beriefTrip="";
 			var showTriptrs =$("table[name='routetable'] tbody tr");//$("#routetablediv").html();	
 			$.parser.parse($(showTriptrs).parent());
 			$(showTriptrs).each(function(i,e){
 				  if(i!=showTriptrs.length-1){
 					 // var beriefTr= document.getElementById("routetablediv").innerHTML;
 					  //$("#routetablecopydivtr");
-					  var beriefTr="<tr id=beriefTr_"+i+"><td class=STYLE126 width=34 valign=middle><div align=center><select name='tourdays'><option value='1'>1</option>"+
+					  var beriefTr="<tr id=beriefTr_"+i+"><td class=style126 width=34 valign=middle><div align=center><select name='tourdays'><option value='1'>1</option>"+
 				        "<option value='2'>2</option>"+
 				        "<option value='3'>3</option>"+
 				        "<option value='4'>4</option>"+
@@ -77,8 +228,8 @@ itour.quoteEdit = function(){
 				        "<option value='13'>13</option>"+
 				        "<option value='14'>14</option>"+
 				        "<option value='15'>15</option></select></div></td>"+
-				        "<td class=STYLE126 width=55 valign=middle>"+
-				        "<input name='tourTime' class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'\" style='width:100px;'/></td>"+
+				        "<td class=STYLE126 width=55 valign=middle><input type='hidden' name='tourTimeinput' />"+
+				        "<input name='tourTime' id='tourTime' class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.quoteEdit.onChangeDate(this)\" style='width:100px;'/></td>"+
 				        "<td class=STYLE126 width=35 valign=middle>"+
 				        "<select name='tourWeekday'><option value='周日'>周日</option>"+
 				        "<option value='周一'>周一</option>"+
@@ -89,45 +240,71 @@ itour.quoteEdit = function(){
 				        "<option value='周六'>周六</option></select></td>"+
 				        "<td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>"+
 				        "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()></td>"+
-				        "<td class=STYLE126 width=124 valign=middle><select name='travelItem' class='easyui-combobox'  style='width:100px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
+				        "<td class=STYLE126 width=124 valign=middle><select id='travelItem' name='travelItem' class='easyui-combobox'  style='width:150px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
 			            "formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_"+new Date().getTime()+"'+row.alias+' value='+row.alias+'>'+row.item+'<span>';},onSelect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', false);}\"></select></td>"+
 				        "<td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>"+
 				        "中餐：<input name='lunch' checked=checked type=checkbox>"+
 				        "晚餐：<input name='dinner' checked=checked type=checkbox></td>"+
 				        "<td class=STYLE126 width=57 valign=middle><input type=text name='stayposition'></td>"+
 				        "<td class=STYLE126 width=171 valign=middle><select name='hotel' >"+
-				          "<option >选择该城市酒店</option>"+
+				          "<option>选择该城市酒店</option>"+
 				          "<option value='贵山商务酒店'>贵山商务酒店</option>"+
 				          "<option value='嘉绒酒店'>嘉绒酒店</option></select>"+
-				          "<input name='selfhotel' size=10 type=text>"+
+				          "<input name='selfhotel' size=10 type='text'>"+
 				          "<br>*也可自己填写</td>"+
 				          "<td class=STYLE126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()>" +
 				        "</td><td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td>"+
 				      "</tr>";
-					  var travelItem = "";
-					  $("input[name='travelItem']",$(e)).each(function(i,e){
+					  // class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'\"
+					  var travelItem = "";// multiple='multiple'
+					  $.parser.parse($(e).parent());
+					  $("#travelItem",$(e)).each(function(i,e){
 						  travelItem += $(this).val() + ",";
 					  });
+					 //$.parser.parse($("input[name='tourTime']",$(e)).parent());
 					 // console.log($("select[name='travelItem']",$(e)).combobox('getValue'));
-					 // travelItem = travelItem.substr(0, travelItem.length - 1);
+					 // travelItem = travelItem.substr(0, travelItem.length - 1);textbox combo datebox//$("#tourTime",$(e)).datebox('getValue')
+					  console.log($("input[name='tourTimeinput']",$(e)).val());
+					  console.log($($("span.textbox.combo.datebox")[i]).find("input[type='hidden'][name='tourTime']").val());
 					  var newtr="<tr><td class='STYLE126' width='34' valign='middle'><div align='center'>"+$("select[name='tourdays'] option:selected",$(e)).val()+"</div></td>"+
-			          "<td class='STYLE126' width='55' valign='middle'><span name='tourTime'>"+$("input[name='tourTime']",$(e)).val()+"</span></td>"+
+			          "<td class='STYLE126' width='55' valign='middle'><span name='tourTime'>"+$($("span.textbox.combo.datebox")[i]).find("input.textbox-value[type='hidden'][name='tourTime']").val()+"</span></td>"+
 			          "<td class='STYLE126' width='35' valign='middle'><span  name='tourWeekday'>"+$("select[name='tourWeekday'] option:selected",$(e)).text()+"</span></td>"+
 			          "<td class='STYLE126' width='308' valign='middle'><span name='tourDesc'>"+$("input[name='tourDesc']",$(e)).val()+"</span></td>"+
 			          "<td class='STYLE126' width='50' valign='middle'><span name='mileage'>"+$("input[name='mileage']",$(e)).val()+"</span></td>"+
 			          "<td class='STYLE126' width='124' valign='middle'><span name='travelItem'>"+$($("div.panel.combo-p")[i]).find(".combobox-item.combobox-item-selected").text()+"</span></td>"+
 			          "<td class='STYLE126' width='267' valign='middle'>" +	//$($("div.panel.combo-p")[i]).find(".combobox-item.combobox-item-selected").text()
-			          ($("input:checked[name='breakfast']",$(e)).is(':checked') ?"<span name='breakfast'>早餐</span>":"") +
+			          "早餐：<input name='breakfast' checked=checked type='checkbox'>"+
+				      "中餐：<input name='lunch' checked=checked type='checkbox'>"+
+				      "晚餐：<input name='dinner' checked=checked type='checkbox'>"+
+			          /*($("input:checked[name='breakfast']",$(e)).is(':checked') ?"<span name='breakfast'>早餐</span>":"") +
 	        		  ($("input:checked[name='lunch']",$(e)).is(':checked') ?"<span name='lunch'>中餐</span>" :"")+
-    				  ($("input:checked[name='dinner']",$(e)).is(':checked') ?"<span name='dinner'>晚餐</span>":"") +
+    				  ($("input:checked[name='dinner']",$(e)).is(':checked') ?"<span name='dinner'>晚餐</span>":"") +*/
     				  "</td>"+
 			          "<td class='STYLE126' width='57' valign='middle'><span name='stayposition'>"+$("input[name='stayposition']",$(e)).val()+"</span></td>"+
 			          "<td class='STYLE126' width='171' valign='middle'><span  name='hotel'>"+
-			          ($("input[name='selfhotel']",$(e)).val()?$("input[name='selfhotel']",$(e)).val():($("select[name='hotel'] option:selected",$(e)).val()=="选择该城市酒店"?"":$("#hotel option:selected",$(e)).val()))+"</span>"+
+			          ($("input[name='selfhotel']",$(e)).val()?$("input[name='selfhotel']",$(e)).val():($("select[name='hotel'] option:selected",$(e)).val()=="选择该城市酒店"?"":$("select[name='hotel'] option:selected",$(e)).val()))+"</span>"+
 			          "</td><td class='STYLE126' width='88' valign='middle'><span  name='hotelprice'>"+$("input[name='hotelprice']",$(e)).val()+"</span></td></tr>";
 			          showTrip+=newtr;
 			          $("select[name='tourdays']",$(beriefTr)).val($("select[name='tourdays']",$(e)).find("option:selected").val());	
-			          //$("input[name='tourTime']",$(beriefTr)).datebox('setValue',$("input[name='tourTime']",e).datebox('getValue'));
+			          try{
+			        	   $.parser.parse($(beriefTr).parent());
+			        	 /* console.log($("input[name='tourTime']",e).val());
+				          $("input[name='tourTime']",$(beriefTr)).val($("input[name='tourTime']",e).val());*/
+			        	//  $.parser.parse($("input[name='tourTime']",$(e)));
+			        	  var tourTime = $("input[name='tourTimeinput']",$(e)).val();//$("input[name='tourTimeinput']",$(e)).datebox('getValue');
+			        	  console.log(tourTime);
+			        	  //$.parser.parse($("input[name='tourTime']",$(beriefTr)));
+			        	//  $.parser.parse($("select[name='travelItem']",$(beriefTr)).parent());
+			        	  $("#travelItem",$(beriefTr)).combobox('setValue',travelItem);
+				          $("#tourTime",$(beriefTr)).datebox('setValue',tourTime);
+					}catch(e){
+						console.log("name: " + e.name + 
+								 ",description: " +e.description+
+							      ",message: " + e.message + 
+							      ",lineNumber: " + e.lineNumber + 
+							      ",fileName: " + e.fileName + 
+							      ",stack: " + e.stack);
+					}
 			          $("select[name='tourWeekday']",$(beriefTr)).val($("select[name='tourWeekday']",$(e)).find("option:selected").val());
 			          $("input[name='tourDesc']",$(beriefTr)).val($("input[name='tourDesc']",$(e)).val());
 			          $("input[name='mileage']",$(beriefTr)).val($("input[name='mileage']",$(e)).val());
@@ -135,14 +312,12 @@ itour.quoteEdit = function(){
 	        		  $("input[name='lunch']",$(beriefTr)).attr("checked",$("input:checked[name='lunch']",$(e)).is(':checked'));
     				  $("input[name='dinner']",$(beriefTr)).attr("checked",$("input:checked[name='dinner']",$(e)).is(':checked'));
 			          $("input[name='stayposition']",$(beriefTr)).val($("input[name='stayposition']",$(e)).val());
-			        //  $("select[name='travelItem']",$(beriefTr)).combobox('setValue',travelItem);
 			          if($("input[name='selfhotel']",$(e)).val()){
 			        	  $("input[name='selfhotel']",$(beriefTr)).val($("input[name='selfhotel']",$(e)).val());
 			          }else{			        	  
 			        	  $("select[name='hotel']",$(beriefTr)).val($("select[name='hotel']",$(e)).find("option:selected").val()=="选择该城市酒店"?"":$("select[name='hotel']option:selected",$(e)).val());
 			          }
 			          $("input[name='hotelprice']",$(beriefTr)).val($("input[name='hotelprice']",$(e)).val());
-			           
 			          beriefTrip+=beriefTr;   
 	        		 // formData["travelItems"]=travelItem;
 				  }
@@ -152,14 +327,14 @@ itour.quoteEdit = function(){
           "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
           "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
           "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle' colspan='3'><input name='route_checkall' checked='checked' type='checkbox'>全选/全不选 </td>"+
-          "<td class='STYLE126' valign='middle'>*没选则表示不含</td>"+
+          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
+          "<td class='STYLE126' valign='middle'><input name='route_checkall' checked='checked' type='checkbox'>全选/全不选 </td>"+
+          "<td class='STYLE126' valign='middle'></td>"+
           "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
          "</tr></tbody></table>";
 			formData["showTrip"]=showTrip;
 			formData["beriefTrip"]=beriefTrip;
-			 
 			//console.log(formData["showTrip"]);
 			__.post(actionurl, formData, function(result) {
 				//console.log("data.success="+data.success);
@@ -197,13 +372,13 @@ itour.quoteEdit = function(){
 		     
 		},*/
 		dinnerPlus:function(){
-			var insertDinner="<tbody><tr><td><a name='addspecialdinner'><img src=images/add.gif width=16 height=16 ></a></td><td rowspan=3>安排特色餐： <select name=province><option>四川</option> <option>云南</option> <option>西藏</option><option>新疆</option> </select></td></tr></tbody>"+
+			var insertDinner="<tbody><tr><td><a name='addspecialdinner'><img src='images/add.gif' width=16 height=16 ></a></td><td rowspan=3>安排特色餐： <select name='province'><option>四川</option> <option>云南</option> <option>西藏</option><option>新疆</option> </select></td></tr></tbody>"+
 			"<tbody><tr><td><input name=district size=10 type=text></td>"+
 	    	"<td><span class=style126>餐名：<input name=dinnername size=10 type=text>&nbsp;"+
-	        "<input name=dinnerprice size=6 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>元/人 </span></td>"+
+	        "<input name=dinnerprice size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/人 </span></td>"+
 	        "<td><a name='addsingledinner'><img src=images/add.gif width=16 height=16 ></a></td></tr></tbody>"+
 	    	"<tbody><tr><td><input name=district size=10 type=text></td><td>餐名：<input name=dinnername size=10 type=text>&nbsp;"+
-	        "<input name=dinnerprice size=6 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+	        "<input name=dinnerprice size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 	 		 "元/人</td><td><a name='addsingledinner'><img src=images/add.gif width=16 height=16 ></a></td> </tr></tbody>";
 			$("#specialdinnerblock table").append(insertDinner);
 		},
@@ -213,14 +388,14 @@ itour.quoteEdit = function(){
 		specialDinnerPlus:function(obj){
 			var specialDinner="<tbody><tr><td><input name=district size=10 type=text></td>"+
 			"<td><span class=style126>餐名：<input name=dinnername size=10 type=text>&nbsp;"+
-			"<input name=dinnerprice size=6  style='width:50px'  type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>元/人 </span></td>"+
+			"<input name=dinnerprice size=6  style='width:50px'  type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/人 </span></td>"+
 			"<td><a name='addsingledinner' ><img src=images/add.gif width=16 height=16 ></a></td></tr></tbody>";
 			$(obj).parent().parent().parent().after(specialDinner);		
 		},specialDinnerMinus:function(){
 											
 		},singleDinnerPlus:function(obj){
 			var singledinner = " <td>餐名：<input name=dinnername size=10 type=text>&nbsp;"+
-			"<input name='dinnerprice' size=6  style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>元/人</td>";
+			"<input name='dinnerprice' size=6  style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/人</td>";
 			$(obj).parent().before(singledinner);
 		},singleDinnerMinus:function(){
 			
@@ -228,7 +403,7 @@ itour.quoteEdit = function(){
 		sightPlus:function(){
 			var insertBlock = "<span class=STYLE126><br> 景点名称"+
 			"<input name=sight size=20 type=text>"+
-			"<input name=sightprice size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name=sightprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			"元/人<a name=minusSight><img src=images/minus.png onclick='javascript:itour.quoteEdit.sightMinus(this)' width=20 height=20 ></a></span>";
 			$("#addsightdiv").append(insertBlock);
 		},
@@ -253,8 +428,8 @@ itour.quoteEdit = function(){
 			          "<option value='13'>13</option>"+
 			          "<option value='14'>14</option>"+
 			          "<option value='15'>15</option></select></div></td>"+
-			          "<td class=STYLE126 width=55 valign=middle>"+
-			          "<input name='tourTime' class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'\" style='width:100px;'/></td>"+
+			          "<td class=STYLE126 width=55 valign=middle><input type='hidden' name='tourTimeinput' />"+
+			          "<input name='tourTime' id='tourTime' class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.quoteEdit.onChangeDate(this)\" style='width:100px;'/></td>"+
 			          "<td class=STYLE126 width=35 valign=middle>"+
 			          "<select name='tourWeekday'><option value='周日'>周日</option>"+
 			          "<option value='周一'>周一</option>"+
@@ -264,24 +439,32 @@ itour.quoteEdit = function(){
 			          "<option value='周五'>周五</option>"+
 			          "<option value='周六'>周六</option></select></td>"+
 			          "<td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>"+
-			          "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()></td>"+
-			          "<td class=STYLE126 width=124 valign=middle><select name='travelItem' class='easyui-combobox'  style='width:100px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
+			          "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" ></td>"+
+			          "<td class=STYLE126 width=124 valign=middle><select name='travelItem' id='travelItem' class='easyui-combobox'  style='width:150px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
 			          "formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_"+new Date().getTime()+"'+row.alias+' value='+row.alias+'>'+row.item+'<span>';},onSelect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', false);}\"></select></td>"+
 			          "<td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>"+
-			          "中餐：<input name='lunch' checked=checked type=checkbox>"+
-			          "晚餐：<input name='dinner' checked=checked type=checkbox></td>"+
-			          "<td class=STYLE126 width=57 valign=middle><input type=text name=stayposition></td>"+
+			          "中餐：<input name='lunch' checked=checked type='checkbox'>"+
+			          "晚餐：<input name='dinner' checked=checked type='checkbox'></td>"+
+			          "<td class=STYLE126 width=57 valign=middle><input type=text name='stayposition'></td>"+
 			          "<td class=STYLE126 width=171 valign=middle><select name='hotel' >"+
 			            "<option>选择该城市酒店</option>"+
 			            "<option value='贵山商务酒店'>贵山商务酒店</option>"+
 			            "<option value='嘉绒酒店'>嘉绒酒店</option></select>"+
-			            "<input name='selfhotel' size=10 type=text>"+
+			            "<input name='selfhotel' size=10 type='text'>"+
 			            "<br>*也可自己填写</td>"+
-			            "<td class=style126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()>" +
+			            "<td class=style126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">" +
 			          "</td><td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td>"+
 			        "</tr>";
+			// class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'\" 
 			//_this.initTravelItem(insertTr);
 			$(insertTr).insertBefore(lastTr);
+	   	/*    $("#tourTime",$(insertTr)).datebox({  //tourTimeinput
+		        onSelect: function(date){  
+		            $(this).prev().val(date);  
+		            console.log($(this).prev().val());
+		        }  
+		    });*/ 
+			// $("input[name='tourTime']").datepicker("option", "dateFormat", 'yyyy-MM-dd');
 			//$.parser.parse($(insertTr));
 			$.parser.parse($("table[name='routetable'] tbody"));
 		},
@@ -293,7 +476,7 @@ itour.quoteEdit = function(){
 		cardPlus:function(){
 			var insertBlock="<span class=STYLE126><br> "+
 	        "<input name=card size=20 type=text>&nbsp;&nbsp;"+
-	        "<input name=cardprice size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+	        "<input name=cardprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 	        "元/人&nbsp;&nbsp;备注：<input name=cardremark size=20 type=text><a name=minusCard><img src=images/minus.png onclick='javascript:itour.quoteEdit.sightMinus(this)' width=20 height=20 ></a></span>";
 			$("#addcarddiv").append(insertBlock);
 		},cardMinus:function(e){
@@ -307,9 +490,9 @@ itour.quoteEdit = function(){
             "<option value=中文>中文</option>"+
             "<option value=英文>英文</option>"+
           "</select>&nbsp;&nbsp;"+
-        "<input name=priceperday size=6  style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+        "<input name=priceperday size=6  style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
         "元/天 &nbsp;&nbsp;X "+
-          "<input name=days  size=6 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+          "<input name=days  size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
           	"天 &nbsp;&nbsp;备注：<input name=guideremark size=10 type=text>" +
           	"<a name=guideminus onclick='javascript:itour.quoteEdit.guideMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>"	;
 			$("#addGuideDiv").append(insertBlock);
@@ -319,14 +502,14 @@ itour.quoteEdit = function(){
 		carPlus:function(){
 			var insertBlock="  <span class=STYLE126> <br>   "+
 			"<input name=alltheway value=全程 size=10 type=text>&nbsp;&nbsp;"+
-			"<input name=carprice size=6 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name=carprice size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
         	"元/ <select name=carstyle id=carstyle>"+
             "<option selected=selected>方式</option>"+
             "<option value=天>天</option>"+
             "<option value=公里>公里 </option>"+
             "<option value=趟>趟</option>"+
 	          "</select>"+
-	          "X<input name=carcount size=6 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+	          "X<input name=carcount size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
              	"数量&nbsp;&nbsp;　备注： "+
               "<input name=carremark size=20 type=text>"+
               "<a name=carminus onclick='javascript:itour.quoteEdit.carMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
@@ -336,8 +519,8 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},trafficPlus:function(){
 			var insertBlock="<span class=STYLE126><br> "+
-			"<input name=trafficpersons size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
-			"<input name=trafficperprice size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name='traffic' type='text' >"+
+			"<input name=trafficperprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
         	"元/ 人 &nbsp;&nbsp;备注： <input name=trafficremark size=20 type=text>" +
         	"<a name=trafficminus onclick='javascript:itour.quoteEdit.trafficMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
 			$("#addbigtrafficdiv").append(insertBlock);
@@ -348,7 +531,7 @@ itour.quoteEdit = function(){
           "<option value=人>内宾旅游意外保险</option>"+
           "<option value=团>入境旅游意外保险</option>"+
           "</select>"+
-          "<input name=insuranceprice size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+          "<input name=insuranceprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
           	"元/人&nbsp;&nbsp;备注："+
             "<input name=insuranceremark size=20 type=text>"+
             "<a name=insuranceminus onclick='javascript:itour.quoteEdit.insuranceMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
@@ -357,8 +540,8 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},allfeePlus:function(){
 			var insertBlock="<span class=style126><br>"+
-      "<input name=feeName value=旅行社综合服务费 size=20 type=text>"+
-          "<input name=feeperperson size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+      "<input name=feeName value='旅行社综合服务费' size=20 type=text>"+
+          "<input name=feeperperson size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
        	"元/人&nbsp;&nbsp;备注："+
         "<input name=feeremark size=20 type=text>"+
       "<a name=allfeeminus onclick='javascript:itour.quoteEdit.allfeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
@@ -368,7 +551,7 @@ itour.quoteEdit = function(){
 		},joyPlus:function(){
 			var insertBlock="<span class=STYLE126><br>"+
 			"<input name=joyitem size=20 type=text>"+
-            "<input name=perjoyprice size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+            "<input name=perjoyprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
       		"元/人　&nbsp;&nbsp;备注："+
       		"<input name=joyremark size=20 type=text>"+
       		"<a name=joyminus onclick='javascript:itour.quoteEdit.joyMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
@@ -381,9 +564,9 @@ itour.quoteEdit = function(){
 			"<input name=hikingitem size=20 type=text>"+
 			"<input name=guidename size=4 type=text>"+
 			"向导数 X"+
-			"<input name=guideperday size=6 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name=guideperday size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			"元/天 X  "+
-			"<input name=guidedays size=4 style='width:50px' type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name=guidedays size=4 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
         	"天　&nbsp;&nbsp;备注："+
         	"<input name=hikingguideremark size=20 type=text>"+
           	"<a name=joyminus onclick='javascript:itour.quoteEdit.joyMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> ";
@@ -392,27 +575,27 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},bathhorsePlus:function(){
 			var insertBlock="<span class=STYLE126><br><input name=bathorseCost size=20 type=text>"+
-			"<input name=bathorsenum size=4 style=width:50px type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
-			"马匹数 X<input name=bathorseperday size=6 style=width:50px type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
-			"元/天  X  <input name=bathorseprice size=4 style=width:50px type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name=bathorsenum size=4 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) \" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+			"马匹数 X<input name=bathorseperday size=6 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+			"元/天  X  <input name=bathorseprice size=4 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
          	 "天　&nbsp;&nbsp;备注：<input name=bathorseremark size=20 type=text> <a name=bathorseminus onclick='javascript:itour.quoteEdit.bathhorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> ";
 			$("#bathorseCostdiv").append(insertBlock);
 		},bathhorseMinus:function(e){
 			$(e).parent().remove();
 		},ridehorsePlus:function(){
 			var insertBlock=" <span class=style126><br>"+
-			"<input name=ridehorse size=20 type=text>"+
-			"<input name=ridehorseperday size=6 type=text>"+
-       		"元/天  X<input name=ridehorsedays size=4 type=text>天　&nbsp;&nbsp;备注："+
-       		"<input name=ridehorseremark size=20 type=text>"+
-            "<a name=rideorseminus onclick='javascript:itour.quoteEdit.ridehorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> 　";
+			"<input name='ridehorse' size=20 type='text'>"+
+			"<input name='ridehorseperday' size=6 type='text'>"+
+       		"元/天  X<input name='ridehorsedays' size=4 type='text'>天　&nbsp;&nbsp;备注："+
+       		"<input name='ridehorseremark' size=20 type='text'>"+
+            "<a name='rideorseminus' onclick='javascript:itour.quoteEdit.ridehorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> 　";
 			$("#addridehorseCost").append(insertBlock);
 		},ridehorseMinus:function(e){
 			$(e).parent().remove();
 		},climbRegisterPlus:function(){
 			var insertSpan="<span class=style126><br>"+
 				"<input name=climbRegister size=20 type=text><input name=climbRegisterperday size=6 type=text>"+
-				"元/天  X<input name=climbRegisterdays size=4 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+				"元/天  X<input name=climbRegisterdays size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 				"天　&nbsp;&nbsp;备注：<input name=climbRegisterremark size=20 type=text>"+
 				"<a name=climbRegisterminus onclick='javascript:itour.quoteEdit.climbRegisterMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span";
 				$("#climbregisterdiv").append(insertSpan);
@@ -420,9 +603,9 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},climbnexusPlus:function(){
 			var insertSpan="<span class=style126><br>"+
-				"<input name=climbnexus size=20 type=text><input name=climbnexusnum value=1 size=4 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>人数 X"+
-				"<input name=climbnexusperday size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>元/天  X  "+
-				"<input name=climbnexusdays size=4 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>天　&nbsp;&nbsp;备注："+
+				"<input name=climbnexus size=20 type=text><input name=climbnexusnum value=1 size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">人数 X"+
+				"<input name=climbnexusperday size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/天  X  "+
+				"<input name=climbnexusdays size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">天　&nbsp;&nbsp;备注："+
 				"<input name=climbnexusremark size=20 type=text>"+
 				"<a name=climbnexusminus onclick='javascript:itour.quoteEdit.climbnexusMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></span>";
 				$("#climbnexusdiv").append(insertSpan);
@@ -431,7 +614,7 @@ itour.quoteEdit = function(){
 		},elsefeePlus:function(){
 			var insertSpan="<span class=STYLE126><br>"+
 			"<input name=elseitem size=20 type=text>"+
-			"<input name=elseitemprice size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v();>"+
+			"<input name=elseitemprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
        	 	" 元/	<select name=elseitemstyle id=elseitemstyle>"+
        	 	" <option selected=selected>方式</option>"+
        	 	" <option value=人>人</option>"+
@@ -492,10 +675,12 @@ itour.quoteEdit = function(){
 		},
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
-			var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
-			+ (date.getMonth() + 1);
+			var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"+ (date.getMonth() + 1);
 			return date.getFullYear() + '-' + month + '-' + day;
 		},
+		onChangeDate: function(obj,date){  
+            $(obj).prev().val(date);  
+        },
 		init:function(){
 	/*	   $("input[name='tourTime']").datebox({  
 			   onSelect:function(date){  
@@ -539,7 +724,17 @@ itour.quoteEdit = function(){
 			$("a[name='adddinner']").click(function(){_this.dinnerPlus()});
 			$("a[name='addspecialdinner']").live('click',function(){_this.specialDinnerPlus(this)});
 			$("a[name='addsingledinner']").live('click',function(){_this.singleDinnerPlus(this)}); 
-		
+		    /*$("#tourTime").datebox({  //tourTimeinput
+		          
+		    });*/ 
+			/*$.datepicker.setDefaults({
+				  showOn: "both",
+				  buttonImageOnly: true,
+				  buttonImage: "calendar.gif",
+				  buttonText: "Calendar"
+				});*/
+			//$("input[name='tourTime']").datepicker({ altFormat: 'yyyy-MM-dd' });
+		//	 $("input[name='tourTime']").datepicker("option", "dateFormat", 'yyyy-MM-dd');
 			$.extend($.fn.validatebox.defaults.rules,{  
 			    dateValided : {  
 			        validator : function(value) { //参数value为当前文本框的值
@@ -561,9 +756,53 @@ itour.quoteEdit = function(){
 	}
 	return _this;
 }();
-window.onload=function(){
+/*window.onload=function(){
 	itour.quoteEdit.init();
-}
-/*$(function(){
+	<div id="routetablecopydiv" style="display:none">
+<tr><td class=STYLE126 width=34 valign=middle><div align=center><select name='tourdays'><option value='1'>1</option>
+				        <option value='2'>2</option>
+				        <option value='3'>3</option>
+				        <option value='4'>4</option>
+				        <option value='5'>5</option>
+				        <option value='6'>6</option>
+				        <option value='7'>7</option>
+				        <option value='8'>8</option>
+				        <option value='9'>9</option>
+				        <option value='10'>10</option>
+				        <option value='11'>11</option>
+				        <option value='12'>12</option>
+				        <option value='13'>13</option>
+				        <option value='14'>14</option>
+				        <option value='15'>15</option></select></div></td>
+				        <td class=STYLE126 width=55 valign=middle>
+				        <input name='tourTime' class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'" style='width:100px;'/></td>
+				        <td class=STYLE126 width=35 valign=middle>
+				        <select name='tourWeekday'><option value='周日'>周日</option>
+				        <option value='周一'>周一</option>
+				        <option value='周二'>周二</option>
+				        <option value='周三'>周三</option>
+				        <option value='周四'>周四</option>
+				        <option value='周五'>周五</option>
+				        <option value='周六'>周六</option></select></td>
+				        <td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>
+				        <td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()></td>
+				        <td class=STYLE126 width=124 valign=middle><select name='travelItem' class='easyui-combobox'  style='width:100px;' data-options="url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22,  
+			            formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_'+row.alias+' value='+row.alias+'>'+row.item+'</span>';},'onSelect':function(record){$('input[name=selectId_'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_'+record.alias+']').attr('checked', false);}"></select></td>
+				        <td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>
+				        中餐：<input name='lunch' checked=checked type=checkbox>
+				        晚餐：<input name='dinner' checked=checked type=checkbox></td>
+				        <td class=STYLE126 width=57 valign=middle><input type=text name='stayposition'></td>
+				        <td class=STYLE126 width=171 valign=middle><select name='hotel' >
+				          <option >选择该城市酒店</option>
+				          <option value='贵山商务酒店'>贵山商务酒店</option>
+				          <option value='嘉绒酒店'>嘉绒酒店</option></select>
+				          <input name='selfhotel' size=10 type=text>
+				          <br>*也可自己填写</td>
+				          <td class=STYLE126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this); onblur=this.v()">
+				        </td><td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td>
+				      </tr>
+</div>
+}*/
+$(function(){
 	itour.quoteEdit.init();
-});*/
+});

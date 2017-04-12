@@ -136,5 +136,6 @@ body {
 .STYLE14 {color: #000000}
 .STYLE140 {color: #666666}
 .STYLE23 {width:267px;}
+td { text-align: center;}
 </style>
 

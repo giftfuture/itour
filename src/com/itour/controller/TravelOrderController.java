@@ -27,6 +27,7 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.convert.TravelOrderKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
@@ -112,7 +113,7 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(TravelOrder entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelOrderVo entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 /*		TravelOrder to = new TravelOrder();
 		to.setId(entity.getId());
 		to.setOrderNo(entity.getOrderNo());
@@ -136,22 +137,25 @@ public class TravelOrderController extends BaseController{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		String id = "";
 		TravelOrder to = null;
+		TravelOrder record = null;
 		if(StringUtils.isNotEmpty(entity.getId())){
 			entity.setOrderNo(IDGenerator.getUUID());
 			entity.setOrderStatus(1);
 			entity.setCustomerId(IDGenerator.getUUID());
-			entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+DateUtil.format(entity.getExpectedDepart(), DateUtil.sdfShortLongTimePlusCn));
-			id = travelOrderService.add(entity);
+			entity.setOrderName(entity.getOrderNo()+"_"+entity.getOrderName()+"_"+(StringUtils.isNotEmpty(entity.getCustomerId())?entity.getCustomerId():IDGenerator.code(16))+"_"+DateUtil.dateToString(DateUtil.fromStringToDate(DateUtil.y_m_d,entity.getExpectedDepart()),DateUtil.longTimePlusMill)+IDGenerator.number(4));
+			record = TravelOrderKit.toRecord(entity);
+			id = travelOrderService.add(record);
 		}else{
 				to = travelOrderService.queryById(entity.getId());
 			if(to == null){
 				entity.setOrderNo(IDGenerator.getUUID());
 				entity.setOrderStatus(1);
-				entity.setCustomerId(IDGenerator.getUUID());
-				entity.setOrderName(entity.getOrderNo()+"_"+"稻城亚丁--dfd黄山景区端午轻旅行"+"_"+entity.getCustomerId()+"_"+entity.getExpectedDepart());
-				id = travelOrderService.add(entity);
+				entity.setCustomerId(IDGenerator.code(16));
+				entity.setOrderName(entity.getOrderNo()+"_"+entity.getOrderName()+"_"+(StringUtils.isNotEmpty(entity.getCustomerId())?entity.getCustomerId():IDGenerator.code(16))+"_"+DateUtil.dateToString(DateUtil.fromStringToDate(DateUtil.y_m_d,entity.getExpectedDepart()),DateUtil.longTimePlusMill)+IDGenerator.number(4));
+				record = TravelOrderKit.toRecord(entity);
+				id = travelOrderService.add(record);
 			}else{
-				travelOrderService.update(entity);
+				travelOrderService.update(record);
 			}
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -165,7 +169,6 @@ public class TravelOrderController extends BaseController{
 		}
 		return sendSuccessResult(response, "保存成功~");
 	}
-	
 	
 	/**
 	 * 
@@ -184,7 +187,7 @@ public class TravelOrderController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", entity);
+		context.put("data",TravelOrderKit.toEditVo(entity));
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的getId方法");
 		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

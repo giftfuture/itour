@@ -34,8 +34,8 @@ public class DateUtil{
 	public static String longTimePlusMill = "yyyyMMddHHmmssSSSS";
 	public static String md = "MM月dd日";
 	
-	public static java.text.SimpleDateFormat sdfShort = new java.text.SimpleDateFormat(ymd);
-	public static java.text.SimpleDateFormat sdfLong = new java.text.SimpleDateFormat(y_m_d);
+	public static java.text.SimpleDateFormat sdfymd = new java.text.SimpleDateFormat(ymd);
+	public static java.text.SimpleDateFormat sdf_Ymd = new java.text.SimpleDateFormat(y_m_d);
 	public static java.text.SimpleDateFormat sdfYmdHs = new java.text.SimpleDateFormat(ymdhm);
 	public static java.text.SimpleDateFormat sdfYmdCn = new java.text.SimpleDateFormat(ymdcn);
 	public static java.text.SimpleDateFormat sdfShortU = new java.text.SimpleDateFormat(mmd,Locale.ENGLISH);
@@ -63,7 +63,7 @@ public class DateUtil{
 		try
 		{	
 			if(date != null)
-				nowDate = sdfLong.format(date);
+				nowDate = sdf_Ymd.format(date);
 			return nowDate;
 		}
 		catch (Exception e)
@@ -245,7 +245,7 @@ public class DateUtil{
 		{
 			java.sql.Date date = null;
 			date = new java.sql.Date(new java.util.Date().getTime());
-			nowDate = sdfShort.format(date);
+			nowDate = sdfymd.format(date);
 			return nowDate;
 		}
 		catch (Exception e)
@@ -266,7 +266,7 @@ public class DateUtil{
 		{
 			java.sql.Date date = null;
 			date = new java.sql.Date(new java.util.Date().getTime());
-			nowDate = sdfLong.format(date);
+			nowDate = sdf_Ymd.format(date);
 			return nowDate;
 		}
 		catch (Exception e)

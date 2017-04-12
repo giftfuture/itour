@@ -15,11 +15,15 @@
 	<result column="count" property="count"/>
 	<result column="order_id" property="orderId"/>
 	<result column="is_valid" property="isValid"/>
+	<result column="adults" property="adults"/>
+	<result column="children" property="children"/>
+	<result column="group_code" property="groupCode"/>
+	<result column="group_date" property="groupDate"/>
 </resultMap>
        
 <!-- order_detail table all fields -->
 <sql id="Base_Column_List" >
-	 id, status, create_time, update_time, content, remark, per_price, count, order_id,is_valid
+	 id, status, create_time, update_time, content, remark, per_price, count, order_id,is_valid,adults,children,group_code,group_date
 </sql>
    
    
@@ -30,7 +34,7 @@ where is_valid=1
 	<if test="id != null and id != ''" >
 	    and id like CONCAT('%', #{id}, '%')
 	</if>
-	<if test="status != null" >
+	<if test="status != null and status !=''" >
 	    and status =  #{status}
 	</if>
 	<if test="createTime != null and createTime !=''" >
@@ -46,14 +50,26 @@ where is_valid=1
 	<if test="remark != null and remark != ''" >
 	    and remark like CONCAT('%', #{remark}, '%')
 	</if>
-	<if test="perPrice != null " >
+	<if test="perPrice != null and perPrice !=''" >
 	    and per_price =  #{perPrice}
 	</if>
-	<if test="count != null" >
+	<if test="count != null and count !=''" >
 	    and count =  #{count}
 	</if>
 	<if test="orderId != null and orderId != ''" >
-	    and order_id = like CONCAT('%', #{orderId}, '%')
+	    and order_id = #{orderId}
+	</if>
+	<if test="adults != null and adults != ''" >
+	    and adults = #{adults}
+	</if>
+	<if test="children != null and children != ''" >
+	    and children = #{children}
+	</if>
+	<if test="groupCode != null and groupCode != ''" >
+	    and group_code = #{groupCode}
+	</if>
+	<if test="groupDate != null and groupDate != ''" >
+	    and group_date = #{groupDate} 
 	</if>
 </trim>
 </sql>
@@ -64,8 +80,8 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id,is_valid)
- values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId},1)
+  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id,is_valid,adults,children,group_code,group_date)
+ values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId},1,#{adults},#{children},#{groupCode},#{groupDate})
 </insert>
 
  
@@ -73,10 +89,10 @@ where is_valid=1
 <update id="update" parameterType="com.itour.entity.OrderDetail" >
 	update order_detail set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid != null">
-			is_valid = #{isValid}
+		<if test="isValid != null and isValid !=''">
+			is_valid = #{isValid},
 		</if>
-		<if test="status != null  ">
+		<if test="status != null  and status !=''">
 			status=#{status},
 		</if>
 		<if test="content != null and content != '' ">
@@ -85,14 +101,26 @@ where is_valid=1
 		<if test="remark != null and remark != '' ">
 			remark=#{remark},
 		</if>
-		<if test="perPrice != null  ">
+		<if test="perPrice != null and perPrice !='' ">
 			per_price=#{perPrice},
 		</if>
-		<if test="count != null ">
+		<if test="count != null and count !=''">
 			count=#{count},
 		</if>
 		<if test="orderId != null and orderId != '' ">
 			order_id=#{orderId},
+		</if>
+		<if test="adults != null and adults != ''" >
+		     adults = #{adults},
+		</if>
+		<if test="children != null and children != ''" >
+		     children = #{children},
+		</if>
+		<if test="groupCode != null and groupCode != ''" >
+		     group_code = #{groupCode},
+		</if>
+		<if test="groupDate != null and groupDate != ''" >
+		     group_date = #{groupDate} ,
 		</if>
 	</trim> where id=#{id}
 </update>

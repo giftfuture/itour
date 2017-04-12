@@ -41,7 +41,7 @@ public class TravelOrderService<T> extends BaseService<T> {
 		List<TravelOrderVo> records = Lists.newArrayList();
 		try {
 			for (TravelOrder to : list) {
-				records.add(TravelOrderKit.toRecord(to));
+				records.add(TravelOrderKit.toVo(to));
 			} 
 		} catch (Exception e) {
 			e.printStackTrace();

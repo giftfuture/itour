@@ -23,6 +23,7 @@ import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.convert.OrderDetailKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.OrderDetail;
@@ -111,17 +112,17 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(OrderDetail entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		OrderDetail od = null;
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-			odId = orderDetailService.add(entity);
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId().toString())){
+			odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
 		}else{
 				od = orderDetailService.queryById(entity.getId());
 			if(od == null){
-				odId = orderDetailService.add(entity);
+				odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
 			}else{
-				orderDetailService.update(entity);
+				orderDetailService.update(OrderDetailKit.toEntity(entity));
 			}
 		}
 		SysUser sessionuser = SessionUtils.getUser(request);

@@ -1,7 +1,7 @@
 package com.itour.vo;
 
 import java.io.Serializable;
-
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,7 +14,35 @@ public class OrderDetailVo extends BasePage implements Serializable{
 	
 		private java.lang.String id;//   	private java.lang.Integer status;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//   
 	private boolean isValid;
+	private int adults;
+	private int children;
+	private String groupCode;//团号
+	private String groupDate;//出团日期
 	
+	public int getAdults() {
+		return adults;
+	}
+	public void setAdults(int adults) {
+		this.adults = adults;
+	}
+	public int getChildren() {
+		return children;
+	}
+	public void setChildren(int children) {
+		this.children = children;
+	}
+	public String getGroupCode() {
+		return groupCode;
+	}
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+	public String getGroupDate() {
+		return groupDate;
+	}
+	public void setGroupDate(String groupDate) {
+		this.groupDate = groupDate;
+	}
 	public boolean isValid() {
 		return isValid;
 	}

@@ -50,7 +50,7 @@
 					</div>
 					<div class="fitem">
 						<label>联系电话:</label>
-						<input name="receiverMobile" type="text" maxlength="20" class="easyui-numberbox" data-options="" missingMessage="请填写receiverMobile">
+						<input name="receiverMobile" type="text" maxlength="20" class="easyui-numberbox" data-options="validType:'mobileTelephone',missingMessage:'请填写联系方式(手机或固话)',invalidMessage:'无效的联系方式'" missingMessage="请填写receiverMobile">
 					</div>
 				<!-- 	<div class="fitem">
 						<label>客户ID:</label>
@@ -58,19 +58,19 @@
 					</div> -->
 					<div class="fitem">
 						<label>计划出行日:</label>
-						<input name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写expectedDepart">
+						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedDepart">
 					</div>
 					<div class="fitem">
 						<label>计划返程日:</label>
-						<input name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写expectedBack">
+						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedBack">
 					</div>
 					<div class="fitem">
 						<label>出行人数:</label>
-						<input name="totalStaff" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写totalStaff">
+						<input name="totalStaff" type="text" maxlength="" class="easyui-numberbox" data-options="max:100" missingMessage="请填写totalStaff">
 					</div>
 					<div class="fitem">
 						<label>出行预算:</label>
-						<input name="budget" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写出行预算">
+						<input name="budget" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2" missingMessage="请填写出行预算">
 					</div>
 					<div class="fitem">
 						<label>支付方式:</label>

@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@include file="/WEB-INF/views/server/resource.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>路线价目详情</title>
+<%-- <script type="text/javascript" src="${basePath }js/jquery-ui-1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath }js/jquery-ui-1.12.1/jquery-ui.min.css"> --%>
+<%-- <script type="text/javascript" src="${basePath }js/plug-in/jquery.multi-select.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}css/multiselect/css/multi-select.css"> --%>
 </head>
 <body ><!-- class="easyui-layout" -->
 <form:form method="post" action="${basePath }routeTemplate/list">
@@ -78,13 +82,14 @@
         </tr>
         </thead>
         <tbody>
-			${qf.beriefTrip }  
+			${qf.beriefTrip }
 			<tr><td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle' colspan='3'><input name='route_checkall' checked='checked' type='checkbox'>全选/全不选 </td>
+	          <td class='STYLE126' valign='middle'>&nbsp;</td>
+	          <td class='STYLE126' valign='middle'><input name='route_checkall' checked='checked' type='checkbox'>全选/全不选 </td>
 	          <td class='STYLE126' valign='middle'>*没选则表示不含</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	         <td class='STYLE126' valign='middle'>&nbsp;</td>
@@ -107,10 +112,10 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>人数： </strong></div></td>
     <td><label> 大人：<span class="style126" >
-    <input name="adults" size="6" type="number" min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
-    	人&nbsp;&nbsp; 小孩 
-    <input name="children"  size="6" type="number" min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
-    </span> 人     
+    <input name="adults" size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位成人的费用;'" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+    	元/人&nbsp;&nbsp; 小孩 
+    <input name="children"  size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位孩子的费用;' " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+    </span> 元/人     
     （
     <input name="isAsAdult" value="isAsAdult" type="radio">
       同大人一样
@@ -319,7 +324,7 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>向导</strong></div></td>
     <td>添加徒步向导：<a name="addhikingguide" ><img src="images/add.gif" width="16" height="16" ></a> 
-    <div id="hikingguidediv"><span class="style126">
+    <div id="hikingguidediv">
 		${qf.itemGuide }
    	</div></td>       
     <td><div align="center">  
@@ -388,7 +393,7 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>登协联络官</strong></div></td>
     <td>添加登协联络官：<a name="addclimbnexusCost" ><img src="images/add.gif" width="16" height="16" ></a> 
-    <div id="climbnexusdiv"><span class="style126">
+    <div id="climbnexusdiv">
 		${qf.climbNexusCost }	
       </div></td>
     <td><div align="center">
@@ -457,51 +462,8 @@
 </tbody></table>
 </div>
 </form:form>
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe> 
 <script type="text/javascript" src="${basePath}js/ux/sys/quoteEdit.js"></script>
-<div id="routetablecopydiv" style="display:none">
-<tr><td class=STYLE126 width=34 valign=middle><div align=center><select name='tourdays'><option value='1'>1</option>
-				        <option value='2'>2</option>
-				        <option value='3'>3</option>
-				        <option value='4'>4</option>
-				        <option value='5'>5</option>
-				        <option value='6'>6</option>
-				        <option value='7'>7</option>
-				        <option value='8'>8</option>
-				        <option value='9'>9</option>
-				        <option value='10'>10</option>
-				        <option value='11'>11</option>
-				        <option value='12'>12</option>
-				        <option value='13'>13</option>
-				        <option value='14'>14</option>
-				        <option value='15'>15</option></select></div></td>
-				        <td class=STYLE126 width=55 valign=middle>
-				        <input name='tourTime' class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'" style='width:100px;'/></td>
-				        <td class=STYLE126 width=35 valign=middle>
-				        <select name='tourWeekday'><option value='周日'>周日</option>
-				        <option value='周一'>周一</option>
-				        <option value='周二'>周二</option>
-				        <option value='周三'>周三</option>
-				        <option value='周四'>周四</option>
-				        <option value='周五'>周五</option>
-				        <option value='周六'>周六</option></select></td>
-				        <td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>
-				        <td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()></td>
-				        <td class=STYLE126 width=124 valign=middle><select name='travelItem' class='easyui-combobox'  style='width:100px;' data-options="url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22,  
-			            formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_'+row.alias+' value='+row.alias+'>'+row.item+'</span>';},'onSelect':function(record){$('input[name=selectId_'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_'+record.alias+']').attr('checked', false);}"></select></td>
-				        <td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>
-				        中餐：<input name='lunch' checked=checked type=checkbox>
-				        晚餐：<input name='dinner' checked=checked type=checkbox></td>
-				        <td class=STYLE126 width=57 valign=middle><input type=text name='stayposition'></td>
-				        <td class=STYLE126 width=171 valign=middle><select name='hotel' >
-				          <option >选择该城市酒店</option>
-				          <option value='贵山商务酒店'>贵山商务酒店</option>
-				          <option value='嘉绒酒店'>嘉绒酒店</option></select>
-				          <input name='selfhotel' size=10 type=text>
-				          <br>*也可自己填写</td>
-				          <td class=STYLE126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this); onblur=this.v()">
-				        </td><td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td>
-				      </tr>
-</div>
 </body>
 </html>
 

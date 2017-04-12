@@ -42,7 +42,7 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private boolean comphcostAsadult;//小孩子综合费用是否按孩子核算
 	private String recreation;//娱乐费用
 	private boolean recreationAsadult;//小孩娱乐费用是否按孩子核算
-	private String itemGuide;//向导
+	private String itemGuide;//单项向导
 	private boolean itemguideAsadult;//小孩向导费用是否按孩子核算
 	private String bathorseCost;//驮马费
 	private boolean bathcostAsadult;//小孩驮马费是否按孩子核算
@@ -63,8 +63,126 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private String updateBy;
 	private String groupCode;//团号
 	private Date groupDate;//出团日期
+	private String showTicket;//前端显示的票价信息
+	private String showTraveldoc;//前端显示的旅行证件信息 
+	private String showTourguide;//前端显示的旅行导游信息
+	private String showHotel;//前端显示的酒店信息
+	private String showRentcar;//前端显示的租车信息
+	private String showBigtraffic;//前端显示的大交通信息
+	private String showDinner;//前端显示的用餐信息
+	private String showInsurance;//前端显示的保险信息
+	private String showComphcost;//前端显示的综合费用
+	private String showRecreation;//前端显示的娱乐费用
+	private String showItemguide;//前端显示的单项向导费用
+	private String showBathorse;//前端显示的驮马费
+	private String showRidehorse;//前端显示的骑马费
+	private String showClimbregister;//前端显示的登山注册费
+	private String showClimbnexus;//前端显示的登协联络官
+	private String showElsecost;//前端显示的其他费用
+	private String showPresented;//前端显示的赠品
 	
-	
+	public String getShowTicket() {
+		return showTicket;
+	}
+	public void setShowTicket(String showTicket) {
+		this.showTicket = showTicket;
+	}
+	public String getShowTraveldoc() {
+		return showTraveldoc;
+	}
+	public void setShowTraveldoc(String showTraveldoc) {
+		this.showTraveldoc = showTraveldoc;
+	}
+	public String getShowTourguide() {
+		return showTourguide;
+	}
+	public void setShowTourguide(String showTourguide) {
+		this.showTourguide = showTourguide;
+	}
+	public String getShowHotel() {
+		return showHotel;
+	}
+	public void setShowHotel(String showHotel) {
+		this.showHotel = showHotel;
+	}
+	public String getShowRentcar() {
+		return showRentcar;
+	}
+	public void setShowRentcar(String showRentcar) {
+		this.showRentcar = showRentcar;
+	}
+	public String getShowBigtraffic() {
+		return showBigtraffic;
+	}
+	public void setShowBigtraffic(String showBigtraffic) {
+		this.showBigtraffic = showBigtraffic;
+	}
+	public String getShowDinner() {
+		return showDinner;
+	}
+	public void setShowDinner(String showDinner) {
+		this.showDinner = showDinner;
+	}
+	public String getShowInsurance() {
+		return showInsurance;
+	}
+	public void setShowInsurance(String showInsurance) {
+		this.showInsurance = showInsurance;
+	}
+	public String getShowComphcost() {
+		return showComphcost;
+	}
+	public void setShowComphcost(String showComphcost) {
+		this.showComphcost = showComphcost;
+	}
+	public String getShowRecreation() {
+		return showRecreation;
+	}
+	public void setShowRecreation(String showRecreation) {
+		this.showRecreation = showRecreation;
+	}
+	public String getShowItemguide() {
+		return showItemguide;
+	}
+	public void setShowItemguide(String showItemguide) {
+		this.showItemguide = showItemguide;
+	}
+	public String getShowBathorse() {
+		return showBathorse;
+	}
+	public void setShowBathorse(String showBathorse) {
+		this.showBathorse = showBathorse;
+	}
+	public String getShowRidehorse() {
+		return showRidehorse;
+	}
+	public void setShowRidehorse(String showRidehorse) {
+		this.showRidehorse = showRidehorse;
+	}
+	public String getShowClimbregister() {
+		return showClimbregister;
+	}
+	public void setShowClimbregister(String showClimbregister) {
+		this.showClimbregister = showClimbregister;
+	}
+	public String getShowClimbnexus() {
+		return showClimbnexus;
+	}
+	public void setShowClimbnexus(String showClimbnexus) {
+		this.showClimbnexus = showClimbnexus;
+	}
+	public String getShowElsecost() {
+		return showElsecost;
+	}
+	public void setShowElsecost(String showElsecost) {
+		this.showElsecost = showElsecost;
+	}
+	public String getShowPresented() {
+		return showPresented;
+	}
+	public void setShowPresented(String showPresented) {
+		this.showPresented = showPresented;
+	}
 	public String getTravelItems() {
 		return travelItems;
 	}

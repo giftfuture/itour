@@ -155,12 +155,12 @@ itour.travelOrder = function(){
 					},
 					{field:'orderNo',title:'订单号',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.orderNo;
+							return '<span title="'+row.orderNo+'">'+row.orderNo+'</span>';
 						}
 					},
 					{field:'orderName',title:'订单名称',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.orderName;
+							return '<span title="'+row.orderName+'">'+row.orderName+'</span>';
 						}
 					},
 					{field:'orderStatus',title:'订单状态',align:'center',sortable:true,
@@ -281,7 +281,7 @@ itour.travelOrder = function(){
 								if(value == 3){
 									return "Android";
 								}else{
-									return value;
+									return '<span title="'+row.payTerminal+'">'+row.payTerminal+'</span>';;
 								}
 							}
 					},
@@ -311,9 +311,16 @@ itour.travelOrder = function(){
 							]
 			}
 		},
+		formatterDate : function(date) {//得到当前日期
+			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
+			var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
+			+ (date.getMonth() + 1);
+			return date.getFullYear() + '-' + month + '-' + day;
+		},
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
+			_this.browser();
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
@@ -321,7 +328,46 @@ itour.travelOrder = function(){
 					_this.delAllLine(false);
 				});
 			});
-			
+			$("#expectedDepart").datebox({ 
+				  validator: function(date){ 
+				       return new Date()<date;//<= 
+				   },
+				 onSelect : function(beginDate){ 
+				  $('#expectedBack').datebox().datebox('calendar').calendar({ 
+				    validator: function(date){ 
+				       return beginDate<date;//<= 
+				   } 
+				  }); 
+				 } 
+			});
+			$.extend($.fn.validatebox.defaults.rules,{  
+			    dateValided : {  
+			        validator : function(value) { //参数value为当前文本框的值
+			        	var d =  _this.formatterDate(new Date());
+			        //	itour.alert('提示',value +"    "+ d+"   "+(value > d),'info');
+			           if(d>=value){
+			        	   //itour.alert('提示','选择行程安排日期应在当前日期之后','warn');
+			        	   //$("input[name='tourTime']").datebox('setValue','');  
+			           }else{
+			        	   return value > d;  
+			           }
+			        },  
+			        message : '选择行程安排日期应在当前日期之后'  //
+			    } ,
+			    dateLimited : {  
+			        validator : function(value,param) { //参数value为当前文本框的值
+			        	var d =  _this.formatterDate(new Date());
+			        //	itour.alert('提示',value +"    "+ d+"   "+(value > d),'info');
+			           if(d>=value){
+			        	   //itour.alert('提示','选择行程安排日期应在当前日期之后','warn');
+			        	   //$("input[name='tourTime']").datebox('setValue','');  
+			           }else{
+			        	   return value > d;  
+			           }
+			        },  
+			        message : '选择行程安排日期应在当前日期之后'  //
+			    } 
+			}); 
 		},
 		//判断访问终端
 		browser:function(){
@@ -359,5 +405,4 @@ itour.travelOrder = function(){
 
 $(function(){
 	itour.travelOrder.init();
-	itour.travelOrder.browser();
 });

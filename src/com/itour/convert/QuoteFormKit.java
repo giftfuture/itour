@@ -71,6 +71,23 @@ public class QuoteFormKit {
 		if(qf.getGroupDate()!=null){
 			qfv.setGroupDate(DateUtil.getDateYmdCn(qf.getGroupDate()));
 		}
+		qfv.setShowTicket(qf.getShowTicket());
+		qfv.setShowBathorse(qf.getShowBathorse());
+		qfv.setShowBigtraffic(qf.getShowBigtraffic());
+		qfv.setShowClimbnexus(qf.getShowClimbnexus());
+		qfv.setShowClimbregister(qf.getShowClimbregister());
+		qfv.setShowComphcost(qf.getShowComphcost());
+		qfv.setShowDinner(qf.getShowDinner());
+		qfv.setShowElsecost(qf.getShowElsecost());
+		qfv.setShowHotel(qf.getShowHotel());
+		qfv.setShowInsurance(qf.getShowInsurance());
+		qfv.setShowItemguide(qf.getShowItemguide());
+		qfv.setShowPresented(qf.getShowPresented());
+		qfv.setShowRecreation(qf.getShowRecreation());
+		qfv.setShowRentcar(qf.getShowRentcar());
+		qfv.setShowRidehorse(qf.getShowRidehorse());
+		qfv.setShowTourguide(qf.getShowTourguide());
+		qfv.setShowTraveldoc(qf.getShowTraveldoc());
 		return qfv;
 	}
 	/**
@@ -126,6 +143,23 @@ public class QuoteFormKit {
 		qfv.setUpdateBy(vo.getUpdateBy());
 		qfv.setValid(vo.isValid());
 		qfv.setGroupCode(vo.getGroupCode());
+		qfv.setShowTicket(vo.getShowTicket());
+		qfv.setShowBathorse(vo.getShowBathorse());
+		qfv.setShowBigtraffic(vo.getShowBigtraffic());
+		qfv.setShowClimbnexus(vo.getShowClimbnexus());
+		qfv.setShowClimbregister(vo.getShowClimbregister());
+		qfv.setShowComphcost(vo.getShowComphcost());
+		qfv.setShowDinner(vo.getShowDinner());
+		qfv.setShowElsecost(vo.getShowElsecost());
+		qfv.setShowHotel(vo.getShowHotel());
+		qfv.setShowInsurance(vo.getShowInsurance());
+		qfv.setShowItemguide(vo.getShowItemguide());
+		qfv.setShowPresented(vo.getShowPresented());
+		qfv.setShowRecreation(vo.getShowRecreation());
+		qfv.setShowRentcar(vo.getShowRentcar());
+		qfv.setShowRidehorse(vo.getShowRidehorse());
+		qfv.setShowTourguide(vo.getShowTourguide());
+		qfv.setShowTraveldoc(vo.getShowTraveldoc());
 		try {
 			if(StringUtils.isNotEmpty(vo.getCreateTime())){			
 				qfv.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,vo.getCreateTime()));

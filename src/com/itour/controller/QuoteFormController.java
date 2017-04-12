@@ -37,7 +37,6 @@ import com.itour.vo.QuoteFormVo;
 @RequestMapping("/quoteForm") 
 public class QuoteFormController extends BaseController {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
 	// Servrice start
 	@Autowired 
 	private QuoteFormService  quoteFormService; 
@@ -100,7 +99,7 @@ public class QuoteFormController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(QuoteForm entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(QuoteForm entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> context =getRootMap();
 		QuoteForm qo = null;
 		String qoId = "";
