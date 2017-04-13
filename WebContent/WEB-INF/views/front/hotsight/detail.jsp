@@ -303,64 +303,55 @@ ${rt.beforeInstruction }
         <tr>
           <td valign="top"><br />
           <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
-              <tr>
+                             <tr>
                 <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529"><span class="STYLE126"> 1.</span>海子沟门票50元<br />
-                    <span class="STYLE126">2.</span>长坪沟户外门票150元<br />
-                    <span class="STYLE126">3.毕棚沟门票80元/人
-                      观光车 70元/人</span></td>
-                <td width="444">350元/人</td>
+                <td width="529">${fn:split(qf.showTicket,'|')[1]}
+                </td>
+                <td width="444">${fn:split(qf.showTicket,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-                <td><span class="STYLE126"> 全程中文导游 </span></td>
-                <td>450元/人</td>
+                <td>${fn:split(qf.showTourguide,'|')[1]}</td>
+                <td>${fn:split(qf.showTourguide,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
                 </strong></div></td>
-                <td>1.贵山商务酒店 2夜<br />
-                  2.露营 2夜 <br />
-                  3.汶川大酒店 1夜<br />
-                  <span class="STYLE10"></span></td>
-                <td>420元/人</td>
+                <td>${fn:split(qf.showHotel,'|')[1]}</td>
+                <td>${fn:split(qf.showHotel,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
                 </strong></div></td>
-                <td><span class="STYLE126"> 全程用车</span><br /></td>
-                <td>1100元/人</td>
+                <td>${fn:split(qf.showRentcar,'|')[1]}</td>
+                <td>${fn:split(qf.showRentcar,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
                           <br />
                 </strong></div></td>
-                <td><label> 早餐酒店用<br />
-                  正餐 共11餐，特色餐2餐（<span class="STYLE126">钦善斋药膳火锅 </span>、道地四川火锅）</label>              </td>
-                <td>500元/人</td>
+                <td>${fn:split(qf.showDinner,'|')[1]}</td>
+                <td>${fn:split(qf.showDinner,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-                <td><span class="STYLE126">
-                  <label></label>
-                </span><span class="STYLE126">内宾旅游意外保险 </span></td>
-                <td>10元/人</td>
+                <td>${fn:split(qf.showInsurance,'|')[1]}</td>
+                <td>${fn:split(qf.showInsurance,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
-                <td><span class="STYLE126">旅行社综合服务费</span></td>
-                <td>200元/人</td>
+                <td>${fn:split(qf.showComphcost,'|')[1]}</td>
+                <td>${fn:split(qf.showComphcost,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-                <td>成都川剧表演 </td>
-                <td>200元/人</td>
+                <td>${fn:split(qf.showRecreation,'|')[1]} </td>
+                <td>${fn:split(qf.showRecreation,'|')[0]}元/人</td>
               </tr>
-					
               <tr>
                 <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td>大人：3230元/人*4人<br />
-                  小孩：2330元/人*2人（小孩不含门票） </td>
+                <td>大人：${qf.adultsQuote}元/人*4人<br />
+                  小孩：${qf.childquote }元/人*2人（小孩不含门票） </td>
                 <td>&nbsp;</td>
               </tr>
               <tr><td>相关路线：

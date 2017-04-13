@@ -78,7 +78,21 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	private String showClimbnexus;//前端显示的登协联络官
 	private String showElsecost;//前端显示的其他费用
 	private String showPresented;//前端显示的赠品
+	private float adultsQuote;//大人报价
+	private float childquote;//小孩报价
 	
+	public float getAdultsQuote() {
+		return adultsQuote;
+	}
+	public void setAdultsQuote(float adultsQuote) {
+		this.adultsQuote = adultsQuote;
+	}
+	public float getChildquote() {
+		return childquote;
+	}
+	public void setChildquote(float childquote) {
+		this.childquote = childquote;
+	}
 	public String getShowTicket() {
 		return showTicket;
 	}

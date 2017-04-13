@@ -47,153 +47,211 @@ itour.quoteEdit = function(){
 			var sights = $("#addsightdiv").find("input[name='sight']");
 			var sightprices =  $("#addsightdiv").find("input[name='sightprice']");
 			var showTicket ="";
+			var ticketpricesum=0;
 			if(sights.length>0 && sightprices.length>0){
-				for(var i in sights){
-					showTicket+=(i+1)+"."+sights[i].value+"门票"+sightprices[i].value+"元/人<br/>";
+				for(var i=0;i<sights.length;i++){
+					ticketpricesum+=parseFloat(sightprices[i].value);
+					showTicket+=(parseInt(i)+1)+"."+sights[i].value+"门票"+sightprices[i].value+"元/人<br/>";
 				}
 			}
-			formData["showTicket"]=showTicket;
+			formData["showTicket"]=ticketpricesum+"|"+showTicket;
 			var cards = $("#addcarddiv").find("input[name='card']");
 			var cardprices =  $("#addcarddiv").find("input[name='cardprice']");
 			var showTraveldoc = "";
+			var totalcardprices=0;
 			if(cards.length>0 && cardprices.length>0){
-				for(var i in cards){
-					showTraveldoc+=(i+1)+"."+cards[i].value+"价格"+cardprices[i].value+"元/人<br/>";
+				for(var i=0;i<cards.length;i++){
+					totalcardprices+=parseFloat(cardprices[i].value);
+					showTraveldoc+=(parseInt(i)+1)+"."+cards[i].value+"价格"+cardprices[i].value+"元/人<br/>";
 				}	
 			}
-	        formData["showTraveldoc"]=showTraveldoc;
+	        formData["showTraveldoc"]=totalcardprices+"|"+showTraveldoc;
 	        var showTourguide ="";
 	        var alltheway = $("#addGuideDiv").find("input[name='alltheway']");
 	        var choselanguage = $("#addGuideDiv").find("select[name='choselanguage']");
 	        var priceperday = $("#addGuideDiv").find("input[name='priceperday']");
-	      //  console.log(alltheway.length+"  "+ choselanguage.length+"  "+priceperday.length);
+	        var totalpriceperday=0;
+	      //  console.log(choselanguage.length+"   "+$(choselanguage[0]).find("option:selected").val()+"  "+$(choselanguage[0]).html());
 			if(alltheway.length>0 && choselanguage.length>0 && priceperday.length>0){
-		        for(var i in alltheway){
+				for(var i=0;i<alltheway.length;i++){
+		        	var selectedlanguage = $(choselanguage[i]).find("option:selected").val();
+		        	//console.log(selectedlanguage);
 		        	//console.log(choselanguage[i].options[choselanguage[i].selectedIndex].value+"   "+choselanguage[i].selectedIndex);
-		        	showTourguide+=(i+1)+"."+alltheway[i].value+" "+$(choselanguage[i]).find("option:selected").val()+" "+priceperday[i].value+"元/天<br/>";
+		        	totalpriceperday+=parseFloat(priceperday[i].value);
+		        	showTourguide+=(parseInt(i)+1)+"."+alltheway[i].value+" "+(selectedlanguage?selectedlanguage:"")+" "+priceperday[i].value+"元/天<br/>";
 		        }
 			}
-            formData["showTourguide"]=showTourguide;
+		    formData["showTourguide"]=totalpriceperday+"|"+showTourguide;
             var showHotel = "";
             var stayposition = $("table[name='routetable']").find("input[name='stayposition']");
             var hotel = $("table[name='routetable']").find("select[name='hotel']");
             var selfhotel = $("table[name='routetable']").find("input[name='selfhotel']");
             var hotelprice = $("table[name='routetable']").find("input[name='hotelprice']");
+            var totalhotelprice=0;
             if(stayposition.length>0 &&hotel.length>0 &&selfhotel.length>0 &&hotelprice.length>0){
-            	showHotel+=(i+1)+"."+(selfhotel[i].value?selfhotel[i].value:hotel[i].options[hotel[i].selectedIndex].value)+"  "+hotelprice[i].value+"/间/夜<br/>"
+            	for(var i=0;i<stayposition.length;i++){
+	            	//showHotel+=(i+1)+"."+(selfhotel[i].value?selfhotel[i].value:hotel[i].options[hotel[i].selectedIndex].value)+"  "+hotelprice[i].value+"/间/夜<br/>"
+	            	var selectedhotel = $(hotel[i]).find("option:selected").text();
+	            	totalhotelprice+=parseFloat(hotelprice[i].value);
+        		    showHotel+=(parseInt(i)+1)+"."+(selfhotel[i].value?selfhotel[i].value:(selectedhotel?selectedhotel:""))+"  "+hotelprice[i].value+"/间/夜<br/>"
+            	}
             }
-            formData["showHotel"]=showHotel;
+            formData["showHotel"]=totalhotelprice+"|"+showHotel;
             var showRentcar = "";
             var carway = $("#addcardiv").find("input[name='alltheway']");
             var carprice = $("#addcardiv").find("input[name='carprice']");
             var carstyle = $("#addcardiv").find("select[name='carstyle']");
+            var carpricesum = 0;
 			if(carway.length>0 && carprice.length>0 && carstyle.length>0){
-	            for(var i in carway){
-	            	showRentcar+=(i+1)+"."+ carway[i].value+"  "+carprice[i].value+"  "+carstyle[i].options[carstyle[i].selectedIndex].value+"元/天<br/>";
+				for(var i=0;i<carway.length;i++){
+	            	//showRentcar+=(i+1)+"."+ carway[i].value+"  "+carprice[i].value+"  "+carstyle[i].options[carstyle[i].selectedIndex].value+"元/天<br/>";
+	            	var selectedcarstyle = $(carstyle[i]).find("option:selected").val();
+	            	var resultstr = carway[i].value+"  "+carprice[i].value+"  "+(selectedcarstyle?selectedcarstyle:"");
+	            	carpricesum+=parseFloat(carprice[i].value);
+	            	showRentcar+=(parseInt(i)+1)+"."+ resultstr+"元/天<br/>";
 	            }
 			}
-            formData["showRentcar"]=showRentcar;
+            formData["showRentcar"]=carpricesum+"|"+showRentcar;
             var showBigtraffic="";
             var traffic=$("#addbigtrafficdiv").find("input[name='traffic']");
             var trafficperprice =$("#addbigtrafficdiv").find("input[name='trafficperprice']");
-			if(traffice.length>0 && trafficperprice.length>0){
-	            for(var i in traffice){
-	            	showBigtraffic+=(i+1)+"."+traffic[i].value+" "+trafficperprice[i].value+"元/人<br/>";
+            var totaltrafficperprice=0;
+			if(traffic.length>0 && trafficperprice.length>0){
+				for(var i=0;i<traffic.length;i++){
+					totaltrafficperprice+=parseFloat(trafficperprice[i].value);
+	            	showBigtraffic+=(parseInt(i)+1)+"."+traffic[i].value+" "+trafficperprice[i].value+"元/人<br/>";
 	            }
 			}
-            formData["showBigtraffic"]=showBigtraffic;
+            formData["showBigtraffic"]=totaltrafficperprice+"|"+showBigtraffic;
             var showDinner = "";
-            var breakfast = $("input[name='breakfast']").is(':checked');
-            var lunch = $("input[name='lunch']").is(':checked');
-            var dinner = $("input[name='dinner']").is(':checked');
+            var breakfast = $("input[type='checkbox'][name='breakfast']:checked");
+            var lunch = $("input[type='checkbox'][name='lunch']:checked");
+            var dinner = $("input[type='checkbox'][name='dinner']:checked");
             var singledinnerprice = $("#dinnerblock").find("input[name='singledinner']").val();
+            var totaldinnerprice=(lunch.length+dinner.length)*singledinnerprice;
             showDinner+="早餐酒店用，共"+breakfast.length+"餐,正餐共"+(lunch.length+dinner.length)+"餐，每餐价格"+singledinnerprice+"元/人<br/>";
             var dinnername = $("#dinnerblock").find("input[name='dinnername']");
             var dinnerprice = $("#dinnerblock").find("input[name='dinnerprice']");
+            var districts = $("#dinnerblock").find("input[name='district']");
     		if(dinnername.length>0 && dinnerprice.length>0){
     			showDinner+="特色餐"+dinnername.length+"餐（";
-	            for(var i in dinnername){
-	            	showDinner+=dinnername[i].value+"  "+dinnerprice[i].value+"元/人、";
+    			for(var i=0;i<dinnername.length;i++){
+    				totaldinnerprice+=parseFloat(dinnerprice[parseInt(i)+1].value);
+	            	showDinner+=districts[i].value+ "  "+ dinnername[i].value+"  "+dinnerprice[parseInt(i)+1].value+"元/人、";
 	            	if(i%2==0)showDinner+="<br/>";
 	            }
 	            showDinner+="）";
     		}
-            formData["showDinner"]=showDinner;
+            formData["showDinner"]=totaldinnerprice+"|"+showDinner;
             var showInsurance = "";
             var insuranceselect = $("#insurancediv").find("select[name='insuranceselect']");
             var insuranceprice =  $("#insurancediv").find("input[name='insuranceprice']");
-            for(var i in insuranceselect){
-            	showInsurance+=insuranceselect[i].options[insuranceselect[i].selectedIndex].value+" "+insuranceprice[i].value+"元/人<br/>";
-            }
-            formData["showInsurance"]=showInsurance;
+            var totalinsuranceprice=0;
+            if(insuranceselect.length>0 && insuranceprice.length>0){
+	        	for(var i=0;i<insuranceselect.length;i++){
+	            	//showInsurance+=insuranceselect[i].options[insuranceselect[i].selectedIndex].value+" "+insuranceprice[i].value+"元/人<br/>";
+	            	var insuranceselectvalue = $(insuranceselect[i]).find("option:selected").text();
+	            	totalinsuranceprice+=parseFloat(insuranceprice[i].value);
+	            	showInsurance+=insuranceselectvalue?insuranceselectvalue:""+" "+insuranceprice[i].value+"元/人<br/>";
+	            }
+			}
+            formData["showInsurance"]=totalinsuranceprice+"|"+showInsurance;
             var showComphcost = "";
-            var feeName = $("#allfeesdiv").find("input[name='feeName']").val();
-            var feeperperson = $("#allfeesdiv").find("input[name='feeperperson']").val();
+            var feeName = $("#allfeesdiv").find("input[name='feeName']");
+            var feeperperson = $("#allfeesdiv").find("input[name='feeperperson']");
+            var totalfeeperperson=0;
             if(feeName.length>0 && feeperperson.length>0){
-            	showComphcost+=feeName[i].value+" "+feeperperson[i].value+"元/人<br/>";
+            	for(var i=0;i<feeName.length;i++){
+            		//console.log(feeName[i].innerHTML+"  "+feeperperson[i].innerHTML);
+            		totalfeeperperson+=parseFloat(feeperperson[i].value);
+            		showComphcost+=feeName[i]?feeName[i].value:""+" "+feeperperson[i]?feeperperson[i].value:""+"元/人<br/>";
+            	}
             }
-            formData["showComphcost"]=showComphcost;
+            formData["showComphcost"]=totalfeeperperson+"|"+showComphcost;
             var showRecreation = "";
             var joyitem=$("#addjoysdiv").find("input[name='joyitem']");
             var perjoyprice=$("#addjoysdiv").find("input[name='perjoyprice']");
+            var totalperjoyprice=0;
             if(joyitem.length > 0 && perjoyprice.length > 0){
-	            for(var i in joyitem){
+            	for(var i=0;i<joyitem.length;i++){
+            		totalperjoyprice+=parseFloat(perjoyprice[i].value);
 	            	showRecreation+=joyitem[i].value+"  "+perjoyprice[i].value+"元/人<br/>";
 	            }
             }
-            formData["showRecreation"]=showRecreation;
+            formData["showRecreation"]=totalperjoyprice+"|"+showRecreation;
             var showItemguide = "";
             var hikingitem = $("#hikingguidediv").find("input[name='hikingitem']");
             var guidename = $("#hikingguidediv").find("input[name='guidename']");
             var guideperday = $("#hikingguidediv").find("input[name='guideperday']");
+            var totalguideperday=0;
             if(hikingitem.length>0 && guidename.length>0 && guideperday.length>0){
-            	showItemguide+="项目："+hikingitem[i].value+"向导名："+guidename[i].value+"  "+guideperday[i].value+"元/天";
-            }
-            formData["showItemguide"]=showItemguide;
+            	for(var i=0;i<hikingitem.length;i++){
+            		totalguideperday+=parseFloat(guideperday[i].value);
+            		showItemguide+="项目："+hikingitem[i].value+"向导名："+guidename[i].value+"  "+guideperday[i].value+"元/天";
+            	}
+        	}
+            formData["showItemguide"]=totalguideperday+"|"+showItemguide;
             var showBathorse = "";
             var bathorseCost=$("#bathorseCostdiv").find("input[name='bathorseCost']");
             var bathorsenum=$("#bathorseCostdiv").find("input[name='bathorsenum']");
+            var bathorseperday = $("#bathorseCostdiv").find("input[name='bathorseperday']");
             var bathorseprice=$("#bathorseCostdiv").find("input[name='bathorseprice']");
-            if(bathorseCost.length>0 && bathorsenum.length>0 && bathorseprice.length>0){
-            	showBathorse+=+"项目："+bathorseCost[i].value+"马匹数："+bathorsenum[i].value+"  "+bathorseprice[i].value+"元/天<br/>";
+            var totalbathorseperday=0;
+            if(bathorseCost.length>0 && bathorsenum.length>0 && bathorseperday.length>0 && bathorseprice.length>0){
+            	for(var i=0;i<bathorseCost.length;i++){
+            		totalbathorseperday+=parseFloat(bathorseperday[i].value);
+            		showBathorse+="项目："+bathorseCost[i].value+"马匹数："+bathorsenum[i].value+"  "+bathorseperday[i].value+"元/天  单匹价格："+bathorseprice[i].value+"<br/>";
+            	}
             }
-            formData["showBathorse"]=showBathorse;
+            formData["showBathorse"]=totalbathorseperday+"|"+showBathorse;
             var showRidehorse = ""; 
             var ridehorse = $("#ridehorseCostdiv").find("input[name='ridehorse']");
             var ridehorseperday = $("#ridehorseCostdiv").find("input[name='ridehorseperday']");
+            var totalridehorseperday=0;
             if(ridehorse.length>0 && ridehorseperday.length>0){
-	            for(var i in ridehorse){
+            	for(var i=0;i<ridehorse.length;i++){
+            		totalridehorseperday+=parseFloat(ridehorseperday[i].value);
 	            	showRidehorse+="项目："+ridehorse[i].value+"  "+ridehorseperday[i].value+"元/天<br/>";
 	            }
             }
-            formData["showRidehorse"]=showRidehorse;
+            formData["showRidehorse"]=totalridehorseperday+"|"+showRidehorse;
             var showClimbregister = "";
             var climbRegister = $("#climbregisterdiv").find("input[name='climbRegister']");
             var climbRegisterperday = $("#climbregisterdiv").find("input[name='climbRegisterperday']");
+            var totalclimbRegisterperday=0;
             if(climbRegister.length>0 && climbRegisterperday.length>0){
-	            for(var i in climbRegister){
+            	for(var i=0;i<climbRegister.length;i++){
+            		totalclimbRegisterperday+=parseFloat(climbRegisterperday[i].value);
 	            	showClimbregister+="项目："+climbRegister[i].value+"   "+climbRegisterperday[i].value+"元/天<br/>";
 	            }
             }
-            formData["showClimbregister"]=showClimbregister;
+            formData["showClimbregister"]=totalclimbRegisterperday+"|"+showClimbregister;
             var showClimbnexus = "";
             var climbnexus = $("#climbnexusdiv").find("input[name='climbnexus']");
             var climbnexusperday = $("#climbnexusdiv").find("input[name='climbnexusperday']");
             var climbnexusdays = $("#climbnexusdiv").find("input[name='climbnexusdays']");
+            var totalclimbnexusperday=0;
             if(climbnexus.length> 0 && climbnexusperday.length>0&& climbnexusdays.length>0){
-            	for(var i in climbnexus){
+            	for(var i=0;i<climbnexus.length;i++){
+            		totalclimbnexusperday+=parseFloat(climbnexusperday[i].value);
             		showClimbnexus+="项目："+climbnexus[i].value+" 天数:"+climbnexusdays[i].value+" "+climbnexusperday[i].value+"元/天<br/>";
             	}
             }
-            formData["showClimbnexus"]=showClimbnexus;
+            formData["showClimbnexus"]=totalclimbnexusperday+"|"+showClimbnexus;
             var showElsecost = "";
             var elseitem = $("#elseitemdiv").find("input[name='elseitem']");
             var elseitemprice = $("#elseitemdiv").find("input[name='elseitemprice']");
             var elseitemstyle = $("#elseitemdiv").find("select[name='elseitemstyle']");
-            if(elseitem.length> 0 && elseitemprice.length>0){
-            	showElsecost+="项目："+elseitem[i].value+"  "+showElsecost[i].value+"元/天"+elseitemstyle[i].options[elseitemstyle[i].selectedIndex].value+"<br/>";
-            }
-            formData["showElsecost"]= showElsecost;
+            var totalshowElsecost=0;
+            if(elseitem.length> 0 && elseitemprice.length>0 && elseitemstyle.length>0){
+            	for(var i=0;i<elseitem.length;i++){
+	            	//showElsecost+="项目："+elseitem[i].value+"  "+showElsecost[i].value+"元/天"+elseitemstyle[i].options[elseitemstyle[i].selectedIndex].value+"<br/>";
+	            	var selectedelseitemstyle = $(elseitemstyle[i]).find("option:selected").val();
+	            	totalshowElsecost+=parseFloat(elseitemprice[i].value);
+	            	showElsecost+="项目："+elseitem[i]?elseitem[i].value:""+"  "+elseitemprice[i]?elseitemprice[i].value:""+"元/天"+selectedelseitemstyle?selectedelseitemstyle:""+"<br/>";
+            	}
+        	}
+            formData["showElsecost"]=totalshowElsecost+"|"+showElsecost;
 	  	 var showTrip="<table name='showTrip' width='80%' cellspacing='1' cellpadding='5' border='0' align='center'><thead><tr>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' height='31'><div class='style18' align='center'><div align='center'><strong><strong>天数</strong></strong></div></div></td>"+
           "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'>日期</td>"+
@@ -239,7 +297,7 @@ itour.quoteEdit = function(){
 				        "<option value='周五'>周五</option>"+
 				        "<option value='周六'>周六</option></select></td>"+
 				        "<td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>"+
-				        "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()></td>"+
+				        "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"></td>"+
 				        "<td class=STYLE126 width=124 valign=middle><select id='travelItem' name='travelItem' class='easyui-combobox'  style='width:150px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
 			            "formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_"+new Date().getTime()+"'+row.alias+' value='+row.alias+'>'+row.item+'<span>';},onSelect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', false);}\"></select></td>"+
 				        "<td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>"+
@@ -264,8 +322,8 @@ itour.quoteEdit = function(){
 					 //$.parser.parse($("input[name='tourTime']",$(e)).parent());
 					 // console.log($("select[name='travelItem']",$(e)).combobox('getValue'));
 					 // travelItem = travelItem.substr(0, travelItem.length - 1);textbox combo datebox//$("#tourTime",$(e)).datebox('getValue')
-					  console.log($("input[name='tourTimeinput']",$(e)).val());
-					  console.log($($("span.textbox.combo.datebox")[i]).find("input[type='hidden'][name='tourTime']").val());
+					  //console.log($("input[name='tourTimeinput']",$(e)).val());
+					  //console.log($($("span.textbox.combo.datebox")[i]).find("input[type='hidden'][name='tourTime']").val());
 					  var newtr="<tr><td class='STYLE126' width='34' valign='middle'><div align='center'>"+$("select[name='tourdays'] option:selected",$(e)).val()+"</div></td>"+
 			          "<td class='STYLE126' width='55' valign='middle'><span name='tourTime'>"+$($("span.textbox.combo.datebox")[i]).find("input.textbox-value[type='hidden'][name='tourTime']").val()+"</span></td>"+
 			          "<td class='STYLE126' width='35' valign='middle'><span  name='tourWeekday'>"+$("select[name='tourWeekday'] option:selected",$(e)).text()+"</span></td>"+
@@ -292,7 +350,7 @@ itour.quoteEdit = function(){
 				          $("input[name='tourTime']",$(beriefTr)).val($("input[name='tourTime']",e).val());*/
 			        	//  $.parser.parse($("input[name='tourTime']",$(e)));
 			        	  var tourTime = $("input[name='tourTimeinput']",$(e)).val();//$("input[name='tourTimeinput']",$(e)).datebox('getValue');
-			        	  console.log(tourTime);
+			        	 // console.log(tourTime);
 			        	  //$.parser.parse($("input[name='tourTime']",$(beriefTr)));
 			        	//  $.parser.parse($("select[name='travelItem']",$(beriefTr)).parent());
 			        	  $("#travelItem",$(beriefTr)).combobox('setValue',travelItem);
@@ -594,7 +652,7 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},climbRegisterPlus:function(){
 			var insertSpan="<span class=style126><br>"+
-				"<input name=climbRegister size=20 type=text><input name=climbRegisterperday size=6 type=text>"+
+				"<input name=climbRegister size=20 type=text>&nbsp;&nbsp;<input name=climbRegisterperday size=6 type=text>"+
 				"元/天  X<input name=climbRegisterdays size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 				"天　&nbsp;&nbsp;备注：<input name=climbRegisterremark size=20 type=text>"+
 				"<a name=climbRegisterminus onclick='javascript:itour.quoteEdit.climbRegisterMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span";
@@ -603,9 +661,9 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},climbnexusPlus:function(){
 			var insertSpan="<span class=style126><br>"+
-				"<input name=climbnexus size=20 type=text><input name=climbnexusnum value=1 size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">人数 X"+
-				"<input name=climbnexusperday size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/天  X  "+
-				"<input name=climbnexusdays size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">天　&nbsp;&nbsp;备注："+
+				"<input name=climbnexus size=20 type=text><input style='width:50px;' name=climbnexusnum value=1 size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">人数 X"+
+				"<input name=climbnexusperday style='width:50px;' size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/天  X  "+
+				"<input name=climbnexusdays style='width:50px;' size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">天　&nbsp;&nbsp;备注："+
 				"<input name=climbnexusremark size=20 type=text>"+
 				"<a name=climbnexusminus onclick='javascript:itour.quoteEdit.climbnexusMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></span>";
 				$("#climbnexusdiv").append(insertSpan);

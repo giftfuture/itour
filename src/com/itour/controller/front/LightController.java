@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
 import com.google.common.collect.Lists;
+import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.util.FilePros;
@@ -28,6 +30,7 @@ import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
+import com.itour.entity.QuoteForm;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
@@ -40,6 +43,7 @@ import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
 import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
+import com.itour.vo.CalculateQuoteVo;
 import com.itour.vo.CustomerVo;
 import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
@@ -159,7 +163,15 @@ public class LightController extends BaseController{
 			}
 		}
 		rt.setPhotoList(photoList);
-		Map<String,Object> map = new HashMap<String,Object>();
+		float adultquote = Float.parseFloat(qf.getShowTicket().split("\\|")[0])+Float.parseFloat(qf.getShowTourguide().split("\\|")[0])+
+				Float.parseFloat(qf.getShowHotel().split("\\|")[0])+Float.parseFloat(qf.getShowRentcar().split("\\|")[0])+Float.parseFloat(qf.getShowDinner().split("\\|")[0])+
+				Float.parseFloat(qf.getShowInsurance().split("\\|")[0])+Float.parseFloat(qf.getShowComphcost().split("\\|")[0])+Float.parseFloat(qf.getShowRecreation().split("\\|")[0]);
+		float childquote = Float.parseFloat(qf.getShowTicket().split("\\|")[0])+Float.parseFloat(qf.getShowTourguide().split("\\|")[0])+
+				Float.parseFloat(qf.getShowHotel().split("\\|")[0])+Float.parseFloat(qf.getShowRentcar().split("\\|")[0])+Float.parseFloat(qf.getShowDinner().split("\\|")[0])+
+				Float.parseFloat(qf.getShowInsurance().split("\\|")[0])+Float.parseFloat(qf.getShowComphcost().split("\\|")[0])+Float.parseFloat(qf.getShowRecreation().split("\\|")[0]);
+		qf.setAdultsQuote(adultquote);
+		qf.setChildquote(childquote);
+		Map<String,Object> map = getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);
 		map.put("qf", qf);
@@ -252,6 +264,70 @@ public class LightController extends BaseController{
 		context.put("bean", bean);
 		context.put("qf", qf);
 		return forward("front/light/quote_step2",context); 
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/calculateSum", method = RequestMethod.POST)
+	public String calculateSum(@RequestBody CalculateQuoteVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Float adultsumcost =0f;
+		Float childrensumcost =0f;
+		if(vo !=null && StringUtils.isNotEmpty(vo.getId())){//&& adults !=null && children !=null
+			int adults = vo.getAdults();
+			int children = vo.getChildren();
+			QuoteForm qf = quoteFormService.queryById(vo.getId());
+			if(qf.isAsAdult()){
+				adultsumcost+=qf.getAdults()*adults;
+				childrensumcost+=qf.getAdults()*children;
+			}else{
+				adultsumcost+=qf.getAdults()*adults;
+				childrensumcost+=qf.getChildren()*children;
+			}
+			adultsumcost+=Float.parseFloat(qf.getShowTicket().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowTraveldoc().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowTourguide().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowHotel().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowRentcar().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowBigtraffic().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowDinner().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowInsurance().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowComphcost().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowRecreation().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowItemguide().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowBathorse().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowRidehorse().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowClimbregister().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowClimbnexus().split("\\|")[0])*adults;
+			adultsumcost+=Float.parseFloat(qf.getShowElsecost().split("\\|")[0])*adults;
+			
+			childrensumcost+=Float.parseFloat(qf.getShowTicket().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowTraveldoc().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowTourguide().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowHotel().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowRentcar().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowBigtraffic().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowDinner().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowInsurance().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowComphcost().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowRecreation().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowItemguide().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowBathorse().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowRidehorse().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowClimbregister().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowClimbnexus().split("\\|")[0])*children;
+			childrensumcost+=Float.parseFloat(qf.getShowElsecost().split("\\|")[0])*children;
+		}
+		Map<String,String> map = getHashMap();
+		map.put("adultsumcost", adultsumcost+"");
+		map.put("childrensumcost", childrensumcost+"");
+		return JsonUtils.encode(map);
 	}
 	/**
 	 * 

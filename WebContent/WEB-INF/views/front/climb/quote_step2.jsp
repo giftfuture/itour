@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="${rt.title }"> 
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+<meta http-equiv="description" content="${rt.title }"> 
 <title>${rt.title}</title>
 </head>
 <body>
@@ -55,6 +55,8 @@
   </tr>
 </table>
 <br />
+<form name="calculatespendForm" action="">
+<input type="hidden" name="id" value="${qf.id }">
 <table width="100%" border="1" align="center" cellpadding="8" cellspacing="2">
   <tr>
     <td>&nbsp;</td>
@@ -77,116 +79,74 @@
     <td bgcolor="#f0f0f0"><div align="right"><strong>人数： </strong></div></td>
     <td><label><input name="adultsprice" type="hidden" value="${qf.adults }"/><input name="childrenprice" type="hidden" value="${qf.children }"/>
       大人：${qf.adults }元/人 小孩：${qf.children }元/人（按小孩价格核算）</label></td>
-    <td style="width:150px"><input size="6" type="text" name="adults"  class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/>位</td>
-    <td style="width:150px"><input size="6" type="text" name="children" class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/>位</td>
-    <td><input size="6" type="text" id="quoteadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
-    <td><input size="6" type="text" id="quotechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
+    <td style="width:150px"><input size="6" type="text" name="adults"  class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>位</td>
+    <td style="width:150px"><input size="6" type="text" name="children" class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>位</td>
+    <td><input size="6" type="text" id="quoteadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quotechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10">。按前面 一页填写的数据 <br />
       。分项报价的内容</span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-    <td><span class="STYLE126"> 1.</span>海子沟门票50元<br />
-      <span class="STYLE126">2.</span>长坪沟户外门票150元<br />
-      <span class="STYLE126">3.毕棚沟门票80元/人
-观光车 70元/人</span></td>
-    <td>${350 }</td>
-    <td>
-      0</td>
-    <td><input size="6" type="text" id="quoteticketadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
-    <td><input size="6" type="text" id="quoteticketchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/></td>
+    <td>${fn:split(qf.showTicket,'|')[1]}</td>
+    <td>${fn:split(qf.showTicket,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quoteticketadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteticketchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10">小孩 未勾选，则成本 为0 </span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件</strong></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><span class="STYLE126">
-      <input name="textfield32277" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield32278" type="text" size="6" />
-    </span></td>
+    <td>${fn:split(qf.showTraveldoc,'|')[1]}</td>
+    <td>${fn:split(qf.showTraveldoc,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quotetraveldocadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quotetraveldocchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-    <td><span class="STYLE126"> 全程中文导游 300元/天 *6天=1800元</span><br /></td>
-    <td>450</td>
+    <td>${fn:split(qf.showTourguide,'|')[1]}</td>
+    <td>${fn:split(qf.showTourguide,'|')[0]}</td>
     <td>0</td>
-    <td><span class="STYLE126">
-      <input name="textfield32279" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322710" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE10">小孩未勾选，则把些项目平摊到大人1800/4人</span></td>
+    <td><input size="6" type="text" id="quotetourguideadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)""/></td>
+    <td><input size="6" type="text" id="quotetourguidechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><span class="STYLE10">小孩未勾选，则把些项目平摊到大人</span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
-    </strong></div></td>
-    <td>1.贵山商务酒店 120元/间/夜 * 2夜 <br />
-      2.露营 0元/间/夜 *2夜 <br />
-      3.汶川大酒店 200元/间夜 * 1夜 <br />
-      <br />
-    <span class="STYLE10"></span></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br /></strong></div></td>
+    <td>${fn:split(qf.showHotel,'|')[1]}</td>
+    <td>${fn:split(qf.showHotel,'|')[0]}</td>
     <td>220</td>
-    <td>220</td>
-    <td><span class="STYLE126">
-      <input name="textfield322792" type="text" value="200" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322793" type="text" value="200" size="6" />
-    </span></td>
-    <td><span class="STYLE10">1间房按2人算<br />
-      则为：（120*2+200*1）/2<br />
-    小孩勾选了，所以有小孩 的成本 </span></td>
+    <td><input size="6" type="text" id="quoteshowHoteladults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteshowHotelchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><span class="STYLE10">1间房按2人算<br />小孩勾选了，所以有小孩 的成本 </span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
-    </strong></div></td>
-    <td><span class="STYLE126"> 1.
-      全程用车</span> 1000元/天*6天=6000元 <br /></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br /></strong></div></td>
+    <td>${fn:split(qf.showRentcar,'|')[1]}</td>
+    <td>${fn:split(qf.showRentcar,'|')[0]}</td>
     <td>1000</td>
-    <td>1000</td>
-    <td><span class="STYLE126">
-      <input name="textfield32279" type="text" value="100" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322710" type="text" value="100" size="6" />
-    </span></td>
-    <td><span class="STYLE10">小孩勾选了，所以车价除以大人和小孩 的和<br />
-      6000/(4+2)=1000</span></td>
+    <td><input size="6" type="text" id="quoterentcaradults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoterentcarchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><span class="STYLE10">小孩勾选了，所以车价除以大人和小孩 的和<br /></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>大交通：<br />
-    </strong></div></td>
-    <td><span class="STYLE126">
-      <label></label>
-    </span></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>大交通：<br /></strong></div></td>
+    <td>${fn:split(qf.showBigtraffic,'|')[1]}</td>
+    <td>${fn:split(qf.showBigtraffic,'|')[0]}</td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><input size="6" type="text" id="quotebigtrafficadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quotebigtrafficchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10">没填写则没有</span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
-              <br />
-    </strong></div></td>
-    <td><label>
-      早餐酒店用<br />
-      正餐 共11餐，40元餐标9餐，特色餐2餐（<span class="STYLE126">钦善斋药膳火锅 60元/人</span>、道地四川火锅80元/人）<br />
-    </label>      </td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br /> <br /></strong></div></td>
+    <td>${fn:split(qf.showDinner,'|')[1]}</td>
+    <td>${fn:split(qf.showDinner,'|')[0]}</td>
     <td>500</td>
-    <td>500</td>
-    <td><span class="STYLE126">
-      <input name="textfield32279" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322710" type="text" size="6" />
-    </span></td>
+    <td><input size="6" type="text" id="quotedinneradults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quotedinnerchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10">按填写和勾选的来<br />
       早餐默认酒店用<br />
       午餐和晚上按上面是11餐，其中2餐特色餐<br />
@@ -196,43 +156,29 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-    <td><span class="STYLE126">
-      <label></label>
-      </span><span class="STYLE126">内宾旅游意外保险 10元/人 </span></td>
+    <td>${fn:split(qf.showInsurance,'|')[1]}</td>
+    <td>${fn:split(qf.showInsurance,'|')[0]}</td>
     <td>10</td>
-    <td>10</td>
-    <td><span class="STYLE126">
-      <input name="textfield32279" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322710" type="text" size="6" />
-    </span></td>
+    <td><input size="6" type="text" id="quoteinsuranceadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteinsurancechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong>：</div></td>
-    <td><span class="STYLE126">旅行社综合服务费</span></td>
+    <td>${fn:split(qf.showComphcost,'|')[1]}</td>
+    <td>${fn:split(qf.showComphcost,'|')[0]}</td>
     <td>0</td>
-    <td>0</td>
-    <td><span class="STYLE126">
-      <input name="textfield32279" type="text" value="500" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322710" type="text" value="300" size="6" />
-    </span></td>
+    <td><input size="6" type="text" id="quotecomphcostadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quotecomphcostchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-    <td>成都川剧表演 200元/人 </td>
+    <td>${fn:split(qf.showRecreation,'|')[1]}</td>
+    <td>${fn:split(qf.showRecreation,'|')[0]}</td>
     <td>10</td>
-    <td>10</td>
-    <td><span class="STYLE126">
-      <input name="textfield32279" type="text" size="6" />
-    </span></td>
-    <td><span class="STYLE126">
-      <input name="textfield322710" type="text" size="6" />
-    </span></td>
+    <td><input size="6" type="text" id="quoterecreationadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoterecreationchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
@@ -240,51 +186,59 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>向导</strong></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>${fn:split(qf.showItemguide,'|')[1]}</td>
+    <td>${fn:split(qf.showItemguide,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quoteitemguidecadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteitemguidechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费</strong></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>${fn:split(qf.showBathorse,'|')[1]}</td>
+    <td>${fn:split(qf.showBathorse,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quotebathorseadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quotebathorsecchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费</strong></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>${fn:split(qf.showRidehorse,'|')[1]}</td>
+    <td>${fn:split(qf.showRidehorse,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quoteridehorseadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteridehorsechildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费</strong></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>${fn:split(qf.showClimbregister,'|')[1]}</td>
+    <td>${fn:split(qf.showClimbregister,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quoteclimbregisteradults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteclimbregisterchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
-  
+    <tr>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>登山联络官 </strong></div></td>
+    <td>${fn:split(qf.showClimbnexus,'|')[1]}</td>
+    <td>${fn:split(qf.showClimbnexus,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quoteclimbnexusadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteclimbnexuschildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><span class="STYLE10"></span></td>
+  </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>其它 </strong></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>${fn:split(qf.showElsecost,'|')[1]}</td>
+    <td>${fn:split(qf.showElsecost,'|')[0]}</td>
+    <td>0</td>
+    <td><input size="6" type="text" id="quoteelsecostadults"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
+    <td><input size="6" type="text" id="quoteelseecostchildren"  class="easyui-numberbox" data-options="min:0,validType:'number',editable:false,precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
-  <tr>
+<!--   <tr>
     <td><div align="right"></div></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -292,25 +246,20 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td><span class="STYLE10"></span></td>
-  </tr>
+  </tr> -->
   <tr>
     <td><div align="right">核算价格：</div></td>
-    <td><label></label>
-      <table border="0" cellspacing="0" cellpadding="3">
-        <tr>
-          <td><input type="button" onclick="javascript:go(-1)" name="Submit2" value="返回上页修改" /></td>
-          <td><input type="button" name="calculateSum" value="算算呗 " /></td>
-        </tr>
+    <td colspan=3><input type="button" onclick="javascript:go(-1)" name="Submit2" value="返回上页修改" />
+	<input type="button" name="calculateSum" value="算算呗 " />
+	<input type="button" name="reviewcalculate" value="预览一下" />
+	<input type="button" name="generateQuote" value="生成正式报价单"></td>
   <%--       <tr>
           <td>链接1</td>
           <td><a href="${basePath}hiking/toQuote3">链接2</a></td>
         </tr> --%>
-      </table></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><span class="STYLE10">两种核算价格的方式，出来两个不同的页面</span></td>
+    <td> </td>
+    <td> </td>
+    <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td><div align="right"></div></td>
@@ -326,6 +275,7 @@
     <td colspan="7"><p><a href="#" class="STYLE136">算价管理（门票在景点内管理）</a></p>    </td>
   </tr>
 </table>
+</form>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/quote_step2.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

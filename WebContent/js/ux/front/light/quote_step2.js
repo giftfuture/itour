@@ -35,8 +35,71 @@ itour.lightstep2 = function(){
 				 obj.value = obj.value.replace(/[^(\d|.)]/g,"");
 		},
 		init:function(){
-			$("input[name='children']").on('keyup',_this.onlyNonNegative);
-			$("input[name='adults']").on('keyup',_this.onlyNonNegative);
+			//$("input[name='adults']").on('keyup',_this.onlyNonNegative);
+			//$("input[name='children']").on('keyup',_this.onlyNonNegative);
+			$("input[name='adults']").numberbox({  
+				 onChange:function(){ 	
+					_this.onlyNonNegative;
+					if(!isNaN($(this).val())){
+						var adultsprice = $("input[name='adultsprice']").val();
+						var result = parseFloat(adultsprice)*parseInt($(this).val());
+						$.parser.parse($("input[name='quoteadults']").parent());
+						$("#quoteadults").numberbox('setValue',result);
+						$("#quoteticketadults").numberbox('setValue',parseFloat($("#quoteticketadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotetraveldocadults").numberbox('setValue',parseFloat($("#quotetraveldocadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotetourguideadults").numberbox('setValue',parseFloat($("#quotetourguideadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoteshowHoteladults").numberbox('setValue',parseFloat($("#quoteshowHoteladults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoterentcaradults").numberbox('setValue',parseFloat($("#quoterentcaradults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotebigtrafficadults").numberbox('setValue',parseFloat($("#quotebigtrafficadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotedinneradults").numberbox('setValue',parseFloat($("#quotedinneradults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoteinsuranceadults").numberbox('setValue',parseFloat($("#quoteinsuranceadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotecomphcostadults").numberbox('setValue',parseFloat($("#quotecomphcostadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoterecreationadults").numberbox('setValue',parseFloat($("#quoterecreationadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoteelsecostadults").numberbox('setValue',parseFloat($("#quoteelsecostadults").parents("td").prev().prev().text())*parseInt($(this).val()));
+/*						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));*/
+						
+					}
+				 }
+			});
+			$("input[name='children']").numberbox({  
+				 onChange:function(){
+					_this.onlyNonNegative;
+					if(!isNaN($(this).val())){
+						var childrenprice = $("input[name='childrenprice']").val();
+						var result =  parseFloat(childrenprice)*parseInt($(this).val());
+						$("#quotechildren").numberbox('setValue',result);
+						$("#quoteticketchildren").numberbox('setValue',parseFloat($("#quoteticketchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotetraveldocchildren").numberbox('setValue',parseFloat($("#quotetraveldocchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotetourguidechildren").numberbox('setValue',parseFloat($("#quotetourguidechildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoteshowHotelchildren").numberbox('setValue',parseFloat($("#quoteshowHotelchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoterentcarchildren").numberbox('setValue',parseFloat($("#quoterentcarchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotebigtrafficchildren").numberbox('setValue',parseFloat($("#quotebigtrafficchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotedinnerchildren").numberbox('setValue',parseFloat($("#quotedinnerchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoteinsurancechildren").numberbox('setValue',parseFloat($("#quoteinsurancechildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quotecomphcostchildren").numberbox('setValue',parseFloat($("#quotecomphcostchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoterecreationchildren").numberbox('setValue',parseFloat($("#quoterecreationchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						$("#quoteelseecostchildren").numberbox('setValue',parseFloat($("#quoteelseecostchildren").parents("td").prev().prev().text())*parseInt($(this).val()));
+						/*$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));
+						$("#").numberbox('setValue',parseFloat($(this).prev().prev().text())*parseInt($(this).val()));*/
+					}
+				 }
+			});
+			//$("input[name='quoteticketadults']").numberbox('setValue',);
 			$("input[name='route_checkall']").click(function(){
 				if($(this).attr("checked")){
 					_this.checkedAll("breakfast");
@@ -47,6 +110,27 @@ itour.lightstep2 = function(){
 					_this.uncheckedAll("lunch");
 					_this.uncheckedAll("dinner");
 			 }
+			});
+			$("input[name='calculateSum']").click(function(){
+				//document.forms["calculatespendForm"].submit();
+				var formData = new Object();
+				var actionurl=basePath+"light/calculateSum";
+				var id=$("input[type='hidden'][name='id']").val();
+				var adults=$("input[name='adults']").val();	
+				var children=$("input[name='children']").val();	
+				var param = {'id':id,'adults':parseInt(adults),'children':parseInt(children)};
+				formData.id=$("input[type='hidden'][name='id']").val();
+				formData.adults=$("input[name='adults']").val();	
+				formData.children=$("input[name='children']").val();	
+				//console.log(formData);
+				__.post(actionurl,formData, function(result) {
+					//console.log("data.success="+data.success);
+					//console.log(result.adultsumcost+"   "+result.childrensumcost);
+					$("input[name='calculateSum']").parents("td").next().next().next().html(result.adultsumcost);
+					$("input[name='calculateSum']").parents("td").next().next().next().next().html(result.childrensumcost);
+					//$("td[name='adultsumcost']").html(result.adultsumcost);
+					//$("td[name='childrensumcost']").html(result.childrensumcost);
+				});
 			});
 		}
 	}
