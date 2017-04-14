@@ -29,6 +29,7 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String city;
 	private String district;	private String createTime;//   	private String updateTime;//   
 	private String special;//线路特色	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//  
+	private String routeLine;//路线图
 	private List<RouteTemplateVo> relates;//相关线路
 	private List<String> photoList;//照片
 	private String related;
@@ -63,7 +64,20 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String similars;//相似线路
 	private float elevation;//海拔
 	private String areas;//地区
+	private List<String> itemitems;
 	
+	public List<String> getItemitems() {
+		return itemitems;
+	}
+	public void setItemitems(List<String> itemitems) {
+		this.itemitems = itemitems;
+	}
+	public String getRouteLine() {
+		return routeLine;
+	}
+	public void setRouteLine(String routeLine) {
+		this.routeLine = routeLine;
+	}
 	public float getElevation() {
 		return elevation;
 	}

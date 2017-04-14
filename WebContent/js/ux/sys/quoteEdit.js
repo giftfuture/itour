@@ -808,8 +808,6 @@ itour.quoteEdit = function(){
 			        message : '选择行程安排日期应在当前日期之后'  //
 			    }  
 			}); 
-		
-
 		} 
 	}
 	return _this;

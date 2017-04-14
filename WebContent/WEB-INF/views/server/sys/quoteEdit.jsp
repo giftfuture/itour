@@ -112,9 +112,9 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>人数： </strong></div></td>
     <td><label> 大人：<span class="style126" >
-    <input name="adults" size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位成人的费用;'" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+    <input name="adults" size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位成人的费用;'" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
     	元/人&nbsp;&nbsp; 小孩 
-    <input name="children"  size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位孩子的费用;' " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();">
+    <input name="children" size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位孩子的费用;' " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
     </span> 元/人     
     （
     <input name="isAsAdult" value="isAsAdult" type="radio">

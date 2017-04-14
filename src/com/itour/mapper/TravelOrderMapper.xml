@@ -27,11 +27,14 @@
 	<result column="pay_terminal" property="payTerminal"/>
 	<result column="budget" property="budget"/>
 	<result column="is_valid" property="isValid"/>
+	<result column="routename" property="routename"/>
+	<result column="receiveremail" property="receiveremail"/>
+	<result column="gender" property="gender"/>
 </resultMap>
        
 <!-- travel_order table all fields -->
 <sql id="Base_Column_List" >
-	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, is_payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,is_valid
+	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, is_payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,is_valid,routename,receiveremail,gender
 </sql>
    
    
@@ -60,6 +63,15 @@ where is_valid=1
 	<if test="receiver != null and receiver != ''" >
 	    and receiver like CONCAT('%', #{receiver}, '%')
 	</if>
+	<if test="routename != null and routename != ''" >
+	    and routename =  #{routename}
+	</if>
+	<if test="gender != null and gender != ''" >
+	    and gender =#{gender}
+	</if>
+	<if test="receiveremail != null and receiveremail != ''" >
+	    and receiveremail like CONCAT('%', #{receiveremail}, '%')
+	</if>
 	<if test="receiverMobile != null and receiverMobile != ''" >
 	    and receiver_mobile =  #{receiverMobile}
 	</if>
@@ -75,10 +87,10 @@ where is_valid=1
 	<if test="expectedBack != null and expectedBack != ''" >
 	   and DATE_FORMAT(expected_back,'%Y-%m-%d') = DATE_FORMAT(#{expectedBack},'%Y-%m-%d') 
 	</if>
-	<if test="totalStaff != null" >
+	<if test="totalStaff != null and totalStaff !=''" >
 	    and total_staff =  #{totalStaff}
 	</if>
-	<if test="isPayed != null" >
+	<if test="isPayed != null and isPayed !=''" >
 	    and is_payed =  #{isPayed}
 	</if>
 	<if test="payType != null and payType != ''" >
@@ -99,7 +111,7 @@ where is_valid=1
 	<if test="payTerminal != null and payTerminal != ''" >
 	    and pay_terminal like CONCAT('%', #{payTerminal}, '%')
 	</if>
-	<if test="budget != null" >
+	<if test="budget != null and budget !=''" >
 	    and budget =  #{budget}
 	</if>
 </trim>
@@ -111,70 +123,79 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,is_payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget,is_valid)
- values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{isPayed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget},1)
+  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,is_payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget,is_valid,routename,receiveremail,gender)
+ values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{isPayed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget},1,#{routename},#{receiveremail},#{gender})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelOrder" >
 	update travel_order set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid != null">
+		<if test="routename != null and routename != ''" >
+	    	 routename =  #{routename},
+		</if>
+		<if test="receiveremail != null and receiveremail != ''" >
+		    receiveremail = #{receiveremail}, 
+		</if>
+		<if test="isValid != null and isValid != ''">
 			is_valid=#{isValid},
 		</if>
-		<if test="orderName != null  ">
+		<if test="orderName != null and orderName !='' ">
 			order_name=#{orderName},
 		</if>
-		<if test="orderNo != null  ">
+		<if test="orderNo != null and orderNo !='' ">
 			order_no=#{orderNo},
 		</if>
-		<if test="orderStatus != null  ">
+		<if test="orderStatus != null and orderStatus != '' ">
 			order_status=#{orderStatus},
 		</if>
-		<if test="receiver != null  ">
+		<if test="receiver != null and receiver !='' ">
 			receiver=#{receiver},
 		</if>
-		<if test="receiverMobile != null  ">
+		<if test="receiverMobile != null and receiverMobile !='' ">
 			receiver_mobile=#{receiverMobile},
 		</if>
-		<if test="remark != null  ">
+		<if test="remark != null and remark != '' ">
 			remark=#{remark},
 		</if>
-		<if test="customerId != null  ">
+		<if test="customerId != null and customerId !='' ">
 			customer_id=#{customerId},
 		</if>
-		<if test="expectedDepart != null  ">
+		<if test="expectedDepart != null and expectedDepart != '' ">
 			expected_depart=#{expectedDepart},
 		</if>
-		<if test="expectedBack != null  ">
+		<if test="expectedBack != null and expectedBack !='' ">
 			expected_back=#{expectedBack},
 		</if>
-		<if test="totalStaff != null  ">
+		<if test="totalStaff != null and totalStaff != '' ">
 			total_staff=#{totalStaff},
 		</if>
-		<if test="isPayed != null  ">
+		<if test="isPayed != null and isPayed !='' ">
 			is_payed=#{isPayed},
 		</if>
-		<if test="payType != null  ">
+		<if test="payType != null and payType != '' ">
 			pay_type=#{payType},
 		</if>
-		<if test="payPlatform != null  ">
+		<if test="payPlatform != null and payPlatform != '' ">
 			pay_platform=#{payPlatform},
 		</if>
-		<if test="bank != null  ">
+		<if test="bank != null and bank !='' ">
 			bank=#{bank},
 		</if>
-		<if test="payAccount != null  ">
+		<if test="payAccount != null and payAccount !='' ">
 			pay_account=#{payAccount},
 		</if>
-		<if test="payTime != null  ">
+		<if test="payTime != null and payTime != '' ">
 			pay_time=#{payTime},
 		</if>
-		<if test="payTerminal != null  ">
+		<if test="payTerminal != null and payTerminal != '' ">
 			pay_terminal=#{payTerminal},
 		</if>
-		<if test="budget != null" >
-	     budget =  #{budget},
+		<if test="budget != null and budget !=''" >
+	     	budget =  #{budget},
+		</if>
+		<if test="gender != null and gender != ''" >
+		     gender =#{gender},
 		</if>
 	</trim> where id=#{id}
 </update>

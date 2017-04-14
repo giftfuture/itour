@@ -27,7 +27,42 @@ public class TravelOrderVo extends BasePage implements Serializable{
 	private BigDecimal budget;  //旅行预算
 	private List<OrderDetail> orderItems;
 	private boolean isValid;
+	private String routename;
+	private String receiveremail;
+	private String routeTitle;//路线名称
+	private String routeAlias;//路线别名
+	private boolean gender;
 	
+	public boolean isGender() {
+		return gender;
+	}
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+	public String getRouteTitle() {
+		return routeTitle;
+	}
+	public void setRouteTitle(String routeTitle) {
+		this.routeTitle = routeTitle;
+	}
+	public String getRouteAlias() {
+		return routeAlias;
+	}
+	public void setRouteAlias(String routeAlias) {
+		this.routeAlias = routeAlias;
+	}
+	public String getRoutename() {
+		return routename;
+	}
+	public void setRoutename(String routename) {
+		this.routename = routename;
+	}
+	public String getReceiveremail() {
+		return receiveremail;
+	}
+	public void setReceiveremail(String receiveremail) {
+		this.receiveremail = receiveremail;
+	}
 	
 	public boolean isValid() {
 		return isValid;

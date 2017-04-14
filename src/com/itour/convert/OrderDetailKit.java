@@ -34,6 +34,36 @@ public class OrderDetailKit{
 		if(od.getGroupDate() !=null){
 			vo.setGroupDate(DateUtil.getDateYmdCn(od.getGroupDate()));
 		}
+		vo.setTravelfashion(od.getTravelfashion());
+		vo.setSingleorcluster(od.getSingleorcluster());
+		vo.setTravelrequest(od.getTravelrequest());
+		vo.setHotel(od.getHotel());
+		vo.setTravelOrder(od.getTravelOrder());
+		vo.setStayrequest(od.getStayrequest());
+		vo.setTraffic(od.getTraffic());
+		vo.setTickets(od.getTickets());
+		vo.setFoodrequest(od.getFoodrequest());
+		vo.setRecreation(od.getRecreation());
+		vo.setSpecialrequest(od.getSpecialrequest());
+		vo.setComefrom(od.getComefrom());
+		vo.setGuide(od.getGuide());
+		vo.setGuide(od.getGuide());
+		vo.setTaste(od.getTaste());
+		vo.setHatefood(od.getHatefood());
+		vo.setTrain(od.getTrain());
+		vo.setCruise(od.getCruise());
+		vo.setCar_new(od.getCar_new());
+		vo.setCar_no_smoking(od.getCar_no_smoking());
+		vo.setCar(od.getCar());
+		vo.setShipping_space(od.getShipping_space());
+		vo.setPlane(od.getPlane());
+		vo.setHotel_info(od.getHotel_info());
+		vo.setHotel_quiet(od.getHotel_quiet());
+		vo.setHotel_no_smoking(od.getHotel_no_smoking());
+		vo.setSuite(od.getSuite());
+		vo.setDb_room(od.getDb_room());
+		vo.setBb_room(od.getBb_room());
+		vo.setPosition(od.getPosition());
 		return vo;
 	}
 	public static OrderDetail toEntity(OrderDetailVo od){
@@ -49,6 +79,35 @@ public class OrderDetailKit{
 		vo.setGroupCode(od.getGroupCode());
 		vo.setAdults(od.getAdults());
 		vo.setChildren(od.getChildren());
+		vo.setTravelfashion(od.getTravelfashion());
+		vo.setSingleorcluster(od.getSingleorcluster());
+		vo.setTravelrequest(od.getTravelrequest());
+		vo.setHotel(od.getHotel());
+		vo.setTravelOrder(od.getTravelOrder());
+		vo.setStayrequest(od.getStayrequest());
+		vo.setTraffic(od.getTraffic());
+		vo.setTickets(od.getTickets());
+		vo.setFoodrequest(od.getFoodrequest());
+		vo.setRecreation(od.getRecreation());
+		vo.setSpecialrequest(od.getSpecialrequest());
+		vo.setComefrom(od.getComefrom());
+		vo.setGuide(od.getGuide().equals("其他语种")?od.getGuide_other():od.getGuide());
+		vo.setTaste(od.getTaste());
+		vo.setHatefood(od.getHatefood());
+		vo.setTrain(od.getTrain());
+		vo.setCruise(od.getCruise());
+		vo.setCar_new(od.getCar_new());
+		vo.setCar_no_smoking(od.getCar_no_smoking());
+		vo.setCar(od.getCar());
+		vo.setShipping_space(od.getShipping_space());
+		vo.setPlane(od.getPlane());
+		vo.setHotel_info(od.getHotel_info());
+		vo.setHotel_quiet(od.getHotel_quiet());
+		vo.setHotel_no_smoking(od.getHotel_no_smoking());
+		vo.setSuite(od.getSuite());
+		vo.setDb_room(od.getDb_room());
+		vo.setBb_room(od.getBb_room());
+		vo.setPosition(od.getPosition());
 		try {
 			if(StringUtils.isNotEmpty(od.getCreateTime())){
 				vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,od.getCreateTime()));
@@ -85,6 +144,35 @@ public class OrderDetailKit{
 		map.put("adults", od.getAdults()+"");
 		map.put("children", od.getChildren()+"");
 		map.put("groupDate", DateUtil.getDateYmdCn(od.getGroupDate()));
+		map.put("travelfashion",od.getTravelfashion());
+		map.put("singleorcluster", od.getSingleorcluster());
+		map.put("travelrequest", od.getTravelrequest());
+		map.put("hotel", od.getHotel());
+		map.put("travelOrder", od.getTravelOrder());
+		map.put("stayRequest", od.getStayrequest());
+		map.put("traffic", od.getTraffic());
+		map.put("tickets", od.getTickets());
+		map.put("foodrequest", od.getFoodrequest());
+		map.put("recreation", od.getRecreation()+"");
+		map.put("specialrequest", od.getSpecialrequest());
+		map.put("comefrom", od.getComefrom());
+		map.put("guide", od.getGuide());
+		map.put("taste", od.getTaste());
+		map.put("hatefood", od.getHatefood());
+		map.put("train", od.getTrain());
+		map.put("cruise", od.getCruise());
+		map.put("car_new", od.getCar_new());
+		map.put("car_no_smoking", od.getCar_no_smoking());
+		map.put("car", od.getCar());
+		map.put("shipping_space",od.getShipping_space());
+		map.put("plane", od.getPlane());
+		map.put("hotel_info", od.getHotel_info());
+		map.put("hotel_quiet", od.getHotel_quiet());
+		map.put("hotel_no_smoking", od.getHotel_no_smoking());
+		map.put("suite", od.getSuite()+"");
+		map.put("db_room", od.getDb_room()+"");
+		map.put("bb_room", od.getBb_room()+"");
+		map.put("position", od.getPosition());
 		return map;
 	}
 }

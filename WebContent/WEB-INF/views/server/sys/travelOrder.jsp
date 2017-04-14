@@ -52,6 +52,14 @@
 						<label>联系电话:</label>
 						<input name="receiverMobile" type="text" maxlength="20" class="easyui-numberbox" data-options="validType:'mobileTelephone',missingMessage:'请填写联系方式(手机或固话)',invalidMessage:'无效的联系方式'" missingMessage="请填写receiverMobile">
 					</div>
+					<div class="fitem">
+						<label>联系邮箱:</label>
+						<input name="receiveremail" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写receiver">
+					</div>
+				<!-- <div class="fitem">
+						<label>联系电话:</label>
+						<input name="receiverMobile" type="text" maxlength="20" class="easyui-numberbox" data-options="validType:'mobileTelephone',missingMessage:'请填写联系方式(手机或固话)',invalidMessage:'无效的联系方式'" missingMessage="请填写receiverMobile">
+					</div> -->
 				<!-- 	<div class="fitem">
 						<label>客户ID:</label>
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">

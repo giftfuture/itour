@@ -12,6 +12,7 @@
     Counter counthandler=new Counter();//创建对象  
     int count=1;  														
     application.setAttribute("count",count); 
+    String homePage = "http://localhost:8080/itour";
   /*   if(application.getAttribute("count")==null|| count == 0){  
 	    count=counthandler.readCount();//读取文件获取数据赋给count  
 	    application.setAttribute("count",count);  
@@ -55,9 +56,33 @@
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote-zh-TW.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.serialize-object.min.js"></script>
 <script type="text/javascript">
-var tougao="mrr";var lmname="JavaScript";var ourl="";
-(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://www.itours.com.cn/"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
-var basePath = '${basePath}';
+var tougao="mrr";
+var lmname="JavaScript";
+var ourl="";
+var homepage="<%=homePage%>";
+/* (function(){
+	var reWriteUrl=function(url){
+	if(url){
+		var Splits=url.split("/"),
+		siteName=window.location.pathname;
+		if(typeof siteName!=="undefined"){
+			return "http://zjj.itours.com.cn/"+siteName
+			}
+		}
+	};
+	if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){
+		var url=window.location.href;
+		var pathname=window.location.pathname;
+		if(url.indexOf("?pc")<0){
+			try{
+				window.location.href=reWriteUrl(url)
+				}catch(e){
+					
+				}
+				}
+		}
+	})();*/
+var basePath = '${basePath}'; 
 </script>
 <base href=" <%=basePath%>">
 <meta charset="UTF-8">
@@ -70,8 +95,8 @@ var basePath = '${basePath}';
 <meta http-equiv="cache-control" content="no-cache">  
 <meta http-equiv="expires" content="0">      
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="mobile-agent" content="format=html5; url=http://www.itours.com.cn/" />
-<meta http-equiv="mobile-agent" content="format=xhtml; url=http://www.itours.com.cn/" />
+<meta http-equiv="mobile-agent" content="format=html5; url=<%=homePage%>" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=homePage%>" />
     <p>我们的友谊海枯石不烂！ 您是第 <%=application.getAttribute("count") %> 位访客</p>  
 <style type="text/css">
 body {
@@ -137,5 +162,22 @@ body {
 .STYLE140 {color: #666666}
 .STYLE23 {width:267px;}
 td { text-align: center;}
+a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #990000;
+	text-decoration: none;
+}
+a:hover {
+	color: #cccc99;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+a:visited {
+	color: #990000;
+}
 </style>
 

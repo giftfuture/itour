@@ -104,7 +104,6 @@ public class RouteTemplateController extends BaseController{
 		return forward("server/sys/routeTemplate"); 
 	}
 	
-	
 	/**
 	 * @param url
 	 * @param classifyId

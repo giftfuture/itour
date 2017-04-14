@@ -148,11 +148,11 @@ itour.travelOrder = function(){
 	   			url:'travelOrder/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'customerId',title:'客户ID',align:'center',sortable:true,
+				/*	{field:'customerId',title:'客户ID',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.customerId;
 						}
-					},
+					},*/
 					{field:'orderNo',title:'订单号',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return '<span title="'+row.orderNo+'">'+row.orderNo+'</span>';
@@ -186,6 +186,16 @@ itour.travelOrder = function(){
 							return row.receiverMobile;
 						}
 					},
+					{field:'receiveremail',title:'联系邮箱',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.receiveremail;
+						}
+					},
+					{field:'routename',title:'订单路线',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.routename;
+						}
+					},
 					{field:'createTime',title:'下单时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
@@ -210,7 +220,7 @@ itour.travelOrder = function(){
 							formatter:function(value,row,index){
 								return row.totalStaff;
 							}
-						},
+					},
 					{field:'budget',title:'出行预算',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.budget;

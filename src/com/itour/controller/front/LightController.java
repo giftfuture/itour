@@ -147,6 +147,7 @@ public class LightController extends BaseController{
 		List<TravelItem> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.uploadPtopath();
 		List<String> photoList = Lists.newArrayList();
+		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
 		for(TravelItem ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
@@ -161,7 +162,10 @@ public class LightController extends BaseController{
 					photoList.add(realname);
 				}
 			}
+			routeLine.append("-"+ti.getItem());
 		}
+		routeLine.append("-"+rt.getArrive());
+		rt.setRouteLine(routeLine.toString());
 		rt.setPhotoList(photoList);
 		float adultquote = Float.parseFloat(qf.getShowTicket().split("\\|")[0])+Float.parseFloat(qf.getShowTourguide().split("\\|")[0])+
 				Float.parseFloat(qf.getShowHotel().split("\\|")[0])+Float.parseFloat(qf.getShowRentcar().split("\\|")[0])+Float.parseFloat(qf.getShowDinner().split("\\|")[0])+
@@ -225,7 +229,53 @@ public class LightController extends BaseController{
 		map.put("rt", rt);
 		return forward("front/light/detail",map); 
 	}
-	
+	/**
+	 * 
+	 * @param alias
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/selfbooking/{alias}",method = RequestMethod.GET) 
+	@ResponseBody
+	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = getRootMap();
+		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		String mappath = FilePros.uploadMappath();
+		String coverpath = FilePros.uploadCoverpath();
+		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
+			rt.setRouteMap(mappath+rt.getRouteMap());
+		}
+		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
+			rt.setCover(coverpath+rt.getCover());
+		}
+		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
+			String [] ids =  rt.getRelated().split(",");
+			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVo rtp:relates){
+				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
+				if(ts != null){
+					rtp.setTravelStyleAlias(ts.getAlias());
+				}
+			}
+			 rt.setRelates(relates);
+		}
+		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
+		List<String> itids = Arrays.asList(itemIds.split(","));
+		List<TravelItem> items = travelItemService.queryByIds(itids);
+		String ptopath = FilePros.uploadPtopath();
+		for(TravelItem ti:items){
+			String photo = ti.getCover();
+			if(StringUtils.isNotEmpty(photo)){
+				String cover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+				ti.setCover(cover);
+			}
+		}
+		map.put("items", items);
+		map.put("rt", rt);
+		return forward("front/light/selfbooking",map); 
+	}
 	/**
 	 * 
 	 * @param request

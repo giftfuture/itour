@@ -181,16 +181,81 @@ itour.orderDetail = function(){
 							formatter:function(value,row,index){
 								return row.count;
 							}
-						},
-						{field:'remark',title:'备注',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								if((row.remark+"").length>30){
-									return (row.remark+"").substring(0,30)+"....";
-								}else{									
-									return row.remark;
-								}
+					},
+					{field:'travelfashion',title:'旅行方式',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.travelfashion;
+						}
+					},
+					{field:'singleorcluster',title:'团/人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.singleorcluster;
+						}
+					},
+					{field:'travelrequest',title:'各程要求',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.travelrequest;
+						}
+					},
+					{field:'hotel',title:'酒店',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.hotel;
+						}
+					},
+					{field:'travelOrder',title:'订单号',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.travelOrder;
+						}
+					},
+					{field:'stayrequest',title:'住宿要求',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.stayrequest;
+						}
+					},
+					{field:'traffic',title:'交通',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.traffic;
+						}
+					},
+					{field:'tickets',title:'门票',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.tickets;
+						}
+					},
+					{field:'foodrequest',title:'食物要求',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.foodrequest;
+						}
+					},
+					{field:'guide',title:'导游',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.guide;
+						}
+					},
+					{field:'comefrom',title:'来自',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.comefrom;
+						}
+					},
+					{field:'recreation',title:'娱乐',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.recreation;
+						}
+					},
+					{field:'specialrequest',title:'个性要求',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.specialrequest;
+						}
+					},
+					{field:'remark',title:'备注',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if((row.remark+"").length>30){
+								return (row.remark+"").substring(0,30)+"....";
+							}else{									
+								return row.remark;
 							}
-						},
+						}
+					},
 					]],
 					toolbar:[
 									/*{id:'btnadd',text:'添加',btnType:'add',disabled:true,handler:function(){
