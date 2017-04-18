@@ -64,6 +64,7 @@ public class OrderDetailKit{
 		vo.setDb_room(od.getDb_room());
 		vo.setBb_room(od.getBb_room());
 		vo.setPosition(od.getPosition());
+		vo.setFoodArrange(od.getFoodArrange());
 		return vo;
 	}
 	public static OrderDetail toEntity(OrderDetailVo od){
@@ -76,10 +77,19 @@ public class OrderDetailKit{
 		vo.setRemark(od.getRemark());
 		vo.setStatus(od.getStatus());
 		vo.setValid(od.isValid());
-		vo.setGroupCode(od.getGroupCode());
 		vo.setAdults(od.getAdults());
 		vo.setChildren(od.getChildren());
 		vo.setTravelfashion(od.getTravelfashion());
+		if(od.getTravelfashion().equals("加入散客团")){
+			vo.setGroupCode(od.getGroupCode());
+			if(StringUtils.isNotEmpty(od.getGroupDate())){
+				try {
+					vo.setGroupDate(DateUtil.fromStringToDate(DateUtil.y_m_d,od.getGroupDate()));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		vo.setSingleorcluster(od.getSingleorcluster());
 		vo.setTravelrequest(od.getTravelrequest());
 		vo.setHotel(od.getHotel());
@@ -108,15 +118,13 @@ public class OrderDetailKit{
 		vo.setDb_room(od.getDb_room());
 		vo.setBb_room(od.getBb_room());
 		vo.setPosition(od.getPosition());
+		vo.setFoodArrange(od.getFoodArrange());
 		try {
 			if(StringUtils.isNotEmpty(od.getCreateTime())){
 				vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,od.getCreateTime()));
 			}
 			if(StringUtils.isNotEmpty(od.getUpdateTime())){
 				vo.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,od.getUpdateTime()));
-			}
-			if(StringUtils.isNotEmpty(od.getGroupDate())){
-				vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,od.getGroupDate()));
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -153,7 +161,7 @@ public class OrderDetailKit{
 		map.put("traffic", od.getTraffic());
 		map.put("tickets", od.getTickets());
 		map.put("foodrequest", od.getFoodrequest());
-		map.put("recreation", od.getRecreation()+"");
+		map.put("recreation", od.getRecreation());
 		map.put("specialrequest", od.getSpecialrequest());
 		map.put("comefrom", od.getComefrom());
 		map.put("guide", od.getGuide());
@@ -173,6 +181,7 @@ public class OrderDetailKit{
 		map.put("db_room", od.getDb_room()+"");
 		map.put("bb_room", od.getBb_room()+"");
 		map.put("position", od.getPosition());
+		map.put("foodArrange", od.getFoodArrange());
 		return map;
 	}
 }

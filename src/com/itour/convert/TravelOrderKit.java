@@ -109,10 +109,10 @@ public class TravelOrderKit{
 				tv.setPayTime(DateUtil.fromStringToDate(DateUtil.ymdhms,to.getPayTime()));
 			}
 			if(StringUtils.isNotEmpty(to.getExpectedBack())){
-				tv.setExpectedBack(DateUtil.fromStringToDate(DateUtil.y_m_d,to.getExpectedBack()));
+				tv.setExpectedBack(DateUtil.fromStringToDate(DateUtil.ymdhm,to.getExpectedBack()));
 			}
 			if(StringUtils.isNotEmpty(to.getExpectedDepart())){
-				tv.setExpectedDepart(DateUtil.fromStringToDate(DateUtil.y_m_d,to.getExpectedDepart()));
+				tv.setExpectedDepart(DateUtil.fromStringToDate(DateUtil.ymdhm,to.getExpectedDepart()));
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

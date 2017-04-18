@@ -29,9 +29,9 @@ public class OrderDetail extends BaseEntity {
 	private String stayrequest;
 	private String traffic;
 	private String tickets;
-	private boolean foodArrange;//是否安排饭食
+	private String foodArrange;//是否安排饭食
 	private String foodrequest;
-	private boolean recreation;
+	private String recreation;
 	private String specialrequest;
 	private String travelOrder;//所属订单 
 	private String comefrom;
@@ -53,12 +53,7 @@ public class OrderDetail extends BaseEntity {
 	private int bb_room;
 	private String position;
 	
-	public boolean isFoodArrange() {
-		return foodArrange;
-	}
-	public void setFoodArrange(boolean foodArrange) {
-		this.foodArrange = foodArrange;
-	}
+	 
 	public String getTaste() {
 		return taste;
 	}
@@ -220,10 +215,17 @@ public class OrderDetail extends BaseEntity {
 	public void setFoodrequest(String foodrequest) {
 		this.foodrequest = foodrequest;
 	}
-	public boolean getRecreation() {
+	 
+	public String getFoodArrange() {
+		return foodArrange;
+	}
+	public void setFoodArrange(String foodArrange) {
+		this.foodArrange = foodArrange;
+	}
+	public String getRecreation() {
 		return recreation;
 	}
-	public void setRecreation(boolean recreation) {
+	public void setRecreation(String recreation) {
 		this.recreation = recreation;
 	}
 	public String getSpecialrequest() {

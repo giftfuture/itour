@@ -12,7 +12,7 @@
     Counter counthandler=new Counter();//创建对象  
     int count=1;  														
     application.setAttribute("count",count); 
-    String homePage = "http://localhost:8080/itour";
+    String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
   /*   if(application.getAttribute("count")==null|| count == 0){  
 	    count=counthandler.readCount();//读取文件获取数据赋给count  
 	    application.setAttribute("count",count);  
@@ -179,5 +179,21 @@ a:active {
 a:visited {
 	color: #990000;
 }
+.radioSpan {
+      position: relative;
+      border: 0px solid #95B8E7;
+      background-color: #fff;
+      vertical-align: middle;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border-radius: 5px 5px 5px 5px;
+      display:block;
+    }
+
 </style>
 

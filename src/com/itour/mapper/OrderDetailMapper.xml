@@ -203,7 +203,7 @@ where is_valid=1
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id,is_valid,adults,children,group_code,group_date,travelfashion,singleorcluster,travelrequest,hotel,travel_order,stayrequest,traffic,tickets,foodrequest,recreation,specialrequest,guide,comefrom,food_arrange,taste,hatefood,train,cruise,car_new,car_no_smoking,car,shipping_space,plane,hotel_info,hotel_quiet,hotel_no_smoking,suite,db_room,bb_room,position)
- values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId},1,#{adults},#{children},#{groupCode},#{groupDate}, #{travelfashion},#{singleorcluster},#{travelrequest},#{hotel},#{travelOrder},#{stayrequest},#{traffic},#{tickets},#{foodrequest},#{recreation},#{specialrequest},#{guide},#{comefrom},#{food_arrange},#{taste},#{hatefood},#{train},#{cruise},#{car_new},#{car_no_smoking},#{car},#{shipping_space},#{plane,#{hotel_info},#{hotel_quiet},#{hotel_no_smoking},#{suite},#{db_room},#{bb_room},#{position})
+ values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId},1,#{adults},#{children},#{groupCode},#{groupDate}, #{travelfashion},#{singleorcluster},#{travelrequest},#{hotel},#{travelOrder},#{stayrequest},#{traffic},#{tickets},#{foodrequest},#{recreation},#{specialrequest},#{guide},#{comefrom},#{foodArrange},#{taste},#{hatefood},#{train},#{cruise},#{car_new},#{car_no_smoking},#{car},#{shipping_space},#{plane},#{hotel_info},#{hotel_quiet},#{hotel_no_smoking},#{suite},#{db_room},#{bb_room},#{position})
 </insert>
 
  

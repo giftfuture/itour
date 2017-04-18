@@ -1,6 +1,5 @@
 package com.itour.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -136,6 +136,44 @@ public class OrderDetailController extends BaseController{
 		}
 		return sendSuccessResult(response, "保存成功~");
 	}
+	/**
+	 * 添加或修改数据
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+/*	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/booking", method = RequestMethod.POST)
+	public String booking(@RequestBody OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String vcode = SessionUtils.getHappyValidateCode(request);
+		SessionUtils.removeHappyValidateCode(request);//清除验证码，确保验证码只能用一次
+	 	if(StringUtils.isEmpty(entity.getVerifyCode())){
+	 		return sendFailureResult(response, "验证码不能为空.");
+		}
+		//判断验证码是否正确
+	 	if(!entity.getVerifyCode().toLowerCase().equals(vcode)){   
+	 		return sendFailureResult(response, "验证码输入错误.");
+		} 
+		String odId="";
+		OrderDetail od = null;
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId().toString())){
+			entity.setStatus(1);
+			odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
+		}else{
+			   od = orderDetailService.queryById(entity.getId());
+			if(od == null){
+				entity.setStatus(1);
+				odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
+			}else{
+				orderDetailService.update(OrderDetailKit.toEntity(entity));
+			}
+		}
+		String result = sendSuccessResult(response, "下单预订成功！");
+		return result;
+	}*/
 	/**
 	 * 
 	 * @param id

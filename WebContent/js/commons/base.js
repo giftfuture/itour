@@ -138,6 +138,77 @@ var itour={
 			 	}
 		});
 	},
+	submitFormWithoutLogin:function(form,callback,dataType){
+		var option ={type:'post',
+			 	//dataType: dataType||'json'||'script',
+			 	timeout:3000,
+			 //	iframe: true,
+			 	cache:false,
+			 	url:form.attr("action"),
+			 //	dataType: "json",
+			 	processData: false,
+		        //contentType: "application/json; charset=UTF-8",
+			 	contentType:false,
+		        //contentType: "multipart/form-data; charset=UTF-8",
+			 	async:false,  //异步请求	,
+			 	success:function(data){		
+			 		console.log(data);
+			 		//var reg = /<pre.+?>(.+)<\/pre>/g;  
+			 		//var result = data.match(reg);  
+			 		if(data.indexOf('pre')>0){
+			 			data = $(data).text();
+			 		}
+			 		//console.log(data);
+			 		//var jsondata= data;//.parseJSON(data);//$(data).text()
+			 		if($.isFunction(callback)){
+			 			//console.log(callback);
+			 			callback(data);
+			 		}
+			 	},
+			 	error:function(response, textStatus, errorThrown){
+			 		try{
+			 			console.log(response.responseText);
+			 			itour.closeProgress();
+			 			var data = '';
+			 			if(response.responseText.indexOf('pre')>0){//&&response.responseText.indexOf('</pre>')>0
+			 				//console.log($(response.responseText).text());
+			 				data = $(response.responseText).text();//$(response.responseText).text()
+			 			}else{
+			 				data = response.responseText;
+			 			}
+			 			//console.log(data);
+				 		itour.alert('提示', data.msg || "submitFormWithoutLogin请求出现异常,请联系管理员",'error');
+			 		}catch(e){
+			 			itour.alert('提示',"submitFormWithoutLogin catch请求出现异常,请联系管理员.",'error');
+			 		}
+			 	}
+			 }
+			 itour.ajaxSubmit(form,option);
+			 return false;
+	},
+	saveFormWithoutLogin:function(form,callback){
+		if(form.form('validate')){
+			itour.progress('Please waiting','Saving...');
+			//ajax提交form
+			itour.submitFormWithoutLogin(form,function(data){
+				itour.closeProgress();
+				console.log(data);
+				var jsondata =$.parseJSON(data);//$(data).text()
+				//console.log(data);
+			 	if(jsondata.success||jsondata.success=="true"){
+			 	//	console.log(data+"     "+callback);
+			 		if($.isFunction(callback)){
+			 			//console.log(data);
+				       	callback(jsondata);
+				    }else{
+			       		itour.alert('提示','保存成功.','info');
+			        } 
+		        }else{
+		       	   itour.alert('提示',jsondata.msg||"saveFormWithoutLogin请求出现异常,请联系管理员.",'error');  
+		        }
+			});
+		 }
+	},
 	submitForm:function(form,callback,dataType){
 		//form.attr("travelItems","");//$("#travelItems").combobox('getValues').join(',')
 		//console.log(form.serializeObject());//form.serializeObject()

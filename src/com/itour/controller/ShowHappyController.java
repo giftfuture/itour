@@ -201,7 +201,7 @@ public class ShowHappyController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public String add(ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> context = getRootMap();
+		//Map<String,Object> context = getRootMap();
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isEmpty(showhappy.getVerifyCode())){

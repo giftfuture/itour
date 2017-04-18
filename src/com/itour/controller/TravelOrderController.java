@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,15 +28,19 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
+import com.itour.convert.OrderDetailKit;
 import com.itour.convert.TravelOrderKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
+import com.itour.entity.OrderDetail;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelOrder;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
+import com.itour.service.OrderDetailService;
 import com.itour.service.TravelOrderService;
+import com.itour.vo.OrderDetailVo;
 import com.itour.vo.TravelOrderVo;
 import com.itour.vo.TravelStyleVo;
  
@@ -65,6 +70,8 @@ public class TravelOrderController extends BaseController{
 	
 	@Autowired
 	private LogOperationService logOperationService;
+	@Autowired  
+	private OrderDetailService<OrderDetail> orderDetailService; 
 	/**
 	 * 
 	 * @param url
@@ -169,7 +176,63 @@ public class TravelOrderController extends BaseController{
 		}
 		return sendSuccessResult(response, "保存成功~");
 	}
-	
+	/**
+	 * 添加或修改数据
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/booking", method = RequestMethod.POST)
+	public String booking(@RequestBody OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String vcode = SessionUtils.getHappyValidateCode(request);
+		SessionUtils.removeHappyValidateCode(request);//清除验证码，确保验证码只能用一次
+	 	if(StringUtils.isEmpty(entity.getVerifyCode())){
+	 		return sendFailureResult(response, "验证码不能为空.");
+		}
+		//判断验证码是否正确
+	 	if(!entity.getVerifyCode().toLowerCase().equals(vcode)){   
+	 		return sendFailureResult(response, "验证码输入错误.");
+		} 
+	 	TravelOrderVo to = new TravelOrderVo();
+	 	to.setBudget(entity.getBudget());
+	 	if(StringUtils.isNotEmpty(entity.getExpectedBack())){
+	 		to.setExpectedBack(entity.getExpectedBack());
+	 	}
+		if(StringUtils.isNotEmpty(entity.getExpectedDepart())){
+			to.setExpectedDepart(entity.getExpectedDepart());
+		}
+		to.setOrderNo(IDGenerator.getUUID());
+		to.setRoutename(entity.getRoutename());
+		to.setReceiver(entity.getReceiver());
+		to.setReceiveremail(entity.getReceiveremail());
+		to.setReceiverMobile(entity.getReceiverMobile());
+		to.setGender(entity.isGender());
+		to.setOrderStatus(1);
+		to.setTotalStaff(entity.getAdults()+entity.getChildren());
+		to.setOrderName(IDGenerator.getUUID()+"_"+entity.getRoutename()+"_"+IDGenerator.code(16)+"_"+DateUtil.dateToString(DateUtil.fromStringToDate(DateUtil.y_m_d,entity.getExpectedDepart()),DateUtil.longTimePlusMill)+IDGenerator.number(4));
+		String travelOrderId = travelOrderService.add(TravelOrderKit.toRecord(to));
+		String odId="";
+		OrderDetail od = null;
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId().toString())){
+			entity.setStatus(1);
+			entity.setTravelOrder(StringUtils.isNotEmpty(travelOrderId)?travelOrderId:"");
+			odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
+		}else{
+			   od = orderDetailService.queryById(entity.getId());
+			if(od == null){
+				entity.setStatus(1);
+				entity.setTravelOrder(StringUtils.isNotEmpty(travelOrderId)?travelOrderId:"");
+				odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
+			}else{
+				orderDetailService.update(OrderDetailKit.toEntity(entity));
+			}
+		}
+		String result = sendSuccessResult(response, "下单预订成功！");
+		return result;
+	}
 	/**
 	 * 
 	 * @param id

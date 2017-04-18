@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.util.SessionUtils;
@@ -35,7 +36,9 @@ public class AreasController extends BaseController {
 	@RequestMapping(value="/allAreas", method = RequestMethod.GET)
 	public List<Areas> allAreas(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();
-		List<Areas> allAreas = areasService.allAreas();
+		List<Areas> allAreas = Lists.newArrayList();
+		allAreas.add(new Areas("","请选择"));
+		allAreas.addAll(areasService.allAreas());
 		//root.put("allAreas", allAreas);
 		//String result = JsonUtils.encode(root);
 		SysUser user = SessionUtils.getUser(request);

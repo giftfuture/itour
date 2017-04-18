@@ -17,7 +17,7 @@ public class IDGenerator {
 	    UUID uuid=UUID.randomUUID();
 	    String str = uuid.toString(); 
 	    String uuidStr=str.replace("-", "");
-	    return uuidStr.toUpperCase();
+	    return uuidStr;
 	  }
 	  /**
 	   * 根据字符串生成固定UUID

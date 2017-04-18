@@ -1,6 +1,7 @@
 package com.itour.vo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,13 +28,13 @@ public class OrderDetailVo extends BasePage implements Serializable{
 	private String traffic;
 	private String tickets;
 	private String foodrequest;
-	private boolean recreation;
+	private String recreation;
 	private String specialrequest;
 	private String travelOrder;//所属订单 
 	private String comefrom;
 	private String guide;
 	private String guide_other;
-	private boolean foodArrange;
+	private String foodArrange;
 	private String taste;
 	private String hatefood;
 	private String train;
@@ -50,20 +51,80 @@ public class OrderDetailVo extends BasePage implements Serializable{
 	private int db_room;
 	private int bb_room;
 	private String position;
-
+	private String verifyCode;
 	
+	private BigDecimal budget;  //旅行预算
+	private String routename;
+	private String receiveremail;
+	private boolean gender;
+	private java.lang.String receiver;//   
+	private java.lang.String receiverMobile;//   
+	private String expectedDepart;//   
+	private String expectedBack;//
+	
+	
+	
+	public BigDecimal getBudget() {
+		return budget;
+	}
+	public void setBudget(BigDecimal budget) {
+		this.budget = budget;
+	}
+	public String getRoutename() {
+		return routename;
+	}
+	public void setRoutename(String routename) {
+		this.routename = routename;
+	}
+	public String getReceiveremail() {
+		return receiveremail;
+	}
+	public void setReceiveremail(String receiveremail) {
+		this.receiveremail = receiveremail;
+	}
+	public boolean isGender() {
+		return gender;
+	}
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+	public java.lang.String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(java.lang.String receiver) {
+		this.receiver = receiver;
+	}
+	public java.lang.String getReceiverMobile() {
+		return receiverMobile;
+	}
+	public void setReceiverMobile(java.lang.String receiverMobile) {
+		this.receiverMobile = receiverMobile;
+	}
+	public String getExpectedDepart() {
+		return expectedDepart;
+	}
+	public void setExpectedDepart(String expectedDepart) {
+		this.expectedDepart = expectedDepart;
+	}
+	public String getExpectedBack() {
+		return expectedBack;
+	}
+	public void setExpectedBack(String expectedBack) {
+		this.expectedBack = expectedBack;
+	}
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
 	public String getGuide_other() {
 		return guide_other;
 	}
 	public void setGuide_other(String guide_other) {
 		this.guide_other = guide_other;
 	}
-	public boolean isFoodArrange() {
-		return foodArrange;
-	}
-	public void setFoodArrange(boolean foodArrange) {
-		this.foodArrange = foodArrange;
-	}
+	 
 	public String getTaste() {
 		return taste;
 	}
@@ -226,11 +287,17 @@ public class OrderDetailVo extends BasePage implements Serializable{
 	public void setFoodrequest(String foodrequest) {
 		this.foodrequest = foodrequest;
 	}
-	public boolean getRecreation() {
+	public String getRecreation() {
 		return recreation;
 	}
-	public void setRecreation(boolean recreation) {
+	public void setRecreation(String recreation) {
 		this.recreation = recreation;
+	}
+	public String getFoodArrange() {
+		return foodArrange;
+	}
+	public void setFoodArrange(String foodArrange) {
+		this.foodArrange = foodArrange;
 	}
 	public String getSpecialrequest() {
 		return specialrequest;

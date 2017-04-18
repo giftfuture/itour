@@ -21,6 +21,11 @@ public class Areas extends BaseEntity {
 	private String position;
 	private int sortnum;
 	private String brief;
+	public Areas(){}
+	public Areas(String id,String areaname){
+		this.id = id;
+		this.areaname = areaname;
+	}
 	public String getId() {
 		return id;
 	}
