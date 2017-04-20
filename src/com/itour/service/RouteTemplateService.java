@@ -1,5 +1,6 @@
 package com.itour.service;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.FilePros;
 import com.itour.convert.RouteTemplateKit;
 import com.itour.dao.RouteTemplateDao;
 import com.itour.dao.TravelItemDao;
@@ -44,6 +46,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		List<RouteTemplate> list = (List<RouteTemplate>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
+		String rtCoverPath = FilePros.httprtCoverPath();
 		for(RouteTemplate fb:list) {
 			if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				 String[] params = fb.getTravelItems().split(",");
@@ -59,9 +62,43 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				}
 				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
 			}
+			String coverpath = rtCoverPath+File.separatorChar+fb.getRouteCode()+"_"+fb.getTitle()+File.separatorChar;
+			fb.setCover(coverpath+fb.getCover());
 			records.add(RouteTemplateKit.toRecord(fb));
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
+	}
+	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	public BasePage<RouteTemplateVo> searchpagedQuery(RouteTemplateVo vo) {
+		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.searchRts(vo);
+		int count = mapper.searchRtsByCount(vo);
+		List<RouteTemplateVo> records = Lists.newArrayList();
+		String rtCoverPath = FilePros.httprtCoverPath();
+		for(RouteTemplateVo fb:list){
+		/*	if(StringUtils.isNotEmpty(fb.getTravelItems())){
+				String[] params = fb.getTravelItems().split(",");
+				String travelItems = tiDao.travelItems(Arrays.asList(params));
+				fb.setTravelItems(travelItems);
+			}
+			if(StringUtils.isNotEmpty(fb.getSimilars())){
+				String[] similars = fb.getSimilars().split(",");
+				List<RouteTemplate> simlist = mapper.queryByRelated(Arrays.asList(similars));
+				List<String> sims = Lists.newArrayList();
+				for(RouteTemplate rt:simlist){
+					sims.add(rt.getTitle());
+				}
+				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
+			}*/
+			String coverpath = rtCoverPath+File.separatorChar+fb.getRouteCode()+"_"+fb.getAlias()+File.separatorChar;
+			fb.setCover(coverpath+fb.getCover());
+			records.add(fb);
+		}
+		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), list,count);
 	}
 	/**
 	 * 
@@ -72,7 +109,10 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public List<RouteTemplateVo> queryByStyle(String style)throws Exception{
 		List<RouteTemplate> list = mapper.queryByStyle(style);
 		List<RouteTemplateVo> vos = Lists.newArrayList();
+		String rtCoverPath = FilePros.httprtCoverPath();
 		for(RouteTemplate rt :list){
+			String coverpath = rtCoverPath+File.separatorChar+rt.getRouteCode()+"_"+rt.getAlias()+File.separatorChar;
+			rt.setCover(coverpath+rt.getCover());
 			vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return vos;
@@ -101,7 +141,10 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public List<RouteTemplateVo> queryByItems(String travelItems)throws Exception{
 		List<RouteTemplate> list = mapper.queryByItems(travelItems);
 		List<RouteTemplateVo> vos = Lists.newArrayList();
+		String rtCoverPath = FilePros.httprtCoverPath();
 		for(RouteTemplate rt:list){
+			String coverpath = rtCoverPath+File.separatorChar+rt.getRouteCode()+"_"+rt.getAlias()+File.separatorChar;
+			rt.setCover(coverpath+rt.getCover());
 			vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return vos;
@@ -135,9 +178,17 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @param id
 	 * @param quoteForm
 	 */
-	public void updateQuoteForm(RouteTemplate entity){
+	/*public void updateQuoteForm(RouteTemplate entity){
+		mapper.update(entity);
+	};*/
+	/**
+	 * 
+	 * @param entity
+	 */
+	public void updateQuotoForm(RouteTemplate entity){
 		mapper.update(entity);
 	};
+	
 	/**
 	 * 
 	 * @param id
@@ -179,9 +230,9 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @param map
 	 * @return
 	 */
-	public List<RouteTemplateVo> searchRts(Map map)throws Exception{
+/*	public List<RouteTemplateVo> searchRts(Map map)throws Exception{
 		return mapper.searchRts(map);
-	};
+	};*/
 	public 	List<RouteTemplateVo> queryAll()throws Exception{
 		return mapper.queryAll();
 	};

@@ -208,7 +208,7 @@ itour.hiking = function(){
 			       // document.body.appendChild(obj);
 			        olist[i].parentNode.replaceChild(obj,olist[i]);
 			    }
-			return html;
+			    return html;
 			},
 			checkedAll:function (name){//全选
 				  var names=document.getElementsByName(name);

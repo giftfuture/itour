@@ -137,8 +137,6 @@ public class TravelItemController extends BaseController{
 		return dataGridAdapter.wrap(page);
 	}
 	
-	
-	
 	/**
 	 * 添加或修改数据
 	 * @param url
@@ -184,7 +182,7 @@ public class TravelItemController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
-	public @ResponseBody String uploadPhotos(@RequestParam(value="id",required=false)String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
+	public @ResponseBody String uploadPhotos(String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object>  context = getRootMap();
 		TravelItem ti = new TravelItem();
@@ -200,7 +198,7 @@ public class TravelItemController extends BaseController{
 			//Map<String,MultipartFile> file = (Map<String,MultipartFile>) multipartRequest.getFileMap(); 
 			//MultiValueMap<String,MultipartFile> its = multipartRequest.getMultiFileMap();
 			//List<MultipartFile> lll = multipartRequest.getFiles("fileselect");
-			String physicalPath = FilePros.physicalPath();// FilePros.uploadPtopath(multipartRequest);//FilePros.uploadPath();
+			String travelitemPhotoPath = FilePros.travelitemPhotoPath();// FilePros.uploadPtopath(multipartRequest);//FilePros.uploadPath();
 			TravelItem t = travelItemService.queryById(id);
 			StringBuffer photos = new StringBuffer();
 			if (t != null){
@@ -219,7 +217,7 @@ public class TravelItemController extends BaseController{
 			    if (f.getOriginalFilename().length() > 0) {    
 			    	picName = f.getOriginalFilename();   
 		           // newfile =  new File(realPath);
-		            parpath = physicalPath+t.getItemCode().replaceAll(" ", "")+"_"+t.getItem().replaceAll(" ", "");
+		            parpath = travelitemPhotoPath+t.getItemCode().replaceAll(" ", "")+"_"+t.getAlias().replaceAll(" ", "");
 		            directory = new File(parpath);
 		            if(!directory.exists()||!directory.isDirectory()){
 		            	directory.mkdirs();
@@ -293,9 +291,9 @@ public class TravelItemController extends BaseController{
 		try {
 			String photos =  ti.getPhotos();
 			String [] filenames = photos.split("\\|");
-			String diskPath = FilePros.physicalPath();//磁盘路径
+			String diskPath = FilePros.travelitemPhotoPath();//磁盘路径
 			String netPath = FilePros.uploadPtopath();//网络访问路径
-			String directory = ti.getItemCode().replaceAll(" ", "")+"_"+ti.getItem().replaceAll(" ", "");
+			String directory = ti.getItemCode().replaceAll(" ", "")+"_"+ti.getAlias().replaceAll(" ", "");
 			String parpath = diskPath+"\\"+directory;
 			List<String> uris = new ArrayList<String>();
 			File newfile = null;
@@ -358,7 +356,7 @@ public class TravelItemController extends BaseController{
 		String [] names = fileNames.split(",");
 		List<String> list =	Arrays.asList(photos);
 		for(String name:names){
-			String parpath = ti != null?ti.getItemCode().replaceAll(" ", "")+"_"+ti.getItem() :"";
+			String parpath = ti != null?ti.getItemCode().replaceAll(" ", "")+"_"+ti.getAlias() :"";
 			if(StringUtils.isNotEmpty(name) &&StringUtils.isNotEmpty(parpath)){
 				String filePath = realPath+"\\"+parpath+"\\"+name;
 				File file = new File(filePath);

@@ -57,13 +57,21 @@ public class FilePros   {
 	public static String routeMapPath(){
 		return rb.getString("route_map_path");
 	}
+	public static String httprouteMapPath(){
+		return rb.getString("httproute_map_path");
+	}
 	
 	/**
 	 * 上传图片的物理路径
 	 * @return
 	 */
-	public static String physicalPath(){
-		String propath = rb.getString("physicalPath");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
+	public static String travelitemPhotoPath(){
+		String propath = rb.getString("travelitem_photo_Path");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
+		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
+		return propath;
+	}
+	public static String httptravelitemPhotoPath(){
+		String propath = rb.getString("http_travelitem_photo_Path");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
 		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
 		return propath;
 	}
@@ -76,6 +84,35 @@ public class FilePros   {
 		String sharePath = rb.getString("share_happy_path");
 		return sharePath;
 	}
+	public static String httpshareHappyPath(){
+		String sharePath = rb.getString("httpshare_happy_path");
+		return sharePath;
+	}
+	/**
+	 * 回忆幸福封面图片
+	 * @return
+	 */
+	public static String shareHappyCoverPath(){
+		String shcoverPath = rb.getString("sh_cover_path");
+		return shcoverPath;
+	}
+	public static String httpshCoverPath(){
+		String shcoverPath = rb.getString("httpsh_cover_path");
+		return shcoverPath;
+	}
+	
+	/**
+	 * 详细行程上传图片
+	 * @return
+	 */
+	public static String rtschedulePath(){
+		String sharePath = rb.getString("rtschedule_path");
+		return sharePath;
+	}
+	public static String httprtschedulePath(){
+		String sharePath = rb.getString("httprtschedule_path");
+		return sharePath;
+	}
 	/**
 	 * 路线模板封面图
 	 * @return
@@ -84,7 +121,10 @@ public class FilePros   {
 		String rtCover = rb.getString("rtcover_path");
 		return rtCover;
 	}
-	
+	public static String httprtCoverPath(){
+		String rtCover = rb.getString("httprtcover_path");
+		return rtCover;
+	}
 	/**
 	 * 上传图片的本项目相关的存储路径
 	 * @param request

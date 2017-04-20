@@ -245,7 +245,7 @@ where is_valid=1
 		     group_date = #{groupDate} ,
 		</if>
 	<if test="travelfashion != null and travelfashion != ''" >
-	     travelfashion like =#{travelfashion},
+	     travelfashion =#{travelfashion},
 	</if>
 	<if test="singleorcluster != null and singleorcluster != ''" >
 	     singleorcluster = #{singleorcluster},
@@ -257,7 +257,7 @@ where is_valid=1
 	     hotel =  #{hotel},
 	</if>
 	<if test="travelOrder != null and travelOrder != ''" >
-	    and travel_order = #{travelOrder}
+	    travel_order = #{travelOrder},
 	</if>
 	<if test="stayrequest != null and stayrequest != ''" >
 	     stayrequest = #{stayrequest},

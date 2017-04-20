@@ -15,7 +15,7 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td><img src="images/banner.jpg" width="100%" height="100%" /></td>
+    <td><img src="images/banner.jpg" /></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -24,16 +24,16 @@
     
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td class="h1-black">热门旅行</td>
+        <td class="h1-black" style="text-align:left">热门旅行</td>
       </tr>
       <tr>
-        <td class="h1-2">專業團隊為您提供後勤保障</td>
+        <td class="h1-2" style="text-align:left">專業團隊為您提供後勤保障</td>
       </tr>
       <tr>
-        <td><p>帶上家人，約上朋友 </p>
+        <td style="text-align:left"><p>帶上家人，約上朋友 </p>
           <p>登山頂峰<br />  
               <br />
-            》》<a href="#">了解更多</a></p>
+            》》<a href="${basePath }hotsight/main">了解更多</a></p>
           <p></p></td>
       </tr>
       <tr>
@@ -90,10 +90,10 @@
         </table></td>
       </tr>
       <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
+        <td><a href="${basePath }hotsight/hotsight/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
       <tr>
-        <td><a href="${basePath }hotsight/hotsight/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
+        <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
      <%--  <tr>
         <td><span class="f14-gao1">${item.content}</span></td>

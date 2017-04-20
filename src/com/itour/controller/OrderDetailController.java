@@ -191,7 +191,7 @@ public class OrderDetailController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", entity);
+		context.put("data", JsonUtils.encode(entity));
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的getId方法");
 		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/getId",sessionuser.getId(),"",""));

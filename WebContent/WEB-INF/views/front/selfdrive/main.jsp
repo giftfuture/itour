@@ -19,11 +19,6 @@
   <tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
     <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
-    <!--   <tr>
-        <td width="845" height="40"><p class="righttxt"><strong><font size="+3">Southwest-China-Adventures.com</font> </strong></p></td>
-        <td width="115"><img src="images/img/China.jpg" width="40" height="24" /><img src="images/img/ok.gif" width="31" height="24" />
-        <img src="images/img/Belgium.jpg" width="32" height="24" /></td>
-      </tr> -->
     </table></td>
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
@@ -44,10 +39,10 @@
         </table></td>
       </tr>
       <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
+        <td><a href="${basePath }selfdrive/selfdrive/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
       <tr>
-        <td><a href="${basePath }selfdrive/selfdrive/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
+        <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
      <%--  <tr>
         <td><span class="f14-gao1">${item.content}</span></td>

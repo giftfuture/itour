@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>欢迎访问主角旅行</title>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
@@ -16,14 +21,14 @@
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
  <tr>
-    <td><img id="banner-index"  src="images/Route001.jpg" width="100%" height="598" /></td>
+    <td><img id="banner-index"  src="images/Route001.jpg" height="598" /></td>
   </tr>  
-    <tr><td><input style="background:red;" type="button" value="1" onclick="changePho(this)" />
-    <input style="background:red;" type="button" value="2" onclick="changePho(this)" />
-    <input style="background:red;" type="button" value="3" onclick="changePho(this)" />
-    <input style="background:red;" type="button" value="4" onclick="changePho(this)" />
-    <input style="background:red;" type="button" value="5" onclick="changePho(this)" />
-    <input style="background:red;" type="button" value="6" onclick="changePho(this)" /></td></tr>
+    <tr><td style="text-align:left"><input type="button" value="1" onclick="changePho(this)" />
+    <input type="button" value="2" onclick="changePho(this)" />
+    <input type="button" value="3" onclick="changePho(this)" />
+    <input type="button" value="4" onclick="changePho(this)" />
+    <input type="button" value="5" onclick="changePho(this)" />
+    <input type="button" value="6" onclick="changePho(this)" /></td></tr>
   <tr><td> </td></tr>
 <tr><td>
 <!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
@@ -63,15 +68,15 @@ your browser does not support the video tag
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
-    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
       <tr>
-        <td class="STYLE9">主角旅行——定製旅行服務商</td>
+        <td class="STYLE9" style="text-align:left">主角旅行——定製旅行服務商</td>
       </tr>
       <tr>
-        <td class="STYLE10">您才是旅行的主角</td>
+        <td class="STYLE10" style="text-align:left">您才是旅行的主角</td>
       </tr>
-      <tr>
-        <td><p>人生是由大大小小不同的旅程串連而成的， 我們覺得每次的旅程，旅人的角色都應該凌駕於所有之上，每次的旅程都應該獨特而美好，沒有勉強，沒有委曲求全 ... 您，是主人，一切以您的想法及需求為依歸。</p>
+      <tr >
+        <td style="text-align:left"><p>人生是由大大小小不同的旅程串連而成的， 我們覺得每次的旅程，旅人的角色都應該凌駕於所有之上，每次的旅程都應該獨特而美好，沒有勉強，沒有委曲求全 ... 您，是主人，一切以您的想法及需求為依歸。</p>
           <p>我們衷心希望，每一個旅途都能為您創造幸福而美好的回憶 。將來，不管您憶起哪一個片段，都能打從心底泛起笑顏。<br />
             <br />
           主角旅行是隶属于中旅旗下的专业定制旅行服务团队。 我們有強大的信心來履行對您的承諾，因為我們</p>
@@ -90,7 +95,9 @@ your browser does not support the video tag
 <br />
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="766" valign="top"><table border="0" align="center" cellpadding="15" cellspacing="0">
+    <td width="766" valign="top">
+    <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
+    <tbody id="fbcontent">
       <tr>
       <c:if test="${not empty mapvo }">
 	      <c:forEach items="${mapvo}" var="entry" varStatus="status">
@@ -105,13 +112,13 @@ your browser does not support the video tag
 	              </table></td>
 	            </tr>
 	            <tr>
-	              <td><span class="STYLE7">${entry['value'].title }</span></td>
+	              <td><a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}"><span class="STYLE7">${entry['value'].title }</span></a></td>
 	            </tr>
 	            <tr>
-	              <td><img src="${entry['value'].cover }" width="353" height="166" /></td>
+	              <td><a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}"><img src="${entry['value'].cover }" width="353" height="166" /></a></td>
 	            </tr>
 	            <tr>
-	              <td class="STYLE8"><a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}">${entry['value'].title }</a><br />
+	              <td class="STYLE8"><%-- <a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}">${entry['value'].title }</a><br /> --%>
 	              ${entry['value'].shortContent}<br><a href="${basePath }${entry['value'].travelStyleAlias }/main">More》》</a>
 	              </td>
 	            </tr>
@@ -119,45 +126,53 @@ your browser does not support the video tag
 	        </c:forEach>
         </c:if>
       </tr>
+      </tbody>
     </table></td>
     <td width="374" valign="top" bgcolor="#f0f0f0"><br />
       <table width="353" border="0" align="center" cellpadding="0" cellspacing="0" class="f12-gao1">
       <tr>
-        <td><table width="300" border="0" align="left" cellpadding="5" cellspacing="0">
+        <td>
+        <table width="300" border="0" align="left" cellpadding="5" cellspacing="0" name="showhappytb">
+        	<thead>
             <tr>
               <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
               <td width="268" class="h2-24">回憶幸福</td>
             </tr>
+            </thead>
+            <tbody>
+	      <tr>
+	       <td><a href="${basePath }showhappy/detail/${showhappy.shCode}">${showhappy.title }</a> 
+	        <a href="${basePath }showhappy/detail/${showhappy.shCode}"><img src="${basePath }${showhappy.cover }" width="353" height="166" /></a></td>
+	      </tr>
+	      <tr>
+	        <td><p class="f12-gao1"><span class="STYLE6">${showhappy.shortContent } 
+	             <a href="${basePath }showhappy/main">More》》</a></span></p>
+	       </td></tr></tbody>
         </table></td>
-      </tr>
-
-      <tr>
-        <td><img src="${basePath }${showhappy.cover }" width="353" height="166" /></td>
-      </tr>
-      <tr>
-        <td><p class="f12-gao1">${showhappy.title }<span class="STYLE6">   
-             ${showhappy.shortContent } <a href="${basePath }showhappy/main">More》》</a></span></p>
-       </td>
       </tr>
     </table>
       <br />
-      <table width="353" border="0" align="center" cellpadding="5" cellspacing="0">
-        <tr>
+      <table  width="353" border="0" align="center" cellpadding="5" cellspacing="0" name="hotspots">
+        <thead><tr>
           <td width="32"><img src="images/earth.png" width="32" height="32" /></td>
           <td width="301" class="h2-24">热门景点</td>
+        </tr></thead>
+        <tbody>
+        <tr>
+  		  <tr>
+  		   <c:if test="${not empty hotrtVos }">
+	      <c:forEach items="${hotrtVos }" var="hotvo" varStatus="s">
+	      		<c:if test="${s.index%2==0 }"></tr><tr></c:if>	
+		        <td><img src="${basePath}${hotvo.cover}" width="175" height="168" title="${hotvo.title }" /></td>
+	      </c:forEach>
+        </c:if>
         </tr>
+        <tr>
+       	 <td><p class="f12-gao1"><span class="STYLE6">
+	             <a href="${basePath }showhappy/main">More》》</a></span></p>
+	       </td></tr>
+        </tbody>
       </table>
-	      <table border="0" align="center" cellpadding="1" cellspacing="0">
-	        <tr>
-   		  <tr>
-   		   <c:if test="${not empty hotrtVos }">
-		      <c:forEach items="${hotrtVos }" var="hotvo" varStatus="s">
-		      		<c:if test="${s.index%2==0 }"></tr><tr></c:if>	
-			        <td><img src="${basePath}${hotvo.cover}" width="175" height="168" title="${hotvo.title }" /></td>
-		      </c:forEach>
-         </c:if>
-         </tr>
-	      </table>
     <!--   <table width="353" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
           <td>九寨沟 四姑娘山 海螺沟。。。。 </td>
@@ -165,8 +180,7 @@ your browser does not support the video tag
       </table></td> -->
   </tr>
 </table>
-<br />
-<br />
+<center><ul id='fbpage'></ul></center>
 <%@include file="/front/footer.jsp" %>
 <script type="text/javascript" src="js/commons/index.js"></script>
 </body>

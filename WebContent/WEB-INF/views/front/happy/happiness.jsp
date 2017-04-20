@@ -3,9 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
-<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
+<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
+ <meta http-equiv="keywords" content="回忆幸福，晒幸福">  
+ <meta http-equiv="description" content="回忆幸福，晒幸福"> 
+<title></title>
 </head>
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -13,7 +18,6 @@
     <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
 </table>
-<br />
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center">回憶幸福~將幸福定格</div></td>
@@ -29,10 +33,10 @@
         <td valign="top">
         <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
           <tr>
-            <td width="955">※  旅行  是流動的歷程<br />
+            <td width="955" style="text-align:left">※  旅行  是流動的歷程<br />
               ※  感動  是霎那的永恆 <br />
               ※  回憶  是一輩子的幸福風景</td>
-            <td width="105"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></td>
+            <td width="205" style="text-align:left"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></td>
           </tr>
         </table></td>
       </tr>
@@ -42,15 +46,13 @@
     <td><img src="${basePath }images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-<br />
-<br />
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath }images/frame1-2.gif">
-    <c:forEach var="record" items="${records }">
+<%--     <c:forEach var="record" items="${records }">
     <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
           <td valign="top"><table width="1000" border="0" cellspacing="0" cellpadding="20">
@@ -84,10 +86,14 @@
                 </table></td>
               </tr>
             </table>
+              <div>
+			</div>
           </td>
         </tr>
       </table>
-      </c:forEach>
+      </c:forEach> --%>
+  		<div id="fbcontent"></div>
+	    <ul id='fbpage'></ul>
       </td>
   </tr>
   <tr>

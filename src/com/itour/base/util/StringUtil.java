@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.apache.commons.lang3.StringUtils;
-
+import static java.lang.Character.UnicodeBlock.*;  
+import com.google.common.base.Strings; 
 import sun.io.ByteToCharConverter;
 import sun.io.CharToByteConverter;
 
@@ -1121,7 +1122,27 @@ public class StringUtil
 		}
 		return str.getBytes().length;
 	}
-	
+	public static boolean checkStringContainChinese(String checkStr){  
+        if(!Strings.isNullOrEmpty(checkStr)){  
+            char[] checkChars = checkStr.toCharArray();  
+            for(int i = 0; i < checkChars.length; i++){  
+                char checkChar = checkChars[i];  
+                if(checkCharContainChinese(checkChar)){  
+                    return true;  
+                }  
+            }  
+        }  
+        return false;  
+    }  
+  
+	public static boolean checkCharContainChinese(char checkChar){  
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(checkChar);  
+        if(CJK_UNIFIED_IDEOGRAPHS == ub || CJK_COMPATIBILITY_IDEOGRAPHS == ub || CJK_COMPATIBILITY_FORMS == ub ||  
+                CJK_RADICALS_SUPPLEMENT == ub || CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A == ub || CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B == ub){  
+            return true;  
+        }  
+        return false;  
+    }
 	/**
 	 * 
 	 * <br>

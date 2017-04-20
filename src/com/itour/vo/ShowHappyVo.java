@@ -24,10 +24,10 @@ public class ShowHappyVo extends BasePage{
 	private String result;
 	private String signature;
 	private String area;
-	private java.util.Date tourTime;//旅行时间
+	private String tourTime;//旅行时间
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
-	private MultipartFile surface;//封面图片文件
+	private String surface;//封面图片文件
 	private boolean isValid;
 	private String verifyCode;
 	private List<MultipartFile> imagefiles;
@@ -35,10 +35,10 @@ public class ShowHappyVo extends BasePage{
 	private String shCode;
 	
 	
-	public MultipartFile getSurface() {
+	public String getSurface() {
 		return surface;
 	}
-	public void setSurface(MultipartFile surface) {
+	public void setSurface(String surface) {
 		this.surface = surface;
 	}
 	public String getShCode() {
@@ -81,10 +81,10 @@ public class ShowHappyVo extends BasePage{
 		this.cover = cover;
 	}
 	
-	public java.util.Date getTourTime() {
+	public String getTourTime() {
 		return tourTime;
 	}
-	public void setTourTime(java.util.Date tourTime) {
+	public void setTourTime(String tourTime) {
 		this.tourTime = tourTime;
 	}
 	public String getRoute() {

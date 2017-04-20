@@ -4,27 +4,27 @@
 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="30px" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
-    <td width="50px" bgcolor="#CCCCCC"><div align="center" class="STYLE2">快速搜索</div></td>
+    <td width="50px" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
     <td width="50px" bgcolor="#CCCCCC" class="f14-gao1" >  
-       旅行方式：<input name="travel_style" class="easyui-combobox"  data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox"  data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
-        <br />旅游区域：
-        <input name="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
-        <br />  假期天数：<a href="javascript:void(0)">
-	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation">
-	  <option selected="selected" value="">-所有-</option>
+       旅游区域：
+        <input name="areas" id="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
+        假期天数：<a href="javascript:void(0)">
+	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
+	  <option value="">-所有-</option>
 	  <option value="1-5">1-5天</option>
 	  <option value="6-9">6-9天</option>
 	  <option value="10-15">10-15天</option>
 	  <option value="16">16天+</option>
 	</select>
       </a></label></td>
-    <td width="50px" bgcolor="#CCCCCC" class="f14-gao1"><input type="submit" id="searchbtn" value="搜索" /></td>
+    <td width="50px" bgcolor="#CCCCCC" class="f14-gao1"><input type="button" id="searchbtn" value="搜索" /></td>
   </tr>
 </table>
 </form>
 <p>&nbsp;</p>
-<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
+<!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -69,9 +69,22 @@
       </tr>
     </table></td>
   </tr>
-</table>
-<br />
-<br />
+</table> -->
+<center>
+<div id="links" style="align:center">
+   <div class="contents"><a href="http://www.ctrip.cn/" target="_blank"><img src="${basePath }/images/ad/20121209192739900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.qunar.com/" target="_blank"><img src="${basePath }/images/ad/20121209192856900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.12306.cn" target="_blank"><img src="${basePath }/images/ad/20121209193221900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.kuxun.cn/" target="_blank"><img src="${basePath }/images/ad/20121209192108900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.mangocity.com/" target="_blank"><img src="${basePath }/images/ad/20121209192948900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.csair.com/cn/" target="_blank"><img src="${basePath }/images/ad/20121209192627900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.ceair.com/" target="_blank"><img src="${basePath }/images/ad/20121209193103900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.ch.com" target="_blank"><img src="${basePath }/images/ad/20121209193323900.jpg" style="width:105px;height:36px;border:0px;"></a>
+       <a href="http://www.mafengwo.cn/" target="_blank"><img src="${basePath }/images/ad/20120419110149.png" style="width:105px;height:36px;border:0px;"></a>
+       
+   </div>
+</div>
+</center>
 <table width="100%" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
   <tr>
     <td width="100%" height="105" valign="top" bgcolor="#666666">
@@ -90,5 +103,9 @@
     </td>
   </tr>
 </table>
+<script type="text/javascript">
+/* var areas = $("#areas").combobox('getValue'); 
+console.log(travel_style+"  "+vacation+"   "+areas); */
+</script>
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script>
 <script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  

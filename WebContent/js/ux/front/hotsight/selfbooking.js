@@ -110,6 +110,12 @@ itour.hotsightselfbooking = function(){
         },
 		init:function(){
 			$("input[name='check_formbtn']").click(_this.check_form);
+			 $(document).keydown(function(e){
+	    		 e = e || window.event;
+	    		if(e.keyCode == 13) {
+	    			_this.check_form;
+	    		}
+	    	});
 			$.extend($.fn.validatebox.defaults.rules,{ 
 				dateValided:{
 			        validator : function(value) { //参数value为当前文本框的值

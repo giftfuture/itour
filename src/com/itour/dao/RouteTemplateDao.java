@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
+import com.itour.base.page.BasePage;
 import com.itour.entity.RouteTemplate;
 import com.itour.vo.RouteTemplateVo;
 /**
@@ -69,7 +70,14 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param map
 	 * @return
 	 */
-	public List<RouteTemplateVo> searchRts(Map map);
+	public List<RouteTemplateVo> searchRts(BasePage page);
+	
+	/**
+	 * 
+	 * @param page
+	 * @return
+	 */
+	public int searchRtsByCount(BasePage page);
 	/**
 	 * 
 	 * @return
@@ -86,6 +94,12 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param vo
 	 */
 	void uploadMap(RouteTemplate vo);
+	
+	/**
+	 * 
+	 * @param vo
+	 */
+	void updateQuotoForm(RouteTemplate vo);
 	
 	//RouteTemplate queryByRouteCode(@Param(value="routeCode")String routeCode);
 	

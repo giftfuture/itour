@@ -204,12 +204,12 @@
        
 <!-- route_template table all fields   -->
 <sql id="Base_Column_List" >
-	 route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,similars,
-	  d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,elevation,
-	   d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,route_template.scope,route_template.scope_alias,
-	    d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
-	    route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
-	    route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
+    route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,similars,
+    d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,elevation,
+    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,route_template.scope,route_template.scope_alias,
+    d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
+    route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
+    route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 </sql>
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
@@ -753,6 +753,10 @@ update route_template set cover=#{cover},update_time=now(),update_by = #{updateB
 <update id="uploadMap" parameterType="com.itour.entity.RouteTemplate">
 update route_template set route_map=#{routeMap},update_time=now(),update_by = #{updateBy} where id=#{id}
 </update>
+<!-- 更新详细日程 -->
+<update id="updateQuotoForm" parameterType="com.itour.entity.RouteTemplate">
+update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = #{updateBy} where id=#{id}
+</update>
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
 	delete from route_template where id = #{id}
@@ -791,8 +795,21 @@ select <include refid="Base_Column_List" /> from route_template where route_code
 <select id="queryAll"  resultMap="BaseResultMap" >
 	select <include refid="Base_Column_List" /> from route_template 
 </select>
+<!-- 获取该旅行方式下的相关 -->
+<select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/>
+from route_template where route_template.id in
+<foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
+    #{ids}  
+</foreach>
+</select> 
+<!-- 路线模板 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from route_template 
+	<include refid="Example_Where_Clause"/>
+</select>
 <!-- 线路搜索 -->
-<select id="searchRts" resultMap="BaseResultMapVo" parameterType="java.util.Map">
+<!-- <select id="searchRts" resultMap="BaseResultMapVo" parameterType="java.util.Map">
 	select <include refid="Base_Column_List" />,ts.alias travelStyleAlias from route_template left join travel_style ts on route_template.travel_style = ts.id where 1=1
 	<trim  suffixOverrides="," >
 	<if test="travelStyle != null and travelStyle != ''">
@@ -808,21 +825,7 @@ select <include refid="Base_Column_List" /> from route_template where route_code
 		and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
 	</if>
 	</trim>
-</select>
-<!-- 获取该旅行方式下的相关 -->
-<select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">
-select <include refid="Base_Column_List"/>
-from route_template where route_template.id in
-<foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
-    #{ids}  
-</foreach>
-</select> 
-<!-- 路线模板 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
-	select count(1) from route_template 
-	<include refid="Example_Where_Clause"/>
-</select>
-  	
+</select>   -->	
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,
@@ -843,5 +846,46 @@ from route_template where route_template.id in
     <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
+</select>
+<!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
+<select id="searchRts" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
+		select <include refid="Base_Column_List" />,ts.alias travelStyleAlias from route_template left join travel_style ts on route_template.travel_style = ts.id where 1=1
+	<trim  suffixOverrides="," >
+		<if test="travelStyle != null and travelStyle != ''">
+			and ts.alias=#{travelStyle}
+		</if>
+		<if test="scopeAlias !=null and scopeAlias !=''">
+			 and route_template.scope_alias=#{scopeAlias}
+		</if>
+		<if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays2 != ''">
+			and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
+		</if>
+		<if test="rcdDays != null and rcdDays != ''">
+			and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
+		</if>
+	</trim>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<select id="searchRtsByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from route_template left join travel_style ts on route_template.travel_style = ts.id where 1=1
+	<trim  suffixOverrides="," >
+		<if test="travelStyle != null and travelStyle != ''">
+			and ts.alias=#{travelStyle}
+		</if>
+		<if test="scopeAlias !=null and scopeAlias !=''">
+			 and route_template.scope_alias=#{scopeAlias}
+		</if>
+		<if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays2 != ''">
+			and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
+		</if>
+		<if test="rcdDays != null and rcdDays != ''">
+			and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
+		</if>
+	</trim>
 </select>
 </mapper>   

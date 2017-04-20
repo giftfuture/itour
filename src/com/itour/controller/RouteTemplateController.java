@@ -29,16 +29,19 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.annotation.Auth;
+import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.RouteTemplateKit;
+import com.itour.convert.ShowHappyKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.QuoteForm;
@@ -55,6 +58,7 @@ import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
 import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.ShowHappyVo;
  
 /**
  * 
@@ -103,6 +107,73 @@ public class RouteTemplateController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的list方法");
 		return forward("server/sys/routeTemplate"); 
 	}
+	/**
+	 * 
+	 * @param page
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/rtschedule") 
+	public ModelAndView rtschedule(String id,HttpServletRequest request) throws Exception{
+		Map<String,Object> context = getRootMap();
+		RouteTemplateVo bean  = routeTemplateService.selectById(id);
+		if(bean == null){
+			context.put(SUCCESS, false);
+			context.put("bean", "没有找到对应的记录!");
+			return forward(request.getHeader("Referer"),context);
+		}
+		QuoteFormVo qf = quoteFormService.queryByRtId(id);
+		//String quotoForm = entity.getQuotoForm();
+		context.put(SUCCESS, true);
+		//context.put("quotoForm", quotoForm);
+		context.put("bean", bean);
+		context.put("qf", qf);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的quoteEdit方法");
+		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/quoteEdit",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","routeTemplate/quoteEdit",sessionuser.getId()));
+		return forward("server/sys/rtschedule",context); 
+	}
+	/**
+	 * 
+	 * @param entity
+	 * @param typeIds
+	 * @param response
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/savertschedule", method = RequestMethod.POST)
+	public String savertschedule(@RequestBody RouteTemplateVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		//Map<String,Object> context = getRootMap();
+		String vcode = SessionUtils.getHappyValidateCode(request);
+		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
+	 	if(StringUtils.isEmpty(vo.getVerifyCode())){
+	 		//failureMessage(response, "验证码不能为空.");
+			return sendFailureResult(response, "验证码不能为空~");
+		}
+	 	if(!vo.getVerifyCode().toLowerCase().equals(vcode)){//判断验证码是否正确   
+	 		//failureMessage(response, "验证码输入错误.");
+			return sendFailureResult(response, "验证码输入错误~");
+		} 						 			
+		String rtschedulePath = FilePros.rtschedulePath();
+		//String fileName = vo.getSurface().getName();
+		//vo.setCover(fileName);
+		String subpath = vo.getId();
+		String quotoForm = ImageFilter.writeBase64Image(vo.getQuotoForm(),rtschedulePath,subpath);
+		vo.setQuotoForm(quotoForm);
+		routeTemplateService.updateQuotoForm(RouteTemplateKit.toEntity(vo));
+		//vo.addShowHappy(ShowHappyKit.toEntity(vo));
+		//String result = JsonUtils.encode(context);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的savertschedule方法");
+		String logid = logSettingService.add(new LogSetting("route_template","路线模板更新quotoForm","routeTemplate/savertschedule",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"路线模板更新quotoForm",vo.getId(),JsonUtils.encode(vo),"","routeTemplate/savertschedule",sessionuser.getId()));
+		return sendSuccessResult(response, "详细日程更新成功~");
+	}
 	
 	/**
 	 * @param url
@@ -143,7 +214,7 @@ public class RouteTemplateController extends BaseController{
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
-				String path = rtCoverPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getTitle();
+				String path = rtCoverPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getAlias();
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
@@ -229,7 +300,7 @@ public class RouteTemplateController extends BaseController{
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
-				String path = routeMapPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getTitle();
+				String path = routeMapPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getAlias();
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;

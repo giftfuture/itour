@@ -64,21 +64,21 @@ var YDataGrid = function(config){
 								}
 							}
 						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
-							if(result.data.beforeInstruction !=''){
+							if(result.data.beforeInstruction){
 								var beforeInstruction = CKEDITOR.replace('beforeInstruction');
 								beforeInstruction.setData(result.data.beforeInstruction);
 							}
-							if(result.data.customizedService!=''){
+							if(result.data.customizedService){
 								var customizedService = CKEDITOR.replace('customizedService');
 								customizedService.setData(result.data.customizedService);
 							}
-							if(result.data.designConcept!=''){
+							if(result.data.designConcept){
 								var designConcept = CKEDITOR.replace('designConcept');
 								designConcept.setData(result.data.designConcept);
 							}
-							if(result.data.orderId!=''){
+						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
-							}
+							}*/
 						}catch(e){
 							console.log("name: " + e.name + 
 									 ",description: " +e.description+
@@ -89,10 +89,10 @@ var YDataGrid = function(config){
 						}
 						Win.edit.dialog('open'); 
 						//回调函数
-						//console.log(callback+jQuery.isFunction(callback));
+						/*console.log(callback);
 						if(jQuery.isFunction(callback)){
 							callback(result);
-						}
+						}*/
 					});
 				}
 			},

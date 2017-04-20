@@ -45,8 +45,28 @@
 						</select>
 					</div> -->
 					<div class="fitem">
+						<label>订单号:</label>
+						<input name="orderNo" type="text" maxlength="100" class="easyui-textbox" data-options="editable:false" missingMessage="请填写receiver">
+					</div>
+					<div class="fitem">
+						<label>订单名称:</label>
+						<input name="orderName" type="text" maxlength="100" class="easyui-textbox" data-options="" missingMessage="请填写receiver">
+					</div>
+					<div class="fitem">
 						<label>联系人:</label>
-						<input name="receiver" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写receiver">
+						<input name="receiver" type="text" maxlength="100" class="easyui-textbox" data-options="" missingMessage="请填写receiver">
+					</div>
+					<div class="fitem">
+						<label>联系人性别:</label>
+						<select id="gender" name="gender" class="easyui-combobox" data-options="editable:false">
+			              <option>性别</option>
+			              <option value="1">男</option>
+			              <option value="0">女</option>
+			            </select>
+					</div>
+			  	    <div class="fitem">
+						<label>订单路线:</label>
+						<input name="routename" type="text" maxlength="20" class="easyui-textbox" missingMessage="请填写receiverMobile">
 					</div>
 					<div class="fitem">
 						<label>联系电话:</label>
@@ -54,7 +74,16 @@
 					</div>
 					<div class="fitem">
 						<label>联系邮箱:</label>
-						<input name="receiveremail" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写receiver">
+						<input name="receiveremail" type="text" maxlength="100" class="easyui-textbox" data-options="" missingMessage="请填写receiver">
+					</div>
+					<div class="fitem">
+						<label>订单状态：</label>
+						<select id="orderStatus" name="orderStatus" class="easyui-combobox ui-text" data-options="editable:false" style="width:100px;">
+							<option value="">--请选择--</option>
+							<option value="1">待付款</option>
+							<option value="2">付款完成,待确认</option>
+							<option value="3">确认支付完成</option>
+						</select>
 					</div>
 				<!-- <div class="fitem">
 						<label>联系电话:</label>
@@ -66,11 +95,11 @@
 					</div> -->
 					<div class="fitem">
 						<label>计划出行日:</label>
-						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedDepart">
+						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datetimebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedDepart">
 					</div>
 					<div class="fitem">
 						<label>计划返程日:</label>
-						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedBack">
+						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datetimebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedBack">
 					</div>
 					<div class="fitem">
 						<label>出行人数:</label>
@@ -82,7 +111,7 @@
 					</div>
 					<div class="fitem">
 						<label>支付方式:</label>
-						<select name="payType" class="easyui-validatebox" data-options="" >
+						<select id="payType" name="payType" class="easyui-combobox" data-options="editable:false" >
 							<option value="">--请选择--</option>
 							<option value="1">线上支付</option>
 							<option value="2">现金支付</option>
@@ -90,9 +119,17 @@
 							<option value="4">公司转帐</option>
 						</select>
 					</div>
+	  			<!--    <div class="fitem">
+						<label>是否支付完成：</label>
+						<select name="orderStatus" class="easyui-box ui-text" style="width:100px;">
+							<option value="">--请选择--</option>
+							<option value="1">未支付</option>
+							<option value="2">支付完成</option>
+						</select>
+					</div> -->
 					<div class="fitem">
 						<label>支付平台:</label>
-						<select name="payPlatform" class="easyui-validatebox">
+						<select id="payPlatform" name="payPlatform" class="easyui-combobox" data-options="editable:false">
 							<option value="">--请选择--</option>
 							<option value="1">微信</option>
 							<option value="2">支付宝</option>
@@ -101,7 +138,7 @@
 					</div>
 					<div class="fitem">
 						<label>付款银行:</label>
-						<select name="bank">
+						<select id="bank" name="bank" class="easyui-combobox" data-options="editable:false">
 							<option value="">--请选择--</option>
 							<option value="中国银行">中国银行</option>
 							<option value="中国农业银行">中国农业银行</option>

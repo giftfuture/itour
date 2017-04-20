@@ -20,9 +20,13 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.collect.Maps;
+import com.itour.base.util.IDGenerator;
+import com.itour.base.util.StringUtil;
 import com.itour.entity.RouteTemplate;
+import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.ShowHappyVo;
 
 import gui.ava.html.image.generator.HtmlImageGenerator;
@@ -38,6 +42,15 @@ public class ImageFilter {
 		put("tif","tif");
 		put("psd","psd");
 		put("ico","x-icon");
+	}};
+	public final static Map<String,String> convertbase64ImgExt = new HashMap<String,String>(){{
+		put("jpeg","jpg");
+		put("png","png");
+		put("gif","gif");
+		put("bmp","bmp");
+		put("tif","tif");
+		put("psd","psd");
+		put("x-icon","ico");
 	}};
 	 /**
     *
@@ -176,18 +189,18 @@ public class ImageFilter {
         Matcher m_image;  
       //  List<String> pics = new ArrayList<String>();  
         Map<String,String> imgs = Maps.newHashMap();
-//       String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
-        String regEx_img = "<img.*src\\s*=\\s*(.*?)[^>]*?>";  
+    //  String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+        String regEx_img = "<img.*src\\s*=\\s*(.*?)[^>]*?/>";  
         p_image = Pattern.compile(regEx_img);  //, Pattern.CASE_INSENSITIVE
         m_image = p_image.matcher(htmlStr);  
         while (m_image.find()) {  
             img = img + "," + m_image.group();  
             // Matcher m =  
             // Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src  
-            Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
             Matcher mc = Pattern.compile("data-filename\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
-            while (m.find()&&mc.find()) {  
-               // pics.add(m.group(1));  
+            Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
+            while(m.find()&& mc.find()) {  
+                //pics.add(m.group(1));  
             	imgs.put(mc.group(1), m.group(1));
             }  
         }  
@@ -236,7 +249,7 @@ public class ImageFilter {
     }
 	//使用正则表达式，排除img标签src属性值已经是base64编码的情况  
    static Pattern pattern = Pattern.compile("^data:image/(png|gif|jpg|jpeg|bmp|tif|psd|ico);base64,.*");  
-   static final String index = "base64,";
+   static final String base64 = "base64,";
    static Matcher matcher = null;
 	  /** 
      * 检测图片路径是否为真实有效的路径方法 
@@ -263,18 +276,78 @@ public class ImageFilter {
      * @param serRoot 服务器路径 
      * @return 
      */  
-    public static void writeBase64Image(File cover,String serRoot){  
+    public static String writeBase64ImageString(String base64cover,String surface,String serRoot,String subpath){  
         try {
             	File directory = new File(serRoot);  
     			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
     				directory.mkdirs();  
     			} 
-    			String ext = cover.getName().substring(cover.getName().indexOf('.'));
-    			String baseimage = GetImageStr(cover,base64ImgExt.get(ext));
-                convertBase64DataToImage(baseimage, serRoot+File.separatorChar+cover.getName());//转成文件  
+    			File ff = new File(serRoot+File.separatorChar+subpath);  
+    			if(!ff.exists()||!ff.isDirectory()){//文件根目录不存在时创建  
+    				ff.mkdirs();  
+    			}
+    			String ext = base64cover.substring(base64cover.indexOf("data:image/")+"data:image/".length(),base64cover.indexOf(";base64,"));
+    			boolean iscn = false;
+    			String realext  = convertbase64ImgExt.get(ext);
+    			if(StringUtils.isNotEmpty(surface)){
+	    			for(char c:surface.toCharArray()){
+	    				if(StringUtil.checkCharContainChinese(c)){
+	    					iscn = true;
+	    					break;
+	    				}
+	    			};
+    			}
+    			//String baseimage = GetImageStr(cover,base64ImgExt.get(ext));
+    			if(StringUtil.checkStringContainChinese(surface)||iscn||StringUtils.isEmpty(surface)){
+    				String newname = IDGenerator.code(16)+"."+realext;
+    				base64cover = base64cover.replace("data:image/"+ext+";base64,", "");
+    				convertBase64DataToImage(base64cover, serRoot+File.separatorChar+subpath+File.separatorChar+newname);//转成文件  
+    				return newname;
+    			}else{
+    				convertBase64DataToImage(base64cover, serRoot+File.separatorChar+surface);//转成文件  
+    			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        return "";//cover.getName();
+    } 
+	/** 
+     * 替换html中的base64图片数据为实际图片 
+     * @param html 
+     * @param fileRoot 本地路径 
+     * @param serRoot 服务器路径 
+     * @return 
+     */  
+    public static String writeBase64Image(MultipartFile cover,String serRoot,String subpath){  
+        try {
+            	File directory = new File(serRoot);  
+    			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
+    				directory.mkdirs();  
+    			} 
+    			File ff = new File(serRoot+File.separatorChar+subpath);  
+    			if(!ff.exists()||!ff.isDirectory()){//文件根目录不存在时创建  
+    				ff.mkdirs();  
+    			}
+    			String ext = cover.getName().substring(cover.getName().indexOf('.'));
+    			boolean iscn = false;
+    			for(char c:cover.getName().toCharArray()){
+    				if(StringUtil.checkCharContainChinese(c)){
+    					iscn = true;
+    					break;
+    				}
+    			};
+    			String baseimage = GetImageStr(cover,base64ImgExt.get(ext));
+    			if(StringUtil.checkStringContainChinese(cover.getName())||iscn){
+    				String newname = IDGenerator.code(16)+ext;
+    				convertBase64DataToImage(baseimage, serRoot+File.separatorChar+newname);//转成文件  
+    				return newname;
+    			}else{
+    				convertBase64DataToImage(baseimage, serRoot+File.separatorChar+cover.getName());//转成文件  
+    			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return cover.getName();
     } 
 	/** 
      * 替换html中的base64图片数据为实际图片 
@@ -293,17 +366,28 @@ public class ImageFilter {
 			for(Map.Entry<String,String> entry:srcs.entrySet()){
 				String src = entry.getValue().replaceAll("'", "");
 				String fileName = entry.getKey().replaceAll("'", "");//待存储的文件名  
+				boolean iscn = false;
+				String newname = fileName;
+				String ext = fileName.substring(fileName.indexOf('.'));//图片后缀         
+    			for(char c:fileName.toCharArray()){
+    				if(StringUtil.checkCharContainChinese(c)){
+    					iscn = true;
+    					break;
+    				}
+    			};
+				if(StringUtil.checkStringContainChinese(fileName)||iscn){
+    				 newname = IDGenerator.code(16)+ext;
+    			}
 				Matcher m = pattern.matcher(src);  
 		 		if(m.find()){
 			   // if(checkImage(src)){      //找出base64图片元素    
 			    	//if(matcher.find()){
 						       //String str = m.group(); 
-						       String str = src.substring(src.indexOf(index)+index.length());
+						       String str = src.substring(src.indexOf(base64)+base64.length());
 						       System.out.println(html.indexOf(src)+"     "+src.indexOf(str)+"    "+html.length());
 						       html = html.replace(src, fileName);
 						       System.out.println(html.length());
 						      // String src = src.replace("'", "");// StringUtils.replace(str, "src=\"", "\"");// ExStringUtils.substringBetween(str, "src=\"", "\"");//src="..."  
-						        String ext = fileName.substring(fileName.indexOf('.'));//src.replace(str, "").replace( "data:image/", "").replace(";base64,", "");//图片后缀              
 						       // String base64ImgData = StringUtils.replace(str, "base64,", "");//图片数据  
 						        if(StringUtils.isNotEmpty(ext)){  
 						            //data:image/gif;base64,base64编码的gif图片数据  
@@ -318,13 +402,16 @@ public class ImageFilter {
 						    			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
 						    				directory.mkdirs();  
 						    			} 
-						    			String path = showhappy.getId()+"_"+showhappy.getTitle();
+						    			String path = showhappy.getShCode()+"_"+showhappy.getRoute();
 						    			File ff = new File(serRoot+File.separatorChar+path);  
 						    			if(!ff.exists()||!ff.isDirectory()){//文件根目录不存在时创建  
 						    				ff.mkdirs();  
 						    			}
-						                convertBase64DataToImage(str, serRoot+File.separatorChar+path+File.separatorChar+fileName);//转成文件  
-						              //  String serPath = serRoot+fileName;//服务器地址  
+						                convertBase64DataToImage(str, serRoot+File.separatorChar+path+File.separatorChar+newname);//转成文件  
+						                if(!fileName.equals(newname)){
+						                	html = html.replace(fileName, newname);
+						                }
+						                //  String serPath = serRoot+fileName;//服务器地址  
 						            //    htmlContent = htmlContent.replace(src, serPath);//替换src为服务器地址  
 						        }      
 				       // }           
@@ -343,6 +430,63 @@ public class ImageFilter {
 			e.printStackTrace();
 		}
     }  
+	/** 
+     * 替换html中的base64图片数据为实际图片 
+     * @param html 
+     * @param fileRoot 本地路径 
+     * @param serRoot 服务器路径 
+     * @return 
+     */  
+    public static String writeBase64Image(String html,String serRoot,String subpath){  
+        try {
+		//String html = vo.getQuotoForm();
+			Map<String,String> srcs = getImgSrc(html);
+			Pattern pattern = Pattern.compile("^data:image/(png|gif|jpg|jpeg|bmp|tif|psd|ico);base64,.*");  
+			for(Map.Entry<String,String> entry:srcs.entrySet()){
+				String src = entry.getValue().replaceAll("'", "");
+				String fileName = entry.getKey().replaceAll("'", "");//待存储的文件名  
+				boolean iscn = false;
+				String newname = fileName;
+				String ext = fileName.substring(fileName.indexOf('.'));//图片后缀         
+    			for(char c:fileName.toCharArray()){
+    				if(StringUtil.checkCharContainChinese(c)){
+    					iscn = true;
+    					break;
+    				}
+    			};
+				if(StringUtil.checkStringContainChinese(fileName)||iscn){
+    				 newname = IDGenerator.code(16)+ext;
+    			}
+				Matcher m = pattern.matcher(src);  
+		 		if(m.find()){
+			   // if(checkImage(src)){      //找出base64图片元素    
+			    	//if(matcher.find()){
+			       //String str = m.group(); 
+			       String str = src.substring(src.indexOf(base64)+base64.length());
+			     //  System.out.println(html.indexOf(src)+"     "+src.indexOf(str)+"    "+html.length());
+			       html = html.replace(src, fileName);
+			      // System.out.println(html.length());
+			        if(StringUtils.isNotEmpty(ext)){  
+			            	File directory = new File(serRoot);  
+			    			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
+			    				directory.mkdirs();  
+			    			} 
+			    			File ff = new File(serRoot+File.separatorChar+subpath);  
+			    			if(!ff.exists()||!ff.isDirectory()){//文件根目录不存在时创建  
+			    				ff.mkdirs();  
+			    			}
+			    			convertBase64DataToImage(str, serRoot+File.separatorChar+newname);//转成文件  
+		    			   if(!fileName.equals(newname)){
+			                	html = html.replace(fileName, newname);
+			                }	
+			        }      
+			    }   
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return html;
+    } 
     /** 
      * 把base64图片数据转为本地图片 
      * @param base64ImgData 
@@ -365,6 +509,29 @@ public class ImageFilter {
     public static String GetImageHeader(String type){
 	  String header = "data:image/"+type+";base64,"; 
 	  return header;
+    }
+    /**
+     * 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+     * @param imgFilePath
+     * @return
+     */
+    public static String GetImageStr(MultipartFile file,String type) {
+    	  //为编码添加头文件字符串  
+        String header = "data:image/"+type+";base64,"; 
+        byte[] data = null;
+        // 读取图片字节数组
+        try {
+            InputStream in = file.getInputStream();
+            data = new byte[in.available()];
+            in.read(data);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // 对字节数组Base64编码
+        BASE64Encoder encoder = new BASE64Encoder();
+        return header + encoder.encode(data);// 返回Base64编码过的字节数组字符串
     }
     /**
      * 将图片文件转化为字节数组字符串，并对其进行Base64编码处理

@@ -19,19 +19,18 @@
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
-    
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td class="h1-black">徒步登山</td>
+        <td class="h1-black" style="text-align:left">徒步登山</td>
       </tr>
       <tr>
-        <td class="h1-2">專業團隊為您提供後勤保障</td>
+        <td class="h1-2" style="text-align:left">專業團隊為您提供後勤保障</td>
       </tr>
       <tr>
-        <td><p>帶上家人，約上朋友 </p>
+        <td style="text-align:left"><p>帶上家人，約上朋友 </p>
           <p>登山頂峰<br />  
               <br />
-            》》<a href="#">了解更多</a></p>
+           <%--  》》<a href="${basePath }climb/main">了解更多</a> --%></p>
           <p></p></td>
       </tr>
       <tr>
@@ -62,10 +61,10 @@
         </table></td>
       </tr>
       <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
+        <td><a href="${basePath }climb/climb/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
       <tr>
-        <td><a href="${basePath }climb/climb/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
+        <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
      <%--  <tr>
         <td><span class="f14-gao1">${item.content}</span></td>

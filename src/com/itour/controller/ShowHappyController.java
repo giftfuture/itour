@@ -33,6 +33,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.page.Pager;
 import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
@@ -86,21 +87,43 @@ public class ShowHappyController extends BaseController{
 	 */
 	@RequestMapping("/main") 
 	public ModelAndView main(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的main方法");
+		return forward("front/happy/happiness"); 
+	}
+	/**
+	 * 
+	 * @param pageNo
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping("/pagination") 
+	public String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
 		Map<String,Object> context = getRootMap();
 		ShowHappyVo vo = new ShowHappyVo();
 		vo.setPage(pageNo);
-		vo.getPager().setPageSize(Constants.perPage);
+		vo.setLimit(Constants.happyperPage);
+		vo.getPager().setPageSize(Constants.happyperPage);
 		vo.getPager().setPageId(pageNo);
 		BasePage<Map<String, Object>> page = showHappyService.pagedQuery(vo);
 		//List<Map<String, Object>> records = page.getRecords();
-		context.put("records", page.getRecords());
-		context.put("pageNo",pageNo);
-		context.put("total",page.getTotal());
+		//context.put("records", page.getRecords());
+		//context.put("pageNo",pageNo);
+		page.setPage(pageNo);
+		Pager pager = page.getPager();
+		pager.setPageId(pageNo);
+		pager.setPageSize(Constants.happyperPage);
+		pager.setRowCount(page.getTotal());
+		page.setPager(pager);
+		context.put("result", page);
+		//context.put("total",page.getTotal());
 		//context.put("rows",page.getRows());
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的main方法");
-		return forward("front/happy/happiness",context); 
+		//System.out.println(JsonUtils.encode(page));
+		return JsonUtils.encode(context);
 	}
+	
 	/**
 	 * 
 	 * @param vo
@@ -140,7 +163,7 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(ShowHappyVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(ShowHappyVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(vo.getCreateTime() != null){
 			//String createTime = DateUtil.getDateYmdHs(vo.getCreateTime());
 			//Timestamp createTime =  new Timestamp(vo.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
@@ -199,32 +222,32 @@ public class ShowHappyController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
-	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String add(ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/add", method = RequestMethod.POST)//@RequestBody
+	public String add(@RequestBody ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> context = getRootMap();
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isEmpty(showhappy.getVerifyCode())){
 	 		//failureMessage(response, "验证码不能为空.");
-			return sendFailureResult(response, "保存出错~");
+			return sendFailureResult(response, "验证码不能为空~");
 		}
 	 	if(!showhappy.getVerifyCode().toLowerCase().equals(vcode)){//判断验证码是否正确   
 	 		//failureMessage(response, "验证码输入错误.");
-			return sendFailureResult(response, "保存出错~");
+			return sendFailureResult(response, "验证码输入错误~");
 		} 
+	 	String shareHappyCoverPath = FilePros.shareHappyCoverPath();
+	 	showhappy.setShCode(IDGenerator.code(19)); 
+	 	//String fileName = showhappy.getSurface().getName();
+	 	if(StringUtils.isNotEmpty(showhappy.getCover())){
+		 	String cover = ImageFilter.writeBase64ImageString(showhappy.getCover(),showhappy.getSurface(),shareHappyCoverPath,showhappy.getShCode()+"_"+showhappy.getRoute());
+		 	showhappy.setCover(cover);
+	 	}
 		String shareHappyPath = FilePros.shareHappyPath();
 		String uuid = IDGenerator.getUUID();
 		ClassReflectUtil.setIdKeyValue(showhappy,"id",uuid);
-		showhappy.setShCode(IDGenerator.code(19));
-		String fileName = showhappy.getSurface().getName();
-		showhappy.setCover(fileName);
-		ImageFilter.writeSHBase64Image(showhappy,shareHappyPath);
+		ImageFilter.writeSHBase64Image(showhappy,shareHappyPath);		
 		showHappyService.addShowHappy(ShowHappyKit.toEntity(showhappy));
 		//String result = JsonUtils.encode(context);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的add方法");
-		String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/add",sessionuser.getId(),"",""));
-		logOperationService.add(new LogOperation(logid,"新增",uuid,JsonUtils.encode(showhappy),"","showhappy/add",sessionuser.getId()));
 		return sendSuccessResult(response, "保存成功~");
 	}
 	

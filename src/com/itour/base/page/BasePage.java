@@ -28,7 +28,7 @@ public class BasePage<T> implements Serializable{
 	/** 开始查询 的数据索引号 (从0开始) */
 	private int start = 0;
 	/** 每页条数 */
-	private int limit = 25;
+	private int limit = 10;
 	/** 总记录数 */
 	private long total = 0;
 	/** 当前页数据 */
@@ -84,7 +84,6 @@ public class BasePage<T> implements Serializable{
 			this.limit = limit;
 			this.records = records;
 			this.total = total;
-			
 			//this.setTotal(total);
 			//this.getPager().setRowCount(total);
 			//this.setPager(this.getPager());

@@ -97,6 +97,7 @@ var basePath = '${basePath}';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="mobile-agent" content="format=html5; url=<%=homePage%>" />
 <meta http-equiv="mobile-agent" content="format=xhtml; url=<%=homePage%>" />
+<link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
     <p>我们的友谊海枯石不烂！ 您是第 <%=application.getAttribute("count") %> 位访客</p>  
 <style type="text/css">
 body {
@@ -104,17 +105,17 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
-	font-family: "黑体";
+	font-family: "微软雅黑";
 	font-size:12px;
 }
 .h1-black {
-	font-family: "黑体";
+	font-family: "微软雅黑";
 	font-size: 36px;
 	font-weight: bold;
 	color: #333333;
 }
 .h1-2 {
-	font-family: "黑体";
+	font-family: "微软雅黑";
 	font-size: 36px;
 	color: #666666;
 }
@@ -123,7 +124,7 @@ body {
 	line-height: 40px;
 }
 .h2-24 {
-	font-family: "黑体";
+	font-family: "微软雅黑";
 	font-size: 24px;
 }
 .f12-gao1 {
@@ -138,7 +139,7 @@ body {
 }
 .STYLE126 {font-size: 14px}
 .STYLE148 {color: #990000}
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
+.STYLE2 {font-family: "微软雅黑"; font-size: 24px; color: #990000; }
 .STYLE17 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #990000; }
 .STYLE18 {font-family: "微软雅黑"}
 .STYLE19 {
@@ -151,7 +152,7 @@ body {
 .STYLE129 {	color: #000000;
 	font-weight: bold;
 }
-.STYLE2 {font-family: "黑体"; font-size: 24px; color: #990000; }
+.STYLE2 {font-family: "微软雅黑"; font-size: 24px; color: #990000; }
 .STYLE3 {font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #990000; }
 .STYLE7 {color: #990000; font-weight: bold; }
 .STYLE9 {font-size: 14px;font-weight: bold;color: #990000;}

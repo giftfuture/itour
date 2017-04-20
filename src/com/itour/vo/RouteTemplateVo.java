@@ -65,7 +65,29 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private float elevation;//海拔
 	private String areas;//地区
 	private List<String> itemitems;
+	private String verifyCode;//验证码
+	private int rcdDays1;//建议天数
+	private int rcdDays2;//建议天数
 	
+	
+	public int getRcdDays1() {
+		return rcdDays1;
+	}
+	public void setRcdDays1(int rcdDays1) {
+		this.rcdDays1 = rcdDays1;
+	}
+	public int getRcdDays2() {
+		return rcdDays2;
+	}
+	public void setRcdDays2(int rcdDays2) {
+		this.rcdDays2 = rcdDays2;
+	}
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
 	public List<String> getItemitems() {
 		return itemitems;
 	}
@@ -114,8 +136,6 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	public void setScopeAlias(String scopeAlias) {
 		this.scopeAlias = scopeAlias;
 	}
-	
-	
 	public String getBeforeInstruction() {
 		return beforeInstruction;
 	}

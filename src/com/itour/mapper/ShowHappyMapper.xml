@@ -27,7 +27,9 @@
 	<sql id="Base_Column_List">
 		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover,is_valid,short_content,sh_code
 	</sql>
-
+	<sql id="Column_List">
+		id,customer,create_time, status, update_time, title, result, signature,area,route,tour_time,cover,is_valid,short_content,sh_code
+	</sql>
 	<!-- 查询条件 -->
 	<sql id="Example_Where_Clause">
 		where show_happy.is_valid=1
@@ -158,7 +160,7 @@
 	<select id="queryByList" resultMap="BaseResultMap"
 		parameterType="com.itour.base.page.BasePage">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
-		 show_happy.sh_code,show_happy.short_content,show_happy.cover,content,result,signature,area,tour_time,route_template.title route
+		 show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,tour_time,route_template.title route
 		from show_happy left join route_template on show_happy.route = route_template.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">

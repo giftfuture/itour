@@ -231,9 +231,14 @@ itour.routeTemplate = function(){
 							}
 						}
 					},
-					{field:'quotoForm',title:'详细价目表',align:'center',sortable:true,
+					{field:'quotoForm',title:'详细日程',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">价目详情</a>';
+							return '<a href="'+basePath+'routeTemplate/rtschedule?id='+row.id+'">详细日程</a>';
+						}
+					},
+					{field:'quotoFormquotoForm',title:'路线编辑',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">路线编辑</a>';
 						}
 					},
 					{field:'rcdDays',title:'(建议)游览时间(天)',align:'center',sortable:true,

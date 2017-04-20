@@ -25,11 +25,11 @@
   </tr>
 </table>
 
-<table width="100%"  border="0" align="center" cellpadding="15" cellspacing="0">
+<!-- <table width="100%"  border="0" align="center" cellpadding="15" cellspacing="0">
   <tr>
     <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
   </tr>
-</table>
+</table> -->
 <br />
 <table width="100%" height="60%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr style="height:500px">

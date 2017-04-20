@@ -23,6 +23,7 @@ public class Constants {
 	public static final Map<String,String> travelStyles = Maps.newHashMap();
 	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
 	public static final int perPage = 3;//前端回忆幸福每页数据
+	public static final int happyperPage = 8;//前端回忆幸福每页数据
 	public static final int fbperPage = 4;//前端反馈每页数据量
 	public static final int hotview = 4;//首页显示的热门景点
 	public static  int perRow = 3;

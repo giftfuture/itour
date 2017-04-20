@@ -21,15 +21,17 @@ $(document).ready(function() {
                     ['insert', ['picture', 'video']]  
                 ], 
   }); 
-    $("#tourTime").datebox({  
+/*    $("#tourTime").datebox({  
         onSelect:function(date){  
             var nowDate = new Date();  
             if(date>nowDate){  
-            	alert("选择晒旅行幸福的日期应在当前日期或之前" );
+            	itour.alert("提示","选择晒旅行幸福的日期应在当前日期或之前","info");
                 $("#tourTime").datebox("setValue","");  
-            }  
+                return false;
+            }
+            return true;
         }  
-    }); 
+    }); */
 });  
 
 //刷新验证码
@@ -41,25 +43,86 @@ function changeValidateCode() {
     var timenow = new Date().getTime();//这是为了防止每次刷新的时候验证码相同
     $("#validateCode").attr("src",basePath+"RandomCodeServlet?d="+timenow);  
   } 
+function change(picId,fileId){
+    var pic = document.getElementById(picId);
+    var file = document.getElementById(fileId);
+    if(window.FileReader){//chrome,firefox7+,opera,IE10+
+       oFReader = new FileReader();
+       oFReader.readAsDataURL(file.files[0]);
+       oFReader.onload = function (oFREvent) {pic.src = oFREvent.target.result;};        
+    }else if (document.all) {//IE9-//IE使用滤镜，实际测试IE6设置src为物理路径发布网站通过http协议访问时还是没有办法加载图片
+        file.select();
+        file.blur();//要添加这句，要不会报拒绝访问错误（IE9或者用ie9+默认ie8-都会报错，实际的IE8-不会报错）
+        var reallocalpath = document.selection.createRange().text//IE下获取实际的本地文件路径
+        //if (window.ie6) pic.src = reallocalpath; //IE6浏览器设置img的src为本地路径可以直接显示图片
+        //else { //非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现，IE10浏览器不支持滤镜，需要用FileReader来实现，所以注意判断FileReader先
+            pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+            pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';//设置img的src为base64编码的透明图片，要不会显示红xx
+       // }
+    }else if (file.files) {//firefox6-
+        if (file.files.item(0)) {
+            url = file.files.item(0).getAsDataURL();
+            pic.src = url;
+        }
+    }
+}
+function getBase64Image(img) {
+	 var canvas = document.createElement("canvas");
+     canvas.width = img.width;
+     canvas.height = img.height;
+     var ctx = canvas.getContext("2d");
+     ctx.drawImage(img, 0, 0, img.width, img.height);
+     var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+     var dataURL = canvas.toDataURL("image/"+ext);
+     return dataURL; // return dataURL.replace("data:image/png;base64,", ""); 
+} 
 function sharehappy() {
 	var actionurl=basePath+"showhappy/add";//$("#formLogin").attr("action");//提交路径
 	 var formData = new Object();
 	//var formData= $("form[name='sharehappy']").serialize();
-	$("form input").each(function(){
+	/*$("form input").each(function(){
 		 formData[this.name] =$("input[name='"+this.name+"']" ).val();
-	});
+	});*/
 	var route=$("#route").combobox('getValue');
 	if(!route){	
 		route = $("#route").combobox('getText');
 	}
-	formData["route"] = route;
+/*	formData["route"] = route;
 	formData["content"] = $('#content').summernote('code');
+	formData["verifyCode"]=$("#verifyCode").val();
+	formData["title"]=$("#title").textbox('getValue');
+	formData["tourTime"] = $("#tourTime").datebox('getValue');
+	formData["signature"] = $("#signature").textbox('getValue');
+	formData["area"] = $("#area").combobox('getValue');
+	formData["surface"]=$('#surface').get(0).files[0];*/
+	formData.route = route;
+	formData.content = $('#content').summernote('code');
+	formData.verifyCode=$("#verifyCode").val();
+	formData.title=$("#title").textbox('getValue');
+	formData.tourTime = $("#tourTime").datebox('getValue');
+	formData.signature = $("#signature").textbox('getValue');
+	formData.area = $("#area").combobox('getValue');
+	//formData.cover=$('#surface').get(0).files[0];
+	var image = new Image();
+	image.src = $("#cover").attr("src");
+	image.onload = function(){
+	    //var base64 = getBase64Image(image);
+	   // console.log(base64);
+	    formData.cover= image.src;
+	    formData.surface=image.name;
+	}
+	formData.cover = image.src;
+	formData.surface=image.name;
+	//console.log(formData);
+	//console.log(formData.cover.length);
 	__.post(actionurl, formData, function(result) {
 		//console.log("data.success="+data.success);
 		if (result.success) {
-			showSuccess(result.msg);
+			itour.alert("提示",result.msg||"晒出成功！",'info');
+			//_this.showSuccess(result.msg);
 		} else {
-			showError(result.msg);
+			itour.alert("提示",result.msg||"晒出出错！",'info');
+			//_this.showError(result.msg);
 		}
 	});
 	//console.log(formData);
@@ -111,7 +174,6 @@ function showError(str) {
 }
 //图片上传  
 function sendFile(file, editor, $editable){ 
-	
 	$(".note-toolbar.btn-toolbar").append('正在上传图片');  
 	 console.log("file="+file);  
 	 console.log("editor="+editor);  
@@ -168,11 +230,10 @@ function sendFile(file, editor, $editable){
 //var str= $('#summernote').code();  //取值 
 $.extend($.fn.datebox.defaults.rules,{  
 	checkDate:{  //只有在datebox的input框获取焦点的时候才会显示提示，如果禁用了输入则不会生效
-		validator:function(value, param){      
+		validator:function(value){      
 			var nowDate = new Date();  
-			var dateList = value.split("/");  
-			var chooseData = new Date(dateList[2],dateList[0]-1,dateList[1]);   
-			return nowDate>=chooseData;  
+			//var chooseData = new Date(dateList[2],dateList[0]-1,dateList[1]);   
+			return nowDate>=value;  
 		},  
 		message:"晒旅行幸福的日期应在当前日期之前"  
 	}     

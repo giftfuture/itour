@@ -181,7 +181,14 @@ itour.travelOrder = function(){
 							return row.receiver;
 						}
 					},
-					{field:'receiverMobile',title:'联系电话',align:'center',sortable:true,
+					{field:'gender',title:'联系人性别',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if(row.gender==1)
+								return '男';
+							else
+								return '女';
+						}
+					},{field:'receiverMobile',title:'联系电话',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.receiverMobile;
 						}

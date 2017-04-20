@@ -172,7 +172,7 @@
   <tr>
     <td background="${basePath}images/frame1-2.gif"><table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
-        <td width="761" valign="top" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
+        <td width="761" valign="top" style="text-align:left" class="STYLE126"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
        	  ${rt.designConcept }
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
           ${rt.customizedService }</span>
@@ -279,10 +279,13 @@
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
+    <td width="1028" style="text-align:left"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
+  </tr>
+   <tr>
+    <td colspan=2><${rt.beforeInstruction }</td>
   </tr>
 </table>
-${rt.beforeInstruction }
+
   <table width="600" border="0" cellspacing="0" cellpadding="0">
    <tbody><tr>
      <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
@@ -361,11 +364,11 @@ ${rt.beforeInstruction }
                 <td bgcolor="#F0F0F0" class="STYLE140">*我们会对您的资料保密。</td>
               </tr>
           </table></td>
-          <td width="733" valign="top"><div>
+          <td width="733" valign="top">
+            <div>
          		<div id="fbcontent"></div>
 			    <ul id='fbpage'></ul>
 			</div>
-		
             </td>
         </tr>
       </table></form></td>

@@ -1,7 +1,10 @@
 package com.itour.convert;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.ShowHappy;
@@ -26,7 +29,7 @@ public class ShowHappyKit {
 		record.put("signature", vo.getSignature());
 		record.put("title", vo.getTitle());
 		record.put("route", vo.getRoute());
-		record.put("tourTime",DateUtil.getFomartDate(vo.getTourTime(),DateUtil.ymdcn));
+		record.put("tourTime",vo.getTourTime());
 		record.put("cover", vo.getCover());
 		record.put("isValid", vo.isValid());
 		record.put("shortContent", vo.getShortContent());
@@ -51,7 +54,14 @@ public class ShowHappyKit {
 		sh.setUpdateTime(vo.getUpdateTime());
 		sh.setSignature(vo.getSignature());
 		sh.setTitle(vo.getTitle());
-		sh.setTourTime(vo.getTourTime());
+	//	sh.setTourTime(vo.getTourTime());
+		try {
+			if(StringUtils.isNotEmpty(vo.getTourTime())){			
+				sh.setTourTime(DateUtil.fromStringToDate(DateUtil.ymd,vo.getTourTime()));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		sh.setCover(vo.getCover());
 		sh.setValid(vo.isValid());
 		sh.setShortContent(vo.getShortContent());
@@ -75,7 +85,7 @@ public class ShowHappyKit {
 		vo.setSignature(sh.getSignature());
 		vo.setStatus(sh.getStatus());
 		vo.setTitle(sh.getTitle());
-		vo.setTourTime(sh.getTourTime());
+		vo.setTourTime(DateUtil.getDateLong(sh.getTourTime()));
 		vo.setUpdateTime(sh.getUpdateTime());
 		vo.setCover(sh.getCover());
 		vo.setValid(sh.isValid());

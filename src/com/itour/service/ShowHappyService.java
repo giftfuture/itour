@@ -1,5 +1,6 @@
 package com.itour.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import com.google.common.collect.Lists;
 import com.itour.base.jdbc.JDBCDao;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.FilePros;
 import com.itour.convert.ShowHappyKit;
 import com.itour.dao.ShowHappyDao;
 import com.itour.entity.ShowHappy;
@@ -51,11 +53,14 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public BasePage<Map<String, Object>> pagedQuery(ShowHappyVo vo) {
 		List<ShowHappy> list = mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
+		String shareHappyPath = FilePros.httpshareHappyPath();
 		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
 		for(int i = 0; i < list.size(); i++) {
 			ShowHappy sh = list.get(i);
+			String coverpath = shareHappyPath+File.separatorChar+sh.getId()+"_"+sh.getTitle()+File.separatorChar;
+			sh.setCover(coverpath+sh.getCover());
 			records.add(ShowHappyKit.toRecord(sh));
 		}
 		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, count);
