@@ -114,14 +114,15 @@
      		 <div class="ui-edit">
 		     	   <div class="ftitle">旅行景点</div>
 					<div class="fitem">
-						<label>景点名称:</label><input name="item" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写项目名称">
+						<label>景点名称:</label><input name="item" type="text" maxlength="255" class="easyui-textbox" data-options="required:true" missingMessage="请填写项目名称">
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
-						<label>所属省市:</label><input name="scope" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
+						<label>所属省市:</label>
+						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'">  
 					</div>
 					<div class="fitem">
-						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
+						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
 					</div>	
 						
 					<div class="fitem">
@@ -131,7 +132,7 @@
 						<label>里&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
 					</div> -->
 					<div class="fitem">
-						<label>具体介绍:</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写具体介绍"></textarea>
+						<label>具体介绍:</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:205,height:130" missingMessage="请填写具体介绍"></textarea>
 					</div> 
 				  	<div class="fitem">
 						<label id="rankLabel">推荐指数:</label>
@@ -152,7 +153,7 @@
 						<label id="rucrowd">建议人群:</label>
 					</div> -->
 					<div class="fitem">
-						<label>备注(提醒建议):</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<label>备注(提醒建议):</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:205,height:130" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

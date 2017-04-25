@@ -99,8 +99,6 @@
 						<option value="2">两星</option>
 						<option value="1">一星</option>
 					</select>
-		<%-- 	<label>所属省市:</label>
-						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'">   --%>
 					</div></td>
 		     	  	 <td style="text-align:left"><div class="fitem">
 						<label>线路类别:</label><input name="travelStyle" class="easyui-combobox"  data-options="width:131,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
