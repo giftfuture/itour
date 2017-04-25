@@ -179,6 +179,7 @@ public class LightController extends BaseController{
 		map.put("items", items);
 		map.put("rt", rt);
 		map.put("qf", qf);
+		map.put("alias", alias);
 		return forward("front/light/detail",map); 
 	}
 	/**

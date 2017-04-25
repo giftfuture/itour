@@ -158,10 +158,10 @@
 <br />
 <div id="tab-container" class='tab-container' width="100%" border="0" cellpadding="3" cellspacing="1">
  <ul class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#review">整体概览</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#detail-route">详细行程</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#need-know">行前需知</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#feed-back">客户反馈</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}selfdrive/selfdrive/${alias}#review">整体概览</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}selfdrive/selfdrive/${alias}#detail-route">详细行程</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}selfdrive/selfdrive/${alias}#need-know">行前需知</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}selfdrive/selfdrive/${alias}#feed-back">客户反馈</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -193,13 +193,18 @@
 	</tr>
 	</table>
   </div>
-  <div id="detail-route" style="display:none">
+  <div id="detail-route">
  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+    <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148">简要日程</span></span></td>
+  </tr>
+  <tr><td colspan="2">${qf.showTrip }</td></tr>  
   <tr>
     <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
   </tr>
-  <tr><td colspan="2">${qf.showTrip }</td></tr>
+  <tr><td colspan="2">${rt.quotoForm }</td></tr>
   <tr>
 	    <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
 	    <td width="1028"><span class="h2-24"><span class="STYLE148"><span 
@@ -218,53 +223,53 @@
           <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
               <tr>
                 <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529">${fn:split(qf.showTicket,'|')[1]}
+                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
                 </td>
-                <td width="444">${fn:split(qf.showTicket,'|')[0]}元/人</td>
+                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-                <td>${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td>${fn:split(qf.showTourguide,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
+                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
                 </strong></div></td>
-                <td>${fn:split(qf.showHotel,'|')[1]}</td>
-                <td>${fn:split(qf.showHotel,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
+                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
                 </strong></div></td>
-                <td>${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td>${fn:split(qf.showRentcar,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
+                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
                           <br />
                 </strong></div></td>
-                <td>${fn:split(qf.showDinner,'|')[1]}</td>
-                <td>${fn:split(qf.showDinner,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
+                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-                <td>${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td>${fn:split(qf.showInsurance,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
+                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
-                <td>${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td>${fn:split(qf.showComphcost,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
+                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}元/人</td>
               </tr>
               <tr>
                 <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-                <td>${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td>${fn:split(qf.showRecreation,'|')[0]}元/人</td>
+                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
+                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}元/人</td>
               </tr>
 
               <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td>大人：${qf.adultsQuote}元/人*4人<br />
+                <td bgcolor="#f0f0f0" ><div align="center"><strong>报价</strong></div></td>
+                <td style="text-align:left">大人：${qf.adultsQuote}元/人*4人<br />
                  	 小孩：${qf.childquote }元/人*2人（小孩不含门票） </td>
                  <td></td>
               </tr>
@@ -278,7 +283,7 @@
   <tr> <td colspan="2"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
 </table>
   </div>
-  <div id="need-know" style="display:none">
+  <div id="need-know">
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
@@ -297,7 +302,7 @@
    </tr>
  </tbody></table>
   </div>
-  <div id="feed-back" style="display:none">
+  <div id="feed-back">
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
@@ -360,7 +365,7 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><input type="button" name="SubmitSend" value="Send" /></td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><a class="easyui-linkbutton" iconcls="icon-ok" name="SubmitSend">提问</a></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><input type="hidden" name="route" value="${rt.routeCode}"/></td>
@@ -369,7 +374,7 @@
           </table></td>
           <td width="733" valign="top"><div>
          		<div id="fbcontent"></div>
-			    <ul id='fbpage'></ul>
+			   
 			</div>
 		
             </td>
@@ -379,12 +384,17 @@
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
+  <tr>
+    <td>  <ul id='fbpage'></ul></td>
+  </tr>
 </table>
+ 
   </div>
  <!--  <div id="consulting" style="display:none;">
   </div> -->
   </div>
   </div>
+   
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/detail.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

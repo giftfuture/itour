@@ -26,6 +26,7 @@ public class Constants {
 	public static final int happyperPage = 8;//前端回忆幸福每页数据
 	public static final int fbperPage = 4;//前端反馈每页数据量
 	public static final int hotview = 4;//首页显示的热门景点
+	public static final int routesperrow = 3;//每行显示的路线
 	public static  int perRow = 3;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
 	public static final String FREEMARKER_PATH="";

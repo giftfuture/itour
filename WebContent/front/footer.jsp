@@ -1,15 +1,18 @@
  <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
 <form name="searchForm" action="search" method="post">
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<table class="commontb" align="center">
   <tr>
-    <td width="30px" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
-    <td width="50px" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
-    <td width="50px" bgcolor="#CCCCCC" class="f14-gao1" >  
+    <td width="15%" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
+    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
+    <td width="55%" bgcolor="#CCCCCC" class="f14-gao1" >  
        旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox"  data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
        旅游区域：
-        <input name="areas" id="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
+        <%-- <input name="areas" id="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'"> --%>
+         <input class="easyui-combobox" id="level1Area" name="level1Area" data-options="width:130,height:20,valueField:'aliasCode',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+        onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?aliasCode='+n ;$('#level2Area').combobox('reload',urlurl);}">
+    	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">     
         假期天数：<a href="javascript:void(0)">
 	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
 	  <option value="">-所有-</option>
@@ -19,7 +22,7 @@
 	  <option value="16">16天+</option>
 	</select>
       </a></label></td>
-    <td width="50px" bgcolor="#CCCCCC" class="f14-gao1"><input type="button" id="searchbtn" value="搜索" /></td>
+    <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td>
   </tr>
 </table>
 </form>
@@ -85,7 +88,7 @@
    </div>
 </div>
 </center>
-<table width="100%" border="0" align="center" cellpadding="20" cellspacing="0" class="lefttxt">
+<table class="commontb" align="center">
   <tr>
     <td width="100%" height="105" valign="top" bgcolor="#666666">
     <table width="100%" height="60" border="0" align="center" cellpadding="0" cellspacing="0">

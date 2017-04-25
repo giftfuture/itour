@@ -34,7 +34,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
-import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.ClassReflectUtil;							
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
@@ -165,6 +165,7 @@ public class RouteTemplateController extends BaseController{
 		String subpath = vo.getId();
 		String quotoForm = ImageFilter.writeBase64Image(vo.getQuotoForm(),rtschedulePath,subpath);
 		vo.setQuotoForm(quotoForm);
+		vo.setValid(true);
 		routeTemplateService.updateQuotoForm(RouteTemplateKit.toEntity(vo));
 		//vo.addShowHappy(ShowHappyKit.toEntity(vo));
 		//String result = JsonUtils.encode(context);
@@ -172,7 +173,7 @@ public class RouteTemplateController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的savertschedule方法");
 		String logid = logSettingService.add(new LogSetting("route_template","路线模板更新quotoForm","routeTemplate/savertschedule",sessionuser.getId(),"",""));
 		logOperationService.add(new LogOperation(logid,"路线模板更新quotoForm",vo.getId(),JsonUtils.encode(vo),"","routeTemplate/savertschedule",sessionuser.getId()));
-		return sendSuccessResult(response, "详细日程更新成功~");
+		return sendSuccessResult(response, "详细日程更新成功~",quotoForm);
 	}
 	
 	/**
@@ -455,13 +456,13 @@ public class RouteTemplateController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = getRootMap();
+		Map<String,Object> context = getRootMap();
 		RouteTemplateVo entity  = routeTemplateService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", entity);
+		context.put("data", JsonUtils.encode(entity));
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的getId方法");
 		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

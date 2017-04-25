@@ -22,15 +22,15 @@ itour.climbdetail = function(){
 								              '<tr>'+
 								                '<td width="32"><div align="center"></div>'+
 								                  (e.sex||e.sex==1 ? '<img src="images/man.gif" width="32" height="32" /></td>':'<img src="images/woman.gif" width="32" height="32" /></td>')+
-								                '<td width="669"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
+								                '<td width="669" style="text-align:left"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
 								              '</tr>'+
 								              '<tr>'+
 								                '<td>'+(e.createTime?e.createTime:"")+'</td>'+
-								                '<td><span class="STYLE148">'+(e.content?e.content:"")+'</span></td>'+
+								                '<td style="text-align:left"><span class="STYLE148">'+(e.content?e.content:"")+'</span></td>'+
 								              '</tr>'+
 								              '<tr>'+
 								                '<td>&nbsp;</td>'+
-								                '<td>Re：'+(e.result?e.result:"")+'</td>'+
+								                '<td style="text-align:left">Re：'+(e.result?e.result:"")+'</td>'+
 								              '</tr>'+
 								              '<tr>'+
 								                '<td>&nbsp;</td>'+
@@ -247,7 +247,7 @@ itour.climbdetail = function(){
 			        message: '请输入正确的手机号码。'   
 			    }
 			})
-		   $('#tab-container').easytabs({ 
+	/*	   $('#tab-container').easytabs({ 
 	    	 // uiTabs: true,
 	    	  animate: true,
 	    	  animationSpeed: 1000,
@@ -262,15 +262,15 @@ itour.climbdetail = function(){
 	    	   if(tab.attr("href")=="#feed-back"){
 	    		  
 	    	   };
-	    	        //$('#tab-console').find('.logged-event-group').last().append("<span class='logged-event'>easytabs:after fired</span>");
-	      });
+	        //$('#tab-console').find('.logged-event-group').last().append("<span class='logged-event'>easytabs:after fired</span>");
+	      });*/
 	    // Google Analytics tracking code 
 	      var _gaq=[['_setAccount','UA-2508361-9'],['_trackPageview']];
 	      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 	      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 	      s.parentNode.insertBefore(g,s)}(document,'script'));
 	      _this.fbpagination(1);
-	      $("input[name='SubmitSend']").click(function(){
+	      $("a[name='SubmitSend']").click(function(){
 	    	  _this.submitform();
 	      });
 	      $(document).keydown(function(e){

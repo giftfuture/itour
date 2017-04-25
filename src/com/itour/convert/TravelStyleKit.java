@@ -17,6 +17,12 @@ public class TravelStyleKit{
 		  tv.setRemark(ts.getRemark());
 		  tv.setType(ts.getType());
 		  tv.setValid(ts.isValid());
+		  tv.setDescrip(ts.getDescrip());
+		  tv.setCover(ts.getCover());
+		  tv.setCreateBy(ts.getCreateBy());
+		  tv.setUpdateBy(ts.getUpdateBy());
+		  tv.setCreateTime(ts.getCreateTime());
+		  tv.setUpdateTime(ts.getUpdateTime());
 		  return tv;
 	  }
 }

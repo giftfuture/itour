@@ -304,7 +304,7 @@ public class ShowHappyController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", entity);
+		context.put("data", JsonUtils.encode(entity));
 		SysUser sessionuser = SessionUtils.getUser(request);
 		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","showhappy/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater

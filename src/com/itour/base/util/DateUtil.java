@@ -29,7 +29,7 @@ public class DateUtil{
 	public static String mmd = "MMM dd";
 	public static String mmddyy = "MMM dd,yyyy";
 	public static String ymdhms = "yyyyMMddHHmmss";
-	public static String y_m_dhm ="yyyy-MM-dd HH:mm:ss";
+	public static String y_m_dhms="yyyy-MM-dd HH:mm:ss";
 	public static String ymdhscn = "yyyy年MM月dd日 HH:mm";
 	public static String longTimePlusMill = "yyyyMMddHHmmssSSSS";
 	public static String md = "MM月dd日";
@@ -41,7 +41,7 @@ public class DateUtil{
 	public static java.text.SimpleDateFormat sdfShortU = new java.text.SimpleDateFormat(mmd,Locale.ENGLISH);
 	public static java.text.SimpleDateFormat sdfLongU = new java.text.SimpleDateFormat(mmddyy,Locale.ENGLISH);
 	public static java.text.SimpleDateFormat sdfLongTime = new java.text.SimpleDateFormat(ymdhms);
-	public static java.text.SimpleDateFormat sdfLongTimePlus = new java.text.SimpleDateFormat(y_m_dhm);
+	public static java.text.SimpleDateFormat sdfLongTimePlus = new java.text.SimpleDateFormat(y_m_dhms);
 	public static java.text.SimpleDateFormat sdfShortLongTimePlusCn = new java.text.SimpleDateFormat(ymdhscn);
 	public static java.text.SimpleDateFormat sdfLongTimePlusMill = new java.text.SimpleDateFormat(longTimePlusMill);
 	public static java.text.SimpleDateFormat sdfMd = new java.text.SimpleDateFormat(md);

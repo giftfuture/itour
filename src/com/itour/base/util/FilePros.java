@@ -62,6 +62,16 @@ public class FilePros   {
 	}
 	
 	/**
+	 * 旅行方式封面图片
+	 * @return
+	 */
+	public static String tsCoverPath(){
+		return rb.getString("ts_cover_path");
+	}
+	public static String httptsCoverPath(){
+		return rb.getString("httpts_cover_path");
+	}
+	/**
 	 * 上传图片的物理路径
 	 * @return
 	 */

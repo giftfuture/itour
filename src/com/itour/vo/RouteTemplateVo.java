@@ -59,17 +59,41 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String designConcept;//设计理念
 	private String customizedService;//定制服务
 	private String beforeInstruction;
-	private java.lang.String scope;//地域   
-	private String scopeAlias;//地域简称
 	private String similars;//相似线路
 	private float elevation;//海拔
-	private String areas;//地区
 	private List<String> itemitems;
 	private String verifyCode;//验证码
 	private int rcdDays1;//建议天数
 	private int rcdDays2;//建议天数
+	private int starLevel;//线路星级
+	private String levelArea;//
+	private String level1Area;//线路一级区域
+	private String level2Area;//线路一级区域
 	
-	
+	public String getLevel1Area() {
+		return level1Area;
+	}
+	public void setLevel1Area(String level1Area) {
+		this.level1Area = level1Area;
+	}
+	public String getLevel2Area() {
+		return level2Area;
+	}
+	public void setLevel2Area(String level2Area) {
+		this.level2Area = level2Area;
+	}
+	public int getStarLevel() {
+		return starLevel;
+	}
+	public void setStarLevel(int starLevel) {
+		this.starLevel = starLevel;
+	}
+	public String getLevelArea() {
+		return levelArea;
+	}
+	public void setLevelArea(String levelArea) {
+		this.levelArea = levelArea;
+	}
 	public int getRcdDays1() {
 		return rcdDays1;
 	}
@@ -106,12 +130,6 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	public void setElevation(float elevation) {
 		this.elevation = elevation;
 	}
-	public String getAreas() {
-		return areas;
-	}
-	public void setAreas(String areas) {
-		this.areas = areas;
-	}
 	public String getSimilars() {
 		return similars;
 	}
@@ -124,18 +142,6 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	public void setCoverImg(File coverImg) {
 		this.coverImg = coverImg;
 	}*/
-	public java.lang.String getScope() {
-		return scope;
-	}
-	public void setScope(java.lang.String scope) {
-		this.scope = scope;
-	}
-	public String getScopeAlias() {
-		return scopeAlias;
-	}
-	public void setScopeAlias(String scopeAlias) {
-		this.scopeAlias = scopeAlias;
-	}
 	public String getBeforeInstruction() {
 		return beforeInstruction;
 	}

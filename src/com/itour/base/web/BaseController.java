@@ -174,6 +174,20 @@ public class BaseController {
 		result.put(MSG, message);
 		return JsonUtils.encode(result);
 	}
+	public String sendFailureResult(HttpServletResponse response,String message,String result) {
+		Map<String, Object> context = getRootMap();
+		context.put(SUCCESS, false);
+		context.put(MSG, message);
+		context.put(DATA,result);
+		return JsonUtils.encode(context);
+	}
+	public String sendSuccessResult(HttpServletResponse response,String message,String result) {
+		Map<String, Object> context = getRootMap();
+		context.put(SUCCESS, true);
+		context.put(MSG, message);
+		context.put(DATA,result);
+		return JsonUtils.encode(context);
+	}
 	/**
 	 *
 	 * 提示失败信息

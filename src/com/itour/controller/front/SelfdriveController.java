@@ -182,6 +182,7 @@ public class SelfdriveController  extends BaseController{
 		map.put("items", items);
 		map.put("rt", rt);
 		map.put("qf", qf);
+		map.put("alias", alias);
 		return forward("front/selfdrive/detail",map); 
 	}
 	/**

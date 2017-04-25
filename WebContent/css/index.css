@@ -42,3 +42,54 @@ body {
 .STYLE9 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #333333; }
 .STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
 .trbanner{font-family: "微软雅黑"; font-size: 30px; background-color: #FF0000;}
+.btn-item {
+  background-color: #fff;
+  width:12px;
+  height:12px;
+}
+.btn-item__cur {
+  background-color: transparent;
+  border-color: #fff;
+  width:14px;
+  height:14px;
+}
+ a:link {
+	font-family: "微软雅黑";
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:hover {
+	color: #cccc99;
+	font-family: "微软雅黑";
+	text-decoration: none;
+}
+a:active {
+	font-family: "微软雅黑";
+	text-decoration: none;
+}
+a:visited {
+	color: #FFFFFF;
+} 
+#banner-index{
+  width:1350px;
+  height:598px;
+}
+#top-menu{
+  width:1350px;
+  height:153px;
+  text-align:center;
+  align:center;
+  font-family: "微软雅黑";
+  font-size: 36px;
+  font-weight: bold;
+}
+#top-menu tr.trbanner{
+	color:#FFFFFF;
+	background-color:#8B0000;
+	text-decoration:none;
+}
+#top-menu td{
+  font-family: "微软雅黑";
+  font-size: 30px;
+ 
+}

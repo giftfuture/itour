@@ -231,6 +231,21 @@ itour.routeTemplate = function(){
 							}
 						}
 					},
+					{field:'starLevel',title:'星级',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if(parseInt(row.starLevel)==5){
+								return "五星";
+							}else if(parseInt(row.starLevel)==4){
+								return "四星";
+							}else if(parseInt(row.starLevel)==3){
+								return "三星";
+							}else if(parseInt(row.starLevel)==2){
+								return "二星";
+							}else if(parseInt(row.starLevel)==1){									
+								return "一星";
+							}
+						}
+					},
 					{field:'quotoForm',title:'详细日程',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return '<a href="'+basePath+'routeTemplate/rtschedule?id='+row.id+'">详细日程</a>';
@@ -239,6 +254,16 @@ itour.routeTemplate = function(){
 					{field:'quotoFormquotoForm',title:'路线编辑',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">路线编辑</a>';
+						}
+					},
+					{field:'level1Area',title:'一级区域',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.level1Area;
+						}
+					},
+					{field:'level2Area',title:'二级区域',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.level2Area;
 						}
 					},
 					{field:'rcdDays',title:'(建议)游览时间(天)',align:'center',sortable:true,

@@ -2,6 +2,8 @@ package com.itour.base.page;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 分页参数
  * @
@@ -105,7 +107,7 @@ public class Pager {
 
 	public String getOrderCondition() {
 		String condition = "";
-		if (this.orderField != null && this.orderField.length() != 0) {
+		if (StringUtils.isNotEmpty(this.orderField) && this.orderField.length() != 0) {
 			condition = " order by " + orderField + (orderDirection ? " " : " desc ");
 		}
 		return condition;

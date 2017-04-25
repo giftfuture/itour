@@ -182,7 +182,7 @@ public class SysRoleController extends BaseController{
 		Map<String,Object> data = BeanUtils.describe(bean);
 		data.put("menuIds", menuIds);
 		data.put("btnIds", btnIds);
-		context.put("data", data);
+		context.put("data", JsonUtils.encode(data));
 		context.put(SUCCESS, true);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的getId方法");

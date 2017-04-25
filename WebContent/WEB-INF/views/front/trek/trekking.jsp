@@ -15,9 +15,9 @@
 <body>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
    <tr>
-    <td> <%@include file="/front/header.jsp"  %></td>
+    <td> <%@include file="/front/header.jsp"%></td>
   </tr>
-<!--   <tr>
+<!--<tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
     <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
@@ -62,7 +62,7 @@
           <td><h1>线路特色：${rt.special }</h1></td>
         </tr>
       </table>
-      <c:forEach items="${items}" var="item" >
+      <c:forEach items="${items}" var="item">	
       <table width="960" border="0" align="center" cellpadding="0" cellspacing="10" bgcolor="#CCCCCC" class="lefttxt">
         <tr>
           <td width="600" valign="top"><img src="${basePath}images/img/yading-03.jpg" width="600" height="338" /></td>
@@ -74,10 +74,10 @@
           *可加入丽江、虎跳峡、梅里雪山等地的观光或徒步，依你的情况来调整日程。 --> ${item.feature }</strong></p>
             <p class="STYLE126"><span class="STYLE129">天数：</span> ${item.rcdDays}天 (徒步8天，此行程可调整为13-25天&nbsp;)
             　　<span class="STYLE129"><br />
-难度：</span>${item.difficultyRate} 　　　　<br />
-<span class="STYLE129">最高海拔：</span> ${item.mileage }米<span class="STYLE129"><br />
-季节：</span>${item.season}<br />
-<span class="STYLE129">人数：</span>${item.recommandCrowd}</p>
+		难度：</span>${item.difficultyRate} 　　　　<br />
+		<span class="STYLE129">最高海拔：</span> ${item.mileage }米<span class="STYLE129"><br />
+		季节：</span>${item.season}<br />
+		<span class="STYLE129">人数：</span>${item.recommandCrowd}</p>
         <!--   <p class="rightlinks"><a href="http://www.itours.com.cn/booking/booking-swca.php"><strong>开始私人定制</strong></a>&gt;&gt;</p> -->
           </td>
         </tr>

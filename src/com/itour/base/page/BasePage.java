@@ -51,10 +51,10 @@ public class BasePage<T> implements Serializable{
 		//pager.setRowCount(getTotal());					
 		//pager.doPage();
 		String orderField="";
-		if(StringUtils.isNotBlank(sort)){
+		if(StringUtils.isNotEmpty(sort)){
 			orderField = sort;
 		}
-		if(StringUtils.isNotBlank(orderField) && StringUtils.isNotBlank(order)){
+		if(StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)){
 			orderField +=" "+ order;
 		}
 		pager.setOrderField(orderField);

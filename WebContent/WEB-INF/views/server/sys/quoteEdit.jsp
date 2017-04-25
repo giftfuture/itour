@@ -10,8 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${basePath}css/multiselect/css/multi-select.css"> --%>
 </head>
 <body ><!-- class="easyui-layout" -->
-<form:form method="post" action="${basePath }routeTemplate/list">
-<input type="submit" value="返回">
+<form:form method="post" id="back_form" action="${basePath }routeTemplate/list">
+<!-- <input type="submit" class="easyui-linkbutton" iconcls="icon-back" value="返回"> -->
+<a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
 </form:form>
 <form:form method="post" name="quoteEditForm">
 <input type="hidden" name="rtId" value="${bean.id}">

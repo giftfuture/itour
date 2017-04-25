@@ -8,7 +8,7 @@
 <title>徒步旅行</title>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="commontb">
    <tr>
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
@@ -16,10 +16,9 @@
     <td><img src="images/banner-trekking.jpg"  /></td><!-- width="100%" height="100%" -->
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" >
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
-    
     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
       <tr>
         <td class="h1-black" style="text-align:left">徒步登山</td>
@@ -72,7 +71,7 @@
     <td class="f14-gao1">&nbsp;</td>
   </tr>
 </table> --%>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table  class="commontb">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >

@@ -1,6 +1,9 @@
 package com.itour.convert;
 
 import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 
@@ -48,7 +51,7 @@ public class FeedbackKit{
 		Feedback bean = new Feedback();
 		try {
 			bean.setContent(fb.getContent());
-			if(fb.getCreateTime() !=null){				
+			if(StringUtils.isNotEmpty(fb.getCreateTime())){				
 				bean.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getCreateTime()));
 			}
 			bean.setCustomerId(fb.getCustomerId());
@@ -61,10 +64,10 @@ public class FeedbackKit{
 			bean.setTitle(fb.getTitle());
 			bean.setName(fb.getName());
 			bean.setTeamPersons(fb.getTeamPersons());
-			if(fb.getPreferedDate() !=null){
+			if(StringUtils.isNotEmpty(fb.getPreferedDate())){
 				bean.setPreferedDate(new Timestamp(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getPreferedDate()).getTime()));
 			}
-			if(fb.getUpdateTime() !=null){
+			if(StringUtils.isNotEmpty(fb.getUpdateTime())){
 				bean.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getUpdateTime()));
 			}
 			bean.setValid(fb.isValid());

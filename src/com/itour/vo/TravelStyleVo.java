@@ -1,6 +1,7 @@
 package com.itour.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -19,8 +20,52 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class TravelStyleVo extends BasePage implements Serializable{
 	
 		private java.lang.String id;//   	private java.lang.String type;//   
-	private java.lang.String remark;//  	private String alias;
-	private boolean valid;	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	private java.lang.String remark;//  
+	private String alias;	private boolean valid;
+	private String descrip;
+	private String cover;
+	private String createBy;
+	private String updateBy;
+	private Date createTime;
+	private Date updateTime;
+	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}	public String getDescrip() {
+		return descrip;
+	}
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getType() {
 		return type;
 	}

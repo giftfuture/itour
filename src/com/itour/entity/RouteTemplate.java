@@ -39,11 +39,24 @@ public class RouteTemplate extends BaseEntity {
 	private String designConcept;//设计理念
 	private String customizedService;//定制服务
 	private String beforeInstruction;//行前须知
-	private java.lang.String scope;//地域   
-	private String scopeAlias;//地域简称
-	private String similars;//相似线路
 	private float elevation;
-	
+	private String similars;
+	private int starLevel;//线路星级
+	private String levelArea;//线路一级区域
+	 
+	 
+	public int getStarLevel() {
+		return starLevel;
+	}
+	public void setStarLevel(int starLevel) {
+		this.starLevel = starLevel;
+	}
+	public String getLevelArea() {
+		return levelArea;
+	}
+	public void setLevelArea(String levelArea) {
+		this.levelArea = levelArea;
+	}
 	public float getElevation() {
 		return elevation;
 	}
@@ -55,18 +68,6 @@ public class RouteTemplate extends BaseEntity {
 	}
 	public void setSimilars(String similars) {
 		this.similars = similars;
-	}
-	public java.lang.String getScope() {
-		return scope;
-	}
-	public void setScope(java.lang.String scope) {
-		this.scope = scope;
-	}
-	public String getScopeAlias() {
-		return scopeAlias;
-	}
-	public void setScopeAlias(String scopeAlias) {
-		this.scopeAlias = scopeAlias;
 	}
 	public String getBeforeInstruction() {
 		return beforeInstruction;

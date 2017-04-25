@@ -43,11 +43,12 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	public BasePage<RouteTemplateVo> pagedQuery(RouteTemplateVo vo) {
-		List<RouteTemplate> list = (List<RouteTemplate>) mapper.queryByList(vo);
+		vo.setOrder("starLevel");
+		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
 		String rtCoverPath = FilePros.httprtCoverPath();
-		for(RouteTemplate fb:list) {
+		for(RouteTemplateVo fb:list) {
 			if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				 String[] params = fb.getTravelItems().split(",");
 				String travelItems = tiDao.travelItems(Arrays.asList(params));
@@ -64,7 +65,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			}
 			String coverpath = rtCoverPath+File.separatorChar+fb.getRouteCode()+"_"+fb.getTitle()+File.separatorChar;
 			fb.setCover(coverpath+fb.getCover());
-			records.add(RouteTemplateKit.toRecord(fb));
+			records.add(fb);
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
 	}
@@ -75,6 +76,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public BasePage<RouteTemplateVo> searchpagedQuery(RouteTemplateVo vo) {
+		vo.setOrder("starLevel");
 		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.searchRts(vo);
 		int count = mapper.searchRtsByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();

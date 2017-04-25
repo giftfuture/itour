@@ -300,7 +300,7 @@
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->
       </tr>
       <tr> 
-        <td colspan=2><input type="button" name="check_formbtn" value="快速预定" /></td>
+        <td colspan=2><a class="easyui-linkbutton" iconcls="icon-search" name="check_formbtn">快速预定</a></td>
       </tr>
       </table></td>
     <td width="10" background="images/default/shadowright.gif">

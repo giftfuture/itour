@@ -20,7 +20,7 @@ public class LogOperationKit{
 	public static LogOperationVo toVo(LogOperation ls)throws Exception{
 		LogOperationVo vo = new LogOperationVo();
     	vo.setCreater(ls.getCreater());
-    	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhm));
+    	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhms));
     	vo.setLogCode(ls.getLogCode());
     	vo.setContent(ls.getContent());
     	vo.setNewContent(ls.getNewContent());
@@ -35,7 +35,7 @@ public class LogOperationKit{
     public static LogOperation toEntity(LogOperationVo ls)throws Exception{
     	LogOperation vo = new LogOperation();
     	vo.setCreater(ls.getCreater());
-    	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhm, ls.getCreateTime()));
+    	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, ls.getCreateTime()));
     	vo.setLogCode(ls.getLogCode());
     	vo.setContent(ls.getContent());
     	vo.setNewContent(ls.getNewContent());

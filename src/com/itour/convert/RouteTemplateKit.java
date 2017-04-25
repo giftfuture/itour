@@ -115,10 +115,10 @@ public class RouteTemplateKit{
 		vo.setDesignConcept(rt.getDesignConcept());
 		vo.setCustomizedService(rt.getCustomizedService());
 		vo.setBeforeInstruction(rt.getBeforeInstruction());
-		vo.setScope(rt.getScope());
-		vo.setScopeAlias(rt.getScopeAlias());
 		vo.setSimilars(rt.getSimilars());
 		vo.setElevation(rt.getElevation());
+		vo.setStarLevel(rt.getStarLevel());
+		vo.setLevelArea(rt.getLevelArea());
 		return vo;
 	}
 	public static RouteTemplate toEntity(RouteTemplateVo rt){
@@ -217,8 +217,8 @@ public class RouteTemplateKit{
 		vo.setDesignConcept(rt.getDesignConcept());
 		vo.setCustomizedService(rt.getCustomizedService());
 		vo.setBeforeInstruction(rt.getBeforeInstruction());
-		vo.setScope(rt.getScope());
-		vo.setScopeAlias(rt.getScopeAlias());
+		vo.setStarLevel(rt.getStarLevel());
+		vo.setLevelArea(rt.getLevelArea());
 		vo.setSimilars(rt.getSimilars());
 		vo.setElevation(rt.getElevation());
 		return vo;

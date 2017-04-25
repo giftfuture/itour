@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
+<link rel="stylesheet" href="${basePath}css/index.css" />  
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
@@ -12,7 +13,14 @@
 <title>欢迎访问主角旅行</title>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript">
- jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+ jQuery.browser={};
+ (function(){
+	 jQuery.browser.msie=false; 
+	 jQuery.browser.version=0;
+	 if(navigator.userAgent.match(/MSIE ([0-9]+)./)){
+		 jQuery.browser.msie=true;
+		 jQuery.browser.version=RegExp.$1;
+  }})();
  </script>
 </head>
 <body>
@@ -21,51 +29,10 @@
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
  <tr>
-    <td><img id="banner-index"  src="images/Route001.jpg" height="598" /></td>
+    <td><img id="banner-index"  src="${basePath }images/Route001.jpg"/></td>
   </tr>  
-    <tr><td style="text-align:left"><input type="button" value="1" onclick="changePho(this)" />
-    <input type="button" value="2" onclick="changePho(this)" />
-    <input type="button" value="3" onclick="changePho(this)" />
-    <input type="button" value="4" onclick="changePho(this)" />
-    <input type="button" value="5" onclick="changePho(this)" />
-    <input type="button" value="6" onclick="changePho(this)" /></td></tr>
-  <tr><td> </td></tr>
-<tr><td>
-<!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
-<script type="text/javascript">
-if($.browser.msie){ 
-	document.write('<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="624" height="351" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">'+
-			'<param name="movie" value="FLVPlayer_Progressive.swf" />'+
-			'<param name="quality" value="high" />'+
-			'<param name="wmode" value="opaque" />'+
-			'<param name="scale" value="noscale" />'+
-			'<param name="salign" value="lt" />'+
-			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=public/video/praise02.mp4&amp;autoPlay=false&amp;autoRewind=false" />'+
-			'<param name="swfversion" value="8,0,0,0" />'+
-			'<param name="expressinstall" value="expressInstall.swf" />'+
-			'</object>');
-	}else{
-		 document.write('<div align="center" width="100%" height="50%"><video width="1000px" height="500px" controls="controls">'+
-		'<source src="video/praise01.mp4" type="video/mp4"></source>'+
-		'your browser does not support the video tag'+
-		'</video></div>'); 
-		//document.write('<iframe height=600 width=330 src="http://player.youku.com/embed/XNTcyMzIwMTE2" frameborder=0 allowfullscreen></iframe>');
-		//document.write('<iframe height=600 width=330 src="http://player.youku.com/player.php/Type/Folder/Fid/22127316/Ob/1/sid/XNjk1MDUyNzU2/v.swf" frameborder=0 allowfullscreen></iframe>');
-		document.write('<div align="center" width="100%" height="50%">'+
-		'<embed src="http://player.youku.com/player.php/Type/Folder/Fid/22127316/Ob/1/sid/XNjk1MDUyNzU2/v.swf" '+
-		'quality="high" width="1000px" height="500px" align="center" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></div>');
-	}
-</script>  
-<!-- 
-<embed src="http://static.youku.com/v1.0.0149/v/swf/qplayer_rtmp.swf?VideoIDS=XNTg2ODcxMTM2ID&winType=adshow&isAutoPlay=true" quality="high" width="290" height="220" align="middle" title="嘉兴中安商贸园宣传片" wmode="transparent" allowScriptAccess="never" allowNetworking="internal" autostart="1" type="application/x-shockwave-flash"></embed> -->
-<!-- 视频常见几种比例：384×256、580×435、610×460 -->
-<%--   <video width="602px" height="345px" controls="controls">
-<source src="${basePath }video/praise.mp4" type="video/mp4"></source>
-your browser does not support the video tag
-</video> --%>
-</td></tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" align="center">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
@@ -101,28 +68,30 @@ your browser does not support the video tag
       <tr>
       <c:if test="${not empty mapvo }">
 	      <c:forEach items="${mapvo}" var="entry" varStatus="status">
-	       <c:if test="${status.index != 0 && status.index%4==0 }"></tr><tr></c:if>
+	        <tr>
+	       <%-- <c:if test="${status.index != 0 && status.index%4==0 }"></tr><tr></c:if> --%>
 	        <td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0" class="f14-gao1">
-	            <tr>
-	              <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-	                  <tr>
-	                    <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>
-	                    <td width="296" class="h2-24"><a href="${basePath}hiking/main" class="STYLE3">${entry['key']}</a></td>
-	                  </tr>
-	              </table></td>
-	            </tr>
-	            <tr>
-	              <td><a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}"><span class="STYLE7">${entry['value'].title }</span></a></td>
-	            </tr>
-	            <tr>
-	              <td><a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}"><img src="${entry['value'].cover }" width="353" height="166" /></a></td>
-	            </tr>
-	            <tr>
-	              <td class="STYLE8"><%-- <a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}">${entry['value'].title }</a><br /> --%>
-	              ${entry['value'].shortContent}<br><a href="${basePath }${entry['value'].travelStyleAlias }/main">More》》</a>
-	              </td>
-	            </tr>
-	        </table></td>
+                  <tr>
+                    <td width="296" class="h2-24" colspan=3><a href="${basePath}hiking/main" class="STYLE3">${fn:split(entry['key'], '_')[0]}</a></td>
+                  </tr>
+                  <tr><td width="296" class="h2-24" colspan=3>${fn:split(entry['key'], '_')[1]}</td></tr>
+                  <tr><td width="296" class="h2-24" colspan=3><img src="${basePath }${fn:split(entry['key'], '_')[2]}"/></td></tr>
+                  <tr>
+                  <c:forEach items="${entry['value']}" var="et">
+	                  <td><table><tr>
+		              <td><a href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}"><img src="${et.cover }" width="353" height="166" /></a></td>
+		            </tr>
+	   	            <tr>
+		              <td><a href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}"><span class="STYLE7">${et.title }</span></a></td>
+		            </tr>
+		            <tr>
+		              <td class="STYLE8"><%-- <a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}">${entry['value'].title }</a><br /> --%>
+		              ${et.shortContent}<br><a href="${basePath }${et.travelStyleAlias }/main">More》》</a>
+		              </td>
+		            </tr></table></td>
+                  </c:forEach>
+                  </tr>
+	        </table></td></tr>
 	        </c:forEach>
         </c:if>
       </tr>

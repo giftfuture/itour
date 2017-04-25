@@ -24,7 +24,7 @@
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
  <tr>
-    <td><img id="banner-index"  src="images/Route001.jpg" height="598" /></td>
+    <td><img id="banner-index"  src="${basePath }images/Route001.jpg" width="1350" height="598" /></td>
   </tr>  
     <tr><td style="text-align:left"><input type="button" value="1" onclick="changePho(this)" />
     <input type="button" value="2" onclick="changePho(this)" />

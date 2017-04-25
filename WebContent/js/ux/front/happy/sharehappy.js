@@ -19,7 +19,18 @@ $(document).ready(function() {
                     ['para', ['ul', 'ol', 'paragraph']],  
                     ['height', ['height']],  
                     ['insert', ['picture', 'video']]  
-                ], 
+                ],
+        fontNames: ['Microsoft YaHei ','Serif', 'Sans', 'Arial', 'Arial Black', 'Courier','Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande','Sacramento'],
+        colors: [
+                 ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],
+                 ['#FF0000', '#FF9C00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#9C00FF', '#FF00FF'],
+                 ['#F7C6CE', '#FFE7CE', '#FFEFC6', '#D6EFD6', '#CEDEE7', '#CEE7F7', '#D6D6E7', '#E7D6DE'],
+                 ['#E79C9C', '#FFC69C', '#FFE79C', '#B5D6A5', '#A5C6CE', '#9CC6EF', '#B5A5D6', '#D6A5BD'],
+                 ['#E76363', '#F7AD6B', '#FFD663', '#94BD7B', '#73A5AD', '#6BADDE', '#8C7BC6', '#C67BA5'],
+                 ['#CE0000', '#E79439', '#EFC631', '#6BA54A', '#4A7B8C', '#3984C6', '#634AA5', '#A54A7B'],
+                 ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'],
+                 ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']
+               ]
   }); 
 /*    $("#tourTime").datebox({  
         onSelect:function(date){  
@@ -66,7 +77,7 @@ function change(picId,fileId){
         }
     }
 }
-function getBase64Image(img) {
+/*function getBase64Image(img) {
 	 var canvas = document.createElement("canvas");
      canvas.width = img.width;
      canvas.height = img.height;
@@ -75,7 +86,7 @@ function getBase64Image(img) {
      var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
      var dataURL = canvas.toDataURL("image/"+ext);
      return dataURL; // return dataURL.replace("data:image/png;base64,", ""); 
-} 
+} */
 function sharehappy() {
 	var actionurl=basePath+"showhappy/add";//$("#formLogin").attr("action");//提交路径
 	 var formData = new Object();
@@ -105,12 +116,13 @@ function sharehappy() {
 	//formData.cover=$('#surface').get(0).files[0];
 	var image = new Image();
 	image.src = $("#cover").attr("src");
-	image.onload = function(){
+/*	image.onload = function(){
 	    //var base64 = getBase64Image(image);
 	   // console.log(base64);
 	    formData.cover= image.src;
 	    formData.surface=image.name;
-	}
+	}*/
+//	console.log($("#cover"));
 	formData.cover = image.src;
 	formData.surface=image.name;
 	//console.log(formData);

@@ -214,6 +214,8 @@ public class HikingController extends BaseController{
 		map.put("items", items);
 		map.put("rt", rt);
 		map.put("qf", qf);
+		//map.put("homeurl", "front/trek/trekking");
+		map.put("alias", alias);
 		return forward("front/trek/hiking",map); 
 	}
 	/**

@@ -17,7 +17,7 @@ public class LogSettingKit{
     public static LogSettingVo toVo(LogSetting ls)throws Exception{
     	LogSettingVo vo = new LogSettingVo();
     	vo.setCreater(ls.getCreater());
-    	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhm));
+    	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhms));
     	vo.setDeletescriptTemplate(ls.getDeletescriptTemplate());
     	vo.setFunction(ls.getFunction());
     	vo.setLogCode(ls.getLogCode());
@@ -31,7 +31,7 @@ public class LogSettingKit{
     public static LogSetting toEntity(LogSettingVo ls)throws Exception{
     	LogSetting vo = new LogSetting();
     	vo.setCreater(ls.getCreater());
-    	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhm, ls.getCreateTime()));
+    	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, ls.getCreateTime()));
     	vo.setDeletescriptTemplate(ls.getDeletescriptTemplate());
     	vo.setFunction(ls.getFunction());
     	vo.setLogCode(ls.getLogCode());
@@ -46,7 +46,7 @@ public class LogSettingKit{
     	Map<String,Object> record = new HashMap<String,Object>();
     	record.put("logCode", ls.getLogCode());
     	record.put("creater",ls.getCreater());
-    	record.put("createTime",DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhm));
+    	record.put("createTime",DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhms));
     	record.put("deletescriptTemplate", ls.getDeletescriptTemplate());
     	record.put("function", ls.getFunction());
     	record.put("tableName", ls.getTableName());

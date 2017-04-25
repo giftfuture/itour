@@ -205,7 +205,7 @@ public class SysMenuController extends BaseController{
 		List<SysMenuBtn> btns = sysMenuBtnService.queryByMenuid(id);
 		bean.setBtns(btns);
 		context.put(SUCCESS, true);
-		context.put("data", bean);
+		context.put("data", JsonUtils.encode(bean));
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的getId方法");
 		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
