@@ -2,6 +2,7 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.io.File;
 /**
  * 
@@ -31,7 +32,35 @@ public class TravelItem extends BaseEntity {
 	private String recommandEquip;
 	private boolean hot;//1=热门景点，0=非热点
 	private boolean isValid;
+	private String createBy;
+	private String updateBy;
+	private Date createTime;
+	private Date updateTime;
 	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 		public boolean isValid() {
 		return isValid;
 	}

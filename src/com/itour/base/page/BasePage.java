@@ -23,7 +23,8 @@ public class BasePage<T> implements Serializable{
 	private String sort;
 	
 	private String order;
-
+	
+	private String groupField;
 
 	/** 开始查询 的数据索引号 (从0开始) */
 	private int start = 0;
@@ -55,9 +56,13 @@ public class BasePage<T> implements Serializable{
 			orderField = sort;
 		}
 		if(StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)){
-			orderField +=" "+ order;
+			orderField +=" "+ order;		
 		}
+		
 		pager.setOrderField(orderField);
+		if(StringUtils.isNotEmpty(groupField)){
+			pager.setGroupField(groupField);
+		}
 		return pager;
 	}
 
@@ -184,6 +189,14 @@ public class BasePage<T> implements Serializable{
 	
 		public void setOrder(String order) {
 			this.order = order;
+		}
+
+		public String getGroupField() {
+			return groupField;
+		}
+
+		public void setGroupField(String groupField) {
+			this.groupField = groupField;
 		}
 	
 }

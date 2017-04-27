@@ -114,9 +114,9 @@ itour.routeTemplate = function(){
 			var table = $("#btn-tb");
 			var	html = "<tr class='tb-line'>";
 			html+=	   "	<td align='center'><span  class='newFlag red'>*</span></td>";
-			html+=	   "	<td><input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
-			html+=	   "	<td><input name=\"btnType\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
-			html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-validatebox text-desc\" style=\"width:100%\"  ></td>";
+			html+=	   "	<td><input name=\"btnName\" class=\"easyui-textbox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
+			html+=	   "	<td><input name=\"btnType\" class=\"easyui-textbox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
+			html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-textbox text-desc\" style=\"width:100%\"  ></td>";
 			html+=	   "	<td align='center'><a class=\"easyui-linkbutton remove-btn\"  iconCls=\"icon-remove\" plain=\"true\"></a>";
 			html+=	   "	<input class=\"hidden\" name=\"btnId\">";
 			html+=	   "	<input class=\"hidden\" name=\"deleteFlag\">";
@@ -725,7 +725,7 @@ itour.routeTemplate = function(){
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
-								{id:'btnedit',text:'上传封面',btnType:'upload',iconCls:'icon-edit',handler:function(){
+								{id:'btnedit',text:'上传封面',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 									var selected = _box.utils.getCheckedRows();
 									if (_box.utils.checkSelectOne(selected)){
 										_this.uploadPhotoForm().resetForm();
@@ -733,7 +733,7 @@ itour.routeTemplate = function(){
 										_this.uploadPhotoWin().window('open'); 		
 									}
 								}},
-								{id:'btnedit',text:'上传地图',btnType:'upload',iconCls:'icon-edit',handler:function(){
+								{id:'btnedit',text:'上传地图',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 									var selected = _box.utils.getCheckedRows();
 									if (_box.utils.checkSelectOne(selected)){
 										_this.uploadMapForm().resetForm();
@@ -926,8 +926,8 @@ itour.routeTemplate = function(){
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
+			this.initUploadMapForm(); 
 			this.initUploadForm();
-			this.initUploadMapForm();
 			var zxxfile = $.extend(ZXXFILE,this.params);
 			zxxfile.init();
 			var zxxmapfile = $.extend(uploadFile,this.mapparams);

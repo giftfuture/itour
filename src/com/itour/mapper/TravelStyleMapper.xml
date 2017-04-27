@@ -98,6 +98,10 @@ where valid=1
 <update id="logicdelete" parameterType="java.lang.String">
 	update travel_style set is_valid=0 where id = #{id}
 </update> 
+<!-- 上传封面 -->
+<update id="updateCover" parameterType="com.itour.entity.TravelStyle">
+	update travel_style set cover=#{cover} where id = #{id}
+</update> 
 <!-- 根据id查询 旅行方式 #{_parameter,jdbcType=VARCHAR}  -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 

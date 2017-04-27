@@ -16,9 +16,9 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">:</label><input name="detailCode" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="logCode" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">:</label><input name="columnName" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">:</label><input name="detailCode" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">:</label><input name="logCode" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">:</label><input name="columnName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  

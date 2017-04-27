@@ -153,9 +153,9 @@ public class QuotationController extends BaseController{
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
-		String data = JsonUtils.encode(entity);
+		//String data = JsonUtils.encode(entity);
 		context.put(SUCCESS, true);
-		context.put("data", data);
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的getId方法");
 		String logId = logSettingService.add(new LogSetting("quotation","报价单","quotation/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

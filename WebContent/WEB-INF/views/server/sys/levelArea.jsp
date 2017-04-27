@@ -1,162 +1,73 @@
-<%@ page language="java"  pageEncoding="UTF-8" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <!DOCTYPE HTML>
 <html>
- <head>
- <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
- <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
+  <head>
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" style="height: 120px;" title="过滤条件" data-options="striped: true,region:'north',collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">景点代码:</label>
-			<input name="itemCode" class="easyui-box ui-text" style="width:110px;"/>
-			<label class="ui-label">景点名称:</label>
-			<input name="item" class="easyui-box ui-text" style="width:108px;"/>
-			<label class="ui-label">是否热门:</label>
-			<select name="hot" class="easyui-box ui-text" style="width:108px;">
-				<option value="0">否</option>
-			 	<option value="1">是</option>
-			 </select>
-			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
-			<select name="elevation" class="easyui-box ui-text" style="width:100px;">
-				<option value="">--请选择--</option>
-				<option value="1">100米以下</option>
-				<option value="2">500米以下</option>
-				<option value="3">1000米以下</option>
-				<option value="4">2000米以下</option>
-				<option value="5">4000米以下</option>
-				<option value="6">6000米以下</option>
-				<option value="7">8000米以下</option>
-				<option value="8">8000米以上</option>
-			</select>
-			<label class="ui-label">所属省市:</label>
-			 <input name="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
-		<!-- 	<select name="scope" class="easyui-box ui-text" style="width:100px;">
-				<option value="">--请选择--</option>
-				<option value="四川">四川</option>
-				<option value="云南">云南</option>
-				<option value="西藏">西藏</option>
-				<option value="新疆">新疆</option>
-			</select> -->
-			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>
-			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>
-			<label class="ui-label">里&nbsp;&nbsp;程:</label>
-			<select name="mileage" class="easyui-box ui-text" style="width:100px;">
-				<option value="">--请选择--</option>
-				<option value="1">5公里以内</option>
-				<option value="2">20公里以内</option>
-				<option value="3">50公里以内</option>
-				<option value="4">200公里以内</option>
-				<option value="5">500公里以内</option>
-				<option value="6">1000公里以内</option>
-				<option value="7">2000公里以内</option>
-			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
-      </form>
-      </div>
-       <!--  Search panel end -->
-     <div region="center" border="false" >
+			<label class="ui-label">一级区域:</label><input class="easyui-combobox" id="level1Area" name="level1Area" data-options="width:130,height:20,valueField:'aliasCode',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+        onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?aliasCode='+n ;$('#level2Area').combobox('reload',urlurl);}">&nbsp;&nbsp;
+			<label class="ui-label">二级区域:</label> <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">&nbsp;&nbsp;     
+			<label class="ui-label">景点:</label>
+		  <input class="easyui-combobox" id="travelItem" name="travelItem" data-options="width:130,height:20,valueField:'alias',textField:'item',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}travelItem/allItems'"/>&nbsp;&nbsp;
+	    </p>&nbsp;&nbsp;
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+      </form>  
+     </div> 
+     <!--  Search panel end -->
+
      <!-- Data List -->
+     <div region="center" border="false" >
      <table id="data-list"></table>
 	 </div>
-	 <!-- Edit Win&Form -->
-	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
-     	<form  class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data" autocomplete="off">
-   				 <input class="hidden" name="id">
-   				 <div class="ui-edit">
-    		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->
-					<div class="upload_box">
-                        <div class="upload_main">
-                            <div class="upload_choose">
-                                <input id="fileImage" type="file" name="fileselect" size="30"  multiple="multiple" accept="image/*"  />
-                            </div>
-                            <div id="preview" class="upload_preview"></div>
-                        </div>
-                        <div class="upload_submit">
-                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
-                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
-                        </div>
-                        <div id="uploadInf" class="upload_inf"></div>
-                    </div>
-				</div>
-				</div>
-     	</form>
-	 </div>  
- 	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
-     	<form action="" class="ui-form" id="editPhotoForm" name="editPhotoForm" method="post" ><!-- enctype="multipart/form-data" -->
-   				 <input class="hidden" name="id">
-   				 <div class="ui-edit">
-    		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->
-					<div class="upload_box">
-                        <div class="upload_main">
-                            <div id="previewPhotos" class="upload_preview">
-								<!-- <img alt="图片浏览" src=""> -->
-                            </div>
-                        </div>
-                        <div class="upload_submit">
-                            <button type="submit" id="editPhotoSubmit" class="upload_submit_btn">确定</button>
-                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="upload_cancel_btn" id="editwin-close">取消</button>
-                        </div>
-                        <div id="uploadInf" class="upload_inf"></div>
-                    </div>
-				</div>
-				</div>
-     	</form>
-	 </div>  
-     <div id="edit-win" title="旅行景点" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
+	 
+     <!-- Edit Win&Form -->
+     <div id="edit-win" class="easyui-dialog" title="路线区域" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
+     		 <input class="hidden" name="rtid">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">旅行景点</div>
-					<div class="fitem">
-						<label>景点名称:</label><input name="item" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写项目名称">
-						<span style="color:red">*</span>
+		     	   <!-- <div class="ftitle">路线区域</div> -->
+		     	  <!--  <table><tr></tr></table> -->
+		     	   	<div class="fitem">
+						<div id="larttitle" style="display:none"><label>路线名称:</label>
+						<input class="easyui-textbox" name="title" data-options="width:130,height:20,editable:false,border:0,padding:100"/></div>&nbsp;&nbsp;
+						<div id="larouteTemplates"  style="display:none"><label>路线名称:</label><input class="easyui-combobox"  name="routeTemplate" data-options="width:130,height:20,padding:100,valueField:'routeCode',textField:'title',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}routeTemplate/queryAll'"/></div>
 					</div>
 					<div class="fitem">
-						<label>所属省市:</label><input name="scope" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写scope">
+						<label>一级区域:</label>
+						<input class="easyui-combobox" id="formlevel1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+       					onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#formlevel2Area').combobox('reload',urlurl);}">
+        				<br/><span style="padding-left:50px" >新增一级区域</span><a name="addLevel1Area" >&nbsp;&nbsp;&nbsp;<img src="${basePath }images/add.gif" width="16" height="16" ></a> 
+        				<div id="level1Areadiv" style="display:none;margin-top:5px">
+        					<span name="newlevel1span" style="padding-left:50px" ><input name="newlevel1Area" type="text" class="easyui-textbox">
+        					<a name="addlevel1" class="easyui-linkbutton" iconcls="icon-save">新增</a>
+        					<a name="cancel1" class="easyui-linkbutton" iconcls="icon-cancel">取消</a></span>
+        					<span style="margin-top:5px;padding-top:5px;padding-left:50px">一级区域：<label name="keeplevel1" style="text-align:center"></label>&nbsp;&nbsp;<a name="delkeeplevel1">删除</a></span>
+       					</div>
 					</div>
 					<div class="fitem">
-						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
-					</div>	
-						
-					<div class="fitem">
-						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
-					</div>
-<!-- 					<div class="fitem">
-						<label>里&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
-					</div> -->
-					<div class="fitem">
-						<label>具体介绍:</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写具体介绍"></textarea>
-					</div> 
-				  	<div class="fitem">
-						<label id="rankLabel">推荐指数:</label>
-						</div>  
-<!-- 					<div class="fitem">
-						<label>推荐原因:</label><input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
+						<label>二级区域:</label>
+						<input id="formlevel2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'level2Area',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">
+						<br/><span style="padding-left:50px" >新增二级区域</span><a name="addLevel2Area" >&nbsp;&nbsp;&nbsp;<img src="${basePath }images/add.gif" width="16" height="16" ></a>
+						<div id="level2Areadiv" style="display:none;margin-top:5px"> 
+							<span name="newlevel2span" style="padding-left:50px" ><input name="newlevel2Area" type="text" class="easyui-textbox">
+        					<a name="addlevel2" class="easyui-linkbutton" iconcls="icon-save">新增</a>
+        					<a name="cancel2" class="easyui-linkbutton" iconcls="icon-cancel">取消</a></span>
+							<span style="margin-top:5px;padding-top:5px;padding-left:50px">二级区域：<label name="keeplevel2" style="text-align:center"></label>&nbsp;&nbsp;<a name="delkeeplevel2">删除</a></span>
+       					</div>
 					</div>
 					<div class="fitem">
-						<label>建议天数:</label><input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写rcdDays">
-					</div>
-					<div class="fitem">
-						<label id="difficultyRateLabel">挑战度:</label>
-					</div>
-					<div class="fitem">
-						<label id="happyLabel">好玩值:</label>
-					</div>
-					<div class="fitem">
-						<label id="rucrowd">建议人群:</label>
-					</div> -->
-					<div class="fitem">
-						<label>备注(提醒建议):</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<label>景点名称:</label>
+						<input class="easyui-combobox" id="item" name="item" data-options="width:130,height:20,valueField:'alias',textField:'item',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}travelItem/allItems'"/>&nbsp;&nbsp;
 					</div>
   			</div>
      	</form>
   	 </div>
-<script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>		  
+     <script type="text/javascript" src="<%=basePath%>js/ux/sys/levelArea.js"></script>
   </body>
 </html>

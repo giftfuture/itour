@@ -10,9 +10,9 @@
  	 <form id="searchForm">
  	 	<p class="ui-fields">
             <label class="ui-label">角色名:</label> 
-            <input name="roleName" class="easyui-box ui-text" style="width:100px;">
-                        <label class="ui-label">状态: </label><select name="state" class="easyui-combobox ui-text" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"><option value="">--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>
-             <label class="ui-label">创建时间: </label><input name="createTime" class="easyui-datetimebox" style="width:100px;" data-options="editable:false,region:'north',split:true,border:false" >
+            <input name="roleName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+                        <label class="ui-label">状态: </label><select name="state" class="easyui-combobox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"><option value="">--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>&nbsp;&nbsp;
+             <label class="ui-label">创建时间: </label><input name="createTime" class="easyui-datebox" style="width:100px;" data-options="editable:false,region:'north',split:true,border:false" />&nbsp;&nbsp;
         </p>  
         <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -28,10 +28,10 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" type="text" name="id">
      		 <div class="ui-edit">
-	     	   <div class="ftitle">角色信息</div>    
+	     	  <!--  <div class="ftitle">角色信息</div>     -->
 	           <div class="fitem">  
 	               <label>角色名:</label>  
-	               <input class="easyui-validatebox" type="text" name="roleName" data-options="required:true,validType:'length[1,10]'">
+	               <input class="easyui-textbox" type="text" name="roleName" data-options="required:true,validType:'length[1,10]'">
 	           </div>  
 	           <div class="fitem">  
 	               <label>状态:</label>  

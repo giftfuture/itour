@@ -109,17 +109,23 @@ public class SysVariablesController extends BaseController{
 	public String save(SysVariables entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		String id = "";
+		SysUser sessionuser = SessionUtils.getUser(request);
 		SysVariables sv = null;
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
+			entity.setCreateBy(sessionuser.getId());
+			entity.setUpdateBy(sessionuser.getId());
 			id = sysVariablesService.add(entity);
 		}else{
 				sv = sysVariablesService.queryById(entity.getId());
-			if(sv == null)
+			if(sv == null){
 				id = sysVariablesService.add(entity);
-			else
+				entity.setCreateBy(sessionuser.getId());
+				entity.setUpdateBy(sessionuser.getId());
+			}else{
+				entity.setUpdateBy(sessionuser.getId());
 				sysVariablesService.update(entity);
+			}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的save方法");
 		if(StringUtils.isNotEmpty(id)){			
 			String logid = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/save",sessionuser.getId(),"",""));
@@ -148,7 +154,7 @@ public class SysVariablesController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的getId方法");
 		String logId = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

@@ -1,5 +1,6 @@
 package com.itour.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,22 +23,24 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.LevelAreaKit;
-import com.itour.convert.OrderDetailKit;
-import com.itour.entity.Areas;
 import com.itour.entity.LevelArea;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
-import com.itour.entity.OrderDetail;
+import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysUser;
+import com.itour.entity.TravelItem;
 import com.itour.service.LevelAreaService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
+import com.itour.service.RouteTemplateService;
+import com.itour.service.TravelItemService;
 import com.itour.vo.LevelAreaVo;
-import com.itour.vo.OrderDetailVo;
+import com.itour.vo.RouteTemplateVo;
 @Controller
 @RequestMapping("/levelarea") 
 public class LevelAreaController extends BaseController {
@@ -50,12 +53,15 @@ public class LevelAreaController extends BaseController {
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
 	private LogSettingService logSettingService;
-	
+	@Autowired  
+	private RouteTemplateService<RouteTemplate> routeTemplateService; 
 	@Autowired
 	private LogSettingDetailService logSettingDetailService;
 	
 	@Autowired
 	private LogOperationService logOperationService;
+	@Autowired 
+	private TravelItemService<TravelItem> travelItemService; 
 	
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
@@ -119,18 +125,39 @@ public class LevelAreaController extends BaseController {
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String save(LevelAreaVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
+		SysUser sessionuser = SessionUtils.getUser(request);
 		LevelArea od = null;
+		if(StringUtils.isNotEmpty(entity.getNewlevel1Area())){
+			entity.setLevel1Area(entity.getNewlevel1Area());
+		}
+		if(StringUtils.isNotEmpty(entity.getRouteTemplate())){
+			RouteTemplate ti = routeTemplateService.selectByRouteCode(entity.getRouteTemplate());
+			entity.setRouteTemplate(ti==null?"":ti.getId());
+		}
+		if(StringUtils.isNotEmpty(entity.getNewlevel2Area())){
+			entity.setLevel2Area(entity.getNewlevel2Area());
+		}		
+		if(StringUtils.isNotEmpty(entity.getItem())){
+			TravelItem ti = travelItemService.getByAlias(entity.getItem());
+			entity.setTravelItem(ti==null?"":ti.getId());
+		}
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
+			entity.setAliasCode(IDGenerator.code(19));
+			entity.setCreateBy(sessionuser.getId());
+			entity.setUpdateBy(sessionuser.getId());
 			odId = levelAreaService.add(LevelAreaKit.toEntity(entity));
 		}else{
 				od = levelAreaService.queryById(entity.getId());
 			if(od == null){
+				entity.setAliasCode(IDGenerator.code(19));
+				entity.setCreateBy(sessionuser.getId());
+				entity.setUpdateBy(sessionuser.getId());
 				odId = levelAreaService.add(LevelAreaKit.toEntity(entity));
 			}else{
+				entity.setUpdateBy(sessionuser.getId());
 				levelAreaService.update(LevelAreaKit.toEntity(entity));
 			}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行LevelAreaController的save方法");
 		if(StringUtils.isNotEmpty(odId)){
 			String logId = logSettingService.add(new LogSetting("level_area","路线区域管理","levelarea/save",sessionuser.getId(),"",""));
@@ -153,12 +180,12 @@ public class LevelAreaController extends BaseController {
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		LevelArea entity  = levelAreaService.queryById(id);
+		LevelAreaVo entity  = levelAreaService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行LevelAreaController的getId方法");
 		String logId = logSettingService.add(new LogSetting("level_area","查看","levelarea/getId",sessionuser.getId(),"",""));
@@ -228,11 +255,16 @@ public class LevelAreaController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryLevel2ByLevel1", method = RequestMethod.GET)
-	public List<LevelArea> queryLevel2ByLevel1(String aliasCode,HttpServletRequest request,HttpServletResponse response){
+	public List<LevelArea> queryLevel2ByLevel1(String level1Area,HttpServletRequest request,HttpServletResponse response){
 		List<LevelArea> allAreas = Lists.newArrayList();
-		allAreas.addAll(levelAreaService.queryLevel2ByLevel1(aliasCode));
-		SysUser user = SessionUtils.getUser(request);
-		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel2ByLevel1方法");
+		try {
+			level1Area = new String(level1Area.getBytes("ISO8859-1"), "UTF-8");
+			allAreas.addAll(levelAreaService.queryLevel2ByLevel1(level1Area));
+			SysUser user = SessionUtils.getUser(request);
+			logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel2ByLevel1方法");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		return allAreas;
 	};
 }

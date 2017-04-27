@@ -74,4 +74,7 @@ public class TravelStyleService<T> extends BaseService<T> {
 	public List<TravelStyle> queryValid(){
 		return mapper.queryValid();
 	};
+	public void updateCover(TravelStyle ts){
+		mapper.updateCover(ts);
+	};
 }

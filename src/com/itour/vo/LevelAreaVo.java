@@ -32,8 +32,49 @@ public class LevelAreaVo extends BasePage {
 	private String updateTime;
 	private boolean valid;
 	private String aliasCode;
+	private String item;
+	private String alias;
+	private String newlevel1Area;
+	private String newlevel2Area;
+	private String title;
+	private String routeTemplate;
 	
- 
+	public String getRouteTemplate() {
+		return routeTemplate;
+	}
+	public void setRouteTemplate(String routeTemplate) {
+		this.routeTemplate = routeTemplate;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getNewlevel1Area() {
+		return newlevel1Area;
+	}
+	public void setNewlevel1Area(String newlevel1Area) {
+		this.newlevel1Area = newlevel1Area;
+	}
+	public String getNewlevel2Area() {
+		return newlevel2Area;
+	}
+	public void setNewlevel2Area(String newlevel2Area) {
+		this.newlevel2Area = newlevel2Area;
+	}
+	public String getItem() {
+		return item;
+	}
+	public void setItem(String item) {
+		this.item = item;
+	}
+	public String getAlias() {
+		return alias;
+	}
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
 	public boolean isValid() {
 		return valid;
 	}

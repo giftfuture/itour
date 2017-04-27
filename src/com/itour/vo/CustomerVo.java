@@ -26,7 +26,7 @@ public class CustomerVo extends BasePage implements Serializable{
 	private java.util.Date updateTime;//   
 	private java.lang.String address;//   
 	private java.lang.String email;//   
-	private java.lang.Integer scope;//   1=中国大陆,2=香港,3=澳门,4=台湾,5=海外
+	private java.lang.String scope;//   1=中国大陆,2=香港,3=澳门,4=台湾,5=海外
 	private java.lang.String city;//   
 	private java.lang.String telephone;//   
 	private java.lang.String mobile;//   
@@ -91,10 +91,10 @@ public class CustomerVo extends BasePage implements Serializable{
 	public void setEmail(java.lang.String email) {
 		this.email = email;
 	}
-	public java.lang.Integer getScope() {
+	public java.lang.String getScope() {
 		return scope;
 	}
-	public void setScope(java.lang.Integer scope) {
+	public void setScope(java.lang.String scope) {
 		this.scope = scope;
 	}
 	public java.lang.String getCity() {

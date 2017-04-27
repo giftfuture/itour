@@ -71,6 +71,7 @@
 	<result column="show_climbnexus" property="showClimbnexus"/>
 	<result column="show_elsecost" property="showElsecost"/>
 	<result column="show_presented" property="showPresented"/>
+	<result column="agoda_detail" property="agodaDetail"/>
 </resultMap>
        
 <!-- quotation table all fields -->
@@ -80,7 +81,7 @@
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
 	  presented,valid,group_code,group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,
-	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented
+	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail
 </sql>
    
    
@@ -142,6 +143,7 @@ where valid=1
 		<if test="groupDate != null and groupDate !=''" >
 		   and DATE_FORMAT(group_date,'%Y-%m-%d') = DATE_FORMAT(#{groupDate},'%Y-%m-%d') 
 		</if>
+		<if test="agodaDetail !=null and agodaDetail !=''">and  agoda_detail like CONCAT('%', #{agodaDetail}, '%')</if>
 </trim>
 </sql>
    
@@ -156,13 +158,13 @@ where valid=1
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
 	  presented,valid,group_code,group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,
-	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented)
+	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail)
       values(#{id},#{routeTemplate}, #{beriefTrip},#{showTrip}, #{adults},#{children}, now(), now(), #{remark}, #{createBy}, #{updateBy}, #{isAsAdult},#{ticketBlock},#{travelDocs},
 	  #{traveldocAsadult},#{tourGuide},#{tourguideAsadult},#{hotel},#{hotelAsadult},#{rentCar},#{rentcarAsadult},#{bigTraffic},#{bigTrafficSum},#{bigtrafficeAsadult},#{dinner},
 	  #{dinnerAsadult},#{insurance},#{insuranceAsadult},#{comprehensiveCosts},#{comphcostAsadult},#{recreation},#{recreationAsadult},#{itemGuide},#{itemguideAsadult},#{bathorseCost},
 	  #{bathcostAsadult},#{ridehorseCost},#{ridecostAsadult},#{climbRegisterCost},#{climbrcostAsadult},#{climbNexusCost},#{climbncostAsadult},#{elseCost},#{elsecostAsadult},
 	  #{presented},true,#{groupCode},#{groupDate},#{showTicket},#{showTraveldoc},#{showTourguide},#{showHotel},#{showRentcar},#{showBigtraffic},#{showDinner},#{showInsurance},#{showComphcost},
-	  #{showRecreation},#{showItemguide},#{showBathorse},#{showRidehorse},#{showClimbregister},#{showClimbnexus},#{showElsecost},#{showPresented})
+	  #{showRecreation},#{showItemguide},#{showBathorse},#{showRidehorse},#{showClimbregister},#{showClimbnexus},#{showElsecost},#{showPresented},#{agodaDetail})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -231,7 +233,9 @@ where valid=1
 		<if test="presented!=null and presented!=''">presented=#{presented},</if>
 		<if test="groupCode!=null and groupCode!=''">group_code =#{groupCode},</if>
 		<if test="groupDate != null and groupDate !=''" >group_date= #{groupDate},</if>
-		<if test="valid!=null and valid !=''">valid=#{valid},</if>								
+		<if test="valid!=null and valid !=''">valid=#{valid},</if>		
+		<if test="agodaDetail !=null and agodaDetail !=''">agoda_detail=#{agodaDetail},</if>		
+								
 	</trim> where id=#{id}
 </update>
 

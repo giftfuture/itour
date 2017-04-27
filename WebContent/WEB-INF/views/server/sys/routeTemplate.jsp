@@ -12,9 +12,9 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-textbox" style="width:100px;">
-			<label class="ui-label">创建人:</label><input name="createBy" class="easyui-textbox" style="width:100px;">
-			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
+			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">创建人:</label><input name="createBy" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:131,height:20,editable:false">
 			<option value="">--请选择--</option>
 			<option value="5">五星</option>
@@ -23,7 +23,7 @@
 			<option value="2">两星</option>
 			<option value="1">一星</option>
 			</select>
-	    </p> 
+	    </p> &nbsp;&nbsp;
 	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
@@ -82,6 +82,7 @@
      <div id="edit-win" class="easyui-dialog" title="路线模板" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true,draggable:true,width:'80%',height:'80%'"  >  <!-- style="padding:200px;top:200px;left:200px;" -->
      	<form id="editForm" class="ui-form" method="post"  ><!-- autocomplete="off" target="coverImgifm" --> <!-- accept="application/json" --> <!-- enctype="multipart/form-data" -->
      		 <input class="hidden" name="id">
+     		 <!-- <input class="hidden" name="levelArea"> -->
      		 <div class="ui-edit">
 		     	  <!--  <div class="ftitle">路线模板</div> -->
 		     	   <table><thead></thead>
@@ -129,12 +130,12 @@
 		     	  <tr><td style="text-align:left"><div class="fitem">
 						<label>山峰类型:</label><input name="mountStyle" type="text" maxlength="" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写elevation">
 					</div></td><td style="text-align:left"><div class="fitem">
-						<label style="margin-left:15px">海拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:131,height:20" missingMessage="请填写elevation">米
+						<label style="margin-left:0px">海&nbsp;&nbsp;&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:131,height:20" missingMessage="请填写elevation">米
 					</div></td>
 		     	    <td style="text-align:left"><div class="fitem">
-						<label style="margin-left:25px">里程:</label><input name="mileage" type="text" maxlength="255" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:131,height:20" missingMessage="请填写mileage">公里
+						<label style="margin-left:0px">里&nbsp;&nbsp;&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:131,height:20" missingMessage="请填写mileage">公里
 					</div></td><td style="text-align:left"><div class="fitem">
-						<label style="margin-left:25px">徒步距离:</label><input name="trekDistance" type="text" maxlength="255" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:131,height:20" missingMessage="请填写mileage">公里
+						<label style="margin-left:0px">徒步距离:</label><input name="trekDistance" type="text" maxlength="255" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:131,height:20" missingMessage="请填写mileage">公里
 					</div></td></tr>
 		     	   <tr><td style="text-align:left"><div class="fitem">
 						<label>交通工具:</label><input name="transportation" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20"  missingMessage="请填写mileage">
@@ -146,14 +147,12 @@
 					</div></td><td style="text-align:left"><div class="fitem">
 						<label>到达地:</label><input name="arrive" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写mileage">
 					</div></td></tr>  
-					<tr><td style="text-align:left"><div class="fitem">
-						<label>一级区域:</label><input name="level1Area" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写mileage">
-						<!-- <input name="level1Area" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写mileage"> -->
+					<%-- <tr><td style="text-align:left"><div class="fitem">
+						<label>一级区域:</label><input class="easyui-combobox" id="formlevel1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+       					onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#formlevel2Area').combobox('reload',urlurl);}">
 					</div></td><td style="text-align:left"><div class="fitem">
-						<label>二级区域:</label><input name="level2Area" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写mileage">
-						<!-- <input name="level2Area" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写mileage"> -->
-					</div></td>
-					<td style="text-align:left"><div class="fitem"></div></td></tr>
+						<label>二级区域:</label><input id="formlevel2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'level2Area',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">	</div></td>
+					<td style="text-align:left"><div class="fitem"></div></td></tr> --%>
 		     	   <tr><td colspan=4><div class="fitem">
 						<label>设计理念:</label>
 					<textarea rows="4" cols="80" id="designConcept" name="designConcept"  class="ckeditor" maxlength="5000" ></textarea>

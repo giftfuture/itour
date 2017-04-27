@@ -1,4 +1,4 @@
-$package('itour.sysUser');
+$package('itour.sysUser');//class="easyui-layout"
 itour.sysUser = function(){
 	var _box = null;
 	var _this = {
@@ -85,6 +85,15 @@ itour.sysUser = function(){
 			_this.initForm();
 			_box = new YDataGrid(_this.config); 
 			_box.init();
+			/* 自定义密码验证*/
+			$.extend($.fn.validatebox.defaults.rules, {  
+			    equals: {  
+			        validator: function(value,param){  
+			            return value == $(param[0]).val();  
+			        },  
+			        message: '两次输入密码不匹配.'  
+			    }
+			});
 		}
 	}
 	return _this;

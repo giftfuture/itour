@@ -21,6 +21,7 @@ public class LevelArea extends BaseEntity {
 	private Date updateTime;
 	private boolean valid;
 	private String aliasCode;
+	private String routeTemplate;
 	public LevelArea(){}
 	public LevelArea(String aliasCode,String level1Area){
 		this.aliasCode = aliasCode;
@@ -34,6 +35,13 @@ public class LevelArea extends BaseEntity {
 		this.travelItem = travelItem;
 	}
 	
+	
+	public String getRouteTemplate() {
+		return routeTemplate;
+	}
+	public void setRouteTemplate(String routeTemplate) {
+		this.routeTemplate = routeTemplate;
+	}
 	public String getAliasCode() {
 		return aliasCode;
 	}

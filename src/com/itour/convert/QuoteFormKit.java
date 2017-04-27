@@ -88,6 +88,7 @@ public class QuoteFormKit {
 		qfv.setShowRidehorse(qf.getShowRidehorse());
 		qfv.setShowTourguide(qf.getShowTourguide());
 		qfv.setShowTraveldoc(qf.getShowTraveldoc());
+		qfv.setAgodaDetail(qf.getAgodaDetail());
 		return qfv;
 	}
 	/**
@@ -160,6 +161,7 @@ public class QuoteFormKit {
 		qfv.setShowRidehorse(vo.getShowRidehorse());
 		qfv.setShowTourguide(vo.getShowTourguide());
 		qfv.setShowTraveldoc(vo.getShowTraveldoc());
+		qfv.setAgodaDetail(vo.getAgodaDetail());
 		try {
 			if(StringUtils.isNotEmpty(vo.getCreateTime())){			
 				qfv.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,vo.getCreateTime()));

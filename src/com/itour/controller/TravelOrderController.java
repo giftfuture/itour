@@ -250,7 +250,7 @@ public class TravelOrderController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data",JsonUtils.encode(TravelOrderKit.toEditVo(entity)));
+		context.put("data",TravelOrderKit.toEditVo(entity));
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的getId方法");
 		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

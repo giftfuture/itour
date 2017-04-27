@@ -14,8 +14,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.AdLinkKit;
 import com.itour.dao.AdLinkDao;
 import com.itour.entity.AdLink;
-import com.itour.entity.Areas;
-import com.itour.vo.AreasVo;
+import com.itour.vo.AdLinkVo;
 @Service("adLinkService")
 public class AdLinkService extends BaseService<AdLink>{
 
@@ -35,15 +34,15 @@ public class AdLinkService extends BaseService<AdLink>{
 	 * @return 查询结果
 	 */
 
-	public BasePage<Map<String, String>> pagedQuery(AreasVo vo) {
-			List<AdLink> list = mapper.queryByList(vo);
-			int count = mapper.queryByCount(vo);
-			List<Map<String, String>> records = Lists.newArrayList();
-			for(int i = 0; i < list.size(); i++) {
-				AdLink areas = list.get(i);
-				records.add(AdLinkKit.toRecord(areas));
-			}
-			return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
+	public BasePage<Map<String, String>> pagedQuery(AdLinkVo vo) {
+		List<AdLink> list = mapper.queryByList(vo);
+		int count = mapper.queryByCount(vo);
+		List<Map<String, String>> records = Lists.newArrayList();
+		for(int i = 0; i < list.size(); i++) {
+			AdLink areas = list.get(i);
+			records.add(AdLinkKit.toRecord(areas));
+		}
+		return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	
 	public List<AdLink> allAdLink(){

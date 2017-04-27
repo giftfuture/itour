@@ -35,7 +35,7 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @param scopeAlias
 	 * @return
 	 */
-	List<TravelItem> queryByScopeAlias(@Param(value="scopeAlias")String scopeAlias);
+	//List<TravelItem> queryByScopeAlias(@Param(value="scopeAlias")String scopeAlias);
 	
 	/**
 	 * 
@@ -67,8 +67,8 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * 加载所有地区，省份 List<Map<String, String>>
 	 * @return
 	 */
-	@MapKey("scopeAlias")
-	 List<HashMap<String,String>> allScopes();/*{
+/*	@MapKey("scopeAlias")
+	 List<HashMap<String,String>> allScopes();{
 		FblMapResultHandler fbl = new FblMapResultHandler();  
 		//getSqlSession().select(NAMESPACE +"getAllSetDays",fbl);  
 		Map<String,String> map =fbl.getMappedResults();  

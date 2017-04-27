@@ -42,6 +42,8 @@ public class TravelItemKit{
 		vo.setRecommandCrowd(tt.getRecommandCrowd());
 		vo.setValid(tt.isValid());
 		vo.setHot(tt.isHot());
+		vo.setCreateBy(tt.getCreateBy());
+		vo.setUpdateBy(tt.getUpdateBy());
 		return vo;
 	}
 }

@@ -23,6 +23,7 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.annotation.Auth;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.BaseEntity.DELETED;
+import com.itour.base.json.JsonUtils;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSettingDetail;
 import com.itour.vo.LogSettingDetailVo;
@@ -95,16 +96,15 @@ public class LogSettingDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
-	public Map<String,Object> getId(String id,HttpServletResponse response) throws Exception{
-		Map<String,Object>  context = getRootMap();
+	public String getId(String id,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
 		LogSettingDetail entity  = logSettingDetailService.queryById(id);
 		if(entity  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
-			return new HashMap<String,Object>();
+			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);
-		return context;
+		return JsonUtils.encode(context);
 	}
 	
 	/**

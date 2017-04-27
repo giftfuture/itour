@@ -10,11 +10,15 @@
 	<result column="objId" property="objId"/>
 	<result column="relType" property="relType"/>
 	<result column="is_valid" property="isValid"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
 </resultMap>
        
 <!-- sys_role_rel table all fields -->
 <sql id="Base_Column_List" >
-	id, roleId,objId,relType,is_valid
+	id, roleId,objId,relType,is_valid,create_by,update_by,create_time,update_time
 </sql>
    
 <!-- 查询条件 -->
@@ -42,13 +46,13 @@ where is_valid=1
   <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_role_rel(id,roleId,objId,relType,is_valid)
- values(#{id},#{roleId},#{objId},#{relType},1)
+  insert into sys_role_rel(id,roleId,objId,relType,is_valid,create_by,update_by,create_time,update_time)
+ values(#{id},#{roleId},#{objId},#{relType},1,#{createBy},#{updateBy},now(),now())
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="Object" >
-	update sys_role_rel set 
+	update sys_role_rel set update_time=now(),
 	<trim  suffixOverrides="," >
 		<if test="isValid != null">
 			is_valid=#{isValid},
@@ -58,6 +62,9 @@ where is_valid=1
 		</if>
 		<if test="relType != null  ">
 			relType=#{relType},
+		</if>
+		<if test="updateBy !=null and updateBy !=''">
+			update_by=#{updateBy},
 		</if>
 	</trim> where roleId=#{roleId}
 </update>

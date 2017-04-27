@@ -12,16 +12,16 @@
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">景点代码:</label>
-			<input name="itemCode" class="easyui-box ui-text" style="width:110px;"/>
+			<input name="itemCode" class="easyui-textbox" style="width:110px;"/>&nbsp;&nbsp;
 			<label class="ui-label">景点名称:</label>
-			<input name="item" class="easyui-box ui-text" style="width:108px;"/>
+			<input name="item" class="easyui-textbox" style="width:108px;"/>&nbsp;&nbsp;
 			<label class="ui-label">是否热门:</label>
-			<select name="hot" class="easyui-box ui-text" style="width:108px;">
+			<select name="hot" class="easyui-combobox" style="width:108px;">
 				<option value="0">否</option>
 			 	<option value="1">是</option>
-			 </select>
+			 </select>&nbsp;&nbsp;
 			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
-			<select name="elevation" class="easyui-box ui-text" style="width:100px;">
+			<select name="elevation" class="easyui-combobox" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="1">100米以下</option>
 				<option value="2">500米以下</option>
@@ -31,9 +31,11 @@
 				<option value="6">6000米以下</option>
 				<option value="7">8000米以下</option>
 				<option value="8">8000米以上</option>
-			</select>
+			</select>&nbsp;&nbsp;
+			<!-- var v = $(this).combobox('panel')[0].childElementCount; -->
+			 
 			<label class="ui-label">所属省市:</label>
-			 <input name="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'">
+		  <input name="scope" class="easyui-combobox"  data-options="width:131,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',panelMaxHeight:1000,editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(1000);}">  &nbsp;&nbsp;
 		<!-- 	<select name="scope" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="四川">四川</option>
@@ -41,10 +43,10 @@
 				<option value="西藏">西藏</option>
 				<option value="新疆">新疆</option>
 			</select> -->
-			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>
-			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>
-			<label class="ui-label">里&nbsp;&nbsp;程:</label>
-			<select name="mileage" class="easyui-box ui-text" style="width:100px;">
+			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>&nbsp;&nbsp;
+			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>&nbsp;&nbsp;
+			<label class="ui-label">里&nbsp;&nbsp;程:</label>&nbsp;&nbsp;
+			<select name="mileage" class="easyui-combobox" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="1">5公里以内</option>
 				<option value="2">20公里以内</option>
@@ -54,7 +56,7 @@
 				<option value="6">1000公里以内</option>
 				<option value="7">2000公里以内</option>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
+			&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
       </form>
       </div>
        <!--  Search panel end -->
@@ -112,14 +114,14 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">旅行景点</div>
+		     	  <!--  <div class="ftitle">旅行景点</div> -->
 					<div class="fitem">
 						<label>景点名称:</label><input name="item" type="text" maxlength="255" class="easyui-textbox" data-options="required:true" missingMessage="请填写项目名称">
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>所属省市:</label>
-						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'">  
+						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(1000);}">  
 					</div>
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>

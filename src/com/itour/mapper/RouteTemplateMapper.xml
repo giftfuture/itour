@@ -777,8 +777,10 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
 </select>
 <!-- 根据id查询 路线模板 -->
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
-select <include refid="Base_Column_List" />,customers.customer_name customerName,customers.district,customers.city 
- from route_template left join customers on customers.id=route_template.customer_id where route_template.id = #{id} order by star_level desc
+select <include refid="Base_Column_List" />,customers.customer_name customerName,customers.district,customers.city,la.level1_area,la.level2_area 
+ from route_template left join customers on customers.id=route_template.customer_id 
+ left join level_area la on la.id=route_Template.level_area
+ where route_template.id = #{id} order by star_level desc
 </select>
 <!-- 获取该旅行方式下的施行项目 -->
 <select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -794,7 +796,7 @@ select <include refid="Base_Column_List" /> from route_template where route_code
 </select>
 <!-- 查询所有路线 -->
 <select id="queryAll"  resultMap="BaseResultMap" >
-	select <include refid="Base_Column_List" /> from route_template order by star_level desc
+	select <include refid="Base_Column_List" /> from route_template where is_valid=1 order by star_level desc
 </select>
 <!-- 获取该旅行方式下的相关 -->
 <select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">

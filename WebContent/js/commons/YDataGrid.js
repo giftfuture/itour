@@ -33,6 +33,10 @@ var YDataGrid = function(config){
 			//add按钮事件
 			add: function(callback){
 				//Win.edit.css("display","inline");
+				if(Win.edit.find("#larouteTemplates")){
+					Win.edit.find("#larouteTemplates").show();
+					Win.edit.find("#larttitle").hide();
+				}
 				Win.edit.show();
 				Win.edit.dialog('open');
 				Form.edit.resetForm();
@@ -46,6 +50,10 @@ var YDataGrid = function(config){
 			edit:function(callback){
 				//Win.edit.removeAttr("display");
 				//Win.edit.css("display","inline");
+				if(Win.edit.find("#larttitle")){
+					Win.edit.find("#larouteTemplates").hide();
+					Win.edit.find("#larttitle").show();
+				}
 				Win.edit.show();
 				var record = Utils.getCheckedRows();
 				if (Utils.checkSelectOne(record)){

@@ -78,9 +78,9 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param scopeAlias
 	 * @return
 	 */
-	public 	List<TravelItem> queryByScopeAlias(String scopeAlias){
-		return mapper.queryByScopeAlias(scopeAlias);
-	};
+	/*public 	List<TravelItem> queryByScopeAlias(String scopeAlias){
+		//return mapper.queryByScopeAlias(scopeAlias);
+	};*/
 	
 	/**
 	 * 
@@ -112,10 +112,10 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * 
 	 * @return
 	 */
-	public List<HashMap<String,String>> allScopes(){
+/*	public List<HashMap<String,String>> allScopes(){
 		List<HashMap<String,String>> maps = mapper.allScopes();
 		return maps;
-	};
+	};*/
 	/**
 	 * 
 	 * @return

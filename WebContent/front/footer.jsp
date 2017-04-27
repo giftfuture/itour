@@ -3,9 +3,8 @@
 <form name="searchForm" action="search" method="post">
 <table class="commontb" align="center">
   <tr>
-    <td width="15%" bgcolor="#CCCCCC"><img src="${basePath}images/search.png" width="48" height="48" /></td>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
-    <td width="55%" bgcolor="#CCCCCC" class="f14-gao1" >  
+    <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
        旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox"  data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
        旅游区域：
@@ -22,7 +21,8 @@
 	  <option value="16">16天+</option>
 	</select>
       </a></label></td>
-    <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td>
+      <td width="10%" bgcolor="#CCCCCC"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></td>
+    <!-- <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td> -->
   </tr>
 </table>
 </form>

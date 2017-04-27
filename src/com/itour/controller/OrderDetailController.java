@@ -115,7 +115,8 @@ public class OrderDetailController extends BaseController{
 	public String save(OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		OrderDetail od = null;
-		if(entity.getId()==null||StringUtils.isEmpty(entity.getId().toString())){
+		SysUser sessionuser = SessionUtils.getUser(request);
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
 			odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
 		}else{
 				od = orderDetailService.queryById(entity.getId());
@@ -125,7 +126,6 @@ public class OrderDetailController extends BaseController{
 				orderDetailService.update(OrderDetailKit.toEntity(entity));
 			}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的save方法");
 		if(StringUtils.isNotEmpty(odId)){
 			String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/save",sessionuser.getId(),"",""));
@@ -191,7 +191,7 @@ public class OrderDetailController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的getId方法");
 		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/getId",sessionuser.getId(),"",""));

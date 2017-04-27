@@ -152,7 +152,7 @@ public class SysMenuController extends BaseController{
 		int rank = sysMenuService.maxRank();
 		bean.setRank(rank);
 		SysMenu sm  = sysMenuService.queryById(bean.getId());
-		if(sm.getId() == null ||sm.getId().equals("")){
+		if(StringUtils.isEmpty(sm.getId())){
 			if(user != null){
 				bean.setCreateBy(user.getId());
 				bean.setUpdateBy(user.getId());
@@ -175,14 +175,13 @@ public class SysMenuController extends BaseController{
 				sysMenuService.update(bean);
 			//}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的save方法");
+		logger.info("#####"+(user != null?("id:"+user .getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行SysMenuController的save方法");
 		if(StringUtils.isNotEmpty(id)){			
-			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save",sessionuser.getId(),"",""));
-			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(bean),"","sysMenu/save",sessionuser.getId()));
+			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save",user.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"新增",id,JsonUtils.encode(bean),"","sysMenu/save",user.getId()));
 		}else{
-			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save(update)",sessionuser.getId(),"",""));
-			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"",JsonUtils.encode(sm),JsonUtils.encode(bean),"sysMenu/save(update)",sessionuser.getId()));
+			String logid = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/save(update)",user.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"更新",bean!= null?bean.getId():"",JsonUtils.encode(sm),JsonUtils.encode(bean),"sysMenu/save(update)",user.getId()));
 		}
 		return sendSuccessResult(response, "保存成功~");
 	}
@@ -205,7 +204,7 @@ public class SysMenuController extends BaseController{
 		List<SysMenuBtn> btns = sysMenuBtnService.queryByMenuid(id);
 		bean.setBtns(btns);
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(bean));
+		context.put("data", bean);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysMenuController的getId方法");
 		String logId = logSettingService.add(new LogSetting("sys_menu","菜单管理","sysMenu/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

@@ -396,6 +396,7 @@ public class RouteTemplateController extends BaseController{
 			//ClassReflectUtil.setIdKeyValue(vo,"id",uuid);
 			//vo.setRouteCode(IDGenerator.code(19));
 			//bean = RouteTemplateKit.toEntity(vo);
+			SysUser sessionuser = SessionUtils.getUser(request);
 			if(StringUtils.isNotEmpty(vo.getTravelItems())){
 				List<String> tis = Lists.newArrayList();
 				List<String> alias = Arrays.asList(vo.getTravelItems().split(","));
@@ -404,7 +405,7 @@ public class RouteTemplateController extends BaseController{
 					tis.add(ti!=null?ti.getId():"");
 				}
 				vo.setTravelItems(Joiner.on(",").join(tis));
-			};
+			}
 			if(StringUtils.isNotEmpty(vo.getRelated())){
 				List<String> relates = Lists.newArrayList();
 				List<String> rels = Arrays.asList(vo.getRelated().split(","));
@@ -418,19 +419,25 @@ public class RouteTemplateController extends BaseController{
 				TravelStyle ts = travelStyleService.queryByAlias(vo.getTravelStyle());
 				vo.setTravelStyle(ts!=null?ts.getId():"");
 			}
-			if(vo.getId()==null||StringUtils.isBlank(vo.getId().toString())){
+			if(vo.getId()==null||StringUtils.isEmpty(vo.getId())){
 				vo.setRouteCode(IDGenerator.code(16));
+				vo.setCreateBy(sessionuser.getId());
+				vo.setUpdateBy(sessionuser.getId());
 				rtId = routeTemplateService.add(vo);
 			}else{
 				rt = routeTemplateService.queryById(vo.getId());
 				if(rt == null){
+					vo.setRouteCode(IDGenerator.code(16));
+					vo.setCreateBy(sessionuser.getId());
+					vo.setUpdateBy(sessionuser.getId());
 					rtId = routeTemplateService.add(vo);
 				}else{
 					vo.setValid(true);
+					vo.setUpdateBy(sessionuser.getId());
 					routeTemplateService.update(vo);
 				}
 			} 
-			SysUser sessionuser = SessionUtils.getUser(request);
+			
 			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
 			if(StringUtils.isNotEmpty(rtId)){			
 				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save",sessionuser.getId(),"",""));
@@ -462,7 +469,7 @@ public class RouteTemplateController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的getId方法");
 		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

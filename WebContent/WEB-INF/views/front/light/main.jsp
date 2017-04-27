@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script> --%>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="commontb" align="center">
    <tr>
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
@@ -18,7 +18,7 @@
     <td><img src="images/img/girl-03.jpeg" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" align="center">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     
@@ -48,7 +48,7 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" align="center">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >

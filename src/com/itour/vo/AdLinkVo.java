@@ -2,6 +2,7 @@ package com.itour.vo;
 
 import com.itour.base.page.BasePage;
 import java.io.Serializable;
+import java.util.Date;
 
 import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -24,6 +25,56 @@ public class AdLinkVo extends BasePage implements Serializable {
 	private String id;
 	private String advertise;
 	private String link;
+	private String title;
+	private boolean valid;
+	private String remark;
+	private String createBy;
+	private String updateBy;
+	private String createTime;
+	private String updateTime;
+	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getId() {
 		return id;
 	}

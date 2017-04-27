@@ -12,12 +12,14 @@ import com.google.common.collect.Lists;
 import com.itour.base.entity.BaseEntity.STATE;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.SessionUtils;
 import com.itour.convert.SysMenuKit;
 import com.itour.convert.SysRoleKit;
 import com.itour.dao.SysRoleDao;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
+import com.itour.entity.SysUser;
 import com.itour.entity.SysRoleRel.RelType;
 import com.itour.vo.SysMenuVo;
 import com.itour.vo.SysRoleVo;
@@ -54,7 +56,7 @@ public class SysRoleService<T> extends BaseService<T> {
 	/**
 	 * 添加角色&菜单关系
 	 */
-	public void addRoleMenuRel(String roleId,String[] menuIds) throws Exception{
+	public void addRoleMenuRel(String roleId,String[] menuIds,String creater) throws Exception{
 		if(roleId == null ||  menuIds == null || menuIds.length < 1 ){ 
 			return;
 		}
@@ -63,6 +65,8 @@ public class SysRoleService<T> extends BaseService<T> {
 			rel.setRoleId(roleId);
 			rel.setObjId(menuid);
 			rel.setRelType(RelType.MENU.key);
+			rel.setCreateBy(creater);
+			rel.setUpdateBy(creater);
 			sysRoleRelService.add(rel);
 		}
 	}
@@ -70,7 +74,7 @@ public class SysRoleService<T> extends BaseService<T> {
 	/**
 	 * 添加角色&菜单关系
 	 */
-	public void addRoleBtnRel(String roleId,String[] btnIds) throws Exception{
+	public void addRoleBtnRel(String roleId,String[] btnIds,String creater) throws Exception{
 		if(roleId == null ||  btnIds == null || btnIds.length < 1 ){ 
 			return;
 		}
@@ -79,6 +83,8 @@ public class SysRoleService<T> extends BaseService<T> {
 			rel.setRoleId(roleId);
 			rel.setObjId(btnid);
 			rel.setRelType(RelType.BTN.key);
+			rel.setCreateBy(creater);
+			rel.setUpdateBy(creater);
 			sysRoleRelService.add(rel);
 		}
 	}
@@ -90,10 +96,10 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @param menuIds
 	 * @throws Exception
 	 */
-	public String add(SysRole role,String[] menuIds,String[] btnIds) throws Exception {
+	public String add(SysRole role,String[] menuIds,String[] btnIds,String creater) throws Exception {
 		String id = super.add((T)role);
-		addRoleMenuRel(role.getId(),menuIds);
-		addRoleBtnRel(role.getId(),btnIds);
+		addRoleMenuRel(role.getId(),menuIds,creater);
+		addRoleBtnRel(role.getId(),btnIds,creater);
 		return id;
 	}
 
@@ -116,7 +122,7 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @param menuIds
 	 * @throws Exception
 	 */
-	public void update(SysRole role,String[] menuIds,String[] btnIds) throws Exception {
+	public void update(SysRole role,String[] menuIds,String[] btnIds,String creater) throws Exception {
 		super.update((T)role);
 		//如果角色被禁用则删除关联的用户关系
 		if(STATE.DISABLE.key == role.getState()){
@@ -125,8 +131,8 @@ public class SysRoleService<T> extends BaseService<T> {
 		//清除关联关系
 		sysRoleRelService.deleteByRoleId(role.getId(),RelType.MENU.key);
 		sysRoleRelService.deleteByRoleId(role.getId(),RelType.BTN.key);
-			addRoleMenuRel(role.getId(),menuIds);
-			addRoleBtnRel(role.getId(),btnIds);
+			addRoleMenuRel(role.getId(),menuIds,creater);
+			addRoleBtnRel(role.getId(),btnIds,creater);
 		
 	}
 

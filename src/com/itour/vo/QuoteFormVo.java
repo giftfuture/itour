@@ -80,7 +80,15 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	private String showPresented;//前端显示的赠品
 	private float adultsQuote;//大人报价
 	private float childquote;//小孩报价
+	private String agodaDetail;//详细日程
 	
+	
+	public String getAgodaDetail() {
+		return agodaDetail;
+	}
+	public void setAgodaDetail(String agodaDetail) {
+		this.agodaDetail = agodaDetail;
+	}
 	public float getAdultsQuote() {
 		return adultsQuote;
 	}

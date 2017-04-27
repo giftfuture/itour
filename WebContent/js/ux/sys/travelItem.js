@@ -123,9 +123,9 @@ itour.travelItem = function(){
 			var table = $("#btn-tb");
 			var	html = "<tr class='tb-line'>";
 			//html+=	   "	<td align='center'><span  class='newFlag red'>*</span></td>";
-			html+=	   "	<td><input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
-			html+=	   "	<td><input name=\"btnType\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
-			html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-validatebox text-desc\" style=\"width:100%\"  ></td>";
+			html+=	   "	<td><input name=\"btnName\" class=\"easyui-textbox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
+			html+=	   "	<td><input name=\"btnType\" class=\"easyui-textbox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
+			html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-textbox text-desc\" style=\"width:100%\"  ></td>";
 			html+=	   "	<td align='center'><a class=\"easyui-linkbutton remove-btn\"  iconCls=\"icon-remove\" plain=\"true\"></a>";
 			html+=	   "	<input class=\"hidden\" name=\"btnId\">";
 			html+=	   "	<input class=\"hidden\" name=\"deleteFlag\">";
@@ -402,7 +402,7 @@ itour.travelItem = function(){
 						{id:'btnedit',text:'修改',btnType:'edit'},
 						{id:'btndelete',text:'物理删除',btnType:'remove'},
 						{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
-						{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-edit',handler:function(){
+						{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){
 								_this.uploadPhotoForm().resetForm();
@@ -410,7 +410,7 @@ itour.travelItem = function(){
 								_this.uploadPhotoWin().window('open'); 		
 							}
 						}},
-						{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-edit',handler:function(){
+						{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-large-picture',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){
 								_this.editPhotoForm().resetForm();
@@ -449,7 +449,7 @@ itour.travelItem = function(){
 			
 		},
 		writeSelect:function(){
-			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-validatebox" style="width:111px;" data-options="" missingMessage="请填写recommandCrowd">'+
+			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-combobox" style="width:111px;" data-options="" missingMessage="请填写recommandCrowd">'+
 			'<option value="">--请选择--</option>'+  
 			'<option value="亲子游">亲子游</option> '+ 
 			'<option value="情侣双人游">情侣双人游</option>'+ 
@@ -464,7 +464,7 @@ itour.travelItem = function(){
 			//document.getElementById("rucrowd").innerHTML= result;
 		},
 		writeRank:function(){
-			var rankSelect ='<select name="rank" class="easyui-box ui-text" style="width:110px;">'+
+			var rankSelect ='<select name="rank" class="easyui-combobox" style="width:110px;">'+
 			'<option value="">--请选择--</option>'+
 			'<option value="5">极力推荐</option>'+
 			'<option value="4">强烈推荐</option>'+
@@ -476,7 +476,7 @@ itour.travelItem = function(){
 			$("#SelectrankLabel").after(rankSelect);
 		},
 		difficultyRate:function(){
-			var difficultyRateSelect = '<select name="difficultyRate" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写difficultyRate">'+
+			var difficultyRateSelect = '<select name="difficultyRate" type="text" maxlength="" class="easyui-combobox" data-options="" missingMessage="请填写difficultyRate">'+
 						'<option value="">--请选择--</option>'+
 						'<option value="1">一般难度</option>'+
 						'<option value="2">略有挑战</option>'+
@@ -487,7 +487,7 @@ itour.travelItem = function(){
 			$("#difficultyRateLabel").parent().append(difficultyRateSelect);
 		},
 		happyValue:function(){
-			var happySelect='<select name="happyValue" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>';
+			var happySelect='<select name="happyValue" type="text" maxlength="" class="easyui-combobox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>';
 			$("#happyLabel").parent().append(happySelect);
 		},
 		params:{

@@ -35,23 +35,27 @@ public class LevelAreaService extends BaseService<LevelArea>{
 	 */
 
 	public BasePage<Map<String, String>> pagedQuery(LevelAreaVo vo) {
-			List<LevelArea> list = mapper.queryByList(vo);
+			//vo.setGroupField("level1_area,level2_area");
+			vo.setSort("level1_area desc,level2_area desc");
+			List<LevelAreaVo> list = mapper.queryByVoList(vo);
 			int count = mapper.queryByCount(vo);
 			List<Map<String, String>> records = Lists.newArrayList();
 			for(int i = 0; i < list.size(); i++) {
-				LevelArea areas = list.get(i);
-				records.add(LevelAreaKit.toRecord(areas));
+				LevelAreaVo areas = list.get(i);
+				records.add(LevelAreaKit.votoRecord(areas));
 			}
 			return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	public List<LevelArea> queryLevel1(){
 		return mapper.queryLevel1();
 	};
-	public List<LevelArea> queryLevel2ByLevel1(String aliasCode){
-		return mapper.queryLevel2ByLevel1(aliasCode);
+	public List<LevelArea> queryLevel2ByLevel1(String level1Area){
+		return mapper.queryLevel2ByLevel1(level1Area);
 	};
 	public List<LevelArea> allAreas(){
 		return mapper.queryAll();
 	}
-	
+	public LevelAreaVo selectById(@Param("id")String id){
+		return mapper.selectById(id);
+	};
 }

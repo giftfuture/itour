@@ -310,7 +310,7 @@ var itour={
 					callback(data);
 			    }
 			}else{
-				itour.alert('提示',jsondata.msg||"getById请求出现异常,请联系管理员.",'error');  
+				itour.alert('提示',data.msg||"getById请求出现异常,请联系管理员.",'error');  
 			}
 		});
 	},
@@ -799,11 +799,11 @@ $.extend($.fn.datagrid.methods, {
             if(cbtn){
                 var prev = cbtn.prev()[0];
                 var next = cbtn.next()[0];
-                if(prev && next && prev.nodeName == "DIV" && prev.nodeName == next.nodeName){
+                if(prev && next && prev.nodeName == "div" && prev.nodeName == next.nodeName){
                     $(prev).remove();
-                }else if(next && next.nodeName == "DIV"){
+                }else if(next && next.nodeName == "div"){
                     $(next).remove();
-                }else if(prev && prev.nodeName == "DIV"){
+                }else if(prev && prev.nodeName == "div"){
                     $(prev).remove();
                 }
                 cbtn.remove();    

@@ -51,7 +51,7 @@ public class FileIO {
 		try { 
 			   for(File f:files){
 				   if (f == null) continue;
-				    String path = FilePros.uploadPath();// path+"\\"+
+				    String path = FilePros.baseUploadPath();// path+"\\"+
 				    String fileName =new Date().getTime()+f.getName().substring(f.getName().indexOf('.'));
 				    File file=new File(path+"\\"+fileName); 
 					if(!file.getParentFile().exists()||!file.getParentFile().isDirectory()){

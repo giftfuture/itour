@@ -42,9 +42,12 @@ public class RouteTemplate extends BaseEntity {
 	private float elevation;
 	private String similars;
 	private int starLevel;//线路星级
-	private String levelArea;//线路一级区域
-	 
-	 
+	private String levelArea;//线路区域
+	public RouteTemplate(){} 
+	public RouteTemplate(String id,String levelArea){
+		this.id = id;
+		this.levelArea = levelArea;
+	}	 
 	public int getStarLevel() {
 		return starLevel;
 	}

@@ -8,7 +8,7 @@
 <title>登山旅行</title>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table  class="commontb" align="center">
    <tr>
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
@@ -16,7 +16,7 @@
     <td><img src="images/img/gonga-04.jpg" width="100%" height="100%" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -45,7 +45,7 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" align="center">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >

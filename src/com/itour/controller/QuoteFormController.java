@@ -103,16 +103,22 @@ public class QuoteFormController extends BaseController {
 		//Map<String,Object> context =getRootMap();
 		QuoteForm qo = null;
 		String qoId = "";
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+		SysUser sessionuser = SessionUtils.getUser(request);
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
+			entity.setCreateBy(sessionuser.getId());
+			entity.setUpdateBy(sessionuser.getId());
 			qoId = quoteFormService.add(entity);
 		}else{
 			qo = quoteFormService.queryById(entity.getId());
-			if(qo == null)
+			if(qo == null){
+				entity.setCreateBy(sessionuser.getId());
+				entity.setUpdateBy(sessionuser.getId());
 				qoId = quoteFormService.add(entity);
-			else
+			}else{
+				entity.setUpdateBy(sessionuser.getId());
 				quoteFormService.update(entity);
+			}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuoteFormController的save方法");
 		if(StringUtils.isNotEmpty(qoId)){			
 			String logid = logSettingService.add(new LogSetting("quote_form","详细价目表","quoteForm/save",sessionuser.getId(),"",""));
@@ -138,9 +144,9 @@ public class QuoteFormController extends BaseController {
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
-		String data = JsonUtils.encode(entity);
+		//String data = JsonUtils.encode(entity);
 		context.put(SUCCESS, true);
-		context.put("data", data);
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuoteFormController的getId方法");
 		String logId = logSettingService.add(new LogSetting("quote_form","详细价目表","quoteForm/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

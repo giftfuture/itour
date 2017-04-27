@@ -113,20 +113,26 @@ public class SysRoleController extends BaseController{
 	public Object save(SysRole bean,String[] menuIds,String[] btnIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SysRole sr = null;
 		String srId = "";
+		SysUser sessionuser = SessionUtils.getUser(request);
 		if(StringUtils.isNotEmpty(bean.getId())){
 			sr = sysRoleService.queryById(bean.getId());
-			if(sr == null)
-				srId = sysRoleService.add(bean,menuIds,btnIds);
-			else
-				sysRoleService.update(bean,menuIds,btnIds);
+			if(sr == null){
+				bean.setCreateBy(sessionuser.getId());
+				bean.setUpdateBy(sessionuser.getId());
+				srId = sysRoleService.add(bean,menuIds,btnIds,sessionuser.getId());
+			}else{
+				bean.setUpdateBy(sessionuser.getId());
+				sysRoleService.update(bean,menuIds,btnIds,sessionuser.getId());
+			}
 		}else{
-			sysRoleService.add(bean,menuIds,btnIds);
+			bean.setCreateBy(sessionuser.getId());
+			bean.setUpdateBy(sessionuser.getId());
+			sysRoleService.add(bean,menuIds,btnIds,sessionuser.getId());
 		}
 		Map<String,Object> result = getRootMap();
 		//sendSuccessMessage(response, "保存成功~");
 		result.put(SUCCESS, true);
 		result.put(MSG, "角色保存成功！");
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的save方法");
 		Map<String,Object> map = Maps.newHashMap();
 		map.put("sysRole",bean);
@@ -182,7 +188,7 @@ public class SysRoleController extends BaseController{
 		Map<String,Object> data = BeanUtils.describe(bean);
 		data.put("menuIds", menuIds);
 		data.put("btnIds", btnIds);
-		context.put("data", JsonUtils.encode(data));
+		context.put("data",data);
 		context.put(SUCCESS, true);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的getId方法");

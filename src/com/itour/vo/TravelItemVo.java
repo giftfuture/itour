@@ -3,6 +3,7 @@ package com.itour.vo;
 import java.io.File;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -38,7 +39,35 @@ public class TravelItemVo extends BasePage implements Serializable{
 	private String recommandEquip;
 	private boolean hot;//1=热门景点，0=非热点
 	private boolean isValid;
+	private String createBy;
+	private String updateBy;
+	private String createTime;
+	private String updateTime;
 	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 	
 	public boolean isValid() {
 		return isValid;

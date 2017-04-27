@@ -265,7 +265,8 @@ public class ShowHappyController extends BaseController{
 	public String save(ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String shId = "";
 		ShowHappy sh = null;
-		if(showhappy.getId()==null||StringUtils.isEmpty(showhappy.getId().toString())){
+		SysUser sessionuser = SessionUtils.getUser(request);
+		if(showhappy.getId()==null||StringUtils.isEmpty(showhappy.getId())){
 			shId = showHappyService.add(ShowHappyKit.toEntity(showhappy));
 		}else{
 				sh = showHappyService.queryById(showhappy.getId());
@@ -275,7 +276,6 @@ public class ShowHappyController extends BaseController{
 				showHappyService.update(ShowHappyKit.toEntity(showhappy));
 			}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的save方法");
 		if(StringUtils.isNotEmpty(shId)){			
 			String logid = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/save",sessionuser.getId(),"",""));
@@ -304,7 +304,7 @@ public class ShowHappyController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","showhappy/getId",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater

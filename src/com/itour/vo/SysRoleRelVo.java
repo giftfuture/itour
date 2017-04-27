@@ -1,6 +1,7 @@
 package com.itour.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -17,7 +18,35 @@ public class SysRoleRelVo extends BasePage implements Serializable{
 	private static final long serialVersionUID = 6080631663815131651L;
 	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//     关联主键 relType=0管理sys_menu.id, relType=1关联sys_user.id,relType=2,sys_menu_btn.id	private Integer relType;//    关联类型 0=菜单,1=用户,2=按钮
 	private boolean isValid;//是否有效
+	private String createBy;
+	private String updateBy;
+	private String createTime;
+	private String updateTime;
 	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 	/**
  	 * 枚举
  	 * @author  fred

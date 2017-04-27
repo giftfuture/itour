@@ -10,12 +10,12 @@
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">状态:</label>
-			<select name="status" class="easyui-box ui-text" style="width:100px;">
+			<select name="status" class="easyui-combobox" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="1">待处理</option>
 				<option value="2">处理中</option>
 				<option value="3">处理完成</option>
-			</select>
+			</select>&nbsp;&nbsp;
 			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
 	    </p>
 	    &nbsp; &nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
@@ -33,10 +33,10 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">订单详情</div>
+		     	   <!-- <div class="ftitle">订单详情</div> -->
    					<div class="fitem">
 						<!-- <label>详情号</label> -->
-						<input name="orderId" type="hidden" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写orderId">
+						<input name="orderId" type="hidden" maxlength="64" class="easyui-textbox" data-options="" missingMessage="请填写orderId">
 					</div>
 					<div class="fitem">
 						<label>导游:</label>
@@ -114,7 +114,7 @@
 					</div> -->
 					<div class="fitem">
 						<label>备&nbsp;&nbsp;注:</label>
-						<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:300,height:150"  missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

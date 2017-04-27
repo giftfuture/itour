@@ -40,15 +40,16 @@ itour.sysMenu = function(){
 					_this.addLine(btn);
 				}
 			});
+			$.parser.parse($("#btn-tb"));
 		},
 		addLine: function(data){
 			var table = $("#btn-tb");
-			var	html = "<tr class='tb-line'>";
-		//	html+=	   "	<td align='center'><span  class='newFlag red'>*</span></td>";
-			html+=	   "	<td><input name=\"btnName\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
-			html+=	   "	<td><input name=\"btnType\" class=\"easyui-validatebox text-name\" style=\"width:100%\" data-options=\"required:true\"></td>";
-			html+=	   "	<td><input name=\"actionUrls\" class=\"easyui-validatebox text-desc\" style=\"width:100%\"  ></td>";
-			html+=	   "	<td align='center'><a class=\"easyui-linkbutton remove-btn\"  iconCls=\"icon-remove\" plain=\"true\"></a>";
+			var	html = "<tr class='tb-line' style=\"height:25px;float:top;valign:top\">";
+		//	html+=	   "	<td align='center'><span  class='newFlag red'>*</span></td>text-name  text-desc";
+			html+=	   "	<td><input name=\"btnName\" type=\"text\" class=\"easyui-textbox\" data-options=\"height:25,float:top\" style=\"width:100%;float:top;\" data-options=\"required:true\"></td>";
+			html+=	   "	<td><input name=\"btnType\" type=\"text\" class=\"easyui-textbox\" data-options=\"height:25,float:top\" style=\"width:100%;float:top;\" data-options=\"required:true\"></td>";
+			html+=	   "	<td><input name=\"actionUrls\" type=\"text\" class=\"easyui-textbox\" data-options=\"height:25,float:top\" style=\"width:100%;float:top;\"  ></td>";
+			html+=	   "	<td align='center'><a class=\"easyui-linkbutton remove-btn\"  data-options=\"height:25,float:top\" iconCls=\"icon-remove\" plain=\"true\"></a>";
 			html+=	   "	<input class=\"hidden\" name=\"btnId\">";
 			html+=	   "	<input class=\"hidden\" name=\"deleteFlag\">";
 			html+=	   "	</td>";
@@ -71,9 +72,9 @@ itour.sysMenu = function(){
 				$("input[name='btnType']",line).val(data.btnType);
 				$("input[name='actionUrls']",line).val(data.actionUrls);
 			}
-			$.parser.parse(line);//解析esayui标签
+			$.parser.parse($(line).parent());//解析esayui标签
 			table.append(line);
-			
+			$.parser.parse($("#btn-tb"));
 		},
 		//删除全部
 		delAllLine:function(b){

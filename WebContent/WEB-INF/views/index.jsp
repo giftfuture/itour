@@ -29,7 +29,7 @@
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
  <tr>
-    <td><img id="banner-index"  src="${basePath }images/Route001.jpg"/></td>
+    <td><a target="_blank"><img id="banner-index"  src="${basePath }images/Route001.jpg"/></a></td>
   </tr>  
 </table>
 <table class="commontb" align="center">

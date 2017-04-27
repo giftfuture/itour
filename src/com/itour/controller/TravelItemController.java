@@ -151,16 +151,22 @@ public class TravelItemController extends BaseController{
 	public String save(TravelItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String id = "";
 		TravelItem ti = null;
-		if(entity.getId()==null||StringUtils.isEmpty(entity.getId().toString())){
+		SysUser sessionuser = SessionUtils.getUser(request);
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
+			entity.setCreateBy(sessionuser.getId());
+			entity.setUpdateBy(sessionuser.getId());
 			id = travelItemService.add(entity);
 		}else{
 				ti = travelItemService.queryById(entity.getId());
-			if(ti == null)
+			if(ti == null){
+				entity.setCreateBy(sessionuser.getId());
+				entity.setUpdateBy(sessionuser.getId());
 				id = travelItemService.add(entity);
-			else
+			}else{
+				entity.setUpdateBy(sessionuser.getId());
 				travelItemService.update(entity);
+			}
 		}
-		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的save方法");
 		if(StringUtils.isNotEmpty(id)){			
 			String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/save",sessionuser.getId(),"",""));
@@ -292,7 +298,7 @@ public class TravelItemController extends BaseController{
 			String photos =  ti.getPhotos();
 			String [] filenames = photos.split("\\|");
 			String diskPath = FilePros.travelitemPhotoPath();//磁盘路径
-			String netPath = FilePros.uploadPtopath();//网络访问路径
+			String netPath = FilePros.httpitemCoverpath();//网络访问路径
 			String directory = ti.getItemCode().replaceAll(" ", "")+"_"+ti.getAlias().replaceAll(" ", "");
 			String parpath = diskPath+"\\"+directory;
 			List<String> uris = new ArrayList<String>();
@@ -350,7 +356,7 @@ public class TravelItemController extends BaseController{
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
 	public Map<String,Object> saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		Map<String,Object> context = getRootMap();
-		String realPath = FilePros.uploadPath();
+		String realPath = FilePros.itemCoverpath();
 		TravelItem ti = travelItemService.queryById(id);
 		String [] photos = StringUtils.isNotEmpty(ti.getPhotos()) ? ti.getPhotos().split("\\|"):null;
 		String [] names = fileNames.split(",");
@@ -404,7 +410,7 @@ public class TravelItemController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的getId方法");
 		String logId = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
@@ -441,13 +447,8 @@ public class TravelItemController extends BaseController{
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的search方法");
 	}
 	
-	/**
-	 * 通过旅行方式查询
-	 * @param travelStyle
-	 * @param response
-	 * @throws Exception
-	 */
-	@Auth(verifyLogin=false,verifyURL=false)
+ 
+/*	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryByScope", method = RequestMethod.GET)
 	public List<TravelItem> queryByScope(@RequestParam(value="scopeAlias")String scopeAlias,HttpServletRequest request,HttpServletResponse response)throws Exception{
@@ -458,7 +459,7 @@ public class TravelItemController extends BaseController{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByScope方法");
 		return travelItems ;
-	}
+	}*/
 	/**
 	 * 查询该区域的景点
 	 * @param travelStyle
@@ -518,7 +519,7 @@ public class TravelItemController extends BaseController{
 	 * @return全部區域
 	 * @throws Exception
 	 */
-	@Auth(verifyLogin=false,verifyURL=false)
+	/*@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/allScopes", method = RequestMethod.GET)
 	public List<Map<String,String>> allScopes(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -529,7 +530,7 @@ public class TravelItemController extends BaseController{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allScopes方法");
 		return newlist;
-	}
+	}*/
 	/**
 	 * 
 	 * @param request
@@ -537,7 +538,7 @@ public class TravelItemController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@Auth(verifyLogin=false,verifyURL=false)
+/*	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/scopelist", method = RequestMethod.GET)
 	public List<Map<String,String>> scopelist(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -547,7 +548,7 @@ public class TravelItemController extends BaseController{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allScopes方法");
 		return newlist;
-	}
+	}*/
 	/**
 	 * 
 	 * @param response

@@ -9,17 +9,17 @@
  	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">订单状态:</label>
-				<select name="orderStatus" class="easyui-box ui-text" style="width:100px;">
+				<select name="orderStatus" class="easyui-combobox" style="width:100px;">
 					<option value="">--请选择--</option>
 					<option value="1">待付款</option>
 					<option value="2">付款完成,待确认</option>
 					<option value="3">确认支付完成</option>
-				</select>
+				</select>&nbsp;&nbsp;
 			</p>
-		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-box ui-text" style="width:100px;">
+		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"></p>
 	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -35,7 +35,7 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">客户订单</div>
+		     	 <!--   <div class="ftitle">客户订单</div> -->
 					<!-- <div class="fitem">
 						<label>订单状态:</label>
 						<select name="orderStatus">
@@ -78,7 +78,7 @@
 					</div>
 					<div class="fitem">
 						<label>订单状态：</label>
-						<select id="orderStatus" name="orderStatus" class="easyui-combobox ui-text" data-options="editable:false" style="width:100px;">
+						<select id="orderStatus" name="orderStatus" class="easyui-combobox" data-options="editable:false" style="width:100px;">
 							<option value="">--请选择--</option>
 							<option value="1">待付款</option>
 							<option value="2">付款完成,待确认</option>
@@ -95,11 +95,11 @@
 					</div> -->
 					<div class="fitem">
 						<label>计划出行日:</label>
-						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datetimebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedDepart">
+						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedDepart">
 					</div>
 					<div class="fitem">
 						<label>计划返程日:</label>
-						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datetimebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedBack">
+						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedBack">
 					</div>
 					<div class="fitem">
 						<label>出行人数:</label>
@@ -169,7 +169,7 @@
 					</div>  -->
 					<div class="fitem">
 						<label>备&nbsp;&nbsp;注:</label>
-						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写remark"></textarea>
+						<textarea rows="5" cols="30" name="remark" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:300,height:150"  missingMessage="请填写remark"></textarea>
 						<!-- <label>付款时间:</label> -->
 						<input name="payTime" type="hidden" value="currentText" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写payTime">
 						<!-- <label>付款终端:</label> -->

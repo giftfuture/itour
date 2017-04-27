@@ -245,7 +245,7 @@ public class FeedbackController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		String result = JsonUtils.encode(context);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的getId方法");

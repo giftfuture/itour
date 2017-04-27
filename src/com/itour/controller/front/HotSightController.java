@@ -82,12 +82,12 @@ public class HotSightController extends BaseController{
 		Map<String,Object>  map = getRootMap();
 		//map.put("alias", Constants.HIKING);
 		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HOTSIGHT);
-		String uploadPtopath = FilePros.uploadPtopath();
+		String uploadPtopath = FilePros.itemCoverpath();
 		for(RouteTemplateVo rt:rtvos){
 			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 			List<String> itids = Arrays.asList(itemIds.split(","));
 			List<TravelItem> items = travelItemService.queryByIds(itids);
-			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getItem()+"/"+items.get(0).getCover():"")));
+			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getAlias()+"/"+items.get(0).getCover():"")));
 		}
 		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
 		map.clear();
@@ -150,20 +150,20 @@ public class HotSightController extends BaseController{
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItem> items = travelItemService.queryByIds(itids);
-		String ptopath = FilePros.uploadPtopath();
+		String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
 		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
 		for(TravelItem ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
-				String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+				String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(realCover);
 			}
 			String photos = ti.getPhotos();
 			if(StringUtils.isNotEmpty(photos)){
 				List<String> array = Arrays.asList(photos.split("\\|"));
 				for(String name:array){
-					String realname = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ name;//Constants.basePhoto
+					String realname = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
 					photoList.add(realname);
 				}
 			}
@@ -222,11 +222,11 @@ public class HotSightController extends BaseController{
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItem> items = travelItemService.queryByIds(itids);
-		String ptopath = FilePros.uploadPtopath();
+		String ptopath = FilePros.itemCoverpath();
 		for(TravelItem ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}
@@ -270,11 +270,11 @@ public class HotSightController extends BaseController{
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItem> items = travelItemService.queryByIds(itids);
-		String ptopath = FilePros.uploadPtopath();
+		String ptopath = FilePros.itemCoverpath();
 		for(TravelItem ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}

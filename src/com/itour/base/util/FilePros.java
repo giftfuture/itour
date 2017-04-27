@@ -46,7 +46,7 @@ public class FilePros   {
 	 * 上传图片的磁盘存放路径
 	 * @return
 	 */
-	public static String uploadPath(){
+	public static String baseUploadPath(){
 		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
 		return rb.getString("upload_path");
 	}
@@ -135,18 +135,37 @@ public class FilePros   {
 		String rtCover = rb.getString("httprtcover_path");
 		return rtCover;
 	}
+	
+	/**
+	 * 首页链接图片
+	 * @return 
+	 */
+	public static String adLinkPath(){
+		String rtCover = rb.getString("adlink_path");
+		return rtCover;
+	}
+	public static String httpadLinkPath(){
+		String rtCover = rb.getString("httpadlink_path");
+		return rtCover;
+	}
 	/**
 	 * 上传图片的本项目相关的存储路径
 	 * @param request
 	 * @return
 	 */
-	public static String uploadPtopath(){
+	public static String itemCoverpath(){
 		//RequestAware ra = null;
 		//String path = request.getContextPath();    
 		//String ptopath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/images/upload_ptopath/";    
-		String ptopath = rb.getString("item_pto_path");
+		String ptopath = rb.getString("item_cover_path");
 		return ptopath;
 	}
+	public static String httpitemCoverpath(){
+		String ptopath = rb.getString("httpitem_cover_path");
+		return ptopath;
+	}
+	
+	
 	/**
 	 * 路线地图
 	 * @param request
@@ -161,10 +180,13 @@ public class FilePros   {
 	 * @return
 	 */
 	public static String uploadCoverpath(){
-		String mappath = rb.getString("route_cover_path");
-		return mappath ;
+		String routepath = rb.getString("route_cover_path");
+		return routepath;
 	}
-
+	public static String httpRouteCoverpath(){
+		String routepath = rb.getString("httproute_cover_path");
+		return routepath;
+	}
 	    /**
 	    * 更新properties文件的键值对
 	    * 如果该主键已经存在，更新该主键的值；

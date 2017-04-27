@@ -9,18 +9,18 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">客户ID:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">标题:</label><input name="title" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">客户ID:</label><input name="id" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">标题:</label><input name="title" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">状态:</label>
-				<select name="status" class="easyui-box ui-text" style="width:100px;">
-						   <option value="">--请选择--</option>
-						   <option value="1">待审核</option>
-						   <option value="2">审核通过</option>
-						   <option value="3">审核未通过</option>
-						</select>
+				<select name="status" class="easyui-combobox" style="width:100px;">
+				   <option value="">--请选择--</option>
+				   <option value="1">待审核</option>
+				   <option value="2">审核通过</option>
+				   <option value="3">审核未通过</option>
+				</select>&nbsp;&nbsp;
 			<!-- <input name="status" class="easyui-box ui-text" style="width:100px;"/> -->
 			<label class="ui-label">反馈时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
-	    </p>
+	    </p>&nbsp;&nbsp;
 	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 
@@ -34,7 +34,7 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">客户反馈</div>
+		     	   <!-- <div class="ftitle">客户反馈</div> -->
 					<!-- <div class="fitem">
 						<label></label>
 						<input name="feedbackId" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写feedbackId">
@@ -45,13 +45,13 @@
 					</div> -->
 					<div class="fitem">
 						<label>标题:</label>
-						<input name="title" type="text" maxlength="255" required="true" class="easyui-validatebox" data-options="" missingMessage="请填写title">
+						<input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写title">
 						<span style="color:red">*</span>
 					</div>
 					<p></p>
 					<div class="fitem">
 						<label>内容:</label>
-						<textarea rows="5" cols="30" name="content" required="true" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写content"></textarea>
+						<textarea rows="5" cols="30" name="content" required="true" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:300,height:150"  missingMessage="请填写content"></textarea>
 						<span style="color:red">*</span>
 					</div>
 			<!-- 		<div class="fitem">
@@ -60,7 +60,7 @@
 					</div> -->
 					<div class="fitem">
 						<label>反馈状态</label>
-						<select name="status">
+						<select name="status" class="easyui-combobox">
 						   <option value="1">待审核</option>
 						   <option value="2">审核通过</option>
 						   <option value="3">审核未通过</option>
@@ -73,7 +73,7 @@
 					</div> -->
 					<div class="fitem">
 						<label>审核意见</label>
-						<textarea rows="5" cols="30" name="result" maxlength="500" class="easyui-validatebox" data-options="" missingMessage="请填写result"></textarea>
+						<textarea rows="5" cols="30" name="result" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:300,height:150"  missingMessage="请填写result"></textarea>
 					</div> 
 					<div class="fitem">
 						<label>是否公开展示</label>

@@ -11,9 +11,9 @@
  	 <form id="searchForm">
  	 	<p class="ui-fields">
  	 	   <label class="ui-label">账号:</label> 
- 	 	   <input name="email" class="easyui-box ui-text" style="width:100px;">
-            <label class="ui-label">状态: </label><select name="state" class="easyui-combobox ui-text" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"><option value="">--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>
-            <label class="ui-label">授予角色: </label><input name="roleStr" class="easyui-combobox"  style="width:100px;" data-options="valueField:'number',textField:'roleName',mode:'remote',panelHeight:'auto',editable:false,method:'post',url:'${basePath}sysRole/loadRoleList'">
+ 	 	   <input name="email" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+            <label class="ui-label">状态: </label><select name="state" class="easyui-combobox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"><option value="">--请选择--</option><option value=0>可用</option><option value=1>禁用</option></select>&nbsp;&nbsp;
+            <label class="ui-label">授予角色: </label><input name="roleStr" class="easyui-combobox"  style="width:100px;" data-options="valueField:'number',textField:'roleName',mode:'remote',panelHeight:'auto',editable:false,method:'post',url:'${basePath}sysRole/loadRoleList'">&nbsp;&nbsp;
         </p>
         <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -33,7 +33,7 @@
 		     	   <div class="ftitle">授权设置</div>    
 		           <div class="fitem">  
 		               <label>账号:</label>  
-		               <input class="easyui-validatebox" type="text" readonly="readonly" name="email" data-options="required:true,validType:'email'"/>
+		               <input class="easyui-textbox" type="text" readonly="readonly" name="email" data-options="required:true,validType:'email'"/>
 		           </div>  
 		            <div class="fitem">  
 		               <label>角色选择:</label>  

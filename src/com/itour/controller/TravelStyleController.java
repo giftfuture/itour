@@ -32,6 +32,7 @@ import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.PinYinUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.RouteTemplateKit;
@@ -122,14 +123,14 @@ public class TravelStyleController extends BaseController{
 	public @ResponseBody String uploadPhotos(@RequestParam(value="id")String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 		HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object> context = getRootMap();
-		String rtCoverPath = FilePros.tsCoverPath();
+		String tsCoverPath = FilePros.tsCoverPath();
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			TravelStyle ts = travelStyleService.queryById(id);
 			if(ts !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
-				String path = rtCoverPath+File.separatorChar+"_"+ts.getAlias();
+				String path = tsCoverPath+File.separatorChar+PinYinUtil.getPinYin(ts.getType())+"_"+ts.getAlias();
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
@@ -158,7 +159,7 @@ public class TravelStyleController extends BaseController{
 						directory = null;
 						uploadpic = null;
 						ts.setUpdateBy(sessionuser.getId());
-						travelStyleService.update(ts);
+						travelStyleService.updateCover(ts);
 						if(out != null){
 							try {
 								out.close();
@@ -245,13 +246,15 @@ public class TravelStyleController extends BaseController{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		String id = "";
 		TravelStyle ts = null;
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
 			entity.setCreateBy(sessionuser.getId());
+			entity.setUpdateBy(sessionuser.getId());
 			id = travelStyleService.add(entity);
 		}else{
 				ts = travelStyleService.queryById(entity.getId());
 			if(ts == null){
 				entity.setCreateBy(sessionuser.getId());
+				entity.setUpdateBy(sessionuser.getId());
 				id = travelStyleService.add(entity);
 			}else{
 				entity.setUpdateBy(sessionuser.getId());
@@ -285,7 +288,7 @@ public class TravelStyleController extends BaseController{
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
 		context.put(SUCCESS, true);
-		context.put("data", JsonUtils.encode(entity));
+		context.put("data", entity);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的getId方法");
 		String logId = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/getId",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate

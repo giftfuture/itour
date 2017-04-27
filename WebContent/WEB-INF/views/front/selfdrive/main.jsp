@@ -13,8 +13,8 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
- <img src="images/index-ad/banner.jpg" width="100%" height="100%" />
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+ <table class="commontb" align="center"><tr><td><img src="images/index-ad/banner.jpg"  /></td></tr></table>
+<table  class="commontb" align="center" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
@@ -23,7 +23,7 @@
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" align="center">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >

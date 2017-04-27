@@ -31,4 +31,9 @@ public interface TravelStyleDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	List<TravelStyle> queryByAlias(@Param(value="alias")String alias);
+	/**
+	 * 
+	 * @param ts
+	 */
+	void updateCover(TravelStyle ts);
 }

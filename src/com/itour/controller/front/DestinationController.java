@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,9 @@ import com.google.common.collect.Maps;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
+import com.itour.entity.Areas;
 import com.itour.entity.TravelItem;
+import com.itour.service.AreasService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
@@ -41,6 +42,8 @@ public class DestinationController extends BaseController{
 	@Autowired
 	private TravelItemService travelItemService;
 	@Autowired
+	private AreasService areasService;
+	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
 	private LogSettingService logSettingService;
@@ -50,49 +53,36 @@ public class DestinationController extends BaseController{
 	
 	@Autowired
 	private LogOperationService logOperationService;
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/main") 
 	public ModelAndView main(TravelItemVo vo,HttpServletRequest request) throws Exception{
 	 	Map<String,Object>  context = getRootMap();
-	 	List<HashMap<String,String>> allScopes = travelItemService.allScopes();
+	 	List<Areas> allScopes = areasService.allAreas();
 	 	Map<String,List<TravelItem>> sortedItems = Maps.newHashMap();
 	 	Map<String,String> scopes = Maps.newHashMap();
 	 	List<TravelItem> list = Lists.newArrayList();
 	 	List<TravelItem> sublist = Lists.newArrayList();
 	 	Map<String,Integer> tiSizes = Maps.newHashMap();
-	 	for(Map<String,String> scope:allScopes){
-	 		String key= "";
-	 		String value="";
-	 		Iterator<String> it = scope.keySet().iterator();
-	 		while(it.hasNext()){
-	 			String next = it.next();
-	 			if(next.equalsIgnoreCase("scope")){
-	 				value = scope.get(next);
-	 			}
-	 			if(next.equalsIgnoreCase("scopeAlias")){
-	 				key = scope.get(next);
-	 				list = travelItemService.queryByScopeAlias(key);
-	 				if(list != null && list.size() > Constants.maxDestinations){
-	 					sublist = list.subList(0, Constants.maxDestinations);
-	 				}else{
-	 					sublist = list;
-	 				}
-	 				String ptopath = FilePros.uploadPtopath();
-	 				for(TravelItem ti:sublist){
-	 					if(StringUtils.isNotEmpty(ti.getCover())){	 							
-	 						String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
-	 						ti.setCover(realCover);
-	 					}
-	 				}
-	 			}
-	 			if(StringUtils.isNoneEmpty(key,value)){	 				
-	 				scopes.put(key, value);
-	 			}
-	 			if(StringUtils.isNotEmpty(value) && list != null){	 				
-	 				sortedItems.put(value, sublist);
-	 				tiSizes.put(value, list.size());
-	 			}
-	 		}
+	 	for(Areas scope:allScopes){
+			list = travelItemService.queryByScope(scope.getId());
+			if(list != null && list.size() > Constants.maxDestinations){
+				sublist = list.subList(0, Constants.maxDestinations);
+			}else{
+				sublist = list;
+			}
+			String ptopath = FilePros.httpitemCoverpath();
+			for(TravelItem ti:sublist){
+				if(StringUtils.isNotEmpty(ti.getCover())){	 							
+					String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();
+					ti.setCover(realCover);
+				}
+			}
+			scopes.put(scope.getId(), scope.getAreaname());
+ 			if(StringUtils.isNotEmpty(scope.getAreaname()) && list != null){	 				
+ 				sortedItems.put(scope.getAreaname(), sublist);
+ 				tiSizes.put(scope.getAreaname(), list.size());
+ 			}
 	 	}
 	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		
 		//设置页面数据
@@ -115,24 +105,10 @@ public class DestinationController extends BaseController{
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object>  context = getRootMap();
-	 	List<HashMap<String,String>> allScopes = travelItemService.allScopes();
+	 	List<Areas> allScopes = areasService.allAreas();
 	 	Map<String,String> scopes = Maps.newHashMap();
-	 	for(Map<String,String> scope:allScopes){
-	 		String key= "";
-	 		String value="";
-	 		Iterator<String> it = scope.keySet().iterator();
-	 		while(it.hasNext()){
-	 			String next = it.next();
-	 			if(next.equalsIgnoreCase("scope")){
-	 				value = scope.get(next);
-	 			}
-	 			if(next.equalsIgnoreCase("scopeAlias")){
-	 				key = scope.get(next);
-	 			}
-	 			if(StringUtils.isNoneEmpty(key,value)){	 				
-	 				scopes.put(key, value);
-	 			}
-	 		}
+	 	for(Areas area:allScopes){
+			scopes.put(area.getId(), area.getAreaname());
 	 	}
 	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		
 		context.put("scopes", scopes); 
@@ -152,10 +128,10 @@ public class DestinationController extends BaseController{
 	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	List<TravelItem> list = travelItemService.queryByScope(scope);//.queryByScopeAlias(scopeAlias);
-	 	String ptopath = FilePros.uploadPtopath();
+	 	String ptopath = FilePros.itemCoverpath();
 		for(TravelItem ti:list){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
-					String realCover = ptopath +ti.getItemCode()+"_"+ti.getItem()+"/"+ ti.getCover();//Constants.basePhoto
+					String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 					ti.setCover(realCover);
 				}
 			}

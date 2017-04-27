@@ -80,7 +80,15 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private String showClimbnexus;//前端显示的登协联络官
 	private String showElsecost;//前端显示的其他费用
 	private String showPresented;//前端显示的赠品
+	private String agodaDetail;//详细日程
 	
+	
+	public String getAgodaDetail() {
+		return agodaDetail;
+	}
+	public void setAgodaDetail(String agodaDetail) {
+		this.agodaDetail = agodaDetail;
+	}
 	public String getShowTicket() {
 		return showTicket;
 	}

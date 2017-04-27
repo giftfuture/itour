@@ -2,6 +2,7 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+import java.util.Date;
 /**
  * 
  * <br>
@@ -17,7 +18,35 @@ public class SysVariables extends BaseEntity {
 	private static final long serialVersionUID = -8356212737850829975L;
 	private java.lang.String id;//   	private java.lang.String varName;//   	private java.lang.String varValue;//   	private java.lang.String varHostname;//   	private java.lang.String varHostip;//   	private java.lang.String remark;//   	private java.lang.String varProject;//   
 	private boolean isValid;
-		public boolean isValid() {
+	private String createBy;
+	private String updateBy;
+	private Date createTime;
+	private Date updateTime;
+	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}	public boolean isValid() {
 		return isValid;
 	}
 	public void setValid(boolean isValid) {

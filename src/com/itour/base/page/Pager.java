@@ -19,7 +19,7 @@ public class Pager {
 	private long pageTail = 0;// 当前页到达的记录
 	private String orderField;
 	private boolean orderDirection;
-
+	private String groupField;
 	// 页面显示分页按钮个数
 	private int length = 6;
 	// 开始分页数字
@@ -112,7 +112,13 @@ public class Pager {
 		}
 		return condition;
 	}
-	
+	public String getGroupCondition(){
+		String condition = "";
+		if (StringUtils.isNotEmpty(this.groupField)) {
+			condition = " group by " + orderField ;
+		}
+		return condition;
+	}
 	public String getMysqlQueryCondition() {
 		doPage();
 		//this.pageOffset = (this.pageId - 1) * this.pageSize;
@@ -138,14 +144,14 @@ public class Pager {
 		return orderField;
 	}
 
-	public void setPageCount(int pageCount) {
+	public void setPageCount(long pageCount) {
 		this.pageCount = pageCount;
 	}
 
 	public long getPageCount() {
 		return pageCount;
 	}
-
+	
 	public void setPageId(long pageId) {
 		this.pageId = pageId;
 	}
@@ -187,4 +193,12 @@ public class Pager {
 		return rowCount;
 	}
 
+	public String getGroupField() {
+		return groupField;
+	}
+
+	public void setGroupField(String groupField) {
+		this.groupField = groupField;
+	}
+	
 }
