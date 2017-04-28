@@ -13,7 +13,7 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td><img src="images/img/gonga-04.jpg" width="100%" height="100%" /></td>
+    <td><img src="images/img/gonga-04.jpg"/></td>
   </tr>
 </table>
 <table  class="commontb" align="center">
@@ -46,6 +46,7 @@
   </tr>
 </table>
 <table class="commontb" align="center">
+ <tbody id="fbcontent">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >
@@ -75,7 +76,9 @@
     </table></td>
     </c:forEach>
   </tr></c:forEach>
+  </tbody>
 </table>
+<center><ul id='fbpage'></ul></center>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/main.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

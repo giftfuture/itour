@@ -75,6 +75,7 @@
   </tr>
 </table> --%>
 <table  class="commontb" align="center">
+ <tbody id="fbcontent">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >
@@ -104,7 +105,9 @@
     </table></td>
     </c:forEach>
   </tr></c:forEach>
+  </tbody>
 </table>
+<center><ul id='fbpage'></ul></center>
 <script type="text/javascript" src="${basePath}js/ux/front/hotsight/main.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

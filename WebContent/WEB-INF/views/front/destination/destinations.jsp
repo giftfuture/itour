@@ -3,13 +3,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
@@ -17,7 +12,7 @@
 </head>
 
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="commontb" align="center">
 <tr>
     <td>
 		 <%@include file="/front/header.jsp"  %>
@@ -31,7 +26,7 @@
   </tr>
 </table> -->
 <br />
-<table width="100%" height="60%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" align="center">
   <tr style="height:500px">
     <td width="275" valign="top">
     <div align="center">
@@ -84,50 +79,6 @@
 		  </c:forEach>
         </td>
         </tr>
-<%--         <tr height="30%">
-    	<td width="275" valign="top">
-   		 <div align="center">
-        <table width="275" height="30%" border="0" align="center" cellpadding="5" cellspacing="0">
-          <tr>
-            <td width="48" valign="middle" bgcolor="#CCCCCC"><div align="center" class="STYLE2"><img src="images/search.png" width="48" height="48" /></div></td>
-            <td width="162" valign="middle" bgcolor="#CCCCCC"><span class="STYLE2">线路搜索</span></td>
-          </tr>
-          <tr>
-            <td colspan="2" bgcolor="#CCCCCC"><span class="f14-gao1">
-            	旅游区域：
-              <label>
-              <form:form method="post">
-                 <input name="scopes" class="easyui-combobox"  id="scopes" style="width:100px;" data-options="valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false, method:'get',url:'${basePath}travelItem/allScopes',
-                   onSelect:function(v){
-                   	var urlurl = '${basePath}travelItem/queryByScope?scopeAlias='+v.scopeAlias;
-                   	if(v.scopeAlias){
-                   	$('#sightSpots').combobox('reload',urlurl);}}">
-                  <input name="sightSpots" id="sightSpots" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'">
-                  <br />
-                旅行方式：
-                <input name="travelstyles" class="easyui-combobox" style="width:100px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
-                <br />
-                假期时间：<select name="vacation" class="easyui-combobox" style="width:100px;" data-options="panelHeight:'auto',editable:false,mode:'remote'">
-                 <option> -不限-</option>
-                 <option value="1-5">1-5天</option>
-                 <option value="6-9">6-9天</option>
-                 <option value="10-15">10-15天</option>
-                 <option value="16">16天+</option>
-                </select>
-                </form:form>
-                </label>
-            </span></td>
-          </tr>
-          <tr>
-            <td colspan="2" bgcolor="#CCCCCC"><span class="f14-gao1">
-              <input type="submit" name="Submit22" value="Search" />
-            </span></td>
-          </tr>
-        </table>
-        <span class="STYLE7">备注：向下面这个图片用灰线隔一下</span><br />
-        <img src="${basePath }images/adddddd.jpg" width="229" height="374" />
-        </div></td>
-  </tr> --%>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
  <%@include file="/front/footer.jsp"  %>  

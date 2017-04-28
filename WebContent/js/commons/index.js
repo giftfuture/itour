@@ -19,7 +19,6 @@ $.ajax({
 		$(result).each(function(i,e){
 			arr[i]=e.advertise;
 			links[i]=e.link;
-			console.log(links[i]);
 			titles[i]=e.title;
 		});
 	},error:function(){

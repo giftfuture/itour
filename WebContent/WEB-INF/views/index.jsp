@@ -60,7 +60,7 @@
   </tr>
 </table>
 <br />
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
     <td width="766" valign="top">
     <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
@@ -68,53 +68,41 @@
       <tr>
       <c:if test="${not empty mapvo }">
 	      <c:forEach items="${mapvo}" var="entry" varStatus="status">
-	        <tr>
-	       <%-- <c:if test="${status.index != 0 && status.index%4==0 }"></tr><tr></c:if> --%>
-	        <td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0" class="f14-gao1">
-                  <tr>
-                    <td width="296" class="h2-24" colspan=3><a href="${basePath}hiking/main" class="STYLE3">${fn:split(entry['key'], '_')[0]}</a></td>
-                  </tr>
-                  <tr><td width="296" class="h2-24" colspan=3>${fn:split(entry['key'], '_')[1]}</td></tr>
-                  <tr><td width="296" class="h2-24" colspan=3><img src="${basePath }${fn:split(entry['key'], '_')[2]}"/></td></tr>
-                  <tr>
+	       <c:if test="${status.index != 0 && status.index%2==0 }"></tr><tr></c:if>
+	        <td valign="top" style=""><table width="253" border="0" align="left" cellpadding="0" cellspacing="0">
+                  <tr><td width="296" class="h2-24red" colspan=3 style="text-align:left;padding-left:50px"><a width="100px" href="${basePath}hiking/main">${fn:split(entry['key'],'#')[0]}</a></td></tr>
+                  <tr><td width="296" class="f14-gao1" colspan=3 style="text-align:left">${fn:split(entry['key'], '#')[1]}</td></tr>
+                  <tr><td width="296" colspan=3 style="text-align:left"><a href="${basePath}hiking/main" class="STYLE3"><img src="${basePath }${fn:split(entry['key'],'#')[2]}" style="border:none;" border="0px" height="200" width="200"/></a></td></tr>
                   <c:forEach items="${entry['value']}" var="et">
-	                  <td><table><tr>
-		              <td><a href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}"><img src="${et.cover }" width="353" height="166" /></a></td>
+                  	<tr>
+		              <td style="text-align:left"><a href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}">>><span class="STYLE7">${et.title }</span></a></td>
 		            </tr>
-	   	            <tr>
-		              <td><a href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}"><span class="STYLE7">${et.title }</span></a></td>
-		            </tr>
-		            <tr>
-		              <td class="STYLE8"><%-- <a href="${basePath }${entry['value'].travelStyleAlias }/${entry['value'].travelStyleAlias }/${entry['value'].alias}">${entry['value'].title }</a><br /> --%>
-		              ${et.shortContent}<br><a href="${basePath }${et.travelStyleAlias }/main">More》》</a>
-		              </td>
-		            </tr></table></td>
                   </c:forEach>
-                  </tr>
-	        </table></td></tr>
+	              <tr><td style="text-align:left"><a href="${basePath }${entry['value'][0].travelStyleAlias }/main">More>></a></td></tr>
+	        </table></td>
 	        </c:forEach>
         </c:if>
-      </tr>
+        </tr>
       </tbody>
     </table></td>
-    <td width="374" valign="top" bgcolor="#f0f0f0"><br />
+    <td width="474" valign="top" bgcolor="#f0f0f0" align="left">
       <table width="353" border="0" align="center" cellpadding="0" cellspacing="0" class="f12-gao1">
       <tr>
         <td>
-        <table width="300" border="0" align="left" cellpadding="5" cellspacing="0" name="showhappytb">
+        <table width="300" border="0" align="center" cellpadding="5" cellspacing="0" name="showhappytb">
         	<thead>
             <tr>
-              <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
-              <td width="268" class="h2-24">回憶幸福</td>
+              <td width="32"style="text-align:right"><img src="images/heart02.png" width="32" height="32" /></td>
+              <td width="268" class="h2-24"style="text-align:left">回憶幸福</td>
             </tr>
             </thead>
             <tbody>
 	      <tr>
-	       <td><a href="${basePath }showhappy/detail/${showhappy.shCode}">${showhappy.title }</a> 
+	       <td colspan=2><%-- <a href="${basePath }showhappy/detail/${showhappy.shCode}">${showhappy.title }</a>  --%>
 	        <a href="${basePath }showhappy/detail/${showhappy.shCode}"><img src="${basePath }${showhappy.cover }" width="353" height="166" /></a></td>
 	      </tr>
 	      <tr>
-	        <td><p class="f12-gao1"><span class="STYLE6">${showhappy.shortContent } 
+	        <td colspan=2 style="text-align:left"><p class="f12-gao1"><span class="STYLE6">${showhappy.shortContent } 
 	             <a href="${basePath }showhappy/main">More》》</a></span></p>
 	       </td></tr></tbody>
         </table></td>
@@ -123,8 +111,7 @@
       <br />
       <table  width="353" border="0" align="center" cellpadding="5" cellspacing="0" name="hotspots">
         <thead><tr>
-          <td width="32"><img src="images/earth.png" width="32" height="32" /></td>
-          <td width="301" class="h2-24">热门景点</td>
+          <td width="32"><img src="images/earth.png" width="32" height="32" /> 热门景点</td>
         </tr></thead>
         <tbody>
         <tr>
@@ -138,7 +125,7 @@
         </tr>
         <tr>
        	 <td><p class="f12-gao1"><span class="STYLE6">
-	             <a href="${basePath }showhappy/main">More》》</a></span></p>
+	             <a href="${basePath }hotsight/main">More》》</a></span></p>
 	       </td></tr>
         </tbody>
       </table>

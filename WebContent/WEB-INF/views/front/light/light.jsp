@@ -13,7 +13,7 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table  class="commontb" align="center">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
@@ -26,7 +26,7 @@
     <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table  class="commontb" align="center">
   <!--DWLayoutTable-->
   <tr>
     <td width="10"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
@@ -137,7 +137,7 @@
     <img src="${basePath}/images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table class="commontb" align="center">
   <!--DWLayoutTable-->
   <tr>
     <td width="10" background="${basePath}images/shadowleft.gif">

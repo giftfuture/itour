@@ -78,10 +78,10 @@ public class DestinationController extends BaseController{
 					ti.setCover(realCover);
 				}
 			}
-			scopes.put(scope.getId(), scope.getAreaname());
- 			if(StringUtils.isNotEmpty(scope.getAreaname()) && list != null){	 				
+ 			if(StringUtils.isNoneEmpty(scope.getId(),scope.getAreaname()) && sublist != null && sublist.size() >0){	 				
  				sortedItems.put(scope.getAreaname(), sublist);
  				tiSizes.put(scope.getAreaname(), list.size());
+ 				scopes.put(scope.getId(), scope.getAreaname());
  			}
 	 	}
 	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		

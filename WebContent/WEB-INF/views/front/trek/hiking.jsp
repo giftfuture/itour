@@ -27,20 +27,19 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table class="commontb" align="center">
   <tr>
     <td class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
-    <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
+    <td width="624"><table class="commontb" align="center">
       <tr>
-        <td width="600"><img src="${basePath}images/Route001.jpg" width="600" height="338" /></td>
+        <td width="600"><img src="${basePath}images/Route001.jpg"/></td>
       </tr>
       <tr>
-        <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
+        <td height="69">
             <div align="center">
 <!--滚动图片 start-->
 <DIV class=rollphotos>
@@ -71,11 +70,11 @@
 </DIV>
 <!--滚动图片 end-->
 </div>
-      </tr></table></td>
-      </tr></table></td>
+        
+     </td></tr></table></td>
     <td width="476" valign="top"><div align="center"><span class="STYLE2">这条线路适合我吗？</span>
     </div>
-      <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
+      <table  class="commontb" align="center">
         <tr>
           <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
           <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
@@ -131,7 +130,7 @@
       <span class="STYLE148"><br />
     注：每个团的需求都不同，可根据您的假期重新调整设计行程。</span><br />
     <br />
-    <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1">
+    <table  class="commontb" align="center" class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
@@ -165,7 +164,7 @@
  </ul>
  <div class='panel-container'>
  <div id="review" name="review">
-  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <table  class="commontb" align="center">
   <tr>
     <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
@@ -193,7 +192,7 @@
     </table>
   </div>
   <div id="detail-route" name="detail-route">
-   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+   <table  class="commontb" align="center">
     <tr>
     <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">简要日程</span></span></td>
@@ -209,13 +208,13 @@
     <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
   </tr>
   <tr><td colspan="2">   
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
     <td><img src="images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif">
-	<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+	<table  class="commontb" align="center">
         <tr>
           <td valign="top"><br />
           <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
@@ -281,7 +280,7 @@
 </table>
   </div>
   <div id="need-know" name="need-know">
-  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <table  class="commontb" align="center">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
     <td width="1028" style="text-align:left"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
@@ -291,7 +290,7 @@
   </tr>
 </table>
 
-  <table width="600" border="0" cellspacing="0" cellpadding="0">
+  <table class="commontb" align="center">
    <tbody><tr>
      <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
      <td width="264"><span class="STYLE3" ><a href="${basePath}hiking/selfbooking/${rt.alias}">
@@ -300,20 +299,20 @@
  </tbody></table>
   </div>
   <div id="feed-back" name="feed-back">
-  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <table  class="commontb" align="center">
   <tr>
     <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
     <td><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath}images/frame1-2.gif">
     <form name="fastask"  class="ui-form" >
-    <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+    <table  class="commontb" align="center">
         <tr>
           <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
               <tr>

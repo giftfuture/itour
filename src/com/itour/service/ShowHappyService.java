@@ -59,7 +59,7 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 		List<Map<String, Object>> records = Lists.newArrayList();
 		for(int i = 0; i < list.size(); i++) {
 			ShowHappy sh = list.get(i);
-			String coverpath = shareHappyPath+File.separatorChar+sh.getId()+"_"+sh.getTitle()+File.separatorChar;
+			String coverpath = shareHappyPath+File.separatorChar+sh.getId()+"_"+sh.getRoute()+File.separatorChar;
 			sh.setCover(coverpath+sh.getCover());
 			records.add(ShowHappyKit.toRecord(sh));
 		}

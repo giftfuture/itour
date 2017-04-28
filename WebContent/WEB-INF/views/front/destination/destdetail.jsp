@@ -3,13 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>目的地详情</title>
 <link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
@@ -18,17 +13,17 @@
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="commontb" align="center">
   <tr>
     <td><%@include file="/front/header.jsp"  %></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
+<!-- <table class="commontb" align="center">
   <tr>
     <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
   </tr>
-</table>
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing-top="10" cellspacing-left="100">
+</table> -->
+<table class="commontb" align="center">
           <tr>
             <td height="30" bgcolor="#990000"><div align="center" class="STYLE6">旅遊目的地</div></td>
             <td rowspan=3>

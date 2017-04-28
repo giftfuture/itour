@@ -1,5 +1,6 @@
 package com.itour.controller.front;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.page.Pager;
 import com.itour.base.util.FilePros;
+import com.itour.base.util.PinYinUtil;
 import com.itour.base.web.BaseController;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
@@ -73,6 +75,7 @@ public class IndexController extends BaseController {
 		Map<String,Object> map = getRootMap();
 		Map<String,String> params = Maps.newHashMap();
 		params.put("hot","1");
+		String tsCoverPath = FilePros.httptsCoverPath();
 		List<TravelItem> hots = travelItemService.searchTravelItem(map);
 		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
 		for(TravelItem ti:hots){			
@@ -108,7 +111,8 @@ public class IndexController extends BaseController {
 						newvos.add(rtvo);
 					}
 				}
-				mapvo.put(ts.getType()+"_"+ts.getDescrip()+"_"+ts.getCover(),newvos);
+				ts.setCover(tsCoverPath+"/"+PinYinUtil.getPinYin(ts.getType())+"_"+ts.getAlias()+"/"+ts.getCover());
+				mapvo.put(ts.getType()+"#"+ts.getDescrip()+"#"+ts.getCover(),newvos);
 			}
 		}
 		 ShowHappyVo pagevo = new ShowHappyVo();

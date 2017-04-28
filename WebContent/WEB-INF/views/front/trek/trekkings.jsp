@@ -13,7 +13,7 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td><img src="images/banner-trekking.jpg"  /></td><!-- width="100%" height="100%" -->
+    <td><img src="images/banner-trekking.jpg"  /></td>
   </tr>
 </table>
 <table class="commontb" align="center">
@@ -45,33 +45,8 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<%-- <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="94" bgcolor="#CCCCCC"><div align="center"><strong>快速搜索</strong></div></td>
-    <td width="956" bgcolor="#CCCCCC" class="f14-gao1">
-      <label>旅行方式：
-        <input id="travelstyle" name="travelstyle" class="easyui-combobox"  style="width:150px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false, method:'get',url:'${basePath}travelStyle/loadStyles'">
-       	 区域：
-        <input class="easyui-combobox" id="selectScopes" name="selectScopes" style="width:100px;"  data-options="valueField:'scopeAlias',textField:'scope',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}travelItem/allScopes',
-        onChange:function(n,o){var urlurl = '${basePath}travelItem/queryByScope?scopeAlias='+n;
-        $('#sightSpot').combobox('reload',urlurl);}"><!-- $('#selectScopes').combobox('getValue') -->
-        <input id="sightSpot" name="sightSpot" class="easyui-combobox" style="width:100px;"  data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'"> 
-        <br />
-        假期天数：<select name="vacation" style="width:100px;">
-        	<option>-所有-</option>
-        	<option value="3-5">3-5天</option>
-        	<option value="6-9">6-9天</option>
-        	<option value="10-15">10-15天</option>
-        	<option value="16">16天+</option>
-        </select>
-</label></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td class="f14-gao1">&nbsp;</td>
-  </tr>
-</table> --%>
 <table class="commontb" align="center">
+<tbody id="fbcontent">
 <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >
@@ -90,7 +65,7 @@
         <td><a href="${basePath }hiking/hiking/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
       </tr>
       <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
+        <td class="f12-gao1" style="text-align:left">${rt.shortContent}</td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -98,6 +73,7 @@
     </table></td>
     </c:forEach>
   </tr></c:forEach>
+  </tbody>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/trekkings.js"></script>
 <%@include file="/front/footer.jsp" %>

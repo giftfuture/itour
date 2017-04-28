@@ -3,36 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>更多目的地</title>
 </head>
-
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table  class="commontb" align="center">
  <tr>
     <td>
 	 <%@include file="/front/header.jsp"  %>
     </td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
+<!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
   <tr>
     <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>  
   </tr>
-</table>
-<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
+</table> -->
+<table  class="commontb" align="center">
   <tr>
     <td><span class="STYLE5">${dests}</span></td>
     <td>${fn:length(list)}个目的地 </td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="9" cellspacing="0">
+<table  class="commontb" align="center">
  
   <tr>
  

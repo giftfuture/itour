@@ -28,12 +28,12 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
     <td class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table  class="commontb" align="center">
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
