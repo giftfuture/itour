@@ -43,7 +43,35 @@ public class TravelItemVo extends BasePage implements Serializable{
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
+	private int starLevel;//星级
+	private String areaname;
+	private String ticketsBlock;//门票块
+	private boolean fullyearTicket;//是否分淡旺季
 	
+	public boolean isFullyearTicket() {
+		return fullyearTicket;
+	}
+	public void setFullyearTicket(boolean fullyearTicket) {
+		this.fullyearTicket = fullyearTicket;
+	}
+	public String getTicketsBlock() {
+		return ticketsBlock;
+	}
+	public void setTicketsBlock(String ticketsBlock) {
+		this.ticketsBlock = ticketsBlock;
+	}
+	public String getAreaname() {
+		return areaname;
+	}
+	public void setAreaname(String areaname) {
+		this.areaname = areaname;
+	}
+	public int getStarLevel() {
+		return starLevel;
+	}
+	public void setStarLevel(int starLevel) {
+		this.starLevel = starLevel;
+	}
 	public String getCreateBy() {
 		return createBy;
 	}

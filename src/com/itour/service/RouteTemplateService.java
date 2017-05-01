@@ -1,9 +1,7 @@
 package com.itour.service;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,9 +19,9 @@ import com.itour.dao.RouteTemplateDao;
 import com.itour.dao.TravelItemDao;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.RouteTemplate;
-import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
 import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.TravelItemVo;
 
 /**
  * 
@@ -43,11 +41,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	public BasePage<RouteTemplateVo> pagedQuery(RouteTemplateVo vo) {
-		vo.setOrder("starLevel");
+		//vo.setOrder("star_level");
+		vo.setSort("star_level");
+		vo.setOrderDirection(false);
 		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
-		String rtCoverPath = FilePros.httprtCoverPath();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVo fb:list) {
 			if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				 String[] params = fb.getTravelItems().split(",");
@@ -63,8 +63,8 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				}
 				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
 			}
-			String coverpath = rtCoverPath+File.separatorChar+fb.getRouteCode()+"_"+fb.getTitle()+File.separatorChar;
-			fb.setCover(coverpath+fb.getCover());
+			String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
+			fb.setCover(coverpath);
 			records.add(fb);
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
@@ -76,11 +76,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public BasePage<RouteTemplateVo> searchpagedQuery(RouteTemplateVo vo) {
-		vo.setOrder("starLevel");
+		//vo.setOrder("starLevel");
+		vo.setSort("star_level");
+		vo.setOrderDirection(false);
 		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.searchRts(vo);
 		int count = mapper.searchRtsByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
-		String rtCoverPath = FilePros.httprtCoverPath();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVo fb:list){
 		/*	if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				String[] params = fb.getTravelItems().split(",");
@@ -96,8 +98,9 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				}
 				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
 			}*/
-			String coverpath = rtCoverPath+File.separatorChar+fb.getRouteCode()+"_"+fb.getAlias()+File.separatorChar;
-			fb.setCover(coverpath+fb.getCover());
+			//rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
+			String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
+			fb.setCover(coverpath);
 			records.add(fb);
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), list,count);
@@ -111,10 +114,10 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public List<RouteTemplateVo> queryByStyle(String style)throws Exception{
 		List<RouteTemplate> list = mapper.queryByStyle(style);
 		List<RouteTemplateVo> vos = Lists.newArrayList();
-		String rtCoverPath = FilePros.httprtCoverPath();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplate rt :list){
-			String coverpath = rtCoverPath+File.separatorChar+rt.getRouteCode()+"_"+rt.getAlias()+File.separatorChar;
-			rt.setCover(coverpath+rt.getCover());
+			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
+			rt.setCover(coverpath);
 			vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return vos;
@@ -143,10 +146,10 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public List<RouteTemplateVo> queryByItems(String travelItems)throws Exception{
 		List<RouteTemplate> list = mapper.queryByItems(travelItems);
 		List<RouteTemplateVo> vos = Lists.newArrayList();
-		String rtCoverPath = FilePros.httprtCoverPath();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplate rt:list){
-			String coverpath = rtCoverPath+File.separatorChar+rt.getRouteCode()+"_"+rt.getAlias()+File.separatorChar;
-			rt.setCover(coverpath+rt.getCover());
+			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
+			rt.setCover(coverpath);
 			vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return vos;
@@ -199,9 +202,9 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public RouteTemplateVo selectById(String id){
 		RouteTemplateVo vo =  mapper.selectById(id);
 		String ts = vo.getTravelItems();
-		List<TravelItem> list = tiDao.queryByIds(Arrays.asList(ts.split(",")));
+		List<TravelItemVo> list = tiDao.queryByIds(Arrays.asList(ts.split(",")));
 		List<String> alias = Lists.newArrayList();
-		for(TravelItem ti:list){
+		for(TravelItemVo ti:list){
 			alias.add(ti.getAlias());
 		}
 		//StringUtils.collectionToDelimitedString(list, ",");  

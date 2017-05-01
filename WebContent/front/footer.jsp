@@ -1,7 +1,9 @@
  <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
+<!-- <div style="left: 0; bottom: 0; right: 0;position:fixed !important;"> -->
+<div>
 <form name="searchForm" action="search" method="post">
-<table class="commontb" align="center">
+<table class="commontb" align="center" >
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
@@ -73,7 +75,7 @@
     </table></td>
   </tr>
 </table> -->
-<center>
+<%-- <center>
 <div id="links" style="align:center">
    <div class="contents"><a href="http://www.ctrip.cn/" target="_blank"><img src="${basePath }/images/ad/20121209192739900.jpg" style="width:105px;height:36px;border:0px;"></a>
        <a href="http://www.qunar.com/" target="_blank"><img src="${basePath }/images/ad/20121209192856900.jpg" style="width:105px;height:36px;border:0px;"></a>
@@ -87,7 +89,7 @@
        
    </div>
 </div>
-</center>
+</center> --%>
 <table class="commontb" align="center">
   <tr>
     <td width="100%" height="105" valign="top" bgcolor="#666666">
@@ -106,6 +108,7 @@
     </td>
   </tr>
 </table>
+</div>
 <script type="text/javascript">
 /* var areas = $("#areas").combobox('getValue'); 
 console.log(travel_style+"  "+vacation+"   "+areas); */

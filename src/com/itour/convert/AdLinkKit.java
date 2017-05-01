@@ -21,7 +21,7 @@ public class AdLinkKit {
 		AdLink adlink = new AdLink();
 		adlink.setId(vo.getId());
 		adlink.setAdvertise(vo.getAdvertise());
-		adlink.setLink(vo.getLink());
+		adlink.setAdlink(vo.getAdlink());
 		adlink.setValid(vo.isValid());
 		adlink.setTitle(vo.getTitle());
 		adlink.setRemark(vo.getRemark());
@@ -46,7 +46,7 @@ public class AdLinkKit {
 		AdLinkVo adlink = new AdLinkVo();
 		adlink.setId(vo.getId());
 		adlink.setAdvertise(vo.getAdvertise());
-		adlink.setLink(vo.getLink());
+		adlink.setAdlink(vo.getAdlink());
 		adlink.setValid(vo.isValid());
 		adlink.setTitle(vo.getTitle());
 		adlink.setRemark(vo.getRemark());
@@ -66,7 +66,7 @@ public class AdLinkKit {
 		Map<String,String> map = Maps.newHashMap();
 		map.put("id", vo.getId());
 		map.put("advertise",vo.getAdvertise());
-		map.put("link", vo.getLink());
+		map.put("adlink", vo.getAdlink());
 		map.put("valid", vo.isValid()?"是":"否");
 		map.put("title", vo.getTitle());
 		map.put("remark", vo.getRemark());

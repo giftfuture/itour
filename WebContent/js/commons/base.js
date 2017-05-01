@@ -265,6 +265,7 @@ var itour={
 			 		}
 			 	}
 			 }
+				//console.log(form);
 			 itour.ajaxSubmit(form,option);
 			 return false;
 	},

@@ -120,7 +120,7 @@ public class TravelOrderController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(TravelOrderVo entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelOrderVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 /*		TravelOrder to = new TravelOrder();
 		to.setId(entity.getId());
 		to.setOrderNo(entity.getOrderNo());

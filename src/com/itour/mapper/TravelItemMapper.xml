@@ -39,24 +39,67 @@
 	<result column="update_by" property="updateBy"/>
 	<result column="create_time" property="createTime"/>
 	<result column="update_time" property="updateTime"/>
+	<result column="star_level" property="starLevel"/>
+	<result column="tickets_block" property="ticketsBlock"/>
+	<result column="fullyear_ticket" property="fullyearTicket"/>
 </resultMap>
-<resultMap id="allscopes" type="java.util.HashMap">  
+<resultMap id="BaseResultMapVo" type="com.itour.vo.TravelItemVo" >
+	<result column="id" property="id"/>
+	<result column="item" property="item"/>
+	<result column="alias" property="alias"/>
+	<result column="item_code" property="itemCode"/>
+	<result column="elevation" property="elevation"/>
+	<result column="content" property="content"/>
+	<result column="photos" property="photos"/>
+	<result column="remark" property="remark"/>
+	<result column="mileage" property="mileage"/>
+	<result column="scope" property="scope"/>
+	<result column="short_content" property="shortContent"/>
+	<result column="rank" property="rank"/>
+	<result column="recommand_reason" property="recommandReason"/>
+	<result column="discount" property="discount"/>
+	<result column="rcd_days" property="rcdDays"/>
+	<result column="difficulty_rate" property="difficultyRate"/>
+	<result column="happy_value" property="happyValue"/>
+	<result column="recommand_crowd" property="recommandCrowd"/>
+	<result column="travel_style" property="travelStyle"/>
+	<result column="cover" property="cover"/>
+	<result column="feature" property="feature"/>
+	<result column="equip" property="equip"/>
+	<result column="exclude" property="exclude"/>
+	<result column="itinerary" property="itinerary"/>
+	<result column="map" property="map"/>
+	<result column="season" property="season"/>
+	<result column="recommand_equip" property="recommandEquip"/>
+	<result column="scope_alias" property="scopeAlias"/>
+	<result column="is_valid" property="isValid"/>
+	<result column="hot" property="hot"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="star_level" property="starLevel"/>
+	<result column="areaname" property="areaname"/>
+	<result column="tickets_block" property="ticketsBlock"/>
+	<result column="fullyear_ticket" property="fullyearTicket"/>
+</resultMap>
+<!-- <resultMap id="allscopes" type="java.util.HashMap">  
     <result property="key" column="scopeAlias" />  
     <result property="value" column="scope" />  
-</resultMap>  
+</resultMap>  --> 
 <!-- travel_item table all fields -->
 <sql id="Base_Column_List" >
 	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope,scope_alias, short_content, rank, recommand_reason,
 	  discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,
-	  recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time
+	  recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket
 </sql>
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
 where travel_item.is_valid=1
 <trim  suffixOverrides="," >
-	<if test="id != null and id != ''" >
-	    and travel_item.id like CONCAT('%', #{id}, '%')
+	<if test="starLevel != null and starLevel != ''" >
+	    and travel_item.star_level =#{starLevel}
 	</if>
 	<if test="item != null and item != ''" >
 	    and travel_item.item like CONCAT('%', #{item}, '%')
@@ -118,6 +161,12 @@ where travel_item.is_valid=1
 	<if test="hot != null and hot != ''">
 		and travel_item.hot=#{hot}
 	</if>
+	<if test="ticketsBlock != null and ticketsBlock != ''" >
+	    and travel_item.tickets_block =#{ticketsBlock}
+	</if>
+	<if test="fullyearTicket != null and fullyearTicket !=''">
+		and fullyear_ticket=#{fullyearTicket}
+	</if>
 </trim>
 </sql>
    
@@ -129,17 +178,26 @@ where travel_item.is_valid=1
   </selectKey> -->
   insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,scope_alias,short_content,
   rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,
-  itinerary,map,season,recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time)
+  itinerary,map,season,recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket)
  values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{scopeAlias},#{shortContent},
  #{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},
- #{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip},1,#{hot},#{createBy},#{updateBy},now(),now())
+ #{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip},1,#{hot},#{createBy},#{updateBy},now(),now(),#{starLevel},#{ticketsBlock},#{fullyearTicket})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelItem" >
 	update travel_item set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid != null">
+		<if test="ticketsBlock != null and ticketsBlock != ''" >
+		    travel_item.tickets_block =#{ticketsBlock},
+		</if>
+		<if test="fullyearTicket != null and fullyearTicket !=''">
+			fullyear_ticket=#{fullyearTicket},
+		</if>
+		<if test="starLevel != null and starLevel != ''" >
+		    travel_item.star_level =#{starLevel},
+		</if>
+		<if test="isValid != null and isValid !=''">
 			is_valid=#{isValid},
 		</if>
 		<if test="item != null and item != '' ">
@@ -151,7 +209,7 @@ where travel_item.is_valid=1
 		<if test="itemCode != null and itemCode != '' ">
 			item_code=#{itemCode},
 		</if>
-		<if test="elevation != null  ">
+		<if test="elevation != null and elevation !='' ">
 			elevation=#{elevation},
 		</if>
 		<if test="content != null and content != '' ">
@@ -163,37 +221,34 @@ where travel_item.is_valid=1
 		<if test="remark != null and remark != '' ">
 			remark=#{remark},
 		</if>
-		<if test="mileage != null ">
+		<if test="mileage != null and mileage !=''">
 			mileage=#{mileage},
 		</if>
 		<if test="scope != null and scope != '' ">
 			scope=#{scope},
 		</if>
-		<if test="scopeAlias != null and scopeAlias != '' ">
-			scope_alias = #{scopeAlias},
-		</if>
 		<if test="shortContent != null and shortContent != '' ">
 			short_content=#{shortContent},
 		</if>
-		<if test="rank != null  ">
+		<if test="rank != null and rank != '' ">
 			rank=#{rank},
 		</if>
 		<if test="recommandReason != null and recommandReason != '' ">
 			recommand_reason=#{recommandReason},
 		</if>
-		<if test="discount != null  ">
+		<if test="discount != null and discount !='' ">
 			discount=#{discount},
 		</if>
-		<if test="rcdDays != null  ">
+		<if test="rcdDays != null and rcdDays !='' ">
 			rcd_days=#{rcdDays},
 		</if>
-		<if test="difficultyRate != null  ">
+		<if test="difficultyRate != null and difficultyRate != '' ">
 			difficulty_rate=#{difficultyRate},
 		</if>
-		<if test="happyValue != null  ">
+		<if test="happyValue != null and happyValue !=''  ">
 			happy_value=#{happyValue},
 		</if>
-		<if test="recommandCrowd != null  ">
+		<if test="recommandCrowd != null and recommandCrowd != '' ">
 			recommand_crowd=#{recommandCrowd},
 		</if>
 		<if test="travelStyle != null  and travelStyle != ''">
@@ -242,8 +297,15 @@ where travel_item.is_valid=1
 </update>
 <!-- 根据id查询 旅行项目 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
-select <include refid="Base_Column_List" />,areas.areaname 
+select travel_item.<include refid="Base_Column_List" /> from travel_item where travel_item.id = #{id}
+</select>
+<select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+select travel_item.<include refid="Base_Column_List" />,areas.areaname 
 	 from travel_item left join areas on travel_item.scope=areas.id  where travel_item.id = #{id}
+</select>
+<select id="queryByItemCode" resultMap="BaseResultMapVo" parameterType="java.lang.String">
+ 	select travel_item.<include refid="Base_Column_List"/>,areas.areaname from travel_item
+ 	left join areas on travel_item.scope=areas.id  where travel_item.item_code=#{itemCode}
 </select>
 <!-- resultMap="allscopes"  -->
 <!-- <select id="allScopes"  resultType="hashmap">
@@ -254,10 +316,9 @@ select <include refid="Base_Column_List" />,areas.areaname
  select alias ,item from travel_item where is_valid=1
 </select>	
 	
-<select id="searchTravelItem" resultMap="BaseResultMap" parameterType="java.util.Map">
+<select id="searchTravelItem" resultMap="BaseResultMapVo" parameterType="java.util.Map">
  	select ti.*,areas.areaname from travel_item ti left join travel_style ts on ti.travel_style=ts.id 
- 	left join areas on ti.scope=areas.id 
- 	 where 1=1
+ 	left join areas on ti.scope=areas.id  where 1=1
  	 <trim  suffixOverrides="," >
  	 <if test="alias != null and alias != ''">
 	    and ts.alias like CONCAT('%', #{alias}, '%')
@@ -268,7 +329,7 @@ select <include refid="Base_Column_List" />,areas.areaname
 	<if test="rcdDays1 != null and rcdDays2 != null">
 		and ti.rcd_days between #{rcdDays1} and #{rcdDays2}
 	</if>
-	<if test="rcdDays != null ">
+	<if test="rcdDays != null and rcdDays !=''">
 		and ti.rcd_days <![CDATA[>=]]> #{rcdDays}
 	</if>
 	</trim>
@@ -278,11 +339,11 @@ select <include refid="Base_Column_List" />,areas.areaname
 	select count(1) from travel_item 
 	<include refid="Example_Where_Clause"/>
 </select>
-<select id="getByAlias" resultMap="BaseResultMap" parameterType="java.lang.String">
- 	select <include refid="Base_Column_List"/>,areas.areaname from travel_item
+<select id="getByAlias" resultMap="BaseResultMapVo" parameterType="java.lang.String">
+ 	select travel_item.<include refid="Base_Column_List"/>,areas.areaname from travel_item
  	left join areas on travel_item.scope=areas.id  where travel_item.alias=#{alias}
 </select>
-<select id="queryByScope" resultMap="BaseResultMap" parameterType="java.lang.String">
+<select id="queryByScope" resultMap="BaseResultMapVo" parameterType="java.lang.String">
  	select travel_item.<include refid="Base_Column_List"/>,areas.areaname from travel_item
  	left join areas on travel_item.scope=areas.id  where travel_item.scope=#{scope}
 </select>
@@ -298,7 +359,7 @@ from travel_item left join areas on travel_item.scope=areas.id  where travel_ite
 </foreach>
 </select>  
 <select id="queryByAlias" parameterType="java.util.List" resultMap="BaseResultMap">
-select <include refid="Base_Column_List"/>,areas.areaname
+select travel_item.<include refid="Base_Column_List"/>,areas.areaname
 from travel_item left join areas on travel_item.scope=areas.id  where travel_item.alias in 
 <foreach collection="list" item="alias" index="index" open="(" separator="," close=")">  
       #{alias}  
@@ -306,15 +367,15 @@ from travel_item left join areas on travel_item.scope=areas.id  where travel_ite
 </select>  
 <!-- 获取该旅行方式下的施行项目 -->
 <select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
-select <include refid="Base_Column_List"/>,areas.areaname
+select travel_item.<include refid="Base_Column_List"/>,areas.areaname
 from travel_item inner join travel_style on travel_item.travel_style = travel_style.id 
 left join areas on travel_item.scope=areas.id 
  where travel_item.travel_style=#{travelStyle}
 </select>  	
 <!-- 查询旅行项目列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
-	select travel_item.<include refid="Base_Column_List"/>,areas.areaname
-	from travel_item left join areas on travel_item.scope=areas.id 
+	select travel_item.<include refid="Base_Column_List"/>
+	from travel_item 
 	<include refid="Example_Where_Clause"/>
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
@@ -322,6 +383,18 @@ left join areas on travel_item.scope=areas.id
     <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
+</select>
+<select id="queryByListVo" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
+	select travel_item.<include refid="Base_Column_List"/>,areas.areaname
+	from travel_item left join areas on travel_item.scope=areas.id 
+	<include refid="Example_Where_Clause"/>
+  	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>  
+     <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if> 
+    
 </select>
  <select id="travelItems" parameterType="java.util.List" resultType="String">
 <!-- call splitString(#{tsIds},',');

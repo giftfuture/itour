@@ -19,42 +19,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
-import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.util.FilePros;
-import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
-import com.itour.entity.LogOperation;
-import com.itour.entity.LogSetting;
 import com.itour.entity.QuoteForm;
-import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
-import com.itour.service.LogOperationService;
-import com.itour.service.LogSettingDetailService;
-import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
-import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
 import com.itour.vo.CalculateQuoteVo;
 import com.itour.vo.CustomerVo;
 import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.TravelItemVo;
 
 @Controller
 @RequestMapping("/light") 
 public class LightController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	@Autowired
-	private DataGridAdapter dataGridAdapter;
 	// Servrice start
 	@Autowired 
 	private TravelItemService<TravelItem> travelItemService; 
@@ -64,14 +53,8 @@ public class LightController extends BaseController{
 	private TravelStyleService travelStyleService;
 	@Autowired
 	private QuoteFormService quoteFormService;
-	@Autowired
-	private FreeMarkerConfig freeMarkerConfig;
-	@Autowired
-	private LogSettingService logSettingService;
-	@Autowired
-	private LogSettingDetailService logSettingDetailService;
-	@Autowired
-	private LogOperationService logOperationService;
+	//@Autowired
+	//private FreeMarkerConfig freeMarkerConfig;
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  map = getRootMap();
@@ -81,7 +64,7 @@ public class LightController extends BaseController{
 		for(RouteTemplateVo rt:rtvos){
 			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 			List<String> itids = Arrays.asList(itemIds.split(","));
-			List<TravelItem> items = travelItemService.queryByIds(itids);
+			List<TravelItemVo> items = travelItemService.queryByIds(itids);
 			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getAlias()+"/"+items.get(0).getCover():"")));
 		}
 		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
@@ -112,13 +95,13 @@ public class LightController extends BaseController{
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -144,21 +127,21 @@ public class LightController extends BaseController{
         }*/
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
 		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
-				String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(realCover);
 			}
 			String photos = ti.getPhotos();
 			if(StringUtils.isNotEmpty(photos)){
 				List<String> array = Arrays.asList(photos.split("\\|"));
 				for(String name:array){
-					String realname = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
+					String realname = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
 					photoList.add(realname);
 				}
 			}
@@ -195,13 +178,13 @@ public class LightController extends BaseController{
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -216,12 +199,12 @@ public class LightController extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}
@@ -243,13 +226,13 @@ public class LightController extends BaseController{
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -264,12 +247,12 @@ public class LightController extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}

@@ -1,7 +1,6 @@
 package com.itour.service;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
+import com.itour.base.page.Pager;
 import com.itour.base.service.BaseService;
-import com.itour.convert.TravelItemKit;
 import com.itour.dao.TravelItemDao;
-import com.itour.entity.TravelItem;
 import com.itour.vo.TravelItemVo;
 
 /**
@@ -39,15 +37,36 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-	@SuppressWarnings("unchecked")
 	public BasePage<TravelItemVo> pagedQuery(TravelItemVo vo) {
-		List<TravelItem> list = (List<TravelItem>) mapper.queryByList(vo);
+		/*Pager pager = new Pager();
+		pager.setOrderDirection(false);
+		pager.setOrderField("star_level");*/
+		//vo.setPager(pager);
+		vo.setSort("star_level");
+		vo.setOrderDirection(false);
+		//System.out.println("#################"+vo.getPager().getOrderCondition());
+		List<TravelItemVo> list = (List<TravelItemVo>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		List<TravelItemVo> records = Lists.newArrayList();
+		/*List<TravelItemVo> records = Lists.newArrayList();
 		for(TravelItem fb:list) {
 			records.add(TravelItemKit.toRecord(fb));
+		}*/
+		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
+	}
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	public BasePage<TravelItemVo> pagedQuery2(TravelItemVo vo) {
+		vo.setSort("star_level");
+		List<TravelItemVo> list = (List<TravelItemVo>) mapper.queryByListVo(vo);
+		int count = mapper.queryByCount(vo);
+		List<TravelItemVo> records = Lists.newArrayList();
+		for(TravelItemVo fb:list) {
+			records.add(fb);
 		}
-		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), records, count);
+		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**
 	 * 
@@ -55,13 +74,13 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public TravelItem getByAlias(String alias)throws Exception{
+	public TravelItemVo getByAlias(String alias)throws Exception{
 		return mapper.getByAlias(alias);
 	}
 	public TravelItemDao<T> getDao() {
 		return mapper;
 	}
-	public List<TravelItem> queryByAlias(List<String> alias){
+	public List<TravelItemVo> queryByAlias(List<String> alias){
 		return mapper.queryByAlias(alias);
 	};
 	/**
@@ -70,7 +89,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<TravelItem> searchTravelItem(Map map)throws Exception{
+	public List<TravelItemVo> searchTravelItem(Map map)throws Exception{
 	   return mapper.searchTravelItem(map);
 	}
 	/**
@@ -87,7 +106,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param scope
 	 * @return
 	 */
-	public 	List<TravelItem> queryByScope(String scope){
+	public 	List<TravelItemVo> queryByScope(String scope){
 		return mapper.queryByScope(scope);
 	}
 	/**
@@ -95,7 +114,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<TravelItem> queryByStyle(String style)throws Exception{
+	public List<TravelItemVo> queryByStyle(String style)throws Exception{
 		return mapper.queryByStyle(style);
 	}
 	/**
@@ -104,7 +123,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<TravelItem> queryByIds(List<String> ids)throws Exception{
+	public List<TravelItemVo> queryByIds(List<String> ids)throws Exception{
 		return mapper.queryByIds(ids);
 	};
 	
@@ -132,4 +151,21 @@ public class TravelItemService<T> extends BaseService<T> {
 	public String travelItems(List<String> tsIds){
 		return mapper.travelItems(tsIds);
 	};
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public TravelItemVo selectById(String id){
+		return mapper.selectById(id);
+	};
+	/**
+	 * 
+	 * @param itemCode
+	 * @return
+	 */
+	public TravelItemVo queryByItemCode(String itemCode){
+		return mapper.queryByItemCode(itemCode);
+	}
 }

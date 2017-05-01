@@ -36,7 +36,8 @@ public class LevelAreaService extends BaseService<LevelArea>{
 
 	public BasePage<Map<String, String>> pagedQuery(LevelAreaVo vo) {
 			//vo.setGroupField("level1_area,level2_area");
-			vo.setSort("level1_area desc,level2_area desc");
+			vo.setSort("level_area.level1_area desc,level_area.level2_area desc");
+			vo.setOrderDirection(true);
 			List<LevelAreaVo> list = mapper.queryByVoList(vo);
 			int count = mapper.queryByCount(vo);
 			List<Map<String, String>> records = Lists.newArrayList();

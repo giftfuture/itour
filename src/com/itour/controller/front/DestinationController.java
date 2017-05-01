@@ -1,5 +1,6 @@
 package com.itour.controller.front;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -57,12 +58,12 @@ public class DestinationController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/main") 
 	public ModelAndView main(TravelItemVo vo,HttpServletRequest request) throws Exception{
-	 	Map<String,Object>  context = getRootMap();
+	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
-	 	Map<String,List<TravelItem>> sortedItems = Maps.newHashMap();
+	 	Map<String,List<TravelItemVo>> sortedItems = Maps.newHashMap();
 	 	Map<String,String> scopes = Maps.newHashMap();
-	 	List<TravelItem> list = Lists.newArrayList();
-	 	List<TravelItem> sublist = Lists.newArrayList();
+	 	List<TravelItemVo> list = Lists.newArrayList();
+	 	List<TravelItemVo> sublist = Lists.newArrayList();
 	 	Map<String,Integer> tiSizes = Maps.newHashMap();
 	 	for(Areas scope:allScopes){
 			list = travelItemService.queryByScope(scope.getId());
@@ -72,19 +73,19 @@ public class DestinationController extends BaseController{
 				sublist = list;
 			}
 			String ptopath = FilePros.httpitemCoverpath();
-			for(TravelItem ti:sublist){
+			for(TravelItemVo ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
-					String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();
+					String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
 				}
 			}
  			if(StringUtils.isNoneEmpty(scope.getId(),scope.getAreaname()) && sublist != null && sublist.size() >0){	 				
- 				sortedItems.put(scope.getAreaname(), sublist);
- 				tiSizes.put(scope.getAreaname(), list.size());
+ 				sortedItems.put(scope.getPinyin()+"_"+scope.getShortname(), sublist);
+ 				tiSizes.put(scope.getPinyin()+"_"+scope.getShortname(), list.size());		
  				scopes.put(scope.getId(), scope.getAreaname());
  			}
 	 	}
-	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		
+	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
 		//设置页面数据
 		context.put("scopes", scopes); 
 		context.put("items", items);
@@ -101,18 +102,25 @@ public class DestinationController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object>  context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
-	 	Map<String,String> scopes = Maps.newHashMap();
-	 	for(Areas area:allScopes){
-			scopes.put(area.getId(), area.getAreaname());
-	 	}
-	 	List<TravelItem> items = travelItemService.searchTravelItem(new HashMap());		
-		context.put("scopes", scopes); 
+	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
 		context.put("items", items);
+	 	TravelItemVo itemvo = travelItemService.getByAlias(alias);	
+	 	String [] photos = itemvo.getPhotos().split(",");
+	 	String photoPath = FilePros.httptravelitemPhotoPath();
+	 	if(photos!=null && photos.length>0){
+	 		for(String photo:photos){
+	 			photo = photoPath+"/"+itemvo.getItemCode()+"_"+itemvo.getAlias()+"/"+ photo;
+	 		}
+	 	}
+		context.put("scopes", allScopes); 
+		context.put("itemvo", itemvo);
+		context.put("photos", photos);
 		return forward("front/destination/destdetail",context); 
 	}
 	/**
@@ -127,11 +135,11 @@ public class DestinationController extends BaseController{
 	@RequestMapping(value="/moredests/{scope}", method = RequestMethod.GET) 
 	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request) throws Exception{
 	 	Map<String,Object> context = getRootMap();
-	 	List<TravelItem> list = travelItemService.queryByScope(scope);//.queryByScopeAlias(scopeAlias);
+	 	List<TravelItemVo> list = travelItemService.queryByScope(scope);//.queryByScopeAlias(scopeAlias);
 	 	String ptopath = FilePros.itemCoverpath();
-		for(TravelItem ti:list){
+		for(TravelItemVo ti:list){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
-					String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+					String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 					ti.setCover(realCover);
 				}
 			}

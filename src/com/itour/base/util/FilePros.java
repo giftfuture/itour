@@ -51,7 +51,8 @@ public class FilePros   {
 		return rb.getString("upload_path");
 	}
 	/**
-	 * 
+	 * 路线地图
+	 * @param request
 	 * @return
 	 */
 	public static String routeMapPath(){
@@ -127,14 +128,14 @@ public class FilePros   {
 	 * 路线模板封面图
 	 * @return
 	 */
-	public static String rtCoverPath(){
+/*	public static String rtCoverPath(){
 		String rtCover = rb.getString("rtcover_path");
 		return rtCover;
 	}
 	public static String httprtCoverPath(){
 		String rtCover = rb.getString("httprtcover_path");
 		return rtCover;
-	}
+	}*/
 	
 	/**
 	 * 首页链接图片
@@ -167,19 +168,10 @@ public class FilePros   {
 	
 	
 	/**
-	 * 路线地图
-	 * @param request
-	 * @return
-	 */
-	public static String uploadMappath(){
-		String mappath = rb.getString("route_map_path");
-		return mappath ;
-	}
-	/**
 	 * 路线封面图片
 	 * @return
 	 */
-	public static String uploadCoverpath(){
+	public static String routeCoverpath(){
 		String routepath = rb.getString("route_cover_path");
 		return routepath;
 	}

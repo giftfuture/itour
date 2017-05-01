@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
-import com.itour.entity.TravelItem;
+import com.itour.base.page.BasePage;
+import com.itour.vo.TravelItemVo;
 /**
  * 
  * <br>
@@ -23,13 +24,13 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @param map
 	 * @return
 	 */
-	List<TravelItem> searchTravelItem(Map map);
+	List<TravelItemVo> searchTravelItem(Map map);
 	/**
 	 * 
 	 * @param style
 	 * @return
 	 */
-	List<TravelItem> queryByStyle(@Param(value="travelStyle")String travelStyle);
+	List<TravelItemVo> queryByStyle(@Param(value="travelStyle")String travelStyle);
 	/**
 	 * 
 	 * @param scopeAlias
@@ -42,26 +43,26 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @param scope
 	 * @return
 	 */
-	List<TravelItem> queryByScope(@Param(value="scope")String scope);
+	List<TravelItemVo> queryByScope(@Param(value="scope")String scope);
 	/**
 	 * 
 	 * @param ids
 	 * @return
 	 */
-	List<TravelItem> queryByIds(List<String> ids);
+	List<TravelItemVo> queryByIds(List<String> ids);
 	
 	/**
 	 * 
 	 * @param alias
 	 * @return
 	 */
-	List<TravelItem> queryByAlias(List<String> alias);
+	List<TravelItemVo> queryByAlias(List<String> alias);
 	/**
 	 * 
 	 * @param item
 	 * @return
 	 */
-	TravelItem getByAlias(@Param(value="alias")String alias);
+	TravelItemVo getByAlias(@Param(value="alias")String alias);
 	
 	/**
 	 * 加载所有地区，省份 List<Map<String, String>>
@@ -76,11 +77,31 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	};*/
 	/*   */
 	@MapKey("alias")
-	public List<HashMap<String,String>> allItems();
+	List<HashMap<String,String>> allItems();
 	/**
 	 * 
 	 * @param tsIds
 	 * @return
 	 */
-	public String travelItems(List<String> tsIds);
+	String travelItems(List<String> tsIds);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	List<TravelItemVo> queryByListVo(BasePage vo);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+    TravelItemVo selectById(@Param(value="id")String id);
+    
+    /**
+     * 
+     * @param itemCode
+     * @return
+     */
+    TravelItemVo queryByItemCode(@Param(value="itemCode")String itemCode);
 }

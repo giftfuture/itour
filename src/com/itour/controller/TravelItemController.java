@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,7 @@ import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
+import com.itour.convert.TravelItemKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
@@ -148,23 +150,23 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(TravelItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelItemVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String id = "";
 		TravelItem ti = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
 			entity.setCreateBy(sessionuser.getId());
 			entity.setUpdateBy(sessionuser.getId());
-			id = travelItemService.add(entity);
+			id = travelItemService.add(TravelItemKit.toBean(entity));
 		}else{
 				ti = travelItemService.queryById(entity.getId());
 			if(ti == null){
 				entity.setCreateBy(sessionuser.getId());
 				entity.setUpdateBy(sessionuser.getId());
-				id = travelItemService.add(entity);
+				id = travelItemService.add(TravelItemKit.toBean(entity));
 			}else{
 				entity.setUpdateBy(sessionuser.getId());
-				travelItemService.update(entity);
+				travelItemService.update(TravelItemKit.toBean(entity));
 			}
 		}
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的save方法");
@@ -405,7 +407,7 @@ public class TravelItemController extends BaseController{
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		TravelItem entity  = travelItemService.queryById(id);
+		TravelItemVo entity  = travelItemService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
@@ -470,8 +472,8 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryByStyle", method = RequestMethod.GET)
-	public List<TravelItem> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletRequest request,HttpServletResponse response)throws Exception{
-		List<TravelItem> travelItems = travelItemService.queryByStyle(travelStyle);
+	public List<TravelItemVo> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletRequest request,HttpServletResponse response)throws Exception{
+		List<TravelItemVo> travelItems = travelItemService.queryByStyle(travelStyle);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByStyle方法");
 		return travelItems ;

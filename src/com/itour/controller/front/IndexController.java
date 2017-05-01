@@ -1,6 +1,5 @@
 package com.itour.controller.front;
 
-import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +41,7 @@ import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
 import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.ShowHappyVo;
+import com.itour.vo.TravelItemVo;
 
 @Controller
 public class IndexController extends BaseController {
@@ -76,9 +76,9 @@ public class IndexController extends BaseController {
 		Map<String,String> params = Maps.newHashMap();
 		params.put("hot","1");
 		String tsCoverPath = FilePros.httptsCoverPath();
-		List<TravelItem> hots = travelItemService.searchTravelItem(map);
+		List<TravelItemVo> hots = travelItemService.searchTravelItem(map);
 		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
-		for(TravelItem ti:hots){			
+		for(TravelItemVo ti:hots){			
 			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
 			if(vos != null && vos.size() >= Constants.hotview){
 				hotrtVos.addAll(vos);
@@ -135,9 +135,9 @@ public class IndexController extends BaseController {
 		Map<String,Object> map = getRootMap();
 		Map<String,String> params = Maps.newHashMap();
 		params.put("hot","1");
-		List<TravelItem> hots = travelItemService.searchTravelItem(map);
+		List<TravelItemVo> hots = travelItemService.searchTravelItem(map);
 		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
-		for(TravelItem ti:hots){			
+		for(TravelItemVo ti:hots){			
 			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
 			if(vos != null && vos.size() >= Constants.hotview){
 				hotrtVos.addAll(vos);
@@ -256,9 +256,9 @@ public class IndexController extends BaseController {
 		 	map.put("showhappy", shpage.getRecords().get(0));
 		};
 	 	shparams.put("hot","1");
-		List<TravelItem> hots = travelItemService.searchTravelItem(shparams);
+		List<TravelItemVo> hots = travelItemService.searchTravelItem(shparams);
 		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
-		for(TravelItem ti:hots){			
+		for(TravelItemVo ti:hots){			
 			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
 			if(vos != null && vos.size() >= Constants.hotview){
 				hotrtVos.addAll(vos);

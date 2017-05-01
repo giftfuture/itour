@@ -24,7 +24,7 @@ public class AdLinkVo extends BasePage implements Serializable {
 	private static final long serialVersionUID = 4066569417430193321L;
 	private String id;
 	private String advertise;
-	private String link;
+	private String adlink;
 	private String title;
 	private boolean valid;
 	private String remark;
@@ -87,12 +87,11 @@ public class AdLinkVo extends BasePage implements Serializable {
 	public void setAdvertise(String advertise) {
 		this.advertise = advertise;
 	}
-	public String getLink() {
-		return link;
+	public String getAdlink() {
+		return adlink;
 	}
-	public void setLink(String link) {
-		this.link = link;
+	public void setAdlink(String adlink) {
+		this.adlink = adlink;
 	}
-	
 
 }

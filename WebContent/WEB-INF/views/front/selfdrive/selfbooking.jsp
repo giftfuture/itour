@@ -294,13 +294,13 @@
         </tr> -->
     <tr> 
         <td> <div align="right"><strong>验证码：</strong></div></td>
-        <td  style="text-align:left">验证码 <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="验证码" data-options="required:true" nullmsg="请输入验证码!"/>
+        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="验证码" data-options="required:true" nullmsg="请输入验证码!"/>
           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itour.trekselfbooking.changeValidateCode()">
           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.trekselfbooking.changeValidateCode()">看不清，换一张</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->
       </tr>
       <tr> 
-        <td colspan=2><a class="easyui-linkbutton" iconcls="icon-search" name="check_formbtn">快速预定</a></td>
+           <td style="text-align:center"><a class="easyui-linkbutton" iconcls="icon-search" name="check_formbtn">快速预定</a></td><td></td>
       </tr>
       </table></td>
     <td width="10" background="images/default/shadowright.gif">

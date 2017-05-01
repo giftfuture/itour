@@ -169,12 +169,12 @@ itour.adLink = function(){
 							}
 						}
 					},
-					{field:'link',title:'链接地址',align:'left',sortable:true,width:'400',
+					{field:'adlink',title:'链接地址',align:'left',sortable:true,width:'400',
 							formatter:function(value,row,index){
-								if((row.link+"").length>80){
-									return '<a title="'+row.link+'">'+(row.link+"").substring(0,80)+'....</a>';
+								if((row.adlink+"").length>80){
+									return '<a title="'+row.adlink+'">'+(row.adlink+"").substring(0,80)+'....</a>';
 								}else{									
-									return '<a title="'+row.link+'">'+row.link+'</a>';
+									return '<a title="'+row.adlink+'">'+row.adlink+'</a>';
 								}
 							}
 						},

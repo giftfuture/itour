@@ -36,6 +36,14 @@ var YDataGrid = function(config){
 				if(Win.edit.find("#larouteTemplates")){
 					Win.edit.find("#larouteTemplates").show();
 					Win.edit.find("#larttitle").hide();
+					Win.edit.find("#devideTicketdiv").show();
+					Win.edit.find("#fullyearTicketdiv").hide();
+					Win.edit.find("input[name='ticketprices']").each(function(){
+						this.value="";
+					});
+					Win.edit.find("input[name='tickets']").each(function(){
+						this.value="";
+					});
 				}
 				Win.edit.show();
 				Win.edit.dialog('open');
@@ -53,6 +61,8 @@ var YDataGrid = function(config){
 				if(Win.edit.find("#larttitle")){
 					Win.edit.find("#larouteTemplates").hide();
 					Win.edit.find("#larttitle").show();
+					Win.edit.find("#devideTicketdiv").show();
+					Win.edit.find("#fullyearTicketdiv").hide();
 				}
 				Win.edit.show();
 				var record = Utils.getCheckedRows();
@@ -196,6 +206,37 @@ var YDataGrid = function(config){
 						      ",fileName: " + e.fileName + 
 						      ",stack: " + e.stack);
 				}
+				var tickets= $("input[name='tickets']");
+				var ticketprices = $("input[name='ticketprices']");
+					if(tickets.length>0 && ticketprices.length>0){
+						var fullyearTicket = !$("input:radio[name='isfullyearTicket']:checked").val()||$("input:radio[name='isfullyearTicket']:checked").val()=="区分淡旺季";
+						var ticketsBlock = "";
+						if(fullyearTicket){
+							ticketsBlock += "淡季："
+							$(ticketprices).each(function(i,e){
+								if(i>=4){
+									if(i==8){ ticketsBlock += "旺季："};
+									if(tickets[i].value && ticketprices[i].value){
+										ticketsBlock+="门票："+tickets[i].value+"  价格:"+ticketprices[i].value+"、";
+									}
+								}
+							});
+						}else{
+							$(ticketprices).each(function(i,e){
+								if(i<4){
+									if(tickets[i].value && ticketprices[i].value){
+										ticketsBlock+="门票："+tickets[i].value+"  价格:"+ticketprices[i].value+"、";
+									}
+								}
+							})
+						}
+						//console.log(ticketsBlock+"    "+fullyearTicket+"  "+$("input:radio[name='isfullyearTicket']:checked").val());
+						Form.edit[0].ticketsBlock.value=ticketsBlock;
+						Form.edit[0].fullyearTicket.value=fullyearTicket;
+						//Form.edit.attr("ticketsBlock",ticketsBlock);
+						//Form.edit.attr("fullyearTicket",fullyearTicket);
+					} 
+					//console.log(Form.edit.serializeJSON());
 					itour.saveForm(Form.edit,function(data){
 						itour.closeProgress();
 						Win.edit.dialog('close');

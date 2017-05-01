@@ -14,7 +14,7 @@
 			<label class="ui-label">链接名称:</label>
 			<input name="title" class="easyui-textbox" data-options="width:300"/>
 			&nbsp;&nbsp;<label class="ui-label">链接地址:</label>
-			<input name="link" class="easyui-textbox" data-options="width:300"/>
+			<input name="adlink" class="easyui-textbox" data-options="width:300"/>
 			&nbsp;&nbsp;<label class="ui-label">图片名称:</label>
 			<input name="advertise" class="easyui-textbox" data-options="width:300"/>
 			&nbsp;&nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a></p>
@@ -55,11 +55,11 @@
      		 <div class="ui-edit">
 		     	   <!-- <div class="ftitle">首页链接</div> -->
 					<div class="fitem">
-						<label>链接名称:</label><input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="width:300" missingMessage="请填写项目名称">
+						<label>链接名称:</label><input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="width:300,missingMessage:'请填写项目名称'" >
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
-						<label>链接地址:</label><input name="link" type="text" maxlength="255" class="easyui-textbox" data-options="width:300" missingMessage="请填写scope">
+						<label>链接地址:</label><input name="adlink" type="text" maxlength="255" class="easyui-textbox" data-options="width:300" missingMessage="请填写scope">
 					</div>
 				<!-- 	<div class="fitem">
 						<label>链接图片:</label><input name="advertise" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>

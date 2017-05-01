@@ -22,11 +22,9 @@
 html {
 	background-image: none;
 }
-
 label.iPhoneCheckLabelOn span {
 	padding-left: 0px
 }
-
 #versionBar {
 	background-color: #212121;
 	position: fixed;

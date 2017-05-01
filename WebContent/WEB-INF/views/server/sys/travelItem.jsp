@@ -15,13 +15,21 @@
 			<input name="itemCode" class="easyui-textbox" style="width:110px;"/>&nbsp;&nbsp;
 			<label class="ui-label">景点名称:</label>
 			<input name="item" class="easyui-textbox" style="width:108px;"/>&nbsp;&nbsp;
-			<label class="ui-label">是否热门:</label>
+			<!-- <label class="ui-label">是否热门:</label>
 			<select name="hot" class="easyui-combobox" style="width:108px;">
 				<option value="0">否</option>
 			 	<option value="1">是</option>
-			 </select>&nbsp;&nbsp;
+			 </select> -->
+			 <label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:131,height:20,editable:false">
+			<option value="">--请选择--</option>
+			<option value="5">五星</option>
+			<option value="4">四星</option>
+			<option value="3">三星</option>
+			<option value="2">两星</option>
+			<option value="1">一星</option>
+			</select>&nbsp;&nbsp;
 			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
-			<select name="elevation" class="easyui-combobox" style="width:100px;">
+			<select name="elevation" class="easyui-combobox" data-options="width:131,editable:false">
 				<option value="">--请选择--</option>
 				<option value="1">100米以下</option>
 				<option value="2">500米以下</option>
@@ -46,7 +54,7 @@
 			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>&nbsp;&nbsp;
 			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>&nbsp;&nbsp;
 			<label class="ui-label">里&nbsp;&nbsp;程:</label>&nbsp;&nbsp;
-			<select name="mileage" class="easyui-combobox" style="width:100px;">
+			<select name="mileage" class="easyui-combobox"  data-options="width:131,editable:false">
 				<option value="">--请选择--</option>
 				<option value="1">5公里以内</option>
 				<option value="2">20公里以内</option>
@@ -126,9 +134,42 @@
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
 					</div>	
-						
 					<div class="fitem">
-						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
+					<label class="ui-label">热门度:</label>
+						<select name="starLevel" class="easyui-combobox"  data-options="width:131,height:20,editable:false">
+							<option value="">--请选择--</option>
+							<option value="5">五星</option>
+							<option value="4">四星</option>
+							<option value="3">三星</option>
+							<option value="2">两星</option>
+							<option value="1">一星</option>
+						</select>	
+					</div>
+					<div class="fitem">
+						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',editable:false" missingMessage="请填写elevation">
+					</div>
+				  	<div class="fitem">
+						<label id="rankLabel">推荐指数:</label>
+					</div>  
+					<div class="fitem"><input type="hidden" name="ticketsBlock" /><input type="hidden" name="fullyearTicket" />
+					<label id="rankLabel">门票信息: </label><span><input type="radio" name="isfullyearTicket" value="全年票价不变">全年票价不变 
+						<input type="radio" name="isfullyearTicket" value="区分淡旺季" >区分淡旺季</span>
+						<div id="fullyearTicketdiv"><table><tr><td colspan=2>全年门票信息</td></tr><tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr></table></div>
+						<div id="devideTicketdiv"><table><tr><td colspan=2>淡季门票信息</td><td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" placeholder="门票" data-options="message:'门票价格'" name="tickets"/></td><td><input type="text" class="easyui-numberbox"  title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr></table>
+						<table><tr><td colspan=2>旺季门票信息</td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr></table></div>
+						<div></div>
 					</div>
 <!-- 					<div class="fitem">
 						<label>里&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
@@ -136,9 +177,6 @@
 					<div class="fitem">
 						<label>具体介绍:</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:205,height:130" missingMessage="请填写具体介绍"></textarea>
 					</div> 
-				  	<div class="fitem">
-						<label id="rankLabel">推荐指数:</label>
-						</div>  
 <!-- 					<div class="fitem">
 						<label>推荐原因:</label><input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
 					</div>

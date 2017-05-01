@@ -240,7 +240,7 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(TravelStyle entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelStyle entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	Map<String,Object>  context = new HashMap<String,Object>();
 		entity.setValid(true);
 		SysUser sessionuser = SessionUtils.getUser(request);

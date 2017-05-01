@@ -217,7 +217,7 @@ itour.travelItem = function(){
 								}
 							}
 						},
-						{field:'hot',title:'是否热门',align:'center',sortable:true,
+					/*	{field:'hot',title:'是否热门',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if(row.hot){
 									return "是";
@@ -225,8 +225,23 @@ itour.travelItem = function(){
 									return "否";
 								}
 							}
+						},*/
+						{field:'starLevel',title:'星级',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								if(parseInt(row.starLevel)==5){
+									return "五星";
+								}else if(parseInt(row.starLevel)==4){
+									return "四星";
+								}else if(parseInt(row.starLevel)==3){
+									return "三星";
+								}else if(parseInt(row.starLevel)==2){
+									return "二星";
+								}else if(parseInt(row.starLevel)==1){									
+									return "一星";
+								}
+							}
 						},
-					{field:'elevation',title:'海拔',align:'center',sortable:true,
+					{field:'elevation',title:'海拔(千米)',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.elevation+"").length>30){
 									return (row.elevation+"").substring(0,30)+"....";
@@ -253,7 +268,7 @@ itour.travelItem = function(){
 								}
 							}
 					},
-					{field:'mileage',title:'里程',align:'center',sortable:true,
+					{field:'mileage',title:'里程(公里)',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.mileage+"").length>30){
 									return (row.mileage+"").substring(0,30)+"....";
@@ -262,15 +277,30 @@ itour.travelItem = function(){
 								}
 							}
 						},
-					{field:'scope',title:'所属区域',align:'center',sortable:true,
+					{field:'areaname',title:'所属区域',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if((row.scope+"").length>30){
-									return (row.scope+"").substring(0,30)+"....";
-								}else{									
-									return row.scope;
-								}
+								return row.areaname;
 							}
-						},
+					},
+					{field:'ticketsBlock',title:'门票信息',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							var ticketsBlock = $(row.ticketsBlock).text();
+							if((ticketsBlock+"").length>30){
+								return (ticketsBlock+"").substring(0,30)+"....";
+							}else{									
+								return ticketsBlock;
+							}
+						}
+					},
+					{field:'fullyearTicket',title:'全年门票不变',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if(row.fullyearTicket){
+								return "是"	;
+							}else{
+								return "否";
+							}
+						}
+					},
 					{field:'shortContent',title:'简短介绍',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if((row.shortContent+"").length>30){
@@ -446,10 +476,53 @@ itour.travelItem = function(){
 					_this.delAllLine(false);
 				});
 			});
-			
+			$("input:radio[name='isfullyearTicket']").get(1).checked=true;  
+		/*	$("input:radio[name='fullyearTicket']").each(function(i,e) {   
+				//console.log(this.value+(this.value == '区分淡旺季'));
+                if (this.value == '区分淡旺季'){   
+                  this.checked=true; 
+                }       
+             });  */ 
+			$("input:radio[name='isfullyearTicket']").change(function(){//[type='radio']
+				//console.log(111111111111);
+			//$("#fullradiodiv :radio").change(function(){
+				var $selectedvalue = $("input:radio[name='isfullyearTicket']:checked").val();
+				if ($selectedvalue == '全年票价不变') {
+					$("#devideTicketdiv").find("input[name='ticketprices']").each(function(){
+						this.value="";
+					});
+					$("#devideTicketdiv").find("input[name='tickets']").each(function(){
+						this.value="";
+					});
+					$("#devideTicketdiv").hide();
+					$("#fullyearTicketdiv").show();
+				}
+				if ($selectedvalue == '区分淡旺季') {
+					$("#fullyearTicketdiv").find("input[name='ticketprices']").each(function(){
+						this.value="";
+					});
+					$("#fullyearTicketdiv").find("input[name='tickets']").each(function(){
+						this.value="";
+					});
+					$("#fullyearTicketdiv").hide();
+					$("#devideTicketdiv").show();
+				}
+			});
+			$("input[name='tickets']").on('click',function(){
+				if(this.value=='门票'){this.value='';this.className='black';};
+			})
+			$("input[name='tickets']").on('blur',function(){
+				if(this.value=='') {this.value='门票';this.className='gray';};
+			})
+			$("input[name='ticketprices']").on('click',function(){
+				if(this.value=='门票价格'){this.value='';this.className='black';};
+			})
+			$("input[name='ticketprices']").on('blur',function(){
+				if(this.value=='') {this.value='门票价格';this.className='gray';};
+			});
 		},
 		writeSelect:function(){
-			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-combobox" style="width:111px;" data-options="" missingMessage="请填写recommandCrowd">'+
+			var result='<select name="recommandCrowd" type="text" maxlength="255" class="easyui-combobox"  data-options="width:131,editable:false" missingMessage="请填写recommandCrowd">'+
 			'<option value="">--请选择--</option>'+  
 			'<option value="亲子游">亲子游</option> '+ 
 			'<option value="情侣双人游">情侣双人游</option>'+ 
@@ -464,7 +537,7 @@ itour.travelItem = function(){
 			//document.getElementById("rucrowd").innerHTML= result;
 		},
 		writeRank:function(){
-			var rankSelect ='<select name="rank" class="easyui-combobox" style="width:110px;">'+
+			var rankSelect ='<select name="rank" class="easyui-combobox"  data-options="width:131,editable:false">'+
 			'<option value="">--请选择--</option>'+
 			'<option value="5">极力推荐</option>'+
 			'<option value="4">强烈推荐</option>'+
@@ -476,7 +549,7 @@ itour.travelItem = function(){
 			$("#SelectrankLabel").after(rankSelect);
 		},
 		difficultyRate:function(){
-			var difficultyRateSelect = '<select name="difficultyRate" type="text" maxlength="" class="easyui-combobox" data-options="" missingMessage="请填写difficultyRate">'+
+			var difficultyRateSelect = '<select name="difficultyRate" type="text" maxlength="" class="easyui-combobox"  data-options="width:131,editable:false" missingMessage="请填写difficultyRate">'+
 						'<option value="">--请选择--</option>'+
 						'<option value="1">一般难度</option>'+
 						'<option value="2">略有挑战</option>'+
@@ -487,7 +560,7 @@ itour.travelItem = function(){
 			$("#difficultyRateLabel").parent().append(difficultyRateSelect);
 		},
 		happyValue:function(){
-			var happySelect='<select name="happyValue" type="text" maxlength="" class="easyui-combobox" data-options="" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>';
+			var happySelect='<select name="happyValue" type="text" maxlength="" class="easyui-combobox"  data-options="width:131,editable:false" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>';
 			$("#happyLabel").parent().append(happySelect);
 		},
 		params:{

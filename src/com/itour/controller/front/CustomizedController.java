@@ -39,6 +39,7 @@ import com.itour.util.Constants;
 import com.itour.vo.CustomerVo;
 import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.TravelItemVo;
 
 @Controller
 @RequestMapping("/customized") 
@@ -76,8 +77,8 @@ public class CustomizedController  extends BaseController{
 		for(RouteTemplateVo rt:rtvos){
 			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 			List<String> itids = Arrays.asList(itemIds.split(","));
-			List<TravelItem> items = travelItemService.queryByIds(itids);
-			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getAlias()+"/"+items.get(0).getCover():"")));
+			List<TravelItemVo> items = travelItemService.queryByIds(itids);
+			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():""));
 		}
 		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
 		map.clear();
@@ -107,13 +108,13 @@ public class CustomizedController  extends BaseController{
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -139,20 +140,20 @@ public class CustomizedController  extends BaseController{
         }
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
-				String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(realCover);
 			}
 			String photos = ti.getPhotos();
 			if(StringUtils.isNotEmpty(photos)){
 				List<String> array = Arrays.asList(photos.split("\\|"));
 				for(String name:array){
-					String realname = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
+					String realname = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
 					photoList.add(realname);
 				}
 			}
@@ -176,13 +177,13 @@ public class CustomizedController  extends BaseController{
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -197,12 +198,12 @@ public class CustomizedController  extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}

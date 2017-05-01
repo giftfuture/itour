@@ -38,6 +38,7 @@ public class BasePage<T> implements Serializable{
 	/** 当前页脚数据 */
 	private List<T> footer;
 	
+	private boolean orderDirection;
 	
 	/** 查询参数 */
 	private Mapx filters = Mapxs.newMapx();
@@ -55,6 +56,7 @@ public class BasePage<T> implements Serializable{
 		if(StringUtils.isNotEmpty(sort)){
 			orderField = sort;
 		}
+		pager.setOrderDirection(this.orderDirection);
 		if(StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)){
 			orderField +=" "+ order;		
 		}
@@ -197,6 +199,14 @@ public class BasePage<T> implements Serializable{
 
 		public void setGroupField(String groupField) {
 			this.groupField = groupField;
+		}
+
+		public boolean isOrderDirection() {
+			return orderDirection;
+		}
+
+		public void setOrderDirection(boolean orderDirection) {
+			this.orderDirection = orderDirection;
 		}
 	
 }

@@ -59,6 +59,7 @@ import com.itour.service.TravelStyleService;
 import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.ShowHappyVo;
+import com.itour.vo.TravelItemVo;
  
 /**
  * 
@@ -207,7 +208,7 @@ public class RouteTemplateController extends BaseController{
 	public @ResponseBody String uploadPhotos(@RequestParam(value="id")String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 		HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object> context = getRootMap();
-		String rtCoverPath = FilePros.rtCoverPath();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			RouteTemplate rt = routeTemplateService.queryById(id);
@@ -215,7 +216,7 @@ public class RouteTemplateController extends BaseController{
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
-				String path = rtCoverPath+File.separatorChar+vo.getRouteCode()+"_"+vo.getAlias();
+				String path = rtCoverPath+"/"+vo.getRouteCode()+"_"+vo.getAlias();
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
@@ -233,7 +234,7 @@ public class RouteTemplateController extends BaseController{
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(path+File.separatorChar+picName );
+				            uploadpic = new File(path+"/"+picName );
 				            System.out.println("路线ID="+id+"上传封面图片是" + picName);  
 				            out = new FileOutputStream(uploadpic);  
 				            out.write(f.getBytes());  
@@ -401,7 +402,7 @@ public class RouteTemplateController extends BaseController{
 				List<String> tis = Lists.newArrayList();
 				List<String> alias = Arrays.asList(vo.getTravelItems().split(","));
 				for(String a:alias){					
-					TravelItem ti = travelItemService.getByAlias(a);
+					TravelItemVo ti = travelItemService.getByAlias(a);
 					tis.add(ti!=null?ti.getId():"");
 				}
 				vo.setTravelItems(Joiner.on(",").join(tis));

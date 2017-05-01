@@ -53,26 +53,17 @@ import com.itour.vo.RouteTemplateVo;
 public class SelfdriveController  extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	@Autowired
-	private DataGridAdapter dataGridAdapter;
 	// Servrice start
 	@Autowired  
 	private RouteTemplateService routeTemplateService; 
 	@Autowired
 	private TravelItemService travelItemService;
-	@Autowired
-	private LogSettingService logSettingService;
 	@Autowired 
 	private TravelStyleService travelStyleService;
 	@Autowired
 	private QuoteFormService quoteFormService;
-	@Autowired
-	private FreeMarkerConfig freeMarkerConfig;
-	@Autowired
-	private LogSettingDetailService logSettingDetailService;
-	@Autowired
-	private LogOperationService logOperationService;
-	
+	//@Autowired
+	//private FreeMarkerConfig freeMarkerConfig;
 	@RequestMapping("/main") 
 	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 			Map<String,Object> map = getRootMap();
@@ -115,13 +106,13 @@ public class SelfdriveController  extends BaseController{
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -154,14 +145,14 @@ public class SelfdriveController  extends BaseController{
 		for(TravelItem ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
-				String realCover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(realCover);
 			}
 			String photos = ti.getPhotos();
 			if(StringUtils.isNotEmpty(photos)){
 				List<String> array = Arrays.asList(photos.split("\\|"));
 				for(String name:array){
-					String realname = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
+					String realname = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
 					photoList.add(realname);
 				}
 			}
@@ -198,13 +189,13 @@ public class SelfdriveController  extends BaseController{
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -224,7 +215,7 @@ public class SelfdriveController  extends BaseController{
 		for(TravelItem ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}
@@ -246,13 +237,13 @@ public class SelfdriveController  extends BaseController{
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
 		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
-		String mappath = FilePros.uploadMappath();
-		String coverpath = FilePros.uploadCoverpath();
+		String mappath = FilePros.httprouteMapPath();
+		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+rt.getCover());
+			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -272,7 +263,7 @@ public class SelfdriveController  extends BaseController{
 		for(TravelItem ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
-				String cover = ptopath +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(cover);
 			}
 		}

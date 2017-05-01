@@ -26,17 +26,16 @@
 </script>
 </head>
 <body>
- <%@include file="/front/header.jsp"  %>
+<%@include file="/front/header.jsp"  %> 
 <table class="commontb" align="center">
   <tr>
     <td class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
-</table>
-<table  class="commontb" align="center">
   <tr>
-    <td width="624"><table class="commontb" align="center">
+    <td width="624">
+    <table>
       <tr>
-        <td width="600"><img src="${basePath}images/Route001.jpg"/></td>
+        <td width="600"><img src="${basePath}images/Route001.jpg" style="border:none;" border="0px" height="900" width="900"/></td>
       </tr>
       <tr>
         <td height="69">
@@ -47,12 +46,13 @@
 <DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 <DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
-<div class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></A> 
+<div class=box><A class="imgBorder" target="_blank">
+<img height=84 alt="landscape" src="${basePath }${photo}" width="124" border="0" /></A> 
 </div>
 </c:forEach>
 <!-- 图片列表 end --></DIV>
 <DIV class=RightBotton id=RightArr><img src="${basePath}images/arrow01-2.gif" width="20" height="40" /></DIV></DIV>
-<SCRIPT language=javascript type=text/javascript>
+<SCRIPT language="javascript" type="text/javascript">
 		<!--//--><![CDATA[//><!--
 		var scrollPic_02 = new ScrollPic();
 		scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
@@ -70,45 +70,44 @@
 </DIV>
 <!--滚动图片 end-->
 </div>
-        
      </td></tr></table></td>
     <td width="476" valign="top"><div align="center"><span class="STYLE2">这条线路适合我吗？</span>
     </div>
-      <table  class="commontb" align="center">
+      <table >
         <tr>
-          <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>类型</strong></div></td>
           <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
+          <td width="70" class="STYLE126"><div align="left"><strong>线路编号</strong></div></td>
           <td width="350" class="STYLE126">${rt.routeCode}</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>旅行天数</strong></div></td>
           <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>最高海拔</strong></div></td>
           <td class="STYLE126">${rt.mileage}米</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>起始地</strong></div></td>
           <td class="STYLE126">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>完成地</strong></div></td>
           <td class="STYLE126">${rt.arrive }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>路线</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>路线</strong></div></td>
           <td class="STYLE126">${rt.routeLine }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>交通方式</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>交通方式</strong></div></td>
           <td class="STYLE126">${rt.transportation }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>徒步难度</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>徒步难度</strong></div></td>
           <td class="STYLE126">
           <c:forEach items="${rt.diffRate}" var="dr">
           	 <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
@@ -119,18 +118,18 @@
            <a href="javascript:void(0)" title="深色鞋子标识徒步难度等级">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>徒步距离 </strong></div></td>
           <td class="STYLE126">${rt.trekDistance }km</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
+          <td class="STYLE126"><div align="left"><strong>山峰类型</strong></div></td>
           <td class="STYLE126">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />
     注：每个团的需求都不同，可根据您的假期重新调整设计行程。</span><br />
     <br />
-    <table  class="commontb" align="center" class="f12-gao1">
+    <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>

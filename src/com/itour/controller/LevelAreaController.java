@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +41,7 @@ import com.itour.service.LogSettingService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.vo.LevelAreaVo;
-import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.TravelItemVo;
 @Controller
 @RequestMapping("/levelarea") 
 public class LevelAreaController extends BaseController {
@@ -138,7 +139,7 @@ public class LevelAreaController extends BaseController {
 			entity.setLevel2Area(entity.getNewlevel2Area());
 		}		
 		if(StringUtils.isNotEmpty(entity.getItem())){
-			TravelItem ti = travelItemService.getByAlias(entity.getItem());
+			TravelItemVo ti = travelItemService.getByAlias(entity.getItem());
 			entity.setTravelItem(ti==null?"":ti.getId());
 		}
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){

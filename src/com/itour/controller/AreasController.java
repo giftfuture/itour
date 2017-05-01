@@ -37,7 +37,7 @@ public class AreasController extends BaseController {
 	public List<Areas> allAreas(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();
 		List<Areas> allAreas = Lists.newArrayList();
-		allAreas.add(new Areas("","请选择"));
+		allAreas.add(new Areas("","--请选择--"));
 		allAreas.addAll(areasService.allAreas());
 		//root.put("allAreas", allAreas);
 		//String result = JsonUtils.encode(root);

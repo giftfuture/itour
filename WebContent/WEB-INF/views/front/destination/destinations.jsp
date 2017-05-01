@@ -29,7 +29,6 @@
 <table class="commontb" align="center">
   <tr style="height:500px">
     <td width="275" valign="top">
-    <div align="center">
       <table width="275" border="0" cellspacing="0" cellpadding="5">
           <tr>
             <td height="30" bgcolor="#990000"><div align="center" class="STYLE6">旅遊目的地</div></td>
@@ -42,13 +41,13 @@
 						<a href="javascript:void(0)"><em class="ico ico${status.index + 1}"></em><c:out value="${scope.value}"></c:out><i class="down"></i></a>
 						<ul class="level2">
 							<c:forEach items="${items}" var="item">
-								<c:if test="${scope.key==item.scopeAlias }">
+								<c:if test="${scope.key==item.scope }">
 									<li><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>
 								</c:if>
 							</c:forEach>
 						</ul>
 					</li>
-					</c:forEach>
+				</c:forEach>
 				</ul>
 			</div>
 			</td>
@@ -59,10 +58,10 @@
        		<c:forEach var="sortitem" items="${sortedItems}" varStatus="">
 	        <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
 		      <tr>
-		        <td width="648"><span class="STYLE5"><c:out value="${sortitem.key }"></c:out></span></td>
+		        <td width="648" style="text-align:left"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
 		        <td width="432"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
 		        <c:if test="${fn:length(sortitem.value)>= maxd}">
-		         | <a href="${basePath}destination/moredests/${sortitem.key}">显示更多</a>
+		         | <a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">显示更多</a>
 		         </c:if>
 		        </div></td>
 		      </tr>
@@ -71,7 +70,7 @@
 		      <tr>
 			     <c:forEach items="${sortitem.value}" var="ti">
 			      	<td>
-			      		<c:out value="${ti.item}"></c:out><img alt="" src="${basePath }${ti.cover}">
+			      		<a href="${basePath }destination/detail/${ti.alias}"><c:out value="${ti.item}"></c:out><img alt="" src="${basePath }${ti.cover}"/></a>
 			      	</td>
 		         </c:forEach>
 		      </tr>
@@ -79,6 +78,7 @@
 		  </c:forEach>
         </td>
         </tr>
+
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
  <%@include file="/front/footer.jsp"  %>  

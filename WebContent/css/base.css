@@ -31,6 +31,12 @@ a{text-decoration: none;color:#2786D6;}
   font-family: "微软雅黑";
   border:0;
 } 
+.black {
+color:#000;
+}
+.gray {
+color:#b3b3b3;
+}
 body {
 	margin-left: 0px;
 	margin-top: 0px;

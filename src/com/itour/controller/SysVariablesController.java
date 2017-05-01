@@ -106,7 +106,7 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(SysVariables entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(SysVariables entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		String id = "";
 		SysUser sessionuser = SessionUtils.getUser(request);
