@@ -27,6 +27,7 @@
 </script>
 </head>
 <body>
+<center>
  <%@include file="/front/header.jsp"  %>
 <table  class="commontb" align="center">
   <tr>
@@ -391,6 +392,7 @@
   </div>
 <script type="text/javascript" src="${basePath}js/ux/front/hotsight/detail.js"></script>
 <%@include file="/front/footer.jsp" %>
+</center>
 </body>
 </html>
 

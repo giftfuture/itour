@@ -37,7 +37,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param travelItems
 	 * @return
 	 */
-	List<RouteTemplate> queryByItems(@Param(value="travelItems")String travelItems);
+	List<RouteTemplateVo> queryByItems(@Param(value="travelItems")String travelItems);
 	/**
 	 * 
 	 * @param alias
@@ -87,7 +87,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * 
 	 * @param vo
 	 */
-	void uploadCover(RouteTemplate vo);
+	 void uploadCover(RouteTemplate vo);
 	
 	/**
 	 * 
@@ -101,6 +101,19 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 */
 	void updateQuotoForm(RouteTemplate vo);
 	
+	/**
+	 * 
+	 * @param page
+	 * @return
+	 */
+	List<RouteTemplateVo> pageQueryByItems(BasePage page);
+	
+	/**
+	 * 
+	 * @param page
+	 * @return
+	 */
+	int countQueryByItems(BasePage page);
 	//RouteTemplate queryByRouteCode(@Param(value="routeCode")String routeCode);
 	
 }

@@ -28,10 +28,10 @@
 <br />
 <table class="commontb" align="center">
   <tr style="height:500px">
-    <td width="275" valign="top">
-      <table width="275" border="0" cellspacing="0" cellpadding="5">
+    <td width="197" valign="top">
+      <table width="197" border="0" cellspacing="0" cellpadding="5">
           <tr>
-            <td height="30" bgcolor="#990000"><div align="center" class="STYLE6">旅遊目的地</div></td>
+            <td height="30" bgcolor="#990000"><div align="center" class="STYLE6" width="197px" >旅遊目的地</div></td>
           </tr>
           <tr>
   			<td><div class="treebox">

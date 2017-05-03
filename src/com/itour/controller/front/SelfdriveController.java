@@ -19,34 +19,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
-import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.util.FilePros;
-import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
-import com.itour.entity.LogOperation;
-import com.itour.entity.LogSetting;
 import com.itour.entity.QuoteForm;
-import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
-import com.itour.service.LogOperationService;
-import com.itour.service.LogSettingDetailService;
-import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
-import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
 import com.itour.vo.CalculateQuoteVo;
 import com.itour.vo.CustomerVo;
 import com.itour.vo.QuoteFormVo;
 import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.TravelItemVo;
 
 @Controller
 @RequestMapping("/selfdrive") 
@@ -74,7 +65,7 @@ public class SelfdriveController  extends BaseController{
 				for(RouteTemplateVo rt:rtvos){
 					String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 					List<String> itids = Arrays.asList(itemIds.split(","));
-					List<TravelItem> items = travelItemService.queryByIds(itids);
+					List<TravelItemVo> items = travelItemService.queryByIds(itids);
 					rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getAlias()+"/"+items.get(0).getCover():"")));
 				}
 				int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
@@ -138,11 +129,11 @@ public class SelfdriveController  extends BaseController{
         }*/
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
 		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
 				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
@@ -210,9 +201,9 @@ public class SelfdriveController  extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
 				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
@@ -258,9 +249,9 @@ public class SelfdriveController  extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItem> items = travelItemService.queryByIds(itids);
+		List<TravelItemVo> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItem ti:items){
+		for(TravelItemVo ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
 				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto

@@ -70,7 +70,7 @@
 	      <c:forEach items="${mapvo}" var="entry" varStatus="status">
 	       <c:if test="${status.index != 0 && status.index%2==0 }"></tr><tr></c:if>
 	        <td valign="top" style=""><table width="253" border="0" align="left" cellpadding="0" cellspacing="0">
-                  <tr><td width="296" class="h2-24red" colspan=3 style="text-align:left;padding-left:50px"><a width="100px" href="${basePath}hiking/main">${fn:split(entry['key'],'#')[0]}</a></td></tr>
+                  <tr><td width="296" class="h2-24red" colspan=3 style="text-align:left;padding-left:50px"><a width="100px" href="${basePath}hiking/main"><img src="images/icon-0${status.index+1 }.jpg" width="57" height="43">${fn:split(entry['key'],'#')[0]}</a></td></tr>
                   <tr><td width="296" class="f14-gao1" colspan=3 style="text-align:left">${fn:split(entry['key'], '#')[1]}</td></tr>
                   <tr><td width="296" colspan=3 style="text-align:left"><a href="${basePath}hiking/main" class="STYLE3"><img src="${basePath }${fn:split(entry['key'],'#')[2]}" style="border:none;" border="0px" height="200" width="200"/></a></td></tr>
                   <c:forEach items="${entry['value']}" var="et">

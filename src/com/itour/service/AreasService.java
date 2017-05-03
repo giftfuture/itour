@@ -3,6 +3,7 @@ package com.itour.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,20 @@ public class AreasService extends BaseService<Areas>{
 			return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Areas> allAreas(){
 		return mapper.queryAll();
 	}
 	
+	/**
+	 * 
+	 * @param pinyin
+	 * @return
+	 */
+	public Areas queryByPinyin(String pinyin){
+		return mapper.queryByPinyin(pinyin);
+	};
 }

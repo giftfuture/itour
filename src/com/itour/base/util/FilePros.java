@@ -77,12 +77,12 @@ public class FilePros   {
 	 * @return
 	 */
 	public static String travelitemPhotoPath(){
-		String propath = rb.getString("travelitem_photo_Path");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
+		String propath = rb.getString("travelitem_photo");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
 		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
 		return propath;
 	}
 	public static String httptravelitemPhotoPath(){
-		String propath = rb.getString("http_travelitem_photo_Path");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
+		String propath = rb.getString("http_travelitem_photo");//FilePros.class.getResource("/").toString();//此方法在jar包中无效。返回的内容最后包含/
 		//return  rb.getString("url");//rb.getString("upload");//upload_ptopath
 		return propath;
 	}

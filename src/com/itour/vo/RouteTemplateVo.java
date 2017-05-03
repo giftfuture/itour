@@ -35,6 +35,7 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String related;
 	private String routeMap;//线路地图
 	private String travelStyle;//线路类别
+	private String travelStyleType;//线路类别名称
 	private String travelStyleAlias;
 	private String travelItems;//线路中的景点
 	private String cover;//封面图片
@@ -69,7 +70,14 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String levelArea;//
 	private String level1Area;//线路一级区域
 	private String level2Area;//线路一级区域
+	//private String travelStyleAlias;
 	
+	public String getTravelStyleType() {
+		return travelStyleType;
+	}
+	public void setTravelStyleType(String travelStyleType) {
+		this.travelStyleType = travelStyleType;
+	}
 	public String getLevel1Area() {
 		return level1Area;
 	}

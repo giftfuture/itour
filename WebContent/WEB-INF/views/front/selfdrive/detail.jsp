@@ -27,6 +27,7 @@
 </script>
 </head>
 <body>
+<center>
  <%@include file="/front/header.jsp"  %>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
@@ -385,7 +386,7 @@
     <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
-    <td>  <ul id='fbpage'></ul></td>
+    <td style="text-align:center">  <ul id='fbpage'></ul></td>
   </tr>
 </table>
  
@@ -397,6 +398,7 @@
    
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/detail.js"></script>
 <%@include file="/front/footer.jsp" %>
+</center>
 </body>
 </html>
 

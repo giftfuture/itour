@@ -1,8 +1,10 @@
  <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
 <!-- <div style="left: 0; bottom: 0; right: 0;position:fixed !important;"> -->
+<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
+<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  
 <div>
-<form name="searchForm" action="search" method="post">
+<form name="searchForm" method="post">
 <table class="commontb" align="center" >
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
@@ -11,8 +13,8 @@
       <label>
        旅游区域：
         <%-- <input name="areas" id="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'"> --%>
-         <input class="easyui-combobox" id="level1Area" name="level1Area" data-options="width:130,height:20,valueField:'aliasCode',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
-        onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?aliasCode='+n ;$('#level2Area').combobox('reload',urlurl);}">
+         <input class="easyui-combobox" id="level1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+        onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);}">
     	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">     
         假期天数：<a href="javascript:void(0)">
 	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
@@ -23,12 +25,11 @@
 	  <option value="16">16天+</option>
 	</select>
       </a></label></td>
-      <td width="10%" bgcolor="#CCCCCC"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></td>
+      <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
     <!-- <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td> -->
   </tr>
 </table>
 </form>
-<p>&nbsp;</p>
 <!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
@@ -113,5 +114,3 @@
 /* var areas = $("#areas").combobox('getValue'); 
 console.log(travel_style+"  "+vacation+"   "+areas); */
 </script>
-<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
-<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  

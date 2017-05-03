@@ -1,8 +1,11 @@
-$package('itour.destinations');
-itour.destinations = function(){
+$package('itour.destdetail');
+itour.destdetail = function(){
 	var _this = {
 		init:function(){
 			_this.menuClick();
+		},
+		searchRts:function(){
+			
 		},
 		accordion:function(){
 			$(this).addClass('current')   //给当前元素添加"current"样式
@@ -20,6 +23,6 @@ itour.destinations = function(){
 }();
 
 $(function(){
-	itour.destinations.init();
+	itour.destdetail.init();
 	//itour.destinations.menuClick();
 });

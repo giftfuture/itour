@@ -12,54 +12,39 @@
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 </head>
-<body>
+<body style="height:100%">
+<center>
 <%@include file="/front/header.jsp"  %> 
-<!-- <table class="commontb" align="center">
-  <tr>
-    <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
-  </tr>
-</table> -->
-<table class="commontb" align="center">
-  <tr style="height:500px">
-    <td width="275" valign="top">
-      <table width="275" border="0" cellspacing="0" cellpadding="5">
-          <tr>
-            <td height="30" bgcolor="#990000"><div align="center" class="STYLE6">旅遊目的地</div></td>
-          </tr>
-          <tr>
-  			<td><div class="treebox">
+<table class="commontb" valign="middle" style="height:100%">
+  <tr style="align:center">
+    <td style='weight:100%;height:100%;' valign="top" rowspan=2>
+            <div align="center" style="	font-size:18px;background-color:#8B0000;text-decoration:none;" class="STYLE6">旅遊目的地</div>
+            <div class="treebox">
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
-					<c:forEach items="${items}" var="item">
-								<c:if test="${scope.id==item.scope }">
 					<li class="level1">
-						<a href="javascript:void(0)"><em class="ico ico${status.index + 1}"></em><c:out value="${scope.areaname}"></c:out><i class="down"></i></a>
+						<a href="javascript:void(0)"><em class="ico ico${status.index + 1}"></em><c:out value="${scope.value}"></c:out><i class="down"></i></a>
 						<ul class="level2">
-								<li><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>
+							<c:forEach items="${items}" var="item">
+								<c:if test="${scope.key==item.scope }">
+									<li><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>
+								</c:if>
+							</c:forEach>
 						</ul>
 					</li>
-						</c:if>
-					</c:forEach>
-					</c:forEach>
+				</c:forEach>
 				</ul>
-			</div>
-			</td>
-          </tr>
-        </table>
-        </td></tr>
-          <tr>
-           
-            <td rowspan=3>
-            <!--滚动图片 start-->
+			</div></td>
+            <td  style='weight:100%;height:100%;'><!--滚动图片 start-->
 			<DIV class=rollphotos>
 			<DIV class=blk_29>
 			<DIV class=LeftBotton id=LeftArr>
 			<img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 			<DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 			<c:forEach items="${photos}" var="photo">
-			<DIV class=box>
-			<a class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></a> 
-			</DIV>
+				<DIV class=box>
+				<a class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></a> 
+				</DIV>
 			</c:forEach>
 			<!-- 图片列表 end --></DIV>
 			<DIV class=RightBotton id=RightArr><img src="${basePath}images/arrow01-2.gif" width="20" height="40" /></DIV></DIV>
@@ -79,14 +64,34 @@
 					//--><!]]>
 			</script>
 			</DIV>
-<!--滚动图片 end-->
-            </td>
+<!--滚动图片 end--></td>
+            <td  style='weight:100%;height:100%;'><img src="images/ticket.png" width="30" height="30">
+            <span class="STYLE3">${itemvo.item}门票信息：</span>
+            ${itemvo.ticketsBlock}</td>
           </tr>
           <tr>
-            <td valign="top">
+            <td valign="top"  style='weight:100%;height:100%;text-align:left'>
+            ${itemvo.content }
+		</td><td><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
+		<span class="STYLE3">相关旅游线路</span>
+		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
+              <tbody>
+              <c:forEach items="${rts }" var="item">
+              <tr>
+                <td ><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
+             <!- width="66" width="384" class="f12-gao1"-->   <td><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
+              </tr>
+        	</c:forEach>
+              <tr>
+                <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
+                <td>&nbsp;</td>
+              </tr>
+          </tbody></table>
 		</td>
-	  	 <td width="843"  bgcolor="#f0f0f0"></td></tr>
+	  	 </tr>
 </table>
+<script type="text/javascript" src="${basePath}js/ux/front/destination/destdetail.js"></script>
 <%@include file="/front/footer.jsp"  %>
+</center>
 </body>
 </html>

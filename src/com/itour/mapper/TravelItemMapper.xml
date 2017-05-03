@@ -351,7 +351,7 @@ select travel_item.<include refid="Base_Column_List" />,areas.areaname
  	select <include refid="Base_Column_List"/>,areas.areaname from travel_item
  	left join areas on travel_item.scope=areas.id  where travel_item.scope_alias=#{scopeAlias}
 </select> -->
-<select id="queryByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+<select id="queryByIds" parameterType="java.util.List" resultMap="BaseResultMapVo">
 select travel_item.<include refid="Base_Column_List"/>,areas.areaname
 from travel_item left join areas on travel_item.scope=areas.id  where travel_item.id in 
 <foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  

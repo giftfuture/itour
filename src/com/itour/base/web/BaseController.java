@@ -97,7 +97,6 @@ public class BaseController {
 	public ModelAndView forward(String viewName,Map context){
 		return new ModelAndView(viewName,context); 
 	}
-	
 	public ModelAndView forward(String viewName){
 		return new ModelAndView(viewName); 
 	}

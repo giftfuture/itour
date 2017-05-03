@@ -1,8 +1,6 @@
 package com.itour.controller.front;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +21,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.easyui.DataGridAdapter;
+import com.itour.base.json.JsonUtils;
+import com.itour.base.page.BasePage;
+import com.itour.base.page.Pager;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
 import com.itour.entity.Areas;
-import com.itour.entity.TravelItem;
+import com.itour.entity.RouteTemplate;
 import com.itour.service.AreasService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
+import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
+import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.TravelItemVo;
 
 @Controller
@@ -40,6 +43,8 @@ import com.itour.vo.TravelItemVo;
 public class DestinationController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
+	@Autowired  
+	private RouteTemplateService<RouteTemplate> routeTemplateService; 
 	@Autowired
 	private TravelItemService travelItemService;
 	@Autowired
@@ -106,21 +111,47 @@ public class DestinationController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
-	 	Map<String,Object>  context = getRootMap();
+	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
+	 	List<TravelItemVo> list = Lists.newArrayList();
+	 	List<TravelItemVo> sublist = Lists.newArrayList();
+	 	Map<String,String> scopes = Maps.newHashMap();
+	 	for(Areas scope:allScopes){
+			list = travelItemService.queryByScope(scope.getId());
+			if(list != null && list.size() > Constants.maxDestinations){
+				sublist = list.subList(0, Constants.maxDestinations);
+			}else{
+				sublist = list;
+			}
+			String ptopath = FilePros.httpitemCoverpath();
+			for(TravelItemVo ti:sublist){
+				if(StringUtils.isNotEmpty(ti.getCover())){	 							
+					String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();
+					ti.setCover(realCover);
+				}
+			}
+ 			if(StringUtils.isNoneEmpty(scope.getId(),scope.getAreaname()) && sublist != null && sublist.size() >0){	 				
+ 				scopes.put(scope.getId(), scope.getAreaname());
+ 			}
+	 	}
 	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
 		context.put("items", items);
 	 	TravelItemVo itemvo = travelItemService.getByAlias(alias);	
-	 	String [] photos = itemvo.getPhotos().split(",");
+	 	String [] photos = itemvo.getPhotos().split("\\|");
+	 	List<String> photoList = Lists.newArrayList();
 	 	String photoPath = FilePros.httptravelitemPhotoPath();
 	 	if(photos!=null && photos.length>0){
 	 		for(String photo:photos){
-	 			photo = photoPath+"/"+itemvo.getItemCode()+"_"+itemvo.getAlias()+"/"+ photo;
+	 			if(StringUtils.isNotEmpty(photo)&&!photo.equals(",")&&!photo.equals("|")&&photo.indexOf('.')>0){
+	 				photoList.add(photoPath+"/"+itemvo.getItemCode()+"_"+itemvo.getAlias()+"/"+ photo);
+	 			}
 	 		}
 	 	}
-		context.put("scopes", allScopes); 
+	 	List<RouteTemplateVo> rts = routeTemplateService.queryByItems(itemvo.getId());
+		context.put("scopes", scopes); 
 		context.put("itemvo", itemvo);
-		context.put("photos", photos);
+		context.put("photos", photoList);
+		context.put("rts", rts);
 		return forward("front/destination/destdetail",context); 
 	}
 	/**
@@ -133,18 +164,70 @@ public class DestinationController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/moredests/{scope}", method = RequestMethod.GET) 
-	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request) throws Exception{
+	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
-	 	List<TravelItemVo> list = travelItemService.queryByScope(scope);//.queryByScopeAlias(scopeAlias);
+	 	Areas areas = areasService.queryByPinyin(scope);
+	 	List<TravelItemVo> list = travelItemService.queryByScope(areas !=null?areas.getId():"");//.queryByScopeAlias(scopeAlias);
 	 	String ptopath = FilePros.itemCoverpath();
 		for(TravelItemVo ti:list){
-				if(StringUtils.isNotEmpty(ti.getCover())){	 							
-					String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
-					ti.setCover(realCover);
-				}
+			if(StringUtils.isNotEmpty(ti.getCover())){	 							
+				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				ti.setCover(realCover);
 			}
-		context.put("dests",scope); 	
+		}
+		context.put("dests",areas!=null?areas.getAreaname():""); 	
 		context.put("list",list); 	
 		return forward("front/destination/moredests",context);   
 	}
+	
+	/**
+	 * 
+	 * @param pageNo
+	 * @param alias
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/related/{alias}", method = RequestMethod.GET) 
+	public ModelAndView searchRts(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		context.put("pageNo", 1);
+		context.put("alias", alias);
+		return forward("front/destination/searchRt",context); 
+	}
+	/**
+	 * 
+	 * @param alias
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/related/searchRtResults", method = RequestMethod.POST) 
+	public String searchRtResults(String pageNo,String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	 	Map<String,Object> context = getRootMap();
+	 	TravelItemVo ttvo = travelItemService.getByAlias(alias);
+	 	RouteTemplateVo vo = new RouteTemplateVo();
+		vo.setPage(Long.parseLong(pageNo));
+		vo.setRows(Constants.destsPerPage);
+		vo.setLimit(Constants.destsPerPage);
+		vo.setTravelItems(ttvo.getId());
+		BasePage<RouteTemplateVo> page = routeTemplateService.pageQueryByItems(vo);
+		page.setPage(Long.parseLong(pageNo));
+		Pager pager = page.getPager();
+		pager.setPageId(Long.parseLong(pageNo));
+		pager.setPageSize(Constants.destsPerPage);
+		pager.setRowCount(page.getTotal());
+		page.setPager(pager);
+		context.put("result", page);
+		//context.put("context", map);
+		//vo.setPage(Long.parseLong(pageNo));
+		//vo.setRows(Constants.happyperPage);
+		//vo.setLimit(Constants.happyperPage);
+		return JsonUtils.encode(context);
+	}
+
 }

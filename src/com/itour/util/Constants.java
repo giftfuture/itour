@@ -1,7 +1,8 @@
 package com.itour.util;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -27,6 +28,7 @@ public class Constants {
 	public static final int fbperPage = 4;//前端反馈每页数据量
 	public static final int hotview = 4;//首页显示的热门景点
 	public static final int routesperrow = 3;//每行显示的路线
+	public static final int destsPerPage=15;//
 	public static  int perRow = 3;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
 	public static final String FREEMARKER_PATH="";
@@ -51,13 +53,26 @@ public class Constants {
 		add(DESTINATION);
 		add(HIKING);
 	}};
-	//
-	public static final Map<String,String> HOTTYLES = new HashMap<String,String>(){{
+	public static final List<String> HOTTYLESKEYS= new ArrayList<String>(){{
+		add(HIKING);
+		add(CLIMB);
+		add(SELFDRIVE);
+		add(LIGHT);
+	}};
+	public static final LinkedHashMap<String,String> HOTTYLES = new LinkedHashMap<String,String>();
+	static{
+		HOTTYLES.put(HIKING,"徒步");
+		HOTTYLES.put(CLIMB,"登山");
+		HOTTYLES.put(SELFDRIVE,"自驾");
+		HOTTYLES.put(LIGHT,"轻旅行");
+	}
+	
+	/*public static final TreeMap<String,String> HOTTYLES = new TreeMap<String,String>(){{
+		put(HIKING,"徒步");
 		put(CLIMB,"登山");
 		put(SELFDRIVE,"自驾");
 		put(LIGHT,"轻旅行");
-		put(HIKING,"徒步");
-	}};
+	}};*/
 	public static void init(){
 		basePhoto= bundle == null || StringUtils.isEmpty(bundle.getString("basePhoto")) ? basePhoto : bundle.getString("basePhoto");
 		perRow = bundle == null ||StringUtils.isEmpty(bundle.getString("perRow")) ? perRow :  Integer.valueOf( bundle.getString("perRow"));

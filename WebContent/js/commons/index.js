@@ -18,7 +18,7 @@ $.ajax({
 	success:function(result){
 		$(result).each(function(i,e){
 			arr[i]=e.advertise;
-			links[i]=e.link;
+			links[i]=e.adlink;
 			titles[i]=e.title;
 		});
 	},error:function(){

@@ -259,11 +259,13 @@ public class LevelAreaController extends BaseController {
 	public List<LevelArea> queryLevel2ByLevel1(String level1Area,HttpServletRequest request,HttpServletResponse response){
 		List<LevelArea> allAreas = Lists.newArrayList();
 		try {
-			level1Area = new String(level1Area.getBytes("ISO8859-1"), "UTF-8");
-			allAreas.addAll(levelAreaService.queryLevel2ByLevel1(level1Area));
-			SysUser user = SessionUtils.getUser(request);
-			logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel2ByLevel1方法");
-		} catch (UnsupportedEncodingException e) {
+				if(StringUtils.isNotEmpty(level1Area)){
+					level1Area = new String(level1Area.getBytes("ISO8859-1"), "UTF-8");
+					allAreas.addAll(levelAreaService.queryLevel2ByLevel1(level1Area));
+					SysUser user = SessionUtils.getUser(request);
+					logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel2ByLevel1方法");
+				}
+			} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return allAreas;

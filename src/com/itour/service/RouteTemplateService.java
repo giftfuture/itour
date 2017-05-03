@@ -144,15 +144,33 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @throws Exception
 	 */
 	public List<RouteTemplateVo> queryByItems(String travelItems)throws Exception{
-		List<RouteTemplate> list = mapper.queryByItems(travelItems);
+		List<RouteTemplateVo> list = mapper.queryByItems(travelItems);
 		List<RouteTemplateVo> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
-		for(RouteTemplate rt:list){
+		for(RouteTemplateVo rt:list){
 			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
 			rt.setCover(coverpath);
-			vos.add(RouteTemplateKit.toRecord(rt));
+			vos.add(rt);
 		}
 		return vos;
+	}
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	public BasePage<RouteTemplateVo> pageQueryByItems(RouteTemplateVo vo)throws Exception{
+		List<RouteTemplateVo> list = mapper.pageQueryByItems(vo);
+		List<RouteTemplateVo> vos = Lists.newArrayList();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
+		for(RouteTemplateVo rt:list){
+			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
+			rt.setCover(coverpath);
+			vos.add(rt);
+		}
+		int count = mapper.countQueryByItems(vo);
+		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), vos,count);
 	}
 	/**
 	 * 
@@ -230,6 +248,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	public RouteTemplate selectByRouteCode(String routeCode){
 		return mapper.selectByRouteCode(routeCode);
 	}
+	
 	/**
 	 * 
 	 * @param map
