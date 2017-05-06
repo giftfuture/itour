@@ -32,7 +32,14 @@ public class AdLinkVo extends BasePage implements Serializable {
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
+	private boolean isVideo;
 	
+	public boolean isVideo() {
+		return isVideo;
+	}
+	public void setVideo(boolean isVideo) {
+		this.isVideo = isVideo;
+	}
 	public String getCreateBy() {
 		return createBy;
 	}

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.base.page.BasePage;
+import com.itour.entity.TravelItem;
 import com.itour.vo.TravelItemVo;
 /**
  * 
@@ -104,4 +105,29 @@ public interface TravelItemDao<T> extends BaseDao<T> {
      * @return
      */
     TravelItemVo queryByItemCode(@Param(value="itemCode")String itemCode);
+    /**
+     * 
+     * @param vo
+     * @return
+     */
+    List<TravelItemVo> pageQueryByScope(TravelItemVo vo);
+    /**
+     * 
+     * @param vo
+     * @return
+     */
+    int countByScope(TravelItemVo vo);
+    
+    /**
+     * 
+     * @param ti
+     */
+    void uploadCover(TravelItem ti);
+    
+    /**
+     * 
+     * @param scope
+     * @return
+     */
+    List<TravelItemVo> queryMapByScope(@Param(value="scope")String scope);
 }

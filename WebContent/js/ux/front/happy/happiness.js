@@ -24,7 +24,7 @@ itour.happiness = function(){
 					                  "<tr>"+
 					                    "<td width='260'><table border='0' cellspacing='0' cellpadding='0'>"+
 					                        "<tr>"+
-					                          "<td width='181' height='111'><img src='"+basePath+(e.cover?e.cover:"") +"' width='305' height='165' /></td>"+
+					                          "<td width='181' height='111'><a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'><img src='"+basePath+(e.cover?e.cover:"") +"' width='305' height='165' /></a></td>"+
 					                          "<td width='11' rowspan='2' valign='bottom'><img src='"+basePath+"images/tu-k-02.gif' width='11' height='122' /></td>"+
 					                        "</tr>"+
 					                        "<tr>"+

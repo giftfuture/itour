@@ -182,34 +182,31 @@ public class ShowHappyController extends BaseController{
 	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+}   @RequestParam("title") String alias,
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/detail/{shCode}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("shCode") String shCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		ShowHappy sh = showHappyService.queryByCode(shCode);
 		String content = sh.getContent();
-		String shareHappyPath = FilePros.shareHappyPath();
+		String shareHappyPath = FilePros.httpshareHappyPath();
+		//String shCoverPath = FilePros.httpshCoverPath();
 		if(StringUtils.isNotEmpty(content)){
 			List<String> imgs = ImageFilter.getsrcList(content);
 			if(imgs.size()>0){
 				for(String fileName:imgs){ 
-					String path = shareHappyPath+File.separatorChar+(sh.getId()+"_"+sh.getTitle())+File.separatorChar+fileName;
-					File ff = new File(path);  
-	    			if(ff.exists()&&!ff.isDirectory()){//文件根目录不存在时创建  
-	    			   String bytesrc =	ImageFilter.GetImageStr(path,ImageFilter.base64ImgExt.get(fileName.substring(fileName.indexOf("."))));
-	    				content = content.replace(fileName, bytesrc);  
-	    			}
+					String path = shareHappyPath+"/"+(sh.getShCode()+"_"+sh.getRoute())+"/"+fileName;
+					//File ff = new File(path);  
+	    			//if(ff.exists()&&!ff.isDirectory()){//文件根目录不存在时创建  
+	    			   //String bytesrc =	ImageFilter.GetImageStr(path,ImageFilter.base64ImgExt.get(fileName.substring(fileName.indexOf("."))));
+	    				//content = content.replace(fileName, bytesrc);  
+					content = content.replace(fileName, path);  
+	    			//}
 				}
 			}
 				sh.setContent(content);
 			}
 		Map<String,Object> record = ShowHappyKit.toRecord(sh);
 		context.put("sh", record);
-		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的detail方法");
-		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/detail",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
-		logOperationService.add(new LogOperation(logId,"查看",(String)record.get("id"),JsonUtils.encode(record),"","showhappy/detail",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return forward("front/happy/happydetail",context); 
 	}
 	/**
@@ -219,7 +216,6 @@ public class ShowHappyController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)//@RequestBody

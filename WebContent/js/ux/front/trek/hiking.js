@@ -238,6 +238,14 @@ itour.hiking = function(){
 					_this.uncheckedAll("dinner");
 				}
 			});
+			$("a.imgBorder img").on('click',function(){
+				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
+				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
+			});
+			$("a.imgBorder img").on('mouseover',function(){
+				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
+				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
+			});
 			//扩展easyui表单的验证  
 			$.extend($.fn.validatebox.defaults.rules, { 
 			    phoneNum: { //验证手机号   

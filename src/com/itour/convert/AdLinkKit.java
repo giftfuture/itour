@@ -27,6 +27,7 @@ public class AdLinkKit {
 		adlink.setRemark(vo.getRemark());
 		adlink.setCreateBy(vo.getCreateBy());
 		adlink.setUpdateBy(vo.getUpdateBy());
+		adlink.setVideo(vo.isVideo());
 		if(StringUtils.isNotEmpty(vo.getCreateTime())){
 			adlink.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, vo.getCreateTime()));
 		}

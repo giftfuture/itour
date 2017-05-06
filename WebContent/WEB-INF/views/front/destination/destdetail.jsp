@@ -76,10 +76,11 @@
 		<span class="STYLE3">相关旅游线路</span>
 		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
               <tbody>
-              <c:forEach items="${rts }" var="item">
+              <c:forEach items="${rts}" var="item">
               <tr>
-                <td ><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
-             <!- width="66" width="384" class="f12-gao1"-->   <td><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
+                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
+             <!- width="66" width="384" class="f12-gao1"--> 
+               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
               </tr>
         	</c:forEach>
               <tr>

@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content=""> 
 <title>徒步旅行</title>
@@ -28,8 +33,7 @@
       </tr>
       <tr>
         <td style="text-align:left"><p>帶上家人，約上朋友 </p>
-          <p>登山頂峰<br />  
-              <br />
+          <p>登山頂峰 
          <%--    》》<a href="${basePath}hiking/main">了解更多</a> --%></p>
           <p></p></td>
       </tr>
@@ -47,7 +51,7 @@
 </table>
 <table class="commontb" align="center">
 <tbody id="fbcontent">
-<c:forEach begin="0" end="${rows}" varStatus="status">
+<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >
     <td valign="top">
@@ -55,8 +59,6 @@
       <tr>
         <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
             <tr>
-             <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>ISO-8859-1 -->
-            <%--   <td width="296" class="h2-24"><a href="${basePath}hiking/detail/${rt.alias}">${rt.title}</a></td> --%>
               <td width="296" class="h2-24"><a href="${basePath}hiking/hiking/${rt.alias}">${rt.title}</a></td>
             </tr>
         </table></td>
@@ -72,9 +74,10 @@
       </tr>
     </table></td>
     </c:forEach>
-  </tr></c:forEach>
+  </tr></c:forEach> --%>
   </tbody>
 </table>
+  <center><ul id="fbpage"></ul></center>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/trekkings.js"></script>
 <%@include file="/front/footer.jsp" %>
 </body>

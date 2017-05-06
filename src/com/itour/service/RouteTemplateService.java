@@ -33,6 +33,7 @@ import com.itour.vo.TravelItemVo;
 @Service("routeTemplateService")
 public class RouteTemplateService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
+	
 	/**
 	 * 分页查询
 	 * 
@@ -47,7 +48,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVo> records = Lists.newArrayList();
-		String rtCoverPath = FilePros.httpRouteCoverpath();
+		//tring rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVo fb:list) {
 			if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				 String[] params = fb.getTravelItems().split(",");
@@ -63,8 +64,8 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				}
 				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
 			}
-			String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
-			fb.setCover(coverpath);
+			//String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
+			//fb.setCover(coverpath);
 			records.add(fb);
 		}
 		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
@@ -99,7 +100,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
 			}*/
 			//rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
-			String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
+			String coverpath = rtCoverPath+"/"+StringUtils.trim(fb.getRouteCode())+"_"+StringUtils.trim(fb.getAlias())+"/"+fb.getCover();
 			fb.setCover(coverpath);
 			records.add(fb);
 		}
@@ -116,11 +117,30 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		List<RouteTemplateVo> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplate rt :list){
-			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
+			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
 			vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return vos;
+	}
+	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	public BasePage<RouteTemplateVo> pageQueryByStyle(RouteTemplateVo vo)throws Exception{
+		List<RouteTemplateVo> list = mapper.pageQueryByStyle(vo);
+		int count = mapper.countQueryByStyle(vo);
+		//List<RouteTemplateVo> vos = Lists.newArrayList();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
+		for(RouteTemplateVo rt :list){
+			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
+			rt.setCover(coverpath);
+			//vos.add(RouteTemplateKit.toRecord(rt));
+		}
+		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), list,count);
 	}
 	/**
 	 * 
@@ -148,7 +168,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		List<RouteTemplateVo> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVo rt:list){
-			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
+			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
 			vos.add(rt);
 		}
@@ -165,7 +185,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		List<RouteTemplateVo> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVo rt:list){
-			String coverpath = rtCoverPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover();
+			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
 			vos.add(rt);
 		}

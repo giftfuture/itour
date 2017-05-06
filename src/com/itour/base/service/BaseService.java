@@ -9,7 +9,6 @@ import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.dao.CustomersDao;
 import com.itour.dao.LevelAreaDao;
-
 public abstract class BaseService<T>{
 	
 	protected BaseDao<T> mapper;

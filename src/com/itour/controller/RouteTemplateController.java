@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -204,11 +206,97 @@ public class RouteTemplateController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
-	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)
-	public @ResponseBody String uploadPhotos(@RequestParam(value="id")String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
+	@RequestMapping(value="/uploadPhotos",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
+	public @ResponseBody String uploadPhotos(String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,HttpServletRequest request,HttpServletResponse response) {
+		Map<String,Object>  context = getRootMap();
+		RouteTemplate rt =new RouteTemplate();
+		try {
+			RouteTemplate t = routeTemplateService.queryById(id);
+			if(request instanceof MultipartHttpServletRequest){
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
+			String routePhotos = FilePros.routePhotos();
+			StringBuffer photos = new StringBuffer();
+			if (t != null){
+				photos.append(t.getViewphotos() == null ? "":t.getViewphotos());
+			}
+			// MultipartFile imgFile = null;
+			 OutputStream out = null;
+			// Iterator<String> it = multipartRequest.getFileNames();
+			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
+			 String picName = "";
+			 File directory = null;
+			 File uploadpic = null;
+			 String parpath = "";
+			for(MultipartFile f:multifiles){
+		    	picName = StringUtils.isNotEmpty(f.getOriginalFilename())?f.getOriginalFilename() : Calendar.getInstance(Locale.CHINA).getTimeInMillis()+".jpg";   
+	            parpath = routePhotos+"\\"+StringUtils.trim(t.getRouteCode())+"_"+StringUtils.trim(t.getAlias());
+	            directory = new File(parpath);
+	            if(!directory.exists()||!directory.isDirectory()){
+	            	directory.mkdirs();
+	            }
+	            uploadpic = new File(parpath+"\\"+picName);
+	            photos.append(StringUtils.isNotEmpty(photos.toString())?"|"+picName :picName);
+	            System.out.println("路线ID="+(t!= null?t.getId():"")+"上传图片文件名是：" + picName);  
+	            out = new FileOutputStream(uploadpic);  
+	            out.write(f.getBytes());  
+	            out.close();  
+			}
+			picName = null;
+			directory = null;
+			uploadpic = null;
+			parpath = null;
+			rt.setId(id);
+			rt.setViewphotos(photos.toString());
+			routeTemplateService.update(rt);
+			if(out != null){
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			context.put(SUCCESS, true);
+			context.put("msg", "路线图片上传成功！");
+			}else{
+				System.out.println("##########不是上传图片文件对象#############");
+				context.put(SUCCESS, false);
+				context.put("msg", "上传路线图片文件类型非法!");
+			}
+		} catch (IOException e) {
+			context.put(SUCCESS, false);
+			context.put("msg", "上传路线图片出现IO异常!");
+			e.printStackTrace();
+		}catch(Exception e){
+			context.put(SUCCESS, false);
+			context.put("msg", "上传路线图片出错!");
+			e.printStackTrace();
+		}
+		String result = JsonUtils.encode(context);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的uploadPhotos方法");
+		try {
+			String logid = logSettingService.add(new LogSetting("route_template","路线模板管理","routeTemplate/uploadPhotos",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"上传路线图片",rt!= null?rt.getId():"","",JsonUtils.encode(rt),"routeTemplate/uploadPhotos",sessionuser.getId()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	/**
+	 * 
+	 * @param id
+	 * @param fileselect
+	 * @param request
+	 * @param responset 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/uploadCover",method = RequestMethod.POST)
+	public @ResponseBody String uploadCover(@RequestParam(value="id")String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 		HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object> context = getRootMap();
-		String rtCoverPath = FilePros.httpRouteCoverpath();
+		String rtCoverPath = FilePros.routeCoverpath();
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			RouteTemplate rt = routeTemplateService.queryById(id);
@@ -216,7 +304,7 @@ public class RouteTemplateController extends BaseController{
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
-				String path = rtCoverPath+"/"+vo.getRouteCode()+"_"+vo.getAlias();
+				String path = rtCoverPath+"\\"+vo.getRouteCode()+"_"+vo.getAlias();
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
@@ -234,7 +322,7 @@ public class RouteTemplateController extends BaseController{
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(path+"/"+picName );
+				            uploadpic = new File(path+"\\"+picName );
 				            System.out.println("路线ID="+id+"上传封面图片是" + picName);  
 				            out = new FileOutputStream(uploadpic);  
 				            out.write(f.getBytes());  

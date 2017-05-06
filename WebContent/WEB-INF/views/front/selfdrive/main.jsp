@@ -4,6 +4,11 @@
 <html>
 <head>
 <title>自驾</title>
+<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
 <meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
 <script type="text/javascript" src="Scripts/flashobject.js"></script>
@@ -25,7 +30,7 @@
 </table>
 <table class="commontb" align="center">
  <tbody id="fbcontent">
-<c:forEach begin="0" end="${rows}" varStatus="status">
+<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >
     <td valign="top">
@@ -33,8 +38,6 @@
       <tr>
         <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
             <tr>
-             <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>ISO-8859-1 -->
-            <%--   <td width="296" class="h2-24"><a href="${basePath}hiking/detail/${rt.alias}">${rt.title}</a></td> --%>
               <td width="296" class="h2-24"><a href="${basePath}selfdrive/selfdrive/${rt.alias}">${rt.title}</a></td>
             </tr>
         </table></td>
@@ -45,15 +48,12 @@
       <tr>
         <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
-     <%--  <tr>
-        <td><span class="f14-gao1">${item.content}</span></td>
-      </tr> --%>
       <tr>
         <td>&nbsp;</td>
       </tr>
     </table></td>
     </c:forEach>
-  </tr></c:forEach>
+  </tr></c:forEach> --%>
   </tbody>
 </table>
 <center><ul id='fbpage'></ul></center>

@@ -53,13 +53,13 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public BasePage<Map<String, Object>> pagedQuery(ShowHappyVo vo) {
 		List<ShowHappy> list = mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		String shareHappyPath = FilePros.httpshareHappyPath();
+		String shareHappyCoverPath = FilePros.httpshCoverPath();
 		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
 		for(int i = 0; i < list.size(); i++) {
 			ShowHappy sh = list.get(i);
-			String coverpath = shareHappyPath+File.separatorChar+sh.getId()+"_"+sh.getRoute()+File.separatorChar;
+			String coverpath = shareHappyCoverPath+"/"+sh.getShCode()+"_"+sh.getRoute()+"/";
 			sh.setCover(coverpath+sh.getCover());
 			records.add(ShowHappyKit.toRecord(sh));
 		}

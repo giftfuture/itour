@@ -70,6 +70,7 @@ public class DestinationController extends BaseController{
 	 	List<TravelItemVo> list = Lists.newArrayList();
 	 	List<TravelItemVo> sublist = Lists.newArrayList();
 	 	Map<String,Integer> tiSizes = Maps.newHashMap();
+	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
 			list = travelItemService.queryByScope(scope.getId());
 			if(list != null && list.size() > Constants.maxDestinations){
@@ -77,10 +78,9 @@ public class DestinationController extends BaseController{
 			}else{
 				sublist = list;
 			}
-			String ptopath = FilePros.httpitemCoverpath();
 			for(TravelItemVo ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
-					String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();
+					String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
 				}
 			}
@@ -116,6 +116,7 @@ public class DestinationController extends BaseController{
 	 	List<TravelItemVo> list = Lists.newArrayList();
 	 	List<TravelItemVo> sublist = Lists.newArrayList();
 	 	Map<String,String> scopes = Maps.newHashMap();
+	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
 			list = travelItemService.queryByScope(scope.getId());
 			if(list != null && list.size() > Constants.maxDestinations){
@@ -123,10 +124,9 @@ public class DestinationController extends BaseController{
 			}else{
 				sublist = list;
 			}
-			String ptopath = FilePros.httpitemCoverpath();
 			for(TravelItemVo ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
-					String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();
+					String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
 				}
 			}
@@ -143,7 +143,7 @@ public class DestinationController extends BaseController{
 	 	if(photos!=null && photos.length>0){
 	 		for(String photo:photos){
 	 			if(StringUtils.isNotEmpty(photo)&&!photo.equals(",")&&!photo.equals("|")&&photo.indexOf('.')>0){
-	 				photoList.add(photoPath+"/"+itemvo.getItemCode()+"_"+itemvo.getAlias()+"/"+ photo);
+	 				photoList.add(photoPath+"/"+StringUtils.trim(itemvo.getItemCode())+"_"+itemvo.getAlias()+"/"+ photo);
 	 			}
 	 		}
 	 	}
@@ -161,25 +161,47 @@ public class DestinationController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/moredests/{scope}", method = RequestMethod.GET) 
 	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
-	 	Areas areas = areasService.queryByPinyin(scope);
-	 	List<TravelItemVo> list = travelItemService.queryByScope(areas !=null?areas.getId():"");//.queryByScopeAlias(scopeAlias);
-	 	String ptopath = FilePros.itemCoverpath();
-		for(TravelItemVo ti:list){
-			if(StringUtils.isNotEmpty(ti.getCover())){	 							
-				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
-				ti.setCover(realCover);
-			}
-		}
-		context.put("dests",areas!=null?areas.getAreaname():""); 	
-		context.put("list",list); 	
+	 	context.put("scope",scope);
 		return forward("front/destination/moredests",context);   
 	}
-	
+	/**
+	 * 
+	 * @param alias
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/moredestPage", method = RequestMethod.POST) 
+	public String moredestPage(String pageNo,String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	 	Map<String,Object> context = getRootMap();
+	 	Areas areas = areasService.queryByPinyin(scope);
+	 	TravelItemVo vo = new TravelItemVo();
+	 	vo.setScope(areas !=null?areas.getId():"");
+	 	//TravelItemVo ttvo = travelItemService.getByAlias(alias);
+		vo.setPage(Long.parseLong(pageNo));
+		vo.setRows(Constants.moredestsPerPage);
+		vo.setLimit(Constants.moredestsPerPage);
+		BasePage<TravelItemVo> page = travelItemService.pageQueryByScope(vo);
+		page.setPage(Long.parseLong(pageNo));
+		Pager pager = page.getPager();
+		pager.setPageId(Long.parseLong(pageNo));
+		pager.setPageSize(Constants.moredestsPerPage);
+		pager.setRowCount(page.getTotal());
+		page.setPager(pager);
+		context.put("result", page);
+		context.put("dests",areas!=null?areas.getAreaname():""); 	
+		//context.put("context", map);
+		//vo.setPage(Long.parseLong(pageNo));
+		//vo.setRows(Constants.happyperPage);
+		//vo.setLimit(Constants.happyperPage);
+		return JsonUtils.encode(context);
+	}
 	/**
 	 * 
 	 * @param pageNo

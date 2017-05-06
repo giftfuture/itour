@@ -38,7 +38,7 @@
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="600"><img src="${basePath}images/Route001.jpg" width="600" height="338" /></td>
+        <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="900" width="900" /></td><!-- width="600" height="338" -->
       </tr>
       <tr>
         <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -50,7 +50,7 @@
 <DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 <DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
-<div class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></A> 
+<div class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape"  src="${basePath }${photo}" width=124 border=0></A> 
 </div>
 </c:forEach>
 <!-- 图片列表 end --></DIV>

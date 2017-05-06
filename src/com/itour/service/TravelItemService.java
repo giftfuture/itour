@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +13,10 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
-import com.itour.base.page.Pager;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.FilePros;
 import com.itour.dao.TravelItemDao;
+import com.itour.entity.TravelItem;
 import com.itour.vo.TravelItemVo;
 
 /**
@@ -62,9 +64,13 @@ public class TravelItemService<T> extends BaseService<T> {
 		vo.setSort("star_level");
 		List<TravelItemVo> list = (List<TravelItemVo>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		List<TravelItemVo> records = Lists.newArrayList();
+		//List<TravelItemVo> records = Lists.newArrayList();
+		String coverpath = FilePros.httpitemCoverpath();
 		for(TravelItemVo fb:list) {
-			records.add(fb);
+			if(StringUtils.isNotEmpty(fb.getCover())){	 				
+				fb.setCover(coverpath+"/"+StringUtils.trim(fb.getItemCode())+"_"+fb.getAlias()+"/"+fb.getCover());
+			}
+			//records.add(fb);
 		}
 		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
 	}
@@ -108,6 +114,25 @@ public class TravelItemService<T> extends BaseService<T> {
 	 */
 	public 	List<TravelItemVo> queryByScope(String scope){
 		return mapper.queryByScope(scope);
+	}
+	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	public BasePage<TravelItemVo> pageQueryByScope(TravelItemVo vo){
+		List<TravelItemVo> list = (List<TravelItemVo>)mapper.pageQueryByScope(vo);
+		int count = mapper.countByScope(vo);
+		//List<TravelItemVo> records = Lists.newArrayList();
+		String coverpath = FilePros.httpitemCoverpath();
+		for(TravelItemVo fb:list) {
+			if(StringUtils.isNotEmpty(fb.getCover())){	 
+				fb.setCover(coverpath+"/"+StringUtils.trim(fb.getItemCode())+"_"+fb.getAlias()+"/"+fb.getCover());
+			}
+			//records.add(fb);
+		}
+		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**
 	 * @param style
@@ -167,5 +192,16 @@ public class TravelItemService<T> extends BaseService<T> {
 	 */
 	public TravelItemVo queryByItemCode(String itemCode){
 		return mapper.queryByItemCode(itemCode);
+	}
+	
+	/**
+	 * 
+	 * @param vo
+	 */
+	public void uploadCover(TravelItem vo){
+		mapper.uploadCover(vo);
+	};
+	public List<TravelItemVo> queryMapByScope(String scope){
+		return mapper.queryMapByScope(scope);
 	}
 }

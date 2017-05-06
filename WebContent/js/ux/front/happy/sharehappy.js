@@ -32,6 +32,25 @@ $(document).ready(function() {
                  ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']
                ]
   }); 
+    $.extend($.fn.datebox.defaults.rules,{  
+    	checkDated:{  //只有在datebox的input框获取焦点的时候才会显示提示，如果禁用了输入则不会生效
+    		validator:function(value){      
+    			var now = new Date();  
+    			var result =  now>=new Date(value);
+    			return result;  
+    		},  
+    		message:"晒旅行幸福的日期应在当前日期之前"  
+    	}     
+    }); 
+    //$('#tourTime').datebox('setValue', getCurentDateStr());  
+  /*  	$('#tourTime').datebox("calendar").calendar({  
+	        validator : function(date){  
+	            var now = new Date();  
+	            var d1 = new Date(now.getFullYear(),now.getMonth(),now.getDate());  
+	            return date <= d1;  
+	        }  
+    	});*/  
+
 /*    $("#tourTime").datebox({  
         onSelect:function(date){  
             var nowDate = new Date();  
@@ -44,6 +63,18 @@ $(document).ready(function() {
         }  
     }); */
 });  
+function getCurentDateStr(){   
+    var now = new Date();  
+    var year = now.getFullYear();       //年  
+    var month = now.getMonth() + 1;     //月  
+    var day = now.getDate();            //日  
+   var clock = year + "-";  
+    if(month < 10) clock += "0";         
+    clock += month + "-";  
+    if(day < 10) clock += "0";   
+    clock += day;  
+    return clock;   
+}  
 
 //刷新验证码
 /*function changeImg(){
@@ -94,10 +125,7 @@ function sharehappy() {
 	/*$("form input").each(function(){
 		 formData[this.name] =$("input[name='"+this.name+"']" ).val();
 	});*/
-	var route=$("#route").combobox('getValue');
-	if(!route){	
-		route = $("#route").combobox('getText');
-	}
+	var route=$("#route").combobox('getValue')?$("#route").combobox('getValue'):$("#route").combobox('getText');
 /*	formData["route"] = route;
 	formData["content"] = $('#content').summernote('code');
 	formData["verifyCode"]=$("#verifyCode").val();
@@ -126,17 +154,25 @@ function sharehappy() {
 	formData.cover = image.src;
 	formData.surface=image.name;
 	//console.log(formData);
-	//console.log(formData.cover.length);
-	__.post(actionurl, formData, function(result) {
-		//console.log("data.success="+data.success);
-		if (result.success) {
-			itour.alert("提示",result.msg||"晒出成功！",'info');
-			//_this.showSuccess(result.msg);
-		} else {
-			itour.alert("提示",result.msg||"晒出出错！",'info');
-			//_this.showError(result.msg);
-		}
+	//console.log(formData.cover.length);  
+	//console.log(formData.tourTime+"   "+new Date());
+	if(!formData.tourTime||new Date(formData.tourTime)>new Date()){
+		itour.alert("提示","晒旅行幸福的日期应在当前日期之前",'info');
+		return;
+	}else{
+		__.post(actionurl, formData, function(result) {
+			//console.log("data.success="+data.success);
+			if (result.success) {
+				itour.alert("提示",result.msg||"晒出成功！",'info');
+				setTimeout(function(){window.location.href=basePath+"showhappy/main";}, 3000);
+				//_this.showSuccess(result.msg);
+			} else {
+				itour.alert("提示",result.msg||"晒出出错！",'info');
+				return;
+				//_this.showError(result.msg);
+			}
 	});
+	}
 	//console.log(formData);
 	//console.log($.parseJSON(formData));
 	//var showhappy = JSON.stringify($.parseJSON(formData));
@@ -240,13 +276,4 @@ function sendFile(file, editor, $editable){
 //  $('#summernote').code(text); // 给编辑器赋值
 
 //var str= $('#summernote').code();  //取值 
-$.extend($.fn.datebox.defaults.rules,{  
-	checkDate:{  //只有在datebox的input框获取焦点的时候才会显示提示，如果禁用了输入则不会生效
-		validator:function(value){      
-			var nowDate = new Date();  
-			//var chooseData = new Date(dateList[2],dateList[0]-1,dateList[1]);   
-			return nowDate>=value;  
-		},  
-		message:"晒旅行幸福的日期应在当前日期之前"  
-	}     
-}); 
+

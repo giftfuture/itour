@@ -23,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.json.JsonUtils;
+import com.itour.base.page.BasePage;
+import com.itour.base.page.Pager;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
 import com.itour.entity.QuoteForm;
@@ -53,6 +55,7 @@ public class HikingController extends BaseController{
 	private TravelStyleService travelStyleService;
 	@Autowired
 	private QuoteFormService quoteFormService;
+	
 	/**
 	 * 
 	 * @param url
@@ -60,26 +63,43 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@SuppressWarnings({"unchecked" })
 	@RequestMapping(value="/main", method = RequestMethod.GET) 
-	public ModelAndView goHiking(HttpServletRequest request,HttpServletResponse response) throws Exception{
-	/*	Map<String,Object>  context = getRootMap();
-		//page.setDeleted(DELETED.NO.key);
+	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		return forward("front/trek/trekkings",context); 
+	}
+	/**
+	 * 
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@ResponseBody
+	@SuppressWarnings({"unchecked" })
+	@RequestMapping(value="/goHiking", method = RequestMethod.POST) 
+	public String goHiking(String pageNo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		/*//page.setDeleted(DELETED.NO.key);
 		List<Customers> dataList = customersService.queryByList(page);
 		//设置页面数据
 		context.put("dataList", dataList);*/
-		Map<String,Object> map = getRootMap();
+		//Map<String,Object> map = getRootMap();
 		if(StringUtils.isNotEmpty(Constants.travelStyles.get(Constants.HIKING))){			
-			//map.put("alias", Constants.HIKING);
-		String coverpath = FilePros.httpRouteCoverpath();
-		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.HIKING);
-		for(RouteTemplateVo rt:rtvos){
-			//String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
-			//List<String> itids = Arrays.asList(itemIds.split(","));
-			//List<TravelItem> items = travelItemService.queryByIds(itids);
-			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
-		}
-		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
+		RouteTemplateVo vo = new RouteTemplateVo();
+		vo.setTravelStyle(Constants.HIKING);
+		vo.setPage(Long.parseLong(pageNo));
+		vo.setRows(Constants.rtPerPage);
+		vo.setLimit(Constants.rtPerPage);
+		BasePage<RouteTemplateVo> page = routeTemplateService.pageQueryByStyle(vo);
+		page.setPage(Long.parseLong(pageNo));
+		Pager pager = page.getPager();
+		pager.setPageId(Long.parseLong(pageNo));
+		pager.setPageSize(Constants.rtPerPage);
+		pager.setRowCount(page.getTotal());
+		page.setPager(pager);
+		context.put("result", page);
+	/*	int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
 		map.clear();
 		map.put("count", rtvos.size());
 		map.put("perRow", Constants.perRow);
@@ -89,7 +109,7 @@ public class HikingController extends BaseController{
 			int end = Constants.perRow*(i+1)>rtvos.size() ? rtvos.size() : Constants.perRow*(i+1);
 			rts.put(i,rtvos.subList(Constants.perRow*i, end));
 		}
-		map.put("rts", rts);
+		map.put("rts", rts);*/
 	/*	List<TravelItem> items = travelItemService.searchTravelItem(map);
 		String uploadPtopath = FilePros.uploadPtopath();
 		for(TravelItem item:items){
@@ -111,7 +131,7 @@ public class HikingController extends BaseController{
 		}
 			map.put("items", rowItems);*/
 		}
-		return forward("front/trek/trekkings",map); 
+		return JsonUtils.encode(context);
 	}
 	/**
 	 * 
@@ -131,10 +151,10 @@ public class HikingController extends BaseController{
 		String mappath = FilePros.httprouteMapPath();
 		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
+			rt.setRouteMap(mappath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+rt.getAlias()+"/"+rt.getRouteMap());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
+			rt.setCover(coverpath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -148,7 +168,7 @@ public class HikingController extends BaseController{
 			 rt.setRelates(relates);
 		}
 		QuoteFormVo qf = quoteFormService.queryByRtId(rt.getId());
-	/*	String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
+		/*String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
 		rt.setBeriefTrip(beriefTrip);
 		String ftlName = "";
 		Boolean flag =(Boolean)FreeMarkerUtil.htmlFileHasExist(request, Constants.FREEMARKER_PATH, ftlName).get("exist");
@@ -161,23 +181,29 @@ public class HikingController extends BaseController{
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItemVo> items = travelItemService.queryByIds(itids);
-		String ptopath = FilePros.itemCoverpath();
+		//String itemCoverpath = FilePros.httpitemCoverpath();
+		//String itemPhotoPath = FilePros.httptravelitemPhotoPath();
 		List<String> photoList = Lists.newArrayList();
+		String rtPhotoPath = FilePros.httpRoutePhotos();
+		String [] photos = StringUtils.isNotEmpty(rt.getViewphotos())?rt.getViewphotos().split("\\|"):new String[]{};
+		for(String photo:photos){
+			photoList.add(StringUtils.trim(rtPhotoPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+photo));
+		}
 		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
 		for(TravelItemVo ti:items){
-			String cover = ti.getCover();
+		/*	String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
-				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
+				String realCover = itemCoverpath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(realCover);
 			}
 			String photos = ti.getPhotos();
 			if(StringUtils.isNotEmpty(photos)){
 				List<String> array = Arrays.asList(photos.split("\\|"));
 				for(String name:array){
-					String realname = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
+					String realname = itemPhotoPath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
 					photoList.add(realname);
 				}
-			}
+			}*/
 			routeLine.append("-"+ti.getItem());
 		}
 		routeLine.append("-"+rt.getArrive());

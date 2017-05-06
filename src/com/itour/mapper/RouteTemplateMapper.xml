@@ -99,6 +99,7 @@
 	<result column="star_level" property="starLevel"/>
 	<result column="similars" property="similars"/>
 	<result column="elevation" property="elevation"/>
+	<result column="viewphotos" property="viewphotos"/>
 </resultMap>
        <!-- Result Map-->
 <resultMap id="BaseResultMapVo" type="com.itour.vo.RouteTemplateVo" >
@@ -204,20 +205,21 @@
 	<result column="elevation" property="elevation"/>
 	<result column="travelStyleType" property="travelStyleType"/>
 	<result column="travelStyleAlias" property="travelStyleAlias"/>
+	<result column="viewphotos" property="viewphotos"/>
 </resultMap>
        
 <!-- route_template table all fields   -->
 <sql id="Base_Column_List" >
     route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,similars,star_level,
     d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,elevation,level_area,
-    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,
+    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,viewphotos,
     d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
     route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 </sql>
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where is_valid=1 
 <trim  suffixOverrides="," >
 	<if test="elevation !=null and elevation !=''">
 		and elevation=#{elevation}
@@ -480,6 +482,9 @@ where is_valid=1
 	<if test="starLevel !=null and starLevel !=''">
 		and star_level=#{starLevel}
 	</if>
+	<if test="viewphotos !=null and viewphotos !=''">
+		and viewphotos=#{viewphotos}
+	</if>
 </trim>
 </sql>
    
@@ -489,14 +494,17 @@ where is_valid=1
   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,similars,elevation,star_level,level_area)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{similars},#{elevation},#{starLevel},#{levelArea})
+  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,similars,elevation,star_level,level_area,viewphotos)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{similars},#{elevation},#{starLevel},#{levelArea},#{viewphotos})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.RouteTemplate" >
-	update route_template set update_time=now(),
+	update route_template set is_valid=1, update_time=now(),
 	<trim  suffixOverrides="," >
+	<if test="viewphotos !=null and viewphotos !=''">
+		viewphotos=#{viewphotos},
+	</if>
 	<if test="elevation !=null and elevation !=''">
 		 elevation=#{elevation},
 	</if>
@@ -698,9 +706,6 @@ where is_valid=1
 	<if test="d60 != null   and d60 != ''">
 		d60=#{d60},
 	</if>
-	<if test="updateTime != null  ">
-		update_time=#{updateTime},
-	</if>
 	<if test="updateBy != null and updateBy != '' ">
 		update_by=#{updateBy},
 	</if>
@@ -724,9 +729,6 @@ where is_valid=1
 	</if>
 	<if test="alias != null and alias != ''">
 		 alias = #{alias},
-	</if>
-	<if test="isValid != null">
-		is_valid=#{isValid},
 	</if>
 	<if test="customizedService != null and customizedService != ''">
 		 customized_service=#{customizedService},
@@ -778,7 +780,7 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
 	select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
 	left join travel_style ts on route_template.travel_style=ts.id  where route_template.travel_items like CONCAT('%', #{travelItems}, '%') order by route_template.star_level desc
 </select>
-<select id="pageQueryByItems"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+<select id="pageQueryByItems"  resultMap="BaseResultMapVo" parameterType="com.itour.vo.RouteTemplateVo">
 	select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
 	left join travel_style ts on route_template.travel_style=ts.id  
 	where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
@@ -787,7 +789,7 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-<select id="countQueryByItems" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+<select id="countQueryByItems" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVo">
 	select count(1) from route_template where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
 </select>
 <!-- 根据id查询 路线模板 -->
@@ -799,8 +801,21 @@ select <include refid="Base_Column_List" />,customers.customer_name customerName
 </select>
 <!-- 获取该旅行方式下的施行项目 -->
 <select id="queryByStyle" parameterType="java.lang.String" resultMap="BaseResultMap">
-select <include refid="Base_Column_List"/>
-from route_template inner join travel_style on route_template.travel_style = travel_style.id where travel_style.alias=#{travelStyle} order by star_level desc
+select <include refid="Base_Column_List"/>,travel_style.type travelStyleType,travel_style.alias travelStyleAlias
+from route_template left join travel_style on route_template.travel_style = travel_style.id 
+where travel_style.alias=#{travelStyle} order by star_level desc
+</select>
+<select id="pageQueryByStyle" parameterType="com.itour.vo.RouteTemplateVo" resultMap="BaseResultMapVo">
+select <include refid="Base_Column_List"/>,travel_style.type travelStyleType,travel_style.alias travelStyleAlias
+from route_template left join travel_style on route_template.travel_style = travel_style.id
+ where travel_style.alias=#{travelStyle} order by star_level desc
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if> 
+</select>
+<select id="countQueryByStyle" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVo">
+ select count(1) from route_template left join travel_style on route_template.travel_style = travel_style.id
+ where travel_style.alias=#{travelStyle}
 </select>
 <select id="selectByRouteCode" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List" /> from route_template where route_code = #{routeCode} order by star_level desc
@@ -849,7 +864,7 @@ order by star_level desc
 <select id="queryByList" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
 	select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
 	d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,similars,level_area,
-    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,
+    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,viewphotos,
     d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, 
     concat(cb.nickName,'(',cb.email,')') create_by, concat(ub.nickName,'(',ub.email,')') update_by, elevation,la.level1_area,la.level2_area,
     route_template.remark,route_template.special,(select rt.title from route_template rt where rt.id=route_template.related) related,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
@@ -896,7 +911,7 @@ order by star_level desc
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-<select id="searchRtsByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+<select id="searchRtsByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVo">
 	select count(1) from route_template left join travel_style ts on route_template.travel_style = ts.id
 	 left join level_area la on la.id=route_Template.level_area where 1=1
 	<trim  suffixOverrides="," >

@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content=""> 
 <title>热门旅行</title>
@@ -48,35 +53,9 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<%-- <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="94" bgcolor="#CCCCCC"><div align="center"><strong>快速搜索</strong></div></td>
-    <td width="956" bgcolor="#CCCCCC" class="f14-gao1">
-      <label>旅行方式：
-        <input id="travelstyle" name="travelstyle" class="easyui-combobox"  style="width:150px;" data-options="valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false, method:'get',url:'${basePath}travelStyle/loadStyles'">
-       	 区域：
-        <input class="easyui-combobox" id="selectScopes" name="selectScopes" style="width:100px;"  data-options="valueField:'scopeAlias',textField:'scope',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}travelItem/allScopes',
-        onChange:function(n,o){var urlurl = '${basePath}travelItem/queryByScope?scopeAlias='+n;
-        $('#sightSpot').combobox('reload',urlurl);}"><!-- $('#selectScopes').combobox('getValue') -->
-        <input id="sightSpot" name="sightSpot" class="easyui-combobox" style="width:100px;"  data-options="valueField:'alias',textField:'item',mode:'remote',panelHeight:'auto',editable:false, method:'get'"> 
-        <br />
-        假期天数：<select name="vacation" style="width:100px;">
-        	<option>-所有-</option>
-        	<option value="3-5">3-5天</option>
-        	<option value="6-9">6-9天</option>
-        	<option value="10-15">10-15天</option>
-        	<option value="16">16天+</option>
-        </select>
-</label></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td class="f14-gao1">&nbsp;</td>
-  </tr>
-</table> --%>
 <table  class="commontb" align="center">
  <tbody id="fbcontent">
-<c:forEach begin="0" end="${rows}" varStatus="status">
+<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
   <tr>
     <c:forEach items="${rts.get(status.index)}" var="rt" >
     <td valign="top">
@@ -84,8 +63,6 @@
       <tr>
         <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
             <tr>
-             <!--  <td width="57"><img src="images/icon-01.jpg" width="57" height="43" /></td>ISO-8859-1 -->
-            <%--   <td width="296" class="h2-24"><a href="${basePath}hiking/detail/${rt.alias}">${rt.title}</a></td> --%>
               <td width="296" class="h2-24"><a href="${basePath}hotsight/hotsight/${rt.alias}">${rt.title}</a></td>
             </tr>
         </table></td>
@@ -96,15 +73,12 @@
       <tr>
         <td class="f12-gao1">${rt.shortContent}</td>
       </tr>
-     <%--  <tr>
-        <td><span class="f14-gao1">${item.content}</span></td>
-      </tr> --%>
       <tr>
         <td>&nbsp;</td>
       </tr>
     </table></td>
     </c:forEach>
-  </tr></c:forEach>
+  </tr></c:forEach> --%>
   </tbody>
 </table>
 <center><ul id='fbpage'></ul></center>

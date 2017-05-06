@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" import="java.lang.*,java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,7 @@
     int count=1;  														
     application.setAttribute("count",count); 
     String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
+    long getTimestamp=new Date().getTime();
 %>
 <script type="text/javascript">
 var tougao="mrr";
@@ -17,6 +18,28 @@ var ourl="";
 var basePath = '${basePath}'; 
 </script>
 <base href=" <%=basePath%>">
+<!-- 公共资源CSS,JS  -->
+<link rel="stylesheet" type="text/css" href="${basePath}js/jquery-easyui-1.5.1/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="${basePath}js/jquery-easyui-1.5.1/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${basePath}css/base.css">
+<link rel="stylesheet" type="text/css" href="${basePath}css/bootstrap/bootstrap.min.css">
+<!-- ** Javascript ** -->
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> 
+<!-- <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script> -->
+<script type="text/javascript" src="${basePath}js/commons/jquery-migrate-1.1.0.min.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/jquery.form.js"></script>
+<script type="text/javascript" src="${basePath}js/validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${basePath}js/validate/messages_zh_TW.min.js"></script>
+<script type="text/javascript" src="${basePath}js/validate/messages_zh.min.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}js/commons/urls.js?v=<%=getTimestamp%>"></script>
+<script type="text/javascript" src="${basePath}js/commons/base.js?v=<%=getTimestamp%>"></script>
+<script type="text/javascript" src="${basePath}js/commons/__.js?v=<%=getTimestamp%>"></script>
+<script type="text/javascript" src="${basePath}js/commons/YDataGrid.js?v=<%=getTimestamp%>"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-wysiwyg.js"></script>
 <meta charset="UTF-8">
 <meta name="applicable-device" content="pc">
 <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
@@ -30,12 +53,7 @@ var basePath = '${basePath}';
 <meta http-equiv="mobile-agent" content="format=html5; url=<%=homePage%>" />
 <meta http-equiv="mobile-agent" content="format=xhtml; url=<%=homePage%>" />
 <link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
-<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
-<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" href="${basePath}css/index.css" />  
-<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>欢迎访问主角旅行</title>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
@@ -55,10 +73,10 @@ var basePath = '${basePath}';
   <tr>
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
- <tr>
+ <%-- <tr>
     <td><img id="banner-index"  src="${basePath }images/Route001.jpg"/></td>
-  </tr>  
-<tr><td>
+  </tr> --%>  
+<tr><td style="padding-top:70px;margin-top:70px">
 <!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
 <script type="text/javascript">
 if($.browser.msie){ 
@@ -68,14 +86,14 @@ if($.browser.msie){
 			'<param name="wmode" value="opaque" />'+
 			'<param name="scale" value="noscale" />'+
 			'<param name="salign" value="lt" />'+
-			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=video/praise02.mp4&amp;autoPlay=true&amp;autoRewind=true" />'+
+			'<param name="FlashVars" value="&amp;MM_ComponentVersion=1&amp;skinName=public/swf/Clear_Skin_3&amp;streamName=${videopath}.mp4&amp;autoPlay=true&amp;autoRewind=true" />'+
 			'<param name="swfversion" value="8,0,0,0" />'+
 			'<param name="expressinstall" value="expressInstall.swf" />'+
 			'</object>');
 	}else{
 		 document.write('<div align="center" width="1350" height="598">'+
 		'<video width="1350" height="598" webkit-playsinline="true" autoplay="autoplay" controls="controls">'+
-		'<source src="video/praise01.mp4" type="video/mp4"></source>'+
+		'<source src="${videopath}.mp4" type="video/mp4"></source>'+
 		'your browser does not support the video tag'+
 		'</video></div>'); 
 		//document.write('<iframe height=600 width=330 src="http://player.youku.com/embed/XNTcyMzIwMTE2" frameborder=0 allowfullscreen></iframe>');

@@ -38,7 +38,7 @@
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="600"><img src="${basePath}images/Route001.jpg" width="600" height="338" /></td>
+        <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="900" width="900" /></td>
       </tr>
       <tr>
         <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">

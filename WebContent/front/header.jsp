@@ -8,15 +8,15 @@
     	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th>
     	<th><span style="color:red">一鍵撥號：<a href="tel:+8602885580038">+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th>
     	<th><a href="mailto:info@iTours.com.cn">info@iTours.com.cn</a></th></tr>
-    	<tr class="trbanner" align="center"><td style="width:100px"><a href="">首頁</a></td>
-    	<td style="width:100px"><a href="${basePath}hiking/main">徒步</a></td>
-    	<td style="width:100px"><a href="${basePath }climb/main">登山</a></td>
-    	<td style="width:100px"><a href="${basePath }selfdrive/main">自駕</a></td>
-    	<td style="width:135px"><a href="${basePath }light/main">輕驢行</a></td>
+    	<tr class="trbanner" align="center"><td style="text-align:center;width:100px"><a href="">首頁</a></td>
+    	<td style="text-align:center;width:100px"><a href="${basePath}hiking/main">徒步</a></td>
+    	<td style="text-align:center;width:100px"><a href="${basePath }climb/main">登山</a></td>
+    	<td style="text-align:center;width:100px"><a href="${basePath }selfdrive/main">自駕</a></td>
+    	<td style="text-align:center;width:135px"><a href="${basePath }light/main">輕驢行</a></td>
     	<%-- <td><a href="${basePath }customized/main">定制</a></td> --%>
-    	<td style="width:135px"><a href="${basePath }showhappy/main">回憶興福</a></td>
-    	<td style="width:140px"><a href="${basePath }destination/main">目的地</a></td>
-    	<td style="width:140px"><a href="${basePath}whyus/why">关于我们</a></td>
+    	<td style="text-align:center;width:135px"><a href="${basePath }showhappy/main">回憶興福</a></td>
+    	<td style="text-align:center;width:140px"><a href="${basePath }destination/main">目的地</a></td>
+    	<td style="text-align:center;width:140px"><a href="${basePath}whyus/why">关于我们</a></td>
     	</tr>
     </table>
      </div>

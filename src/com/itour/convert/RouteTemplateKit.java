@@ -119,6 +119,7 @@ public class RouteTemplateKit{
 		vo.setElevation(rt.getElevation());
 		vo.setStarLevel(rt.getStarLevel());
 		vo.setLevelArea(rt.getLevelArea());
+		vo.setViewphotos(rt.getViewphotos());
 		return vo;
 	}
 	public static RouteTemplate toEntity(RouteTemplateVo rt){
@@ -221,6 +222,7 @@ public class RouteTemplateKit{
 		vo.setLevelArea(rt.getLevelArea());
 		vo.setSimilars(rt.getSimilars());
 		vo.setElevation(rt.getElevation());
+		vo.setViewphotos(rt.getViewphotos());
 		return vo;
 	}
 }

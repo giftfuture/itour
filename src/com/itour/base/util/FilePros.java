@@ -63,6 +63,16 @@ public class FilePros   {
 	}
 	
 	/**
+	 * 
+	 * @return
+	 */
+	public static String routePhotos(){
+		return rb.getString("route_Photos");
+	}
+	public static String httpRoutePhotos(){
+		return rb.getString("httproute_Photos");
+	}		
+	/**
 	 * 旅行方式封面图片
 	 * @return
 	 */
@@ -148,6 +158,18 @@ public class FilePros   {
 	public static String httpadLinkPath(){
 		String rtCover = rb.getString("httpadlink_path");
 		return rtCover;
+	}
+	/**
+	 * 首页广告视频
+	 * @return
+	 */
+	public static String bannervideoPath(){
+		String bannervideo = rb.getString("bannervideo");
+		return bannervideo;
+	}
+	public static String httpbannervideoPath(){
+		String bannervideo = rb.getString("http_bannervideo");
+		return bannervideo;
 	}
 	/**
 	 * 上传图片的本项目相关的存储路径

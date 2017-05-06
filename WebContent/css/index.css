@@ -48,16 +48,21 @@ body {
 .STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
 .trbanner{font-family: "微软雅黑"; font-size: 30px; background-color: #FF0000;}
 .btn-item {
-  background-color: #fff;
+  background: grey;  /* transparent */
   width:12px;
   height:12px;
+   float:middle; 
 }
 .btn-item__cur {
-  background-color: transparent;
+  background: #8B0000;
   border-color: #fff;
   width:14px;
+  float:middle; 
   height:14px;
 }
+tr td ol{position:relative;width: 80px;height: 20px;top:-30px;left:60px;}
+tr td ol li{float:left;width: 10px;height: 10px;margin: 5px;background: #fff;}
+tr td ol li.seleted{background: #1AA4CA;}
 /*  a:link {
 	font-family: "微软雅黑";
 	color: #FFFFFF;

@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +50,6 @@ import com.itour.vo.TravelItemVo;
 @Controller
 public class IndexController extends BaseController {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
 	// Servrice start
 	@Autowired 
 	private TravelItemService<TravelItem> travelItemService; 
@@ -72,6 +72,13 @@ public class IndexController extends BaseController {
 	@Autowired
 	private ShowHappyService showHappyService; 
 	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/",method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -128,11 +135,28 @@ public class IndexController extends BaseController {
 		map.put("mapvo",mapvo);
 		return forward("index",map); 
 	}
-	@RequestMapping(value="/video",method = RequestMethod.GET) 
-	public ModelAndView video(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		
-		return forward("front/video");
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/video/{videoName}",method = RequestMethod.GET) 
+	public ModelAndView video(@PathVariable("videoName")String videoName,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = getRootMap();
+		String videopath = FilePros.httpbannervideoPath();
+		map.put("videopath",videopath+"/"+videoName);
+		return forward("front/video",map);		
 	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/mobileIndex",method = RequestMethod.GET) 
 	public ModelAndView mobileIndex(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();

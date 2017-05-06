@@ -23,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.json.JsonUtils;
+import com.itour.base.page.BasePage;
+import com.itour.base.page.Pager;
 import com.itour.base.util.FilePros;
 import com.itour.base.web.BaseController;
 import com.itour.entity.QuoteForm;
@@ -53,32 +55,48 @@ public class LightController extends BaseController{
 	private TravelStyleService travelStyleService;
 	@Autowired
 	private QuoteFormService quoteFormService;
-	//@Autowired
-	//private FreeMarkerConfig freeMarkerConfig;
-	@RequestMapping("/main") 
-	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object>  map = getRootMap();
-		//map.put("alias", Constants.HIKING);
-		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.LIGHT);
-		String uploadPtopath = FilePros.itemCoverpath();
-		for(RouteTemplateVo rt:rtvos){
-			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
-			List<String> itids = Arrays.asList(itemIds.split(","));
-			List<TravelItemVo> items = travelItemService.queryByIds(itids);
-			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():(items!=null && items.size()>0?items.get(0).getItemCode()+"_"+items.get(0).getAlias()+"/"+items.get(0).getCover():"")));
+	
+	/**
+	 * 
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value="/main", method = RequestMethod.GET) 
+	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		return forward("front/light/main",context); 
+	}
+	/**
+	 * 
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@ResponseBody
+	@SuppressWarnings({"unchecked" })
+	@RequestMapping(value="/lightpagination", method = RequestMethod.POST) 
+	public String lightpagination(String pageNo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		//page.setDeleted(DELETED.NO.key);
+		if(StringUtils.isNotEmpty(Constants.travelStyles.get(Constants.LIGHT))){			
+			RouteTemplateVo vo = new RouteTemplateVo();
+			vo.setTravelStyle(Constants.LIGHT);
+			vo.setPage(Long.parseLong(pageNo));
+			vo.setRows(Constants.rtPerPage);
+			vo.setLimit(Constants.rtPerPage);
+			BasePage<RouteTemplateVo> page = routeTemplateService.pageQueryByStyle(vo);
+			page.setPage(Long.parseLong(pageNo));
+			Pager pager = page.getPager();
+			pager.setPageId(Long.parseLong(pageNo));
+			pager.setPageSize(Constants.rtPerPage);
+			pager.setRowCount(page.getTotal());
+			page.setPager(pager);
+			context.put("result", page);
 		}
-		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
-		map.clear();
-		map.put("count", rtvos.size());
-		map.put("perRow", Constants.perRow);
-		map.put("rows", rows);
-		Map<Integer,List<RouteTemplateVo>> rts = new HashMap<Integer,List<RouteTemplateVo>>();
-		for(int i=0;i<rows;i++){
-			int end = Constants.perRow*(i+1)>rtvos.size() ? rtvos.size() : Constants.perRow*(i+1);
-			rts.put(i,rtvos.subList(Constants.perRow*i, end));
-		}
-		map.put("rts", rts);
-		return forward("front/light/main",map); 
+		return JsonUtils.encode(context);
 	}
 	/**
 	 * 
@@ -98,10 +116,10 @@ public class LightController extends BaseController{
 		String mappath = FilePros.httprouteMapPath();
 		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
-			rt.setRouteMap(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap());
+			rt.setRouteMap(StringUtils.trim(mappath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getRouteMap()));
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
-			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
+			rt.setCover(StringUtils.trim(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover()));
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
@@ -128,11 +146,16 @@ public class LightController extends BaseController{
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItemVo> items = travelItemService.queryByIds(itids);
-		String ptopath = FilePros.itemCoverpath();
+		//String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
+		String rtPhotoPath = FilePros.httpRoutePhotos();
+		String [] photos = StringUtils.isNotEmpty(rt.getViewphotos())?rt.getViewphotos().split("\\|"):new String[]{};
+		for(String photo:photos){
+			photoList.add(StringUtils.trim(rtPhotoPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+photo));
+		}
 		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
 		for(TravelItemVo ti:items){
-			String cover = ti.getCover();
+		/*	String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
 				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
 				ti.setCover(realCover);
@@ -144,7 +167,7 @@ public class LightController extends BaseController{
 					String realname = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ name;//Constants.basePhoto
 					photoList.add(realname);
 				}
-			}
+			}*/
 			routeLine.append("-"+ti.getItem());
 		}
 		routeLine.append("-"+rt.getArrive());

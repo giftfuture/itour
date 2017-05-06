@@ -2,41 +2,42 @@ $package('itour.routeTemplate');
 itour.routeTemplate = function(){
 	var _box = null;
 	var _this = {
-			uploadPhotoAction:'routeTemplate/uploadPhoto',
-			uploadPhotoForm:function(){
-				return $("#multiDataForm");
+			uploadCoverAction:'routeTemplate/uploadCover',
+			uploadCoverForm:function(){
+				return $("#uploadCoverForm");
 			},
-			uploadPhotoWin:function(){//upload-photo
-				return $("#upload-photo");
+			uploadCoverWin:function(){//upload-photo
+				return $("#uploadCover-photo");
 			},
-			savePhoto:function(){
+			saveuploadCover:function(){
 					itour.progress();//缓冲条
-					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
-					_this.uploadPhotoForm().ajaxForm();
-					itour.saveForm(_this.uploadPhotoForm(),function(data){
+					_this.uploadCoverForm().attr('action',_this.uploadCoverAction);
+					_this.uploadCoverForm().ajaxForm();
+					itour.saveForm(_this.uploadCoverForm(),function(data){
 						///console.log(data);
 						//if(data.success){	
 							itour.alert('提示', data.msg, 'info',function(){								
 								itour.closeProgress();//关闭缓冲条
 								_box.handler.refresh();
-								_this.uploadPhotoForm().resetForm();
-								_this.uploadPhotoWin().dialog('close');
+								_this.uploadCoverForm().resetForm();
+								_this.uploadCoverWin().dialog('close');
 							})
 						//}
 					});
 			},
-			initUploadForm:function(){
-				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
-					_this.savePhoto();
+			inituploadCoverForm:function(){
+				_this.uploadCoverWin().find("#fileSubmit").click(function(){
+					_this.saveuploadCover();
 				});
-				_this.uploadPhotoWin().find("#win-close").click(function(){	
+				_this.uploadCoverWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
-					     	_this.uploadPhotoWin().dialog('close');
+					     	_this.uploadCoverWin().dialog('close');
 					    }  
 					});
 				});
 			},
+			
 			uploadMapAction:'routeTemplate/uploadMap',
 			uploadMapForm:function(){
 				return $("#uploadMapForm");
@@ -72,6 +73,41 @@ itour.routeTemplate = function(){
 					});
 				});
 			},
+			
+			uploadPhotoAction:'routeTemplate/uploadPhotos',
+			uploadPhotoForm:function(){
+				return $("#uploadPhotoForm");
+			},
+			uploadPhotoWin:function(){
+				return $("#upload-photo");
+			},
+			savePhoto:function(){
+					itour.progress();//缓冲条
+					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
+					_this.uploadPhotoForm().ajaxForm();
+					itour.saveForm(_this.uploadPhotoForm(),function(data){
+						///console.log(data);
+						//if(data.success){	
+							$.messager.alert('提示', data.msg, 'info',function(){								
+								itour.closeProgress();//关闭缓冲条
+								_this.uploadPhotoWin().dialog('close');
+							})
+						//}
+					});
+			},
+			initUploadForm:function(){
+				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
+					_this.savePhoto();
+				});
+				_this.uploadPhotoWin().find("#win-close").click(function(){	
+					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
+					    if (r){  
+					     	_this.uploadPhotoWin().dialog('close');
+					    }  
+					});
+				});
+			},
+			
 			toList:function(parentId){
 				_box.form.search.resetForm();
 				if(parentId){
@@ -222,6 +258,15 @@ itour.routeTemplate = function(){
 							return row.cover;
 						}
 					},
+					{field:'viewphotos',title:'美图',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if((row.viewphotos+"").length>60){
+								return (row.viewphotos+"").substring(0,60)+"....";
+							}else{									
+								return row.viewphotos;
+							}
+						}
+					},
 					{field:'title',title:'线路名称',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							if((row.title+"").length>30){
@@ -246,11 +291,11 @@ itour.routeTemplate = function(){
 							}
 						}
 					},
-					{field:'quotoForm',title:'详细日程',align:'center',sortable:true,
+				/*	{field:'quotoForm',title:'详细日程',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return '<a href="'+basePath+'routeTemplate/rtschedule?id='+row.id+'">详细日程</a>';
 						}
-					},
+					},*/
 					{field:'quotoFormquotoForm',title:'路线编辑',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">路线编辑</a>';
@@ -706,7 +751,7 @@ itour.routeTemplate = function(){
 						formatter:function(value,row,index){
 							return row.updateTime;
 						}
-					},
+					},		
 					{field:'updateBy',title:'更新人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateBy;
@@ -728,9 +773,9 @@ itour.routeTemplate = function(){
 								{id:'btnedit',text:'上传封面',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 									var selected = _box.utils.getCheckedRows();
 									if (_box.utils.checkSelectOne(selected)){
-										_this.uploadPhotoForm().resetForm();
-										_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
-										_this.uploadPhotoWin().window('open'); 		
+										_this.uploadCoverForm().resetForm();
+										_this.uploadCoverForm().find("input[name='id']").val(selected[0].id);
+										_this.uploadCoverWin().window('open'); 		
 									}
 								}},
 								{id:'btnedit',text:'上传地图',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
@@ -739,6 +784,14 @@ itour.routeTemplate = function(){
 										_this.uploadMapForm().resetForm();
 										_this.uploadMapForm().find("input[name='id']").val(selected[0].id);
 										_this.uploadMapWin().window('open'); 		
+									}
+								}},
+								{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
+									var selected = _box.utils.getCheckedRows();
+									if (_box.utils.checkSelectOne(selected)){
+										_this.uploadPhotoForm().resetForm();
+										_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
+										_this.uploadPhotoWin().window('open'); 		
 									}
 								}},
 								{id:'btndelete',text:'物理删除',btnType:'remove'},
@@ -754,38 +807,23 @@ itour.routeTemplate = function(){
 							]
 			}
 		},
-		params:{
-			fileInput: $("#fileImage").get(0),
+		coverparams:{
+			fileInput: $("#fileImage",this.uploadCoverWin).get(0),
 		//	dragDrop: $("#fileDragArea").get(0),
-			upButton: $("#fileSubmit").get(0),
-			url: 'routeTemplate/uploadPhoto',// _this.config.action.uploadPhoto,//$("#uploadForm").attr("action"),
-			filter: function(files) {
-				var arrFiles = [];
-				for (var i = 0, file; file = files[i]; i++) {
-					if (file.type.indexOf("image") == 0) {
-						if (file.size >= 5120000) {
-							itour.alert('提示','您这张"'+ file.name +'"图片大小过大，应小于5M','info');	
-						} else {
-							arrFiles.push(file);	
-						}			
-					} else {
-						itour.alert('提示','文件"' + file.name + '"不是图片。','info');	
-					}
-				}
-				return arrFiles;
-			},
+			upButton: $("#fileSubmit",this.uploadCoverWin).get(0),
+			url: 'routeTemplate/uploadCover',// _this.config.action.uploadPhoto,//
 			onSelect: function(files) {
 				//console.log(files[0]);
 				var html = '',i = 0;
-				$("#preview").html('<div class="upload_loading"></div>');
+				$("#preview",this.uploadCoverWin).html('<div class="upload_loading"></div>');
 				var funAppendImage = function() {
 					file = files[i];
 					if(file) {
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							if(i==0){
-								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
-								'<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+								'<img id="uploadImage_' + i + '" title="' +file.name + '"  src="' + e.target.result + '" class="upload_image" /></p>'+ 
 								'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
 								'</div>';
 								i++;
@@ -795,13 +833,13 @@ itour.routeTemplate = function(){
 						reader.readAsDataURL(file);
 					} else {
 						//console.log(html);
-						$("#preview").html(html);
+						$("#preview",this.uploadCoverWin).html(html);
 						if (html) {
 							//提交按钮显示
-							$("#fileSubmit").show();	
+							$("#fileSubmit",this.uploadCoverWin).show();	
 						} else {
 							//提交按钮隐藏
-							$("#fileSubmit").hide();	
+							$("#fileSubmit",this.uploadCoverWin).hide();	
 						}
 					}
 				
@@ -809,7 +847,7 @@ itour.routeTemplate = function(){
 				funAppendImage();		
 			},
 			onDelete: function(file) {
-				$("#uploadList_" + file.index).fadeOut();
+				$("#uploadList_" + file.index,this.uploadCoverWin).fadeOut();
 			},
 			onDragOver: function() {
 				$(this).addClass("upload_drag_hover");
@@ -818,59 +856,44 @@ itour.routeTemplate = function(){
 				$(this).removeClass("upload_drag_hover");
 			},
 			onProgress: function(file, loaded, total) {
-				var eleProgress = $("#uploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+				var eleProgress = $("#uploadProgress_" + file.index,this.uploadCoverWin), percent = (loaded / total * 100).toFixed(2) + '%';
 				eleProgress.show().html(percent);
 			},
 			onSuccess: function(file, response) {
-				$("#uploadInf").append("<p>封面图片"+file.name+"上传成功，"  + response + "</p>");
+				$("#uploadInf",this.uploadCoverWin).append("<p>封面图片"+file.name+"上传成功，"  + response + "</p>");
 				Grid.datagrid('reload',param);
 				_this.config.datagrid('reload',param);
-				   Form.multiDataForm.resetForm();
+			   Form.uploadCoverForm.resetForm();
 			},
 			onFailure: function(file) {
-				$("#uploadInf").append("<p>封面图片" + file.name + "上传失败！</p>");	
-				$("#uploadImage_" + file.index).css("opacity", 0.2);
+				$("#uploadInf",this.uploadCoverWin).append("<p>封面图片" + file.name + "上传失败！</p>");	
+				$("#uploadImage_" + file.index,this.uploadCoverWin).css("opacity", 0.2);
 			},
 			onComplete: function() {
 				//提交按钮隐藏
-				$("#fileSubmit").hide();
+				$("#fileSubmit",this.uploadCoverWin).hide();
 				//file控件value置空
-				$("#fileImage").val("");
-				$("#uploadInf").append("<p>当前图片上传完毕。</p>");
+				$("#fileImage",this.uploadCoverWin).val("");
+				$("#uploadInf",this.uploadCoverWin).append("<p>当前图片上传完毕。</p>");
 			}
 		},
 		mapparams:{
-			fileInput: $("#mapfile").get(0),
+			fileInput: $("#mapfile",this.uploadMapWin).get(0),
 		//	dragDrop: $("#fileDragArea").get(0),
-			upButton: $("#mapSubmit").get(0),
+			upButton: $("#mapSubmit",this.uploadMapWin).get(0),
 			url: 'routeTemplate/uploadMap',
-			filter: function(files){
-				var arrFiles = [];
-				for (var i = 0, file; file = files[i]; i++) {
-					if (file.type.indexOf("image") == 0) {
-						if (file.size >= 5120000) {
-							itour.alert('提示','您这张"'+ file.name +'"图片大小过大，应小于5M','info');	
-						} else {
-							arrFiles.push(file);	
-						}			
-					} else {
-						itour.alert('提示','文件"' + file.name + '"不是图片。','info');	
-					}
-				}
-				return arrFiles;
-			},
 			onSelect: function(files) {
 				//console.log(files[0]);
 				var html = '',i = 0;
-				$("#mappreview").html('<div class="upload_loading"></div>');
+				$("#mappreview",this.uploadMapWin).html('<div class="upload_loading"></div>');
 				var funAppendImage = function() {
 					file = files[i];
 					if (file) {
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							if(i==0){
-								html = html + '<div id="mapuploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
-								'<img id="mapuploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								html = html + '<div id="mapuploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+								'<img id="mapuploadImage_' + i + '" title="' +file.name + '"  src="' + e.target.result + '" class="upload_image" /></p>'+ 
 								'<span id="mapuploadProgress_' + i + '" class="upload_progress"></span>' +
 								'</div>';
 								i++;
@@ -879,20 +902,20 @@ itour.routeTemplate = function(){
 						}
 						reader.readAsDataURL(file);
 					} else {
-						$("#mappreview").html(html);
+						$("#mappreview",this.uploadMapWin).html(html);
 						if (html) {
 							//提交按钮显示
-							$("#mapSubmit").show();	
+							$("#mapSubmit",this.uploadMapWin).show();	
 						} else {
 							//提交按钮隐藏
-							$("#mapSubmit").hide();	
+							$("#mapSubmit",this.uploadMapWin).hide();	
 						}
 					}
 				};
 				funAppendImage();		
 			},
 			onDelete: function(file) {
-				$("#mapuploadList_" + file.index).fadeOut();
+				$("#mapuploadList_" + file.index,this.uploadMapWin).fadeOut();
 			},
 			onDragOver: function() {
 				$(this).addClass("upload_drag_hover");
@@ -901,37 +924,113 @@ itour.routeTemplate = function(){
 				$(this).removeClass("upload_drag_hover");
 			},
 			onProgress: function(file, loaded, total) {
-				var eleProgress = $("#mapuploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+				var eleProgress = $("#mapuploadProgress_" + file.index,this.uploadMapWin), percent = (loaded / total * 100).toFixed(2) + '%';
 				eleProgress.show().html(percent);
 			},
 			onSuccess: function(file, response) {
-				$("#mapuploadInf").append("<p>路线地图"+file.name+"上传成功，"  + response + "</p>");
+				$("#mapuploadInf",this.uploadMapWin).append("<p>路线地图"+file.name+"上传成功，"  + response + "</p>");
 				Grid.datagrid('reload',param);
 				_this.config.datagrid('reload',param);
 			   Form.uploadMapForm.resetForm();
 			},
 			onFailure: function(file) {
-				$("#mapuploadInf").append("<p>路线地图" + file.name + "上传失败！</p>");	
-				$("#mapuploadImage_" + file.index).css("opacity", 0.2);
+				$("#mapuploadInf",this.uploadMapWin).append("<p>路线地图" + file.name + "上传失败！</p>");	
+				$("#mapuploadImage_" + file.index,this.uploadMapWin).css("opacity", 0.2);
 			},
 			onComplete: function() {
 				//提交按钮隐藏
-				$("#mapSubmit").hide();
+				$("#mapSubmit",this.uploadMapWin).hide();
 				//console.log("<p>当前地图图片上传完毕。</p>");
 				//file控件value置空
-				$("#mapfile").val("");
-				$("#mapuploadInf").append("<p>当前地图上传完毕。</p>");
+				$("#mapfile",this.uploadMapWin).val("");
+				$("#mapuploadInf",this.uploadMapWin).append("<p>当前地图上传完毕。</p>");
+			}
+		},
+		photosparams:{
+			fileInput: $("#fileImage",this.uploadPhotoWin).get(0),
+		//	dragDrop: $("#fileDragArea").get(0),
+			upButton: $("#fileSubmit",this.uploadPhotoWin).get(0),
+			url: 'routeTemplate/uploadPhotos',// _this.config.action.save,
+			onSelect: function(files) {
+				var html = '', i = 0;
+				$("#preview",this.uploadPhotoWin).html('<div class="upload_loading"></div>');
+				var funAppendImage = function() {
+					file = files[i];
+					if (file) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+								'<a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><br />' +
+								'<img id="uploadImage_' + i + '" title="' +file.name + '"  src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+							'</div>';
+							i++;
+							funAppendImage();
+						}
+					//	console.log(file);
+						reader.readAsDataURL(file);
+					} else {
+						//console.log(html);
+						$("#preview",this.uploadPhotoWin).html(html);
+						if (html) {
+							//删除方法
+							$(".upload_delete",this.uploadPhotoWin).click(function() {
+								photoszxxfile.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+								return false;	
+							});
+							//提交按钮显示
+							$("#fileSubmit",this.uploadPhotoWin).show();	
+						} else {
+							//提交按钮隐藏
+							$("#fileSubmit",this.uploadPhotoWin).hide();	
+						}
+					}
+				};
+				funAppendImage();		
+			},//viewPhotoForm
+			onDelete: function(file) {
+				$("#uploadList_" + file.index,this.uploadPhotoWin).fadeOut();
+			},
+			onDragOver: function() {
+				$(this).addClass("upload_drag_hover");
+			},
+			onDragLeave: function() {
+				$(this).removeClass("upload_drag_hover");
+			},
+			onProgress: function(file, loaded, total) {
+				var eleProgress = $("#uploadProgress_" + file.index,this.uploadPhotoWin), percent = (loaded / total * 100).toFixed(2) + '%';
+				eleProgress.show().html(percent);
+			},
+			onSuccess: function(file, response) {
+				$("#uploadInf",this.uploadPhotoWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
+				Grid.datagrid('reload',param);
+				_this.config.datagrid('reload',param);
+			   Form.uploadPhotoForm.resetForm();
+			},
+			onFailure: function(file) {
+				$("#uploadInf",this.uploadPhotoWin).append("<p>图片" + file.name + "上传失败！</p>");	
+				$("#uploadImage_" + file.index,this.uploadPhotoWin).css("opacity", 0.2);
+			},
+			onComplete: function() {
+				//提交按钮隐藏
+				$("#fileSubmit",this.uploadPhotoWin).hide();
+				//file控件value置空
+				$("#fileImage",this.uploadPhotoWin).val("");
+				$("#uploadInf",this.uploadPhotoWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
 			}
 		},
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
-			this.initUploadMapForm(); 
-			this.initUploadForm();
-			var zxxfile = $.extend(ZXXFILE,this.params);
+			/*var zxxfile = $.extend(ZXXFILE,this.coverparams);
 			zxxfile.init();
 			var zxxmapfile = $.extend(uploadFile,this.mapparams);
-			zxxmapfile.init();
+			zxxmapfile.init();*/
+			var photoszxxfile =  $.extend(uploadPhotos,this.photosparams);
+			photoszxxfile.init();
+			this.uploadCoverForm();
+			this.initUploadMapForm(); 
+			this.initUploadForm();
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){

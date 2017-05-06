@@ -13,11 +13,13 @@ var YDataGrid = function(config){
 		//Grid DataList
 		var Grid = $('#data-list');
 		//Form
-		var Form = {search:$("#searchForm"),editPhotoForm:$("#editPhotoForm"),
-					edit:$("#editForm"),multiDataForm:$("#multiDataForm")};
+		var Form = {search:$("#searchForm"),editPhotoForm:$("#editPhotoForm"),uploadMapForm:$("#uploadMapForm"),
+					uploadPhotoForm:$("#uploadPhotoForm"),
+					edit:$("#editForm"),multiDataForm:$("#multiDataForm"),uploadCoverForm:$("#uploadCoverForm")};
 		//var picForm = {edit:$("#multiDataForm")};
 		//Win 窗口
-		var Win =  {edit:$("#edit-win")};
+		var Win =  {edit:$("#edit-win"),uploadPhotoWin:$("#upload-photo"),uploadMapWin:$("#upload-map"),
+			uploadCoverWin:$("#uploadCover-photo"),editPhotoWin:$("#edit-photo")};
 		//var PhotoWin = {edit:$("#uploadphoto")};
 		//处理函数
 		var Handler = {
@@ -278,7 +280,6 @@ var YDataGrid = function(config){
 				}
 				itour.alert('警告','请选中一条记录.','warning');  
 				return false;
-				
 			},
 			checkSelectOne : function(rows){//检查grid是否只勾选了一行,是返回 true,否返回false
 				var records = rows;

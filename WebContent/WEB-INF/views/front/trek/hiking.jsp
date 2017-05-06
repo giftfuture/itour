@@ -36,7 +36,7 @@
     <td width="624">
     <table>
       <tr>
-        <td width="600"><img src="${basePath}images/Route001.jpg" style="border:none;" border="0px" height="900" width="900"/></td>
+        <td width="600"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="900" width="900"/></td>
       </tr>
       <tr>
         <td height="69">
@@ -154,7 +154,7 @@
 <br />
 <br />
 <br />
-<div id="tab-container" class='tab-container' width="100%" border="0" cellpadding="3" cellspacing="1">
+<div id="tab-container" class='tab-container' width="100%" border="0" cellpadding="3" cellspacing="1" style="text-align:left;float:left">
  <ul class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking/hiking/${alias}#review" target="_self">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking/hiking/${alias}#detail-route" target="_self">详细行程</a></li>

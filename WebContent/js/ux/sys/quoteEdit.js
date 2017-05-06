@@ -82,7 +82,7 @@ itour.quoteEdit = function(){
 		        }
 			}
 		    formData["showTourguide"]=totalpriceperday+"|"+showTourguide;
-            var showHotel = "";
+    /*        var showHotel = "";
             var stayposition = $("table[name='routetable']").find("input[name='stayposition']");
             var hotel = $("table[name='routetable']").find("select[name='hotel']");
             var selfhotel = $("table[name='routetable']").find("input[name='selfhotel']");
@@ -96,7 +96,7 @@ itour.quoteEdit = function(){
         		    showHotel+=(parseInt(i)+1)+"."+(selfhotel[i].value?selfhotel[i].value:(selectedhotel?selectedhotel:""))+"  "+hotelprice[i].value+"/间/夜<br/>"
             	}
             }
-            formData["showHotel"]=totalhotelprice+"|"+showHotel;
+            formData["showHotel"]=totalhotelprice+"|"+showHotel;*/
             var showRentcar = "";
             var carway = $("#addcardiv").find("input[name='alltheway']");
             var carprice = $("#addcardiv").find("input[name='carprice']");
@@ -124,12 +124,12 @@ itour.quoteEdit = function(){
 			}
             formData["showBigtraffic"]=totaltrafficperprice+"|"+showBigtraffic;
             var showDinner = "";
-            var breakfast = $("input[type='checkbox'][name='breakfast']:checked");
+        /*    var breakfast = $("input[type='checkbox'][name='breakfast']:checked");
             var lunch = $("input[type='checkbox'][name='lunch']:checked");
             var dinner = $("input[type='checkbox'][name='dinner']:checked");
             var singledinnerprice = $("#dinnerblock").find("input[name='singledinner']").val();
             var totaldinnerprice=(lunch.length+dinner.length)*singledinnerprice;
-            showDinner+="早餐酒店用，共"+breakfast.length+"餐,正餐共"+(lunch.length+dinner.length)+"餐，每餐价格"+singledinnerprice+"元/人<br/>";
+            showDinner+="早餐酒店用，共"+breakfast.length+"餐,正餐共"+(lunch.length+dinner.length)+"餐，每餐价格"+singledinnerprice+"元/人<br/>";*/
             var dinnername = $("#dinnerblock").find("input[name='dinnername']");
             var dinnerprice = $("#dinnerblock").find("input[name='dinnerprice']");
             var districts = $("#dinnerblock").find("input[name='district']");
@@ -251,26 +251,19 @@ itour.quoteEdit = function(){
 	            	showElsecost+="项目："+elseitem[i]?elseitem[i].value:""+"  "+elseitemprice[i]?elseitemprice[i].value:""+"元/天"+selectedelseitemstyle?selectedelseitemstyle:""+"<br/>";
             	}
         	}
-            formData["showElsecost"]=totalshowElsecost+"|"+showElsecost;
+          formData["showElsecost"]=totalshowElsecost+"|"+showElsecost;
 	  	 var showTrip="<table name='showTrip' width='80%' cellspacing='1' cellpadding='5' border='0' align='center'><thead><tr>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' height='31'><div class='style18' align='center'><div align='center'><strong><strong>天数</strong></strong></div></div></td>"+
-          "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'>日期</td>"+
-          "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'>星期</td>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'><strong><strong>行程</strong></strong></div></div></td>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'>里程</div></div></td>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'>景点</div></div></td>"+
-          "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'><div align='center' style='width:267px'>餐食</div></td>"+
-          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'>住宿(城镇)</div></div></td>"+
-          "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'><div align='center'>酒店</div></td>"+
-          "<td class='STYLE23' valign='middle' bgcolor='#F0F0F0'><div align='center'>元/间</div></td></tr></thead>"+
+          "</tr></thead>"+
           "<tbody>";
 	        var beriefTrip="";
-			var showTriptrs =$("table[name='routetable'] tbody tr");//$("#routetablediv").html();	
+			var showTriptrs =$("table[name='routetable'] tbody tr");
 			$.parser.parse($(showTriptrs).parent());
 			$(showTriptrs).each(function(i,e){
 				  if(i!=showTriptrs.length-1){
-					 // var beriefTr= document.getElementById("routetablediv").innerHTML;
-					  //$("#routetablecopydivtr");
 					  var beriefTr="<tr id=beriefTr_"+i+"><td class=style126 width=34 valign=middle><div align=center><select name='tourdays'><option value='1'>1</option>"+
 				        "<option value='2'>2</option>"+
 				        "<option value='3'>3</option>"+
@@ -286,73 +279,22 @@ itour.quoteEdit = function(){
 				        "<option value='13'>13</option>"+
 				        "<option value='14'>14</option>"+
 				        "<option value='15'>15</option></select></div></td>"+
-				        "<td class=STYLE126 width=55 valign=middle><input type='hidden' name='tourTimeinput' />"+
-				        "<input name='tourTime' id='tourTime' class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.quoteEdit.onChangeDate(this)\" style='width:100px;'/></td>"+
-				        "<td class=STYLE126 width=35 valign=middle>"+
-				        "<select name='tourWeekday'><option value='周日'>周日</option>"+
-				        "<option value='周一'>周一</option>"+
-				        "<option value='周二'>周二</option>"+
-				        "<option value='周三'>周三</option>"+
-				        "<option value='周四'>周四</option>"+
-				        "<option value='周五'>周五</option>"+
-				        "<option value='周六'>周六</option></select></td>"+
-				        "<td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>"+
-				        "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"></td>"+
-				        "<td class=STYLE126 width=124 valign=middle><select id='travelItem' name='travelItem' class='easyui-combobox'  style='width:150px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
-			            "formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_"+new Date().getTime()+"'+row.alias+' value='+row.alias+'>'+row.item+'<span>';},onSelect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', false);}\"></select></td>"+
-				        "<td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>"+
-				        "中餐：<input name='lunch' checked=checked type=checkbox>"+
-				        "晚餐：<input name='dinner' checked=checked type=checkbox></td>"+
-				        "<td class=STYLE126 width=57 valign=middle><input type=text name='stayposition'></td>"+
-				        "<td class=STYLE126 width=171 valign=middle><select name='hotel' >"+
-				          "<option>选择该城市酒店</option>"+
-				          "<option value='贵山商务酒店'>贵山商务酒店</option>"+
-				          "<option value='嘉绒酒店'>嘉绒酒店</option></select>"+
-				          "<input name='selfhotel' size=10 type='text'>"+
-				          "<br>*也可自己填写</td>"+
-				          "<td class=STYLE126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) onblur=this.v()>" +
 				        "</td><td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td>"+
 				      "</tr>";
-					  // class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'\"
-					  var travelItem = "";// multiple='multiple'
+					  var travelItem = "";
 					  $.parser.parse($(e).parent());
 					  $("#travelItem",$(e)).each(function(i,e){
 						  travelItem += $(this).val() + ",";
 					  });
-					 //$.parser.parse($("input[name='tourTime']",$(e)).parent());
-					 // console.log($("select[name='travelItem']",$(e)).combobox('getValue'));
-					 // travelItem = travelItem.substr(0, travelItem.length - 1);textbox combo datebox//$("#tourTime",$(e)).datebox('getValue')
-					  //console.log($("input[name='tourTimeinput']",$(e)).val());
-					  //console.log($($("span.textbox.combo.datebox")[i]).find("input[type='hidden'][name='tourTime']").val());
 					  var newtr="<tr><td class='STYLE126' width='34' valign='middle'><div align='center'>"+$("select[name='tourdays'] option:selected",$(e)).val()+"</div></td>"+
-			          "<td class='STYLE126' width='55' valign='middle'><span name='tourTime'>"+$($("span.textbox.combo.datebox")[i]).find("input.textbox-value[type='hidden'][name='tourTime']").val()+"</span></td>"+
-			          "<td class='STYLE126' width='35' valign='middle'><span  name='tourWeekday'>"+$("select[name='tourWeekday'] option:selected",$(e)).text()+"</span></td>"+
 			          "<td class='STYLE126' width='308' valign='middle'><span name='tourDesc'>"+$("input[name='tourDesc']",$(e)).val()+"</span></td>"+
 			          "<td class='STYLE126' width='50' valign='middle'><span name='mileage'>"+$("input[name='mileage']",$(e)).val()+"</span></td>"+
-			          "<td class='STYLE126' width='124' valign='middle'><span name='travelItem'>"+$($("div.panel.combo-p")[i]).find(".combobox-item.combobox-item-selected").text()+"</span></td>"+
-			          "<td class='STYLE126' width='267' valign='middle'>" +	//$($("div.panel.combo-p")[i]).find(".combobox-item.combobox-item-selected").text()
-			          "早餐：<input name='breakfast' checked=checked type='checkbox'>"+
-				      "中餐：<input name='lunch' checked=checked type='checkbox'>"+
-				      "晚餐：<input name='dinner' checked=checked type='checkbox'>"+
-			          /*($("input:checked[name='breakfast']",$(e)).is(':checked') ?"<span name='breakfast'>早餐</span>":"") +
-	        		  ($("input:checked[name='lunch']",$(e)).is(':checked') ?"<span name='lunch'>中餐</span>" :"")+
-    				  ($("input:checked[name='dinner']",$(e)).is(':checked') ?"<span name='dinner'>晚餐</span>":"") +*/
-    				  "</td>"+
-			          "<td class='STYLE126' width='57' valign='middle'><span name='stayposition'>"+$("input[name='stayposition']",$(e)).val()+"</span></td>"+
-			          "<td class='STYLE126' width='171' valign='middle'><span  name='hotel'>"+
-			          ($("input[name='selfhotel']",$(e)).val()?$("input[name='selfhotel']",$(e)).val():($("select[name='hotel'] option:selected",$(e)).val()=="选择该城市酒店"?"":$("select[name='hotel'] option:selected",$(e)).val()))+"</span>"+
-			          "</td><td class='STYLE126' width='88' valign='middle'><span  name='hotelprice'>"+$("input[name='hotelprice']",$(e)).val()+"</span></td></tr>";
+			          "<td class='STYLE126' width='124' valign='middle'><span name='travelItem'>"+$($("div.panel.combo-p")[i]).find(".combobox-item.combobox-item-selected").text()+"</span></td>";
 			          showTrip+=newtr;
 			          $("select[name='tourdays']",$(beriefTr)).val($("select[name='tourdays']",$(e)).find("option:selected").val());	
 			          try{
 			        	   $.parser.parse($(beriefTr).parent());
-			        	 /* console.log($("input[name='tourTime']",e).val());
-				          $("input[name='tourTime']",$(beriefTr)).val($("input[name='tourTime']",e).val());*/
-			        	//  $.parser.parse($("input[name='tourTime']",$(e)));
 			        	  var tourTime = $("input[name='tourTimeinput']",$(e)).val();//$("input[name='tourTimeinput']",$(e)).datebox('getValue');
-			        	 // console.log(tourTime);
-			        	  //$.parser.parse($("input[name='tourTime']",$(beriefTr)));
-			        	//  $.parser.parse($("select[name='travelItem']",$(beriefTr)).parent());
 			        	  $("#travelItem",$(beriefTr)).combobox('setValue',travelItem);
 				          $("#tourTime",$(beriefTr)).datebox('setValue',tourTime);
 					}catch(e){
@@ -363,36 +305,15 @@ itour.quoteEdit = function(){
 							      ",fileName: " + e.fileName + 
 							      ",stack: " + e.stack);
 					}
-			          $("select[name='tourWeekday']",$(beriefTr)).val($("select[name='tourWeekday']",$(e)).find("option:selected").val());
 			          $("input[name='tourDesc']",$(beriefTr)).val($("input[name='tourDesc']",$(e)).val());
 			          $("input[name='mileage']",$(beriefTr)).val($("input[name='mileage']",$(e)).val());
-			          $("input[name='breakfast']",$(beriefTr)).attr("checked",$("input:checked[name='breakfast']",$(e)).is(':checked'));
-	        		  $("input[name='lunch']",$(beriefTr)).attr("checked",$("input:checked[name='lunch']",$(e)).is(':checked'));
-    				  $("input[name='dinner']",$(beriefTr)).attr("checked",$("input:checked[name='dinner']",$(e)).is(':checked'));
-			          $("input[name='stayposition']",$(beriefTr)).val($("input[name='stayposition']",$(e)).val());
-			          if($("input[name='selfhotel']",$(e)).val()){
-			        	  $("input[name='selfhotel']",$(beriefTr)).val($("input[name='selfhotel']",$(e)).val());
-			          }else{			        	  
-			        	  $("select[name='hotel']",$(beriefTr)).val($("select[name='hotel']",$(e)).find("option:selected").val()=="选择该城市酒店"?"":$("select[name='hotel']option:selected",$(e)).val());
-			          }
-			          $("input[name='hotelprice']",$(beriefTr)).val($("input[name='hotelprice']",$(e)).val());
 			          beriefTrip+=beriefTr;   
-	        		 // formData["travelItems"]=travelItem;
 				  }
 			});
-			showTrip+="<tr><td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-          "<td class='STYLE126' valign='middle'><input name='route_checkall' checked='checked' type='checkbox'>全选/全不选 </td>"+
-          "<td class='STYLE126' valign='middle'></td>"+
-          "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-         "<td class='STYLE126' valign='middle'>&nbsp;</td>"+
-         "</tr></tbody></table>";
 			formData["showTrip"]=showTrip;
 			formData["beriefTrip"]=beriefTrip;
+			var agodaDetail = "";
+			$("table[name='routetable']");
 			//console.log(formData["showTrip"]);
 			__.post(actionurl, formData, function(result) {
 				//console.log("data.success="+data.success);
@@ -469,67 +390,34 @@ itour.quoteEdit = function(){
 			 $(e).parent().parent().remove();
 		},
 		routePlus:function(){
-			var lastTr = $("table[name='routetable'] tbody>tr:last"); 
-			var insertTr ="<tr>"+
-					"<td class=STYLE126 width=34 valign=middle><div align=center><select name='tourdays'><option value='1'>1</option>"+
-			          "<option value='2'>2</option>"+
-			          "<option value='3'>3</option>"+
-			          "<option value='4'>4</option>"+
-			          "<option value='5'>5</option>"+
-			          "<option value='6'>6</option>"+
-			          "<option value='7'>7</option>"+
-			          "<option value='8'>8</option>"+
-			          "<option value='9'>9</option>"+
-			          "<option value='10'>10</option>"+
-			          "<option value='11'>11</option>"+
-			          "<option value='12'>12</option>"+
-			          "<option value='13'>13</option>"+
-			          "<option value='14'>14</option>"+
-			          "<option value='15'>15</option></select></div></td>"+
-			          "<td class=STYLE126 width=55 valign=middle><input type='hidden' name='tourTimeinput' />"+
-			          "<input name='tourTime' id='tourTime' class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.quoteEdit.onChangeDate(this)\" style='width:100px;'/></td>"+
-			          "<td class=STYLE126 width=35 valign=middle>"+
-			          "<select name='tourWeekday'><option value='周日'>周日</option>"+
-			          "<option value='周一'>周一</option>"+
-			          "<option value='周二'>周二</option>"+
-			          "<option value='周三'>周三</option>"+
-			          "<option value='周四'>周四</option>"+
-			          "<option value='周五'>周五</option>"+
-			          "<option value='周六'>周六</option></select></td>"+
-			          "<td class=STYLE126 width=308 valign=middle><input type=text name='tourDesc'></td>"+
-			          "<td class=STYLE126 width=50 valign=middle><input name='mileage' type='number' min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" ></td>"+
-			          "<td class=STYLE126 width=124 valign=middle><select name='travelItem' id='travelItem' class='easyui-combobox'  style='width:150px;' data-options=\"url:'travelItem/allItems',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
-			          "formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align: middle name=selectId_"+new Date().getTime()+"'+row.alias+' value='+row.alias+'>'+row.item+'<span>';},onSelect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_"+new Date().getTime()+"'+record.alias+']').attr('checked', false);}\"></select></td>"+
-			          "<td class=STYLE126 width=67 valign=middle>早餐：<input name='breakfast' checked=checked type=checkbox>"+
-			          "中餐：<input name='lunch' checked=checked type='checkbox'>"+
-			          "晚餐：<input name='dinner' checked=checked type='checkbox'></td>"+
-			          "<td class=STYLE126 width=57 valign=middle><input type=text name='stayposition'></td>"+
-			          "<td class=STYLE126 width=171 valign=middle><select name='hotel' >"+
-			            "<option>选择该城市酒店</option>"+
-			            "<option value='贵山商务酒店'>贵山商务酒店</option>"+
-			            "<option value='嘉绒酒店'>嘉绒酒店</option></select>"+
-			            "<input name='selfhotel' size=10 type='text'>"+
-			            "<br>*也可自己填写</td>"+
-			            "<td class=style126 width=88 valign=middle><input name='hotelprice' size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">" +
-			          "</td><td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td>"+
-			        "</tr>";
+			//var lastTr = $("table[name='routetable'] tbody>tr:last"); 
+			var insertTr ="<tbody><tr><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' data-options='width:50,editable:false'>" +
+			"<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option " +
+			"value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option " +
+			"value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option " +
+			"value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option " +
+			"value='15'>15</option></select></div></td>" +
+			"<td class=STYLE126 width=308 valign=middle><input type='text' data-options='width:308' class='easyui-textbox' name='tourDesc'></td>" +
+			"<td class=STYLE126 width=50 valign=middle><input name='mileage'  class='easyui-textbox' type='number' min=0 " +
+			"onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) " +
+			"onafterpaste=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) " +
+			"onblur=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)></td>" +
+			"<td class=STYLE126 width=124 valign=middle><input name='area' id='area' class='easyui-combobox' style='cursor:pointer'  data-options=\"width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'areas/allAreas'," +
+			"onChange:function(n,o){ var urlurl = 'travelItem/queryByScope?scope='+n ;$('#travelItem').combobox('reload',urlurl);}\">" +
+			"<input id='travelItem' style='cursor:pointer' name='travelItem' class='easyui-combobox'  " +
+			" data-options=\"valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22,formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align:middle name=selectId_1491992423815'+row.alias+' value='+row.alias+'>'+row.item+'</span>';},onSelect:function(record){$('input[name=selectId_1491992423815'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_1491992423815'+record.alias+']').attr('checked', false);}\"/></td>" +
+			"<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' title='删除本行' src='images/minus.png' ></a></td></tr>" +
+			"<tr><td class=STYLE126 width=100 valign=middle><strong>详细行程：</strong></td><td style='text-align:left' colspan='4' class=STYLE126 valign=middle>" +
+			"<input type='text' class='easyui-textbox' name='agodaDetail' data-options='width:890,height:34'/></td></tr></tbody>" ;
 			// class='easyui-datebox' data-options=\"validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'\" 
-			//_this.initTravelItem(insertTr);
-			$(insertTr).insertBefore(lastTr);
-	   	/*    $("#tourTime",$(insertTr)).datebox({  //tourTimeinput
-		        onSelect: function(date){  
-		            $(this).prev().val(date);  
-		            console.log($(this).prev().val());
-		        }  
-		    });*/ 
-			// $("input[name='tourTime']").datepicker("option", "dateFormat", 'yyyy-MM-dd');
-			//$.parser.parse($(insertTr));
-			$.parser.parse($("table[name='routetable'] tbody"));
+			$("table[name='routetable']").append(insertTr);
+			$.parser.parse($("table[name='routetable']"));
 		},
 		routeMinus:function(e){
 			//$("table[name=='routetable'] tbody")
 			//var index = $(e).parent().parent().attr("rowIndex");
-			 $(e).parent().parent().remove();
+			 ///$(e).parents("tbody").remove();
+			$(e).parent().parent().parent().remove();
 		},
 		cardPlus:function(){
 			var insertBlock="<span class=STYLE126><br> "+

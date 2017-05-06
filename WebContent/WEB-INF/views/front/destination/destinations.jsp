@@ -10,7 +10,6 @@
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
 <title>目的地</title>
 </head>
-
 <body>
 <table class="commontb" align="center">
 <tr>
@@ -19,7 +18,6 @@
     </td>
   </tr>
 </table>
-
 <!-- <table width="100%"  border="0" align="center" cellpadding="15" cellspacing="0">
   <tr>
     <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
@@ -38,11 +36,13 @@
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
 					<li class="level1">
-						<a href="javascript:void(0)"><em class="ico ico${status.index + 1}"></em><c:out value="${scope.value}"></c:out><i class="down"></i></a>
-						<ul class="level2">
+						<a href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%>
+						<!-- <img src="images/arrow4-1.gif" width="10" height="10"> -->
+						<c:out value="${scope.value}"></c:out><i class="down"></i></a>
+						<ul class="level2" style="float:middle">
 							<c:forEach items="${items}" var="item">
 								<c:if test="${scope.key==item.scope }">
-									<li><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>
+									<li style="float:middle"><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>		
 								</c:if>
 							</c:forEach>
 						</ul>
@@ -57,7 +57,7 @@
         <td rowspan=2>
        		<c:forEach var="sortitem" items="${sortedItems}" varStatus="">
 	        <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
-		      <tr>
+		      <tbody><tr>
 		        <td width="648" style="text-align:left"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
 		        <td width="432"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
 		        <c:if test="${fn:length(sortitem.value)>= maxd}">
@@ -65,12 +65,12 @@
 		         </c:if>
 		        </div></td>
 		      </tr>
-		    </table>
+		    </tbody></table>
 	        <table border="0" align="center" cellpadding="5" cellspacing="0">
 		      <tr>
 			     <c:forEach items="${sortitem.value}" var="ti">
-			      	<td>
-			      		<a href="${basePath }destination/detail/${ti.alias}"><c:out value="${ti.item}"></c:out><img alt="" src="${basePath }${ti.cover}"/></a>
+			      	<td style="text-align:left;">
+			      		<a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="200px" height="200px" alt="" src="${basePath }${ti.cover}"/></a>
 			      	</td>
 		         </c:forEach>
 		      </tr>

@@ -8,9 +8,26 @@ var uploadFile = {
 	upButton: null,					//提交按钮
 	url: "",						//ajax地址
 	fileFilter: [],					//过滤后的文件数组
-	filter: function(files) {		//选择文件组的过滤方法
-		return files;	
+    filter: function(files) {
+			var arrFiles = [];
+			for (var i = 0, file; file = files[i]; i++) {
+				//console.log("eeeed"+file.name);
+				if (file.type.indexOf("image") == 0) {
+					if (file.size >= 5120000) {
+						alert('您这张"'+ file.name +'"图片大小过大，应小于5M');	
+					} else {
+						//console.log(file.name);
+						arrFiles.push(file);	
+					}			
+				} else {
+					alert('文件"' + file.name + '"不是图片。');	
+				}
+			}
+			return arrFiles;
 	},
+/*	filter: function(files) {		//选择文件组的过滤方法
+		return files;	
+	},*/
 //	onchange: function() {alert("43rrer");},		//文件选择后
 	onSelect: function() {},		//文件选择后
 	onDelete: function() {},		//文件删除后
@@ -155,7 +172,6 @@ var uploadFile = {
 			}
 			}); 
 		 * */
-	//	alert();
 	}
 	 
 };

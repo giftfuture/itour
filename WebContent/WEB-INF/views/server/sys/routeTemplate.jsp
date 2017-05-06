@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
   <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
   <script type="text/javascript" src="${basePath}/js/commons/uploadFile.js"></script> 
+  <script type="text/javascript" src="${basePath}/js/commons/uploadPhotos.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -33,15 +34,38 @@
      <table id="data-list"></table>
 	 </div>
      <!-- Edit Win&Form -->
-   	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
-     	<form  class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data" autocomplete="off">
+      	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+     	<form  class="ui-form" id="uploadPhotoForm" name="uploadPhotoForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
     		       <div class="fitem upload">
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                                 封面：<input id="fileImage" type="file" name="fileselect" size="30" accept="image/*"  />
+                                <input id="fileImage" type="file" name="fileselect" multiple="multiple" accept="image/*"  />
+                            </div>
+                            <div id="preview" class="upload_preview"></div>
+                        </div>
+                        <div class="upload_submit">
+                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                        </div>
+                        <div id="uploadInf" class="upload_inf"></div>
+                    </div>
+				</div>
+				</div>
+     	</form>
+	 </div> 
+   	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+     	<form  class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
+   				 <input class="hidden" name="id">
+   				 <div class="ui-edit">
+    		       <div class="fitem upload">
+					<div class="upload_box">
+                        <div class="upload_main">
+                            <div class="upload_choose">
+                                                 封面：<input id="fileImage" type="file" name="fileselect" accept="image/*"  />
                             </div>
                             <div id="preview" class="upload_preview"></div>
                         </div>
@@ -64,7 +88,7 @@
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                                 地图：<input id="mapfile" type="file" name="mapfile" size="30" accept="image/*"  />
+                                                 地图：<input id="mapfile" type="file" name="mapfile" accept="image/*"  />
                             </div>
                             <div id="mappreview" class="upload_preview"></div>
                         </div>
@@ -79,6 +103,7 @@
 				</div>
      	</form>
 	 </div> 
+
      <div id="edit-win" class="easyui-dialog" title="路线模板" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true,draggable:true,width:'80%',height:'80%'"  >  <!-- style="padding:200px;top:200px;left:200px;" -->
      	<form id="editForm" class="ui-form" method="post"  ><!-- autocomplete="off" target="coverImgifm" --> <!-- accept="application/json" --> <!-- enctype="multipart/form-data" -->
      		 <input class="hidden" name="id">

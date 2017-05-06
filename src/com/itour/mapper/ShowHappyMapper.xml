@@ -47,10 +47,10 @@
 				and status = #{status}
 			</if>
 			<if test="updateTime != null and updateTime !=''">
-	 <![CDATA[  and  DATE_FORMAT(show_happy.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
+	 		<![CDATA[  and  DATE_FORMAT(show_happy.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
 			</if>
 				<if test="tourTime != null and tourTime !=''">
-	 <![CDATA[  and  DATE_FORMAT(tour_time,'%Y-%m-%d')  = DATE_FORMAT( #{tourTime},'%Y-%m-%d') ]]>
+	 		<![CDATA[  and  DATE_FORMAT(tour_time,'%Y-%m-%d')  = DATE_FORMAT( #{tourTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="title != null and title != ''">
 				and title like CONCAT('%', #{title}, '%')
@@ -77,11 +77,11 @@
 	</sql>
 	<!-- 修改记录，只修改只不为空的字段 -->
 	<update id="update" parameterType="com.itour.entity.ShowHappy">
-		update show_happy set update_time=now(),
+		update show_happy set update_time=now(),is_valid=1,
 		<trim suffixOverrides=",">
-			<if test="isValid != null">
+		<!-- 	<if test="isValid != null">
 				is_valid=#{isValid},
-			</if>
+			</if> -->
 			<if test="status != null and status != 0 ">
 				status=#{status},
 			</if>
@@ -140,13 +140,13 @@
 	<!-- 根据id查询 幸福分享 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
-		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,route_template.title route
+		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,show_happy.route 
 		from show_happy left join route_template on show_happy.route = route_template.route_code where show_happy.id = #{id}  
 	</select>
 	<!-- 根据shCode查询 幸福分享 -->
 	<select id="queryByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
-		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,route_template.title route
+		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,show_happy.route 
 		from show_happy left join route_template on show_happy.route = route_template.route_code where show_happy.sh_code = #{shCode}  
 	</select>
 	<!-- 幸福分享 列表总数 -->
@@ -160,7 +160,7 @@
 	<select id="queryByList" resultMap="BaseResultMap"
 		parameterType="com.itour.base.page.BasePage">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
-		 show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,tour_time,route_template.title route
+		 show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,tour_time,show_happy.route 
 		from show_happy left join route_template on show_happy.route = route_template.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">

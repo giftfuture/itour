@@ -62,29 +62,46 @@
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" height="31"><div class="style18" align="center">
             <div align="center"><strong><strong>天数</strong></strong></div>
           </div></td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0">日期</td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0">星期</td>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
-            <div align="center"><strong><strong>行程</strong></strong></div>
+          <!-- <td class="STYLE23" valign="middle" bgcolor="#F0F0F0">日期</td>
+          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0">星期</td> -->
+          <td class="STYLE129" valign="middle" align="center" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
+          <strong>行程</strong>
           </div></td>
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
             <div align="center">里程</div>
           </div></td>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
-            <div align="center">景点</div>
+          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><div class="STYLE18" align="center" style="width:300px;">
+           	景点
           </div></td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center" style="width:267px">餐食</div></td>
+     <!--      <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center" style="width:267px">餐食</div></td>
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
             <div align="center">住宿(城镇)</div>
           </div></td>
           <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center">酒店</div></td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center">元/间</div></td>
-          <td><a name="routeplus"><img alt="" src="${basePath }images/add.gif"></a></td>
+          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center">元/间</div></td> -->
+          <td><a name="routeplus"><img alt="" title="添加一行" src="${basePath }images/add.gif"></a></td>
         </tr>
         </thead>
-        <tbody>
-			${qf.beriefTrip }
-			<tr><td class='STYLE126' valign='middle'>&nbsp;</td>
+<%--         <tr id=beriefTr_0><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' data-options="width:50"><option 
+		value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option 
+		value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option 
+		value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option 
+		value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option 
+		value='15'>15</option></select></div></td>
+		<td class=STYLE126 width=308 valign=middle><input type='text' class='easyui-textbox' name='tourDesc'></td>
+		<td class=STYLE126 width=50 valign=middle><input name='mileage'  class='easyui-textbox' type='number' min=0 
+		onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" 
+		onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" 
+		onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"></td>
+		<td class=STYLE126 width=124 valign=middle><input name="area" id="area" class="easyui-combobox" style="cursor:pointer"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas',
+		onChange:function(n,o){ var urlurl = '${basePath}travelItem/queryByScope?scope='+n ;$('#travelItem').combobox('reload',urlurl);}">
+		<input id='travelItem' style="cursor:pointer" name='travelItem' class='easyui-combobox'  
+		 data-options="valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22,formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align:middle name=selectId_1491992423815'+row.alias+' value='+row.alias+'>'+row.item+'</span>';},onSelect:function(record){$('input[name=selectId_1491992423815'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_1491992423815'+record.alias+']').attr('checked', false);}"/></td>
+		<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td></tr>
+		<tr><td class=STYLE126 width=100 valign=middle>详细行程：</td><td style="text-align:left" colspan="4" class=STYLE126 valign=middle>
+		<input type="text" class="easyui-textbox" name=''data-options="width:890,height:34"/></td></tr> --%>
+			 ${qf.beriefTrip } <!-- queryByScope -->
+		<!-- 	<tr><td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
@@ -94,8 +111,8 @@
 	          <td class='STYLE126' valign='middle'>*没选则表示不含</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	         <td class='STYLE126' valign='middle'>&nbsp;</td>
-	        </tr>     
-      </tbody></table></div>
+	        </tr>   -->   
+      </table></div>
       <br></td>
   </tr>
   <tr>

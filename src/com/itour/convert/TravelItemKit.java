@@ -47,6 +47,7 @@ public class TravelItemKit{
 		vo.setStarLevel(tt.getStarLevel());
 		vo.setTicketsBlock(tt.getTicketsBlock());
 		vo.setFullyearTicket(tt.isFullyearTicket());
+		vo.setAlias(tt.getAlias());
 		return vo;
 	}
 	public static TravelItem toBean(TravelItemVo tt){
@@ -86,6 +87,7 @@ public class TravelItemKit{
 		vo.setStarLevel(tt.getStarLevel());
 		vo.setTicketsBlock(tt.getTicketsBlock());
 		vo.setFullyearTicket(tt.isFullyearTicket());
+		vo.setAlias(tt.getAlias());
 		return vo;
 	}
 }

@@ -5,6 +5,7 @@
  <head>
  <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
  <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
+ <script type="text/javascript" src="${basePath}/js/commons/uploadFile.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -73,15 +74,15 @@
      <table id="data-list"></table>
 	 </div>
 	 <!-- Edit Win&Form -->
-	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
-     	<form  class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data" autocomplete="off">
+ 	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+     	<form class="ui-form" id="uploadPhotoForm" name="uploadPhotoForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
-    		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->
+    		       <div class="fitem upload">
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                <input id="fileImage" type="file" name="fileselect" size="30"  multiple="multiple" accept="image/*"  />
+                                <input id="fileImage" type="file" name="fileselect"  multiple="multiple" accept="image/*"  />
                             </div>
                             <div id="preview" class="upload_preview"></div>
                         </div>
@@ -96,6 +97,30 @@
 				</div>
      	</form>
 	 </div>  
+ 	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+     	<form class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
+   				 <input class="hidden" name="id">
+ 			   <div class="ui-edit">
+    		       <div class="fitem upload">
+					<div class="upload_box">
+                        <div class="upload_main">
+                            <div class="upload_choose">
+                                <input id="fileImage" type="file" name="fileselect" accept="image/*"  />
+                            </div>
+                            <div id="preview" class="upload_preview"></div>
+                        </div>
+                        <div class="upload_submit">
+                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                        </div>
+                        <div id="uploadInf" class="upload_inf"></div>
+                    </div>
+				</div>
+			</div>
+     	</form>
+	 </div> 
+
  	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
      	<form action="" class="ui-form" id="editPhotoForm" name="editPhotoForm" method="post" ><!-- enctype="multipart/form-data" -->
    				 <input class="hidden" name="id">
@@ -155,20 +180,20 @@
 					<label id="rankLabel">门票信息: </label><span><input type="radio" name="isfullyearTicket" value="全年票价不变">全年票价不变 
 						<input type="radio" name="isfullyearTicket" value="区分淡旺季" >区分淡旺季</span>
 						<div id="fullyearTicketdiv"><table><tr><td colspan=2>全年门票信息</td></tr><tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr></table></div>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table></div>
 						<div id="devideTicketdiv"><table><tr><td colspan=2>淡季门票信息</td><td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" placeholder="门票" data-options="message:'门票价格'" name="tickets"/></td><td><input type="text" class="easyui-numberbox"  title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr></table>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox"  title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table>
 						<table><tr><td colspan=2>旺季门票信息</td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr>
-						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="message:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="message:'门票价格'" name="ticketprices"/></td></tr></table></div>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
+						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table></div>
 						<div></div>
 					</div>
 <!-- 					<div class="fitem">

@@ -70,8 +70,16 @@ public class RouteTemplateVo extends BasePage implements Serializable{
 	private String levelArea;//
 	private String level1Area;//线路一级区域
 	private String level2Area;//线路一级区域
+	private String viewphotos;
 	//private String travelStyleAlias;
 	
+	
+	public String getViewphotos() {
+		return viewphotos;
+	}
+	public void setViewphotos(String viewphotos) {
+		this.viewphotos = viewphotos;
+	}
 	public String getTravelStyleType() {
 		return travelStyleType;
 	}

@@ -106,14 +106,28 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param page
 	 * @return
 	 */
-	List<RouteTemplateVo> pageQueryByItems(BasePage page);
+	List<RouteTemplateVo> pageQueryByItems(RouteTemplateVo vo);
 	
 	/**
 	 * 
 	 * @param page
 	 * @return
 	 */
-	int countQueryByItems(BasePage page);
+	int countQueryByItems(RouteTemplateVo page);
+	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	List<RouteTemplateVo> pageQueryByStyle(RouteTemplateVo vo);
+	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	int countQueryByStyle(RouteTemplateVo vo);
 	//RouteTemplate queryByRouteCode(@Param(value="routeCode")String routeCode);
 	
 }
