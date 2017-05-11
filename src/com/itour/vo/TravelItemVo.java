@@ -49,33 +49,61 @@ public class TravelItemVo extends BasePage implements Serializable{
 	private boolean fullyearTicket;//是否分淡旺季
 	private String busyseason;//旺季
 	private String freeseason;//淡季
-	private Date freebeginDate;
-	private Date busybeginDate;
-	private Date freeendDate;
-	private Date busyendDate;
+	private String freebeginMonth;
+	private String freebeginDate;
+	private String freeendMonth;
+	private String freeendDate;
+	private String busybeginMonth;
+	private String busybeginDate;
+	private String busyendMonth;
+	private String busyendDate;
 	
-	public Date getFreebeginDate() {
+	public String getFreebeginMonth() {
+		return freebeginMonth;
+	}
+	public void setFreebeginMonth(String freebeginMonth) {
+		this.freebeginMonth = freebeginMonth;
+	}
+	public String getFreebeginDate() {
 		return freebeginDate;
 	}
-	public void setFreebeginDate(Date freebeginDate) {
+	public void setFreebeginDate(String freebeginDate) {
 		this.freebeginDate = freebeginDate;
 	}
-	public Date getBusybeginDate() {
-		return busybeginDate;
+	public String getFreeendMonth() {
+		return freeendMonth;
 	}
-	public void setBusybeginDate(Date busybeginDate) {
-		this.busybeginDate = busybeginDate;
+	public void setFreeendMonth(String freeendMonth) {
+		this.freeendMonth = freeendMonth;
 	}
-	public Date getFreeendDate() {
+	public String getFreeendDate() {
 		return freeendDate;
 	}
-	public void setFreeendDate(Date freeendDate) {
+	public void setFreeendDate(String freeendDate) {
 		this.freeendDate = freeendDate;
 	}
-	public Date getBusyendDate() {
+	public String getBusybeginMonth() {
+		return busybeginMonth;
+	}
+	public void setBusybeginMonth(String busybeginMonth) {
+		this.busybeginMonth = busybeginMonth;
+	}
+	public String getBusybeginDate() {
+		return busybeginDate;
+	}
+	public void setBusybeginDate(String busybeginDate) {
+		this.busybeginDate = busybeginDate;
+	}
+	public String getBusyendMonth() {
+		return busyendMonth;
+	}
+	public void setBusyendMonth(String busyendMonth) {
+		this.busyendMonth = busyendMonth;
+	}
+	public String getBusyendDate() {
 		return busyendDate;
 	}
-	public void setBusyendDate(Date busyendDate) {
+	public void setBusyendDate(String busyendDate) {
 		this.busyendDate = busyendDate;
 	}
 	public String getBusyseason() {

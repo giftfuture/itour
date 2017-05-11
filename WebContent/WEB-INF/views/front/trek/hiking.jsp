@@ -76,40 +76,40 @@
     </div>
       <table >
         <tr>
-          <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
-          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>类型</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;padding-left:10px;text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
-          <td width="350" class="STYLE126" style="text-align:left">${rt.routeCode}</td>
+          <td width="70" class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>线路编号</strong></div></td>
+          <td width="350" class="STYLE126" style="margin-left:10px;text-align:left">${rt.routeCode}</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>旅行天数</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.mileage}米</td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>最高海拔</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.mileage}米</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>起始地</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.arrive }</td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>完成地</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.arrive }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>路线</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.routeLine }</td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>路线</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.routeLine }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>交通方式</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>交通方式</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.transportation }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>徒步难度</strong></div></td>
-          <td class="STYLE126" style="text-align:left">
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>徒步难度</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">
           <c:forEach items="${rt.diffRate}" var="dr">
           	 <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
           </c:forEach>
@@ -119,12 +119,12 @@
            <a href="javascript:void(0)" title="深色鞋子标识徒步难度等级">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.trekDistance }km</td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>徒步距离 </strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.trekDistance }km</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>山峰类型</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />

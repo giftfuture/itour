@@ -41,7 +41,7 @@ function ww4(date){
 	            </td>
 	            <td></td>
 	       </tr>
-	       <tr><td style="text-align:left"><span class="STYLE23">旅行時間：</span><span class="STYLE22"><span class="STYLE148">
+	       <tr><td style="text-align:left"><span class="STYLE23">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
 	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,required:true,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
 	        <tr> <td style="text-align:left">&nbsp;&nbsp;回&nbsp;憶&nbsp;人：

@@ -143,7 +143,7 @@
 				</div>
      	</form>
 	 </div>  
-     <div id="edit-win" title="旅行景点" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
+     <div id="edit-win" title="旅行景点" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:620px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -154,10 +154,10 @@
 					</div>
 					<div class="fitem">
 						<label>所属省市:</label>
-						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(1000);}">  
+						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(300);}">  
 					</div>
 					<div class="fitem">
-						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
+						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" class="easyui-textbox" data-options="prompt:'请填写简略描述'" ><span style="color:red">*</span>
 					</div>	
 					<div class="fitem">
 					<label class="ui-label">热门度:</label>
@@ -185,13 +185,44 @@
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table></div>
 						<div id="devideTicketdiv"><table><tr><td colspan=2>淡季门票信息</td><td></tr>
-						<tr><td style="text-align:left" colspan=2><input name="freebeginDate" id="freebeginDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/>到<input name="freeendDate" id="freeendDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/></td></tr>
+						<tr><td style="text-align:left" colspan=2><select name="freebeginMonth" id="freebeginMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+						<select name="freebeginDate" id="freebeginDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
+						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+						<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+						<option value="31">31</option></select>到
+						<select name="freeendMonth" id="freeendMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+						<select name="freeendDate" id="freeendDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
+						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+						<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+						<option value="31">31</option></select></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox"  title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table>
 						<table><tr><td colspan=2>旺季门票信息</td></tr>
-					    <tr><td style="text-align:left" colspan=2><input name="busybeginDate" id="busybeginDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/>到<input name="busyendDate" id="busyendDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/></td></tr>
+					    <tr><td style="text-align:left" colspan=2>
+					    <select name="busybeginMonth" id="busybeginMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+						<select name="busybeginDate" id="busybeginDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
+						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+						<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+						<option value="31">31</option></select>到
+						<select name="busyendMonth" id="busyendMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+						<select name="busyendDate" id="busyendDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
+						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+						<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+						<option value="31">31</option></select></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
@@ -202,7 +233,7 @@
 						<label>里&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
 					</div> -->
 					<div class="fitem">
-						<label>具体介绍:</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:205,height:130" missingMessage="请填写具体介绍"></textarea>
+						<label>具体介绍:</label><textarea rows="7" cols="30" name="content" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:205,height:130" missingMessage="请填写具体介绍"></textarea>
 					</div> 
 <!-- 					<div class="fitem">
 						<label>推荐原因:</label><input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">

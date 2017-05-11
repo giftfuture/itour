@@ -20,22 +20,22 @@ itour.lightdetail = function(){
 										//console.log(data[i]);
 										html+='<table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">'+
 								              '<tr>'+
-								                '<td width="32"><div align="center"></div>'+
+								                '<td  width="150"><div align="center"></div>'+
 								                  (e.sex||e.sex==1 ? '<img src="images/man.gif" width="32" height="32" /></td>':'<img src="images/woman.gif" width="32" height="32" /></td>')+
 								                '<td width="669" style="text-align:left"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
 								              '</tr>'+
 								              '<tr>'+
-								                '<td>'+(e.createTime?e.createTime:"")+'</td>'+
+								                '<td width="150">'+(e.createTime?e.createTime:"")+'</td>'+
 								                '<td style="text-align:left"><span class="STYLE148">'+(e.content?e.content:"")+'</span></td>'+
 								              '</tr>'+
 								              '<tr>'+
 								                '<td>&nbsp;</td>'+
 								                '<td style="text-align:left">Re：'+(e.result?e.result:"")+'</td>'+
 								              '</tr>'+
-								              '<tr>'+
+								            /*  '<tr>'+
 								                '<td>&nbsp;</td>'+
 								                '<td>&nbsp;</td>'+
-								              '</tr>'+
+								              '</tr>'+*/
 								            '</table>';
 									});
 									$("#fbcontent").append(html);		

@@ -235,10 +235,10 @@ public class TravelItemController extends BaseController{
 		String id = "";
 		TravelItem ti = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
-	   String busyseason = DateUtil.getDateMD(entity.getBusybeginDate())+"~"+DateUtil.getDateMD(entity.getBusyendDate());
-	   String freeseason = DateUtil.getDateMD(entity.getFreebeginDate())+"~"+DateUtil.getDateMD(entity.getFreeendDate());
-	   entity.setBusyseason(busyseason);
-	   entity.setFreeseason(freeseason);
+	    String busyseason = entity.getBusybeginMonth()+"月"+entity.getBusybeginDate()+"日~"+entity.getBusyendMonth()+"月"+entity.getBusyendDate()+"日";
+	    String freeseason = entity.getFreebeginMonth()+"月"+entity.getFreebeginDate()+"日~"+entity.getFreeendMonth()+"月"+entity.getFreeendDate()+"日";
+	    entity.setBusyseason(busyseason);
+	    entity.setFreeseason(freeseason);
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
 	  		entity.setCreateBy(sessionuser.getId());
 			entity.setUpdateBy(sessionuser.getId());

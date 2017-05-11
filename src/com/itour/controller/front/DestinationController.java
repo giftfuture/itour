@@ -63,6 +63,7 @@ public class DestinationController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/main") 
 	public ModelAndView main(TravelItemVo vo,HttpServletRequest request) throws Exception{
+		long beginTime = System.currentTimeMillis();
 	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
 	 	Map<String,List<TravelItemVo>> sortedItems = Maps.newHashMap();
@@ -97,6 +98,7 @@ public class DestinationController extends BaseController{
 		context.put("sortedItems",sortedItems);
 		context.put("tiSizes",tiSizes);
 		context.put("maxd", Constants.maxDestinations);
+		System.out.println("用时："+(System.currentTimeMillis()-beginTime));
 		return forward("front/destination/destinations",context); 
 	}
 	/**

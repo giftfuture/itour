@@ -43,11 +43,11 @@
         </tr>
         <tr> 
           <td><div align="right"><strong>预计出行日期：</strong></div></td>
-          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" /></td>
+          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" /></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>预计返程日期：</strong></div></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="validType:'md[\'#expectedDepart\']',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" />
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'md[\'#expectedDepart\']',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" />
             </td>
         </tr>
 		<tr> 

@@ -778,7 +778,9 @@ itour.travelItem = function(){
 	};
 	return _this;
 }();
-
+/*window.onload(){
+	itour.travelItem.init();
+}*/
 $(function(){
 	itour.travelItem.init();
 });

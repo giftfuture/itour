@@ -238,7 +238,7 @@ public class TravelOrderController extends BaseController{
 			String result = sendSuccessResult(response, "预定成功，请稍后查看邮箱预定成功信息！");
 			return result;
 		}else{
-			String result = sendSuccessResult(response, "预定成功，邮件未发送成功！");
+			String result = sendSuccessResult(response, "预定成功，邮件未发送成功,请等待客服24小时内发送预定成功信息到您的邮箱！");
 			return result;
 		}
 	}

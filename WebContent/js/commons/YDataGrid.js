@@ -88,22 +88,22 @@ var YDataGrid = function(config){
 						itour.closeProgress();
 						Form.edit.form('load',result.data);
 					//	try{
-							Handler.ckCreate('beforeInstruction');
 						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
-							if(result.data.beforeInstruction.length>0){
+							if(result.data.beforeInstruction&&result.data.beforeInstruction.length>0){
+								Handler.ckCreate('beforeInstruction');
 								//console.log(result.data.beforeInstruction);
 								var beforeInstruction = CKEDITOR.replace("beforeInstruction");
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								beforeInstruction.setData(result.data.beforeInstruction);
 							}
-							Handler.ckCreate('customizedService');
-							if(result.data.customizedService.length>0){
+							if(result.data.customizedService&&result.data.customizedService.length>0){
+								Handler.ckCreate('customizedService');
 								var customizedService = CKEDITOR.replace('customizedService');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								customizedService.setData(result.data.customizedService);
 							}
-							Handler.ckCreate('designConcept');
-							if(result.data.designConcept.length>0){
+							if(result.data.designConcept&&result.data.designConcept.length>0){
+								Handler.ckCreate('designConcept');
 								var designConcept = CKEDITOR.replace('designConcept');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								designConcept.setData(result.data.designConcept);
@@ -119,7 +119,7 @@ var YDataGrid = function(config){
 								      ",fileName: " + e.fileName + 
 								      ",stack: " + e.stack);
 						}*/
-						console.log(result.data);
+					//console.log(result.data);
 						//回调函数
 						/*console.log(callback);
 						if(jQuery.isFunction(callback)){
