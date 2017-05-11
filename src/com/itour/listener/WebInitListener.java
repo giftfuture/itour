@@ -24,6 +24,7 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 //	public static HashMap<String, String> ConfigMap=new HashMap<String, String>();
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
+		
 	}
 	@Override
 	public void contextInitialized(ServletContextEvent event) {

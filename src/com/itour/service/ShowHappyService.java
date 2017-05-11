@@ -40,8 +40,8 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public void addShowHappy(ShowHappy sh)throws Exception{
 		 mapper.add(sh);
 	}
-	public ShowHappy queryByCode(String shCode){
-		return (ShowHappy) mapper.queryByCode(shCode);
+	public ShowHappyVo queryByCode(String shCode){
+		return mapper.queryByCode(shCode);
 	}
 	/**
 	 * 分页查询
@@ -50,21 +50,36 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<Map<String, Object>> pagedQuery(ShowHappyVo vo) {
-		List<ShowHappy> list = mapper.queryByList(vo);
+	public BasePage<ShowHappyVo> pagedQuery(ShowHappyVo vo) {
+		List<ShowHappyVo> list = mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
 		String shareHappyCoverPath = FilePros.httpshCoverPath();
 		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
-		List<Map<String, Object>> records = Lists.newArrayList();
-		for(int i = 0; i < list.size(); i++) {
-			ShowHappy sh = list.get(i);
-			String coverpath = shareHappyCoverPath+"/"+sh.getShCode()+"_"+sh.getRoute()+"/";
-			sh.setCover(coverpath+sh.getCover());
-			records.add(ShowHappyKit.toRecord(sh));
+		//List<Map<String, Object>> records = Lists.newArrayList();
+		for(ShowHappyVo shvo:list) {
+			//ShowHappy sh = list.get(i);
+			String coverpath = shareHappyCoverPath+"/"+shvo.getShCode()+"_"+shvo.getRoute()+"/";
+			shvo.setCover(coverpath+shvo.getCover());
+			//records.add(ShowHappyKit.toRecord(sh));
 		}
-		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, count);
+		return new BasePage<ShowHappyVo>(vo.getStart(), vo.getLimit(), list, count);
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ShowHappyVo selectById(String id){
+		return mapper.selectById(id);
+	};
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 */
+	List<ShowHappyVo> queryByListVo(ShowHappyVo vo){
+		return mapper.queryByListVo(vo);
+	};
 	
 }

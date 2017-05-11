@@ -83,29 +83,9 @@ public class IndexController extends BaseController {
 	@RequestMapping(value="/",method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
-		Map<String,String> params = Maps.newHashMap();
-		params.put("hot","1");
+		//Map<String,String> params = Maps.newHashMap();
 		String tsCoverPath = FilePros.httptsCoverPath();
-		List<TravelItemVo> hots = travelItemService.searchTravelItem(map);
-		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();
-		for(TravelItemVo ti:hots){			
-			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
-			if(vos != null && vos.size() >= Constants.hotview){
-				hotrtVos.addAll(vos);
-				break;
-			}
-			for(RouteTemplateVo rt:vos){
-				if(!hotrtVos.contains(rt)){
-					if(hotrtVos.size() >= Constants.hotview){
-						break;
-					}
-					hotrtVos.add(rt);
-				}	
-			}
-		}
-		if(hotrtVos.size() >= Constants.hotview){
-			hotrtVos = hotrtVos.subList(0, Constants.hotview);
-		}
+		List<TravelItemVo> hotSights = travelItemService.queryBystarLevel(Constants.hotview);
 		LinkedHashMap<String,List<RouteTemplateVo>> mapvo = Maps.newLinkedHashMap();
 		Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
 		while(it.hasNext()){
@@ -127,11 +107,11 @@ public class IndexController extends BaseController {
 		}
 		 ShowHappyVo pagevo = new ShowHappyVo();
 		 pagevo.setPage(1);
-		 BasePage<Map<String, Object>> page = showHappyService.pagedQuery(pagevo);
+		 BasePage<ShowHappyVo> page = showHappyService.pagedQuery(pagevo);
 		 if(page.getRecords() != null && page.getRecords().size() >=1){
 		 	map.put("showhappy", page.getRecords().get(0));
 		 };
-		map.put("hotrtVos", hotrtVos);
+		map.put("hotrtVos", hotSights);
 		map.put("mapvo",mapvo);
 		return forward("index",map); 
 	}
@@ -163,7 +143,7 @@ public class IndexController extends BaseController {
 		Map<String,String> params = Maps.newHashMap();
 		params.put("hot","1");
 		List<TravelItemVo> hots = travelItemService.searchTravelItem(map);
-		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();//
+		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();
 		for(TravelItemVo ti:hots){			
 			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
 			if(vos != null && vos.size() >= Constants.hotview){
@@ -202,7 +182,7 @@ public class IndexController extends BaseController {
 		}
 		 ShowHappyVo pagevo = new ShowHappyVo();
 		 pagevo.setPage(1);
-		 BasePage<Map<String, Object>> page = showHappyService.pagedQuery(pagevo);
+		 BasePage<ShowHappyVo> page = showHappyService.pagedQuery(pagevo);
 		 if(page.getRecords() != null && page.getRecords().size() >=1){
 		 	map.put("showhappy", page.getRecords().get(0));
 		 };
@@ -223,7 +203,7 @@ public class IndexController extends BaseController {
 	@RequestMapping(value="/search",method = RequestMethod.POST) 
 	public ModelAndView searchRt(String pageNo,@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("level1Area")String level1Area,@RequestParam("level2Area")String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
-		Map<String,Object> context = getRootMap();
+		//Map<String,Object> context = getRootMap();
 		//RouteTemplateVo vo = new RouteTemplateVo();
 		if(StringUtils.isNotEmpty(travelStyle)){
 			//vo.setTravelStyle(travelStyle);

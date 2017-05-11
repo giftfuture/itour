@@ -33,26 +33,25 @@
     <td><input type="hidden" id="line_url" name="line_url" value="http://www.travel-sichuan.com/sichuan/daocheng/t-dc-01.htm" /></td></tr> -->
   <tr>
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td> <div align="center"> </div>
-      <br />
-      <table width="80%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
+    <td>  
+      <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
         <tr> 
-          <td width="19%"> <p align="right"><strong>旅行线路：<br />
+          <td width="20%"> <p align="right"><strong>旅行线路：<br />
               </strong></p></td>
           <td width="81%" style="text-align:left"><input name="routename" type="text" class="easyui-textbox" size="80" value="${rt.title } " /></td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>预计出行日期：</strong></div></td>
+          <td width="20%"><div align="right"><strong>预计出行日期：</strong></div></td>
           <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" style="width:150px;" /></td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>预计返程日期：</strong></div></td>
+          <td style="width:150px" width="150"><div align="right"><strong>预计返程日期：</strong></div></td>
           <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="validType:'md[\'#expectedDepart\']',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" style="width:150px;" />
             </td>
         </tr>
 		<tr> 
           <td><div align="right"><strong>旅行方式：</strong></div></td>
-          <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false">
+          <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false,panelHeight:100">
 		  	<option value="">请选择</option>
 		  	<option value="单独安排">单独安排</option>
 			<option value="加入散客团">加入散客团</option>
@@ -65,7 +64,7 @@
         <tr> 
           <td><div align="right"><strong>旅游预算：</strong></div></td>
           <td style="text-align:left"><input name="budget" type="text" min=0 class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:151,height:22" />&nbsp;元 /
-          &nbsp;<select id="singleorcluster" name="singleorcluster" class="easyui-combobox" data-options="editable:false">
+          &nbsp;<select id="singleorcluster" name="singleorcluster" class="easyui-combobox" data-options="editable:false,panelHeight:100">
 		  	<option value="人">人</option>
 			<option value="团">团</option>
 		  </select>
@@ -96,7 +95,7 @@
         </tr>
         <tr>
           <td><div align="right"><strong>酒 店：</strong></div></td>
-          <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="editable:false">
+          <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="editable:false,panelHeight:200">
 		  	<option value="">请选择</option>
             <option value="奢华型（最好的酒店）">奢华型（最好的酒店）</option>
             <option value="尊贵型（五星级）">尊贵型（五星级）</option>
@@ -126,9 +125,9 @@
           <td>&nbsp;</td>
         </tr> -->
         <tr> 
-          <td><div align="right"><strong>联系人姓名：</strong></div></td>
+          <td ><div align="right"><strong>联系人姓名：</strong></div></td>
           <td style="text-align:left"><input name="receiver" type="text" class="easyui-textbox"/> 
-          <select id="gender" name="gender" class="easyui-combobox" data-options="editable:false">
+          <select id="gender" name="gender" class="easyui-combobox" data-options="editable:false,panelHeight:100">
               <option>性别</option>
               <option value="1">男</option>
               <option value="0">女</option>
@@ -143,7 +142,7 @@
         </tr>
         <tr> 
           <td><div align="right"><strong>国家及地区：</strong></div></td>
-          <td style="text-align:left"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'">
+          <td style="text-align:left"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             （如：中国香港）</td>
         </tr>
         <tr> 
@@ -299,8 +298,8 @@
           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.trekselfbooking.changeValidateCode()">看不清，换一张</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->
       </tr>
-      <tr> 
-          <td style="text-align:center"><a class="easyui-linkbutton" iconcls="icon-search" name="check_formbtn">快速预定</a></td><td></td>
+      <tr> <td></td>
+          <td style="text-align:left"><a class="easyui-linkbutton" iconcls="icon-ok" name="check_formbtn">快速预定</a></td>
       </tr>
       </table></td>
     <td width="10" background="images/default/shadowright.gif">

@@ -43,8 +43,8 @@
 			</select>&nbsp;&nbsp;
 			<!-- var v = $(this).combobox('panel')[0].childElementCount; -->
 			 
-			<label class="ui-label">所属省市:</label>
-		  <input name="scope" class="easyui-combobox"  data-options="width:131,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',panelMaxHeight:1000,editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(1000);}">  &nbsp;&nbsp;
+			<label class="ui-label">所属省市:</label><!-- onShowPanel:function(){$(this).combobox('panel').height(1000);} -->
+		  <input name="scope" class="easyui-combobox"  data-options="width:131,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">  &nbsp;&nbsp;
 		<!-- 	<select name="scope" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="四川">四川</option>
@@ -154,14 +154,14 @@
 					</div>
 					<div class="fitem">
 						<label>所属省市:</label>
-						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(1000);}">  
+						  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas',onShowPanel:function(){$(this).combobox('panel').height(1000);}">  
 					</div>
 					<div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写简略描述"><span style="color:red">*</span>
 					</div>	
 					<div class="fitem">
 					<label class="ui-label">热门度:</label>
-						<select name="starLevel" class="easyui-combobox"  data-options="width:131,height:20,editable:false">
+						<select name="starLevel" class="easyui-combobox"  data-options="width:131,editable:false">
 							<option value="">--请选择--</option>
 							<option value="5">五星</option>
 							<option value="4">四星</option>
@@ -177,19 +177,21 @@
 						<label id="rankLabel">推荐指数:</label>
 					</div>  
 					<div class="fitem"><input type="hidden" name="ticketsBlock" /><input type="hidden" name="fullyearTicket" />
-					<label id="rankLabel">门票信息: </label><span><input type="radio" name="isfullyearTicket" value="全年票价不变">全年票价不变 
-						<input type="radio" name="isfullyearTicket" value="区分淡旺季" >区分淡旺季</span>
-						<div id="fullyearTicketdiv"><table><tr><td colspan=2>全年门票信息</td></tr><tr>
+					<label id="rankLabel">门票信息: </label><span><input type="radio" name="isfullyearTicket" value="0">全年票价不变 
+						<input type="radio" name="isfullyearTicket" value="1" >区分淡旺季</span>
+						<div id="fullyearTicketdiv"><table><tr><td colspan=2>全年门票信息</td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table></div>
 						<div id="devideTicketdiv"><table><tr><td colspan=2>淡季门票信息</td><td></tr>
+						<tr><td style="text-align:left" colspan=2><input name="freebeginDate" id="freebeginDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/>到<input name="freeendDate" id="freeendDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox"  title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table>
 						<table><tr><td colspan=2>旺季门票信息</td></tr>
+					    <tr><td style="text-align:left" colspan=2><input name="busybeginDate" id="busybeginDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/>到<input name="busyendDate" id="busyendDate" type="text" class='easyui-datebox' data-options="width:150,editable:false,split:true,border:false,region:'north'"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>

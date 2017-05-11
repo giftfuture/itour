@@ -33,18 +33,18 @@ itour.happiness = function(){
 					                    "</table></td>"+
 					                  "</tr>"+
 					                "</table></td>"+
-					                "<td width='691' valign='top'><table width='667' border='0' cellpadding='2' cellspacing='2' class='STYLE126'>"+
+					                "<td width='691' valign='bottom'><table width='667' border='0' cellpadding='2' cellspacing='2' class='STYLE126'>"+
 					                 " <tr>"+
-					                    "<td valign='top'>&nbsp;</td>"+
-					                    "<td><span class='STYLE19'>"+(e.title?e.title:"")+" </span><span class='STYLE22'>"+(e.tourTime?e.tourTime:"")+"</span></td>"+
+					                   // "<td valign='top'>&nbsp;</td>"+
+					                    "<td style='text-align:left'><span class='STYLE19'>"+(e.title?e.title:"")+" </span><span class='STYLE22'>"+(e.tourTime?e.tourTime:"")+"</span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
-					                    "<td width='20' valign='top'><div align='center'><img src='"+basePath+"images/quote-1.gif' /></div></td>"+
-					                    "<td width='576'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
+					                   // "<td width='20' valign='top'><div align='center'><img src='"+basePath+"images/quote-1.gif' /></div></td>"+
+					                    "<td width='576' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
-					                    "<td valign='top'>&nbsp;</td>"+
-					                    "<td><div align='right' class='STYLE20'>"+(e.signature?e.signature:"")+" From "+(e.area?e.area:"")+"</div></td>"+
+					                   // "<td valign='top'>&nbsp;</td>"+
+					                    "<td style='text-align:left'><div class='STYLE20'>"+(e.signature?e.signature:"")+" From "+(e.areaname?e.areaname:"")+"</div></td>"+
 					                  "</tr>"+
 					                "</table></td>"+
 					              "</tr>"+
@@ -123,18 +123,11 @@ itour.happiness = function(){
 			);
 		},
 		init:function(){
-			/*	$("input[name='commit']").click(function(){
-					document.forms[""].submit();
-				});
-				$("input[name='reset']").click(function(){
-					//$(this).resetForm(); // 提交后重置表单
-					document.forms[""].reset();
-				});*/
 				 _this.fbpagination(1);
 		}
 	}
 	return  _this;
 }();
-	$(function(){
-		   itour.happiness.init();
-	});
+$(function(){
+	   itour.happiness.init();
+});

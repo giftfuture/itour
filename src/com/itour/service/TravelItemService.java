@@ -204,4 +204,14 @@ public class TravelItemService<T> extends BaseService<T> {
 	public List<TravelItemVo> queryMapByScope(String scope){
 		return mapper.queryMapByScope(scope);
 	}
+	
+	public List<TravelItemVo> queryBystarLevel(int num){
+		List<TravelItemVo> vos = mapper.queryBystarLevel(num);
+		String ticoverpath = FilePros.httpitemCoverpath();
+		for(TravelItemVo vo:vos){
+			vo.setCover(StringUtils.trim(ticoverpath+"/"+vo.getItemCode()+"_"+vo.getAlias()+"/"+vo.getCover()));
+		}
+		return vos;
+	}
+	
 }

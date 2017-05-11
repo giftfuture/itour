@@ -130,4 +130,11 @@ public interface TravelItemDao<T> extends BaseDao<T> {
      * @return
      */
     List<TravelItemVo> queryMapByScope(@Param(value="scope")String scope);
+    
+    /**
+     * 
+     * @return
+     */
+    List<TravelItemVo> queryBystarLevel(@Param(value="limit")int limit);
+    
 }

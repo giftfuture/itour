@@ -4,24 +4,106 @@
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script>
 <script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  
 <div>
+<script type="text/javascript">
+ /*$("#level1Area").combobox({
+  url: '@(Url.Action("BaseDataCombobox", "System"))?type=@(CMM.RedStrings.Model.Const.BaseDataCategory.EnterpriseProperty)',
+    valueField: "ID",
+    textField: "Text",
+    panelHeight: "auto",
+    editable: false,
+    onSelect: function (record) {
+    	,onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);}
+        ,onselect:function(){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+$(this).combobox('getValue');$('#level2Area').combobox('reload',urlurl);}
+    },
+onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);} */
+$(document).ready(function(){
+	var level1Area ='${level1Area}';
+	$.ajax({  
+		url:'${basePath}levelarea/queryLevel1',
+	    async : false,  
+	    method: 'get',
+	    success:function(rest){
+	    	var result = eval('('+rest+")");//转换为json对象 
+	    	$("#level1Area").combobox({ 
+	    		valueField:'level1Area',
+	    		textField:'level1Area',
+	    		mode:'local',
+	    		data:result,
+	    		onLoadSuccess:function(){$(this).combobox('select', level1Area)},
+	    		onChange:function(n,o){
+	    	    	loadlevel2Area(n);
+	   	    	} 
+	    	});   
+	    }  
+	})
+	loadlevel2Area(level1Area);
+	//console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
+	$("#vacation").combobox({ 
+		onLoadSuccess:function(){$(this).combobox('setValue', '${rcdDays}');}
+	})  
+})
+function loadlevel2Area(level1Area){
+	var templevel2Areaindex=0;
+	if(level1Area&&level1Area.length>0){
+   //console.log(level1Area);
+	$.ajax({  
+	    url : '${basePath}levelarea/queryLevel2ByLevel1',  
+	    async : false,  
+	    method: 'get',
+	    data:{'level1Area':level1Area},
+	    success : function(rest){ 
+	    	var result = eval('('+rest+")");//转换为json对象 
+	    	//console.log(result);    	
+	        $("#level2Area").combobox({  
+	        	valueField:'aliasCode',
+	        	textField:'level2Area',
+	            mode : 'local',  
+	            data: result,
+	            onLoadSuccess:function(){$(this).combobox('select','${level2Area}')}
+	        });  
+	    }  
+	}); 
+  }
+}
+</script>
 <form name="searchForm" method="post">
 <table class="commontb" align="center" >
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
-       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox"  data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
-       旅游区域：
-        <%-- <input name="areas" id="areas" class="easyui-combobox"  data-options="width:130,height:20,valueField:'scopeAlias',textField:'scope',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelItem/allScopes'"> --%>
-         <input class="easyui-combobox" id="level1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
-        onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);}">
-    	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">     
+       旅游区域：<!--onBeforeLoad
+     	   -->
+        	<!-- width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1' -->
+         <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:130,height:20,panelHeight:'auto',editable:false"
+        <%-- ,onLoadSuccess:function(){$(this).combobox('select', '${level1Area}');} --%>
+    <%--     ,onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);} --%>
+        >
+     	<!--  width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'  -->
+     	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,panelHeight:'auto',editable:false"/> 
+	     	 <%--  ,onLoadSuccess:function(){
+	    		var level1Area = $('#level1Area').combobox('getValue');
+	     	   console.log(level1Area);	
+	     	   if(level1Area.length>0){
+		     	  $(this).combobox('reload','${basePath}levelarea/queryLevel2ByLevel1?level1Area='+level1Area);
+	     	  } 
+	     	  $(this).combobox('select','${level2Area}'); --%>
+     <%-- 	  },onBeforeLoad:function(){
+	     	var level1Area = '${level1Area}';
+	     	  alert(level1Area);
+	     	  //console.log(level1Area);
+	     	   if(level1Area.length>0){
+		     	  $(this).combobox('reload','${basePath}levelarea/queryLevel2ByLevel1?level1Area='+level1Area);
+	     	  } 
+	     	  
+     	  }--%>
         假期天数：<a href="javascript:void(0)">
 	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
 	  <option value="">-所有-</option>
-	  <option value="1-5">1-5天</option>
-	  <option value="6-9">6-9天</option>
-	  <option value="10-15">10-15天</option>
+	  <option value="1_5">1-5天</option>
+	  <option value="6_9">6-9天</option>
+	  <option value="10_15">10-15天</option>
 	  <option value="16">16天+</option>
 	</select>
       </a></label></td>

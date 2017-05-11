@@ -33,8 +33,22 @@ public class ShowHappyVo extends BasePage{
 	private List<MultipartFile> imagefiles;
 	private String shortContent;
 	private String shCode;
+	private String areaname;
+	private String routeTitle;
 	
 	
+	public String getRouteTitle() {
+		return routeTitle;
+	}
+	public void setRouteTitle(String routeTitle) {
+		this.routeTitle = routeTitle;
+	}
+	public String getAreaname() {
+		return areaname;
+	}
+	public void setAreaname(String areaname) {
+		this.areaname = areaname;
+	}
 	public String getSurface() {
 		return surface;
 	}

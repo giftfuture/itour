@@ -45,9 +45,9 @@ function ww4(date){
 	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,required:true,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
 	        <tr> <td style="text-align:left">&nbsp;&nbsp;回&nbsp;憶&nbsp;人：
-	            	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>来自
-	            	<input name="area" id="area" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'">
-	            	</span></td><td></td></tr>
+            	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>来自
+            	<input name="area" id="area" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
+            	</span></td><td></td></tr>
 	        <tr>
 	            <td colspan=2><div id="content"></div></td>
 	       </tr>

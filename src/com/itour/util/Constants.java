@@ -32,6 +32,7 @@ public class Constants {
 	public static final int moredestsPerPage=9;//每页显示的更多目的地
 	public static final int rtPerPage=9;//每页显示的路线数
 	public static  int perRow = 3;
+	public static int ITEMPHOTOCOUNT=2;
 	private static final String BUNDLE_NAME = "conf";///不要加上扩展名
 	public static final String FREEMARKER_PATH="";
 	public static final String CUSTOMIZED = "customized";

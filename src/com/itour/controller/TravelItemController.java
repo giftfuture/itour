@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
@@ -57,6 +59,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.TravelItemService;
+import com.itour.util.Constants;
 import com.itour.vo.OrderDetailVo;
 import com.itour.vo.RouteTemplateVo;
 //import com.alibaba.fastjson.JSONObject;
@@ -232,8 +235,12 @@ public class TravelItemController extends BaseController{
 		String id = "";
 		TravelItem ti = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
+	   String busyseason = DateUtil.getDateMD(entity.getBusybeginDate())+"~"+DateUtil.getDateMD(entity.getBusyendDate());
+	   String freeseason = DateUtil.getDateMD(entity.getFreebeginDate())+"~"+DateUtil.getDateMD(entity.getFreeendDate());
+	   entity.setBusyseason(busyseason);
+	   entity.setFreeseason(freeseason);
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
-			entity.setCreateBy(sessionuser.getId());
+	  		entity.setCreateBy(sessionuser.getId());
 			entity.setUpdateBy(sessionuser.getId());
 			id = travelItemService.add(TravelItemKit.toBean(entity));
 		}else{
@@ -550,6 +557,46 @@ public class TravelItemController extends BaseController{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByStyle方法");
 		return travelItems ;
+	}
+	/**
+	 * 
+	 * @param alias
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@Auth(verifyLogin=false,verifyURL=false)
+	@ResponseBody
+	@RequestMapping(value="/queryByAlias", method = RequestMethod.POST)
+	public String queryByAlias(@RequestParam(value="alias")String alias,HttpServletRequest request,HttpServletResponse response){
+		if(StringUtils.isNotEmpty(alias)){
+			String[] aliass = alias.split(",");
+			List<TravelItemVo> travelItems = travelItemService.queryByAlias(Arrays.asList(aliass));
+			String travelitemPhotoPath = FilePros.httptravelitemPhotoPath();//
+			String parpath = "";
+		//	Map<String,String> maps = Maps.newHashMap();
+			for(TravelItemVo vo:travelItems){
+				 if(StringUtils.isNotEmpty(vo.getPhotos())){
+					 List<Integer> tempAr = new ArrayList<Integer>();
+					 StringBuffer ptos = new StringBuffer();
+					 String[] photos = vo.getPhotos().split("\\|");
+					 for(int i=0;i<Constants.ITEMPHOTOCOUNT;i++){
+						 Random rd = new Random();
+						 int num = rd.nextInt(photos.length);
+						 if(!tempAr.contains(num)){
+							 parpath = StringUtils.trim(travelitemPhotoPath+"/"+vo.getItemCode()+"_"+vo.getAlias()+"/"+photos[num]);
+							 ptos.append(parpath+",");
+							 tempAr.add(num);
+						 }
+					 }
+					 vo.setPhotos(ptos.toString());
+				 }
+			}
+			SysUser sessionuser = SessionUtils.getUser(request);
+			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByStyle方法");
+			return JsonUtils.encode(travelItems) ;
+		}
+		return JsonUtils.encode("{}");
 	}
 	/**
 	 * 

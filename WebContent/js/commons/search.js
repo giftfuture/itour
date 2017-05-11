@@ -9,7 +9,7 @@ itour.search = function(){
 			    var vacation = $("#vacation").combobox('getValue');
 			    var level1Area = $("#level1Area").combobox('getValue'); 
 			    var level2Area = $("#level2Area").combobox('getValue'); 
-			  //  console.log(travel_style+"  "+vacation+"   "+areas);
+			  //  console.log(travel_style+"  "+vacation+"   "+level1Area+"  "+level2Area);
 			  	$.post(basePath+"searchRtResult",{'pageNo':pageno,'travel_style':travel_style,'vacation':vacation,'level1Area':level1Area,'level2Area':level2Area},
 				function(responseText){
 						var responseText = $.parseJSON(responseText);

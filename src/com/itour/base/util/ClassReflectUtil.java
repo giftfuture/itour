@@ -102,6 +102,9 @@ public class ClassReflectUtil {
 		if(!field.getType().getName().contains("Integer")){
 			field.set(obj, value);		
 		}
+		/*if(!field.getType().getName().contains("String")){
+			field.set(obj, value);		
+		}*/
 		//---------------------------------------------------
 		//在对象obj上读取field属性的值
 		Object val = field.get(obj);

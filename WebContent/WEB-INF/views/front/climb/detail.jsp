@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>爬山旅行详细</title>
-<link rel="stylesheet" href="${basePath}css/easyzoom/example.css" />
+<%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
@@ -27,14 +27,12 @@
 </script>
 </head>
 <body>
-<center>
  <%@include file="/front/header.jsp"  %>
-<table  class="commontb" align="center">
+<center>
+<table width="1350px" class="commontb" align="center">
   <tr>
-    <td class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td style="float:left" class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
-</table>
-<table  class="commontb" align="center">
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
@@ -80,39 +78,39 @@
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
         <tr>
           <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
-          <td class="STYLE126"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
-          <td width="350" class="STYLE126">${rt.routeCode}</td>
+          <td width="350" class="STYLE126" style="text-align:left">${rt.routeCode}</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
-          <td class="STYLE126">${rt.mileage}米</td>
+          <td class="STYLE126" style="text-align:left">${rt.mileage}米</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
-          <td class="STYLE126">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
-          <td class="STYLE126">${rt.arrive }</td>
+          <td class="STYLE126" style="text-align:left">${rt.arrive }</td>
         </tr>
          <tr>
           <td class="STYLE126"><div align="right"><strong>路线</strong></div></td>
-          <td class="STYLE126">${rt.routeLine }</td>
+          <td class="STYLE126" style="text-align:left">${rt.routeLine }</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>交通方式</strong></div></td>
-          <td class="STYLE126">${rt.transportation }</td>
+          <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步难度</strong></div></td>
-          <td class="STYLE126">
+          <td class="STYLE126" style="text-align:left">
           <c:forEach items="${rt.diffRate}" var="dr">
           	 <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
           </c:forEach>
@@ -123,17 +121,17 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
-          <td class="STYLE126">${rt.trekDistance }km</td>
+          <td class="STYLE126" style="text-align:left">${rt.trekDistance }km</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
-          <td class="STYLE126">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
+          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />
     注：每个团的需求都不同，可根据您的假期重新调整设计行程。</span><br />
     <br />
-    <table  class="commontb" align="center" class="f12-gao1">
+    <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
@@ -156,8 +154,9 @@
 <br />
 <br />
 <br />
-<div id="tab-container" class='tab-container' width="100%" border="0" cellpadding="3" cellspacing="1">
- <ul class='etabs'>
+<table class="commontb" align="center"><tr><td>
+<div class="commontb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
+ <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">详细行程</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know">行前需知</a></li>
@@ -194,16 +193,16 @@
   </div>
   <div id="detail-route">
   <table class="commontb" align="center">
- <tr>
+ <%-- <tr>
     <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">简要日程</span></span></td>
   </tr>
-  <tr><td colspan="2">${qf.showTrip }</td></tr> 
+  <tr><td colspan="2">${qf.showTrip }</td></tr>  --%>
   <tr>
     <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
   </tr>
-  <tr><td colspan="2">${rt.quotoForm }</td></tr>
+  <tr><td colspan="2">${qf.agodaDetail }</td></tr>
   <tr> <td colspan="2"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
     <tr>
 	    <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
@@ -328,8 +327,8 @@
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="name"  data-options="required:true,validType:'string'"/><!--  -->
-                    <select name="sex" id="select">
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="required:true,validType:'string'"/><!--  -->
+                    <select name="sex" id="sex" class="easyui-combobox">
                       <option value="1">先生</option>
                       <option value="0">女士</option>
                     </select>
@@ -338,13 +337,13 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" class="easyui-validatebox textbox" name="email" data-options="required:true,validType:'email'"/>
-                    <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt; </td>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="required:true,validType:'email'"/>
+                    <!-- <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt;  --></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="mobile" class="easyui-validatebox textbox" data-options="validType:'phoneNum'"/>
-                    <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; </td>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-textbox" data-options="validType:'phoneNum'"/>
+                    <!-- <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; --> </td>
               </tr>
           <!--     <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>标题</strong>:</div></td>
@@ -354,14 +353,14 @@
               </tr> -->
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><label>
-                  <textarea name="content" cols="30" rows="5" ></textarea>
-                </label></td>
+                <td bgcolor="#F0F0F0" class="STYLE140" style="padding-left:20px;text-align:left">
+                   <textarea name="content" cols="30" rows="5" class="easyui-textbox" data-options="multiline:true,width:205,height:89"></textarea>
+                </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
-                <td bgcolor="#F0F0F0" class="STYLE126"><div class="tip">
-     		 	<input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true,message:'请输入验证码!'"/><br/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
+     		 	<input type="text" id="verifyCode" class=" easyui-textbox" title="验证码" name="verifyCode"  data-options="required:true,message:'请输入验证码!'"/><br/>
            		<img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
            		&nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">看不清，换一张</a>
       </div></td>
@@ -394,7 +393,7 @@
 <!--   <div id="consulting" style="display:none;">
   </div> -->
   </div>
-  </div>
+  </div></td></tr></table>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/detail.js"></script>
 <%@include file="/front/footer.jsp" %>
 </center>

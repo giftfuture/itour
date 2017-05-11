@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 </head>
-<body style="height:100%">
+<body>
 <center>
 <%@include file="/front/header.jsp"  %> 
 <table class="commontb" valign="middle" style="height:100%">
@@ -36,6 +36,7 @@
 				</ul>
 			</div></td>
             <td  style='weight:100%;height:100%;'><!--滚动图片 start-->
+        	<img src="${basePath}${itemvo.cover}" style="border:none;" border="0px" height="900" width="900"/>
 			<DIV class=rollphotos>
 			<DIV class=blk_29>
 			<DIV class=LeftBotton id=LeftArr>
@@ -65,14 +66,9 @@
 			</script>
 			</DIV>
 <!--滚动图片 end--></td>
-            <td  style='weight:100%;height:100%;'><img src="images/ticket.png" width="30" height="30">
-            <span class="STYLE3">${itemvo.item}门票信息：</span>
-            ${itemvo.ticketsBlock}</td>
-          </tr>
-          <tr>
-            <td valign="top"  style='weight:100%;height:100%;text-align:left'>
-            ${itemvo.content }
-		</td><td><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
+            <td style="valign:top;vertical-align:top;"><img src="images/ticket.png" width="30" height="30">
+            <span class="STYLE3">${itemvo.item}门票信息（CNY）：</span><br/>
+            ${itemvo.ticketsBlock}<br/><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
 		<span class="STYLE3">相关旅游线路</span>
 		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
               <tbody>
@@ -87,7 +83,27 @@
                 <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
                 <td>&nbsp;</td>
               </tr>
-          </tbody></table>
+          </tbody></table></td>
+          </tr>
+          <tr>
+            <td valign="top"  style="weight:100%;height:100%;text-align:left;valign:top;">
+            ${itemvo.content }
+		</td><td><%-- <span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
+		<span class="STYLE3">相关旅游线路</span>
+		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
+              <tbody>
+              <c:forEach items="${rts}" var="item">
+              <tr>
+                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
+             <!- width="66" width="384" class="f12-gao1"--> 
+               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
+              </tr>
+        	</c:forEach>
+              <tr>
+                <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
+                <td>&nbsp;</td>
+              </tr>
+          </tbody></table> --%>
 		</td>
 	  	 </tr>
 </table>

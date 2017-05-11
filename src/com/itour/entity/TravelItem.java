@@ -39,7 +39,21 @@ public class TravelItem extends BaseEntity {
 	private int starLevel;//星级
 	private String ticketsBlock;//门票块
 	private boolean fullyearTicket;//是否分淡旺季
+	private String busyseason;//旺季
+	private String freeseason;//淡季
 	
+	public String getBusyseason() {
+		return busyseason;
+	}
+	public void setBusyseason(String busyseason) {
+		this.busyseason = busyseason;
+	}
+	public String getFreeseason() {
+		return freeseason;
+	}
+	public void setFreeseason(String freeseason) {
+		this.freeseason = freeseason;
+	}
 	public boolean isFullyearTicket() {
 		return fullyearTicket;
 	}

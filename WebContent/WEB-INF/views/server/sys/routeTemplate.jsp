@@ -181,14 +181,17 @@
 		     	   <tr><td colspan=4><div class="fitem">
 						<label>设计理念:</label>
 					<textarea rows="4" cols="80" id="designConcept" name="designConcept"  class="ckeditor" maxlength="5000" ></textarea>
+					<!-- <script type="text/javascript">window.onload = function(){CKEDITOR.replace('designConcept');};</script> -->
 					</div></td><td></td></tr>
 					<tr><td colspan=4><div class="fitem">
 						<label>定制服务:</label>
 						<textarea rows="4" cols="80" id="customizedService" name="customizedService" class="ckeditor" maxlength="5000" ></textarea>
+						<!-- <script type="text/javascript">window.onload = function(){CKEDITOR.replace('customizedService');};</script> -->
 					</div></td></tr>
 		     	   <tr><td colspan=4><div class="fitem">
 						<label>行前须知:</label>
 						<textarea rows="4" cols="80" id="beforeInstruction" name="beforeInstruction" class="ckeditor" maxlength="5000"></textarea>
+						<!-- <script type="text/javascript">window.onload = function(){CKEDITOR.replace('beforeInstruction');};</script>  -->
 					</div></td><td></td></tr>  
 		     	 <!--   <tr><td>	<div class="fitem">
 						<label>模板1:</label>

@@ -24,7 +24,7 @@ public class SystemVariable{
 	 * 非0表示正在处理任务。
 	 */
 	public static int TaskCount = 0;
-	public static Map<String, String> map = new HashMap<String, String>();
+	//public static Map<String, String> map = new HashMap<String, String>();
 	
 	public static String taskSerialNum = "";				//任务序列号
 	public static Exception exception = null;					//系统异常
@@ -70,8 +70,9 @@ public class SystemVariable{
 			//list =JdbcTemplatex.queryForList(sql);  
 			//list =JdbcDaoHelper.(sql);  
 			list = jdbcTemplate.queryForList(sql);
-			for (Map map : list){
+			for (Map<String,Object> map : list){
 				SystemVariable.cache.put(map.get("var_name").toString(),map.get("var_value").toString());
+				//System.out.println(map.get("var_name")+"         "+map.get("var_value"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();

@@ -48,6 +48,8 @@ public class TravelItemKit{
 		vo.setTicketsBlock(tt.getTicketsBlock());
 		vo.setFullyearTicket(tt.isFullyearTicket());
 		vo.setAlias(tt.getAlias());
+		vo.setBusyseason(tt.getBusyseason());
+		vo.setFreeseason(tt.getFreeseason());
 		return vo;
 	}
 	public static TravelItem toBean(TravelItemVo tt){
@@ -88,6 +90,8 @@ public class TravelItemKit{
 		vo.setTicketsBlock(tt.getTicketsBlock());
 		vo.setFullyearTicket(tt.isFullyearTicket());
 		vo.setAlias(tt.getAlias());
+		vo.setBusyseason(tt.getBusyseason());
+		vo.setFreeseason(tt.getFreeseason());
 		return vo;
 	}
 }

@@ -48,16 +48,16 @@ public class EmailService {
 		//	emailTemplateService.sendEmail(userMap, acctMap, eventType);
 		
 		try {
-			 String title="";
-			 String content = "";
-			 String receivers = SystemVariable.map.get("receive_email");
-			 String sender = SystemVariable.map.get("sender_email");
-			 String pwd = SystemVariable.map.get("sender_pwd");
-			 String host = SystemVariable.map.get("sender_host");
-			 String port = SystemVariable.map.get("sender_port");
-			 String auth = SystemVariable.map.get("sender_auth");
-			 String ssl = SystemVariable.map.get("sender_ssl");
-			 String protocol = SystemVariable.map.get("sender_protocol");
+			 String title="主角旅行itours网站";
+			 String content = "尊敬的客户您好：您的预定信息已收到，预定成功信息将于24小时内发送到您的邮箱，请留意查看";
+			 String receivers = SystemVariable.cache.get("receive_email");
+			 String sender = SystemVariable.cache.get("sender_email");
+			 String pwd = SystemVariable.cache.get("sender_pwd");
+			 String host = SystemVariable.cache.get("sender_host");
+			 String port = SystemVariable.cache.get("sender_port");
+			 String auth = SystemVariable.cache.get("sender_auth");
+			 String ssl = SystemVariable.cache.get("sender_ssl");
+			 String protocol = SystemVariable.cache.get("sender_protocol");
 			// String [] emails = receivers.split(";");
 			// for(String email:emails){						 
 				 EmailService.sendEmail(receivers, title, receivers,sender,pwd,host,port,auth,ssl,protocol);
@@ -66,6 +66,44 @@ public class EmailService {
 			e1.printStackTrace();
 		} 
 	}   
+	/**
+	 * 
+	 * @param title
+	 * @param receive_email
+	 * @param subject
+	 * @param content
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean sendEmail(String title,String receive_email, String subject, String content)throws Exception {
+		// String receivers = SystemVariable.map.get("receive_email");
+		if(SystemVariable.cache.isEmpty()){
+			SystemVariable.init();
+		}
+		 String sender = SystemVariable.cache.get("sender_email");
+		 String pwd = SystemVariable.cache.get("sender_pwd");
+		 String host = SystemVariable.cache.get("sender_host");
+		 String port = SystemVariable.cache.get("sender_port");
+		 String auth = SystemVariable.cache.get("sender_auth");
+		 String ssl = SystemVariable.cache.get("sender_ssl");
+		 String protocol = SystemVariable.cache.get("sender_protocol");
+		 return EmailService.sendEmail(receive_email, title, content,sender,pwd,host,port,auth,ssl,protocol);
+	}
+	/**
+	 * 
+	 * @param receive_email
+	 * @param subject
+	 * @param content
+	 * @param username
+	 * @param password
+	 * @param stmp
+	 * @param smtp_port
+	 * @param auth
+	 * @param ssl
+	 * @param protocol
+	 * @return
+	 * @throws Exception
+	 */
 	public static boolean sendEmail(String receive_email, String subject, String content,String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol)throws Exception {
 		try {
 			 EmailProperty	prop = new EmailProperty(username,password,stmp,smtp_port,auth,ssl,protocol);

@@ -76,7 +76,7 @@
 					</div>
 					<div class="fitem">
 						<label>来自(国家/地区):</label>
-					  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'"> 
+					  <input name="scope" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'"> 
 					</div>
 					<div class="fitem">
 						<label>城&nbsp;&nbsp;市:</label>

@@ -51,7 +51,7 @@
 					</div>
 					<div class="fitem">
 						<label>来自:</label>
-						<input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas'">
+						<input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
 					</div>
 					<div class="fitem">
 						<label>状&nbsp;&nbsp;态:</label>

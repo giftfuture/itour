@@ -101,7 +101,7 @@ public class OrderDetailKit{
 		vo.setRecreation(od.getRecreation());
 		vo.setSpecialrequest(od.getSpecialrequest());
 		vo.setComefrom(od.getComefrom());
-		vo.setGuide(od.getGuide().equals("其他语种")?od.getGuide_other():od.getGuide());
+		vo.setGuide(od.getGuide()!=null&&od.getGuide().equals("其他语种")?od.getGuide_other():od.getGuide());
 		vo.setTaste(od.getTaste());
 		vo.setHatefood(od.getHatefood());
 		vo.setTrain(od.getTrain());

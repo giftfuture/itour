@@ -58,7 +58,6 @@ public class LevelAreaController extends BaseController {
 	private RouteTemplateService<RouteTemplate> routeTemplateService; 
 	@Autowired
 	private LogSettingDetailService logSettingDetailService;
-	
 	@Autowired
 	private LogOperationService logOperationService;
 	@Autowired 
@@ -238,13 +237,13 @@ public class LevelAreaController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryLevel1", method = RequestMethod.GET)
-	public List<LevelArea> queryLevel1(HttpServletRequest request,HttpServletResponse response){
+	public String queryLevel1(HttpServletRequest request,HttpServletResponse response){
 		List<LevelArea> allAreas = Lists.newArrayList();
 		allAreas.add(new LevelArea("","请选择"));
 		allAreas.addAll(levelAreaService.queryLevel1());
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel1方法");
-		return allAreas;
+		return JsonUtils.encode(allAreas);
 	}
 	
 	/**
@@ -256,7 +255,7 @@ public class LevelAreaController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryLevel2ByLevel1", method = RequestMethod.GET)
-	public List<LevelArea> queryLevel2ByLevel1(String level1Area,HttpServletRequest request,HttpServletResponse response){
+	public String queryLevel2ByLevel1(String level1Area,HttpServletRequest request,HttpServletResponse response){
 		List<LevelArea> allAreas = Lists.newArrayList();
 		try {
 				if(StringUtils.isNotEmpty(level1Area)){
@@ -268,6 +267,6 @@ public class LevelAreaController extends BaseController {
 			} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return allAreas;
+		return JsonUtils.encode(allAreas);
 	};
 }

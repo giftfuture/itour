@@ -559,7 +559,7 @@ itour.travelItem = function(){
 				//console.log(111111111111);
 			//$("#fullradiodiv :radio").change(function(){
 				var $selectedvalue = $("input:radio[name='isfullyearTicket']:checked").val();
-				if ($selectedvalue == '全年票价不变') {
+				if ($selectedvalue == '0') {
 					$("#devideTicketdiv").find("input[name='ticketprices']").each(function(){
 						this.value="";
 					});
@@ -569,7 +569,7 @@ itour.travelItem = function(){
 					$("#devideTicketdiv").hide();
 					$("#fullyearTicketdiv").show();
 				}
-				if ($selectedvalue == '区分淡旺季') {
+				if ($selectedvalue == '1') {
 					$("#fullyearTicketdiv").find("input[name='ticketprices']").each(function(){
 						this.value="";
 					});

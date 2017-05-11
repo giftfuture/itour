@@ -13,7 +13,6 @@
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript">
 /*  $(document.forms["searchForm"]).form('load','${context}'); */
-
  jQuery.browser={};
  (function(){
 	 jQuery.browser.msie=false; 
@@ -49,17 +48,17 @@
 </table>
 <center><ul id='fbpage'></ul></center>
 <%@include file="/front/footer.jsp" %>
-<script type="text/javascript" src="js/commons/search.js"></script>
 <script type="text/javascript">
-	var travelStyle = '${travelStyle}';
+/* 	var travelStyle = '${travelStyle}';
  	var level1Area = '${level1Area}';
  	var level2Area = '${level2Area}' ;
  	var rcdDays = '${rcdDays}';
- 	console.log(travelStyle+"  "+level1Area+"  "+level2Area+"  "+rcdDays);
+ 	//console.log(travelStyle+"  "+level1Area+"  "+level2Area+"  "+rcdDays);
  	jQuery("#travel_style").combobox('setValue',travelStyle);
  	jQuery("#level1Area").combobox('setValue',level1Area);
  	jQuery("#level2Area").combobox('setValue',level2Area);
- 	jQuery("#vacation").combobox('setValue',rcdDays);
+ 	jQuery("#vacation").combobox('setValue',rcdDays); */
 </script>
+<script type="text/javascript" src="js/commons/search.js"></script>
 </body>
 </html>

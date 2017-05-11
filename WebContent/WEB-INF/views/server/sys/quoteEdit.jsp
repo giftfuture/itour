@@ -40,7 +40,8 @@
 </tbody></table>
 <table width="80%" cellspacing="0" cellpadding="10" border="0" align="center">
   <tbody><tr>
-    <td class="h1-black">${bean.title }<span class="STYLE27"> </span></td>
+    <td class="h1-black">${bean.title }<span class="STYLE27"><input name="rttitle" type="hidden" value="${bean.title }" />
+    <input name="rtelevation" type="hidden" value="${bean.elevation }" /></span></td>
   </tr>
 </tbody></table>
 <br>
@@ -100,7 +101,7 @@
 		<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td></tr>
 		<tr><td class=STYLE126 width=100 valign=middle>详细行程：</td><td style="text-align:left" colspan="4" class=STYLE126 valign=middle>
 		<input type="text" class="easyui-textbox" name=''data-options="width:890,height:34"/></td></tr> --%>
-			 ${qf.beriefTrip } <!-- queryByScope -->
+			 ${qf.beriefTrip } 
 		<!-- 	<tr><td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>
 	          <td class='STYLE126' valign='middle'>&nbsp;</td>

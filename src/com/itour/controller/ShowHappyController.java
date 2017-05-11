@@ -66,7 +66,7 @@ public class ShowHappyController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
-	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired  
 	private ShowHappyService showHappyService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
@@ -107,7 +107,7 @@ public class ShowHappyController extends BaseController{
 		vo.setLimit(Constants.happyperPage);
 		vo.getPager().setPageSize(Constants.happyperPage);
 		vo.getPager().setPageId(pageNo);
-		BasePage<Map<String, Object>> page = showHappyService.pagedQuery(vo);
+		BasePage<ShowHappyVo> page = showHappyService.pagedQuery(vo);
 		//List<Map<String, Object>> records = page.getRecords();
 		//context.put("records", page.getRecords());
 		//context.put("pageNo",pageNo);
@@ -169,7 +169,7 @@ public class ShowHappyController extends BaseController{
 			//Timestamp createTime =  new Timestamp(vo.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
 			vo.setCreateTime(vo.getCreateTime());
 		}
-		BasePage<Map<String,Object>> page = showHappyService.pagedQuery(vo);
+		BasePage<ShowHappyVo> page = showHappyService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的datalist方法");
 		return dataGridAdapter.wrap(page);
@@ -186,7 +186,7 @@ public class ShowHappyController extends BaseController{
 	@RequestMapping(value="/detail/{shCode}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("shCode") String shCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		ShowHappy sh = showHappyService.queryByCode(shCode);
+		ShowHappyVo sh = showHappyService.queryByCode(shCode);
 		String content = sh.getContent();
 		String shareHappyPath = FilePros.httpshareHappyPath();
 		//String shCoverPath = FilePros.httpshCoverPath();
@@ -205,8 +205,8 @@ public class ShowHappyController extends BaseController{
 			}
 				sh.setContent(content);
 			}
-		Map<String,Object> record = ShowHappyKit.toRecord(sh);
-		context.put("sh", record);
+		//Map<String,Object> record = ShowHappyKit.toRecord(sh);
+		context.put("sh", sh);
 		return forward("front/happy/happydetail",context); 
 	}
 	/**

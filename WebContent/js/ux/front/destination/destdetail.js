@@ -3,6 +3,12 @@ itour.destdetail = function(){
 	var _this = {
 		init:function(){
 			_this.menuClick();
+			$("a.imgBorder img").on('click',function(){
+				$(this).parents(".rollphotos").prev("img").attr("src",$(this).attr("src"));
+			});
+			$("a.imgBorder img").on('mouseover',function(){
+				$(this).parents(".rollphotos").prev("img").attr("src",$(this).attr("src"));
+			});
 		},
 		searchRts:function(){
 			

@@ -56,6 +56,16 @@ var YDataGrid = function(config){
 					callback();
 				}
 			},
+			ckCreate:function (name) {
+			    if (CKEDITOR.instances[name]) {
+			        var instance = CKEDITOR.instances[name];
+			        if (instance.element.$) {
+			            instance.destroy(true);
+			        }
+			        //$('#' + name).attr('contenteditable', true);
+			       // CKEDITOR.inline(name);
+			    }
+		    },
 			//edit 按钮事件
 			edit:function(callback){
 				//Win.edit.removeAttr("display");
@@ -67,6 +77,7 @@ var YDataGrid = function(config){
 					Win.edit.find("#fullyearTicketdiv").hide();
 				}
 				Win.edit.show();
+			//	Win.edit.dialog('open'); 
 				var record = Utils.getCheckedRows();
 				if (Utils.checkSelectOne(record)){
 					itour.progress();
@@ -75,39 +86,40 @@ var YDataGrid = function(config){
  					data[idKey] = (record[0][idKey]);
 					itour.getById(Action.getId,data,function(result){
 						itour.closeProgress();
-						//console.log(result.data);
 						Form.edit.form('load',result.data);
-						try{
-							if(CKEDITOR.instances.length>0){
-								for(var name in CKEDITOR.instances){
-									CKEDITOR.instances[name].destroy();
-								}
-							}
+					//	try{
+							Handler.ckCreate('beforeInstruction');
 						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
-							if(result.data.beforeInstruction){
-								var beforeInstruction = CKEDITOR.replace('beforeInstruction');
+							if(result.data.beforeInstruction.length>0){
+								//console.log(result.data.beforeInstruction);
+								var beforeInstruction = CKEDITOR.replace("beforeInstruction");
+								//console.log(CKEDITOR.replace("beforeInstruction"));
 								beforeInstruction.setData(result.data.beforeInstruction);
 							}
-							if(result.data.customizedService){
+							Handler.ckCreate('customizedService');
+							if(result.data.customizedService.length>0){
 								var customizedService = CKEDITOR.replace('customizedService');
+								//console.log(CKEDITOR.replace("beforeInstruction"));
 								customizedService.setData(result.data.customizedService);
 							}
-							if(result.data.designConcept){
+							Handler.ckCreate('designConcept');
+							if(result.data.designConcept.length>0){
 								var designConcept = CKEDITOR.replace('designConcept');
+								//console.log(CKEDITOR.replace("beforeInstruction"));
 								designConcept.setData(result.data.designConcept);
 							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 							}*/
-						}catch(e){
+					/*	}catch(e){
 							console.log("name: " + e.name + 
 									 ",description: " +e.description+
 								      ",message: " + e.message + 
 								      ",lineNumber: " + e.lineNumber + 
 								      ",fileName: " + e.fileName + 
 								      ",stack: " + e.stack);
-						}
-						Win.edit.dialog('open'); 
+						}*/
+						console.log(result.data);
 						//回调函数
 						/*console.log(callback);
 						if(jQuery.isFunction(callback)){
@@ -115,6 +127,7 @@ var YDataGrid = function(config){
 						}*/
 					});
 				}
+				Win.edit.dialog('open'); 
 			},
 			//刷新Grid 数据
 			refresh: function(callback){
@@ -211,7 +224,7 @@ var YDataGrid = function(config){
 				var tickets= $("input[name='tickets']");
 				var ticketprices = $("input[name='ticketprices']");
 					if(tickets.length>0 && ticketprices.length>0){
-						var fullyearTicket = !$("input:radio[name='isfullyearTicket']:checked").val()||$("input:radio[name='isfullyearTicket']:checked").val()=="区分淡旺季";
+						var fullyearTicket = !$("input:radio[name='isfullyearTicket']:checked").val()||$("input:radio[name='isfullyearTicket']:checked").val()=="1";
 						var ticketsBlock = "";
 						if(fullyearTicket){
 							ticketsBlock += "淡季："
@@ -219,7 +232,7 @@ var YDataGrid = function(config){
 								if(i>=4){
 									if(i==8){ ticketsBlock += "旺季："};
 									if(tickets[i].value && ticketprices[i].value){
-										ticketsBlock+="门票："+tickets[i].value+"  价格:"+ticketprices[i].value+"、";
+										ticketsBlock+=tickets[i].value+":"+ticketprices[i].value+"、";
 									}
 								}
 							});
@@ -227,7 +240,7 @@ var YDataGrid = function(config){
 							$(ticketprices).each(function(i,e){
 								if(i<4){
 									if(tickets[i].value && ticketprices[i].value){
-										ticketsBlock+="门票："+tickets[i].value+"  价格:"+ticketprices[i].value+"、";
+										ticketsBlock+=tickets[i].value+":"+ticketprices[i].value+"、";
 									}
 								}
 							})
@@ -250,6 +263,52 @@ var YDataGrid = function(config){
 							callback(data);
 						}else{
 							itour.alert('提示',data.msg||'保存成功！','info');
+						}
+					});
+				 }
+			},
+			saveas: function(callback){
+				if(Form.edit.form('validate')){
+					itour.progress();
+					Form.edit.attr('action',Action.save);
+					var parentId =$('#search_parentId').val();
+					$("#edit_parentId").val(parentId);
+				    //var beforeInstruction = CKEDITOR.replace("beforeInstruction", { "toolbar": "Basic" }); //显示编辑器
+				/*    beforeInstruction.document.getBody().getHtml();
+			            CKFinder.setupCKEditor(editor, "ckfinder/"); //设置图片管理组件
+			            //处理CKEDITOR的值
+			            function CKupdate() {
+			                for (instance in CKEDITOR.instances)
+			                    CKEDITOR.instances[instance].updateElement();
+			            }
+		            CKupdate(); //在提交表单前需要做以上处理
+*/ 				try{
+					if(CKEDITOR.instances.length>0){
+						Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
+						Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
+						Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
+					}
+				}catch(e){
+					console.log("name: " + e.name + 
+							 ",description: " +e.description+
+						      ",message: " + e.message + 
+						      ",lineNumber: " + e.lineNumber + 
+						      ",fileName: " + e.fileName + 
+						      ",stack: " + e.stack);
+				}
+					Form.edit[0].id.value='';
+					console.log(Form.edit.serializeJSON());
+					itour.saveForm(Form.edit,function(data){
+						itour.closeProgress();
+						Win.edit.dialog('close');
+					    Events.refresh();
+					    Form.edit.resetForm();
+					     //回调函数
+						if(jQuery.isFunction(callback)){
+							//console.log(callback(data));
+							callback(data);
+						}else{
+							itour.alert('提示',data.msg||'另存成功！','info');
 						}
 					});
 				 }
@@ -293,8 +352,6 @@ var YDataGrid = function(config){
 				return false;
 			}
 		}
-		
-		
 		//自定义事件
 		var evt= config.event || {};
 		
@@ -314,6 +371,8 @@ var YDataGrid = function(config){
 			logicremove:evt.logicremove||Handler.logicremove,
 			//保存调用方法
 			save: evt.save || Handler.save,
+			//另存为新
+			saveas:evt.saveas||Handler.saveas,
 			//关闭按钮事件
 			close : evt.close ||  Handler.close//,
 			//上传图片的事件
@@ -379,7 +438,7 @@ var YDataGrid = function(config){
 						tbars.push({id:bar.id || bar_logicremove.id,text:bar.text || bar_logicremove.text ,iconCls: bar.iconCls || bar_logicremove.iconCls,btnType: bar.btnType || bar_logicremove.btnType,handler:bar.handler || bar_logicremove.handler});
 						continue;
 					}
-			/*		if(bar.btnType=='upload'){
+		 		   /*if(bar.btnType=='upload'){
 						tbars.push({id:bar.id || bar_upload.id,text:bar.text || bar_upload.text ,iconCls: bar.iconCls || bar_upload.iconCls,btnType: bar.btnType || bar_upload.btnType,handler:bar.handler || bar_upload.handler});
 						continue;
 					}*/
@@ -487,18 +546,36 @@ var YDataGrid = function(config){
 				//判断页面是否设置buttons，如果没有设置默认按钮
 				var btns = Win.edit.attr("buttons");
 				if(!btns){
-					//设置 保存,关闭按钮
-					Win.edit.dialog({
-						buttons:[
-							{
-								text:'保存',
-								handler:Events.save
-							},{
-								text:'关闭',
-								handler:Events.close
-							}
-						]
-					});
+					if($("#beforeInstruction").length>0 &&$("#customizedService").length>0 &&$("#designConcept").length>0){
+						//设置 保存,关闭按钮
+						Win.edit.dialog({
+							buttons:[
+								{
+									text:'另存为新线路',
+									handler:Events.saveas
+								},    
+								{
+									text:'保存',
+									handler:Events.save
+								},{
+									text:'关闭',
+									handler:Events.close
+								}
+							]
+						});
+					}else{
+						Win.edit.dialog({
+							buttons:[
+								{
+									text:'保存',
+									handler:Events.save
+								},{
+									text:'关闭',
+									handler:Events.close
+								}
+							]
+						});
+					}
 				}
 				Win.edit.find("#btn-submit").click(Events.save); //保存事件
 				Win.edit.find("#btn-close").click(Events.close);//关闭窗口

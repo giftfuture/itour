@@ -379,11 +379,11 @@ from travel_item left join areas on travel_item.scope=areas.id  where travel_ite
       #{ids}  
 </foreach>
 </select>  
-<select id="queryByAlias" parameterType="java.util.List" resultMap="BaseResultMap">
+<select id="queryByAlias" parameterType="java.util.List" resultMap="BaseResultMapVo">
 select travel_item.<include refid="Base_Column_List"/>,areas.areaname
 from travel_item left join areas on travel_item.scope=areas.id  where travel_item.alias in 
 <foreach collection="list" item="alias" index="index" open="(" separator="," close=")">  
-      #{alias}  
+   #{alias}  
 </foreach>
 </select>  
 <!-- 获取该旅行方式下的施行项目 -->
@@ -415,6 +415,10 @@ left join areas on travel_item.scope=areas.id
      <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if> 
+</select>
+<select id="queryBystarLevel" resultMap="BaseResultMapVo" parameterType="java.lang.Integer">
+	select travel_item.<include refid="Base_Column_List"/>,areas.areaname from travel_item 
+	left join areas on travel_item.scope=areas.id order by travel_item.star_level desc,travel_item.update_time desc,travel_item.create_time desc limit 0,#{limit}
 </select>
  <select id="travelItems" parameterType="java.util.List" resultType="String">
 <!-- call splitString(#{tsIds},',');

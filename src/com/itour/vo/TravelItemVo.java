@@ -47,7 +47,49 @@ public class TravelItemVo extends BasePage implements Serializable{
 	private String areaname;
 	private String ticketsBlock;//门票块
 	private boolean fullyearTicket;//是否分淡旺季
+	private String busyseason;//旺季
+	private String freeseason;//淡季
+	private Date freebeginDate;
+	private Date busybeginDate;
+	private Date freeendDate;
+	private Date busyendDate;
 	
+	public Date getFreebeginDate() {
+		return freebeginDate;
+	}
+	public void setFreebeginDate(Date freebeginDate) {
+		this.freebeginDate = freebeginDate;
+	}
+	public Date getBusybeginDate() {
+		return busybeginDate;
+	}
+	public void setBusybeginDate(Date busybeginDate) {
+		this.busybeginDate = busybeginDate;
+	}
+	public Date getFreeendDate() {
+		return freeendDate;
+	}
+	public void setFreeendDate(Date freeendDate) {
+		this.freeendDate = freeendDate;
+	}
+	public Date getBusyendDate() {
+		return busyendDate;
+	}
+	public void setBusyendDate(Date busyendDate) {
+		this.busyendDate = busyendDate;
+	}
+	public String getBusyseason() {
+		return busyseason;
+	}
+	public void setBusyseason(String busyseason) {
+		this.busyseason = busyseason;
+	}
+	public String getFreeseason() {
+		return freeseason;
+	}
+	public void setFreeseason(String freeseason) {
+		this.freeseason = freeseason;
+	}
 	public boolean isFullyearTicket() {
 		return fullyearTicket;
 	}

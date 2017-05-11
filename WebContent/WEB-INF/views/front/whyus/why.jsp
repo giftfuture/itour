@@ -3,13 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Why Us</title>
 </head>
 
@@ -33,7 +28,7 @@
             <td class="STYLE10">&nbsp;</td>
           </tr>
           <tr>
-            <td><p class="STYLE148"> ** 旅行中最難的部分，應該是收拾行李吧.....😊 **</p>
+            <td style="text-align:left"><p class="STYLE148"> ** 旅行中最難的部分，應該是收拾行李吧.....😊 **</p>
                 <p class="STYLE148">許多年前，中國的旅遊市場充斥著良莠不齊的商品， 其中甚至存在著不少的旅遊陷阱，旅人非但沒有自主性，還可能成為待宰的羔羊，趁興而出，敗興而返的情況屢見不鮮...<br />
                   這種狀況令我們憂心忡忡， 生命本該用在追求美好的事物上，而非浪費在後悔與抱怨中呀！</p>
               <p class="STYLE148">秉持著這種想法，** 主角旅行 ** 誕生了。</p>

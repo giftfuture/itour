@@ -101,15 +101,16 @@ itour.lightselfbooking = function(){
         	__.post(basePath+"travelOrder/booking",formData,function(data){
 				itour.closeProgress();
 				//console.log(data);
-				itour.alert('提示',data.msg||'保存成功！','info');
+				itour.alert('提示',data.msg||'预定成功，请稍后查看邮箱预定成功信息！','info');
 			});
+        	return false;
         },
         changeValidateCode:function () {  
             var timenow = new Date().getTime();//这是为了防止每次刷新的时候验证码相同
             $("#validateCode").attr("src",basePath+"RandomCodeServlet?d="+timenow);  
           }, 
 		init:function(){
-			$("input[name='check_formbtn']").click(_this.check_form);
+			$("a[name='check_formbtn']").click(_this.check_form);
 			 $(document).keydown(function(e){
 	    		 e = e || window.event;
 	    		if(e.keyCode == 13) {

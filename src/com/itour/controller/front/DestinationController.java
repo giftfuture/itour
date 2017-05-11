@@ -140,6 +140,8 @@ public class DestinationController extends BaseController{
 	 	String [] photos = itemvo.getPhotos().split("\\|");
 	 	List<String> photoList = Lists.newArrayList();
 	 	String photoPath = FilePros.httptravelitemPhotoPath();
+	 	String itemCoverPath = FilePros.httpitemCoverpath();
+	 	itemvo.setCover(StringUtils.trim(itemCoverPath+"/"+itemvo.getItemCode()+"_"+itemvo.getAlias()+"/"+itemvo.getCover()));
 	 	if(photos!=null && photos.length>0){
 	 		for(String photo:photos){
 	 			if(StringUtils.isNotEmpty(photo)&&!photo.equals(",")&&!photo.equals("|")&&photo.indexOf('.')>0){
@@ -147,7 +149,42 @@ public class DestinationController extends BaseController{
 	 			}
 	 		}
 	 	}
-	 	List<RouteTemplateVo> rts = routeTemplateService.queryByItems(itemvo.getId());
+	 	if(StringUtils.isNotEmpty(itemvo.getTicketsBlock())){
+			 	StringBuffer ticketsBlock=new StringBuffer("<table border=0>");
+			 	if(itemvo.isFullyearTicket()){//区分淡旺季
+			 			String[] busytb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("淡季")<0?0:itemvo.getTicketsBlock().indexOf("淡季")+3,itemvo.getTicketsBlock().indexOf("旺季")<0?itemvo.getTicketsBlock().length():itemvo.getTicketsBlock().indexOf("旺季")).split("、");
+			 			String[] freetb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("旺季")<0?0:itemvo.getTicketsBlock().indexOf("旺季")+3).split("、");
+			 			if(busytb.length>0){
+				 			ticketsBlock.append("<tr><td rowspan="+busytb.length+" style='padding-right:5px'><strong>淡季</strong></td><td style='text-align:left'>"+busytb[0]+"</td></tr>");
+				 			for(int i=0;i<busytb.length;i++){
+				 				if(i!=0){
+				 					ticketsBlock.append("<tr><td style='text-align:left'>"+busytb[i]+"</td></tr>");
+				 				}
+				 			}
+			 			}
+			 			if(freetb.length>0){
+			 				ticketsBlock.append("<tr><td colspan=2 style='text-align:center'>-------------------------------------</td></tr>");
+				 			ticketsBlock.append("<tr><td rowspan="+freetb.length+" style='padding-right:5px'><strong>旺季</strong></td><td style='text-align:left'>"+freetb[0]+"</td></tr>");
+				 			for(int i=0;i<freetb.length;i++){
+				 				if(i!=0){
+				 					ticketsBlock.append("<tr><td style='text-align:left'>"+freetb[i]+"</td></tr>");
+				 				}
+				 			}
+			 			}
+			 		 
+			 	}else{
+			 		String [] tb = itemvo.getTicketsBlock().split("、");
+			 		ticketsBlock.append("<tr><td rowspan="+tb.length+" style='padding-right:5px'>全年门票信息</td><td style='text-align:left'>"+tb[0]+"</td></tr>");
+			 		for(int i=0;i<tb.length;i++){
+		 				if(i!=0){
+		 					ticketsBlock.append("<tr><td style='text-align:left'>"+tb[i]+"</td></tr>");
+		 				}
+		 			}
+			 	}
+			 	ticketsBlock.append("</table>");
+			 	itemvo.setTicketsBlock(ticketsBlock.toString());
+	 	}
+		List<RouteTemplateVo> rts = routeTemplateService.queryByItems(itemvo.getId());
 		context.put("scopes", scopes); 
 		context.put("itemvo", itemvo);
 		context.put("photos", photoList);

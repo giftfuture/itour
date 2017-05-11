@@ -62,20 +62,20 @@ public class PassEmailController extends BaseController {
                 String basePath = req.getScheme() + "://"+ req.getServerName() + ":" + req.getServerPort() + path + "/";
                 String resetPassHref = basePath + "checkLink?sid=" + digitalSignature +"&userName="+user.getEmail();
                 String emailContent = "请勿回复本邮件.点击下面的链接,重设密码<br/><a href="
-                        + resetPassHref + " target='_BLANK'>" + resetPassHref
-                        + "</a>  或者    <a href=" + resetPassHref
-                        + " target='_BLANK'>点击我重新设置密码</a>"
-                        + "<br/>tips:本邮件超过30分钟,链接将会失效，需要重新申请'找回密码'" + key
-                        + "\t" + digitalSignature;
+                    + resetPassHref + " target='_BLANK'>" + resetPassHref
+                    + "</a>  或者    <a href=" + resetPassHref
+                    + " target='_BLANK'>点击我重新设置密码</a>"
+                    + "<br/>tips:本邮件超过30分钟,链接将会失效，需要重新申请'找回密码'" + key
+                    + "\t" + digitalSignature;
                 String subject="找回您的itour账户密码";
-                String receivers = SystemVariable.map.get("receive_email");
-                String sender = SystemVariable.map.get("sender_email");
-                String pwd = SystemVariable.map.get("sender_pwd");
-                String host = SystemVariable.map.get("sender_host");
-                String port = SystemVariable.map.get("sender_port");
-                String auth = SystemVariable.map.get("sender_auth");
-                String ssl = SystemVariable.map.get("sender_ssl");
-                String protocol = SystemVariable.map.get("sender_protocol");
+                String receivers = SystemVariable.cache.get("receive_email");
+                String sender = SystemVariable.cache.get("sender_email");
+                String pwd = SystemVariable.cache.get("sender_pwd");
+                String host = SystemVariable.cache.get("sender_host");
+                String port = SystemVariable.cache.get("sender_port");
+                String auth = SystemVariable.cache.get("sender_auth");
+                String ssl = SystemVariable.cache.get("sender_ssl");
+                String protocol = SystemVariable.cache.get("sender_protocol");
                 boolean iSend = EmailService.sendEmail(receivers, subject, emailContent, sender, pwd, host, port, auth, ssl, protocol);
                 if(iSend){
                 	req.setAttribute(MSG, "重置密码邮件已经发送，请登陆邮箱进行重置！");

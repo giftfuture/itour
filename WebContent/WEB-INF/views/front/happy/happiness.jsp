@@ -13,40 +13,28 @@
 <title></title>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="commontb" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
-</table>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center">回憶幸福~將幸福定格</div></td>
   </tr>
-</table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
+    <td style="vertical-align:bottom;valign:bottom;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;" height="7"><img src="images/frame1-1.gif" style="vertical-align:bottom;" width="1140" height="5" /></td>
   </tr>
   <tr>
-    <td background="${basePath }images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td valign="top">
-        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="955" style="text-align:left">※  旅行  是流動的歷程<br />
+    <td style="text-align:left;height:;padding-left:170px;margin-left:170px;background-image:url('images/frame1-2.gif');background-position:115px 0px;">
+              ※  旅行  是流動的歷程<br />
               ※  感動  是霎那的永恆 <br />
-              ※  回憶  是一輩子的幸福風景</td>
-            <td width="205" style="text-align:left"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
+              ※  回憶  是一輩子的幸福風景 
+           <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></span></td>
   </tr>
   <tr>
-    <td><img src="${basePath }images/frame1-3.gif" width="1140" height="7" /></td>
+    <td style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;" height="7"><img src="${basePath }images/frame1-3.gif" style="vertical-align:top;" width="1140" height="5" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>

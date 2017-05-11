@@ -27,6 +27,7 @@ import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
+import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
 import com.itour.convert.OrderDetailKit;
 import com.itour.convert.TravelOrderKit;
@@ -189,6 +190,7 @@ public class TravelOrderController extends BaseController{
 	public String booking(@RequestBody OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request);//清除验证码，确保验证码只能用一次
+		String receiveremail = entity.getReceiveremail();
 	 	if(StringUtils.isEmpty(entity.getVerifyCode())){
 	 		return sendFailureResult(response, "验证码不能为空.");
 		}
@@ -230,8 +232,15 @@ public class TravelOrderController extends BaseController{
 				orderDetailService.update(OrderDetailKit.toEntity(entity));
 			}
 		}
-		String result = sendSuccessResult(response, "下单预订成功！");
-		return result;
+		String title="主角旅行itours网站";
+		String content = "尊敬的客户您好：您的预定信息已收到，预定成功信息将于24小时内发送到您的邮箱，请留意查看";
+		if(EmailService.sendEmail(title,receiveremail, title, content)){
+			String result = sendSuccessResult(response, "预定成功，请稍后查看邮箱预定成功信息！");
+			return result;
+		}else{
+			String result = sendSuccessResult(response, "预定成功，邮件未发送成功！");
+			return result;
+		}
 	}
 	/**
 	 * 
