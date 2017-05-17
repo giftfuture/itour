@@ -147,7 +147,7 @@ itour.orderDetail = function(){
 					},
 					{field:'orderId',title:'详情号',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.orderId;
+							return row.id;
 						}
 					},
 					{field:'guide',title:'导游',align:'center',sortable:true,

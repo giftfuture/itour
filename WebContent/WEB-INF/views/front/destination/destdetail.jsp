@@ -18,16 +18,16 @@
 <table class="commontb" valign="middle" style="height:100%">
   <tr style="align:center">
     <td style='weight:100%;height:100%;' valign="top" rowspan=2>
-            <div align="center" style="	font-size:18px;background-color:#8B0000;text-decoration:none;" class="STYLE6">旅遊目的地</div>
+            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" >旅遊目的地</div>
             <div class="treebox">
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
 					<li class="level1">
-						<a href="javascript:void(0)"><em class="ico ico${status.index + 1}"></em><c:out value="${scope.value}"></c:out><i class="down"></i></a>
+						<a href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%><c:out value="${scope.value}"></c:out><i class="down"></i></a>
 						<ul class="level2">
 							<c:forEach items="${items}" var="item">
 								<c:if test="${scope.key==item.scope }">
-									<li><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>
+									<li><a href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>
 								</c:if>
 							</c:forEach>
 						</ul>

@@ -85,32 +85,45 @@ public class IndexController extends BaseController {
 		Map<String,Object> map = getRootMap();
 		//Map<String,String> params = Maps.newHashMap();
 		String tsCoverPath = FilePros.httptsCoverPath();
-		List<TravelItemVo> hotSights = travelItemService.queryBystarLevel(Constants.hotview);
-		LinkedHashMap<String,List<RouteTemplateVo>> mapvo = Maps.newLinkedHashMap();
-		Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
-		while(it.hasNext()){
-			String style = it.next();
-			TravelStyle ts = travelStyleService.queryByAlias(style);
-			if(StringUtils.isNotEmpty(ts.getAlias())){
-				List<RouteTemplateVo> ttvo = routeTemplateService.queryByStyle(ts.getAlias());
-				List<RouteTemplateVo> newvos = Lists.newArrayList();
-				if(ttvo != null && ttvo.size() >= 1){
-					for(int i=0;i<Math.min(Constants.routesperrow,ttvo.size());i++){
-						RouteTemplateVo rtvo = ttvo.get(i);
-						rtvo.setTravelStyleAlias(ts.getAlias());
-						newvos.add(rtvo);
+		List<TravelItemVo> hotSights = Constants.homehotSights;
+		LinkedHashMap<String,List<RouteTemplateVo>> mapvo = Constants.homertmapvo;
+		if(hotSights.size()==0){
+			List<TravelItemVo> temphotSights = travelItemService.queryBystarLevel(Constants.hotview);
+			Constants.homehotSights.addAll(temphotSights);
+			hotSights = Constants.homehotSights;
+		}
+		if(mapvo.isEmpty()){
+			Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
+			while(it.hasNext()){
+				String style = it.next();
+				TravelStyle ts = travelStyleService.queryByAlias(style);
+				if(StringUtils.isNotEmpty(ts.getAlias())){
+					List<RouteTemplateVo> ttvo = routeTemplateService.queryByStyle(ts.getAlias());
+					List<RouteTemplateVo> newvos = Lists.newArrayList();
+					if(ttvo != null && ttvo.size() >= 1){
+						for(int i=0;i<Math.min(Constants.routesperrow,ttvo.size());i++){
+							RouteTemplateVo rtvo = ttvo.get(i);
+							rtvo.setTravelStyleAlias(ts.getAlias());
+							newvos.add(rtvo);
+						}
 					}
+					ts.setCover(tsCoverPath+"/"+PinYinUtil.getPinYin(ts.getType())+"_"+ts.getAlias()+"/"+ts.getCover());
+					mapvo.put(ts.getType()+"#"+ts.getDescrip()+"#"+ts.getCover(),newvos);
 				}
-				ts.setCover(tsCoverPath+"/"+PinYinUtil.getPinYin(ts.getType())+"_"+ts.getAlias()+"/"+ts.getCover());
-				mapvo.put(ts.getType()+"#"+ts.getDescrip()+"#"+ts.getCover(),newvos);
 			}
 		}
-		 ShowHappyVo pagevo = new ShowHappyVo();
-		 pagevo.setPage(1);
-		 BasePage<ShowHappyVo> page = showHappyService.pagedQuery(pagevo);
-		 if(page.getRecords() != null && page.getRecords().size() >=1){
-		 	map.put("showhappy", page.getRecords().get(0));
-		 };
+		BasePage<ShowHappyVo> page = Constants.homeshpage.get("showhappy");
+		 if(page!=null&&page.getRecords()!=null &&page.getRecords().size()>=1){
+			 map.put("showhappy", page.getRecords().get(0));
+		 }else{
+			 ShowHappyVo pagevo = new ShowHappyVo();
+			 pagevo.setPage(1);
+			 page = showHappyService.pagedQuery(pagevo);
+			 if(page.getRecords() != null && page.getRecords().size() >=1){
+				 Constants.homeshpage.put("showhappy", page.getRecords().get(0));
+				 map.put("showhappy",Constants.homeshpage.get("showhappy"));
+			 };
+		 }
 		map.put("hotrtVos", hotSights);
 		map.put("mapvo",mapvo);
 		return forward("index",map); 

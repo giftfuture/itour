@@ -61,7 +61,7 @@ public class TravelStyleService<T> extends BaseService<T> {
 	 * 
 	 * @return
 	 */
-	public List<HashMap<String,String>> loadStyles(){
+	public List<Map<String,Object>> loadStyles(){
 		return mapper.loadStyles();
 	};
 	@Autowired

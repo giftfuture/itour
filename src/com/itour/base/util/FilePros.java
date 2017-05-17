@@ -22,6 +22,10 @@ public class FilePros   {
     * 采用静态方法
     */
     private static Properties props = new Properties();
+    
+    public static String basePath()throws Exception{
+    	return rb.getString("basePath");
+    }
 /*    static {
         try {
         	InputStream is = ClassLoader.getSystemResourceAsStream("conf.properties");

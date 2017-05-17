@@ -186,6 +186,7 @@
             </props>  
         </property>  
     </bean> 
+    <bean id="filecapturefilter" class="com.itour.base.Filter.FileCaptureFilter"></bean>
     <!-- 安全控制 -->
 	<import resource="classpath:/springmvc-shiro.xml" />
 	<import resource="classpath:/common-shiro.xml" />

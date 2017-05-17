@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -53,7 +54,8 @@ public class CustomersController extends BaseController{
 	private CustomersService customersService; 
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	@Autowired
 	private LogSettingService logSettingService;
 	
@@ -163,7 +165,6 @@ public class CustomersController extends BaseController{
 		logOperationService.add(new LogOperation(logId,"查看",entity.getId(),JsonUtils.encode(entity),"","customers/getId",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return JsonUtils.encode(context);
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)

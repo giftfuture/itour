@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -55,7 +56,8 @@ public class FeedbackController extends BaseController{
 	// Servrice start
 	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private FeedbackService feedbackService; 
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
@@ -87,12 +89,13 @@ public class FeedbackController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/pagination", method = RequestMethod.POST) 
 	public 	String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,String route,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		FeedbackVo fv = new FeedbackVo();
+		int count = 0;
+		fv.setPublicShow(true);
 		fv.setRoute(route);
 		fv.setPage(pageNo);
 		fv.setRows(Constants.fbperPage);
@@ -101,13 +104,19 @@ public class FeedbackController extends BaseController{
 		fv.getPager().setPageSize(Constants.fbperPage);
 		fv.getPager().setOrderField("create_time");
 		fv.getPager().setOrderDirection(false);
-		List<Feedback> list = (List<Feedback>) feedbackService.queryByList(fv);
-		int count = feedbackService.queryByCount(fv);
-		List<FeedbackVo> records = Lists.newArrayList();
-		for(Feedback fb:list) {
-			records.add(FeedbackKit.toRecord(fb));
-		}
-		BasePage<FeedbackVo> page = new BasePage<FeedbackVo>(fv.getStart(), fv.getLimit(), records, count);
+		List<FeedbackVo> list = Lists.newArrayList();
+		/*if(Constants.feedbackpage.size() >= Constants.fbperPage){
+			list = Constants.feedbackpage.subList((int)fv.getPager().getPageOffset(), Constants.fbperPage);
+			count = Constants.feedbackpage.size();
+		}else{*/
+			List<Feedback> fbs = feedbackService.queryByList(fv);
+			for(Feedback fb:fbs) {
+				list.add(FeedbackKit.toRecord(fb));
+			}
+			count = feedbackService.queryByCount(fv);
+		//}
+	//	List<FeedbackVo> records = Lists.newArrayList();
+		BasePage<FeedbackVo> page = new BasePage<FeedbackVo>(fv.getStart(), fv.getLimit(), list, count);
 		//Pager pager = new Pager();
 		page.setPage(pageNo);
 		Pager pager = page.getPager();
@@ -137,8 +146,6 @@ public class FeedbackController extends BaseController{
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid  datalist(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(vo.getCreateTime() != null){
-			//String createTime = DateUtil.getDateYmdHs(vo.getCreateTime());
-			//Timestamp createTime =  new Timestamp(vo.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
 			vo.setCreateTime(vo.getCreateTime());
 		}
 		BasePage<FeedbackVo> page = feedbackService.pagedQuery(vo);
@@ -254,7 +261,14 @@ public class FeedbackController extends BaseController{
 		return result;
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
@@ -267,7 +281,14 @@ public class FeedbackController extends BaseController{
 		logOperationService.add(new LogOperation(logId,"物理删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"feedback/delete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody

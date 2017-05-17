@@ -143,7 +143,7 @@
         <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td></tr>
          <tr><td>相关路线：
               <c:forEach items="${rt.relates}" var="relat"><br>
-              <a href="${basePath}climb/climb/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a>
+              <a href="${basePath}climb/climb/${relat.alias}" >${relat.title }</a>
               	<%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
               </c:forEach>
               </td></tr>
@@ -154,8 +154,8 @@
 <br />
 <br />
 <br />
-<table class="commontb" align="center"><tr><td>
-<div class="commontb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
+<table class="frametb" align="center"><tr><td>
+<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">详细行程</a></li>
@@ -165,12 +165,12 @@
  </ul>
  <div class='panel-container'>
  <div id="review">
-  <table  class="commontb" align="center">
+  <table  class="frametb" align="center">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="${basePath}images/frame1-2.gif"><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td width="761" valign="top" class="STYLE126" style="text-align:left"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
           ${rt.designConcept }
@@ -189,37 +189,46 @@
     </table>
 	</td>
 	</tr>
+	 <tr>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr> 
 	</table>
   </div>
   <div id="detail-route">
-  <table class="commontb" align="center">
- <%-- <tr>
-    <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">简要日程</span></span></td>
-  </tr>
-  <tr><td colspan="2">${qf.showTrip }</td></tr>  --%>
+  <table class="frametb" align="center">
   <tr>
-    <td width="32"><span class="h2-24"><img src="${basePath}images/detail.png" width="32" height="32" /></span></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148">详细日程</span></span></td>
+    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
+    <span class="h2-24" style="float:middle"><span class="STYLE148">简要日程</span></span></td>
   </tr>
-  <tr><td colspan="2">${qf.agodaDetail }</td></tr>
-  <tr> <td colspan="2"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
     <tr>
-	    <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
-	    <td width="1028"><span class="h2-24"><span class="STYLE148"><span 
-	class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
-	  </tr>
-	  <tr><td colspan=2>
-<table  class="commontb" align="center">
+    <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+  </tr>
+  <tr><td colspan="2" background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
   <tr>
-    <td><img src="images/frame1-1.gif" width="100%" height="7" /></td>
+  <tr>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>   
+  <tr>
+    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
+    <span class="h2-24" style="float:middle"><span class="STYLE148">详细日程</span></span></td>
+  </tr>
+  <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
+  <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
+    <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:middle"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
+  </tr>
+	  <tr><td colspan=2>
+<table  class="frametb" align="center">
+  <tr>
+    <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif">
-	<table  class="commontb" align="center">
+	<table  class="frametb" align="center">
         <tr>
           <td valign="top"><br />
-          <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
+          <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
                              <tr>
                 <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
                 <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
@@ -283,11 +292,14 @@
       </td>
       </tr>
       </table>
-      </td></tr>
+      </td></tr>  <tr>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr> 
+      <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
 </table>
   </div>
   <div id="need-know">
-  <table  class="commontb" align="center">
+  <table  class="frametb" align="center">
   <tr>
     <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
     <td width="1028"  style="text-align:left"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
@@ -296,39 +308,39 @@
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
   </tr>
 </table>
-  <table  class="commontb" align="center">
+  <table  class="frametb" align="center">
    <tbody><tr>
-     <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
-     <td width="264"><span class="STYLE3" ><a href="${basePath}climb/selfbooking/${rt.alias}">
+     <td width="336" style="text-align:left"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
+     <td width="264" style="text-align:left"><span class="STYLE3" ><a href="${basePath}climb/selfbooking/${rt.alias}">
      <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
   </div>
   <div id="feed-back">
-  <table  class="commontb" align="center">
+  <table  class="frametb" align="center">
   <tr>
     <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
     <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
-<table  class="commontb" align="center">
+<table  class="frametb" align="center">
   <tr>
-    <td><img src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath}images/frame1-2.gif">
     <form name="fastask"  class="ui-form">
-    <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+    <table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
         <tr>
-          <td width="327" valign="top"><table width="303" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+          <td width="357" valign="top"><table width="357" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
               <tr>
                 <td height="30" colspan="2" bgcolor="#CCCCCC" class="STYLE140"><div align="center" class="STYLE3">快速询问</div>
                     <div align="center"></div></td>
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="required:true,validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox">
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="prompt:'请键入您的大名',validType:'string'"/><!--  -->
+                    <select name="sex" id="sex" class="easyui-combobox" data-options="width:80,editable:false,panelHeight:80">
                       <option value="1">先生</option>
                       <option value="0">女士</option>
                     </select>
@@ -337,12 +349,12 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="required:true,validType:'email'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="prompt:'请键入合法的电邮',validType:'email'"/>
                     <!-- <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt;  --></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-textbox" data-options="validType:'phoneNum'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-textbox" data-options="prompt:'请键入您的联系电话',validType:'phoneNum'"/>
                     <!-- <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; --> </td>
               </tr>
           <!--     <tr>
@@ -354,13 +366,13 @@
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE140" style="padding-left:20px;text-align:left">
-                   <textarea name="content" cols="30" rows="5" class="easyui-textbox" data-options="multiline:true,width:205,height:89"></textarea>
+                   <textarea name="content" cols="30" rows="5" class="easyui-textbox" data-options="multiline:true,width:205,height:89,prompt:'您要说什么...'"></textarea>
                 </td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
-     		 	<input type="text" id="verifyCode" class=" easyui-textbox" title="验证码" name="verifyCode"  data-options="required:true,message:'请输入验证码!'"/><br/>
+     		 	<input type="text" id="verifyCode" class=" easyui-textbox" title="验证码" name="verifyCode"  data-options="prompt:'请键入正确的验证码!'"/><br/>
            		<img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
            		&nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">看不清，换一张</a>
       </div></td>
@@ -383,10 +395,10 @@
       </table></form></td>
   </tr>
   <tr>
-    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
    <tr>
-    <td style="text-align:center">  <ul id='fbpage'></ul></td>
+    <td style="text-align:center"><ul id='fbpage'></ul></td>
   </tr>
 </table>
   </div>

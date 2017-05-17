@@ -38,6 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -76,7 +77,8 @@ import com.itour.vo.TravelItemVo;
 @RequestMapping("/travelItem") 
 public class TravelItemController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	// Servrice start
 	@Autowired  
 	private TravelItemService<TravelItem> travelItemService; 
@@ -490,6 +492,20 @@ public class TravelItemController extends BaseController{
 		TravelItemVo entity  = travelItemService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
+		}
+		if(StringUtils.isNotEmpty(entity.getFreeseason())){
+			String[] temp = entity.getFreeseason().split("~");
+			entity.setFreebeginMonth(temp[0].substring(0, temp[0].indexOf("月")));
+			entity.setFreebeginDate(temp[0].substring(temp[0].indexOf("月")+1,temp[0].indexOf("日")));
+			entity.setFreeendMonth(temp[1].substring(0, temp[1].indexOf("月")));
+			entity.setFreeendDate(temp[1].substring(temp[1].indexOf("月")+1,temp[1].indexOf("日")));
+		}
+		if(StringUtils.isNotEmpty(entity.getBusyseason())){
+			String[] temp = entity.getBusyseason().split("~");
+			entity.setBusybeginMonth(temp[0].substring(0, temp[0].indexOf("月")));
+			entity.setBusybeginDate(temp[0].substring(temp[0].indexOf("月")+1,temp[0].indexOf("日")));
+			entity.setBusyendMonth(temp[1].substring(0, temp[1].indexOf("月")));
+			entity.setBusyendDate(temp[1].substring(temp[1].indexOf("月")+1,temp[1].indexOf("日")));
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);

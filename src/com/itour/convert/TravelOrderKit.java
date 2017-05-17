@@ -43,6 +43,7 @@ public class TravelOrderKit{
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
 		tv.setGender(to.isGender());
+		tv.setRouteId(to.getRouteId());
 		return tv;
 	}
 	public static TravelOrderVo toEditVo(TravelOrder to)throws Exception{
@@ -73,6 +74,7 @@ public class TravelOrderKit{
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
 		tv.setGender(to.isGender());
+		tv.setRouteId(to.getRouteId());
 		return tv;
 	}
 	public static TravelOrder toRecord(TravelOrderVo to)throws Exception{
@@ -98,6 +100,7 @@ public class TravelOrderKit{
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
 		tv.setGender(to.isGender());
+		tv.setRouteId(to.getRouteId());
 		try {
 			if(StringUtils.isNotEmpty(to.getCreateTime())){			
 				tv.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymdhms,to.getCreateTime()));

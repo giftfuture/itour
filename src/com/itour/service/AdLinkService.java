@@ -45,8 +45,13 @@ public class AdLinkService extends BaseService<AdLink>{
 		return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<AdLink> allAdLink(){
-		return mapper.queryAll();
+		 List<AdLink> allinks =  mapper.queryAll();
+		 return allinks;
 	}
 	
 }

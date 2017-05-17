@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -43,6 +44,7 @@ import com.itour.service.AdLinkService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
+import com.itour.util.Constants;
 import com.itour.vo.AdLinkVo;
 @Controller
 @RequestMapping("/adLink") 
@@ -55,29 +57,36 @@ public class AdLinkController extends BaseController {
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
 	private LogSettingService logSettingService;
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	@Autowired
 	private LogSettingDetailService logSettingDetailService;
 	
 	@Autowired
 	private LogOperationService logOperationService;
 	
-	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/allAdLink", method = RequestMethod.POST)
 	public String allAdLink(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();
-		List<AdLink> allAreas = Lists.newArrayList();
+		//List<AdLink> allAreas = Lists.newArrayList();
 		String adlinpath = FilePros.httpadLinkPath();
-		for(AdLink al:adLinkService.allAdLink()){
-			al.setAdvertise(adlinpath+"/"+al.getAdvertise());
-			allAreas.add(al);
+		List<AdLink> links = Constants.alladLinks;
+		if(links.size()==0||links.get(0).getAdvertise().startsWith("adlink/")){
+			Constants.alladLinks.clear();
+			List<AdLink> templinks =adLinkService.allAdLink();
+			for(AdLink al:templinks){
+				al.setAdvertise(adlinpath+"/"+al.getAdvertise());
+				//allAreas.add(al);
+			}
+			Constants.alladLinks.addAll(templinks);
+			links = Constants.alladLinks;
 		}
 		//root.put("allAreas", allAreas);
 		//String result = JsonUtils.encode(root);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行AdLinkController的allAdLink方法");
-		return JsonUtils.encode(allAreas);
+		return JsonUtils.encode(links);
 	}
 	/**
 	 * 

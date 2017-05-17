@@ -12,15 +12,15 @@
 			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">订单状态:</label>
-				<select name="orderStatus" class="easyui-combobox" style="width:100px;">
+				<select name="orderStatus" class="easyui-combobox" data-options="editable:false,width:100">
 					<option value="">--请选择--</option>
 					<option value="1">待付款</option>
 					<option value="2">付款完成,待确认</option>
 					<option value="3">确认支付完成</option>
 				</select>&nbsp;&nbsp;
 			</p>
-		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;"></p>
+		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-textbox" data-options="width:100">&nbsp;&nbsp;
+			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:100,editable:false,region:'north',split:true,border:false" ></p>
 	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
      </div> 

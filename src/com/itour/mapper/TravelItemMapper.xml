@@ -42,6 +42,8 @@
 	<result column="star_level" property="starLevel"/>
 	<result column="tickets_block" property="ticketsBlock"/>
 	<result column="fullyear_ticket" property="fullyearTicket"/>
+	<result column="freeseason" property="freeseason"/>
+	<result column="busyseason" property="busyseason"/>
 </resultMap>
 <resultMap id="BaseResultMapVo" type="com.itour.vo.TravelItemVo" >
 	<result column="id" property="id"/>
@@ -82,6 +84,8 @@
 	<result column="areaname" property="areaname"/>
 	<result column="tickets_block" property="ticketsBlock"/>
 	<result column="fullyear_ticket" property="fullyearTicket"/>
+	<result column="freeseason" property="freeseason"/>
+	<result column="busyseason" property="busyseason"/>
 </resultMap>
 <!-- <resultMap id="allscopes" type="java.util.HashMap">  
     <result property="key" column="scopeAlias" />  
@@ -91,7 +95,7 @@
 <sql id="Base_Column_List" >
 	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope,scope_alias, short_content, rank, recommand_reason,
 	  discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,
-	  recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket
+	  recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket,freeseason,busyseason
 </sql>
    
 <!-- 查询条件 -->
@@ -178,16 +182,22 @@ where travel_item.is_valid=1
   </selectKey> -->
   insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,scope_alias,short_content,
   rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,
-  itinerary,map,season,recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket)
+  itinerary,map,season,recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket,freeseason,busyseason)
  values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{scopeAlias},#{shortContent},
  #{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},
- #{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip},1,#{hot},#{createBy},#{updateBy},now(),now(),#{starLevel},#{ticketsBlock},#{fullyearTicket})
+ #{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip},1,#{hot},#{createBy},#{updateBy},now(),now(),#{starLevel},#{ticketsBlock},#{fullyearTicket},#{freeseason},#{busyseason})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.TravelItem" >
 	update travel_item set update_time=now(),
 	<trim  suffixOverrides="," >
+		<if test="freeseason != null and freeseason != ''" >
+		    travel_item.freeseason =#{freeseason},
+		</if>
+		<if test="busyseason != null and busyseason !=''">
+			busyseason=#{busyseason},
+		</if>
 		<if test="ticketsBlock != null and ticketsBlock != ''" >
 		    travel_item.tickets_block =#{ticketsBlock},
 		</if>

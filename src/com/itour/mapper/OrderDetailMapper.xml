@@ -350,7 +350,10 @@ where is_valid=1
 	select <include refid="Base_Column_List" /> 
 	 from order_detail where id = #{id}
 </select>
-
+<select id="queryByOrderId"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from order_detail where travel_order = #{orderId}
+</select>
 <!-- 订单详情 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from order_detail 

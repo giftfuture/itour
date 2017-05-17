@@ -1,5 +1,6 @@
 package com.itour.base.interceptor;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,9 +15,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import org.springframework.ui.ModelMap;  
 import org.springframework.web.context.request.WebRequest;  
-import org.springframework.web.context.request.WebRequestInterceptor;  
+import org.springframework.web.context.request.WebRequestInterceptor;
 
+import com.itour.base.Filter.FileCaptureResponseWrapper;
 import com.itour.base.annotation.Auth;
+import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
@@ -29,8 +32,7 @@ import com.itour.entity.SysUser;
  *
  */
 public class AuthInterceptor extends HandlerInterceptorAdapter {
-	
-	private final static Logger log= Logger.getLogger(AuthInterceptor.class);
+	private final static Logger log = Logger.getLogger(AuthInterceptor.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
@@ -45,12 +47,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if(menuUrl.startsWith("images/")||menuUrl.startsWith("js/")||menuUrl.startsWith("css/")||menuUrl.startsWith("resources/")||menuUrl.startsWith("main/logIn")||menuUrl.startsWith("main/index.js.map")){
 			return super.preHandle(request, response, handler);
 		}
-		if (handler instanceof HandlerMethod) {
+		if (handler instanceof HandlerMethod){
 				HandlerMethod method = (HandlerMethod)handler;
 				Auth auth = method.getMethodAnnotation(Auth.class);
 		//		Auth auth = method.getMethod().getAnnotation(Auth.class);
 				////验证登陆超时问题  auth = null，默认验证 
-				if(auth == null || auth.verifyLogin()){
+				if(auth !=null && auth.verifyLogin()){
 					//String path = request.getServletPath();
 					SysUser user =SessionUtils.getUser(request);
 					if(user == null){
@@ -71,7 +73,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					return super.preHandle(request, response, handler);
 				}
 				//验证URL权限
-				if(auth.verifyURL()){		
+				if(auth !=null && auth.verifyURL()){		
 					//判断是否超级管理员
 					if(!SessionUtils.isAdmin(request)){
 						if(!SessionUtils.isAccessUrl(request, StringUtils.trim(menuUrl))){					
@@ -87,7 +89,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 							return false;
 						}
 					}
-				}
+				}else{}
 		}
 		return super.preHandle(request, response, handler);
 	}

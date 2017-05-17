@@ -44,7 +44,7 @@ itour.happiness = function(){
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td valign='top'>&nbsp;</td>"+
-					                    "<td style='text-align:left'><div class='STYLE20'>"+(e.signature?e.signature:"")+" From "+(e.areaname?e.areaname:"")+"</div></td>"+
+					                    "<td style='text-align:right'><div class='STYLE20'>"+(e.signature?e.signature:"")+" From "+(e.areaname?e.areaname:"")+"</div></td>"+
 					                  "</tr>"+
 					                "</table></td>"+
 					              "</tr>"+

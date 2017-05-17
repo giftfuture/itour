@@ -334,11 +334,11 @@ itour.travelItem = function(){
 					},
 					{field:'ticketsBlock',title:'门票信息',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							var ticketsBlock = $(row.ticketsBlock).text();
-							if((ticketsBlock+"").length>30){
-								return (ticketsBlock+"").substring(0,30)+"....";
+							//var ticketsBlock = $(row.ticketsBlock).text();
+							if((row.ticketsBlock+"").length>30){
+								return (row.ticketsBlock+"").substring(0,30)+"....";
 							}else{									
-								return ticketsBlock;
+								return row.ticketsBlock;
 							}
 						}
 					},
@@ -349,6 +349,16 @@ itour.travelItem = function(){
 							}else{
 								return "否";
 							}
+						}
+					},
+					{field:'freeseason',title:'淡季',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.freeseason;
+						}
+					},
+					{field:'busyseason',title:'旺季',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.busyseason;
 						}
 					},
 					{field:'shortContent',title:'简短介绍',align:'center',sortable:true,
@@ -636,77 +646,77 @@ itour.travelItem = function(){
 			$("#happyLabel").parent().append(happySelect);
 		},
 		uploadparams:{
-				fileInput: $("#fileImage",this.uploadPhotoWin).get(0),
-				//dragDrop: $("#fileDragArea").get(0),
-				upButton: $("#fileSubmit",this.uploadPhotoWin).get(0),
-				url: 'travelItem/uploadPhoto',// _this.config.action.save,
-				onSelect: function(files) {
-					var html = '', i = 0;
-					$("#preview",this.uploadPhotoWin).html('<div class="upload_loading"></div>');
-					var funAppendImage = function() {
-						file = files[i];
-						//alert("ffffd"+file.name);
-						if (file) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
-									'<a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><br />' +
-									'<img id="uploadImage_' + i + '" title="' +file.name + '"  src="' + e.target.result + '" class="upload_image" /></p>'+ 
-									'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
-								'</div>';
-								i++;
-								funAppendImage();
-							}
-							reader.readAsDataURL(file);
-						} else {
-							//console.log(html);
-							$("#preview",this.uploadPhotoWin).html(html);
-							if (html) {
-								//删除方法
-								$(".upload_delete",this.uploadPhotoWin).click(function() {
-									zxxfile.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
-									return false;	
-								});
-								//提交按钮显示
-								$("#fileSubmit",this.uploadPhotoWin).show();	
-							} else {
-								//提交按钮隐藏
-								$("#fileSubmit",this.uploadPhotoWin).hide();	
-							}
+			fileInput: $("#fileImage",this.uploadPhotoWin).get(0),
+			//dragDrop: $("#fileDragArea").get(0),
+			upButton: $("#fileSubmit",this.uploadPhotoWin).get(0),
+			url: 'travelItem/uploadPhoto',// _this.config.action.save,
+			onSelect: function(files) {
+				var html = '', i = 0;
+				$("#preview",this.uploadPhotoWin).html('<div class="upload_loading"></div>');
+				var funAppendImage = function() {
+					file = files[i];
+					//alert("ffffd"+file.name);
+					if (file) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+								'<a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><br />' +
+								'<img id="uploadImage_' + i + '" title="' +file.name + '"  src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+							'</div>';
+							i++;
+							funAppendImage();
 						}
-					};
-					funAppendImage();		
-				},
-				onDelete: function(file) {
-					$("#uploadList_" + file.index,this.uploadPhotoWin).fadeOut();
-				},
-				onDragOver: function() {
-					$(this).addClass("upload_drag_hover");
-				},
-				onDragLeave: function() {
-					$(this).removeClass("upload_drag_hover");
-				},
-				onProgress: function(file, loaded, total) {
-					var eleProgress = $("#uploadProgress_" + file.index,this.uploadPhotoWin), percent = (loaded / total * 100).toFixed(2) + '%';
-					eleProgress.show().html(percent);
-				},
-				onSuccess: function(file, response) {
-					$("#uploadInf",this.uploadPhotoWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
-					Grid.datagrid('reload',param);
-					_this.config.datagrid('reload',param);
-				   Form.uploadPhotoForm.resetForm();
-				},
-				onFailure: function(file) {
-					$("#uploadInf",this.uploadPhotoWin).append("<p>图片" + file.name + "上传失败！</p>");	
-					$("#uploadImage_" + file.index,this.uploadPhotoWin).css("opacity", 0.2);
-				},
-				onComplete: function() {
-					//提交按钮隐藏
-					$("#fileSubmit",this.uploadPhotoWin).hide();
-					//file控件value置空
-					$("#fileImage",this.uploadPhotoWin).val("");
-					$("#uploadInf",this.uploadPhotoWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
-				}
+						reader.readAsDataURL(file);
+					} else {
+						//console.log(html);
+						$("#preview",this.uploadPhotoWin).html(html);
+						if (html) {
+							//删除方法
+							$(".upload_delete",this.uploadPhotoWin).click(function() {
+								zxxfile.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+								return false;	
+							});
+							//提交按钮显示
+							$("#fileSubmit",this.uploadPhotoWin).show();	
+						} else {
+							//提交按钮隐藏
+							$("#fileSubmit",this.uploadPhotoWin).hide();	
+						}
+					}
+				};
+				funAppendImage();		
+			},
+			onDelete: function(file) {
+				$("#uploadList_" + file.index,this.uploadPhotoWin).fadeOut();
+			},
+			onDragOver: function() {
+				$(this).addClass("upload_drag_hover");
+			},
+			onDragLeave: function() {
+				$(this).removeClass("upload_drag_hover");
+			},
+			onProgress: function(file, loaded, total) {
+				var eleProgress = $("#uploadProgress_" + file.index,this.uploadPhotoWin), percent = (loaded / total * 100).toFixed(2) + '%';
+				eleProgress.show().html(percent);
+			},
+			onSuccess: function(file, response) {
+				$("#uploadInf",this.uploadPhotoWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
+				Grid.datagrid('reload',param);
+				_this.config.datagrid('reload',param);
+			   Form.uploadPhotoForm.resetForm();
+			},
+			onFailure: function(file) {
+				$("#uploadInf",this.uploadPhotoWin).append("<p>图片" + file.name + "上传失败！</p>");	
+				$("#uploadImage_" + file.index,this.uploadPhotoWin).css("opacity", 0.2);
+			},
+			onComplete: function() {
+				//提交按钮隐藏
+				$("#fileSubmit",this.uploadPhotoWin).hide();
+				//file控件value置空
+				$("#fileImage",this.uploadPhotoWin).val("");
+				$("#uploadInf",this.uploadPhotoWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+			}
 		}/*,
 		uploadCoverParams:{
 			fileInput: $("#fileImage",this.uploadCoverWin).get(0),

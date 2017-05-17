@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -46,6 +48,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.TravelStyleService;
+import com.itour.util.Constants;
 import com.itour.vo.RouteTemplateVo;
 import com.itour.vo.TravelStyleVo;
  
@@ -61,7 +64,8 @@ import com.itour.vo.TravelStyleVo;
 public class TravelStyleController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	// Servrice start
 	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private TravelStyleService<TravelStyle> travelStyleService; 
@@ -91,7 +95,6 @@ public class TravelStyleController extends BaseController{
 			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的list方法");
 		 return forward("server/sys/travelStyle",context); 
 	}
-	
 	
 	/**
 	 * @param url
@@ -216,17 +219,20 @@ public class TravelStyleController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/loadStyles", method = RequestMethod.GET) 
-	public List<Map<String,String>> loadStyles(HttpServletRequest request,HttpServletResponse response)throws Exception{
-		List<HashMap<String,String>> list = travelStyleService.loadStyles();
-		List<Map<String,String>> newlist = Lists.newArrayList();
-		newlist.add(new HashMap(){{put("alias","");put("type","-所有-");}});
-		newlist.addAll(list);
+	public List<Map<String,Object>> loadStyles(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		List<Map<String,Object>> list = Constants.allStyles;
+		if(list.size()==0){
+			List<Map<String,Object>> newlist = new ArrayList(){{add(new HashMap(){{put("alias","");put("type","-所有-");}});}};
+			newlist.addAll(travelStyleService.loadStyles());
+			Constants.allStyles.clear();
+			Constants.allStyles.addAll(newlist);
+			list = newlist;
+		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的loadStyles方法");
-		return newlist;
+		return list;
 	}
 	
 	/**

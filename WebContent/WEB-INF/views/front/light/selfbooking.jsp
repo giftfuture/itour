@@ -39,15 +39,15 @@
         <tr> 
           <td width="19%"> <p align="right"><strong>旅行线路：<br />
               </strong></p></td>
-          <td width="81%" style="text-align:left"><input name="routename" type="text" class="easyui-textbox" size="80" value="${rt.title } " /></td>
+          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text" class="easyui-textbox" size="80" value="${rt.title } " /></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>预计出行日期：</strong></div></td>
-          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" /></td>
+          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" /></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>预计返程日期：</strong></div></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'md[\'#expectedDepart\']',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" />
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.lightselfbooking.onChangeDate(this)" style="width:150px;" />
             </td>
         </tr>
 		<tr> 

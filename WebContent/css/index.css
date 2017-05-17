@@ -40,7 +40,10 @@ body {
 	color: #990000;
 	font-family: "微软雅黑";
 }
-.STYLE5 {color: #666666}
+.STYLE5 {font-family: "黑体";
+font-size: 36px;
+font-weight: bold;
+color: #990000;}
 .STYLE6 {font-family: "微软雅黑"}
 .STYLE7 {color: #666666; font-family: "微软雅黑"; }
 .STYLE8 {font-size: 14px; line-height: 30px; color: #333333; font-family: "微软雅黑"; }

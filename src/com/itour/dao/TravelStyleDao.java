@@ -3,6 +3,7 @@ package com.itour.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -23,7 +24,7 @@ public interface TravelStyleDao<T> extends BaseDao<T> {
 	 * 
 	 * @return
 	 */
-	List<HashMap<String,String>> loadStyles();
+	List<Map<String,Object>> loadStyles();
 	
 	/**
 	 * 

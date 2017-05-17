@@ -25,11 +25,11 @@
 </table> -->
 <br />
 <table class="commontb" align="center">
-  <tr style="height:500px">
+  <tr>
     <td width="197" valign="top">
       <table width="197" border="0" cellspacing="0" cellpadding="5">
           <tr>
-            <td height="30" bgcolor="#990000"><div align="center" class="STYLE6" width="197px" >旅遊目的地</div></td>
+            <td height="30" bgcolor="#990000"><div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" width="197px" >旅遊目的地</div></td>
           </tr>
           <tr>
   			<td><div class="treebox">
@@ -42,7 +42,7 @@
 						<ul class="level2" style="float:middle">
 							<c:forEach items="${items}" var="item">
 								<c:if test="${scope.key==item.scope }">
-									<li style="float:middle"><a href="javascript:;"><c:out value="${item.item}"></c:out></a></li>		
+									<li style="float:middle"><a href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>		
 								</c:if>
 							</c:forEach>
 						</ul>
@@ -56,25 +56,25 @@
         </td>
         <td rowspan=2>
        		<c:forEach var="sortitem" items="${sortedItems}" varStatus="">
-	        <table width="835" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#f0f0f0">
-		      <tbody><tr>
-		        <td width="648" style="text-align:left"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
-		        <td width="432"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
+	        <table border="0" align="center" cellpadding="10" cellspacing="0" style="width:1140px" width="1140px">
+		      <tbody><tr bgcolor="#f0f0f0" style="width:1140px" width="1140px">
+		        <td colspan=2 width="60%" style="text-align:left;float:left;width:648;"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
+		        <td width="40%" style="text-align:right;float:right;width:432;"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
 		        <c:if test="${fn:length(sortitem.value)>= maxd}">
 		         | <a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">显示更多</a>
 		         </c:if>
 		        </div></td>
 		      </tr>
-		    </tbody></table>
-	        <table border="0" align="center" cellpadding="5" cellspacing="0">
 		      <tr>
 			     <c:forEach items="${sortitem.value}" var="ti">
-			      	<td style="text-align:left;">
+			      	<td style="text-align:left;align:left">
 			      		<a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="200px" height="200px" alt="" src="${basePath }${ti.cover}"/></a>
 			      	</td>
 		         </c:forEach>
 		      </tr>
-		    </table>
+		    </tbody></table>
+	      <!--   <table border="0" align="left" cellpadding="5" cellspacing="0">
+		    </table> -->
 		  </c:forEach>
         </td>
         </tr>

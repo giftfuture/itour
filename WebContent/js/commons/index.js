@@ -10,6 +10,7 @@ itour.index = function(){
 				cache: false,
 				success:function(result){
 					$(result).each(function(i,e){
+						//console.log(e.advertise);
 						arr[i]=e.advertise;
 						if(e.isVideo){
 							links[i] = basePath+'video/'+ e.adlink;

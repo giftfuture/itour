@@ -35,7 +35,8 @@ import com.itour.base.util.edit.MyEditor;
 public class BaseController {
 	//===================================Fields==============================================
 		/** 记录日志的对象. */
-		private static Logger logger = Logger.getLogger(BaseController.class);
+	private static Logger logger = Logger.getLogger(BaseController.class);
+	
 	public final static String SUCCESS ="success";  
 	
 	public final static String MSG ="msg";  

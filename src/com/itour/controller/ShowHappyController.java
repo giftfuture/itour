@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
@@ -66,6 +67,8 @@ public class ShowHappyController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
 	// Servrice start
+    @Autowired(required=false)
+    private CacheService cacheService;
 	@Autowired  
 	private ShowHappyService showHappyService; 
 	@Autowired
@@ -107,7 +110,7 @@ public class ShowHappyController extends BaseController{
 		vo.setLimit(Constants.happyperPage);
 		vo.getPager().setPageSize(Constants.happyperPage);
 		vo.getPager().setPageId(pageNo);
-		BasePage<ShowHappyVo> page = showHappyService.pagedQuery(vo);
+		BasePage<ShowHappyVo> page = showHappyService.showPageQuery(vo);
 		//List<Map<String, Object>> records = page.getRecords();
 		//context.put("records", page.getRecords());
 		//context.put("pageNo",pageNo);
@@ -195,7 +198,6 @@ public class ShowHappyController extends BaseController{
 			if(imgs.size()>0){
 				for(String fileName:imgs){ 
 					String path = shareHappyPath+"/"+(sh.getShCode()+"_"+sh.getRoute())+"/"+fileName;
-					//File ff = new File(path);  
 	    			//if(ff.exists()&&!ff.isDirectory()){//文件根目录不存在时创建  
 	    			   //String bytesrc =	ImageFilter.GetImageStr(path,ImageFilter.base64ImgExt.get(fileName.substring(fileName.indexOf("."))));
 	    				//content = content.replace(fileName, bytesrc);  

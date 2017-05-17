@@ -158,9 +158,14 @@ itour.travelOrder = function(){
 							return '<span title="'+row.orderNo+'">'+row.orderNo+'</span>';
 						}
 					},
-					{field:'orderName',title:'订单名称',align:'center',sortable:true,
+					{field:'orderName',title:'订单名称',align:'left',sortable:true,
 						formatter:function(value,row,index){
 							return '<span title="'+row.orderName+'">'+row.orderName+'</span>';
+						}
+					},
+					{field:'routeId',title:'订单处理',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return '<a href="'+basePath+'travelOrder/toQuote2/'+row.id+'/'+row.routeId+'">订单处理</a>';
 						}
 					},
 					{field:'orderStatus',title:'订单状态',align:'center',sortable:true,

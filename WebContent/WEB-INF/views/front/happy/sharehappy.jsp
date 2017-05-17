@@ -17,16 +17,16 @@ function ww4(date){
 </head>
 <body>
 <%@include file="/front/header.jsp"  %> 
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"></span></div></td>
   </tr>
   <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+    <td  style="float:left;text-align:left;margin-left:-500px; padding-left:-500px;"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif">
-    <table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td  background="images/frame1-2.gif">
+    <table width="1140"  border="0" align="center" cellpadding="0" cellspacing="0">
        <tr>
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -63,6 +63,9 @@ function ww4(date){
   </tr>
 </table>
 </td></tr>
+ <tr>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr> 
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/sharehappy.js"></script>
 <%@include file="/front/footer.jsp"  %>  

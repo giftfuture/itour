@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -28,6 +29,7 @@ import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.LevelAreaKit;
+import com.itour.entity.Areas;
 import com.itour.entity.LevelArea;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
@@ -40,6 +42,7 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
+import com.itour.util.Constants;
 import com.itour.vo.LevelAreaVo;
 import com.itour.vo.TravelItemVo;
 @Controller
@@ -47,7 +50,8 @@ import com.itour.vo.TravelItemVo;
 public class LevelAreaController extends BaseController {
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	@Autowired
 	private LevelAreaService levelAreaService ;
 	@Autowired
@@ -67,10 +71,14 @@ public class LevelAreaController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/allAreas", method = RequestMethod.GET)
 	public List<LevelArea> allAreas(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//Map<String,Object> root = getRootMap();
+		//Map<String,Object> root = getRootMap();allLevelAreas
 		List<LevelArea> allAreas = Lists.newArrayList();
-		allAreas.add(new LevelArea("","请选择"));
-		allAreas.addAll(levelAreaService.allAreas());
+		allAreas.add(new LevelArea("","--请选择--"));
+		List<LevelArea> areas = Constants.allLevelAreas;
+		if(areas.size() ==0){
+			Constants.allLevelAreas.addAll(levelAreaService.allAreas());
+			areas = Constants.allLevelAreas;
+		}
 		//root.put("allAreas", allAreas);
 		//String result = JsonUtils.encode(root);
 		SysUser user = SessionUtils.getUser(request);
@@ -238,9 +246,15 @@ public class LevelAreaController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value="/queryLevel1", method = RequestMethod.GET)
 	public String queryLevel1(HttpServletRequest request,HttpServletResponse response){
-		List<LevelArea> allAreas = Lists.newArrayList();
-		allAreas.add(new LevelArea("","请选择"));
-		allAreas.addAll(levelAreaService.queryLevel1());
+		List<LevelArea> allAreas = Constants.level1Areas;
+		if(allAreas.size()<=1){
+			List<LevelArea> areas = Lists.newArrayList();
+			areas.add(new LevelArea("","请选择"));
+			areas.addAll(levelAreaService.queryLevel1());
+			Constants.level1Areas.clear();
+			Constants.level1Areas.addAll(areas);
+			allAreas = areas;
+		}
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel1方法");
 		return JsonUtils.encode(allAreas);

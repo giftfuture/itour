@@ -287,7 +287,7 @@ itour.hiking = function(){
 	    		if(e.keyCode == 13) {
 	    			_this.submitform();
 	    		}
-	    	});
+    	});
 		}
 	}
 	return  _this;

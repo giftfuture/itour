@@ -9,9 +9,9 @@
     application.setAttribute("basePath", basePath);
     pageContext.setAttribute("basePath", basePath);
     long getTimestamp=new Date().getTime();
-    Counter counthandler=new Counter();//创建对象  
+    /* Counter counthandler=new Counter();//创建对象  
     int count=1;  														
-    application.setAttribute("count",count); 
+    application.setAttribute("count",count);  */
     String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
   /*   if(application.getAttribute("count")==null|| count == 0){  
 	    count=counthandler.readCount();//读取文件获取数据赋给count  
@@ -32,7 +32,8 @@
 <link rel="stylesheet" type="text/css" href="${basePath}js/plug-in/summernote/summernote.css">
 <link rel="stylesheet" type="text/css" href="${basePath}css/easytab.css">
 <!-- ** Javascript ** -->
-<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> 
+<%-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> --%>
+<script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>  
 <!-- <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script> -->
 <script type="text/javascript" src="${basePath}js/commons/jquery-migrate-1.1.0.min.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/jquery.form.js"></script>
@@ -92,6 +93,7 @@ var basePath = '${basePath}';
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 <meta http-equiv="pragma" content="no-cache">  
+<META NAME="Generator" CONTENT="EditPlus">
 <meta http-equiv="cache-control" content="no-cache">  
 <meta http-equiv="expires" content="0">      
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

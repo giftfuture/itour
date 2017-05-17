@@ -21,7 +21,7 @@
 				<option value="0">否</option>
 			 	<option value="1">是</option>
 			 </select> -->
-			 <label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:131,height:20,editable:false">
+			 <label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:131,editable:false">
 			<option value="">--请选择--</option>
 			<option value="5">五星</option>
 			<option value="4">四星</option>
@@ -185,17 +185,17 @@
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr>
 						<tr><td><input type="text" class="easyui-textbox" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table></div>
 						<div id="devideTicketdiv"><table><tr><td colspan=2>淡季门票信息</td><td></tr>
-						<tr><td style="text-align:left" colspan=2><select name="freebeginMonth" id="freebeginMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<tr><td style="text-align:left" colspan=2><select name="freebeginMonth" id="freebeginMonth" class='easyui-combobox' data-options="editable:false,width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-						<select name="freebeginDate" id="freebeginDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<select name="freebeginDate" id="freebeginDate" class='easyui-combobox' data-options="editable:false,width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
 						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
 						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
 						<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
 						<option value="31">31</option></select>到
-						<select name="freeendMonth" id="freeendMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<select name="freeendMonth" id="freeendMonth" class='easyui-combobox' data-options="editable:false,width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-						<select name="freeendDate" id="freeendDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<select name="freeendDate" id="freeendDate" class='easyui-combobox' data-options="editable:false,width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
 						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
 						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
@@ -207,17 +207,17 @@
 						<tr><td><input type="text" class="easyui-textbox" title="门票" data-options="prompt:'门票'" name="tickets"/></td><td><input type="text" class="easyui-numberbox" title="门票价格" data-options="prompt:'门票价格'" name="ticketprices"/></td></tr></table>
 						<table><tr><td colspan=2>旺季门票信息</td></tr>
 					    <tr><td style="text-align:left" colspan=2>
-					    <select name="busybeginMonth" id="busybeginMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+					    <select name="busybeginMonth" id="busybeginMonth" class='easyui-combobox' data-options="editable:false,width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-						<select name="busybeginDate" id="busybeginDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<select name="busybeginDate" id="busybeginDate" class='easyui-combobox' data-options="editable:false,width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
 						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
 						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
 						<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
 						<option value="31">31</option></select>到
-						<select name="busyendMonth" id="busyendMonth" class='easyui-combobox' data-options="width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<select name="busyendMonth" id="busyendMonth" class='easyui-combobox' data-options="editable:false,width:60,prompt:'月份'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-						<select name="busyendDate" id="busyendDate" class='easyui-combobox' data-options="width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+						<select name="busyendDate" id="busyendDate" class='easyui-combobox' data-options="editable:false,width:60,prompt:'日期'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 						<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
 						<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
 						<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>

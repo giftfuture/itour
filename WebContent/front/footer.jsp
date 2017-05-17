@@ -71,7 +71,7 @@ function loadlevel2Area(level1Area){
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
-       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
        旅游区域：<!--onBeforeLoad
      	   -->
@@ -189,6 +189,13 @@ function loadlevel2Area(level1Area){
       </tbody>
     </table>
     </td>
+  </tr>
+  <tr>
+    <td><div align="center">
+<!-- <script src="https://s11.cnzz.com/z_stat.php?id=1261858669&amp;web_id=1261858669" language="JavaScript"></script>
+<script src="https://c.cnzz.com/core.php?web_id=1261858669&amp;t=z" charset="utf-8" type="text/javascript"></script> -->
+<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="站长统计">站长统计</a>	
+	</div></td>
   </tr>
 </table>
 </div>

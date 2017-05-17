@@ -27,7 +27,14 @@ public class TravelOrder extends BaseEntity {
 	private String routename;
 	private String receiveremail;
 	private boolean gender;
-		public boolean isGender() {
+	private String routeId;
+		public String getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
+	public boolean isGender() {
 		return gender;
 	}
 	public void setGender(boolean gender) {

@@ -180,7 +180,12 @@
 		select count(1) from show_happy
 		<include refid="Example_Where_Clause" />
 	</select>
-
+	<select id="queryAll" resultMap="BaseResultMapVo">
+		select * from show_happy where is_valid=1
+	</select>
+	 <select id="countAll" resultType="java.lang.Integer">
+		select count(1) from show_happy where is_valid=1
+	</select>
 	<!-- 查询幸福分享列表 -->
 	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.vo.ShowHappyVo">
 		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,

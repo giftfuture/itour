@@ -1,6 +1,4 @@
-<%@ page language="java" import="java.lang.*"
-	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	isELIgnored="false"%>
+<%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -8,12 +6,9 @@
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />
 <link rel="stylesheet" href="${basePath}css/index.css" />
-<script type="text/javascript"
-	src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
-<script type="text/javascript"
-	src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
-<script type="text/javascript"
-	src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
+<script type="text/javascript"src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript"src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript"src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>欢迎访问主角旅行</title>
 <link href="css/index.css" rel="stylesheet" type="text/css" />

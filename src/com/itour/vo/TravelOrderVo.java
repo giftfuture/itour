@@ -32,7 +32,14 @@ public class TravelOrderVo extends BasePage implements Serializable{
 	private boolean gender;
 	private String routeTitle;//路线名称
 	private String routeAlias;//路线别名
+	private String routeId;
 	
+	public String getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
 	public boolean isGender() {
 		return gender;
 	}

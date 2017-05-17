@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -46,7 +47,8 @@ import com.itour.vo.OrderDetailVo;
 public class OrderDetailController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	
+    @Autowired(required=false)
+    private CacheService cacheService;
 	// Servrice start
 	@Autowired  
 	private OrderDetailService<OrderDetail> orderDetailService; 

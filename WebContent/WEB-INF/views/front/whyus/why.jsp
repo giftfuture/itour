@@ -10,17 +10,17 @@
 
 <body>
  <%@include file="/front/header.jsp"  %>
-<table width="100%" border="0" align="center" cellpadding="30" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="30" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td  background="images/frame1-2.gif"><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td valign="top"><table width="1050" border="0" align="center" cellpadding="0" cellspacing="0">
 
@@ -65,7 +65,7 @@
     </table></td>
   </tr>
   <tr>
-    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
 <br />

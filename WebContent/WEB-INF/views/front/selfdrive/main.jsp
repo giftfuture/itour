@@ -11,10 +11,10 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
 <meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
-<script type="text/javascript" src="Scripts/flashobject.js"></script>
+<!-- <script type="text/javascript" src="Scripts/flashobject.js"></script>
 <script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
 <link href="css/qzx.css" rel="stylesheet" type="text/css" />
-<link href="css/bodylink.css" rel="stylesheet" type="text/css" />
+<link href="css/bodylink.css" rel="stylesheet" type="text/css" /> -->
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
@@ -22,10 +22,10 @@
 <table  class="commontb" align="center" bgcolor="#FFFFFF">
   <!--DWLayoutTable-->
   <tr>
-    <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
+    <td width="10" background="images/shadowleft.gif"><img src="images/shadowleft.gif" width="10" height="8" /></td>
     <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
     </table></td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
+    <td width="10" background="images/shadowright.gif"><img src="images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
 <table class="commontb" align="center">

@@ -11,7 +11,6 @@
 </head>
 <body ><!-- class="easyui-layout" -->
 <form:form method="post" id="back_form" action="${basePath }routeTemplate/list">
-<!-- <input type="submit" class="easyui-linkbutton" iconcls="icon-back" value="返回"> -->
 <a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
 </form:form>
 <form:form method="post" name="quoteEditForm">
@@ -63,8 +62,6 @@
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" height="31"><div class="style18" align="center">
             <div align="center"><strong><strong>天数</strong></strong></div>
           </div></td>
-          <!-- <td class="STYLE23" valign="middle" bgcolor="#F0F0F0">日期</td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0">星期</td> -->
           <td class="STYLE129" valign="middle" align="center" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
           <strong>行程</strong>
           </div></td>
@@ -74,16 +71,10 @@
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><div class="STYLE18" align="center" style="width:300px;">
            	景点
           </div></td>
-     <!--      <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center" style="width:267px">餐食</div></td>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
-            <div align="center">住宿(城镇)</div>
-          </div></td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center">酒店</div></td>
-          <td class="STYLE23" valign="middle" bgcolor="#F0F0F0"><div align="center">元/间</div></td> -->
           <td><a name="routeplus"><img alt="" title="添加一行" src="${basePath }images/add.gif"></a></td>
         </tr>
         </thead>
-<%--         <tr id=beriefTr_0><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' data-options="width:50"><option 
+<%--    <tr id=beriefTr_0><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' data-options="width:50"><option 
 		value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option 
 		value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option 
 		value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option 
@@ -101,18 +92,7 @@
 		<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td></tr>
 		<tr><td class=STYLE126 width=100 valign=middle>详细行程：</td><td style="text-align:left" colspan="4" class=STYLE126 valign=middle>
 		<input type="text" class="easyui-textbox" name=''data-options="width:890,height:34"/></td></tr> --%>
-			 ${qf.beriefTrip } 
-		<!-- 	<tr><td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	          <td class='STYLE126' valign='middle'><input name='route_checkall' checked='checked' type='checkbox'>全选/全不选 </td>
-	          <td class='STYLE126' valign='middle'>*没选则表示不含</td>
-	          <td class='STYLE126' valign='middle'>&nbsp;</td>
-	         <td class='STYLE126' valign='middle'>&nbsp;</td>
-	        </tr>   -->   
+		  ${qf.beriefTrip }   
       </table></div>
       <br></td>
   </tr>

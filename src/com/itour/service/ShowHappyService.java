@@ -18,6 +18,7 @@ import com.itour.base.util.FilePros;
 import com.itour.convert.ShowHappyKit;
 import com.itour.dao.ShowHappyDao;
 import com.itour.entity.ShowHappy;
+import com.itour.util.Constants;
 import com.itour.vo.ShowHappyVo;
 
 /**
@@ -36,6 +37,29 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 									
 	public ShowHappyDao getDao(){
 		return mapper;
+	}
+	public List<ShowHappyVo> queryAll()throws Exception{
+		return mapper.queryAll();
+	}
+	public int countAll()	throws Exception{
+		return mapper.countAll();
+	}
+	public BasePage<ShowHappyVo> showPageQuery(ShowHappyVo vo) throws Exception{
+		List<ShowHappyVo> list = null;
+		int count=0;
+		if(Constants.showhappypage.size()>=Constants.happyperPage){
+			list = Constants.showhappypage.subList((int)vo.getPager().getPageOffset(), Constants.happyperPage);
+			count = Constants.showhappypage.size();
+		}else{
+			list = mapper.queryByListVo(vo);
+			count = mapper.countAll();
+			String shareHappyCoverPath = FilePros.httpshCoverPath();
+			for(ShowHappyVo shvo:list) {
+				String coverpath = shareHappyCoverPath+"/"+shvo.getShCode()+"_"+shvo.getRoute()+"/";
+				shvo.setCover(coverpath+shvo.getCover());
+			}
+		}
+		return new BasePage<ShowHappyVo>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	public void addShowHappy(ShowHappy sh)throws Exception{
 		 mapper.add(sh);

@@ -32,7 +32,6 @@ public class FeedbackService extends BaseService<Feedback> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-	@SuppressWarnings("unchecked")
 	public BasePage<FeedbackVo> pagedQuery(FeedbackVo vo) {
 		List<Feedback> list = (List<Feedback>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);

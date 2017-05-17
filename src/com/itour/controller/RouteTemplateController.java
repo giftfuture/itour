@@ -31,6 +31,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.annotation.Auth;
+import com.itour.base.cache.CacheService;
 import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
@@ -77,6 +78,8 @@ public class RouteTemplateController extends BaseController{
 	// Servrice start
 	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private RouteTemplateService<RouteTemplate> routeTemplateService; 
+    @Autowired(required=false)
+    private CacheService cacheService;
 	@Autowired
 	private DataGridAdapter dataGridAdapter;
 	@Autowired
