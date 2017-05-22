@@ -28,7 +28,7 @@ function ww4(date){
       <td valign="top">		
         <table  border="0" align="center" cellpadding="10" cellspacing="0" name="">
         <tbody>
-	         <tr><td><span class="STYLE23">下单人：${customers.customerName}</span>来自:${customers.scope} 邮箱：${customers.email }电话：${customers.telephone }</td></tr>
+	         <tr><td><span class="STYLE23">下单人：${customers.customerName}</span>&nbsp;&nbsp;来自：${customers.areaname}&nbsp;&nbsp; 邮箱：${customers.email }&nbsp;&nbsp;电话：${customers.telephone }</td></tr>
 	     <c:choose>
 	     <c:when test="${success&&vos !=null &&fn:length(vos)>0 }">
 		     <c:forEach items="${vos }" var="item" varStatus="idx">

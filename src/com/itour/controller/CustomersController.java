@@ -206,7 +206,7 @@ public class CustomersController extends BaseController{
 		Map<String,Object> context = getRootMap();
 		String orderhtmls = FilePros.httporderhtmls();
 		List<CustomerVo> vos  = customersService.queryOrdersByCid(id);
-		Customers customers = customersService.queryById(id);
+		CustomerVo customers = customersService.selectById(id);
 		context.put("customers", customers);
 		if(vos == null||vos.size()==0){		
 			//sendFailureResult(response, "没有找到对应的记录!");

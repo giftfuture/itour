@@ -45,6 +45,7 @@
 	<result column="is_valid" property="isValid"/>
 	<result column="order_name" property="orderName"/>
 	<result column="order_no" property="orderNo"/>
+	<result column="areaname" property="areaname"/>
 </resultMap>     
 <!-- customers table all fields -->
 <sql id="Base_Column_List" >
@@ -179,7 +180,10 @@ where is_valid=1
 	select <include refid="Base_Column_List" /> 
 	 from customers where id = #{id}
 </select>
-
+<select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+	select customers.*,areas.areaname from customers left join areas on customers.scope=areas.id
+	 where customers.id = #{id}
+</select>
 <!-- 客户信息 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.CustomerVo">
 	select count(1) from customers 
@@ -201,6 +205,7 @@ where is_valid=1
 </select>
  
 <select id="queryOrdersByCid" resultMap="BaseResultMapVo" parameterType="java.lang.String">
-select customers.*,travel_order.order_no ,travel_order.order_name from customers left join travel_order on customers.id=travel_order.customer_id where customers.id=#{id}
+select customers.*,areas.areaname,travel_order.order_no ,travel_order.order_name from customers left join travel_order on customers.id=travel_order.customer_id 
+left join areas on customers.scope=areas.id where customers.id=#{id}
 </select> 	
 </mapper>   

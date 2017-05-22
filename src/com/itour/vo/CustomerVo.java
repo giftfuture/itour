@@ -39,6 +39,7 @@ public class CustomerVo extends BasePage implements Serializable{
 	private String orderName;
 	private String orderUrl;
 	private String orderNo;
+	private String areaname;
 	public CustomerVo(){}
 	public CustomerVo(String customerId,String customerName,String introduce){
 		this.customerId = customerId ;
@@ -46,6 +47,13 @@ public class CustomerVo extends BasePage implements Serializable{
 		this.introduction = introduce ;
 	}
 	
+	
+	public String getAreaname() {
+		return areaname;
+	}
+	public void setAreaname(String areaname) {
+		this.areaname = areaname;
+	}
 	public String getOrderNo() {
 		return orderNo;
 	}

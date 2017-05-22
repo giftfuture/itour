@@ -18,5 +18,5 @@ import com.itour.vo.CustomerVo;
 public interface CustomersDao extends BaseDao<Customers> {
 	
 	List<CustomerVo> queryOrdersByCid(@Param(value="id")String id);
-	
+	CustomerVo selectById(@Param(value="id")String id);
 }
