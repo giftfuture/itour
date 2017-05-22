@@ -11,13 +11,13 @@
 <form:form method="post" id="back_form" action="${basePath }travelOrder/list">
 <a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
 </form:form>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="images/frame1-1.gif" width="100%" height="7" /></td>
+    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif">
-    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td width="685"><table width="1053" border="0" cellpadding="0" cellspacing="0">
           <tr>
@@ -32,31 +32,27 @@
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td class="h1-black">${rt.title}<span class="STYLE27"></span></td>
   </tr>
+   <tr>
+    <td><span class="STYLE126 STYLE3">${torder.orderName } </span></td>
+  </tr>  
+   <tr>
+     <td width="761" valign="top" class="STYLE126"><span class="STYLE3">简要行程</span></td>
+   </tr>
 </table>
-<br />
-<br />
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+ 
+<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
-   <tr>
-    <td class="h1-black">${torder.orderName } </span></td>
-  </tr>  
   <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td width="761" valign="top" class="STYLE126"><span class="STYLE3">简要行程：</span></td>
-        </tr>
-      </table>
-       ${qf.showTrip }
-</td>
+    <td background="images/frame1-2.gif">${qf.showTrip }</td>
   </tr>
   <tr>
-    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
+    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
 <br />
@@ -66,15 +62,15 @@
 <input type="hidden" name="torderid" value="${torder.id } ">
 <table width="90%" border="1" align="center" cellpadding="8" cellspacing="2">
   <tr>
-    <td style="width:15%">&nbsp;</td>
-    <td style="width:30%">&nbsp;</td>
+    <td style="width:10%" bgcolor="#f0f0f0">&nbsp;</td>
+    <td style="width:35%">&nbsp;</td>
     <td colspan="2" align="center"  style="width:10%">成本</td>
     <td colspan="2" style="width:15%">分项加价<br />
       <span class="STYLE148">加总价 分项加价 </span></td>
     <td style="width:30%"><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td style="width:200px"><strong>项目</strong></td>
+    <td style="width:200px" bgcolor="#f0f0f0"><div align="right"><strong>项目：</strong></div></td>
     <td width="639"><strong>成本及计算</strong></td>
     <td width="39">成本(大人)</td>
     <td width="56">成本(小孩)</td>
@@ -104,7 +100,7 @@
     <td><span class="STYLE10">小孩 未勾选，则成本 为0 </span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件：</strong></div></td>
     <td>${fn:split(qf.showTraveldoc,'|')[1]}</td>
     <td>${fn:split(qf.showTraveldoc,'|')[0]}</td>
     <td>0</td>
@@ -172,7 +168,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong>：</div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>综费：</strong></div></td>
     <td>${fn:split(qf.showComphcost,'|')[1]}</td>
     <td>${fn:split(qf.showComphcost,'|')[0]}</td>
     <td>0</td>
@@ -193,7 +189,7 @@
     <td colspan="7"><div align="center"></div></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>向导</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>向导：</strong></div></td>
     <td>${fn:split(qf.showItemguide,'|')[1]}</td>
     <td>${fn:split(qf.showItemguide,'|')[0]}</td>
     <td>0</td>
@@ -202,7 +198,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费：</strong></div></td>
     <td>${fn:split(qf.showBathorse,'|')[1]}</td>
     <td>${fn:split(qf.showBathorse,'|')[0]}</td>
     <td>0</td>
@@ -211,7 +207,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费：</strong></div></td>
     <td>${fn:split(qf.showRidehorse,'|')[1]}</td>
     <td>${fn:split(qf.showRidehorse,'|')[0]}</td>
     <td>0</td>
@@ -220,7 +216,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费：</strong></div></td>
     <td>${fn:split(qf.showClimbregister,'|')[1]}</td>
     <td>${fn:split(qf.showClimbregister,'|')[0]}</td>
     <td>0</td>
@@ -229,7 +225,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
     <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>登山联络官 </strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>登山联络官：</strong></div></td>
     <td>${fn:split(qf.showClimbnexus,'|')[1]}</td>
     <td>${fn:split(qf.showClimbnexus,'|')[0]}</td>
     <td>0</td>
@@ -238,7 +234,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>其它 </strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>其它 ：</strong></div></td>
     <td>${fn:split(qf.showElsecost,'|')[1]}</td>
     <td>${fn:split(qf.showElsecost,'|')[0]}</td>
     <td>0</td>
@@ -256,9 +252,9 @@
     <td><span class="STYLE10"></span></td>
   </tr> -->
   <tr>
-    <td><div align="right">核算价格：</div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>核算价格：</strong></div></td>
     <td colspan=3>
-	<input type="submit" name="calculateSum" class="easyui-linkbutton" value="算算呗" data-options="width:100px">
+	<input style="float:left" type="submit" name="calculateSum"  style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" value="算算呗" data-options="width:100px">
 	<!-- <a name="reviewcalculate"  class="easyui-linkbutton">预览一下</a> -->
 	<!-- <a name="generateQuote"  class="easyui-linkbutton">生成正式报价单</a></td> -->
   <%--       <tr>
@@ -270,7 +266,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td><div align="right"></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"></div></td>
     <td>**线路在外面售卖的价格可能通过这套系统来评估<br />
       **可选儿童不占床，不含门票，不含车费。 </td>
     <td>&nbsp;</td>

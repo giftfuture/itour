@@ -39,7 +39,7 @@
         <tr> 
           <td width="19%"> <p align="right"><strong>旅行线路：<br />
               </strong></p></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text" class="easyui-textbox" size="80" value="${rt.title } " /></td>
+          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text" data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>预计出行日期：</strong></div></td>

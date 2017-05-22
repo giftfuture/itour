@@ -3,6 +3,7 @@ package com.itour.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,6 @@ public class CustomersService extends BaseService<Customers> {
 	 * @return 查询结果
 	 */
 
-	@SuppressWarnings("unchecked")
 	public BasePage<Map<String, Object>> pagedQuery(CustomerVo vo) {
 		List<Customers> list = mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
@@ -55,4 +55,12 @@ public class CustomersService extends BaseService<Customers> {
 		}
 		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, count);
 	}
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<CustomerVo> queryOrdersByCid(String id){
+		return mapper.queryOrdersByCid(id);
+	};
 }

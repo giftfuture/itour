@@ -60,7 +60,8 @@ public class EmailProperty {
 		}
 	}
 	
-	public EmailProperty(String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol) {
+	public EmailProperty(String receiver,String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol) {
+			this.receiver = receiver;
 			this.username = username;
 			this.password = password;
 			this.smtp = stmp;

@@ -56,8 +56,15 @@ public class CalculateQuoteVo implements Serializable{
 	
 	private String adultsumcost;
 	private String childrensumcost;
-	
+	private String isShowDetail;
 
+	 
+	public String getIsShowDetail() {
+		return isShowDetail;
+	}
+	public void setIsShowDetail(String isShowDetail) {
+		this.isShowDetail = isShowDetail;
+	}
 	public String getAdultsumcost() {
 		return adultsumcost;
 	}

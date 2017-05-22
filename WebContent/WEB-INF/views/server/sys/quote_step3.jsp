@@ -8,16 +8,17 @@
 <title>${rt.title }</title>
 </head>
 <body>
-<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif"><table width="1100" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td background="images/frame1-2.gif">
+    <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td width="685"><table width="1053" border="0" cellpadding="0" cellspacing="0">
           <tr>
-              <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
+            <td width="32"><img src="images/man.gif" width="32" height="32" /></td>
             <td width="1021"><span class="STYLE148"><span class="STYLE24">来自：</span>${bean.city }${bean.district } ${bean.customerName}  <span class="STYLE24">团号：</span>${qf.groupCode }  <span class="STYLE14">出团日期：</span>${qf.groupDate }<span class="STYLE14">人数：</span>${qf.adults }大${qf.children }小 </span></td>
           </tr>
         </table></td>
@@ -28,9 +29,12 @@
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-<table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
+  <tr>
+    <td class="h1-black">${rt.title}<span class="STYLE27"></span></td>
+  </tr>
    <tr>
-     <td class="h1-black">${torder.orderName } </span></td>
+    <td><span class="STYLE126 STYLE3">${torder.orderName } </span></td>
   </tr>  
 </table>
 <form name="calculatespendForm" action="travelOrder/toQuote4" method="post">
@@ -40,7 +44,7 @@
 <input type="hidden" name="torderid" value="${torder.id } ">
 <table width="90%" border="1" align="center" cellpadding="8" cellspacing="2">
     <tr>
-    <td style="width:15%">&nbsp;</td>
+    <td style="width:15%" bgcolor="#f0f0f0">&nbsp;</td>
     <td style="width:30%">&nbsp;</td>
     <td colspan="2" align="center"  style="width:10%">成本</td>
     <td colspan="2" style="width:15%">分项加价<br />
@@ -48,7 +52,7 @@
     <td style="width:30%"><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td width="78"><strong>项目</strong></td>
+    <td width="78" bgcolor="#f0f0f0"><div align="right"><strong>项目：</strong></div></td>
     <td width="639"><strong>成本及计算</strong></td>
     <td width="39">大人</td>
     <td width="56">小孩</td>
@@ -77,7 +81,7 @@
     <td><span class="STYLE10">小孩 未勾选，则成本 为0 </span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件：</strong></div></td>
     <td>${fn:split(qf.showTraveldoc,'|')[1]}</td>
     <td>${fn:split(qf.showTraveldoc,'|')[0]}</td>
     <td>0</td>
@@ -145,7 +149,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong>：</div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>综费：</strong></div></td>
     <td>${fn:split(qf.showComphcost,'|')[0]}</td>
     <td>${fn:split(qf.showComphcost,'|')[0]}</td>
     <td>0</td>
@@ -166,7 +170,7 @@
     <td colspan="7"><div align="center"></div></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>向导</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>向导：</strong></div></td>
     <td>${fn:split(qf.showItemguide,'|')[1]}</td>
     <td>${fn:split(qf.showItemguide,'|')[0]}</td>
     <td>0</td>
@@ -175,7 +179,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费：</strong></div></td>
     <td>${fn:split(qf.showBathorse,'|')[1]}</td>
     <td>${fn:split(qf.showBathorse,'|')[0]}</td>
     <td>0</td>
@@ -184,7 +188,7 @@
      <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费：</strong></div></td>
     <td>${fn:split(qf.showRidehorse,'|')[1]}</td>
     <td>${fn:split(qf.showRidehorse,'|')[0]}</td>
     <td>0</td>
@@ -193,7 +197,7 @@
      <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费</strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费：</strong></div></td>
     <td>${fn:split(qf.showClimbregister,'|')[1]}</td>
     <td>${fn:split(qf.showClimbregister,'|')[0]}</td>
     <td>0</td>
@@ -202,7 +206,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
     <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>登山联络官 </strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>登山联络官： </strong></div></td>
     <td>${fn:split(qf.showClimbnexus,'|')[1]}</td>
     <td>${fn:split(qf.showClimbnexus,'|')[0]}</td>
     <td>0</td>
@@ -211,7 +215,7 @@
      <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>其它 </strong></div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>其它： </strong></div></td>
     <td>${fn:split(qf.showElsecost,'|')[1]}</td>
     <td>${fn:split(qf.showElsecost,'|')[0]}</td>
     <td>0</td>
@@ -220,7 +224,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
 <tr>
-    <td><div align="right">合计</div></td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>合计：</strong></div></td>
     <td>&nbsp;</td>
     <td>${adultsumcost }<input name="adultsumcost" type="hidden" value="${calvo.adultsumcost}"/></td>
     <td>${childrensumcost }<input name="childrensumcost" type="hidden" value="${calvo.childrensumcost}"/></td>
@@ -228,7 +232,7 @@
     <td>${calvo.plusDevicePrice}<input name="plusDevicePrice" type="hidden" value="${calvo.plusDevicePrice}"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
-  <tr>
+ <!--  <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -236,25 +240,25 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td><span class="STYLE10"></span></td>
-  </tr>
+  </tr> -->
   <tr>
-    <td>报价</td>
-    <td colspan="6">大人：<span name="adultsperguy">${calvo.plusSumPrice+adultsumcost }</span>元/人*${od.adults }人<br />
+    <td bgcolor="#f0f0f0"><div align="right"><strong>报价：</strong></div></td>
+    <td colspan=6  style="text-align:left;float:left">大人：<span name="adultsperguy">${calvo.plusSumPrice+adultsumcost }</span>元/人*${od.adults }人<br />
       小孩：<span name="childsperguy">${calvo.plusDevicePrice+childrensumcost }</span>元/人*${od.children }人（小孩不含门票） 注：小孩未勾引选门票栏。 </td>
   </tr>
   <tr>
-    <td><div align="right">：</div></td>
-    <td><label></label>
-      <br />
+    <td bgcolor="#f0f0f0"></td>
+    <td>
       <table border="0" cellspacing="0" cellpadding="3">
         <tr>
           <td>
-			<a style="padding-left:20px;margin-left:20px;" href="travelOrder/returntoQuote2/${torder.id}/${bean.id }" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a>
+			<a style="padding-left:10px;padding-right:10px;" href="travelOrder/returntoQuote2/${torder.id}/${bean.id }" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a>
 		   </td>
-          <td><input type="submit" name="Submit22" value="预览一下" /></td>
+          <td><input  style="padding-left:10px;padding-right:10px;margin-left:20px;" type="submit" class="easyui-linkbutton" name="Submit22" value="预览一下" /></td>
           <td><span class="STYLE149">
-            <input name="isShowDetail" type="checkbox" value="checkbox" />
+            <input name="isShowDetail"  value="true" type="checkbox" />
           </span><span class="STYLE148">报价单中显示明细帐目</span></td>
+          <td>&nbsp;</td>
         </tr>
       </table></td>
     <td>&nbsp;</td>
@@ -264,7 +268,7 @@
     <!-- <td><span class="STYLE10">两种核算价格的方式，出来两个不同的页面</span></td> -->
   </tr>
   <tr>
-    <td><div align="right"></div></td>
+    <td   bgcolor="#f0f0f0"></td>
     <td>**线路在外面售卖的价格可能通过这套系统来评估<br />
       **可选儿童不占床，不含门票，不含车费。 </td>
     <td>&nbsp;</td>

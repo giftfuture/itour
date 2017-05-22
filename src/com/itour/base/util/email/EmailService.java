@@ -58,9 +58,10 @@ public class EmailService {
 			 String auth = SystemVariable.cache.get("sender_auth");
 			 String ssl = SystemVariable.cache.get("sender_ssl");
 			 String protocol = SystemVariable.cache.get("sender_protocol");
+			 String attachement ="";
 			// String [] emails = receivers.split(";");
 			// for(String email:emails){						 
-				 EmailService.sendEmail(receivers, title, receivers,sender,pwd,host,port,auth,ssl,protocol);
+				 EmailService.sendEmail(receivers, title, receivers,sender,pwd,host,port,auth,ssl,protocol,attachement);
 			// }
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -75,7 +76,7 @@ public class EmailService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean sendEmail(String title,String receive_email, String subject, String content)throws Exception {
+	public static boolean sendEmail(String title,String receive_email, String subject, String content,String attachment)throws Exception {
 		// String receivers = SystemVariable.map.get("receive_email");
 		if(SystemVariable.cache.isEmpty()){
 			SystemVariable.init();
@@ -87,7 +88,7 @@ public class EmailService {
 		 String auth = SystemVariable.cache.get("sender_auth");
 		 String ssl = SystemVariable.cache.get("sender_ssl");
 		 String protocol = SystemVariable.cache.get("sender_protocol");
-		 return EmailService.sendEmail(receive_email, title, content,sender,pwd,host,port,auth,ssl,protocol);
+		 return EmailService.sendEmail(receive_email, title, content,sender,pwd,host,port,auth,ssl,protocol,attachment);
 	}
 	/**
 	 * 
@@ -104,9 +105,9 @@ public class EmailService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean sendEmail(String receive_email, String subject, String content,String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol)throws Exception {
+	public static boolean sendEmail(String receive_email, String subject, String content,String username,String password,String stmp,String smtp_port,String auth,String ssl,String protocol,String attachment)throws Exception {
 		try {
-			 EmailProperty	prop = new EmailProperty(username,password,stmp,smtp_port,auth,ssl,protocol);
+			 EmailProperty	prop = new EmailProperty(receive_email,username,password,stmp,smtp_port,auth,ssl,protocol);
 			// Properties prop = new Properties();
 			// InputStream in = new FileInputStream("email.properties");
 			// prop.load(in);
@@ -118,8 +119,11 @@ public class EmailService {
 		//			(new MyPasswordAuthenticator(username, password)));
 			for(String receiver:receivers){	
 				email = new Email(username, receiver, subject, content);
+				if(StringUtils.isNotEmpty(attachment)){
+					email.setAttachment(attachment);
+				}
 				service.send(email,prop);
-				System.out.println("邮箱为"+receiver+"的发送成功!!");
+				//System.out.println("邮箱为"+receiver+"的发送成功!!");
 			}
 	  		email = null;
 	  		return true;
@@ -159,6 +163,7 @@ public class EmailService {
 //				(new MyPasswordAuthenticator(username, password)));
 		Session session =Session.getInstance(env, new MyPasswordAuthenticator(username, password));
 		session.setDebug(false);
+		//session.setDebug(true);
 		Message msg = new MimeMessage(session);
 		Transport tr;
 		try {
@@ -195,6 +200,7 @@ public class EmailService {
 			tr.connect(prop.getSmtp(), username, password);
 			try {
 				tr.send(msg);
+				System.out.println("收件人邮箱为："+email.getTo()+"发送成功！！");
 			} finally {
 				try {
 					tr.close();
@@ -210,7 +216,6 @@ public class EmailService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("收件人邮箱为："+email.getTo()+"发送成功！！");
 		return true;
 	}
 	private static boolean validEmail(String email){

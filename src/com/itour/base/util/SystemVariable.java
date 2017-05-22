@@ -89,7 +89,6 @@ public class SystemVariable{
 		// SslUtils.ignoreSsl();
 		// EmailService.sendEmail("zpc@sina.com", "mai test", "testmail","zpc@sina.com","123456","mail.sina.com","25");
 		//	emailTemplateService.sendEmail(userMap, acctMap, eventType);
-		
 		try {
 			 String title="Holy Bible《神学讲座 ——普遍启示与特殊启示》第一讲";
 			 String content = "我不知道你为什麽来参加这个聚会？这个聚会里面不讲故事的，不是做见证的，不是讲作梦经验或是古哩古怪的事情，我们要讲神学的问题。如果对神学有兴趣，而结果又找到正统的神学，那就是信仰的根基被建立起来的一个很重要的秘诀了。如果教会对神学没有兴趣，或者对正统的神学没有兴趣，那麽这个教会的信仰就没有根基了。所以我盼望这个神学要从「神学院的垄断」拯救出来，因为许多人以为神学只是「神学院里面的人」搞的事情。而「神学」这个字在希腊文就是用两个字配合起来的，第一个字就是Theos、第二个字就是 Logos，所以 Theology就是「神的道」，或者是「对神的真理的认识」，「有关於神的知识」这个叫做「神学」";
@@ -103,7 +102,7 @@ public class SystemVariable{
 			 String protocol = SystemVariable.cache.get("sender_protocol");
 			// String [] emails = receivers.split(";");
 			// for(String email:emails){						 
-				 EmailService.sendEmail(receivers, title, content,sender,pwd,host,port,auth,ssl,protocol);
+				 EmailService.sendEmail(receivers, title, content,sender,pwd,host,port,auth,ssl,protocol,"");
 			// }
 		} catch (Exception e1) {
 			e1.printStackTrace();

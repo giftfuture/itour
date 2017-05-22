@@ -175,11 +175,11 @@ function loadlevel2Area(level1Area){
 </center> --%>
 <table class="commontb" align="center">
   <tr>
-    <td width="100%" height="105" valign="top" bgcolor="#666666">
-    <table width="100%" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td width="1350" height="105" valign="top" bgcolor="#666666">
+    <table width="1350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
       <tbody>
         <tr>
-          <td width="100%" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
+          <td width="1350" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
         </tr>
         <tr>
           <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: 成都一環路南三段15號華僑大廈9層<br />

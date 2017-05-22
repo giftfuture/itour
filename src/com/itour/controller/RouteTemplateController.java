@@ -76,7 +76,7 @@ import com.itour.vo.TravelItemVo;
 public class RouteTemplateController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	// Servrice start
-	@Autowired //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	@Autowired  
 	private RouteTemplateService<RouteTemplate> routeTemplateService; 
     @Autowired(required=false)
     private CacheService cacheService;

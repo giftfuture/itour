@@ -70,6 +70,26 @@ itour.serverquotestep4 = function(){
 				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
 				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
 			});
+			//generateReport
+			$("a[name='generateReport']").click(function(){
+				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val()},function(responseText){
+					var result = $.parseJSON(responseText);
+					//console.log(result);
+					if(result.success&&result.msg){
+						itour.alert("提示",result.msg,"info",function(){
+							$("a[name='viewReport']").attr("href",basePath+result.data);
+							$("a[name='viewReport']").show();
+							itour.confirm("操作提示", "回到订单管理页面？", function (data) {  
+								if (data) {  
+									document.forms["back_form"].submit();
+								}  
+							});
+						});
+					}else{
+						itour.alert("提示","生成报价单出错，请重新操作或联系管理员。","info",function(){});
+					}
+				});
+			});
 		}
 	}
 	return  _this;

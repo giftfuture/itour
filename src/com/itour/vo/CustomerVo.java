@@ -26,7 +26,7 @@ public class CustomerVo extends BasePage implements Serializable{
 	private java.util.Date updateTime;//   
 	private java.lang.String address;//   
 	private java.lang.String email;//   
-	private java.lang.String scope;//   1=中国大陆,2=香港,3=澳门,4=台湾,5=海外
+	private java.lang.String scope;//   
 	private java.lang.String city;//   
 	private java.lang.String telephone;//   
 	private java.lang.String mobile;//   
@@ -36,6 +36,9 @@ public class CustomerVo extends BasePage implements Serializable{
 	private java.lang.String introduction;// 
 	private String birthday;
 	private boolean isValid;
+	private String orderName;
+	private String orderUrl;
+	private String orderNo;
 	public CustomerVo(){}
 	public CustomerVo(String customerId,String customerName,String introduce){
 		this.customerId = customerId ;
@@ -43,6 +46,24 @@ public class CustomerVo extends BasePage implements Serializable{
 		this.introduction = introduce ;
 	}
 	
+	public String getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
+	public String getOrderUrl() {
+		return orderUrl;
+	}
+	public void setOrderUrl(String orderUrl) {
+		this.orderUrl = orderUrl;
+	}
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
 	public boolean isValid() {
 		return isValid;
 	}

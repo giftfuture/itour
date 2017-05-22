@@ -37,6 +37,31 @@ public class FilePros   {
             System.exit(-1);
         }
     }*/
+    
+    /**
+     * 订单正式报价单所在文件夹
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    public static String httporderhtmls()throws Exception{
+    	return rb.getString("httporderhtmls");
+    }
+    public static String orderhtmls()throws Exception{
+    	return rb.getString("orderhtmls");
+    }
+    public static String orderpdfs()throws Exception{
+    	return rb.getString("orderpdfs");
+    }
+    public static String httporderpdfs()throws Exception{
+    	return rb.getString("httporderpdfs");
+    }
+    public static String markedorderpdfs()throws Exception{
+    	return rb.getString("markedorderpdfs");
+    }
+    public static String httpmarkedorderpdfs()throws Exception{
+    	return rb.getString("httpmarkedorderpdfs");
+    }
     /**
      * 
      * @param key

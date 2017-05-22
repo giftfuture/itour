@@ -69,7 +69,6 @@ itour.index = function(){
 			_this.loadLinks(arr,links,titles);
 			var bannerindex=document.getElementById("banner-index");
 			//console.log(links+"   "+bannerindex);
-			//var intervalid =
 		
 			//var intervalid = setInterval("alert(111111111)",timeInterval);
 			var exchange = "<tr><td style='text-align:center;width:100%;float:middle;' height='33px' ><ol style='padding-left:800px;display:table;text-align:center;width:100%;float:middle'>";

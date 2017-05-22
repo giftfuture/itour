@@ -1,6 +1,7 @@
 package com.itour.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.FilePros;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
@@ -199,21 +201,30 @@ public class CustomersController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/rtQuote",method = RequestMethod.GET)
-	public ModelAndView rtQuote(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/showOrders",method = RequestMethod.GET)
+	public ModelAndView showOrders(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		Customers bean  = customersService.queryById(id);
-		if(bean  == null){
-			sendFailureMessage(response, "没有找到对应的记录!");
+		String orderhtmls = FilePros.httporderhtmls();
+		List<CustomerVo> vos  = customersService.queryOrdersByCid(id);
+		Customers customers = customersService.queryById(id);
+		context.put("customers", customers);
+		if(vos == null||vos.size()==0){		
+			//sendFailureResult(response, "没有找到对应的记录!");
+			context.put(SUCCESS, false);
+			context.put(MSG,  "没有找到对应的记录!");
+		}else{
+			for(CustomerVo vo:vos){
+				vo.setOrderUrl(orderhtmls+"/"+vo.getOrderNo()+".html");
+			}
+			context.put(SUCCESS, true);
+			context.put("vos", vos);
 		}
-		//String quotoForm = entity.getQuotoForm();
-		context.put(SUCCESS, true);
-		//context.put("quotoForm", quotoForm);
-		context.put("bean", bean);
 		SysUser sessionuser = SessionUtils.getUser(request);
-		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的quoteEdit方法");
-		String logId = logSettingService.add(new LogSetting("rtQuote","线路和报价单","customers/rtQuote",sessionuser.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
-		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","customers/rtQuote",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
-		return forward("server/sys/rtQuote",context);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行CustomersController的showOrders方法");
+		String logId = logSettingService.add(new LogSetting("showOrders","订单","customers/showOrders",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logId,"查看",id,JsonUtils.encode(vos),"","customers/showOrders",sessionuser.getId()));
+		return forward("server/sys/showOrders",context);
 	}
+	
+	
 }

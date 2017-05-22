@@ -33,7 +33,9 @@ public class QuoteFormService extends BaseService<QuoteForm> {
 		}
 		return new BasePage<QuoteFormVo>(vo.getStart(), vo.getLimit(), records, count);
 	}
-	
+	public QuoteFormVo selectById(String id){
+		return mapper.selectById(id);
+	}
 	public QuoteFormVo queryByRtId(String routeTemplate){
 		QuoteForm qf = mapper.queryByRtId(routeTemplate);
 		return QuoteFormKit.toVo(qf);

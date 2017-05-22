@@ -226,11 +226,11 @@ itour.customers = function(){
 								return row.birthday;
 							}
 					},
-					{field:'detailed',title:'查看详细',align:'center',width:150,formatter:function(value,row,index){
+					/*{field:'detailed',title:'查看详细',align:'center',width:150,formatter:function(value,row,index){
 						return '<a>查看详细</a>';		
-					}},
-					{field:'detailed',title:'线路和报价单',align:'center',width:150,formatter:function(value,row,index){
-						return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">线路和报价单</a>';		
+					}},*/
+					{field:'detailed',title:'订单',align:'center',width:150,formatter:function(value,row,index){
+						return '<a href="'+basePath+'customers/showOrders?id='+row.id+'">订单</a>';		
 					}}
 				/*	{field:'district',title:'区县',align:'center',sortable:true,
 							formatter:function(value,row,index){

@@ -73,7 +73,75 @@
 	<result column="show_presented" property="showPresented"/>
 	<result column="agoda_detail" property="agodaDetail"/>
 </resultMap>
-       
+ <resultMap id="BaseResultMapVo" type="com.itour.vo.QuoteFormVo" >
+	<result column="id" property="id"/>
+	<result column="route_template" property="routeTemplate"/>
+	<result column="berief_trip" property="beriefTrip"/>
+	<result column="show_trip" property="showTrip"/>
+	<result column="adults" property="adults"/>
+	<result column="children" property="children"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="remark" property="remark"/>
+	<result column="is_as_adult" property="isAsAdult"/>
+	<result column="ticket_block" property="ticketBlock"/>
+	<result column="ticket_asadult" property="ticketAsadult"/>
+	<result column="travel_docs" property="travelDocs"/>
+	<result column="traveldoc_asadult" property="traveldocAsadult"/>
+	<result column="tour_guide" property="tourGuide"/>
+	<result column="tourguide_asadult" property="tourguideAsadult"/>
+	<result column="hotel" property="hotel"/>
+	<result column="hotel_asadult" property="hotelAsadult"/>
+	<result column="rent_car" property="rentCar"/>
+	<result column="rentcar_asadult" property="rentcarAsadult"/>
+	<result column="big_traffic" property="bigTraffic"/>
+	<result column="big_traffic_sum" property="bigTrafficSum"/>
+	<result column="bigtraffice_asadult" property="bigtrafficeAsadult"/>
+	<result column="dinner" property="dinner"/>
+	<result column="dinner_asadult" property="dinnerAsadult"/>
+	<result column="insurance" property="insurance"/>
+	<result column="insurance_asadult" property="insuranceAsadult"/>
+	<result column="comprehensive_costs" property="comprehensiveCosts"/>
+	<result column="comphcost_asadult" property="comphcostAsadult"/>
+	<result column="recreation" property="recreation"/>
+	<result column="recreation_asadult" property="recreationAsadult"/>
+	<result column="item_guide" property="itemGuide"/>
+	<result column="itemguide_asadult" property="itemguideAsadult"/>
+	<result column="bathorse_cost" property="bathorseCost"/>
+	<result column="bathcost_asadult" property="bathcostAsadult"/>
+	<result column="ridehorse_cost" property="ridehorseCost"/>
+	<result column="ridecost_asadult" property="ridecostAsadult"/>
+	<result column="climb_register_cost" property="climbRegisterCost"/>
+	<result column="climbrcost_asadult" property="climbrcostAsadult"/>
+	<result column="climb_nexus_cost" property="climbNexusCost"/>
+	<result column="climbncost_asadult" property="climbncostAsadult"/>
+	<result column="else_cost" property="elseCost"/>
+	<result column="elsecost_asadult" property="elsecostAsadult"/>
+	<result column="presented" property="presented"/>
+	<result column="valid" property="valid"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="group_code" property="groupCode"/>
+	<result column="group_date" property="groupDate"/>
+	<result column="show_ticket" property="showTicket"/>
+	<result column="show_traveldoc" property="showTraveldoc"/>
+	<result column="show_tourguide" property="showTourguide"/>
+	<result column="show_hotel" property="showHotel"/>
+	<result column="show_rentcar" property="showRentcar"/>
+	<result column="show_bigtraffic" property="showBigtraffic"/>
+	<result column="show_dinner" property="showDinner"/>
+	<result column="show_insurance" property="showInsurance"/>
+	<result column="show_comphcost" property="showComphcost"/>
+	<result column="show_recreation" property="showRecreation"/>
+	<result column="show_itemguide" property="showItemguide"/>
+	<result column="show_bathorse" property="showBathorse"/>
+	<result column="show_ridehorse" property="showRidehorse"/>
+	<result column="show_climbregister" property="showClimbregister"/>
+	<result column="show_climbnexus" property="showClimbnexus"/>
+	<result column="show_elsecost" property="showElsecost"/>
+	<result column="show_presented" property="showPresented"/>
+	<result column="agoda_detail" property="agodaDetail"/>
+</resultMap>      
 <!-- quotation table all fields -->
 <sql id="Base_Column_List" >
 	  id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
@@ -256,6 +324,15 @@ where valid=1
 <select id="queryByRtId"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from quote_form where route_template = #{routeTemplate}
+</select>
+<select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+	select id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
+	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
+	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
+	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
+	  presented,valid,group_code,DATE_FORMAT(group_date,'%Y-%m-%d') group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,
+	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail
+	 from quote_form where id = #{id}
 </select>
 <!-- 报价单 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">

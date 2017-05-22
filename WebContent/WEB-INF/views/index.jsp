@@ -82,7 +82,7 @@
 						</tr>
 						<tr>
 							</c:if>
-							<td valign="top" style=""><table width="253" border="0"
+							<td valign="top"><table width="253" border="0"
 									align="left" cellpadding="0" cellspacing="0">
 									<tr>
 										<td width="296" class="h2-24red" colspan=3
@@ -99,7 +99,7 @@
 										<td width="296" colspan=3 style="text-align: left"><a
 											href="${basePath}hiking/main" class="STYLE3"><img
 												src="${basePath }${fn:split(entry['key'],'#')[2]}"
-												style="border: none;" border="0px" height="200" width="200" /></a></td>
+												style="border: none;" border="0px" height="166" width="353" /></a></td>
 									</tr>
 									<c:forEach items="${entry['value']}" var="et">
 										<tr>
@@ -138,8 +138,7 @@
 										<td colspan=2>
 											<%-- <a href="${basePath }showhappy/detail/${showhappy.shCode}">${showhappy.title }</a>  --%>
 											<a href="${basePath }showhappy/detail/${showhappy.shCode}"><img
-												src="${basePath }${showhappy.cover }" width="353"
-												height="166" /></a>
+												src="${basePath }${showhappy.cover }" width="353" height="166" /></a>
 										</td>
 									</tr>
 									<tr>

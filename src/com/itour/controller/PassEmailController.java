@@ -76,7 +76,7 @@ public class PassEmailController extends BaseController {
                 String auth = SystemVariable.cache.get("sender_auth");
                 String ssl = SystemVariable.cache.get("sender_ssl");
                 String protocol = SystemVariable.cache.get("sender_protocol");
-                boolean iSend = EmailService.sendEmail(receivers, subject, emailContent, sender, pwd, host, port, auth, ssl, protocol);
+                boolean iSend = EmailService.sendEmail(receivers, subject, emailContent, sender, pwd, host, port, auth, ssl, protocol,"");
                 if(iSend){
                 	req.setAttribute(MSG, "重置密码邮件已经发送，请登陆邮箱进行重置！");
                 }

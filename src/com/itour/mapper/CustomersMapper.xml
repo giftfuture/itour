@@ -23,7 +23,29 @@
 	<result column="birthday" property="birthday"/>
 	<result column="is_valid" property="isValid"/>
 </resultMap>
-       
+  
+  <!-- Result Map VO-->
+<resultMap id="BaseResultMapVo" type="com.itour.vo.CustomerVo" >
+	<result column="id" property="id"/>
+	<result column="customer_id" property="customerId"/>
+	<result column="create_time" property="createTime"/>
+	<result column="status" property="status"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="address" property="address"/>
+	<result column="email" property="email"/>
+	<result column="scope" property="scope"/>
+	<result column="city" property="city"/>
+	<result column="telephone" property="telephone"/>
+	<result column="mobile" property="mobile"/>
+	<result column="customer_name" property="customerName"/>
+	<result column="nick_name" property="nickName"/>
+	<result column="district" property="district"/>
+	<result column="introduction" property="introduction"/>
+	<result column="birthday" property="birthday"/>
+	<result column="is_valid" property="isValid"/>
+	<result column="order_name" property="orderName"/>
+	<result column="order_no" property="orderNo"/>
+</resultMap>     
 <!-- customers table all fields -->
 <sql id="Base_Column_List" >
 	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction, date_format(birthday,'%Y年%c月%d日') birthday,is_valid
@@ -177,5 +199,8 @@ where is_valid=1
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-  	
+ 
+<select id="queryOrdersByCid" resultMap="BaseResultMapVo" parameterType="java.lang.String">
+select customers.*,travel_order.order_no ,travel_order.order_name from customers left join travel_order on customers.id=travel_order.customer_id where customers.id=#{id}
+</select> 	
 </mapper>   

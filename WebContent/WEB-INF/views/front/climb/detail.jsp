@@ -310,8 +310,8 @@
 </table>
   <table  class="frametb" align="center">
    <tbody><tr>
-     <td width="336" style="text-align:left"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
-     <td width="264" style="text-align:left"><span class="STYLE3" ><a href="${basePath}climb/selfbooking/${rt.alias}">
+     <td width="336"  style="text-align:left;float:left" ><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span> 
+     <span class="STYLE3"  ><a  href="${basePath}climb/selfbooking/${rt.alias}">
      <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
@@ -320,7 +320,7 @@
   <table  class="frametb" align="center">
   <tr>
     <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
+    <td width="1028" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
 <table  class="frametb" align="center">
@@ -378,8 +378,7 @@
       </div></td>
               </tr>
               <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">&nbsp;</td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><a class="easyui-linkbutton" iconcls="icon-ok" name="SubmitSend" >提问</a></td>
+                <td colspan=2 bgcolor="#F0F0F0" class="STYLE140"><a class="easyui-linkbutton" iconcls="icon-ok" name="SubmitSend" >提问</a></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><input type="hidden" name="route" value="${rt.routeCode}"/></td>
