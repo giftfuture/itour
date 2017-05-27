@@ -37,8 +37,8 @@ public class TravelItemVO extends BasePage implements Serializable{
 	private String map;//地图
 	private String season;//建议季节
 	private String recommandEquip;
-	private boolean hot;//1=热门景点，0=非热点
-	private boolean valid;
+	private int hot;//1=热门景点，0=非热点
+	private int valid;
 	private String createBy;
 	private String updateBy;
 	private String createTime;
@@ -46,7 +46,7 @@ public class TravelItemVO extends BasePage implements Serializable{
 	private int starLevel;//星级
 	private String areaname;
 	private String ticketsBlock;//门票块
-	private boolean fullyearTicket;//是否分淡旺季
+	private int fullyearTicket;//是否分淡旺季
 	private String busyseason;//旺季
 	private String freeseason;//淡季
 	private String freebeginMonth;
@@ -118,12 +118,6 @@ public class TravelItemVO extends BasePage implements Serializable{
 	public void setFreeseason(String freeseason) {
 		this.freeseason = freeseason;
 	}
-	public boolean isFullyearTicket() {
-		return fullyearTicket;
-	}
-	public void setFullyearTicket(boolean fullyearTicket) {
-		this.fullyearTicket = fullyearTicket;
-	}
 	public String getTicketsBlock() {
 		return ticketsBlock;
 	}
@@ -165,12 +159,6 @@ public class TravelItemVO extends BasePage implements Serializable{
 	}
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
-	}
-	public boolean isValid() {
-		return valid;
-	}
-	public void setValid(boolean valid) {
-		this.valid = valid;
 	}
 	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public String getItinerary() {
@@ -329,11 +317,24 @@ public class TravelItemVO extends BasePage implements Serializable{
 	public void setSeason(String season) {
 		this.season = season;
 	}
-	public boolean isHot() {
+	 
+	public int getHot() {
 		return hot;
 	}
-	public void setHot(boolean hot) {
+	public void setHot(int hot) {
 		this.hot = hot;
+	}
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
+	public int getFullyearTicket() {
+		return fullyearTicket;
+	}
+	public void setFullyearTicket(int fullyearTicket) {
+		this.fullyearTicket = fullyearTicket;
 	}
 	public String getAlias() {
 		return alias;

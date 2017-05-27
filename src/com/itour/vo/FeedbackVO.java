@@ -24,11 +24,11 @@ public class FeedbackVO extends BasePage implements Serializable {
 	private String name;
 	private short teamPersons;
 	private String preferedDate;
-	private boolean valid;
+	private int valid;
 	private String route;//路线
-	private boolean sex;//true=male,false=female
+	private int sex;//true=male,false=female
 	private String verifyCode;
-	private boolean publicShow;//公开展示
+	private int publicShow;//公开展示
 	private String routeName;
 	private String routeStyle;
 	
@@ -45,23 +45,23 @@ public class FeedbackVO extends BasePage implements Serializable {
 	public void setRouteStyle(String routeStyle) {
 		this.routeStyle = routeStyle;
 	}
-	public boolean isPublicShow() {
-		return publicShow;
-	}
-	public void setPublicShow(boolean publicShow) {
-		this.publicShow = publicShow;
-	}
 	public String getVerifyCode() {
 		return verifyCode;
 	}
 	public void setVerifyCode(String verifyCode) {
 		this.verifyCode = verifyCode;
 	}
-	public boolean isSex() {
+	public int getSex() {
 		return sex;
 	}
-	public void setSex(boolean sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
+	}
+	public int getPublicShow() {
+		return publicShow;
+	}
+	public void setPublicShow(int publicShow) {
+		this.publicShow = publicShow;
 	}
 	public String getRoute() {
 		return route;
@@ -69,10 +69,10 @@ public class FeedbackVO extends BasePage implements Serializable {
 	public void setRoute(String route) {
 		this.route = route;
 	}
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public String getName() {

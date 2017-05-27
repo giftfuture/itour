@@ -32,7 +32,7 @@ public class LevelAreaKit {
 		}
 		areas.setRemark(vo.getRemark());
 		areas.setAliasCode(vo.getAliasCode());
-		areas.setValid(vo.isValid());
+		areas.setValid(vo.getValid());
 		areas.setRouteTemplate(vo.getRouteTemplate());
 		return areas;
 	}
@@ -54,7 +54,7 @@ public class LevelAreaKit {
 		areas.setUpdateTime(DateUtil.getDateYmdHs(vo.getUpdateTime()));
 		areas.setRemark(vo.getRemark());
 		areas.setAliasCode(vo.getAliasCode());
-		areas.setValid(vo.isValid());
+		areas.setValid(vo.getValid());
 		areas.setRouteTemplate(vo.getRouteTemplate());
 		return areas;
 	}
@@ -75,7 +75,7 @@ public class LevelAreaKit {
 		map.put("createTime", DateUtil.getDateYmdHs(vo.getCreateTime()));
 		map.put("updateTime", DateUtil.getDateYmdHs(vo.getUpdateTime()));
 		map.put("aliasCode", vo.getAliasCode());
-		map.put("valid", vo.isValid()?"是":"否");
+		map.put("valid", vo.getValid()==1?"是":"否");
 		map.put("routeTemplate", vo.getRouteTemplate());
 		return map;
 	}
@@ -96,7 +96,7 @@ public class LevelAreaKit {
 		map.put("createTime", vo.getCreateTime());
 		map.put("updateTime", vo.getUpdateTime());
 		map.put("aliasCode", vo.getAliasCode());
-		map.put("valid", vo.isValid()?"是":"否");
+		map.put("valid", vo.getValid()==1?"是":"否");
 		map.put("item", vo.getItem());
 		map.put("alias", vo.getAlias());
 		map.put("title", vo.getTitle());

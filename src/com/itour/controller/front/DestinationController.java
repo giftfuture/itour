@@ -153,7 +153,7 @@ public class DestinationController extends BaseController{
 	 	}
 	 	if(StringUtils.isNotEmpty(itemvo.getTicketsBlock())){
 			 	StringBuffer ticketsBlock=new StringBuffer("<table border=0>");
-			 	if(itemvo.isFullyearTicket()){//区分淡旺季
+			 	if(itemvo.getFullyearTicket()==1){//区分淡旺季
 			 			String[] busytb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("淡季")<0?0:itemvo.getTicketsBlock().indexOf("淡季")+3,itemvo.getTicketsBlock().indexOf("旺季")<0?itemvo.getTicketsBlock().length():itemvo.getTicketsBlock().indexOf("旺季")).split("、");
 			 			String[] freetb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("旺季")<0?0:itemvo.getTicketsBlock().indexOf("旺季")+3).split("、");
 			 			if(busytb.length>0){

@@ -26,19 +26,25 @@ public class AdLinkVO extends BasePage implements Serializable {
 	private String advertise;
 	private String adlink;
 	private String title;
-	private boolean valid;
+	private int valid;
 	private String remark;
 	private String createBy;
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
-	private boolean video;
+	private int video;
 	
 	 
-	public boolean isVideo() {
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
+	public int getVideo() {
 		return video;
 	}
-	public void setVideo(boolean video) {
+	public void setVideo(int video) {
 		this.video = video;
 	}
 	public String getCreateBy() {
@@ -70,12 +76,6 @@ public class AdLinkVO extends BasePage implements Serializable {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	public boolean isValid() {
-		return valid;
-	}
-	public void setValid(boolean valid) {
-		this.valid = valid;
 	}
 	public String getTitle() {
 		return title;

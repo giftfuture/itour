@@ -17,7 +17,7 @@ public class SysVariables extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -8356212737850829975L;
 	private java.lang.String id;//   	private java.lang.String varName;//   	private java.lang.String varValue;//   	private java.lang.String varHostname;//   	private java.lang.String varHostip;//   	private java.lang.String remark;//   	private java.lang.String varProject;//   
-	private boolean valid;
+	private int valid;
 	private String createBy;
 	private String updateBy;
 	private Date createTime;
@@ -46,10 +46,11 @@ public class SysVariables extends BaseEntity {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}	public boolean isValid() {
+	}	
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}

@@ -22,23 +22,17 @@ public class TravelOrder extends BaseEntity {
 	private Date createTime;//   	private Date updateTime;//   	private java.lang.String orderName;//   	private java.lang.String orderNo;//   	private java.lang.Integer orderStatus;//   	private java.lang.String receiver;//   	private java.lang.String receiverMobile;//   	private java.lang.String remark;//   	private java.lang.String customerId;//   	private Date expectedDepart;//   	private Date expectedBack;//  	private java.lang.Integer totalStaff;//   本次订单出行人数	private java.lang.String payed;//   是否支付完成.	private java.lang.String payType;//   1=线上支付,2=现金支付,3=邮政汇款,4=公司转帐	private java.lang.String payPlatform;//   付款平台,如1=微信,2=支付宝,3=网银.	private java.lang.String bank;//   如网银支付,即为付款方银行	private java.lang.String payAccount;//   付款方银行帐户	private Date payTime;//   付款时间	private java.lang.String payTerminal;//   付款终端,如有,则为PC,IOS,Android	private BigDecimal budget;  //旅行预算
 	
 	private List<OrderDetail> orderItems;
-	private boolean valid;
+	private int valid;
 	
 	private String routename;
 	private String receiveremail;
-	private boolean gender;
+	private int gender;
 	private String routeId;
 		public String getRouteId() {
 		return routeId;
 	}
 	public void setRouteId(String routeId) {
 		this.routeId = routeId;
-	}
-	public boolean isGender() {
-		return gender;
-	}
-	public void setGender(boolean gender) {
-		this.gender = gender;
 	}
 	public String getRoutename() {
 		return routename;
@@ -52,11 +46,17 @@ public class TravelOrder extends BaseEntity {
 	public void setReceiveremail(String receiveremail) {
 		this.receiveremail = receiveremail;
 	}
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
+	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
 		return budget;

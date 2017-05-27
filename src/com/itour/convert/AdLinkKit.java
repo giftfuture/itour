@@ -22,12 +22,12 @@ public class AdLinkKit {
 		adlink.setId(vo.getId());
 		adlink.setAdvertise(vo.getAdvertise());
 		adlink.setAdlink(vo.getAdlink());
-		adlink.setValid(vo.isValid());
+		adlink.setValid(vo.getValid());
 		adlink.setTitle(vo.getTitle());
 		adlink.setRemark(vo.getRemark());
 		adlink.setCreateBy(vo.getCreateBy());
 		adlink.setUpdateBy(vo.getUpdateBy());
-		adlink.setVideo(vo.isVideo());
+		adlink.setVideo(vo.getVideo());
 		if(StringUtils.isNotEmpty(vo.getCreateTime())){
 			adlink.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, vo.getCreateTime()));
 		}
@@ -48,7 +48,7 @@ public class AdLinkKit {
 		adlink.setId(vo.getId());
 		adlink.setAdvertise(vo.getAdvertise());
 		adlink.setAdlink(vo.getAdlink());
-		adlink.setValid(vo.isValid());
+		adlink.setValid(vo.getValid());
 		adlink.setTitle(vo.getTitle());
 		adlink.setRemark(vo.getRemark());
 		adlink.setCreateBy(vo.getCreateBy());
@@ -68,7 +68,7 @@ public class AdLinkKit {
 		map.put("id", vo.getId());
 		map.put("advertise",vo.getAdvertise());
 		map.put("adlink", vo.getAdlink());
-		map.put("valid", vo.isValid()?"是":"否");
+		map.put("video", vo.getVideo()==1?"是":"否");
 		map.put("title", vo.getTitle());
 		map.put("remark", vo.getRemark());
 		map.put("createBy", vo.getCreateBy());

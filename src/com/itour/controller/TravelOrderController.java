@@ -254,7 +254,7 @@ public class TravelOrderController extends BaseController {
 		customers.setCustomerName(entity.getReceiver());
 		customers.setDistrict(entity.getReceiverMobile());
 		customers.setScope(entity.getComefrom());
-		customers.setValid(true);
+		customers.setValid(1);
 		customers.setIntroduction("");
 		customers.setStatus(1);
 		customers.setNickName(entity.getReceiver());
@@ -273,7 +273,7 @@ public class TravelOrderController extends BaseController {
 		to.setReceiver(entity.getReceiver());
 		to.setReceiveremail(entity.getReceiveremail());
 		to.setReceiverMobile(entity.getReceiverMobile());
-		to.setGender(entity.isGender());
+		to.setGender(entity.getGender());
 		to.setOrderStatus(1);
 		to.setTotalStaff(entity.getAdults() + entity.getChildren());
 		to.setOrderName(IDGenerator.getUUID() + "_" + entity.getRoutename() + "_" + IDGenerator.code(16) + "_"
@@ -305,7 +305,7 @@ public class TravelOrderController extends BaseController {
 		entity.setGroupCode(gCode);
 		String odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
 		String title = "主角旅行itours网站";
-		String content = "尊敬的客户" + entity.getReceiver() + (entity.isGender() ? "先生" : "女士")
+		String content = "尊敬的客户" + entity.getReceiver() + (entity.getGender()==1 ? "先生" : "女士")
 				+ "您好：您的预定信息已收到，预定成功信息将于24小时内发送到您的邮箱，请留意查看";
 		if (EmailService.sendEmail(title, receiveremail, title, content, "")) {
 			String result = sendSuccessResult(response, "预定成功，请稍后查看邮箱预定成功信息！");
@@ -748,7 +748,7 @@ public class TravelOrderController extends BaseController {
 			fromhtmlToPdf(formContent, tordername, orderhtmls + htmlName, orderpdfs + pdfName,markedorderpdfs + pdfName);
 			// File attachment = new File(orderpdfs+pdfName);
 			String title = "主角旅行itours网站";
-			String content = "尊敬的客户" + to.getReceiver() + (to.isGender() ? "先生" : "女士") + "您好：您的信息已经预定成功。请打开邮箱查看您的订单详情";
+			String content = "尊敬的客户" + to.getReceiver() + (to.getGender()==1 ? "先生" : "女士") + "您好：您的信息已经预定成功。请打开邮箱查看您的订单详情";
 			// String attachment =
 			// String httporderpdfs = FilePros.httporderpdfs();
 			String pdfurl = httpmarkedorderpdfs + "/" + pdfName;

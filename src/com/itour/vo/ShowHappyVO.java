@@ -29,7 +29,7 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
 	private String surface;//封面图片文件
-	private boolean valid;
+	private int valid;
 	private String verifyCode;
 	private List<MultipartFile> imagefiles;
 	private String shortContent;
@@ -90,10 +90,11 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	public void setVerifyCode(String verifyCode) {
 		this.verifyCode = verifyCode;
 	}
-	public boolean isValid() {
+	
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public String getCover() {

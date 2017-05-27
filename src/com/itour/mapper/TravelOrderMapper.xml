@@ -198,7 +198,7 @@ where valid=1
 		<if test="budget != null and budget !=''" >
 	     	budget =  #{budget},
 		</if>
-		<if test="gender != null and gender != ''" >
+		<if test="gender != null" >
 		     gender =#{gender},
 		</if>
 	</trim> where id=#{id}

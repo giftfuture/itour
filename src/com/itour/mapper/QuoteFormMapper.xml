@@ -264,40 +264,40 @@ where quote_form.valid=1
 		<if test="remark != null and remark != ''">remark=#{remark},</if>
 		<if test="createBy != null and createBy !=''">create_by=#{createBy},</if>
 		<if test="updateBy != null and updateBy !=''">update_by=#{updateBy},</if>
-		<if test="asAdult != null and asAdult !=''">as_adult=#{asAdult},</if>
+		<if test="asAdult != null">as_adult=#{asAdult},</if>
 		<if test="ticketBlock!=null and ticketBlock!=''">ticket_block=#{ticketBlock},</if>
-		<if test="ticketAsadult != null and ticketAsadult != ''">ticket_asadult=#{ticketAsadult},</if>
+		<if test="ticketAsadult != null">ticket_asadult=#{ticketAsadult},</if>
 		<if test="travelDocs!=null and travelDocs!=''">travel_docs=#{travelDocs},</if>
-		<if test="traveldocAsadult != null and traveldocAsadult != ''">traveldoc_asadult=#{traveldocAsadult},</if>
+		<if test="traveldocAsadult != null">traveldoc_asadult=#{traveldocAsadult},</if>
 		<if test="tourGuide!=null and tourGuide!=''">tour_guide=#{tourGuide},</if>
-		<if test="tourguideAsadult != null and tourguideAsadult != ''">tourguide_asadult=#{tourguideAsadult},</if>
+		<if test="tourguideAsadult != null">tourguide_asadult=#{tourguideAsadult},</if>
 		<if test="hotel!=null and hotel!=''">hotel=#{hotel},</if>
-		<if test="hotelAsadult != null and hotelAsadult != ''">hotel_asadult=#{hotelAsadult},</if>
+		<if test="hotelAsadult != null">hotel_asadult=#{hotelAsadult},</if>
 		<if test="rentCar!=null and rentCar !=''">rent_car=#{rentCar},</if>
-		<if test="rentcarAsadult != null and rentcarAsadult !=''">rentcar_asadult=#{rentcarAsadult},</if>
+		<if test="rentcarAsadult != null">rentcar_asadult=#{rentcarAsadult},</if>
 		<if test="bigTraffic !=null and bigTraffic !=''">big_traffic=#{bigTraffic},</if>
 		<if test="bigTrafficSum != null and bigTrafficSum !=''">big_traffic_sum=#{bigTrafficSum},</if>
-		<if test="bigtrafficeAsadult != null and bigtrafficeAsadult !=''">bigtraffice_asadult=#{bigtrafficeAsadult},</if>
+		<if test="bigtrafficeAsadult != null">bigtraffice_asadult=#{bigtrafficeAsadult},</if>
 		<if test="dinner != null and dinner !=''">dinner=#{dinner},</if>
-		<if test="dinnerAsadult != null and dinnerAsadult != ''">dinner_asadult=#{dinnerAsadult},</if>
+		<if test="dinnerAsadult != null">dinner_asadult=#{dinnerAsadult},</if>
 		<if test="insurance!=null and insurance!=''">insurance=#{insurance},</if>
-		<if test="insuranceAsadult != null and insuranceAsadult != ''">insurance_asadult=#{insuranceAsadult},</if>
+		<if test="insuranceAsadult != null">insurance_asadult=#{insuranceAsadult},</if>
 		<if test="comprehensiveCosts!=null and comprehensiveCosts !=''">comprehensive_costs=#{comprehensiveCosts},</if>
-		<if test="comphcostAsadult != null and comphcostAsadult != ''">comphcost_asadult=#{comphcostAsadult},</if>
+		<if test="comphcostAsadult != null">comphcost_asadult=#{comphcostAsadult},</if>
 		<if test="recreation!=null and recreation!=''">recreation=#{recreation},</if>
-		<if test="recreationAsadult != null and recreationAsadult != ''">recreation_asadult=#{recreationAsadult},</if>
+		<if test="recreationAsadult != null">recreation_asadult=#{recreationAsadult},</if>
 		<if test="itemGuide!=null and itemGuide!=''">item_guide=#{itemGuide},</if>
-		<if test="itemguideAsadult != null and itemguideAsadult != ''">itemguide_asadult=#{itemguideAsadult},</if>
+		<if test="itemguideAsadult != null">itemguide_asadult=#{itemguideAsadult},</if>
 		<if test="bathorseCost!=null and bathorseCost!=''">bathorse_cost=#{bathorseCost},</if>
-		<if test="bathcostAsadult != null and bathcostAsadult != ''">bathcost_asadult=#{bathcostAsadult},</if>
+		<if test="bathcostAsadult != null">bathcost_asadult=#{bathcostAsadult},</if>
 		<if test="ridehorseCost!=null and ridehorseCost !=''">ridehorse_cost=#{ridehorseCost},</if>
 		<if test="ridecostAsadult!=null">ridecost_asadult=#{ridecostAsadult},</if>
 		<if test="climbRegisterCost!=null and climbRegisterCost!=''">climb_register_cost=#{climbRegisterCost},</if>
-		<if test="climbrcostAsadult != null and climbrcostAsadult != ''">climbrcost_asadult=#{climbrcostAsadult},</if>
+		<if test="climbrcostAsadult != null">climbrcost_asadult=#{climbrcostAsadult},</if>
 		<if test="climbNexusCost!=null and climbNexusCost!=''">climb_nexus_cost=#{climbNexusCost},</if>
-		<if test="climbncostAsadult != null and climbncostAsadult != ''">climbncost_asadult=#{climbncostAsadult},</if>
+		<if test="climbncostAsadult != null">climbncost_asadult=#{climbncostAsadult},</if>
 		<if test="elseCost!=null and elseCost!=''">else_cost=#{elseCost},</if>
-		<if test="elsecostAsadult!=null and elsecostAsadult!=''">elsecost_asadult=#{elsecostAsadult},</if>
+		<if test="elsecostAsadult!=null">elsecost_asadult=#{elsecostAsadult},</if>
 		<if test="presented!=null and presented!=''">presented=#{presented},</if>
 		<if test="groupCode!=null and groupCode!=''">group_code =#{groupCode},</if>
 		<if test="groupDate != null and groupDate !=''" >group_date= #{groupDate},</if>

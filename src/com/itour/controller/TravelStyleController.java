@@ -255,7 +255,7 @@ public class TravelStyleController extends BaseController{
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String save(TravelStyle entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	Map<String,Object>  context = new HashMap<String,Object>();
-		entity.setValid(true);
+		entity.setValid(1);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		String id = "";
 		TravelStyle ts = null;

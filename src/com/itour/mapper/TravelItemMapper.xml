@@ -201,7 +201,7 @@ where travel_item.valid=1
 		<if test="ticketsBlock != null and ticketsBlock != ''" >
 		    travel_item.tickets_block =#{ticketsBlock},
 		</if>
-		<if test="fullyearTicket != null and fullyearTicket !=''">
+		<if test="fullyearTicket != null">
 			fullyear_ticket=#{fullyearTicket},
 		</if>
 		<if test="starLevel != null and starLevel != ''" >

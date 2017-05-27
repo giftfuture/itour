@@ -142,7 +142,7 @@ public class Constants {
 		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
 		        	AdLink sh = new AdLink();  
                    sh.setAdvertise(adlinpath+"/"+rs.getString("advertise"));
-                   sh.setVideo(rs.getBoolean("video"));
+                   sh.setVideo(rs.getInt("video"));
                    sh.setTitle(rs.getString("title"));
                    sh.setAdlink(rs.getString("adlink"));
                    return sh;   

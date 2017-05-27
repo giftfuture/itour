@@ -35,7 +35,7 @@ public class CustomerVO extends BasePage implements Serializable{
 	private java.lang.String district;//   
 	private java.lang.String introduction;// 
 	private String birthday;
-	private boolean valid;
+	private int valid;
 	private String orderName;
 	private String orderUrl;
 	private String orderNo;
@@ -72,10 +72,10 @@ public class CustomerVO extends BasePage implements Serializable{
 	public void setOrderName(String orderName) {
 		this.orderName = orderName;
 	}
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public java.lang.String getId() {

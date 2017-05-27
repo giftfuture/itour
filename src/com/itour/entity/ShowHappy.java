@@ -21,7 +21,7 @@ public class ShowHappy extends BaseEntity {
 	private java.util.Date tourTime;//旅行时间
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
-	private boolean valid;
+	private int valid;
 	private String shortContent;
 	private String shCode;
 	
@@ -38,10 +38,10 @@ public class ShowHappy extends BaseEntity {
 		this.shortContent = shortContent;
 	}
 	 
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public String getCover() {

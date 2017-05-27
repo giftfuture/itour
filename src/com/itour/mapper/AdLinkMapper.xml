@@ -68,7 +68,7 @@ where ad_link.valid=1
 	<if test="remark != null and remark != ''" >
 	    remark = #{remark},
 	</if>
-	<if test="video != null and video != ''" >
+	<if test="video != null" >
 	    video = #{video},
 	</if>
 	</trim> where id=#{id}

@@ -95,7 +95,7 @@ public class FeedbackController extends BaseController{
 		Map<String,Object> context = getRootMap();
 		FeedbackVO fv = new FeedbackVO();
 		int count = 0;
-		fv.setPublicShow(true);
+		fv.setPublicShow(1);
 		fv.setRoute(route);
 		fv.setPage(pageNo);
 		fv.setRows(Constants.fbperPage);
@@ -160,7 +160,6 @@ public class FeedbackController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)

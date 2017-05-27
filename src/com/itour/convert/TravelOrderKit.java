@@ -39,10 +39,10 @@ public class TravelOrderKit{
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
 		tv.setUpdateTime(DateUtil.getDateYmdHs(to.getUpdateTime()));
-		tv.setValid(to.isValid());
+		tv.setValid(to.getValid());
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
-		tv.setGender(to.isGender());
+		tv.setGender(to.getGender());
 		tv.setRouteId(to.getRouteId());
 		return tv;
 	}
@@ -70,10 +70,10 @@ public class TravelOrderKit{
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
 		tv.setUpdateTime(DateUtil.getDateYmdHs(to.getUpdateTime()));
-		tv.setValid(to.isValid());
+		tv.setValid(to.getValid());
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
-		tv.setGender(to.isGender());
+		tv.setGender(to.getGender());
 		tv.setRouteId(to.getRouteId());
 		return tv;
 	}
@@ -96,10 +96,10 @@ public class TravelOrderKit{
 		tv.setReceiverMobile(to.getReceiverMobile());
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
-		tv.setValid(to.isValid());
+		tv.setValid(to.getValid());
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
-		tv.setGender(to.isGender());
+		tv.setGender(to.getGender());
 		tv.setRouteId(to.getRouteId());
 		try {
 			if(StringUtils.isNotEmpty(to.getCreateTime())){			

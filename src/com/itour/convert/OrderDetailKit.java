@@ -27,7 +27,7 @@ public class OrderDetailKit{
 		vo.setRemark(od.getRemark());
 		vo.setStatus(od.getStatus());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(od.getUpdateTime()));
-		vo.setValid(od.isValid());
+		vo.setValid(od.getValid());
 		vo.setGroupCode(od.getGroupCode());
 		vo.setAdults(od.getAdults());
 		vo.setChildren(od.getChildren());
@@ -76,7 +76,7 @@ public class OrderDetailKit{
 		vo.setPerPrice(od.getPerPrice());
 		vo.setRemark(od.getRemark());
 		vo.setStatus(od.getStatus());
-		vo.setValid(od.isValid());
+		vo.setValid(od.getValid());
 		vo.setAdults(od.getAdults());
 		vo.setChildren(od.getChildren());
 		vo.setTravelfashion(od.getTravelfashion());
@@ -147,7 +147,7 @@ public class OrderDetailKit{
 		map.put("remark", od.getRemark());
 		map.put("status", od.getStatus()+"");
 		map.put("updateTime",DateUtil.getDateYmdHs(od.getUpdateTime()));
-		map.put("isValid", od.isValid()+"");
+		map.put("valid", od.getValid()+"");
 		map.put("groupCode", od.getGroupCode());
 		map.put("adults", od.getAdults()+"");
 		map.put("children", od.getChildren()+"");

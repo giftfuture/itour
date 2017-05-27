@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class OrderDetailVO extends BasePage implements Serializable{
 	
 		private java.lang.String id;//   	private java.lang.Integer status;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//   
-	private boolean valid;
+	private int valid;
 	private int adults;
 	private int children;
 	private String groupCode;//团号
@@ -57,7 +57,7 @@ public class OrderDetailVO extends BasePage implements Serializable{
 	private BigDecimal budget;  //旅行预算
 	private String routename;
 	private String receiveremail;
-	private boolean gender;
+	private int gender;
 	private java.lang.String receiver;//   
 	private java.lang.String receiverMobile;//   
 	private String expectedDepart;//   
@@ -88,12 +88,6 @@ public class OrderDetailVO extends BasePage implements Serializable{
 	}
 	public void setReceiveremail(String receiveremail) {
 		this.receiveremail = receiveremail;
-	}
-	public boolean isGender() {
-		return gender;
-	}
-	public void setGender(boolean gender) {
-		this.gender = gender;
 	}
 	public java.lang.String getReceiver() {
 		return receiver;
@@ -336,11 +330,18 @@ public class OrderDetailVO extends BasePage implements Serializable{
 	public void setGroupDate(String groupDate) {
 		this.groupDate = groupDate;
 	}
-	public boolean isValid() {
+	 
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
+	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.Integer getStatus() {

@@ -176,7 +176,7 @@ public class RouteTemplateController extends BaseController{
 		String subpath = vo.getId();
 		String quotoForm = ImageFilter.writeBase64Image(vo.getQuotoForm(),rtschedulePath,subpath);
 		vo.setQuotoForm(quotoForm);
-		vo.setValid(true);					
+		vo.setValid(1);					
 		routeTemplateService.updateQuotoForm(RouteTemplateKit.toEntity(vo));
 		//vo.addShowHappy(ShowHappyKit.toEntity(vo));
 		//String result = JsonUtils.encode(context);
@@ -511,7 +511,7 @@ public class RouteTemplateController extends BaseController{
 					vo.setUpdateBy(sessionuser.getId());
 					rtId = routeTemplateService.add(vo);
 				}else{
-					vo.setValid(true);
+					vo.setValid(1);
 					vo.setUpdateBy(sessionuser.getId());
 					routeTemplateService.update(vo);
 				}
@@ -614,7 +614,7 @@ public class RouteTemplateController extends BaseController{
 				qfId = quoteFormService.add(quoteForm);
 			}else{
 				quoteForm.setId(qf.getId());
-				quoteForm.setValid(true);
+				quoteForm.setValid(1);
 				quoteFormService.update(quoteForm);				
 			}
 			SysUser sessionuser = SessionUtils.getUser(request);

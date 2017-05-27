@@ -22,7 +22,7 @@ public class QuotationKit {
 		vo.setTotalPrice(qu.getTotalPrice());
 		vo.setType(qu.getType());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(qu.getUpdateTime()));
-		vo.setValid(qu.isValid());
+		vo.setValid(qu.getValid());
 		return vo;
 	}
 }

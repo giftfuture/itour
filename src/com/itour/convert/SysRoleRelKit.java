@@ -17,7 +17,7 @@ public class SysRoleRelKit{
 		sysrolerel.setRoleId(vo.getRoleId());
 		sysrolerel.setObjId(vo.getObjId());
 		sysrolerel.setRelType(vo.getRelType());
-		sysrolerel.setValid(vo.isValid());
+		sysrolerel.setValid(vo.getValid());
 		sysrolerel.setCreateBy(vo.getCreateBy());
 		sysrolerel.setUpdateBy(vo.getUpdateBy());
 		if(StringUtils.isNotEmpty(vo.getCreateTime())){
@@ -34,7 +34,7 @@ public class SysRoleRelKit{
 		sysrolerel.setRoleId(vo.getRoleId());
 		sysrolerel.setObjId(vo.getObjId());
 		sysrolerel.setRelType(vo.getRelType());
-		sysrolerel.setValid(vo.isValid());
+		sysrolerel.setValid(vo.getValid());
 		sysrolerel.setCreateBy(vo.getCreateBy());
 		sysrolerel.setUpdateBy(vo.getUpdateBy());
 		sysrolerel.setCreateTime(DateUtil.getDateYmdHs(vo.getCreateTime()));
@@ -46,7 +46,7 @@ public class SysRoleRelKit{
 		map.put("id", vo.getId());
 		map.put("roleId",vo.getRoleId());
 		map.put("objId", vo.getObjId());
-		map.put("isValid", vo.isValid()?"是":"否");
+		map.put("valid", vo.getValid()==1?"是":"否");
 		map.put("relType", vo.getRelType()+"");
 		map.put("createBy", vo.getCreateBy());
 		map.put("updateBy", vo.getUpdateBy());

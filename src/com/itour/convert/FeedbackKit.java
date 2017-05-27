@@ -40,10 +40,10 @@ public class FeedbackKit{
 		if(fb.getUpdateTime() !=null){
 			vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
 		}
-		vo.setValid(fb.isValid());
+		vo.setValid(fb.getValid());
 		vo.setRoute(fb.getRoute());
-		vo.setSex(fb.isSex());
-		vo.setPublicShow(fb.isPublicShow());
+		vo.setSex(fb.getSex());
+		vo.setPublicShow(fb.getPublicShow());
 		return vo;
 	}
 	
@@ -70,10 +70,10 @@ public class FeedbackKit{
 			if(StringUtils.isNotEmpty(fb.getUpdateTime())){
 				bean.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getUpdateTime()));
 			}
-			bean.setValid(fb.isValid());
+			bean.setValid(fb.getValid());
 			bean.setRoute(fb.getRoute());
-			bean.setSex(fb.isSex());
-			bean.setPublicShow(fb.isPublicShow());
+			bean.setSex(fb.getSex());
+			bean.setPublicShow(fb.getPublicShow());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

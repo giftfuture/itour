@@ -40,7 +40,7 @@ public class CustomerKit {
 		record.put("district", vo.getDistrict());
 		record.put("introduction", vo.getIntroduction());
 		record.put("birthday", vo.getBirthday());
-		record.put("isValid", vo.isValid());
+		record.put("valid", vo.getValid());
 		return record;
 	}
 	public static Map<String, Object> toRecord(Customers vo){
@@ -61,7 +61,7 @@ public class CustomerKit {
 		record.put("district", vo.getDistrict());
 		record.put("introduction", vo.getIntroduction());
 		record.put("birthday", vo.getBirthday());
-		record.put("isValid", vo.isValid());
+		record.put("valid", vo.getValid());
 		return record;
 	}
 }

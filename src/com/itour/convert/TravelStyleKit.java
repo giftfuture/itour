@@ -16,7 +16,7 @@ public class TravelStyleKit{
 		  tv.setId(ts.getId());
 		  tv.setRemark(ts.getRemark());
 		  tv.setType(ts.getType());
-		  tv.setValid(ts.isValid());
+		  tv.setValid(ts.getValid());
 		  tv.setDescrip(ts.getDescrip());
 		  tv.setCover(ts.getCover());
 		  tv.setCreateBy(ts.getCreateBy());

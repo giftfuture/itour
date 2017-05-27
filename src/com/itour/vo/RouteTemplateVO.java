@@ -44,7 +44,7 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String shortContent;//简略介绍
 	private String alias;
 	private String routeCode;//线路编号
-	private boolean valid;
+	private int valid;
 	private int rcdDays;//建议天数
 	private float mileage;//里程
 	private String mountStyle;//山峰类型
@@ -261,10 +261,11 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	public void setRcdDays(int rcdDays) {
 		this.rcdDays = rcdDays;
 	}
-	public boolean isValid() {
+	 
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public List<String> getPhotoList() {

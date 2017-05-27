@@ -148,7 +148,7 @@
 				name=#{name},
 			</if>
 			<if test="mobile != null and mobile != ''">
-				result=#{mobile},
+				mobile=#{mobile},
 			</if>
 			<if test="teamPersons != null and teamPersons != ''">
 				team_persons=#{teamPersons},
@@ -159,10 +159,10 @@
 			<if test="route != null and route !=''">
 				route=#{route},
 			</if>
-			<if test="sex != null and sex != ''">
+			<if test="sex != null">
 			   sex = #{sex},
 			</if>
-			<if test="publicShow != null and publicShow != ''">
+			<if test="publicShow != null">
 		       public_show=#{publicShow},
 			</if>
 		</trim>

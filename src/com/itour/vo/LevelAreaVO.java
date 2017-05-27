@@ -30,7 +30,7 @@ public class LevelAreaVO extends BasePage {
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
-	private boolean valid;
+	private int valid;
 	private String aliasCode;
 	private String item;
 	private String alias;
@@ -75,10 +75,10 @@ public class LevelAreaVO extends BasePage {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public String getAliasCode() {

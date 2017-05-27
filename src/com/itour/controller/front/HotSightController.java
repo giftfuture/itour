@@ -337,7 +337,7 @@ public class HotSightController extends BaseController{
 			int adults = vo.getAdults();
 			int children = vo.getChildren();
 			QuoteForm qf = quoteFormService.queryById(vo.getId());
-			if(qf.isAsAdult()){
+			if(qf.getAsAdult()==1){
 				adultsumcost+=qf.getAdults()*adults;
 				childrensumcost+=qf.getAdults()*children;
 			}else{

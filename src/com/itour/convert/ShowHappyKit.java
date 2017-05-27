@@ -31,7 +31,7 @@ public class ShowHappyKit {
 		record.put("route", vo.getRoute());
 		record.put("tourTime",vo.getTourTime());
 		record.put("cover", vo.getCover());
-		record.put("isValid", vo.isValid());
+		record.put("valid", vo.getValid());
 		record.put("shortContent", vo.getShortContent());
 		record.put("shCode", vo.getShCode());
 		return record;
@@ -63,7 +63,7 @@ public class ShowHappyKit {
 			e.printStackTrace();
 		}
 		sh.setCover(vo.getCover());
-		sh.setValid(vo.isValid());
+		sh.setValid(vo.getValid());
 		sh.setShortContent(vo.getShortContent());
 		sh.setShCode(vo.getShCode());
 		return sh;
@@ -88,7 +88,7 @@ public class ShowHappyKit {
 		vo.setTourTime(DateUtil.getDateLong(sh.getTourTime()));
 		vo.setUpdateTime(sh.getUpdateTime());
 		vo.setCover(sh.getCover());
-		vo.setValid(sh.isValid());
+		vo.setValid(sh.getValid());
 		vo.setShortContent(sh.getShortContent());
 		vo.setShCode(sh.getShCode());
 		return vo;
@@ -119,7 +119,7 @@ public class ShowHappyKit {
 			record.put("tourTime",DateUtil.getFomartDate(sh.getTourTime(),DateUtil.ymdcn));
 		}
 		record.put("cover", sh.getCover());
-		record.put("isValid", sh.isValid());
+		record.put("valid", sh.getValid());
 		record.put("shortContent", sh.getShortContent());
 		record.put("shCode", sh.getShCode());
 		return record;
