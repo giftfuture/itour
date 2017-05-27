@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+//import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import com.itour.base.collect.Mapx;
 import com.itour.base.collect.Mapxs;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.log.Logger;
+//import com.itour.base.log.Logger;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.edit.MyEditor;
 @Controller
@@ -36,7 +39,7 @@ public class BaseController {
 	//===================================Fields==============================================
 		/** 记录日志的对象. */
 	private static Logger logger = Logger.getLogger(BaseController.class);
-	
+
 	public final static String SUCCESS ="success";  
 	
 	public final static String MSG ="msg";  
@@ -297,6 +300,7 @@ public class BaseController {
 			writer.append(json);
 			writer.append(")");
 		} catch (Exception e) {
+			
 			logger.error(e.toString(), e);
 		}
 	}

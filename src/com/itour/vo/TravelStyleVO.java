@@ -17,8 +17,7 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class TravelStyleVo extends BasePage implements Serializable{
-	
+public class TravelStyleVO extends BasePage implements Serializable{
 		private java.lang.String id;//   	private java.lang.String type;//   
 	private java.lang.String remark;//  
 	private String alias;	private boolean valid;

@@ -16,7 +16,7 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class CustomerVo extends BasePage implements Serializable{
+public class CustomerVO extends BasePage implements Serializable{
 	
 	
 	private java.lang.String id;//   
@@ -35,13 +35,13 @@ public class CustomerVo extends BasePage implements Serializable{
 	private java.lang.String district;//   
 	private java.lang.String introduction;// 
 	private String birthday;
-	private boolean isValid;
+	private boolean valid;
 	private String orderName;
 	private String orderUrl;
 	private String orderNo;
 	private String areaname;
-	public CustomerVo(){}
-	public CustomerVo(String customerId,String customerName,String introduce){
+	public CustomerVO(){}
+	public CustomerVO(String customerId,String customerName,String introduce){
 		this.customerId = customerId ;
 		this.customerName = customerName;
 		this.introduction = introduce ;
@@ -73,10 +73,10 @@ public class CustomerVo extends BasePage implements Serializable{
 		this.orderName = orderName;
 	}
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public java.lang.String getId() {
 	    return this.id;

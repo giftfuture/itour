@@ -67,7 +67,7 @@ function loadlevel2Area(level1Area){
 }
 </script>
 <form name="searchForm" method="post">
-<table class="commontb" align="center" >
+<table class="frametb" align="center">
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
@@ -173,13 +173,37 @@ function loadlevel2Area(level1Area){
    </div>
 </div>
 </center> --%>
-<table class="commontb" align="center">
-  <tr>
-    <td width="1350" height="105" valign="top" bgcolor="#666666">
-    <table width="1350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="lefttxt frametb" align="center">
+  <tbody><tr>
+    <td width="611" valign="top" height="105" bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
-          <td width="1350" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
+          <td width="883" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">主角旅行 www.iTours.com.cn</div></td>
+        </tr>
+        <tr>
+          <td height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">Add: 成都一環路南三段15號華僑大廈9層<br>
+            Tel: +86-28-85580038 / 85562905<br>
+            E-mail: info@itours.com.cn </div></td>
+        </tr>
+      </tbody>
+    </table></td>
+  </tr>
+</tbody></table>
+<p></p><p></p>
+<p></p><p></p><table class="frametb" align="center">
+<tbody><tr>
+    <td><div align="center">
+<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="站长统计">站长统计</a>  
+    </div></td>
+  </tr></tbody>
+</table>
+<!-- <table class="commontb" align="center">
+  <tr>
+    <td width="1350" height="105" valign="top" bgcolor="#666666">
+    <table width="1140" height="60" border="0" align="center" class="lefttxt" cellpadding="20"  cellspacing="0">
+      <tbody>
+        <tr>
+          <td width="1140" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
         </tr>
         <tr>
           <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: 成都一環路南三段15號華僑大廈9層<br />
@@ -192,14 +216,9 @@ function loadlevel2Area(level1Area){
   </tr>
   <tr>
     <td><div align="center">
-<!-- <script src="https://s11.cnzz.com/z_stat.php?id=1261858669&amp;web_id=1261858669" language="JavaScript"></script>
-<script src="https://c.cnzz.com/core.php?web_id=1261858669&amp;t=z" charset="utf-8" type="text/javascript"></script> -->
 <a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="站长统计">站长统计</a>	
 	</div></td>
   </tr>
-</table>
+</table> -->
 </div>
-<script type="text/javascript">
-/* var areas = $("#areas").combobox('getValue'); 
-console.log(travel_style+"  "+vacation+"   "+areas); */
-</script>
+

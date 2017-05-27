@@ -28,7 +28,7 @@ public class Customers extends BaseEntity {
 	private java.lang.String district;//   
 	private java.lang.String introduction;// 
 	private String birthday;
-	private boolean isValid;
+	private boolean valid;
 	public Customers(){}
 	public Customers(String customerId,String customerName,String introduce){
 		this.customerId = customerId ;
@@ -51,10 +51,10 @@ public class Customers extends BaseEntity {
 		this.updateBy = updateBy;
 	}*/
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public java.lang.String getId() {
 	    return this.id;

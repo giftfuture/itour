@@ -19,7 +19,7 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class TravelItemVo extends BasePage implements Serializable{
+public class TravelItemVO extends BasePage implements Serializable{
 	/**
 	 * 
 	 */
@@ -38,7 +38,7 @@ public class TravelItemVo extends BasePage implements Serializable{
 	private String season;//建议季节
 	private String recommandEquip;
 	private boolean hot;//1=热门景点，0=非热点
-	private boolean isValid;
+	private boolean valid;
 	private String createBy;
 	private String updateBy;
 	private String createTime;
@@ -166,13 +166,13 @@ public class TravelItemVo extends BasePage implements Serializable{
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
-	
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public String getItinerary() {
 		return itinerary;
 	}

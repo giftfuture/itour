@@ -36,7 +36,7 @@
 				</ul>
 			</div></td>
             <td  style='weight:100%;height:100%;'><!--滚动图片 start-->
-        	<img src="${basePath}${itemvo.cover}" style="border:none;" border="0px" height="900" width="900"/>
+        	<img src="${basePath}${itemvo.cover}" style="border:none;" border="0px" height="338" width="600"/>
 			<DIV class=rollphotos>
 			<DIV class=blk_29>
 			<DIV class=LeftBotton id=LeftArr>
@@ -44,7 +44,7 @@
 			<DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 			<c:forEach items="${photos}" var="photo">
 				<DIV class=box>
-				<a class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></a> 
+				<a class=imgBorder target=_blank><IMG height=55 alt="landscape" src="${basePath }${photo}" width=100 border=0></a> 
 				</DIV>
 			</c:forEach>
 			<!-- 图片列表 end --></DIV>

@@ -16,14 +16,14 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class SysVariablesVo extends BasePage implements Serializable{
+public class SysVariablesVO extends BasePage implements Serializable{
 	
 		/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8356212737850829975L;
 	private java.lang.String id;//   	private java.lang.String varName;//   	private java.lang.String varValue;//   	private java.lang.String varHostname;//   	private java.lang.String varHostip;//   	private java.lang.String remark;//   	private java.lang.String varProject;//   
-	private boolean isValid;
+	private boolean valid;
 	private String createBy;
 	private String updateBy;
 	private String createTime;
@@ -54,11 +54,12 @@ public class SysVariablesVo extends BasePage implements Serializable{
 		this.updateTime = updateTime;
 	}
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getVarName() {
 		return varName;
 	}

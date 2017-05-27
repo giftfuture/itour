@@ -23,7 +23,7 @@ public class Feedback extends BaseEntity {
 	private String name;
 	private short teamPersons;
 	private Timestamp preferedDate;
-	private boolean isValid;
+	private boolean valid;
 	private String route;//路线
 	private boolean sex;//true=male,false=female
 	private boolean publicShow;//公开展示
@@ -46,10 +46,10 @@ public class Feedback extends BaseEntity {
 	public void setRoute(String route) {
 		this.route = route;
 	}	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public String getName() {
 		return name;

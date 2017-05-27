@@ -28,6 +28,8 @@ a{text-decoration: none;color:#2786D6;}
   width:1350px;
   text-align:center;
   align:center;
+  cellpadding:20;
+  cellspacing:0;
   font-family: "微软雅黑";
   border:0;
 } 
@@ -35,6 +37,8 @@ a{text-decoration: none;color:#2786D6;}
   width:1140px;
   text-align:center;
   align:center;
+  cellpadding:20;
+  cellspacing:0;
   font-family: "微软雅黑";
   border:0;
 } 

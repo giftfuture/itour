@@ -20,6 +20,23 @@ $(document).ready(function() {
                     ['height', ['height']],  
                     ['insert', ['picture', 'video']]  
                 ],
+	        // popover
+	        popover: {
+	          image: [
+	            ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+	            ['float', ['floatLeft', 'floatRight', 'floatNone']],
+	            ['remove', ['removeMedia']]
+	          ],
+	          link: [
+	            ['link', ['linkDialogShow', 'unlink']]
+	          ],
+	          air: [
+	            ['color', ['color']],
+	            ['font', ['bold', 'underline', 'clear']],
+	            ['para', ['ul', 'paragraph']],
+	            ['table', ['table']],
+	            ['insert', ['link', 'picture']]
+	          ]},
         fontNames: ['Microsoft YaHei ','Serif', 'Sans', 'Arial', 'Arial Black', 'Courier','Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande','Sacramento'],
         colors: [
                  ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],
@@ -30,7 +47,106 @@ $(document).ready(function() {
                  ['#CE0000', '#E79439', '#EFC631', '#6BA54A', '#4A7B8C', '#3984C6', '#634AA5', '#A54A7B'],
                  ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'],
                  ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']
-               ]
+               ]/* ,
+      keyMap: {
+    	    pc: {
+    	     // 'ENTER': 'insertParagraph',
+    	      'CTRL+Z': 'undo',
+    	      'CTRL+Y': 'redo',
+    	      'TAB': 'tab',
+    	      'SHIFT+TAB': 'untab',
+    	      'CTRL+B': 'bold',
+    	      'CTRL+I': 'italic',
+    	      'CTRL+U': 'underline',
+    	      'CTRL+SHIFT+S': 'strikethrough',
+    	      'CTRL+BACKSLASH': 'removeFormat',
+    	      'CTRL+SHIFT+L': 'justifyLeft',
+    	      'CTRL+SHIFT+E': 'justifyCenter',
+    	      'CTRL+SHIFT+R': 'justifyRight',
+    	      'CTRL+SHIFT+J': 'justifyFull',
+    	      'CTRL+SHIFT+NUM7': 'insertUnorderedList',
+    	      'CTRL+SHIFT+NUM8': 'insertOrderedList',
+    	      'CTRL+LEFTBRACKET': 'outdent',
+    	      'CTRL+RIGHTBRACKET': 'indent',
+    	      'CTRL+NUM0': 'formatPara',
+    	      'CTRL+NUM1': 'formatH1',
+    	      'CTRL+NUM2': 'formatH2',
+    	      'CTRL+NUM3': 'formatH3',
+    	      'CTRL+NUM4': 'formatH4',
+    	      'CTRL+NUM5': 'formatH5',
+    	      'CTRL+NUM6': 'formatH6',
+    	      'CTRL+ENTER': 'insertHorizontalRule',
+    	      'CTRL+K': 'linkDialog.show'
+    	    },
+    	 
+    	    mac: {
+    	      'CMD+Z': 'undo',
+    	      'CMD+SHIFT+Z': 'redo',
+    	      'TAB': 'tab',
+    	      'SHIFT+TAB': 'untab',
+    	      'CMD+B': 'bold',
+    	      'CMD+I': 'italic',
+    	      'CMD+U': 'underline',
+    	      'CMD+SHIFT+S': 'strikethrough',
+    	      'CMD+BACKSLASH': 'removeFormat',
+    	      'CMD+SHIFT+L': 'justifyLeft',
+    	      'CMD+SHIFT+E': 'justifyCenter',
+    	      'CMD+SHIFT+R': 'justifyRight',
+    	      'CMD+SHIFT+J': 'justifyFull',
+    	      'CMD+SHIFT+NUM7': 'insertUnorderedList',
+    	      'CMD+SHIFT+NUM8': 'insertOrderedList',
+    	      'CMD+LEFTBRACKET': 'outdent',
+    	      'CMD+RIGHTBRACKET': 'indent',
+    	      'CMD+NUM0': 'formatPara',
+    	      'CMD+NUM1': 'formatH1',
+    	      'CMD+NUM2': 'formatH2',
+    	      'CMD+NUM3': 'formatH3',
+    	      'CMD+NUM4': 'formatH4',
+    	      'CMD+NUM5': 'formatH5',
+    	      'CMD+NUM6': 'formatH6',
+    	      'CMD+ENTER': 'insertHorizontalRule',
+    	      'CMD+K': 'linkDialog.show'
+    	    }
+    	  }*//*, icons: {
+    		    'align': 'icon-align',
+    		    'alignCenter': 'icon-align-center',
+    		    'alignJustify': 'icon-align-justify',
+    		    'alignLeft': 'icon-align-left',
+    		    'alignRight': 'icon-align-right',
+    		    'indent': 'icon-indent-right',
+    		    'outdent': 'icon-indent-left',
+    		    'arrowsAlt': 'icon-resize-full',
+    		    'bold': 'icon-bold',
+    		    'caret': 'icon-caret-down',
+    		    'circle': 'icon-circle',
+    		    'close': 'icon-close',
+    		    'code': 'icon-code',
+    		    'eraser': 'icon-eraser',
+    		    'font': 'icon-font',
+    		    'frame': 'icon-frame',
+    		    'italic': 'icon-italic',
+    		    'link': 'icon-link',
+    		    'unlink': 'icon-chain-broken',
+    		    'magic': 'icon-magic',
+    		    'menuCheck': 'icon-check',
+    		    'minus': 'icon-minus',
+    		    'orderedlist': 'icon-list-ol',
+    		    'pencil': 'icon-pencil',
+    		    'picture': 'icon-picture',
+    		    'question': 'icon-question',
+    		    'redo': 'icon-redo',
+    		    'square': 'icon-square',
+    		    'strikethrough': 'icon-strikethrough',
+    		    'subscript': 'icon-subscript',
+    		    'superscript': 'icon-superscript',
+    		    'table': 'icon-table',
+    		    'textHeight': 'icon-text-height',
+    		    'trash': 'icon-trash',
+    		    'underline': 'icon-underline',
+    		    'undo': 'icon-undo',
+    		    'unorderedlist': 'icon-list-ul',
+    		    'video': 'icon-facetime-video'
+    		  }*/
   }); 
     $.extend($.fn.datebox.defaults.rules,{  
     	checkDated:{  //只有在datebox的input框获取焦点的时候才会显示提示，如果禁用了输入则不会生效
@@ -39,7 +155,7 @@ $(document).ready(function() {
     			var result =  now>=new Date(value);
     			return result;  
     		},  
-    		message:"晒旅行幸福的日期应在当前日期之前"  
+    		message:"晒旅行幸福的日期应在当前日期之前，请重新选择旅行日期"  
     	}     
     }); 
     //$('#tourTime').datebox('setValue', getCurentDateStr());  
@@ -157,7 +273,7 @@ function sharehappy() {
 	//console.log(formData.cover.length);  
 	//console.log(formData.tourTime+"   "+new Date());
 	if(!formData.tourTime||new Date(formData.tourTime)>new Date()){
-		itour.alert("提示","晒旅行幸福的日期应在当前日期之前",'info');
+		itour.alert("提示","晒旅行幸福的日期应在当前日期之前，请重新选择旅行日期",'info');
 		return;
 	}else{
 		__.post(actionurl, formData, function(result) {

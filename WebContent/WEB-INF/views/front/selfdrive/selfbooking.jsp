@@ -22,7 +22,7 @@
 <table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr> 
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td> </div> <div align="center"><span class="headline"> 主角旅行个性定制服务</span></div></td>
+    <td> </div> <div align="center"><span class="headline"> <strong>主角旅行个性定制服务</strong></span></div></td>
     <td width="10" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
@@ -37,9 +37,10 @@
       <br />
       <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
         <tr> 
-          <td width="19%"> <p align="right"><strong>旅行线路：<br />
-              </strong></p></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text"  data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /></td>
+           <td width="20%" align="right" style="text-align:right"><strong>旅行线路： </strong></td>
+          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
+         <%--  <input name="routename" type="text"  data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /> --%>
+          </td>
         </tr>
         <tr> 
           <td><div align="right"><strong>预计出行日期：</strong></div></td>
@@ -294,7 +295,7 @@
         </tr> -->
     <tr> 
         <td> <div align="right"><strong>验证码：</strong></div></td>
-        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="验证码" data-options="required:true" nullmsg="请输入验证码!"/>
+        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="验证码" data-options="prompt:'请输入正确的验证码!'" />
           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itour.selfdriveselfbooking.changeValidateCode()">
           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.selfdriveselfbooking.changeValidateCode()">看不清，换一张</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->

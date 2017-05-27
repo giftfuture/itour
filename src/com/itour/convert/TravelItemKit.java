@@ -1,7 +1,7 @@
 package com.itour.convert;
 
 import com.itour.entity.TravelItem;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.TravelItemVO;
 /**
  * 
  * <br>
@@ -10,8 +10,8 @@ import com.itour.vo.TravelItemVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelItemKit{
-	public static TravelItemVo toRecord(TravelItem tt){
-		TravelItemVo vo = new TravelItemVo();
+	public static TravelItemVO toRecord(TravelItem tt){
+		TravelItemVO vo = new TravelItemVO();
 		vo.setContent(tt.getContent());
 		vo.setCover(tt.getCover());
 		vo.setDifficultyRate(tt.getDifficultyRate());
@@ -52,7 +52,7 @@ public class TravelItemKit{
 		vo.setFreeseason(tt.getFreeseason());
 		return vo;
 	}
-	public static TravelItem toBean(TravelItemVo tt){
+	public static TravelItem toBean(TravelItemVO tt){
 		TravelItem vo = new TravelItem();
 		vo.setContent(tt.getContent());
 		vo.setCover(tt.getCover());

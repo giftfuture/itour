@@ -16,17 +16,18 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class QuotationVo extends BasePage implements Serializable {
+public class QuotationVO extends BasePage implements Serializable {
 	
 		private java.lang.String id;//   	private java.lang.String name;//   	private java.lang.String orderId;//   	private java.lang.String quotation;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String remark;//   	private java.lang.String type;//   1= 总价加利润,2= 明细报价	private BigDecimal totalPrice;//   	private java.lang.String formula;//   
-	private boolean isValid;
+	private boolean valid;
 	
-	public boolean isValid() {
-		return isValid;
+	 	public boolean isValid() {
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getName() {
 		return name;
 	}

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Maps;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.SysVariables;
-import com.itour.vo.SysVariablesVo;
+import com.itour.vo.SysVariablesVO;
 /**
  * 
  * <br>
@@ -15,7 +15,7 @@ import com.itour.vo.SysVariablesVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class SysVariablesKit{
-	public static SysVariables toEntity(SysVariablesVo vo)throws Exception{
+	public static SysVariables toEntity(SysVariablesVO vo)throws Exception{
 		SysVariables variable = new SysVariables();
 		variable.setId(vo.getId());
 		variable.setValid(vo.isValid());
@@ -35,8 +35,8 @@ public class SysVariablesKit{
 		}
 		return variable;
 	}
-	public static SysVariablesVo toVo(SysVariables vo)throws Exception{
-		SysVariablesVo variable = new SysVariablesVo();
+	public static SysVariablesVO toVo(SysVariables vo)throws Exception{
+		SysVariablesVO variable = new SysVariablesVO();
 		variable.setId(vo.getId());
 		variable.setValid(vo.isValid());
 		variable.setRemark(vo.getRemark());

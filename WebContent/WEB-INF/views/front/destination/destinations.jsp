@@ -56,8 +56,8 @@
         </td>
         <td rowspan=2>
        		<c:forEach var="sortitem" items="${sortedItems}" varStatus="">
-	        <table border="0" align="center" cellpadding="10" cellspacing="0" style="width:1140px" width="1140px">
-		      <tbody><tr bgcolor="#f0f0f0" style="width:1140px" width="1140px">
+	        <table border="0" align="center" cellpadding="10" cellspacing="0" style="width:1140px" >
+		      <tbody><tr bgcolor="#f0f0f0" style="width:1140px" >
 		        <td colspan=2 width="60%" style="text-align:left;float:left;width:648;"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
 		        <td width="40%" style="text-align:right;float:right;width:432;"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
 		        <c:if test="${fn:length(sortitem.value)>= maxd}">
@@ -68,7 +68,7 @@
 		      <tr>
 			     <c:forEach items="${sortitem.value}" var="ti">
 			      	<td style="text-align:left;align:left">
-			      		<a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="200px" height="200px" alt="" src="${basePath }${ti.cover}"/></a>
+			      		<a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="420px" height="233px" alt="" src="${basePath }${ti.cover}"/></a>
 			      	</td>
 		         </c:forEach>
 		      </tr>

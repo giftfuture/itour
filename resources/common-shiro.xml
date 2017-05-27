@@ -49,5 +49,18 @@
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
-
+<!--     <bean id="authenticator" class="com.linkage.educloud.ucenter.login.shiro.FirstSuccessfulModularRealmAuthenticator">
+        <property name="authenticationStrategy" ref="firstSuccessfulStrategy"/>
+        <property name="realms">
+            <list>
+                <ref bean="shiroAndEduRealm"/>
+            </list>
+        </property>
+    </bean> -->
+    <bean id="shiroAndEduRealm" class="com.itour.base.auth.ShiroAndEduRealm">
+        <!-- property name="accountService" ref="accountService"/ -->
+        <!-- 获得的用户密码已经是加密过的了，验证的时候不用加密验证了-->
+    <!-- <property name="credentialsMatcher" ref="credentialsMatcher"/> -->
+        <property name="authenticationTokenClass" value="com.itour.base.auth.UsernamePasswordUsertypeToken"/>
+    </bean>
 </beans>

@@ -1,6 +1,7 @@
 package com.itour.vo;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -12,7 +13,7 @@ import com.itour.base.page.BasePage;
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class ShowHappyVo extends BasePage{
+public class ShowHappyVO extends BasePage implements Serializable{
 	
 	private String id;
 	private String customer;
@@ -28,15 +29,23 @@ public class ShowHappyVo extends BasePage{
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
 	private String surface;//封面图片文件
-	private boolean isValid;
+	private boolean valid;
 	private String verifyCode;
 	private List<MultipartFile> imagefiles;
 	private String shortContent;
 	private String shCode;
 	private String areaname;
 	private String routeTitle;
+	private String customerName;
 	
 	
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 	public String getRouteTitle() {
 		return routeTitle;
 	}
@@ -82,12 +91,11 @@ public class ShowHappyVo extends BasePage{
 		this.verifyCode = verifyCode;
 	}
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
-	
 	public String getCover() {
 		return cover;
 	}

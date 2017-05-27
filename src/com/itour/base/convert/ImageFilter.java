@@ -26,8 +26,8 @@ import com.google.common.collect.Maps;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.StringUtil;
 import com.itour.entity.RouteTemplate;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.ShowHappyVo;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.ShowHappyVO;
 
 import gui.ava.html.image.generator.HtmlImageGenerator;
 import sun.misc.BASE64Decoder;
@@ -304,7 +304,7 @@ public class ImageFilter {
     				convertBase64DataToImage(base64cover, serRoot+File.separatorChar+subpath+File.separatorChar+newname);//转成文件  
     				return newname;
     			}else{
-    				convertBase64DataToImage(base64cover, serRoot+File.separatorChar+surface);//转成文件  
+    				convertBase64DataToImage(base64cover, serRoot+File.separatorChar+subpath+File.separatorChar+surface);//转成文件  
     			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -356,7 +356,7 @@ public class ImageFilter {
      * @param serRoot 服务器路径 
      * @return 
      */  
-    public static void writeSHBase64Image(ShowHappyVo showhappy,String serRoot){  
+    public static void writeSHBase64Image(ShowHappyVO showhappy,String serRoot){  
         try {
 		String html = showhappy.getContent();
      // Pattern pattern = Pattern.compile("\\<img[^>]*src=\"data:image/[^>]*>");  

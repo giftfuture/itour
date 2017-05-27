@@ -15,7 +15,7 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class LogSettingDetailVo extends BasePage implements Serializable {
+public class LogSettingDetailVO extends BasePage implements Serializable {
 	
 		private java.lang.String detailCode;//   	private java.lang.String logCode;//   	private java.lang.String columnName;//   	private java.lang.String columnText;//   	private java.lang.String columnDatatype;//   	private java.util.Date createTime;//   	private java.lang.String creater;//   
 	public java.lang.String getDetailCode() {

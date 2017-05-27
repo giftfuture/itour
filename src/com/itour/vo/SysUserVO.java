@@ -9,7 +9,7 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class SysUserVo extends BasePage implements Serializable{
+public class SysUserVO extends BasePage implements Serializable{
 	
 		/**
 	 * 
@@ -23,8 +23,8 @@ public class SysUserVo extends BasePage implements Serializable{
 	private String expireDate;
 	private String roleStr;//用户权限, 按","区分
 	
-	public SysUserVo (){}
-	public SysUserVo (String id,String email,String nickname){
+	public SysUserVO (){}
+	public SysUserVO (String id,String email,String nickname){
 		this.id = id;
 		this.email = email;
 		this.nickName = nickname;

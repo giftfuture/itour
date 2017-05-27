@@ -9,7 +9,7 @@ import java.text.ParseException;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.Feedback;
-import com.itour.vo.FeedbackVo;
+import com.itour.vo.FeedbackVO;
 /**
  * 
  * <br>
@@ -18,8 +18,8 @@ import com.itour.vo.FeedbackVo;
  */
 public class FeedbackKit{
 	
-	public static FeedbackVo toRecord(Feedback fb){
-		FeedbackVo vo = new FeedbackVo();
+	public static FeedbackVO toRecord(Feedback fb){
+		FeedbackVO vo = new FeedbackVO();
 		vo.setContent(fb.getContent());
 		if(fb.getCreateTime() !=null){	
 			vo.setCreateTime(DateUtil.getDateYmdHs(fb.getCreateTime()));
@@ -47,7 +47,7 @@ public class FeedbackKit{
 		return vo;
 	}
 	
-	public static Feedback toEntity(FeedbackVo fb){
+	public static Feedback toEntity(FeedbackVO fb){
 		Feedback bean = new Feedback();
 		try {
 			bean.setContent(fb.getContent());

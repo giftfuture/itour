@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class AdLinkVo extends BasePage implements Serializable {
+public class AdLinkVO extends BasePage implements Serializable {
 	/**
 	 * 
 	 */
@@ -32,13 +32,14 @@ public class AdLinkVo extends BasePage implements Serializable {
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
-	private boolean isVideo;
+	private boolean video;
 	
+	 
 	public boolean isVideo() {
-		return isVideo;
+		return video;
 	}
-	public void setVideo(boolean isVideo) {
-		this.isVideo = isVideo;
+	public void setVideo(boolean video) {
+		this.video = video;
 	}
 	public String getCreateBy() {
 		return createBy;

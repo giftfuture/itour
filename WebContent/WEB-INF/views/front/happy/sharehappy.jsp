@@ -42,7 +42,7 @@ function ww4(date){
 	            <td></td>
 	       </tr>
 	       <tr><td style="text-align:left"><span class="STYLE23">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
-	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,required:true,validType:'checkDated'"/></span> 
+	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
 	        <tr> <td style="text-align:left">&nbsp;&nbsp;回&nbsp;憶&nbsp;人：
             	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>来自
@@ -52,7 +52,7 @@ function ww4(date){
 	            <td colspan=2><div id="content"></div></td>
 	       </tr>
 	       <tr>
-	       <td colspan=2 style="text-align:left">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="required:true,nullmsg:'请输入验证码!'"/> 
+	       <td colspan=2 style="text-align:left">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="prompt:'请输入正确的验证码!'"/> 
 	           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
 	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
 	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">保存</a></td>

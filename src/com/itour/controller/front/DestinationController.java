@@ -35,8 +35,8 @@ import com.itour.service.LogSettingService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelItemVO;
 
 @Controller
 @RequestMapping("/destination") 
@@ -62,14 +62,14 @@ public class DestinationController extends BaseController{
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/main") 
-	public ModelAndView main(TravelItemVo vo,HttpServletRequest request) throws Exception{
+	public ModelAndView main(TravelItemVO vo,HttpServletRequest request) throws Exception{
 		long beginTime = System.currentTimeMillis();
 	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
-	 	Map<String,List<TravelItemVo>> sortedItems = Maps.newHashMap();
+	 	Map<String,List<TravelItemVO>> sortedItems = Maps.newHashMap();
 	 	Map<String,String> scopes = Maps.newHashMap();
-	 	List<TravelItemVo> list = Lists.newArrayList();
-	 	List<TravelItemVo> sublist = Lists.newArrayList();
+	 	List<TravelItemVO> list = Lists.newArrayList();
+	 	List<TravelItemVO> sublist = Lists.newArrayList();
 	 	Map<String,Integer> tiSizes = Maps.newHashMap();
 	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
@@ -79,7 +79,7 @@ public class DestinationController extends BaseController{
 			}else{
 				sublist = list;
 			}
-			for(TravelItemVo ti:sublist){
+			for(TravelItemVO ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
 					String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
@@ -91,7 +91,7 @@ public class DestinationController extends BaseController{
  				scopes.put(scope.getId(), scope.getAreaname());
  			}
 	 	}
-	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
+	 	List<TravelItemVO> items = travelItemService.searchTravelItem(new HashMap());		
 		//设置页面数据
 		context.put("scopes", scopes); 
 		context.put("items", items);
@@ -115,8 +115,8 @@ public class DestinationController extends BaseController{
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
-	 	List<TravelItemVo> list = Lists.newArrayList();
-	 	List<TravelItemVo> sublist = Lists.newArrayList();
+	 	List<TravelItemVO> list = Lists.newArrayList();
+	 	List<TravelItemVO> sublist = Lists.newArrayList();
 	 	Map<String,String> scopes = Maps.newHashMap();
 	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
@@ -126,7 +126,7 @@ public class DestinationController extends BaseController{
 			}else{
 				sublist = list;
 			}
-			for(TravelItemVo ti:sublist){
+			for(TravelItemVO ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
 					String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
@@ -136,9 +136,9 @@ public class DestinationController extends BaseController{
  				scopes.put(scope.getId(), scope.getAreaname());
  			}
 	 	}
-	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
+	 	List<TravelItemVO> items = travelItemService.searchTravelItem(new HashMap());		
 		context.put("items", items);
-	 	TravelItemVo itemvo = travelItemService.getByAlias(alias);	
+	 	TravelItemVO itemvo = travelItemService.getByAlias(alias);	
 	 	String [] photos = itemvo.getPhotos().split("\\|");
 	 	List<String> photoList = Lists.newArrayList();
 	 	String photoPath = FilePros.httptravelitemPhotoPath();
@@ -186,7 +186,7 @@ public class DestinationController extends BaseController{
 			 	ticketsBlock.append("</table>");
 			 	itemvo.setTicketsBlock(ticketsBlock.toString());
 	 	}
-		List<RouteTemplateVo> rts = routeTemplateService.queryByItems(itemvo.getId());
+		List<RouteTemplateVO> rts = routeTemplateService.queryByItems(itemvo.getId());
 		context.put("scopes", scopes); 
 		context.put("itemvo", itemvo);
 		context.put("photos", photoList);
@@ -220,13 +220,13 @@ public class DestinationController extends BaseController{
 	public String moredestPage(String pageNo,String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	Areas areas = areasService.queryByPinyin(scope);
-	 	TravelItemVo vo = new TravelItemVo();
+	 	TravelItemVO vo = new TravelItemVO();
 	 	vo.setScope(areas !=null?areas.getId():"");
-	 	//TravelItemVo ttvo = travelItemService.getByAlias(alias);
+	 	//TravelItemVO ttvo = travelItemService.getByAlias(alias);
 		vo.setPage(Long.parseLong(pageNo));
 		vo.setRows(Constants.moredestsPerPage);
 		vo.setLimit(Constants.moredestsPerPage);
-		BasePage<TravelItemVo> page = travelItemService.pageQueryByScope(vo);
+		BasePage<TravelItemVO> page = travelItemService.pageQueryByScope(vo);
 		page.setPage(Long.parseLong(pageNo));
 		Pager pager = page.getPager();
 		pager.setPageId(Long.parseLong(pageNo));
@@ -270,13 +270,13 @@ public class DestinationController extends BaseController{
 	@RequestMapping(value="/related/searchRtResults", method = RequestMethod.POST) 
 	public String searchRtResults(String pageNo,String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
-	 	TravelItemVo ttvo = travelItemService.getByAlias(alias);
-	 	RouteTemplateVo vo = new RouteTemplateVo();
+	 	TravelItemVO ttvo = travelItemService.getByAlias(alias);
+	 	RouteTemplateVO vo = new RouteTemplateVO();
 		vo.setPage(Long.parseLong(pageNo));
 		vo.setRows(Constants.destsPerPage);
 		vo.setLimit(Constants.destsPerPage);
 		vo.setTravelItems(ttvo.getId());
-		BasePage<RouteTemplateVo> page = routeTemplateService.pageQueryByItems(vo);
+		BasePage<RouteTemplateVO> page = routeTemplateService.pageQueryByItems(vo);
 		page.setPage(Long.parseLong(pageNo));
 		Pager pager = page.getPager();
 		pager.setPageId(Long.parseLong(pageNo));

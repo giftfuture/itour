@@ -31,7 +31,7 @@ public class TravelItem extends BaseEntity {
 	private String season;//建议季节
 	private String recommandEquip;
 	private boolean hot;//1=热门景点，0=非热点
-	private boolean isValid;
+	private boolean valid;
 	private String createBy;
 	private String updateBy;
 	private Date createTime;
@@ -96,11 +96,11 @@ public class TravelItem extends BaseEntity {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-		public boolean isValid() {
-		return isValid;
+	public boolean isValid() {
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public String getScopeAlias() {
 		return scopeAlias;

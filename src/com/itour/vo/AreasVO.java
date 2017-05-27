@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class AreasVo  extends BasePage implements Serializable{
+public class AreasVO  extends BasePage implements Serializable{
 	/**
 	 * 
 	 */

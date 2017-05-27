@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.ShowHappy;
-import com.itour.vo.ShowHappyVo;
+import com.itour.vo.ShowHappyVO;
 
 public class ShowHappyKit {
 	/**
@@ -16,7 +16,7 @@ public class ShowHappyKit {
 	 * @param vo
 	 * @return
 	 */
-	public static Map<String, Object> toRecord(ShowHappyVo vo){
+	public static Map<String, Object> toRecord(ShowHappyVO vo){
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("id", vo.getId());
 		record.put("customer", vo.getCustomer());
@@ -41,7 +41,7 @@ public class ShowHappyKit {
 	 * @param vo
 	 * @return
 	 */
-	public static ShowHappy toEntity(ShowHappyVo vo){
+	public static ShowHappy toEntity(ShowHappyVO vo){
 		ShowHappy sh = new ShowHappy();
 		sh.setId(vo.getId());
 		sh.setCustomer(vo.getCustomer());
@@ -73,8 +73,8 @@ public class ShowHappyKit {
 	 * @param vo
 	 * @return
 	 */
-	public static ShowHappyVo toVo(ShowHappy sh){
-		ShowHappyVo vo = new ShowHappyVo();
+	public static ShowHappyVO toVo(ShowHappy sh){
+		ShowHappyVO vo = new ShowHappyVO();
 		vo.setId(sh.getId());
 		vo.setArea(sh.getArea());
 		vo.setContent(sh.getContent());

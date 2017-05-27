@@ -1,6 +1,5 @@
 
 package com.itour.controller;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,6 +7,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,7 +45,10 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.util.Constants;
-import com.itour.vo.AdLinkVo;
+import com.itour.vo.AdLinkVO;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
 @Controller
 @RequestMapping("/adLink") 
 public class AdLinkController extends BaseController {
@@ -97,7 +100,7 @@ public class AdLinkController extends BaseController {
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(AdLinkVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(AdLinkVO page,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行AdLinkController的list方法");
 		return forward("server/sys/adLink"); 
@@ -114,7 +117,7 @@ public class AdLinkController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(AdLinkVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(AdLinkVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		BasePage<Map<String, String>> page = adLinkService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -133,7 +136,7 @@ public class AdLinkController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(AdLinkVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(AdLinkVO entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		AdLink od = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -241,7 +244,7 @@ public class AdLinkController extends BaseController {
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			AdLink rt = adLinkService.queryById(id);
-			AdLinkVo vo = AdLinkKit.toVo(rt);
+			AdLinkVO vo = AdLinkKit.toVo(rt);
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
@@ -254,7 +257,7 @@ public class AdLinkController extends BaseController {
 						 String picName = "";
 						// String newpicName = "";
 						 File directory = null;
-						 File uploadpic = null;
+						 //File uploadpic = null;
 						 MultipartFile f = multifiles.get(0);
 					     if(f.getOriginalFilename().length() > 0) {    
 					    	picName = f.getOriginalFilename();   
@@ -263,16 +266,17 @@ public class AdLinkController extends BaseController {
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(adLinkPath+File.separatorChar+picName );
+				          //  uploadpic = new File(adLinkPath+File.separatorChar+picName );
+				            Thumbnails.of(f.getInputStream()).size(Constants.compressHomeWidth,Constants.compressHomeHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(adLinkPath+File.separatorChar+picName);
 				            System.out.println("上传首页图片是" + picName);  
-				            out = new FileOutputStream(uploadpic);  
+				           /* out = new FileOutputStream(uploadpic);  
 				            out.write(f.getBytes());  
-				            out.close();  
+				            out.close();  */
 				        }  
 						rt.setAdvertise(picName);
 						picName = null;
 						directory = null;
-						uploadpic = null;
+						//uploadpic = null;
 						rt.setUpdateBy(sessionuser.getId());
 						adLinkService.update(rt);
 						if(out != null){

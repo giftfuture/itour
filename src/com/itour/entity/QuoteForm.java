@@ -20,7 +20,7 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private String travelItems;//旅行景点
 	private int adults;
 	private int children;
-	private boolean isAsAdult;
+	private boolean asAdult;
 	private String ticketBlock;//门票明细
 	private boolean ticketAsadult;//小孩门票是否按孩子核算
 	private String travelDocs;//旅行证件
@@ -246,10 +246,10 @@ public class QuoteForm extends BaseEntity implements Serializable {
 		this.children = children;
 	}
 	public boolean isAsAdult() {
-		return isAsAdult;
+		return asAdult;
 	}
-	public void setAsAdult(boolean isAsAdult) {
-		this.isAsAdult = isAsAdult;
+	public void setAsAdult(boolean asAdult) {
+		this.asAdult = asAdult;
 	}
 	public String getTicketBlock() {
 		return ticketBlock;

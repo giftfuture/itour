@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.QuoteForm;
-import com.itour.vo.QuoteFormVo;
+import com.itour.vo.QuoteFormVO;
 
 public class QuoteFormKit {
 	/**
@@ -14,8 +14,8 @@ public class QuoteFormKit {
 	 * @param qf
 	 * @return
 	 */
-	public static QuoteFormVo toVo(QuoteForm qf){
-		QuoteFormVo qfv = new QuoteFormVo();
+	public static QuoteFormVO toVo(QuoteForm qf){
+		QuoteFormVO qfv = new QuoteFormVO();
 		qfv.setId(qf.getId());
 		qfv.setAdults(qf.getAdults());
 		qfv.setAsAdult(qf.isAsAdult());
@@ -96,7 +96,7 @@ public class QuoteFormKit {
 	 * @param vo
 	 * @return
 	 */
-	public static QuoteForm toRecord(QuoteFormVo vo){
+	public static QuoteForm toRecord(QuoteFormVO vo){
 		QuoteForm qfv = new QuoteForm();
 		qfv.setId(vo.getId());
 		qfv.setAdults(vo.getAdults());

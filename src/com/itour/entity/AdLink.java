@@ -13,7 +13,7 @@ public class AdLink extends BaseEntity {
 	private String id;
 	private String advertise;
 	private String adlink;
-	private boolean isVideo;
+	private boolean video;
 	private String title;
 	private boolean valid;
 	private String remark;
@@ -23,10 +23,10 @@ public class AdLink extends BaseEntity {
 	private Date updateTime;
 	
 	public boolean isVideo() {
-		return isVideo;
+		return video;
 	}
-	public void setVideo(boolean isVideo) {
-		this.isVideo = isVideo;
+	public void setVideo(boolean video) {
+		this.video = video;
 	}
 	public String getCreateBy() {
 		return createBy;

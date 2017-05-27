@@ -11,10 +11,10 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class OrderDetailVo extends BasePage implements Serializable{
+public class OrderDetailVO extends BasePage implements Serializable{
 	
 		private java.lang.String id;//   	private java.lang.Integer status;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//   
-	private boolean isValid;
+	private boolean valid;
 	private int adults;
 	private int children;
 	private String groupCode;//团号
@@ -32,6 +32,7 @@ public class OrderDetailVo extends BasePage implements Serializable{
 	private String specialrequest;
 	private String travelOrder;//所属订单 
 	private String comefrom;
+	private String areaname;
 	private String guide;
 	private String guide_other;
 	private String foodArrange;
@@ -64,6 +65,12 @@ public class OrderDetailVo extends BasePage implements Serializable{
 	
 	
 	
+	public String getAreaname() {
+		return areaname;
+	}
+	public void setAreaname(String areaname) {
+		this.areaname = areaname;
+	}
 	public BigDecimal getBudget() {
 		return budget;
 	}
@@ -330,11 +337,12 @@ public class OrderDetailVo extends BasePage implements Serializable{
 		this.groupDate = groupDate;
 	}
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.Integer getStatus() {
 		return status;
 	}

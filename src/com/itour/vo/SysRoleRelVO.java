@@ -10,14 +10,14 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class SysRoleRelVo extends BasePage implements Serializable{
+public class SysRoleRelVO extends BasePage implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6080631663815131651L;
 	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//     关联主键 relType=0管理sys_menu.id, relType=1关联sys_user.id,relType=2,sys_menu_btn.id	private Integer relType;//    关联类型 0=菜单,1=用户,2=按钮
-	private boolean isValid;//是否有效
+	private boolean valid;//是否有效
 	private String createBy;
 	private String updateBy;
 	private String createTime;
@@ -72,10 +72,10 @@ public class SysRoleRelVo extends BasePage implements Serializable{
 	}
 	
 		public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public String getId() {
 		return id;

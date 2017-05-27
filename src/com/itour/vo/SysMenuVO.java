@@ -11,7 +11,7 @@ import com.itour.entity.SysMenuBtn;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class SysMenuVo extends BasePage implements Serializable{
+public class SysMenuVO extends BasePage implements Serializable{
 	
 	@JsonInclude(Include.NON_NULL)	private String id;//   主键	private String name;//   菜单名称
 	private String url;//   系统url	private String parentId;//   父id 关联sys_menu.id	private Integer deleted;//   是否删除,0=未删除，1=已删除	private java.sql.Timestamp createTime;//   创建时间

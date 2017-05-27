@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
+import com.itour.base.auth.UsernamePasswordUsertypeToken;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.entity.TreeNode;
 import com.itour.base.entity.BaseEntity.DELETED;
@@ -42,7 +45,7 @@ import com.itour.entity.LogSetting;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysUserVO;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
@@ -97,7 +100,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/checkuser", method = RequestMethod.POST)
-	public void checkuser(SysUserVo user, HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public void checkuser(SysUserVO user, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		int count = sysUserService.getUserCountByEmail(user.getEmail());
 		if (count >= 1) {
 				//设置User到Session
@@ -114,7 +117,17 @@ public class MainController extends BaseController {
 		//logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的login方法");
 		logger.info("########checkuser执行"+user.getNickName());
 	}
-	
+	@RequestMapping("/test")
+	public String test(HttpServletRequest request){
+		Subject subject = SecurityUtils.getSubject();
+	       // subject.login(new UsernamePasswordToken(user.getPhone(), user.getLoginPass()));
+			//UsernamePasswordUsertypeToken up = new UsernamePasswordUsertypeToken("13816005001", "123456aA1", false, null, "3");
+			UsernamePasswordUsertypeToken up = new UsernamePasswordUsertypeToken("20212414", "4d45acd6c95faab86980ebbae7cad57c", false, request.getRemoteAddr(), "1");
+		//UsernamePasswordUsertypeToken up = new UsernamePasswordUsertypeToken("20212414", "bLaP7@3U", false, request.getRemoteAddr(), "1");    
+		subject.login(up);
+		System.out.println("家长登录成功！");
+		return "redirect:/ucenter/index/index";
+	}
 	/**
 	 * 登录
 	 * @param email 邮箱登录账号

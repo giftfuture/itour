@@ -16,7 +16,7 @@ import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class FeedbackVo extends BasePage implements Serializable {
+public class FeedbackVO extends BasePage implements Serializable {
 	
 		private java.lang.String id;//   	private String createTime;//   	private java.lang.Integer status;//   	private String updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
 	private String email;
@@ -24,12 +24,27 @@ public class FeedbackVo extends BasePage implements Serializable {
 	private String name;
 	private short teamPersons;
 	private String preferedDate;
-	private boolean isValid;
+	private boolean valid;
 	private String route;//路线
 	private boolean sex;//true=male,false=female
 	private String verifyCode;
 	private boolean publicShow;//公开展示
+	private String routeName;
+	private String routeStyle;
 	
+	
+	public String getRouteName() {
+		return routeName;
+	}
+	public void setRouteName(String routeName) {
+		this.routeName = routeName;
+	}
+	public String getRouteStyle() {
+		return routeStyle;
+	}
+	public void setRouteStyle(String routeStyle) {
+		this.routeStyle = routeStyle;
+	}
 	public boolean isPublicShow() {
 		return publicShow;
 	}
@@ -55,10 +70,10 @@ public class FeedbackVo extends BasePage implements Serializable {
 		this.route = route;
 	}
 	public boolean isValid() {
-		return isValid;
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public String getName() {
 		return name;

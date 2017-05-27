@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Maps;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.LevelArea;
-import com.itour.vo.LevelAreaVo;
+import com.itour.vo.LevelAreaVO;
 
 public class LevelAreaKit {
 	/**
@@ -16,7 +16,7 @@ public class LevelAreaKit {
 	 * @return
 	 * @throws Exception
 	 */
-	public static LevelArea toEntity(LevelAreaVo vo)throws Exception{
+	public static LevelArea toEntity(LevelAreaVO vo)throws Exception{
 		LevelArea areas = new LevelArea();
 		areas.setId(vo.getId());
 		areas.setLevel1Area(vo.getLevel1Area());
@@ -42,8 +42,8 @@ public class LevelAreaKit {
 	 * @return
 	 * @throws Exception
 	 */
-	public static LevelAreaVo toVo(LevelArea vo)throws Exception{
-		LevelAreaVo areas = new LevelAreaVo();
+	public static LevelAreaVO toVo(LevelArea vo)throws Exception{
+		LevelAreaVO areas = new LevelAreaVO();
 		areas.setId(vo.getId());
 		areas.setLevel1Area(vo.getLevel1Area());
 		areas.setLevel2Area(vo.getLevel2Area());
@@ -84,7 +84,7 @@ public class LevelAreaKit {
 	 * @param vo
 	 * @return
 	 */
-	public static Map<String,String> votoRecord(LevelAreaVo vo){
+	public static Map<String,String> votoRecord(LevelAreaVO vo){
 		Map<String,String> map = Maps.newHashMap();
 		map.put("id", vo.getId());
 		map.put("level1Area",vo.getLevel1Area());

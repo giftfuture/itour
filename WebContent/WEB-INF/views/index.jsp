@@ -25,7 +25,7 @@
 </script>
 </head>
 <body>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<table class="commontb" align="center">
 		<tr>
 			<td><%@include file="/front/header.jsp"%></td>
 		</tr>
@@ -34,7 +34,7 @@
 					src="${basePath }images/Route001.jpg" /></a></td>
 		</tr>
 	</table>
-	<table class="commontb" align="center">
+	<table class="frametb" align="center">
 		<tr>
 			<td height="106" valign="top" bgcolor="#fafafa">
 				<table width="100%" border="0" align="left" cellpadding="0"
@@ -69,7 +69,7 @@
 		</tr>
 	</table>
 	<br />
-	<table class="commontb" align="center">
+	<table class="frametb" align="center">
 		<tr>
 			<td width="766" valign="top">
 				<table border="0" align="center" cellpadding="15" cellspacing="0"

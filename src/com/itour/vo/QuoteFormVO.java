@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.itour.base.page.BasePage;
 
-public class QuoteFormVo extends BasePage implements Serializable {
+public class QuoteFormVO extends BasePage implements Serializable {
 	/**
 	 * 
 	 */
@@ -17,8 +17,8 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	private String showTrip;//文本固定化的行程
 	private int adults;
 	private int children;
-	private boolean isAsAdult;
-	private boolean isAsChild;
+	private boolean asAdult;
+	private boolean asChild;
 	private String ticketBlock;//门票明细
 	private boolean ticketAsadult;//小孩门票是否按孩子核算
 	private String travelDocs;//旅行证件
@@ -251,11 +251,12 @@ public class QuoteFormVo extends BasePage implements Serializable {
 	public void setChildren(int children) {
 		this.children = children;
 	}
+	 
 	public boolean isAsAdult() {
-		return isAsAdult;
+		return asAdult;
 	}
-	public void setAsAdult(boolean isAsAdult) {
-		this.isAsAdult = isAsAdult;
+	public void setAsAdult(boolean asAdult) {
+		this.asAdult = asAdult;
 	}
 	public String getTicketBlock() {
 		return ticketBlock;
@@ -498,10 +499,11 @@ public class QuoteFormVo extends BasePage implements Serializable {
 		this.elsecostAsadult = elsecostAsadult;
 	}
 	public boolean isAsChild() {
-		return isAsChild;
+		return asChild;
 	}
-	public void setAsChild(boolean isAsChild) {
-		this.isAsChild = isAsChild;
+	public void setAsChild(boolean asChild) {
+		this.asChild = asChild;
 	}
+	 
 	
 }

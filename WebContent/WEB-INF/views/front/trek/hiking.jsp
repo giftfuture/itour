@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>徒步旅行路线</title>
+<title></title>
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -30,13 +30,13 @@
 <%@include file="/front/header.jsp"  %> 
 <table class="commontb" align="center">
   <tr>
-    <td style="float:left" class="h1-black" >${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td width="776" style="float:middle" class="h1-black" >${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
     <td>
     <table>
       <tr>		
-        <td ><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="900" width="900"/></td>
+        <td ><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="600"/></td>
       </tr>
       <tr>
         <td height="69">
@@ -48,7 +48,7 @@
 <DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
 <div class=box><A class="imgBorder" target="_blank">
-<img height=84 alt="landscape" src="${basePath }${photo}" width="124" border="0" /></A> 
+<img height=55 alt="landscape" src="${basePath }${photo}" width="100" border="0" /></A> 
 </div>
 </c:forEach>
 <!-- 图片列表 end --></DIV>
@@ -61,7 +61,7 @@
 		scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
 		scrollPic_02.frameWidth     = 908;//显示框宽度
 		scrollPic_02.pageWidth      = 152; //翻页宽度
-		scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+		scrollPic_02.speed          = 20; //移动速度(单位毫秒，越小越快)
 		scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
 		scrollPic_02.autoPlay       = false; //自动播放
 		scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
@@ -197,23 +197,26 @@
    <table  class="frametb" align="center">
   <tr>
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
-    <span class="h2-24" style="float:middle"><span class="STYLE148">简要日程</span></span></td>
+    <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
    <tr>
     <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
   <tr>
+     <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
+   </tr>
+  <tr>
   <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
-    <span class="h2-24" style="float:middle"><span class="STYLE148">详细日程</span></span></td>
+    <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
-    <span class="h2-24" style="float:middle"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
   </tr>
   <tr><td colspan="2">   
 <table class="frametb" align="center">

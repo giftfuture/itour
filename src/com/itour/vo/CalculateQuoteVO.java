@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class CalculateQuoteVo implements Serializable{
+public class CalculateQuoteVO implements Serializable{
 	
 	/**
 	 * 

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.itour.base.page.BasePage;
 import com.itour.entity.Customers;
-import com.itour.vo.CustomerVo;
+import com.itour.vo.CustomerVO;
 /**
  * 
  * <br>
@@ -22,7 +22,7 @@ public class CustomerKit {
 	 * @param vo
 	 * @return
 	 */
-	public static Map<String, Object> toRecord(CustomerVo vo){
+	public static Map<String, Object> toRecord(CustomerVO vo){
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("id", vo.getId());
 		record.put("customerId", vo.getCustomerId());

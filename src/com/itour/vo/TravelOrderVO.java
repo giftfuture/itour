@@ -18,14 +18,14 @@ import com.itour.entity.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
-public class TravelOrderVo extends BasePage implements Serializable{
+public class TravelOrderVO extends BasePage implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8753408936131541053L;
-	private java.lang.String id;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String orderName;//   	private java.lang.String orderNo;//   	private java.lang.Integer orderStatus;//   	private java.lang.String remark;//   	private java.lang.String customerId;//   	private java.lang.String receiver;//   	private java.lang.String receiverMobile;//   	private String expectedDepart;//   	private String expectedBack;//   	private java.lang.Integer totalStaff;//   本次订单出行人数	private java.lang.String isPayed;//   是否支付完成.	private java.lang.String payType;//   1=线上支付,2=现金支付,3=邮政汇款,4=公司转帐	private java.lang.String payPlatform;//   付款平台,如1=微信,2=支付宝,3=网银.	private java.lang.String bank;//   如网银支付,即为付款方银行	private java.lang.String payAccount;//   付款方银行帐户	private String payTime;//   付款时间	private java.lang.String payTerminal;//   付款终端,如有,则为PC,IOS,Android
+	private java.lang.String id;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String orderName;//   	private java.lang.String orderNo;//   	private java.lang.Integer orderStatus;//   	private java.lang.String remark;//   	private java.lang.String customerId;//   	private java.lang.String receiver;//   	private java.lang.String receiverMobile;//   	private String expectedDepart;//   	private String expectedBack;//   	private java.lang.Integer totalStaff;//   本次订单出行人数	private java.lang.String payed;//   是否支付完成.	private java.lang.String payType;//   1=线上支付,2=现金支付,3=邮政汇款,4=公司转帐	private java.lang.String payPlatform;//   付款平台,如1=微信,2=支付宝,3=网银.	private java.lang.String bank;//   如网银支付,即为付款方银行	private java.lang.String payAccount;//   付款方银行帐户	private String payTime;//   付款时间	private java.lang.String payTerminal;//   付款终端,如有,则为PC,IOS,Android
 	private List<OrderDetail> orderItems;
-	private boolean isValid;
+	private boolean valid;
 	private BigDecimal budget;  //旅行预算
 	private String routename;
 	private String receiveremail;
@@ -70,13 +70,7 @@ public class TravelOrderVo extends BasePage implements Serializable{
 	public void setReceiveremail(String receiveremail) {
 		this.receiveremail = receiveremail;
 	}
-	
-	public boolean isValid() {
-		return isValid;
-	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
+	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}	public BigDecimal getBudget() {
 		return budget;
 	}
 	public void setBudget(BigDecimal budget) {
@@ -130,11 +124,17 @@ public class TravelOrderVo extends BasePage implements Serializable{
 	public void setTotalStaff(java.lang.Integer totalStaff) {
 		this.totalStaff = totalStaff;
 	}
-	public java.lang.String getIsPayed() {
-		return isPayed;
+	public java.lang.String getPayed() {
+		return payed;
 	}
-	public void setIsPayed(java.lang.String isPayed) {
-		this.isPayed = isPayed;
+	public void setPayed(java.lang.String payed) {
+		this.payed = payed;
+	}
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	public java.lang.String getPayType() {
 		return payType;
