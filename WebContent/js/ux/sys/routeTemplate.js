@@ -1081,7 +1081,7 @@ itour.routeTemplate = function(){
 		       // focus: true,   
 		        lang:'zh-CN',   
 		        dialogsFade : true,// Add fade effect on dialogs
-		        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
 		        shortcuts:false,
 		        disableDragAndDrop:true,
 		        placeholder:'write here...',
@@ -1122,7 +1122,7 @@ itour.routeTemplate = function(){
 		       // focus: true,   
 		        lang:'zh-CN',   
 		        dialogsFade : true,// Add fade effect on dialogs
-		        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
 		        shortcuts:false,
 		        disableDragAndDrop:true,
 		        placeholder:'write here...',
@@ -1163,7 +1163,7 @@ itour.routeTemplate = function(){
 		       // focus: true,   
 		        lang:'zh-CN',   
 		        dialogsFade : true,// Add fade effect on dialogs
-		        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
 		        shortcuts:false,
 		        disableDragAndDrop:true,
 		        placeholder:'write here...',

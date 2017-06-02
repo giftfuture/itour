@@ -12,7 +12,7 @@
 			<label class="ui-label">客户ID:</label><input name="id" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">标题:</label><input name="title" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">状态:</label>
-				<select name="status" class="easyui-combobox" style="width:100px;">
+				<select name="status" class="easyui-combobox" data-options="editable:false,width:100">
 				   <option value="">--请选择--</option>
 				   <option value="1">待审核</option>
 				   <option value="2">审核通过</option>
@@ -60,7 +60,7 @@
 					</div> -->
 					<div class="fitem">
 						<label>反馈状态</label>
-						<select name="status" class="easyui-combobox">
+						<select name="status" class="easyui-combobox" data-options="editable:false">
 						   <option value="1">待审核</option>
 						   <option value="2">审核通过</option>
 						   <option value="3">审核未通过</option>
@@ -73,7 +73,7 @@
 					</div> -->
 					<div class="fitem">
 						<label>是否公开展示</label>
-						<select name="publicShow">
+						<select name="publicShow" class="easyui-combobox" data-options="editable:false,width:135">
 						   <option value="0">否</option>
 						   <option value="1">是</option>
 						</select>

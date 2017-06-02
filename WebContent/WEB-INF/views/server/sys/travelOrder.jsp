@@ -66,7 +66,7 @@
 					</div>
 			  	    <div class="fitem">
 						<label>订单路线:</label>
-						<input name="routename" type="text" maxlength="20" class="easyui-textbox" missingMessage="请填写receiverMobile">
+						<input name="routename" type="text" maxlength="20" class="easyui-textbox" data-options="editable:false" missingMessage="请填写receiverMobile">
 					</div>
 					<div class="fitem">
 						<label>联系电话:</label>
@@ -94,12 +94,12 @@
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">
 					</div> -->
 					<div class="fitem">
-						<label>计划出行日:</label>
-						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedDepart">
+						<label>计划出行日:</label>                                                                                                                     <!-- ,validType:'dateValided' -->
+						<input id="expectedDepart" name="expectedDepart" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写expectedDepart">
 					</div>
 					<div class="fitem">
 						<label>计划返程日:</label>
-						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'dateValided'" missingMessage="请填写expectedBack">
+						<input id="expectedBack" name="expectedBack" type="text" maxlength=""  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写expectedBack">
 					</div>
 					<div class="fitem">
 						<label>出行人数:</label>

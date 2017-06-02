@@ -93,18 +93,21 @@ var YDataGrid = function(config){
 								//var beforeInstruction = CKEDITOR.replace("beforeInstruction");
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								//beforeInstruction.setData(result.data.beforeInstruction);
+								$("#beforeInstruction").summernote('code',result.data.beforeInstruction);
 							}
 							if(result.data.customizedService&&result.data.customizedService.length>0){
 								//Handler.ckCreate('customizedService');
 								//var customizedService = CKEDITOR.replace('customizedService');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								//customizedService.setData(result.data.customizedService);
+								$("#customizedService").summernote('code',result.data.customizedService);
 							}
 							if(result.data.designConcept&&result.data.designConcept.length>0){
 								//Handler.ckCreate('designConcept');
 								//var designConcept = CKEDITOR.replace('designConcept');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								//designConcept.setData(result.data.designConcept);
+								$("#designConcept").summernote('code',result.data.designConcept);
 							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
@@ -206,11 +209,20 @@ var YDataGrid = function(config){
 			            }
 		            CKupdate(); //在提交表单前需要做以上处理
 */ 				try{
-					if(CKEDITOR.instances.length>0){
+					/*if(CKEDITOR.instances.length>0){
 						Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
 						Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
 						Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
-					}
+					}*/
+					//console.log($("#designConcept").summernote('code'));		
+				/*	var bi = $("#beforeInstruction").summernote('code') ;
+					Form.edit.attr("beforeInstruction",bi);
+					var cs = $("#customizedService").summernote('code');
+					Form.edit.attr("customizedService",cs);
+					var dc = $("#designConcept").summernote('code');
+					//console.log(dc);
+					Form.edit.attr("designConcept",dc);	*/	
+					//console.log(Form.edit.attr("designConcept"));
 				}catch(e){
 					console.log("name: " + e.name + 
 							 ",description: " +e.description+
@@ -218,7 +230,7 @@ var YDataGrid = function(config){
 						      ",lineNumber: " + e.lineNumber + 
 						      ",fileName: " + e.fileName + 
 						      ",stack: " + e.stack);
-				}
+				} 	
 				var tickets= $("input[name='tickets']");
 				var ticketprices = $("input[name='ticketprices']");
 					if(tickets.length>0 && ticketprices.length>0){
@@ -281,11 +293,18 @@ var YDataGrid = function(config){
 			            }
 		            CKupdate(); //在提交表单前需要做以上处理
 */ 				try{
-					if(CKEDITOR.instances.length>0){
+				/*	if(CKEDITOR.instances.length>0){
 						Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
 						Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
 						Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
-					}
+					}*/
+					/*var bi = $("#beforeInstruction").summernote('code') ;
+					Form.edit.attr({"beforeInstruction":bi});
+					var cs = $("#customizedService").summernote('code');
+					Form.edit.attr({"customizedService":cs});
+					var dc = $("#designConcept").summernote('code');
+					console.log(dc);		
+					Form.edit.attr({"designConcept":dc});	*/
 				}catch(e){
 					console.log("name: " + e.name + 
 							 ",description: " +e.description+
