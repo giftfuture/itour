@@ -96,7 +96,7 @@ where travel_style.valid=1
 </delete>
 <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update travel_style set is_valid=0 where id = #{id}
+	update travel_style set valid=0 where id = #{id}
 </update> 
 <!-- 上传封面 -->
 <update id="updateCover" parameterType="com.itour.entity.TravelStyle">

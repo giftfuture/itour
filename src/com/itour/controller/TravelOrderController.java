@@ -380,7 +380,7 @@ public class TravelOrderController extends BaseController {
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的logicdelete方法");
 		String logId = logSettingService
 				.add(new LogSetting("travel_order", "订单管理", "travelOrder/logicdelete", sessionuser.getId(),
-						"update travel_order set is_valid=0 where id in(" + JsonUtils.encode(id) + ")", "")); 
+						"update travel_order set valid=0 where id in(" + JsonUtils.encode(id) + ")", "")); 
 		logOperationService.add(new LogOperation(logId, "逻辑删除", JsonUtils.encode(id), JsonUtils.encode(id),
 				JsonUtils.encode(id), "travelOrder/logicdelete", sessionuser.getId())); 
 		return removeSuccessMessage(response);

@@ -307,7 +307,7 @@
 
   <table class="frametb" align="center">
    <tbody><tr>
-     <td colspan=2 ><span class="STYLE3"style="text-align:left;float:left">告诉我们您的需求，免费为您策划方案 GO! </span> 
+     <td colspan=2 ><span class="STYLE3"style="text-align:left;float:left">告诉我们您的需求，免费为您策划方案 GO! </span> &nbsp;&nbsp;
     <span class="STYLE3"  style="text-align:left;float:left"><a  style="text-align:left;float:left" href="${basePath}hiking/selfbooking/${rt.alias}">
      <img style="float:middle" src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>

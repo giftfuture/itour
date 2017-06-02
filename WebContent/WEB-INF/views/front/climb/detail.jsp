@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>爬山旅行详细</title>
+<title>Mountain trip in detail</title>
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -310,9 +310,9 @@
 </table>
   <table  class="frametb" align="center">
    <tbody><tr>
-     <td width="336"  style="text-align:left;float:left" ><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span> 
-     <span class="STYLE3"  ><a  href="${basePath}climb/selfbooking/${rt.alias}">
-     <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
+     <td width="336"  colspan=2 ><span style="text-align:left;float:left" class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
+     <span class="STYLE3" style="text-align:left;float:left;"><a style="text-align:left;float:left;" href="${basePath}climb/selfbooking/${rt.alias}">
+     <img style="float:middle" src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
   </div>

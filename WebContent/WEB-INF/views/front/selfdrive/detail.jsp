@@ -308,7 +308,7 @@
  
   <table width="600" border="0" cellspacing="0" cellpadding="0">
    <tbody><tr>
-     <td width="336" style="text-align:left"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span> 
+     <td width="336" style="text-align:left"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span> &nbsp;&nbsp;
       <span class="STYLE3" ><a href="${basePath}selfdrive/selfbooking/${rt.alias}">
      <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>

@@ -17,8 +17,8 @@
 <%@include file="/front/header.jsp"  %> 
 <table class="commontb" valign="middle" style="height:100%">
   <tr style="align:center">
-    <td style='weight:100%;height:100%;' valign="top" rowspan=2>
-            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" >旅遊目的地</div>
+    <td valign="top" rowspan=2 style="text-align:center" align="center"><!-- style='weight:100%;height:100%;'  -->
+            <div style="float:middle;display:inline-block;valign:top;text-align:center;align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:202px;height:30px;" >旅遊目的地</div>
             <div class="treebox">
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
@@ -35,8 +35,8 @@
 				</c:forEach>
 				</ul>
 			</div></td>
-            <td  style='weight:100%;height:100%;'><!--滚动图片 start-->
-        	<img src="${basePath}${itemvo.cover}" style="border:none;" border="0px" height="338" width="600"/>
+            <td valign="top" style="width:600;height:338;text-align:left"><!--滚动图片 start-->
+        	<div style="border:none;text-align:center;width:600;height:338;" align="center"><img src="${basePath}${itemvo.cover}" style="border:none;" border="0px" height="338" width="600"/></div>
 			<DIV class=rollphotos>
 			<DIV class=blk_29>
 			<DIV class=LeftBotton id=LeftArr>
@@ -65,11 +65,11 @@
 					//--><!]]>
 			</script>
 			</DIV>
-<!--滚动图片 end--></td>
-            <td style="valign:top;vertical-align:top;"><img src="images/ticket.png" width="30" height="30">
+<!--滚动图片 end--><span style="text-align:left;">${itemvo.content }</span> </td>
+            <td style="text-align:center;valign:top;vertical-align:top;align:center;display:inline-block;"><img src="images/ticket.png" width="30" height="30">
             <span class="STYLE3">${itemvo.item}门票信息（CNY）：</span><br/>
-            ${itemvo.ticketsBlock}<br/><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
-		<span class="STYLE3">相关旅游线路</span>
+            <span style="text-align:center;valign:top;vertical-align:top;display:inline-block;" align="center" >${itemvo.ticketsBlock}</span><br/><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
+		<span class="style3">相关旅游线路</span>
 		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
               <tbody>
               <c:forEach items="${rts}" var="item">
@@ -87,7 +87,7 @@
           </tr>
           <tr>
             <td valign="top"  style="weight:100%;height:100%;text-align:left;valign:top;">
-            ${itemvo.content }
+           
 		</td><td><%-- <span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
 		<span class="STYLE3">相关旅游线路</span>
 		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">

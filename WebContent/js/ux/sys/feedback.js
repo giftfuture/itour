@@ -257,5 +257,7 @@ itour.feedback = function(){
 }();
 
 $(function(){
+	  /*if (window != top)
+          top.location.href = location.href;*/
 	itour.feedback.init();
 });

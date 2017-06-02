@@ -260,4 +260,6 @@ itour.showhappy = function(){
 
 $(function(){
 	itour.showhappy.init();
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });

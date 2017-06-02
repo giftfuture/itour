@@ -11,28 +11,17 @@
 <title>目的地</title>
 </head>
 <body>
-<table class="commontb" align="center">
-<tr>
-    <td>
-		 <%@include file="/front/header.jsp"  %>
-    </td>
-  </tr>
-</table>
-<!-- <table width="100%"  border="0" align="center" cellpadding="15" cellspacing="0">
-  <tr>
-    <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
-  </tr>
-</table> -->
-<br />
-<table class="commontb" align="center">
+ <%@include file="/front/header.jsp"  %>
+<center>
+<table class="frametb" align="center" style="text-align:center;">
+ 
   <tr>
     <td width="197" valign="top">
-      <table width="197" border="0" cellspacing="0" cellpadding="5">
+      <table width="197" border="0" cellspacing="0" cellpadding="5"float:right;>
           <tr>
-            <td height="30" bgcolor="#990000"><div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" width="197px" >旅遊目的地</div></td>
-          </tr>
-          <tr>
-  			<td><div class="treebox">
+            <td height="30" valign="top" style="width:20%;height:auto" bgcolor="#990000"><!-- padding-left:150 -->
+            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;">旅遊目的地</div>
+            <div class="treebox" >
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
 					<li class="level1">
@@ -50,37 +39,46 @@
 				</c:forEach>
 				</ul>
 			</div>
-			</td>
-          </tr>
+			</td>    
+        </tr>
         </table>
         </td>
-        <td rowspan=2>
+        <td border="0" align="center" cellpadding="0" cellspacing="0"  style="padding-left:0;margin-left:0;width:80%;" ><!-- rowspan=2 -->
        		<c:forEach var="sortitem" items="${sortedItems}" varStatus="">
-	        <table border="0" align="center" cellpadding="10" cellspacing="0" style="width:1140px" >
-		      <tbody><tr bgcolor="#f0f0f0" style="width:1140px" >
-		        <td colspan=2 width="60%" style="text-align:left;float:left;width:648;"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
-		        <td width="40%" style="text-align:right;float:right;width:432;"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
+	        <table border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left:10;margin-left:10;width:100%;" >
+		      <tbody><tr bgcolor="#f0f0f0" width="100%">
+		        <td colspan=3 width="100%" >
+		        <span class="STYLE5" style="text-align:left;float:left;"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span>
+		        <span style="text-align:right;float:right;"><div align="right">
+		        <c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
 		        <c:if test="${fn:length(sortitem.value)>= maxd}">
-		         | <a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">显示更多</a>
+		         |<a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">显示更多</a>
 		         </c:if>
-		        </div></td>
+		        </div></span></td>
 		      </tr>
 		      <tr>
-			     <c:forEach items="${sortitem.value}" var="ti">
-			      	<td style="text-align:left;align:left">
-			      		<a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="420px" height="233px" alt="" src="${basePath }${ti.cover}"/></a>
-			      	</td>
+			     <c:forEach items="${sortitem.value}" var="ti" varStatus="ix">
+				     <c:choose>
+					     <c:when test="${ix.index==0}">
+					        <td style="text-align:left;align:left">
+		                        <a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="550px" height="309px" alt="" src="${basePath }${ti.cover}"/></a>
+		                    </td>
+					     </c:when>
+					     <c:otherwise>
+					      	<td style="text-align:left;align:left">
+					      		<a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="262px" height="145px" alt="" src="${basePath }${ti.cover}"/></a>
+					      	</td>
+					     </c:otherwise>
+				     </c:choose>
 		         </c:forEach>
 		      </tr>
 		    </tbody></table>
-	      <!--   <table border="0" align="left" cellpadding="5" cellspacing="0">
-		    </table> -->
 		  </c:forEach>
         </td>
         </tr>
-
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
  <%@include file="/front/footer.jsp"  %>  
+ </center>
 </body>
 </html>

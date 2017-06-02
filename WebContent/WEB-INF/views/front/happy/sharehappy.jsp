@@ -31,32 +31,32 @@ function ww4(date){
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
 	        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-	         <tr><td  style="text-align:left">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
-	         <td rowspan=4 style="vertical-align:top; padding-top:10px;">
+	         <tr><td  style="text-align:left" class="STYLE18">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
+	         <td rowspan=4 style="vertical-align:top; padding-top:10px;" class="STYLE18">
 	            	封面图片：<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
 	            	<img id="cover" style="border:none;" border="0px" height="200" width="200" /></td></tr><!-- opacity:0 -->
 	         <tr>
-	            <td style="text-align:left"><span class="STYLE23">旅行線路：</span>
+	            <td style="text-align:left"><span class="STYLE23 STYLE18">旅行線路：</span>
 	            	<input id="route" name="route" class="easyui-combobox"  data-options="width:171,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
 	            </td>
 	            <td></td>
 	       </tr>
-	       <tr><td style="text-align:left"><span class="STYLE23">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
+	       <tr><td style="text-align:left"><span class="STYLE23 STYLE18">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
 	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
-	        <tr> <td style="text-align:left">&nbsp;&nbsp;回&nbsp;憶&nbsp;人：
-            	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>来自
+	        <tr> <td style="text-align:left" class="STYLE18">&nbsp;&nbsp;回&nbsp;憶&nbsp;人：
+            	<span class="STYLE18"><input type="text" class="easyui-textbox" id="signature" name="signature"/>来自
             	<input name="area" id="area" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</span></td><td></td></tr>
 	        <tr>
 	            <td colspan=2><div id="content"></div></td>
 	       </tr>
 	       <tr>
-	       <td colspan=2 style="text-align:left">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="prompt:'请输入正确的验证码!'"/> 
+	       <td colspan=2 style="text-align:left" class="STYLE18">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="prompt:'请输入正确的验证码!'"/> 
 	           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
 	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
-	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">保存</a></td>
-	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消</a></td></tr>
+	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">保存</a></td>
+	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消</a></td></tr>
 	    </table><div id="alertMessage"></div>
     </form:form> 
     </td>

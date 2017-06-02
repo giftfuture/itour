@@ -127,7 +127,7 @@ where 1=1
 </delete>
  <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update areas set is_valid=0 where id = #{id}
+	update areas set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 地区信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
