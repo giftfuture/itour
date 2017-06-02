@@ -253,6 +253,15 @@ itour.routeTemplate = function(){
 							return row.routeCode;
 						}
 					},
+					{field:'title',title:'线路名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if((row.title+"").length>30){
+								return (row.title+"").substring(0,30)+"....";
+							}else{									
+								return row.title;
+							}
+						}
+					},
 					{field:'cover',title:'封面',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.cover;
@@ -264,15 +273,6 @@ itour.routeTemplate = function(){
 								return (row.viewphotos+"").substring(0,60)+"....";
 							}else{									
 								return row.viewphotos;
-							}
-						}
-					},
-					{field:'title',title:'线路名称',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							if((row.title+"").length>30){
-								return (row.title+"").substring(0,30)+"....";
-							}else{									
-								return row.title;
 							}
 						}
 					},
@@ -385,15 +385,16 @@ itour.routeTemplate = function(){
 							}
 						}
 					},
-					{field:'related',title:'相关线路',align:'center',sortable:true,
+					{field:'relatedRouteTitles',title:'相关线路',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.related;
+							return row.relatedRouteTitles;
 						}
-					},{field:'similars',title:'相似线路',align:'center',sortable:true,
+					},
+				/*	{field:'similars',title:'相似线路',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.similars;
 						}
-					},
+					},*/
 					{field:'routeMap',title:'路线地图',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.routeMap;

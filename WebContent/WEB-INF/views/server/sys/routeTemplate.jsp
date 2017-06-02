@@ -127,7 +127,7 @@
 					</select>
 					</div></td>
 		     	  	 <td style="text-align:left"><div class="fitem">
-						<label>线路类别:</label><input name="travelStyle" class="easyui-combobox"  data-options="width:131,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+						<label>线路类别:</label><input name="travelStyleAlias" class="easyui-combobox"  data-options="width:131,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
 					</div></td><td style="text-align:left"><div class="fitem">
 						<label>途经景点:</label>
 						   <select id="travelItems" name="travelItems" class="easyui-combobox" data-options="editable:false,region:'north',split:true,border:false,multiple:true,required:true,width:131,height:20"></select>
@@ -136,11 +136,15 @@
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写简略描述">
 					</div></td><td style="text-align:left"><div class="fitem">
 						<label>线路特色:</label><input name="special" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写简略描述">
-					</div>	</td>  
-		     	      <td style="text-align:left"><div class="fitem">
+					</div>	</td>
+					<td style="text-align:left"><div class="fitem">
+                        <label>建议天数:</label><input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="width:131,height:20" missingMessage="请填写rcdDays">
+                    </div></td>  
+	     	       <!-- <td style="text-align:left"><div class="fitem">
 						<label>相似线路:</label>
 						<select id="related" name="related" class="easyui-combobox" data-options="editable:false,region:'north',split:true,border:false,multiple:true,required:true,width:131,height:20" ></select>
-					</div></td><td style="text-align:left"><div class="fitem">
+					</div></td> -->
+					<td style="text-align:left"><div class="fitem">
 						<label id="difficultyRateLabel">挑战度:</label>
 						<select name="difficultyRate" class="easyui-combobox ui-text" data-options="editable:false,region:'north',split:true,border:false,width:131,height:20">
 							<option value="">--请选择--</option>
@@ -164,9 +168,8 @@
 					</div></td></tr>
 		     	   <tr><td style="text-align:left"><div class="fitem">
 						<label>交通工具:</label><input name="transportation" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20"  missingMessage="请填写mileage">
-					</div></td><td style="text-align:left"><div class="fitem">
-						<label>建议天数:</label><input name="rcdDays" type="text" maxlength="" class="easyui-numberbox" data-options="width:131,height:20" missingMessage="请填写rcdDays">
 					</div></td>
+					
 		     	   <td style="text-align:left"><div class="fitem">
 						<label>出发地:</label><input name="departure" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写mileage">
 					</div></td><td style="text-align:left"><div class="fitem">

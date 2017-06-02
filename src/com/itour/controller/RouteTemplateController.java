@@ -465,7 +465,7 @@ public class RouteTemplateController extends BaseController{
 //	headers={"content-type=application/json;"},//multipart/form-data
 	//produces=MediaType.APPLICATION_JSON_VALUE//.MULTIPART_FORM_DATA_VALUE
 	)
-	public @ResponseBody String save(RouteTemplate vo,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public @ResponseBody String save(RouteTemplateVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		try {
 			RouteTemplate rt = null;
@@ -485,7 +485,7 @@ public class RouteTemplateController extends BaseController{
 				}
 				vo.setTravelItems(Joiner.on(",").join(tis));
 			}
-			if(StringUtils.isNotEmpty(vo.getRelated())){
+		/*	if(StringUtils.isNotEmpty(vo.getRelated())){
 				List<String> relates = Lists.newArrayList();
 				List<String> rels = Arrays.asList(vo.getRelated().split(","));
 				for(String rel:rels){
@@ -493,27 +493,28 @@ public class RouteTemplateController extends BaseController{
 					relates.add(t!=null?t.getId():"");
 				}
 				vo.setRelated(Joiner.on(",").join(relates));
-			}
-			if(StringUtils.isNotEmpty(vo.getTravelStyle())){
-				TravelStyle ts = travelStyleService.queryByAlias(vo.getTravelStyle());
+			}*/
+			//List<RouteTemplateVO> vos = routeTemplateService.queryByRelatedRoutes(vo.getId());
+			if(StringUtils.isNotEmpty(vo.getTravelStyleAlias())){
+				TravelStyle ts = travelStyleService.queryByAlias(vo.getTravelStyleAlias());
 				vo.setTravelStyle(ts!=null?ts.getId():"");
 			}
 			if(vo.getId()==null||StringUtils.isEmpty(vo.getId())){
 				vo.setRouteCode(IDGenerator.code(16));
 				vo.setCreateBy(sessionuser.getId());
 				vo.setUpdateBy(sessionuser.getId());
-				rtId = routeTemplateService.add(vo);
+				rtId = routeTemplateService.add(RouteTemplateKit.toEntity(vo));
 			}else{
 				rt = routeTemplateService.queryById(vo.getId());
 				if(rt == null){
 					vo.setRouteCode(IDGenerator.code(16));
 					vo.setCreateBy(sessionuser.getId());
 					vo.setUpdateBy(sessionuser.getId());
-					rtId = routeTemplateService.add(vo);
+					rtId = routeTemplateService.add(RouteTemplateKit.toEntity(vo));
 				}else{
 					vo.setValid(1);
 					vo.setUpdateBy(sessionuser.getId());
-					routeTemplateService.update(vo);
+					routeTemplateService.update(RouteTemplateKit.toEntity(vo));
 				}
 			} 
 			
@@ -689,12 +690,12 @@ public class RouteTemplateController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/allRelatedRts", method = RequestMethod.GET)
 	public List<RouteTemplateVO> allRelatedRts(String rtId,HttpServletRequest request,HttpServletResponse response)throws Exception{
-		RouteTemplate rt = routeTemplateService.queryById(rtId);
+		/*RouteTemplate rt = routeTemplateService.queryById(rtId);
 		List<String> related = Lists.newArrayList();
 		if(rt !=null){
 			related.addAll(Arrays.asList(rt.getRelated().split(",")));
-		}
-		List<RouteTemplateVO> list = routeTemplateService.queryByRelated(related);
+		}*/
+		List<RouteTemplateVO> list = routeTemplateService.queryByRelatedRoutes(rtId);
 		return list;
 	}
 	/**

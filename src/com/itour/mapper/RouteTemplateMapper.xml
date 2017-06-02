@@ -15,7 +15,6 @@
 	<result column="update_by" property="updateBy"/>
 	<result column="remark" property="remark"/>
 	<result column="special" property="special"/>
-	<result column="related" property="related"/>
 	<result column="route_map" property="routeMap"/>
 	<result column="travel_style" property="travelStyle"/>
 	<result column="travel_items" property="travelItems"/>
@@ -37,7 +36,6 @@
 	<result column="before_instruction" property="beforeInstruction"/>
 	<result column="level_area" property="levelArea"/>
 	<result column="star_level" property="starLevel"/>
-	<result column="similars" property="similars"/>
 	<result column="elevation" property="elevation"/>
 	<result column="viewphotos" property="viewphotos"/>
 </resultMap>
@@ -53,7 +51,6 @@
 	<result column="update_by" property="updateBy"/>
 	<result column="remark" property="remark"/>
 	<result column="special" property="special"/>
-	<result column="related" property="related"/>
 	<result column="route_map" property="routeMap"/>
 	<result column="travel_style" property="travelStyle"/>
 	<result column="travel_items" property="travelItems"/>
@@ -81,7 +78,6 @@
 	<result column="level2_area" property="level2Area"/>
 	<result column="star_level" property="starLevel"/>
 	<result column="travelStyleAlias" property="travelStyleAlias"/>
-	<result column="similars" property="similars"/>
 	<result column="elevation" property="elevation"/>
 	<result column="travelStyleType" property="travelStyleType"/>
 	<result column="travelStyleAlias" property="travelStyleAlias"/>
@@ -90,9 +86,9 @@
        
 <!-- route_template table all fields   -->
 <sql id="Base_Column_List" >
-    route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,similars,star_level,
+    route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
     elevation,level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
-    route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
+    route_template.remark,route_template.special,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 </sql>
 <!-- 查询条件 -->
@@ -101,9 +97,6 @@ where route_template.valid=1
 <trim  suffixOverrides="," >
 	<if test="elevation !=null and elevation !=''">
 		and route_template.elevation=#{elevation}
-	</if>
-	<if test="similars != null and similars != ''">
-		and route_template.similars=#{similars}
 	</if>
 	<if test="difficultyRate != null and difficultyRate !=''">
 		and route_template.difficulty_rate=#{difficultyRate}
@@ -140,9 +133,6 @@ where route_template.valid=1
 	</if>
 	<if test="special != null and special != ''">
 		and route_template.special like  CONCAT('%', #{special}, '%')
-	</if>
-	<if test="related != null and related != ''">
-		and route_template.related like  CONCAT('%', #{related}, '%')
 	</if>
 	<if test="routeMap != null and routeMap != ''">
 		and route_template.route_map = #{routeMap}
@@ -192,8 +182,8 @@ where route_template.valid=1
  <!--  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into route_template(id,title,cover,route_code,short_content,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,similars,elevation,star_level,level_area,viewphotos)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{similars},#{elevation},#{starLevel},#{levelArea},#{viewphotos})
+  insert into route_template(id,title,cover,route_code,short_content,customer_id,create_time,update_time,create_by,update_by,remark,special,route_map,travel_style,travel_items,alias,valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,elevation,star_level,level_area,viewphotos)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{elevation},#{starLevel},#{levelArea},#{viewphotos})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -205,9 +195,6 @@ where route_template.valid=1
 	</if>
 	<if test="elevation !=null and elevation !=''">
 		 elevation=#{elevation},
-	</if>
-	<if test="similars != null and similars != ''">
-		similars=#{similars},
 	</if>
 	<if test="quotoForm != null and quotoForm != ''">
 		quoto_form=#{quotoForm},
@@ -232,9 +219,6 @@ where route_template.valid=1
 	</if>
 	<if test="special != null and special != ''">
 		 special = #{special},
-	</if>
-	<if test="related != null and related != ''">
-		 related =#{related},
 	</if>
 	<if test="routeMap != null and routeMap != ''">
 		 route_map = #{routeMap},
@@ -312,9 +296,10 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
 </select>
 <!-- 根据id查询 路线模板 -->
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
-select <include refid="Base_Column_List" />,customers.customer_name customerName,customers.district,customers.city,la.level1_area,la.level2_area 
+select <include refid="Base_Column_List" />,customers.customer_name customerName,customers.district,customers.city,la.level1_area,la.level2_area,travel_style.alias travelStyleAlias 
  from route_template left join customers on customers.id=route_template.customer_id 
  left join level_area la on la.id=route_Template.level_area
+ left join travel_style on route_template.travel_style=travel_style.id
  where route_template.id = #{id} order by star_level desc
 </select>
 <!-- 获取该旅行方式下的施行项目 -->
@@ -346,14 +331,22 @@ select <include refid="Base_Column_List" /> from route_template where route_code
 <select id="queryAll"  resultMap="BaseResultMap" >
 	select <include refid="Base_Column_List" /> from route_template where valid=1 order by star_level desc
 </select>
-<!-- 获取该旅行方式下的相关 -->
-<select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">
+<select id="queryByIds" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List"/>
 from route_template where route_template.id in
 <foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
     #{ids}  
 </foreach>
-order by star_level desc
+order by route_template.star_level desc
+</select> 
+<!-- 获取该旅行方式下的相关 -->
+<select id="queryByRelatedRoutes" parameterType="java.lang.String" resultMap="BaseResultMapVo">
+select <include refid="Base_Column_List"/>,travel_style.alias travelStyleAlias
+from route_template left join level_area on level_area.id=route_template.level_area   
+left join travel_style on route_template.travel_style = travel_style.id 
+where route_template.level_area in(select id from level_area la where la.level2_area=level_area.level2_area and id <![CDATA[<>]]> (select level_area from route_template where id=#{id}))
+and route_template.id=#{id}
+order by route_template.star_level desc
 </select> 
 <!-- 路线模板 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
@@ -381,9 +374,9 @@ order by star_level desc
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
 <select id="queryByList" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
 	select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
-	similars,level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, 
+	level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, 
     concat(cb.nickName,'(',cb.email,')') create_by, concat(ub.nickName,'(',ub.email,')') update_by, elevation,la.level1_area,la.level2_area,
-    route_template.remark,route_template.special,(select rt.title from route_template rt where rt.id=route_template.related) related,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
+    route_template.remark,route_template.special,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 	    <!-- (SELECT GROUP_CONCAT(item) item from travel_item where id in(route_template.travel_items)) travel_items -->
 	from route_template left join travel_style on route_template.travel_style = travel_style.id

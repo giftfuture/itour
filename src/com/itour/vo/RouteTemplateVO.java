@@ -31,8 +31,8 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String special;//线路特色	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//  
 	private String routeLine;//路线图
 	private List<RouteTemplateVO> relates;//相关线路
+	private String relatedRouteTitles;
 	private List<String> photoList;//照片
-	private String related;
 	private String routeMap;//线路地图
 	private String travelStyle;//线路类别
 	private String travelStyleType;//线路类别名称
@@ -60,7 +60,6 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String designConcept;//设计理念
 	private String customizedService;//定制服务
 	private String beforeInstruction;
-	private String similars;//相似线路
 	private float elevation;//海拔
 	private List<String> itemitems;
 	private String verifyCode;//验证码
@@ -76,6 +75,12 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	
 	public String getViewphotos() {
 		return viewphotos;
+	}
+	public String getRelatedRouteTitles() {
+		return relatedRouteTitles;
+	}
+	public void setRelatedRouteTitles(String relatedRouteTitles) {
+		this.relatedRouteTitles = relatedRouteTitles;
 	}
 	public void setViewphotos(String viewphotos) {
 		this.viewphotos = viewphotos;
@@ -145,12 +150,6 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	}
 	public void setElevation(float elevation) {
 		this.elevation = elevation;
-	}
-	public String getSimilars() {
-		return similars;
-	}
-	public void setSimilars(String similars) {
-		this.similars = similars;
 	}
 /*	public File getCoverImg() {
 		return coverImg;
@@ -303,12 +302,6 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	}
 	public void setCover(String cover) {
 		this.cover = cover;
-	}
-	public String getRelated() {
-		return related;
-	}
-	public void setRelated(String related) {
-		this.related = related;
 	}
 	public String getTravelItems() {
 		return travelItems;

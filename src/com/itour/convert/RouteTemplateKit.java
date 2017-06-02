@@ -27,7 +27,6 @@ public class RouteTemplateKit{
 		vo.setUpdateTime(DateUtil.getDateYmdHs(rt.getUpdateTime()));
 		vo.setRemark(rt.getRemark());
 		vo.setSpecial(rt.getSpecial());
-		vo.setRelated(rt.getRelated());
 		vo.setTravelStyle(rt.getTravelStyle());
 		vo.setRouteMap(rt.getRouteMap());
 		vo.setTravelItems(rt.getTravelItems());
@@ -58,7 +57,6 @@ public class RouteTemplateKit{
 		vo.setDesignConcept(rt.getDesignConcept());
 		vo.setCustomizedService(rt.getCustomizedService());
 		vo.setBeforeInstruction(rt.getBeforeInstruction());
-		vo.setSimilars(rt.getSimilars());
 		vo.setElevation(rt.getElevation());
 		vo.setStarLevel(rt.getStarLevel());
 		vo.setLevelArea(rt.getLevelArea());
@@ -83,7 +81,6 @@ public class RouteTemplateKit{
 		vo.setUpdateBy(rt.getUpdateBy());
 		vo.setRemark(rt.getRemark());
 		vo.setSpecial(rt.getSpecial());
-		vo.setRelated(rt.getRelated());
 		vo.setTravelStyle(rt.getTravelStyle());
 		vo.setRouteMap(rt.getRouteMap());
 		vo.setTravelItems(rt.getTravelItems());
@@ -106,7 +103,6 @@ public class RouteTemplateKit{
 		vo.setBeforeInstruction(rt.getBeforeInstruction());
 		vo.setStarLevel(rt.getStarLevel());
 		vo.setLevelArea(rt.getLevelArea());
-		vo.setSimilars(rt.getSimilars());
 		vo.setElevation(rt.getElevation());
 		vo.setViewphotos(rt.getViewphotos());
 		return vo;

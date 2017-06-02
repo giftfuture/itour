@@ -605,17 +605,8 @@ public class TravelOrderController extends BaseController {
 				bean.setCover(coverpath + "/" + StringUtils.trim(bean.getRouteCode()) + "_" + bean.getAlias() + "/"
 						+ bean.getCover());
 			}
-			if (bean != null && StringUtils.isNotEmpty(bean.getRelated())) {
-				String[] ids = bean.getRelated().split(",");
-				List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-				for (RouteTemplateVO rtp : relates) {
-					TravelStyle ts = (TravelStyle) travelStyleService.queryById(rtp.getTravelStyle());
-					if (ts != null) {
-						rtp.setTravelStyleAlias(ts.getAlias());
-					}
-				}
-				bean.setRelates(relates);
-			}
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelatedRoutes(bean.getId());
+			bean.setRelates(relates);
 			List<String> photoList = Lists.newArrayList();
 			String rtPhotoPath = FilePros.httpRoutePhotos();
 			String[] photos = StringUtils.isNotEmpty(bean.getViewphotos()) ? bean.getViewphotos().split("\\|")
