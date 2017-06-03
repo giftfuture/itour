@@ -476,9 +476,9 @@ public class RouteTemplateController extends BaseController{
 			//vo.setRouteCode(IDGenerator.code(19));
 			//bean = RouteTemplateKit.toEntity(vo);
 			SysUser sessionuser = SessionUtils.getUser(request);
-			if(StringUtils.isNotEmpty(vo.getTravelItems())){
+			if(StringUtils.isNotEmpty(vo.getTravelItemAliass())){
 				List<String> tis = Lists.newArrayList();
-				List<String> alias = Arrays.asList(vo.getTravelItems().split(","));
+				List<String> alias = Arrays.asList(vo.getTravelItemAliass().split(","));
 				for(String a:alias){					
 					TravelItemVO ti = travelItemService.getByAlias(a);
 					tis.add(ti!=null?ti.getId():"");

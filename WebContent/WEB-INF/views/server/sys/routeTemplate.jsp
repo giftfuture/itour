@@ -130,7 +130,7 @@
 						<label>线路类别:</label><input name="travelStyleAlias" class="easyui-combobox"  data-options="width:131,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
 					</div></td><td style="text-align:left"><div class="fitem">
 						<label>途经景点:</label>
-						   <select id="travelItems" name="travelItems" class="easyui-combobox" data-options="editable:false,region:'north',split:true,border:false,multiple:true,required:true,width:131,height:20"></select>
+						   <select id="travelItems" name="travelItemAliass" class="easyui-combobox" data-options="editable:false,region:'north',split:true,border:false,multiple:true,required:true,width:131,height:20"></select>
 					</div></td></tr>  
 		      	   <tr><td style="text-align:left"><div class="fitem">
 						<label>简略描述:</label><input name="shortContent" type="text" maxlength="255" class="easyui-textbox" data-options="width:131,height:20" missingMessage="请填写简略描述">

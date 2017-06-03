@@ -38,6 +38,7 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String travelStyleType;//线路类别名称
 	private String travelStyleAlias;
 	private String travelItems;//线路中的景点
+	private String travelItemAliass;
 	private String cover;//封面图片
 	//private File coverImg;//
 	private String title;//路线名称
@@ -75,6 +76,12 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	
 	public String getViewphotos() {
 		return viewphotos;
+	}
+	public String getTravelItemAliass() {
+		return travelItemAliass;
+	}
+	public void setTravelItemAliass(String travelItemAliass) {
+		this.travelItemAliass = travelItemAliass;
 	}
 	public String getRelatedRouteTitles() {
 		return relatedRouteTitles;

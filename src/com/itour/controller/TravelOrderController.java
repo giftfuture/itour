@@ -45,6 +45,7 @@ import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlToPdf;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.util.PinYinUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.WaterMarkUtilPDF;
 import com.itour.base.util.email.EmailService;
@@ -406,26 +407,32 @@ public class TravelOrderController extends BaseController {
 		String itemIds = StringUtils.isNotEmpty(bean.getTravelItems())?bean.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItemVO> items = travelItemService.queryByIds(itids);
-		Map<String,String> ticketsBlock = new HashMap<String,String>();
+		//Map<String,String> ticketsBlock = new HashMap<String,String>();
+		StringBuffer ticketsBlock = new StringBuffer();
+		int idx = 0;
 		for(TravelItemVO ti:items){
 			String tickets = ti.getTicketsBlock();
 			if(StringUtils.isNotEmpty(tickets)){
-				String[] ticketArray = tickets.split("、");
-				for(String map:ticketArray){
-					String [] keyvalue = map.split(":");
-					ticketsBlock.put(keyvalue[0], keyvalue[1]);
+				String[] ticketArray = tickets.replace("淡季：", "").replace("旺季：", "").split("、");
+				for(String map : ticketArray){
+					String [] keyvalue = map.split("：");
+					//ticketsBlock.put(keyvalue[0], keyvalue[1]);
+					if(keyvalue.length==2){
+						
+						ticketsBlock.append("<span name='"+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+"'>"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;"+ keyvalue[1]+"元/人&nbsp;&nbsp;&nbsp;<input type='checkbox' checked='checked'/><br/></span>");
+					}
 				}
 			}
 		}
 		TravelOrder entity = travelOrderService.queryById(id);
 		OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
-		//QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
-		//context.put("qf", qf);
+		context.put("qf", qf);
 		context.put("torder", entity);
 		context.put("od", od);
-		context.put("ticketsBlock", ticketsBlock);
+		context.put("ticketsBlock", ticketsBlock.toString());
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的toQuote1方法");
 		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/toQuote1",sessionuser.getId(),"",""));

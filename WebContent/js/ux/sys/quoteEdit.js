@@ -717,7 +717,7 @@ itour.quoteEdit = function(){
 			            }  
 			        }  
 		    }); */
-			$("input[name='rtbtn']").click(_this.saveQuoteForm);
+			//$("input[name='rtbtn']").click(_this.saveQuoteForm);
 			$("input[name='route_checkall']").click(function(){
 				if($(this).attr("checked")){
 					_this.checkedAll("breakfast");

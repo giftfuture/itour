@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>路线价目详情</title>
+<title></title>
 <%-- <script type="text/javascript" src="${basePath }js/jquery-ui-1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="${basePath }js/jquery-ui-1.12.1/jquery-ui.min.css"> --%>
 <%-- <script type="text/javascript" src="${basePath }js/plug-in/jquery.multi-select.js"></script>
@@ -39,7 +39,7 @@
 </tbody></table>
 <table width="80%" cellspacing="0" cellpadding="10" border="0" align="center">
   <tbody><tr>
-    <td class="h1-black">${bean.title }<span class="STYLE27"><input name="rttitle" type="hidden" value="${bean.title }" />
+    <td class="h1-black">${bean.title}<span class="STYLE27"><input name="rttitle" type="hidden" value="${bean.title }" />
     <input name="rtelevation" type="hidden" value="${bean.elevation }" /></span></td>
   </tr>
 </tbody></table>
@@ -56,44 +56,17 @@
           <td class="STYLE126" width="761" valign="top"><span class="STYLE3">简要行程</span><span class="STYLE2">：</span></td>
         </tr>
       </tbody></table>
-      <div id="routetablediv">
-      <table name="routetable" width="80%" cellspacing="1" cellpadding="5" border="0" align="center">
-        <thead><tr>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" height="31"><div class="style18" align="center">
-            <div align="center"><strong><strong>天数</strong></strong></div>
-          </div></td>
-          <td class="STYLE129" valign="middle" align="center" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
-          <strong>行程</strong>
-          </div></td>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
-            <div align="center">里程</div>
-          </div></td>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><div class="STYLE18" align="center" style="width:300px;">
-           	景点
-          </div></td>
-          <td><a name="routeplus"><img alt="" title="添加一行" src="${basePath }images/add.gif"></a></td>
-        </tr>
-        </thead>
-<%--    <tr id=beriefTr_0><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' data-options="width:50"><option 
-		value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option 
-		value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option 
-		value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option 
-		value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option 
-		value='15'>15</option></select></div></td>
-		<td class=STYLE126 width=308 valign=middle><input type='text' class='easyui-textbox' name='tourDesc'></td>
-		<td class=STYLE126 width=50 valign=middle><input name='mileage'  class='easyui-textbox' type='number' min=0 
-		onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" 
-		onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" 
-		onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"></td>
-		<td class=STYLE126 width=124 valign=middle><input name="area" id="area" class="easyui-combobox" style="cursor:pointer"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'auto',editable:false,method:'get',url:'${basePath}areas/allAreas',
-		onChange:function(n,o){ var urlurl = '${basePath}travelItem/queryByScope?scope='+n ;$('#travelItem').combobox('reload',urlurl);}">
-		<input id='travelItem' style="cursor:pointer" name='travelItem' class='easyui-combobox'  
-		 data-options="valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22,formatter:function(row){return '<span><input type=checkbox class=selectId style=vertical-align:middle name=selectId_1491992423815'+row.alias+' value='+row.alias+'>'+row.item+'</span>';},onSelect:function(record){$('input[name=selectId_1491992423815'+record.alias+']').attr('checked', true);},onUnselect:function(record){$('input[name=selectId_1491992423815'+record.alias+']').attr('checked', false);}"/></td>
-		<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' src='images/minus.png' ></a></td></tr>
-		<tr><td class=STYLE126 width=100 valign=middle>详细行程：</td><td style="text-align:left" colspan="4" class=STYLE126 valign=middle>
-		<input type="text" class="easyui-textbox" name=''data-options="width:890,height:34"/></td></tr> --%>
-		  ${qf.beriefTrip }   
-      </table></div>
+      <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tr>
+		    <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
+		  </tr>
+		  <tr>
+		    <td background="images/frame1-2.gif">${qf.showTrip }</td>
+		  </tr>
+		  <tr>
+		    <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
+		  </tr>
+		</table>
       <br></td>
   </tr>
   <tr>
@@ -111,9 +84,9 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>人数： </strong></div></td>
     <td><label> 大人：<span class="style126" >
-    <input name="adults" size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位成人的费用;'" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+    <input name="adults" size="6" style="width:100px" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位成人的费用;'" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
     	元/人&nbsp;&nbsp; 小孩 
-    <input name="children" size="6" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位孩子的费用;' " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+    <input name="children" size="6" style="width:100px" type="number" min=0 class="easyui-numberbox,easyui-validatebox" data-options="precision:2,groupSeparator:',',width:151,height:22,missingMessage:'请填写每位孩子的费用;' " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
     </span> 元/人     
     （
     <input name="isAsAdult" value="isAsAdult" type="radio">
@@ -127,21 +100,10 @@
       。小数点后面的去零取整</span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-    <td><!-- <span class="STYLE144">根据制定行程时所选的景点，按对应的日期显示景点名称及相应各价格明细 ——如果觉得管理后台太麻烦的话也可以直接手动输入 <span class="STYLE145">？ </span><br>
-      </span> -->
-        <br> 
-      添加景区：<a name="addSight" ><img src="images/add.gif" width="16" height="16" ></a> <br>
-      <div id="addsightdiv">
-      	${qf.ticketBlock}</div></td>
+    <td bgcolor="#f0f0f0" style="text-align:left"><p align="right"><strong>门票：</strong></p></td>
+    <td style="text-align:left;padding-left:15px"> ${ticketsBlock}
+       </td>
     <td><div align="center">
-    <c:choose> 
-      <c:when test="${qf.ticketAsadult ==true}">
-            <input name="ticketAsadult" value="" checked="checked" type="checkbox">
-      </c:when><c:otherwise>
-      		<input name="ticketAsadult" value="" type="checkbox">
-      </c:otherwise>	
-      </c:choose>
     </div></td>
     <td><span class="STYLE10">需要进行单独管理（可以按时间点选门票里面的项目，及按日期出来的价格）<br>
       。报价单上面可以显示或不显示门票明细及价格<br>
@@ -149,35 +111,34 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件</strong></div></td>
-    <td>添加证件：<a name="addCard" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加证件：<a name="addCard" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="addcarddiv">
-    ${qf.travelDocs }
+    <span class=STYLE126><input name=card size=20 type=text>&nbsp;&nbsp;
+            <input name=cardprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+           元/人&nbsp;&nbsp;备注：<input name=cardremark size=20 type=text><a name=minusCard><img src=images/minus.png onclick='javascript:itour.quoteEdit.sightMinus(this)' width=20 height=20 ></a></span>
    </div></td>
     <td><div align="center">
-    <c:choose> 
-    	<c:when test="${qf.traveldocAsadult==true }">
-      <input name="traveldocAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="traveldocAsadult" type="checkbox">
-    	</c:otherwise>
-   	</c:choose>
     </div></td>
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-    <td>添加导游：<a name="addGuide" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加导游：<a name="addGuide" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="addGuideDiv">
-   ${qf.tourGuide }
+    <span class=style126> 
+            <br><input name=alltheway value=全程 size=10 type=text> 
+          <select name=choselanguage id=choselanguage> 
+            <option>选择语种</option> 
+            <option value=中文>中文</option> 
+            <option value=英文>英文</option> 
+          </select>&nbsp;&nbsp; 
+        <input name=priceperday size=6  style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+        元/天 &nbsp;&nbsp;X 
+          <input name=days  size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+            天 &nbsp;&nbsp;备注：<input name=guideremark size=10 type=text>
+            <a name=guideminus onclick='javascript:itour.quoteEdit.guideMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> 
    </div></td>
     <td><div align="center">
-    <c:choose> 
-      <c:when test="${qf.tourguideAsadult==true }">
-      <input name="tourguideAsadult" type="checkbox" checked="checked">
-      </c:when><c:otherwise>
-      <input name="tourguideAsadult" type="checkbox">
-      </c:otherwise>
-     </c:choose>
     </div></td>
     <td><span class="STYLE10">。多少钱一天在后台根据淡旺季和语种管理<br>
       。天数默认为行程天数<br>
@@ -198,18 +159,21 @@
     <td bgcolor="#f0f0f0"><strong>用车：
     <br>
     </strong></td>
-    <td>添加用车：<a name="addusecar" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加用车：<a name="addusecar" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="addcardiv">
-    ${qf.rentCar }
+    <span class=STYLE126><input name=alltheway value=全程 size=10 type=text>&nbsp;&nbsp; 
+<input name=carprice size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+            元/ <select name=carstyle id=carstyle> 
+            <option selected=selected>方式</option> 
+            <option value=天>天</option> 
+            <option value=公里>公里 </option> 
+            <option value=趟>趟</option> 
+              </select>
+              X<input name=carcount size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+                数量&nbsp;&nbsp;　备注： 
+              <input name=carremark size=20 type=text><a name=carminus onclick='javascript:itour.quoteEdit.carMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
     </div></td>
     <td><div align="center">
-    <c:choose> 
-      <c:when test="${qf.rentcarAsadult==true }">
-      <input name="rentcarAsadult" checked="checked" type="checkbox">
-      </c:when><c:otherwise>
-       <input name="rentcarAsadult" type="checkbox">
-      </c:otherwise>	
-    </c:choose>
     </div></td>
     <td><span class="STYLE10">——算出总价，平摊到团员。<br>
     方式若选择天的话，自动在后面的数量里面补上1（这个容易被忘掉，那算出来就变成 0了）</span></td>
@@ -217,31 +181,16 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>大交通：<br>
     </strong></div></td>
-    <td>添加大交通：<a name="addbigtraffic" ><img src="images/add.gif" width="16" height="16" ></a> 
-    <c:choose>
-    	<c:when test="${qf.bigtrafficeAsadult==true }">
-    	    <label>
-        <input name="train-ticket" value="bigTrafficSum" checked="checked"type="radio">
-      计入总价
-      </label>
-      <label>
-        <input name="train-ticket" value="train-ticket"  type="radio">
-        另外核算</label>
-      （火车票、机票、大巴票等）<br>
-    	</c:when><c:otherwise>
-    	    <label>
-        <input name="train-ticket" value="bigTrafficSum" type="radio">
-      计入总价
-      </label>
-      <label>
-        <input name="train-ticket" value="train-ticket" checked="checked" type="radio">
-        另外核算</label>
-      （火车票、机票、大巴票等）<br>
-    	</c:otherwise>
-    </c:choose>
+    <td style="text-align:left">添加大交通：<a name="addbigtraffic" ><img src="images/add.gif" width="16" height="16" ></a> 
+      <label><input name="train-ticket" value="bigTrafficSum" checked="checked"type="radio">计入总价 </label>
+      <label><input name="train-ticket" value="train-ticket"  type="radio">另外核算</label>
+      （火车票、机票、大巴票等） 
     	<div id="addbigtrafficdiv">
-  			${qf.bigTraffic }
-            </div>  </td>
+ 		<span class=STYLE126><input name='traffic' type='text' > 
+		<input name=trafficperprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+		元/ 人 &nbsp;&nbsp;备注： <input name=trafficremark size=20 type=text>
+		<a name='trafficminus' onclick='javascript:itour.quoteEdit.trafficMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
+    </div></td>
     <td><div align="center">
       <input name="bigtrafficeAsadult" checked="checked" type="checkbox">
     </div></td>
@@ -252,11 +201,25 @@
     <td bgcolor="#f0f0f0">
     <div align="right"><strong>用餐：<br>
     </strong></div></td>
-    <td>添加用餐：<a name="adddinner" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加用餐：<a name="adddinner" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="dinnerblock">
-	${qf.dinner }
-	</div></td>
-    <td><div align="center">
+    <label><input name="dinnerprice" type="checkbox" checked="checked"></label>
+      餐标：<span class="style126">
+        <input name="singledinner" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" type="number" size="6" min="0" value="30" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+        </span>元/人餐<br>
+	<div id="specialdinnerblock">
+	<table border="0" cellspacing="0" cellpadding="2">
+	<tbody><tr><td><a name='addspecialdinner'><img src='images/add.gif' width=16 height=16 ></a></td><td rowspan=3>安排特色餐： <select name='province'><option>四川</option> <option>云南</option> <option>西藏</option><option>新疆</option> </select></td></tr></tbody>
+		<tbody><tr><td><input name=district size=10 type=text></td>
+		<td><span class=style126>餐名：<input name=dinnername size=10 type=text>&nbsp; 
+		<input name=dinnerprice size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">元/人 </span></td> 
+		<td><a name='addsingledinner'><img src=images/add.gif width=16 height=16 ></a></td></tr></tbody>
+		<tbody><tr><td><input name=district size=10 type=text></td><td>餐名：<input name=dinnername size=10 type=text>&nbsp; 
+		<input name=dinnerprice size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"> 
+		元/人</td><td><a name='addsingledinner'><img src=images/add.gif width=16 height=16 ></a></td> </tr></tbody>
+		</table>
+	  </div></div></td> 
+    <div align="center">
       <!-- <input name="checkbox34" value="checkbox" checked="checked" type="checkbox"> -->
     </div>
     </td>
@@ -266,54 +229,47 @@
   <tr>
     <td bgcolor="#f0f0f0">
     <div align="right"><strong>保险：</strong></div></td>
-    <td>添加保险：<a name="addinsurance" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加保险：<a name="addinsurance" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="insurancediv">
-    ${qf.insurance }
-        </div></td>
+    <span class=style126><br><select name=insuranceselect id=insuranceselect> 
+          <option value=人>内宾旅游意外保险</option> 
+          <option value=团>入境旅游意外保险</option> 
+          </select> 
+          <input name=insuranceprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+                   元/人&nbsp;&nbsp;备注： 
+            <input name=insuranceremark size=20 type=text> 
+            <a name=insuranceminus onclick='javascript:itour.quoteEdit.insuranceMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
+     </div></td>
     <td><div align="center">
-      <c:choose>
-      	<c:when test="${qf.insuranceAsadult==true }">
       <input name="insuranceAsadult" checked="checked" type="checkbox">      	
-      	</c:when>
-      	<c:otherwise>
-      	 <input name="insuranceAsadult" type="checkbox">      	
-      	</c:otherwise>
-      </c:choose>	
     </div></td>
     <td><span class="STYLE10">内宾10元，外宾30元 </span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0">
     <div align="right"><strong>综费</strong>：</div></td>
-    <td>添加综费：<a name="addallfees" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加综费：<a name="addallfees" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="allfeesdiv">
-		${qf.comprehensiveCosts }
+		<span class=style126> 
+      <input name=feeName value='旅行社综合服务费' size=20 type=text> 
+         <input name=feeperperson size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+        元/人&nbsp;&nbsp;备注： <input name=feeremark size=20 type=text> 
+      <a name=allfeeminus onclick='javascript:itour.quoteEdit.allfeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
       </div></td>
     <td><div align="center">
-    <c:choose>
-    	<c:when test="${qf.comphcostAsadult==true }">
-       <input name="comphcostAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="comphcostAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="style10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-    <td>添加娱乐：<a name="addjoys" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加娱乐：<a name="addjoys" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="addjoysdiv">
-		${qf.recreation }
+		<span class=STYLE126><input name=joyitem size=20 type=text> 
+<input name=perjoyprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+元/人　&nbsp;&nbsp;备注：<input name=joyremark size=20 type=text>
+<a name=joyminus onclick='javascript:itour.quoteEdit.joyMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
        </div></td>
     <td><div align="center">
-     <c:choose>
-    	<c:when test="${qf.comphcostAsadult==true }">
-      <input name="recreationAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="recreationAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="style10"></span></td>
   </tr>
@@ -322,87 +278,81 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>向导</strong></div></td>
-    <td>添加徒步向导：<a name="addhikingguide" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加徒步向导：<a name="addhikingguide" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="hikingguidediv">
-		${qf.itemGuide }
+		<span class=style126> 
+            <input name=hikingitem size=20 type=text> 
+            <input name=guidename size=4 type=text> 向导数 X 
+            <input name=guideperday size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"> 元/天 X   
+            <input name=guidedays size=4 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"> 天　&nbsp;&nbsp;备注： 
+            <input name=hikingguideremark size=20 type=text> 
+            <a name=joyminus onclick='javascript:itour.quoteEdit.joyMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> 
    	</div></td>       
     <td><div align="center">  
-       <c:choose>
-    	<c:when test="${qf.itemguideAsadult==true }">
       <input name="itemguideAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="itemguideAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="style10">——算出总价，平摊到团员。</span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费</strong></div></td>
-    <td>添加驮马费：<a name="addbathorseCost" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加驮马费：<a name="addbathorseCost" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="bathorseCostdiv">
-		${qf.bathorseCost }
+		<span class=STYLE126><br><input name=bathorseCost size=20 type=text> 
+			<input name=bathorsenum size=4 style=width:50px type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+			马匹数 X<input name=bathorseperday size=6 style=width:50px type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+			元/天  X  <input name=bathorseprice size=4 style=width:50px type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+			天　&nbsp;&nbsp;备注：<input name=bathorseremark size=20 type=text> <a name=bathorseminus onclick='javascript:itour.quoteEdit.bathhorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
         </div></td>
     <td><div align="center">
-     <c:choose>
-    	<c:when test="${qf.bathcostAsadult==true }">
       <input name="bathcostAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="bathcostAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="STYLE10">——算出总价，平摊到团员。</span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费</strong></div></td>
-    <td>添加骑马费：<a name="addridehorseCost" id="addridehorseCost" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加骑马费：<a name="addridehorseCost" id="addridehorseCost" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="ridehorseCostdiv">
-		${qf.ridehorseCost }
-       </div>
+	<span class=style126> 
+		<input name='ridehorse' size=20 type='text'> 
+		<input name='ridehorseperday' size=6 type='text'> 
+		元/天  X<input name='ridehorsedays'  style="width:50" size=4 type='text'>天　&nbsp;&nbsp;备注： 
+		<input name='ridehorseremark' size=20 type='text'> 
+		<a name='rideorseminus' onclick='javascript:itour.quoteEdit.ridehorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> 　
+		</div>
      </td>
     <td><div align="center">
-    <c:choose>
-    	<c:when test="${qf.ridecostAsadult==true }">
       <input name="ridecostAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="ridecostAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="STYLE10">？若只是部分客人的怎么办？单独写在备注里面</span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费</strong></div></td>
-    <td>添加登山注册费：<a name="addclimbregisterCost" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加登山注册费：<a name="addclimbregisterCost" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="climbregisterdiv"> 
-   		${qf.climbRegisterCost }
-      </div></td>
+   		<span class=style126> 
+		<input name=climbRegister size=20 type=text>&nbsp;&nbsp;<input name=climbRegisterperday size=6 type=text> 
+		元/天  X<input name=climbRegisterdays size=4 style="width:50" type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+		天　&nbsp;&nbsp;备注：<input name=climbRegisterremark size=20 type=text> 
+		<a name=climbRegisterminus onclick='javascript:itour.quoteEdit.climbRegisterMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
+		</div></td>
     <td><div align="center">
-    <c:choose>
-    	<c:when test="${qf.climbrcostAsadult==true }">
       <input name="climbrcostAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="climbrcostAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="style10"></span></td>
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>登协联络官</strong></div></td>
-    <td>添加登协联络官：<a name="addclimbnexusCost" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">添加登协联络官：<a name="addclimbnexusCost" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="climbnexusdiv">
-		${qf.climbNexusCost }	
+		<span class=style126> 
+		<input name=climbnexus size=20 type=text><input style='width:50px;' name=climbnexusnum value=1 size=4 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">人数 X
+		<input name=climbnexusperday style='width:50px;' size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">元/天  X 
+		<input name=climbnexusdays style='width:50px;' size=4 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">天　&nbsp;&nbsp;备注：
+		<input name=climbnexusremark size=20 type=text>
+		<a name=climbnexusminus onclick='javascript:itour.quoteEdit.climbnexusMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
       </div></td>
     <td><div align="center">
-     <c:choose>
-    	<c:when test="${qf.climbncostAsadult==true }">
       <input name="climbncostAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="climbncostAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="STYLE10"></span></td>
   </tr>
@@ -411,29 +361,31 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>其它 </strong></div></td>
-    <td>其他费用：<a name="addelseitem" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <td style="text-align:left">其他费用：<a name="addelseitem" ><img src="images/add.gif" width="16" height="16" ></a> 
     <div id="elseitemdiv">
-   	${qf.elseCost }
+   	<span class=STYLE126> 
+<input name=elseitem size=20 type=text> 
+<input name=elseitemprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+ 元/ <select name=elseitemstyle id=elseitemstyle>
+ <option selected=selected>方式</option>
+ <option value=人>人</option>
+ <option value=团>团</option>
+</select>&nbsp;&nbsp;备注：<input name=elseitemremark size=20 type=text>
+ <a name=elseitemminus onclick='javascript:itour.quoteEdit.elsefeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>
      </div>
       </td>
     <td><div align="center">
-     <c:choose>
-    	<c:when test="${qf.elsecostAsadult==true }">
       <input name="elsecostAsadult" checked="checked" type="checkbox">
-    	</c:when><c:otherwise>
-      <input name="elsecostAsadult" type="checkbox">
-    	</c:otherwise>
-    </c:choose>
     </div></td>
     <td><span class="style10"></span></td>
   </tr>
   <tr>
     <td><div align="right"></div></td>
-    <td>赠送项目：<textarea rows="3" cols="80" name="presented" value="">${qf.presented }</textarea></td>
+    <td style="text-align:left">赠送项目：<textarea rows="3" cols="80" name="presented" value="">氧气，每日饮用水</textarea></td>
     <td><div align="center"></div></td>
     <td><span class="STYLE10"></span></td>
   </tr>
-  <tr><td><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
+  <tr><td><a href="${basePath }travelOrder/toQuote2/${torder.id}/${bean.id}"><input type="button" name="rtbtn" value="芝麻开门"/></a><div id="alertMessage"></div></td></tr>
 <%--   <tr>
     <td><div align="right">核算价格：</div></td>
     <td><label></label>
@@ -462,7 +414,7 @@
 </div>
 </form:form>
 <iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe> 
-<script type="text/javascript" src="${basePath}js/ux/sys/quoteEdit.js"></script>
+<script type="text/javascript" src="${basePath}js/ux/sys/quote_step1.js"></script>
 </body>
 </html>
 

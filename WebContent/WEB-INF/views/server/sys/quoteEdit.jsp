@@ -136,7 +136,7 @@
       	${qf.ticketBlock}</div></td>
     <td><div align="center">
     <c:choose> 
-      <c:when test="${qf.ticketAsadult ==true}">
+      <c:when test="${qf.ticketAsadult == 1}">
             <input name="ticketAsadult" value="" checked="checked" type="checkbox">
       </c:when><c:otherwise>
       		<input name="ticketAsadult" value="" type="checkbox">
@@ -155,7 +155,7 @@
    </div></td>
     <td><div align="center">
     <c:choose> 
-    	<c:when test="${qf.traveldocAsadult==true }">
+    	<c:when test="${qf.traveldocAsadult== 1 }">
       <input name="traveldocAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="traveldocAsadult" type="checkbox">
@@ -172,7 +172,7 @@
    </div></td>
     <td><div align="center">
     <c:choose> 
-      <c:when test="${qf.tourguideAsadult==true }">
+      <c:when test="${qf.tourguideAsadult== 1 }">
       <input name="tourguideAsadult" type="checkbox" checked="checked">
       </c:when><c:otherwise>
       <input name="tourguideAsadult" type="checkbox">
@@ -204,7 +204,7 @@
     </div></td>
     <td><div align="center">
     <c:choose> 
-      <c:when test="${qf.rentcarAsadult==true }">
+      <c:when test="${qf.rentcarAsadult== 1 }">
       <input name="rentcarAsadult" checked="checked" type="checkbox">
       </c:when><c:otherwise>
        <input name="rentcarAsadult" type="checkbox">
@@ -219,7 +219,7 @@
     </strong></div></td>
     <td>添加大交通：<a name="addbigtraffic" ><img src="images/add.gif" width="16" height="16" ></a> 
     <c:choose>
-    	<c:when test="${qf.bigtrafficeAsadult==true }">
+    	<c:when test="${qf.bigtrafficeAsadult== 1 }">
     	    <label>
         <input name="train-ticket" value="bigTrafficSum" checked="checked"type="radio">
       计入总价
@@ -272,7 +272,7 @@
         </div></td>
     <td><div align="center">
       <c:choose>
-      	<c:when test="${qf.insuranceAsadult==true }">
+      	<c:when test="${qf.insuranceAsadult== 1 }">
       <input name="insuranceAsadult" checked="checked" type="checkbox">      	
       	</c:when>
       	<c:otherwise>
@@ -291,7 +291,7 @@
       </div></td>
     <td><div align="center">
     <c:choose>
-    	<c:when test="${qf.comphcostAsadult==true }">
+    	<c:when test="${qf.comphcostAsadult== 1 }">
        <input name="comphcostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="comphcostAsadult" type="checkbox">
@@ -308,7 +308,7 @@
        </div></td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.comphcostAsadult==true }">
+    	<c:when test="${qf.comphcostAsadult== 1 }">
       <input name="recreationAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="recreationAsadult" type="checkbox">
@@ -328,7 +328,7 @@
    	</div></td>       
     <td><div align="center">  
        <c:choose>
-    	<c:when test="${qf.itemguideAsadult==true }">
+    	<c:when test="${qf.itemguideAsadult== 1 }">
       <input name="itemguideAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="itemguideAsadult" type="checkbox">
@@ -345,7 +345,7 @@
         </div></td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.bathcostAsadult==true }">
+    	<c:when test="${qf.bathcostAsadult== 1 }">
       <input name="bathcostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="bathcostAsadult" type="checkbox">
@@ -363,7 +363,7 @@
      </td>
     <td><div align="center">
     <c:choose>
-    	<c:when test="${qf.ridecostAsadult==true }">
+    	<c:when test="${qf.ridecostAsadult== 1 }">
       <input name="ridecostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="ridecostAsadult" type="checkbox">
@@ -380,7 +380,7 @@
       </div></td>
     <td><div align="center">
     <c:choose>
-    	<c:when test="${qf.climbrcostAsadult==true }">
+    	<c:when test="${qf.climbrcostAsadult== 1 }">
       <input name="climbrcostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="climbrcostAsadult" type="checkbox">
@@ -397,7 +397,7 @@
       </div></td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.climbncostAsadult==true }">
+    	<c:when test="${qf.climbncostAsadult== 1 }">
       <input name="climbncostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="climbncostAsadult" type="checkbox">
@@ -418,7 +418,7 @@
       </td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.elsecostAsadult==true }">
+    	<c:when test="${qf.elsecostAsadult== 1 }">
       <input name="elsecostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="elsecostAsadult" type="checkbox">

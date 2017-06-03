@@ -8,7 +8,7 @@
 <title>${rt.title}</title>
 </head>
 <body>
-<form:form method="post" id="back_form" action="${basePath }travelOrder/list">
+<form:form method="get" id="back_form" action="${basePath }travelOrder/toQuote1/${torder.id}/${bean.id}">
 <a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
 </form:form>
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
