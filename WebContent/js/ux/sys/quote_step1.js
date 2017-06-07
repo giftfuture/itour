@@ -325,8 +325,193 @@ itour.quoteEdit = function(){
 				//console.log("data.success="+data.success);
 				itour.alert("提示",result.msg,"info");
 			});
-		
 		},	
+		saveQuoteOrder:function(){
+			var formData = new Object();
+			//formData["id"] = $("input[name='id']").val();
+			//formData["rtid"] = $("input[name='rtid']").val();
+			//formData["torderid"] = $("input[name='torderid']").val();
+			//formData["adultPrice"] = $("input[name='adults']").val();
+			//formData["childPrice"] = $("input[name='children']").val();
+			formData["adultticketsBlock"]="";
+			formData["adultticketTotalPrice"] = 0;
+			if($("#adultticketsBlock span").length>0){
+				$("#adultticketsBlock span").each(function(i,e){
+					if($(e).next().attr("checked") == true ||$(e).next().attr("checked") == "checked"){
+						formData["adultticketsBlock"] +=e.outerHTML+"<br/>";
+						var thisprice = $("span",$(e)).text();
+						formData["adultticketTotalPrice"]+=parseFloat(thisprice);
+					}
+				})
+			}
+			formData["quotetraveldocadultsBlock"]="";
+			formData["quotetraveldocadultsSumCost"] = 0 ;
+			if($("#addcarddiv span.STYLE126").length>0){
+				$("#addcarddiv span.STYLE126").each(function(i,e){
+					if($("input[name='card']",$(e)).val() && $("input[name='cardprice']",$(e)).val()){
+						formData["quotetraveldocadultsBlock"] += "<span>" + $("input[name='card']",$(e)).val()+"&nbsp;&nbsp;:&nbsp;&nbsp;"+$("input[name='cardprice']",$(e)).val()+"元/人</span><br/>";
+		  				formData["quotetraveldocadultsSumCost"]+=parseFloat($("input[name='cardprice']",$(e)).val());
+					}
+				})
+			}
+			formData["quotetourguideadultsBlock"]="";
+			formData["quotetourguideadultsSumCost"]=0;
+			if($("#addGuideDiv span.style126").length>0){
+				$("#addGuideDiv span.style126").each(function(i,e){
+					if($("input[name='alltheway']",$(e)).val() && $("select[name='choselanguage']",$(e)).val() && $("input[name='priceperday']",$(e)).val() && $("input[name='days']",$(e)).val()){
+						formData["quotetourguideadultsBlock"]+= "<span>" + $("input[name='alltheway']",$(e)).val()+"&nbsp;&nbsp;"+$("select[name='choselanguage']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='priceperday']",$(e)).val()+"元/天X"+$("input[name='days']",$(e)).val()+"天"+"</span><br/>";
+						formData["quotetourguideadultsSumCost"]+=parseFloat($("input[name='priceperday']",$(e)).val())*parseFloat($("input[name='days']",$(e)).val());
+					}
+				})
+			}
+			formData["quoterentcaradultsBlock"]="";
+			formData["quoterentcaradultsSumCost"]=0;
+			if($("#addcardiv span.STYLE126").length>0){
+				$("#addcardiv span.STYLE126").each(function(i,e){
+					if($("input[name='alltheway']",$(e)).val() && $("input[name='carprice']",$(e)).val() && $("select[name='carstyle']",$(e)).val() && $("input[name='carcount']",$(e)).val()){
+						formData["quoterentcaradultsBlock"]+="<span>" + $("input[name='alltheway']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='carprice']",$(e)).val()+"元/"+$("select[name='carstyle']",$(e)).val()+"X"+$("input[name='carcount']",$(e)).val()+"</span><br/>";
+						formData["quoterentcaradultsSumCost"]+=parseFloat($("input[name='carprice']",$(e)).val())*parseFloat($("input[name='carcount']",$(e)).val());
+					}
+				})
+			}
+			formData["quotebigtrafficadultsBlock"] = "";
+			formData["quotebigtrafficadultsSumCost"] = 0;
+			if($("#addbigtrafficdiv span.STYLE126").length>0){
+				$("#addbigtrafficdiv span.STYLE126").each(function(i,e){
+					if($("input[name='traffic']",$(e)).val() && $("input[name='trafficperprice']",$(e)).val()){
+						formData["quotebigtrafficadultsBlock"]+="<span>" + $("input[name='traffic']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='trafficperprice']",$(e)).val()+"元/人</span><br/>";
+						formData["quotebigtrafficadultsSumCost"]+=parseFloat($("input[name='trafficperprice']",$(e)).val());
+					}
+				})
+			}
+			formData["quoteinsuranceadultsBlock"] = "";
+			formData["quoteinsuranceadultsSumCost"] = 0;
+			if($("#insurancediv span.STYLE126").length>0){
+				$("#insurancediv span.STYLE126").each(function(i,e){
+					if($("select[name='insuranceselect']",$(e)).val() && $("input[name='insuranceprice']",$(e)).val()){
+						formData["quoteinsuranceadultsBlock"]+="<span>" + $("select[name='insuranceselect']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='insuranceprice']",$(e)).val()+"元/人</span><br/>";
+						formData["quoteinsuranceadultsSumCost"] += parseFloat($("input[name='insuranceprice']",$(e)).val());
+					}
+				})
+			}
+			formData["quotecomphcostadultsBlock"] = "";
+			formData["quotecomphcostadultsSumCost"] = 0;
+			if($("#allfeesdiv span.style126").length>0){
+				$("#allfeesdiv span.style126").each(function(i,e){
+					if($("input[name='feeName']",$(e)).val() && $("input[name='feeperperson']",$(e)).val()){
+						formData["quotecomphcostadultsBlock"]+="<span>" + $("input[name='feeName']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='feeperperson']",$(e)).val()+"元/人</span><br/>";
+						formData["quotecomphcostadultsSumCost"] += parseFloat($("input[name='feeperperson']",$(e)).val());
+					}
+				})
+			}
+			formData["quoterecreationadultsBlock"] = "";
+			formData["quoterecreationadultsSumCost"] = 0;
+			if($("#addjoysdiv span.STYLE126").length>0){
+				$("#addjoysdiv span.STYLE126").each(function(i,e){
+					if($("input[name='joyitem']",$(e)).val() && $("input[name='perjoyprice']",$(e)).val()){
+						formData["quoterecreationadultsBlock"]+="<span>" + $("input[name='joyitem']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='perjoyprice']",$(e)).val()+"元/人</span><br/>";
+						formData["quoterecreationadultsSumCost"] += parseFloat($("input[name='perjoyprice']",$(e)).val());
+					}
+				})
+			}
+			formData["quoteitemguidecadultsBlock"] = "";
+			formData["quoteitemguidecadultsSumCost"] = 0;
+			if($("#hikingguidediv span.style126").length>0){ 
+				$("#hikingguidediv span.style126").each(function(i,e){
+					if($("input[name='hikingitem']",$(e)).val() && $("input[name='guidename']",$(e)).val() && $("input[name='guideperday']",$(e)).val() && $("input[name='guidedays']",$(e)).val()){
+						formData["quoteitemguidecadultsBlock"]+="<span>" + $("input[name='hikingitem']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='guidename']",$(e)).val()+"向导数X"+$("input[name='guideperday']",$(e)).val()+"元/天X"+$("input[name='guidedays']",$(e)).val()+"天</span><br/>";
+						formData["quoteitemguidecadultsSumCost"] += parseFloat($("input[name='guidename']",$(e)).val())*parseFloat($("input[name='guideperday']",$(e)).val())*parseFloat($("input[name='guidedays']",$(e)).val());
+					}
+				})
+			}
+			formData["quotebathorseadultsBlock"] = "";
+			formData["quotebathorseadultsSumCost"] = 0;
+			if($("#bathorseCostdiv span.STYLE126").length>0){ 
+				$("#bathorseCostdiv span.STYLE126").each(function(i,e){
+					if($("input[name='bathorseCost']",$(e)).val() && $("input[name='bathorsenum']",$(e)).val() && $("input[name='bathorseperday']",$(e)).val() && $("input[name='bathorseprice']",$(e)).val()){
+						formData["quotebathorseadultsBlock"]+="<span>" + $("input[name='bathorseCost']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='bathorsenum']",$(e)).val()+"马匹数X"+$("input[name='bathorseperday']",$(e)).val()+"元/天X"+$("input[name='bathorseprice']",$(e)).val()+"天</span><br/>";
+						formData["quotebathorseadultsSumCost"] += parseFloat($("input[name='bathorsenum']",$(e)).val())*parseFloat($("input[name='bathorseperday']",$(e)).val())*parseFloat($("input[name='bathorseprice']",$(e)).val());
+					}
+				})
+			}
+			formData["quoteridehorseadultsBlock"] = "";
+			formData["quoteridehorseadultsSumCost"] = 0;
+			if($("#ridehorseCostdiv span.style126").length>0){ 
+				$("#ridehorseCostdiv span.style126").each(function(i,e){
+					if($("input[name='ridehorse']",$(e)).val() && $("input[name='ridehorseperday']",$(e)).val() && $("input[name='ridehorsedays']",$(e)).val()){
+						formData["quoteridehorseadultsBlock"]+="<span>" + $("input[name='ridehorse']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='ridehorseperday']",$(e)).val()+"元/天X"+$("input[name='ridehorsedays']",$(e)).val()+"天</span><br/>";
+						formData["quoteridehorseadultsSumCost"] += parseFloat($("input[name='ridehorseperday']",$(e)).val())*parseFloat($("input[name='ridehorsedays']",$(e)).val());
+					}
+				})
+			}
+			formData["quoteclimbregisteradultsBlock"] = "";
+			formData["quoteclimbregisteradultsSumCost"] = 0;
+			if($("#climbregisterdiv span.style126").length>0){ 
+				$("#climbregisterdiv span.style126").each(function(i,e){
+					if($("input[name='climbRegister']",$(e)).val() && $("input[name='climbRegisterperday']",$(e)).val() && $("input[name='climbRegisterdays']",$(e)).val()){
+						formData["quoteclimbregisteradultsBlock"]+="<span>" + $("input[name='climbRegister']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='climbRegisterperday']",$(e)).val()+"元/天X"+$("input[name='climbRegisterdays']",$(e)).val()+"天</span><br/>";
+						formData["quoteclimbregisteradultsSumCost"] += parseFloat($("input[name='climbRegisterperday']",$(e)).val())*parseFloat($("input[name='climbRegisterdays']",$(e)).val());
+					}
+				})
+			}
+			formData["quoteclimbnexusadultsBlock"] = "";
+			formData["quoteclimbnexusadultsSumCost"] = 0;
+			if($("#climbnexusdiv span.style126").length>0){ 
+				$("#climbnexusdiv span.style126").each(function(i,e){
+					if($("input[name='climbnexus']",$(e)).val() && $("input[name='climbnexusnum']",$(e)).val() && $("input[name='climbnexusperday']",$(e)).val() && $("input[name='climbnexusdays']",$(e)).val()){
+						formData["quoteclimbnexusadultsBlock"]+="<span>" + $("input[name='climbnexus']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='climbnexusnum']",$(e)).val()+"人数X"+$("input[name='climbnexusperday']",$(e)).val()+"元/天X"+$("input[name='climbnexusdays']",$(e)).val()+"天</span><br/>";
+						formData["quoteclimbnexusadultsSumCost"] += parseFloat($("input[name='climbnexusnum']",$(e)).val())*parseFloat($("input[name='climbnexusperday']",$(e)).val())*parseFloat($("input[name='climbnexusdays']",$(e)).val());
+					}
+					})
+			}
+			formData["quoteelsecostadultsBlock"] = "";
+			formData["quoteelsecostadultsSumCost"] = 0;
+			if($("#elseitemdiv span.style126").length>0){ 
+				$("#elseitemdiv span.style126").each(function(i,e){
+					if($("input[name='elseitem']",$(e)).val() && $("input[name='elseitemprice']",$(e)).val() && $("select[name='elseitemstyle']",$(e)).val()){
+						formData["quoteelsecostadultsBlock"]+="<span>" + $("input[name='elseitem']",$(e)).val()+"&nbsp;&nbsp;"+$("input[name='elseitemprice']",$(e)).val()+"元/"+$("select[name='elseitemstyle']",$(e)).val()+"</span><br/>";
+						formData["quoteelsecostadultsSumCost"] += parseFloat($("input[name='elseitemprice']",$(e)).val());
+					}
+				})
+			}
+			$("input[name='adultticketTotalPrice']").val(formData["adultticketTotalPrice"]);
+			$("input[name='adultticketsBlock']").val(formData["adultticketsBlock"]);
+			$("input[name='quotetraveldocadultsBlock']").val(formData["quotetraveldocadultsBlock"]);
+			$("input[name='quotetourguideadultsBlock']").val(formData["quotetourguideadultsBlock"]);
+			$("input[name='quoterentcaradultsBlock']").val(formData["quoterentcaradultsBlock"]);
+			$("input[name='quotebigtrafficadultsBlock']").val(formData["quotebigtrafficadultsBlock"]);
+			$("input[name='quoteinsuranceadultsBlock']").val(formData["quoteinsuranceadultsBlock"]);
+			$("input[name='quotecomphcostadultsBlock']").val(formData["quotecomphcostadultsBlock"]);
+			$("input[name='quoterecreationadultsBlock']").val(formData["quoterecreationadultsBlock"]);
+			$("input[name='quoteitemguidecadultsBlock']").val(formData["quoteitemguidecadultsBlock"]);
+			$("input[name='quotebathorseadultsBlock']").val(formData["quotebathorseadultsBlock"]);
+			$("input[name='quoteridehorseadultsBlock']").val(formData["quoteridehorseadultsBlock"]);
+			$("input[name='quoteclimbregisteradultsBlock']").val(formData["quoteclimbregisteradultsBlock"]);
+			$("input[name='quoteclimbnexusadultsBlock']").val(formData["quoteclimbnexusadultsBlock"]);
+			$("input[name='quoteelsecostadultsBlock']").val(formData["quoteelsecostadultsBlock"]);
+			
+			$("input[name='quotetraveldocadultsSumCost']").val(formData["quotetraveldocadultsSumCost"]);
+			$("input[name='quotetourguideadultsSumCost']").val(formData["quotetourguideadultsSumCost"]);
+			$("input[name='quoterentcaradultsSumCost']").val(formData["quoterentcaradultsSumCost"]);
+			$("input[name='quotebigtrafficadultsSumCost']").val(formData["quotebigtrafficadultsSumCost"]);
+			$("input[name='quoteinsuranceadultsSumCost']").val(formData["quoteinsuranceadultsSumCost"]);
+			$("input[name='quotecomphcostadultsSumCost']").val(formData["quotecomphcostadultsSumCost"]);
+			$("input[name='quoterecreationadultsSumCost']").val(formData["quoterecreationadultsSumCost"]);
+			$("input[name='quoteitemguidecadultsSumCost']").val(formData["quoteitemguidecadultsSumCost"]);
+			$("input[name='quotebathorseadultsSumCost']").val(formData["quotebathorseadultsSumCost"]);
+			$("input[name='quoteridehorseadultsSumCost']").val(formData["quoteridehorseadultsSumCost"]);
+			$("input[name='quoteclimbregisteradultsSumCost']").val(formData["quoteclimbregisteradultsSumCost"]);
+			$("input[name='quoteclimbnexusadultsSumCost']").val(formData["quoteclimbnexusadultsSumCost"]);
+			$("input[name='quoteelsecostadultsSumCost']").val(formData["quoteelsecostadultsSumCost"]);
+			var actionurl=basePath+"travelOrder/toQuote2";
+			//console.log($("input[name='adultticketsBlock']").val());
+			document.forms["quoteEditForm"].action = actionurl ;
+			document.forms["quoteEditForm"].submit();
+			///$.post(actionurl, formData, function(result) {
+				//console.log("data.success="+data.success);
+				//itour.alert("提示",result.msg,"info");
+			//});
+		},
 		dinnerPlus:function(){
 			var insertDinner="<tbody><tr><td><a name='addspecialdinner'><img src='images/add.gif' width=16 height=16 ></a></td><td rowspan=3>安排特色餐： <select name='province'><option>四川</option> <option>云南</option> <option>西藏</option><option>新疆</option> </select></td></tr></tbody>"+
 			"<tbody><tr><td><input name=district size=10 type=text></td>"+
@@ -407,7 +592,7 @@ itour.quoteEdit = function(){
 		},
 		guidePlus:function(){
 			var insertBlock="<span class=style126>"+
-			"<br><input name=alltheway value=全程 size=10 type=text>"+
+			"<br><input name=alltheway value=全程 size=10 type=text>&nbsp;&nbsp;"+
           "<select name=choselanguage id=choselanguage>"+
             "<option>选择语种</option>"+
             "<option value=中文>中文</option>"+
@@ -442,7 +627,7 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},trafficPlus:function(){
 			var insertBlock="<span class=STYLE126><br> "+
-			"<input name='traffic' type='text' >"+
+			"<input name='traffic' type='text' >&nbsp;&nbsp;"+
 			"<input name=trafficperprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
         	"元/ 人 &nbsp;&nbsp;备注： <input name=trafficremark size=20 type=text>" +
         	"<a name=trafficminus onclick='javascript:itour.quoteEdit.trafficMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
@@ -451,9 +636,9 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},insurancePlus:function(){
 		  var insertBlock="<span class=style126><br><select name=insuranceselect id=insuranceselect>"+
-          "<option value=人>内宾旅游意外保险</option>"+
-          "<option value=团>入境旅游意外保险</option>"+
-          "</select>"+
+          "<option value='内宾旅游意外保险'>内宾旅游意外保险</option>"+
+          "<option value='入境旅游意外保险'>入境旅游意外保险</option>"+
+          "</select>&nbsp;&nbsp;"+
           "<input name=insuranceprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
           	"元/人&nbsp;&nbsp;备注："+
             "<input name=insuranceremark size=20 type=text>"+
@@ -463,7 +648,7 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},allfeePlus:function(){
 			var insertBlock="<span class=style126><br>"+
-      "<input name=feeName value='旅行社综合服务费' size=20 type=text>"+
+      "<input name=feeName value='旅行社综合服务费' size=20 type=text>&nbsp;&nbsp;"+
           "<input name=feeperperson size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
        	"元/人&nbsp;&nbsp;备注："+
         "<input name=feeremark size=20 type=text>"+
@@ -473,7 +658,7 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},joyPlus:function(){
 			var insertBlock="<span class=STYLE126><br>"+
-			"<input name=joyitem size=20 type=text>"+
+			"<input name=joyitem size=20 type=text>&nbsp;&nbsp;"+
             "<input name=perjoyprice size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
       		"元/人　&nbsp;&nbsp;备注："+
       		"<input name=joyremark size=20 type=text>"+
@@ -484,8 +669,8 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},hikingGuidePlus:function(){
 			var insertBlock="<span class=style126> <br>"+
-			"<input name=hikingitem size=20 type=text>"+
-			"<input name=guidename size=4 type=text>"+
+			"<input name=hikingitem size=20 type=text>&nbsp;&nbsp;"+
+			"<input name=guidename  size='6' style='width:50' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			"向导数 X"+
 			"<input name=guideperday size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			"元/天 X  "+
@@ -498,7 +683,7 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},bathhorsePlus:function(){
 			var insertBlock="<span class=STYLE126><br><input name=bathorseCost size=20 type=text>"+
-			"<input name=bathorsenum size=4 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) \" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+			"&nbsp;&nbsp;<input name=bathorsenum size=4 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) \" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			"马匹数 X<input name=bathorseperday size=6 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			"元/天  X  <input name=bathorseprice size=4 style=width:50px type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
          	 "天　&nbsp;&nbsp;备注：<input name=bathorseremark size=20 type=text> <a name=bathorseminus onclick='javascript:itour.quoteEdit.bathhorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> ";
@@ -507,9 +692,9 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},ridehorsePlus:function(){
 			var insertBlock=" <span class=style126><br>"+
-			"<input name='ridehorse' size=20 type='text'>"+
-			"<input name='ridehorseperday' size=6 type='text'>"+
-       		"元/天  X<input name='ridehorsedays' style='width:50'  size=4 type='text'>天　&nbsp;&nbsp;备注："+
+			"<input name='ridehorse' size=20 type='text'>&nbsp;&nbsp;"+
+			"<input name='ridehorseperday'  size='4' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"> "+
+			"元/天  X<input name='ridehorsedays'  size='4' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">天　&nbsp;&nbsp;备注： "+
        		"<input name='ridehorseremark' size=20 type='text'>"+
             "<a name='rideorseminus' onclick='javascript:itour.quoteEdit.ridehorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span> 　";
 			$("#addridehorseCost").append(insertBlock);
@@ -517,7 +702,7 @@ itour.quoteEdit = function(){
 			$(e).parent().remove();
 		},climbRegisterPlus:function(){
 			var insertSpan="<span class=style126><br>"+
-				"<input name=climbRegister size=20 type=text>&nbsp;&nbsp;<input name=climbRegisterperday size=6 type=text>"+
+				"<input name=climbRegister size=20 type=text>&nbsp;&nbsp;<input name=climbRegisterperday size=6  style='width:50' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 				"元/天  X<input name=climbRegisterdays size=4  style='width:50px;' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 				"天　&nbsp;&nbsp;备注：<input name=climbRegisterremark size=20 type=text>"+
 				"<a name=climbRegisterminus onclick='javascript:itour.quoteEdit.climbRegisterMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>";
@@ -605,7 +790,7 @@ itour.quoteEdit = function(){
             $(obj).prev().val(date);  
         },
 		init:function(){
-			$("input[name='rtbtn']").click(_this.saveQuoteForm);
+			$("input[name='rtbtn']").click(_this.saveQuoteOrder);
 			$("input[name='route_checkall']").click(function(){
 				if($(this).attr("checked")){
 					_this.checkedAll("breakfast");

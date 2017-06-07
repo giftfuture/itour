@@ -109,6 +109,13 @@ var YDataGrid = function(config){
 								//designConcept.setData(result.data.designConcept);
 								$("#designConcept").summernote('code',result.data.designConcept);
 							}
+							if(result.data.serviceAndQuote&&result.data.serviceAndQuote.length>0){
+								//Handler.ckCreate('designConcept');
+								//var designConcept = CKEDITOR.replace('designConcept');
+								//console.log(CKEDITOR.replace("beforeInstruction"));
+								//designConcept.setData(result.data.designConcept);
+								$("#serviceAndQuote").summernote('code',result.data.serviceAndQuote);
+							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 							}*/

@@ -42,11 +42,19 @@ public class RouteTemplate extends BaseEntity {
 	private int starLevel;//线路星级
 	private String levelArea;//线路区域
 	private String viewphotos;
+	private String serviceAndQuote;
 	public RouteTemplate(){} 
 	public RouteTemplate(String id,String levelArea){
 		this.id = id;
 		this.levelArea = levelArea;
 	}	 
+	
+	public String getServiceAndQuote() {
+		return serviceAndQuote;
+	}
+	public void setServiceAndQuote(String serviceAndQuote) {
+		this.serviceAndQuote = serviceAndQuote;
+	}
 	public String getId() {
 		return id;
 	}

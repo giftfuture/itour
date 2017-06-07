@@ -72,7 +72,15 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String level2Area;//线路一级区域
 	private String viewphotos;
 	//private String travelStyleAlias;
+	private String serviceAndQuote;
 	
+	
+	public String getServiceAndQuote() {
+		return serviceAndQuote;
+	}
+	public void setServiceAndQuote(String serviceAndQuote) {
+		this.serviceAndQuote = serviceAndQuote;
+	}
 	
 	public String getViewphotos() {
 		return viewphotos;

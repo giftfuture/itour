@@ -10,6 +10,7 @@ itour.selfdriveselfbooking = function(){
            // $(obj).prev().val(date);  
         },
         check_form:function(){
+        	itour.progress('请稍侯','信息提交中...');
         	var formData = {};
         	formData.routename=$("input[name='routename'").val();
     		formData.expectedDepart = $("#expectedDepart").datebox('getValue');

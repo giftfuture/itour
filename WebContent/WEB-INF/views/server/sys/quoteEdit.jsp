@@ -53,7 +53,7 @@
     <td background="images/frame1-2.gif">
     <table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
         <tbody><tr>
-          <td class="STYLE126" width="761" valign="top"><span class="STYLE3">简要行程</span><span class="STYLE2">：</span></td>
+          <td class="STYLE126" width="761" valign="top"><span class="STYLE3">行程规划：</span></td>
         </tr>
       </tbody></table>
       <div id="routetablediv">
@@ -99,9 +99,10 @@
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7"></td>
   </tr>
+   <tr><td><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
 </tbody></table>
 <br>
-<table width="80%" cellspacing="2" cellpadding="8" border="1" align="center">
+<%-- <table width="80%" cellspacing="2" cellpadding="8" border="1" align="center">
   <tbody><tr>
     <td width="78"><strong>项目</strong></td>
     <td width="639"><div align="center"><strong>成本及计算</strong></div></td>
@@ -434,7 +435,7 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr><td><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
-<%--   <tr>
+  <tr>
     <td><div align="right">核算价格：</div></td>
     <td><label></label>
       <table cellspacing="0" cellpadding="3" border="0">
@@ -447,7 +448,7 @@
       </tbody></table></td>
     <td><div align="center"></div></td>
     <td><span class="STYLE10">两种核算价格的方式，出来两个不同的页面</span></td>
-  </tr> --%>
+  </tr>
   <tr>
     <td><div align="right"></div></td>
     <td>**线路在外面售卖的价格可能通过这套系统来评估<br>
@@ -458,7 +459,7 @@
  <!--  <tr>
     <td colspan="4"><p><a href="#" class="STYLE136">算价管理（门票在景点内管理）</a></p>    </td>
   </tr> -->
-</tbody></table>
+</tbody></table> --%>
 </div>
 </form:form>
 <iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe> 

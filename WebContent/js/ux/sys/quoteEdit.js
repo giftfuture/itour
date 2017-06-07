@@ -3,7 +3,7 @@ itour.quoteEdit = function(){
 	var _box = null;
 	var _this = {
 		saveQuoteForm:function(){
-			document.forms["quoteEditForm"].target="rfFrame";
+			//document.forms["quoteEditForm"].target="rfFrame";
 			var formData = new Object();
 			var actionurl=basePath+"routeTemplate/updateQuoteForm";
 			formData["routeTemplate"]  = $('input[name="rtId"]').val();
@@ -346,12 +346,14 @@ itour.quoteEdit = function(){
 			formData["showTrip"]=showTrip+"</table>";
 			formData["beriefTrip"]=beriefTrip;
 			
-			var agodaDetail = "<table border='0' align='center' cellpadding='0' cellspacing='0' width='1140'><tbody><tr><td><img src='images/frame1-1.gif' width='100%' height='7'></td></tr><tr><td background='images/frame1-2.gif'></td></tr><tr><td><span class='STYLE9'>"+$("input[name='rttitle']").val()+"</span>";
+			var agodaDetail = "<table border='0' align='center' cellpadding='0' cellspacing='0' width='1140'><tbody>";
+			agodaDetail+="<tr><td><img src='images/frame1-1.gif' width='100%' height='7'></td></tr>" ;
+			agodaDetail+="<tr><td background='images/frame1-2.gif'></td></tr><tr><td><span class='STYLE9'>"+$("input[name='rttitle']").val()+"</span>";
 			$("table[name='routetable'] tbody[name='agodaTbody']").each(function(i,e){
-				agodaDetail+="<table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'><tbody><tr>"+
-	            "<td width='78' class='STYLE148'><strong>Day "+(i+1)+" </strong></td>"+
-	            "<td width='972'><span class='STYLE148'><strong> "+$("input[name='rtelevation']").val()+"km 住：四姑娘山鎮 </strong></span></td>"+
-	          "</tr><tr><td valign='top'>&nbsp;</td>"+
+				agodaDetail+="<table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'><tbody>";
+				agodaDetail+="<tr><td width='78' class='STYLE148'><strong>Day "+(i+1)+" </strong></td>";
+				agodaDetail+="<td width='972'><span class='STYLE148'><strong> "+$("input[name='rtelevation']").val()+"km 住：四姑娘山鎮 </strong></span></td></tr>" ;
+				agodaDetail+="<tr><td valign='top'>&nbsp;</td>"+
 	            "<td valign='top' style='text-align:left'><span class='STYLE126'>"+$("#agodaDetail",$(e)).val()+"<br>";
 				var landscapes = $("#travelItem",$(e)).val();//$("#lctiValue",e).val();
 				//console.log($("#travelItem",$(e)).val());
@@ -361,9 +363,9 @@ itour.quoteEdit = function(){
 						//var exphotos = eval('('+ex.photos+')');
 					//	var ex =  eval('('+bean+')');
 						//console.log(jsontraitems[idx].item);
-						agodaDetail+="<span>【"+jsontraitems[idx].item+"】"+jsontraitems[idx].content+"</span>"+
-						"<table width='300' border='0' cellspacing='1' cellpadding='5'><tbody>"+
-						"<tr>";
+						agodaDetail+="<span>【"+jsontraitems[idx].item+"】"+jsontraitems[idx].content+"</span>";
+						agodaDetail+="<table width='300' border='0' cellspacing='1' cellpadding='5'><tbody>";
+						agodaDetail+="<tr>";
 						if(jsontraitems[idx].photos.length>0){
 							var jsonphotos = jsontraitems[idx].photos.split(",");
 							$(jsonphotos).each(function(index,ele){
@@ -373,7 +375,8 @@ itour.quoteEdit = function(){
 									agodaDetail+="<td><div align='left'><img alt="+jsontraitems[idx].item+" title="+jsontraitems[idx].item+" src='"+ele+"' width='271' height='152'></div></td>";
 								}
 								if(index>0&&index%4==0){
-									agodaDetail+="</tr><tr>";
+									agodaDetail+="</tr>";
+									agodaDetail+="<tr>";
 								}
 							})
 						}

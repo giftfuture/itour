@@ -22,6 +22,7 @@ import javax.imageio.stream.ImageOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.StringUtil;
@@ -119,8 +120,8 @@ public class ImageFilter {
 	 * @param i
 	 * @return
 	*/
-	public static String replaceImgSrc(String content,int i) {
-		int k =0;
+	public static String replaceImgSrc(String content) {
+		int k =0;		
 		StringBuffer sb= new StringBuffer();
 		//目前img标签标示有3种表达式
 		//<img alt=""src="1.jpg"/> <img alt=""src="1.jpg"></img><img alt=""src="1.jpg">
@@ -132,7 +133,7 @@ public class ImageFilter {
 			while (result_img) {
 				StringBuffer sbSrc= new StringBuffer();
 				//获取到匹配的<img />标签中的内容
-				String str_img = m_img.group(2);
+				String str_img = m_img.group(0);
 				//开始匹配<img />标签中的src
 				Pattern p_src = null;// Pattern.compile("(src|SRC)=("|')(.*?)("|')");
 				Matcher m_src = p_src.matcher(str_img);
@@ -152,6 +153,89 @@ public class ImageFilter {
 			return content;
 		}
 	}
+	/**
+	 * 
+	 * @param htmlStr
+	 * @return
+	 */
+	public static String replaceImagesrc(String content,String replacenew) {  
+      //String img = "";  
+      List<String> imgs = Lists.newArrayList();
+//     String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+      Pattern p_image = Pattern.compile("<img.*src\\s*=\\s*(.*?)[^>]*?>");  //, Pattern.CASE_INSENSITIVE		
+      Matcher  m_image = p_image.matcher(content);  
+      Pattern pattern = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)");
+      Matcher m = null;
+      String result = "";
+      String group =  "";
+      String newimg = "";
+      while (m_image.find()) {  
+    	  imgs.add(m_image.group());
+      }
+     for(String img:imgs){
+    	 if(StringUtils.isNotEmpty(img)&&!img.contains(replacenew)){
+    		/* m_image = p_image.matcher(img);
+    		 while(m_image.find()){
+    			 group =  m_image.group();
+    			 m = pattern.matcher(group); 
+    			 while(m.find()){ 
+	   	        	  result = m.group(); 
+	   	        	  newimg = group.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+	   	          }
+    			 content = content.replaceAll(group, newimg);
+    		 }*/
+    		  //Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src 
+		  	  m = pattern.matcher(img); 
+	          while(m.find()){ 
+	        	  result = m.group(); 
+	        	  newimg = img.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+	          } 
+		  content = content.replaceAll(img, newimg);
+    	 }
+     }
+      return content;  
+  }
+	/**
+	 * 
+	 * @param htmlStr
+	 * @return
+	 */
+	public static String replaceTdBg(String content,String replacenew) {  
+	  Matcher m = null;
+      String result = "";
+      String group =  "";
+      List<String> tds = Lists.newArrayList();
+//     String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+      Pattern p_image = Pattern.compile("<td.*background\\s*=\\s*(.*?)[^>]*?>");  //, Pattern.CASE_INSENSITIVE	
+      Pattern pattern = Pattern.compile("background\\s*=\\s*\"?(.*?)(\"|>|\\s+)");
+      Matcher  m_image = p_image.matcher(content);  
+      String newtd = "";
+      while (m_image.find()) {  
+    	  tds.add(m_image.group());
+      }    
+      for(String td:tds){
+    	  if(StringUtils.isNotEmpty(td) && !td.contains(replacenew)){
+    		  	  //Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src 
+    		/*  m_image = p_image.matcher(td);
+     		  while(m_image.find()){
+	     			 group =  m_image.group();
+	     			 m = pattern.matcher(group); 
+	     			 while(m.find()){ 
+	 	   	        	  result = m.group(); 
+	 	   	        	  newtd = group.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+	 	   	          }
+	     			 content = content.replaceAll(group, newtd);
+	     		 }*/
+    	          m = pattern.matcher(td); 
+    	          while (m.find()){ 
+    	        	  result = m.group(); 
+    	        	  newtd = td.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+    	          } 
+    		  content = content.replaceAll(td, newtd);
+    	  }
+      }
+      return content;  
+  } 
 	/**
 	 * 
 	 * @param htmlStr
@@ -676,6 +760,19 @@ public class ImageFilter {
 		//}
 		//String str = GetImageStr("J:\\aaa.jpg");
 		//System.out.println(str);
+		String content= "<table width='300' border='0' cellspacing='1' cellpadding='5'><tbody><tr><td background='images/frame1-2.gif'><div align='left'><img "+
+				 "src='travelitemphoto/278946071CEF43C293FC75B59CB617A9_ggxp/1-120922150124.jpg' width='271' "+
+				 "height='152'></div></td><td><div align='left'><img src='travelitemphoto/278946071CEF43C293FC75B59CB617A9_ggxp/1-"+
+				 "120922150123.jpg' width='271' height='152'></div></td></tr><tr><td class='STYLE126'><div align='center'>贡嘎西坡"+
+				 "</div></td></tr><span></span><table width='300' border='0' "+
+				 "cellspacing='1' cellpadding='5'><tbody><tr><td><div align='left'><img "+
+				 "src='travelitemphoto/38E1212E3D114275A50C42D98CEF91C5_kns/41136414_34.jpg' width='271' "+
+				 "height='152'></div></td><td><div align='left'><img "+
+				 "src='travelitemphoto/38E1212E3D114275A50C42D98CEF91C5_kns/41136414_31.jpg' width='271' "+
+				 "height='152'></div></td></tr><tr><td class='STYLE126'><div align='center'>喀纳斯"+
+				 "</div></td></tr></tbody></table></td></tr></tbody></table>";
+		String result ="";// replaceTdBg(content);// replaceImagesrc(content);
+		System.out.println(result);
 	}
 
 }

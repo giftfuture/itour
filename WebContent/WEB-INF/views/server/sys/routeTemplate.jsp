@@ -199,6 +199,12 @@
 						<!-- <textarea rows="4" cols="80" id="beforeInstruction" name="beforeInstruction" class="ckeditor" maxlength="5000"></textarea> -->
 						<!-- <script type="text/javascript">window.onload = function(){CKEDITOR.replace('beforeInstruction');};</script>  -->
 					</div></td><td></td></tr>  
+					 <tr><td colspan=4><div class="fitem">
+                        <label>服务与报价:</label>
+                        <textarea id="serviceAndQuote" name="serviceAndQuote"></textarea> 
+                        <!-- <textarea rows="4" cols="80" id="serviceAndQuote" name="serviceAndQuote" class="ckeditor" maxlength="5000"></textarea> -->
+                        <!-- <script type="text/javascript">window.onload = function(){CKEDITOR.replace('serviceAndQuote');};</script>  -->
+                    </div></td><td></td></tr>  
 			 	 	<tr><td colspan=4><div class="fitem">
 						<label style="width:50">备注:</label>	
 						<textarea rows="4" cols="80" name="remark" maxlength="5000"  class="easyui-textbox" data-options="multiline:true,width:1300,height:100"  missingMessage="请填写remark"></textarea>
