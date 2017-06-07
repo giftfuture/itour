@@ -1,4 +1,3 @@
-
 $package('itour.serverquotestep4');
 itour.serverquotestep4 = function(){
 	var _this = {

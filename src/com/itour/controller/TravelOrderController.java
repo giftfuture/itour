@@ -733,8 +733,10 @@ public class TravelOrderController extends BaseController {
 		context.put("od", od);
 		if(StringUtils.isEmpty(vo.getAdultticketsBlock())){
 			CalculateQuoteVO vv = (CalculateQuoteVO)Constants.TDQUOTE1.get("vo");
-			vo.setAdultticketsBlock(vv.getAdultticketsBlock());
-		}
+			if(vv != null){
+				vo.setAdultticketsBlock(vv.getAdultticketsBlock());
+			}
+			}
 		context.put("vo", vo);
 		//Constants.TDQUOTE2.put("adultsumcost", adultsumcost + "");
 		//Constants.TDQUOTE2.put("childrensumcost", childrensumcost + "");

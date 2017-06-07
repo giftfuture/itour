@@ -1,4 +1,4 @@
-$package('itour.quoteEdit');
+$package('itour.sysquote_step1');
 itour.quoteEdit = function(){
 	var _box = null;
 	var _this = {
