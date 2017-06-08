@@ -388,7 +388,7 @@ public class TravelItemController extends BaseController{
 			String [] filenames = photos.split("\\|");
 			String httptravelitemPhotoPath = FilePros.httptravelitemPhotoPath();//磁盘路径
 			String travelitemPhotoPath = FilePros.travelitemPhotoPath();//网络访问路径
-			String directory = StringUtils.trim(ti.getItemCode())+"_"+StringUtils.trim(ti.getAlias());
+			String directory = StringUtils.trim(ti.getItemCode()+"_"+ti.getAlias());
 			String parpath = travelitemPhotoPath+"\\"+directory;
 			String httpPath =httptravelitemPhotoPath +"/"+directory;
 			List<String> uris = new ArrayList<String>();
@@ -410,7 +410,7 @@ public class TravelItemController extends BaseController{
 				       // toClient = response.getOutputStream(); // 得到向客户端输出二进制数据的对象
 				      //  toClient.write(data); // 输出数据
 				      //  toClient.flush();
-						uris.add(httpPath+"/"+directory+"/"+newfile.getName());//newfile.getAbsolutePath()
+						uris.add(httpPath+"/"+newfile.getName());//newfile.getAbsolutePath()
 					}
 				}
 			}

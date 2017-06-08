@@ -33,8 +33,13 @@ public class FeedbackService extends BaseService<Feedback> {
 	 * @return 查询结果
 	 */
 	public BasePage<FeedbackVO> pagedQuery(FeedbackVO vo) {
+		//vo.setOrder("create_time");
+		vo.setSort("create_time");
+		vo.setOrderDirection(false);
+		//vo.getPager().setOrderField("create_time");
+		//vo.getPager().setOrderDirection(false);
 		List<FeedbackVO> list = (List<FeedbackVO>) mapper.queryByListVo(vo);
-		int count = mapper.queryByCount(vo);
+		int count = mapper.queryByCountVO(vo);
 		//List<FeedbackVO> records = Lists.newArrayList();
 		/*for(Feedback fb:list) {
 			records.add(FeedbackKit.toRecord(fb));

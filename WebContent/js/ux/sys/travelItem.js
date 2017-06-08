@@ -20,6 +20,7 @@ itour.travelItem = function(){
 							itour.closeProgress();//关闭缓冲条
 							_box.handler.refresh();
 							_this.uploadCoverForm().resetForm();
+							$("#preview",this.uploadCoverWin).html('');
 							_this.uploadCoverWin().dialog('close');
 						})
 					//}
@@ -33,13 +34,13 @@ itour.travelItem = function(){
 				});
 				_this.uploadCoverWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
-					    if (r){  
+					    if (r){ 
+					    	$("#preview",this.uploadCoverWin).html('');
 					     	_this.uploadCoverWin().dialog('close');
 					    }  
 					});
 				});
 			},
-			
 			uploadPhotoAction:'travelItem/uploadPhoto',
 			uploadPhotoForm:function(){
 				return $("#uploadPhotoForm");
@@ -56,7 +57,11 @@ itour.travelItem = function(){
 					//if(data.success){	
 						$.messager.alert('提示', data.msg, 'info',function(){								
 							itour.closeProgress();//关闭缓冲条
+							_box.handler.refresh();
+							_this.uploadPhotoForm().resetForm();
+							$("#preview",this.uploadPhotoWin).html('');
 							_this.uploadPhotoWin().dialog('close');
+							
 						})
 					//}
 				});
@@ -71,6 +76,7 @@ itour.travelItem = function(){
 				_this.uploadPhotoWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
+					    	$("#preview",this.uploadPhotoWin).html('');
 					     	_this.uploadPhotoWin().dialog('close');
 					    }  
 					});
@@ -87,9 +93,18 @@ itour.travelItem = function(){
 			submitPhoto:function(){
 				itour.progress();//缓冲条
 				_this.editPhotoForm().attr('action',_this.editPhotoAction);
+				_this.editPhotoForm().ajaxForm();
 				itour.saveForm(_this.editPhotoForm(),function(data){
-					itour.closeProgress();//关闭缓冲条
-					_this.editPhotoWin().dialog('close');
+					//itour.closeProgress();//关闭缓冲条
+					//_this.editPhotoWin().dialog('close');
+					$.messager.alert('提示', data.msg, 'info',function(){								
+						itour.closeProgress();//关闭缓冲条
+						_box.handler.refresh();
+						_this.editPhotoForm().resetForm();
+						$("#preview",this.editPhotoWin).html('');
+						_this.editPhotoWin().dialog('close');
+						
+					})
 				});
 			},
 			loadPhotoList:function(id){
@@ -99,7 +114,10 @@ itour.travelItem = function(){
 					if(data.success){
 						//console.log(data.uris);
 						for(var i in data.uris){
-						  images+='<img alt="图片浏览" src="'+basePath+data.uris[i]+'" style="width:50px;height:50px;">';	
+							if(i !=0 && i%3==0){
+								images+='<br/>';
+							}
+						  images+='<img alt="图片浏览" src="'+basePath+data.uris[i]+'" style="width:100px;height:100px;">';	
 						}
 					}
 					$("#previewPhotos").html(images);
@@ -118,6 +136,7 @@ itour.travelItem = function(){
 				_this.editPhotoWin().find("#editwin-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
+					    	$("#preview",this.editPhotoWin).html('');
 					     	_this.editPhotoWin().dialog('close');
 					    }  
 					});
@@ -544,11 +563,13 @@ itour.travelItem = function(){
 			this.writeRank();
 			_box = new YDataGrid(_this.config); 
 			_box.init();
-			/*var uploadCoverFile = $.extend(uploadFile,this.uploadCoverParams);
-			uploadCoverFile.init(); */
-			var zxxfile = $.extend(ZXXFILE,this.uploadparams);
-			zxxfile.init();
+			var uploadCoverFile = $.extend(uploadFile,this.uploadCoverParams);
+			uploadCoverFile.init(); 
 			this.initUploadCoverForm();
+			var zf = $.extend(ZXXFILE,this.uploadparams);
+			zf.init();
+			console.log(zf);
+			console.log(uploadCoverFile);
 			this.initUploadForm();
 			this.initEditForm();
 			$('#addLine_btn').click(_this.addLine);
@@ -702,13 +723,15 @@ itour.travelItem = function(){
 			},
 			onSuccess: function(file, response) {
 				$("#uploadInf",this.uploadPhotoWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
-				Grid.datagrid('reload',param);
-				_this.config.datagrid('reload',param);
+				$("#preview",this.uploadPhotoWin).html('');
+				Grid.datagrid('reload',{});
+				_this.config.datagrid('reload',{});
 			   Form.uploadPhotoForm.resetForm();
 			},
 			onFailure: function(file) {
 				$("#uploadInf",this.uploadPhotoWin).append("<p>图片" + file.name + "上传失败！</p>");	
 				$("#uploadImage_" + file.index,this.uploadPhotoWin).css("opacity", 0.2);
+				$("#preview",this.uploadPhotoWin).html('');
 			},
 			onComplete: function() {
 				//提交按钮隐藏
@@ -716,8 +739,9 @@ itour.travelItem = function(){
 				//file控件value置空
 				$("#fileImage",this.uploadPhotoWin).val("");
 				$("#uploadInf",this.uploadPhotoWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+				$("#preview",this.uploadPhotoWin).html('');
 			}
-		}/*,
+		},
 		uploadCoverParams:{
 			fileInput: $("#fileImage",this.uploadCoverWin).get(0),
 		//	dragDrop: $("#fileDragArea").get(0),
@@ -769,13 +793,15 @@ itour.travelItem = function(){
 			},
 			onSuccess: function(file, response) {
 				$("#uploadInf",this.uploadCoverWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
-				Grid.datagrid('reload',param);
-				_this.config.datagrid('reload',param);
+				$("#preview",this.uploadPhotoWin).html('');
+				Grid.datagrid('reload',{});
+				_this.config.datagrid('reload',{});
 			   Form.uploadCoverForm.resetForm();
 			},
 			onFailure: function(file) {
 				$("#uploadInf",this.uploadCoverWin).append("<p>图片" + file.name + "上传失败！</p>");	
 				$("#uploadImage_" + file.index,this.uploadCoverWin).css("opacity", 0.2);
+				$("#preview",this.uploadPhotoWin).html('');
 			},
 			onComplete: function() {
 				//提交按钮隐藏
@@ -783,8 +809,9 @@ itour.travelItem = function(){
 				//file控件value置空
 				$("#fileImage",this.uploadCoverWin).val("");
 				$("#uploadInf",this.uploadCoverWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+				$("#preview",this.uploadPhotoWin).html('');
 			}
-		}*/
+		}
 	};
 	return _this;
 }();

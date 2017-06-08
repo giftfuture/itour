@@ -292,8 +292,7 @@
           	<c:if test="${vo.isShowDetail=='true' }">
               <tr>
                 <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529" style="text-align:left">${vo.adultticketsBlock}
-                </td>
+                <td width="529" style="text-align:left">${vo.adultticketsBlock}</td>
                 <td width="444" style="text-align:left">${vo.adultticketTotalPrice}元/人</td>
               </tr>
               <tr>

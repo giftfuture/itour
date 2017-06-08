@@ -3,10 +3,10 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
-  <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
-  <script type="text/javascript" src="${basePath}/js/commons/uploadFile.js"></script> 
-  <script type="text/javascript" src="${basePath}/js/commons/uploadPhotos.js"></script> 
+  <link rel="stylesheet" type="text/css" href="${basePath}css/zxxFile.css">
+  <script type="text/javascript" src="${basePath}js/commons/zxxFile.js"></script> 
+  <script type="text/javascript" src="${basePath}js/commons/uploadFile.js"></script> 
+  <script type="text/javascript" src="${basePath}js/commons/uploadPhotos.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -34,7 +34,30 @@
      <table id="data-list"></table>
 	 </div>
      <!-- Edit Win&Form -->
-      	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+       <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">     
+        <form  class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
+                 <input class="hidden" name="id">
+                 <div class="ui-edit">
+                   <div class="fitem upload">
+                    <div class="upload_box">
+                        <div class="upload_main">
+                            <div class="upload_choose">
+                                                 封面：<input id="fileImage" type="file" name="fileselect" accept="image/*"  />
+                            </div>
+                            <div id="preview" class="upload_preview"></div>
+                        </div>
+                        <div class="upload_submit">
+                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                        </div>
+                        <div id="uploadInf" class="upload_inf"></div>
+                    </div>
+                </div>
+                </div>
+        </form>
+     </div> 
+       <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
      	<form  class="ui-form" id="uploadPhotoForm" name="uploadPhotoForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
@@ -57,29 +80,7 @@
 				</div>
      	</form>
 	 </div> 
-   	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
-     	<form  class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
-   				 <input class="hidden" name="id">
-   				 <div class="ui-edit">
-    		       <div class="fitem upload">
-					<div class="upload_box">
-                        <div class="upload_main">
-                            <div class="upload_choose">
-                                                 封面：<input id="fileImage" type="file" name="fileselect" accept="image/*"  />
-                            </div>
-                            <div id="preview" class="upload_preview"></div>
-                        </div>
-                        <div class="upload_submit">
-                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
-                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
-                        </div>
-                        <div id="uploadInf" class="upload_inf"></div>
-                    </div>
-				</div>
-				</div>
-     	</form>
-	 </div> 
+  
    	 <div id="upload-map" title="地图上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
      	<form class="ui-form" id="uploadMapForm" name="uploadMapForm" method="post" enctype="multipart/form-data" autocomplete="off">
 			<input class="hidden" name="id">
