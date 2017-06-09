@@ -8,7 +8,7 @@ itour.quoteEdit = function(){
 			var actionurl=basePath+"routeTemplate/updateQuoteForm";
 			formData["routeTemplate"]  = $('input[name="rtId"]').val();
 			//formData.quoteEditForm = $("form[name='quoteEditForm']").html();
-			formData["adults"] = $("input[name='adults']").val();
+	/*		formData["adults"] = $("input[name='adults']").val();
 			formData["children"]=$("input[name='children']").val();
 			formData["isAsAdult"] = $("input[name='isAsAdult'][value='isAsAdult']").attr("checked")||$("input[name='isAsAdult'][value='isAsAdult']").attr("checked")=="checked"?true:false;
 			formData["ticketBlock"]= $("#addsightdiv").html();
@@ -81,7 +81,7 @@ itour.quoteEdit = function(){
 		        	showTourguide+=(parseInt(i)+1)+"."+alltheway[i].value+" "+(selectedlanguage?selectedlanguage:"")+" "+priceperday[i].value+"元/天<br/>";
 		        }
 			}
-		    formData["showTourguide"]=totalpriceperday+"|"+showTourguide;
+		    formData["showTourguide"]=totalpriceperday+"|"+showTourguide;*/
 		/*  var showHotel = "";
             var stayposition = $("table[name='routetable']").find("input[name='stayposition']");
             var hotel = $("table[name='routetable']").find("select[name='hotel']");
@@ -97,7 +97,7 @@ itour.quoteEdit = function(){
             	}
             }
             formData["showHotel"]=totalhotelprice+"|"+showHotel;*/
-            var showRentcar = "";
+    /*        var showRentcar = "";
             var carway = $("#addcardiv").find("input[name='alltheway']");
             var carprice = $("#addcardiv").find("input[name='carprice']");
             var carstyle = $("#addcardiv").find("select[name='carstyle']");
@@ -123,14 +123,14 @@ itour.quoteEdit = function(){
 	            }
 			}
             formData["showBigtraffic"]=totaltrafficperprice+"|"+showBigtraffic;
-            var showDinner = "";
+            var showDinner = "";*/
         /*    var breakfast = $("input[type='checkbox'][name='breakfast']:checked");
             var lunch = $("input[type='checkbox'][name='lunch']:checked");
             var dinner = $("input[type='checkbox'][name='dinner']:checked");
             var singledinnerprice = $("#dinnerblock").find("input[name='singledinner']").val();
             var totaldinnerprice=(lunch.length+dinner.length)*singledinnerprice;
             showDinner+="早餐酒店用，共"+breakfast.length+"餐,正餐共"+(lunch.length+dinner.length)+"餐，每餐价格"+singledinnerprice+"元/人<br/>";*/
-            var dinnername = $("#dinnerblock").find("input[name='dinnername']");
+/*            var dinnername = $("#dinnerblock").find("input[name='dinnername']");
             var dinnerprice = $("#dinnerblock").find("input[name='dinnerprice']");
             var districts = $("#dinnerblock").find("input[name='district']");
             var totaldinnerprice = 0;
@@ -246,13 +246,12 @@ itour.quoteEdit = function(){
             var totalshowElsecost=0;
             if(elseitem.length> 0 && elseitemprice.length>0 && elseitemstyle.length>0){
             	for(var i=0;i<elseitem.length;i++){
-	            	//showElsecost+="项目："+elseitem[i].value+"  "+showElsecost[i].value+"元/天"+elseitemstyle[i].options[elseitemstyle[i].selectedIndex].value+"<br/>";
 	            	var selectedelseitemstyle = $(elseitemstyle[i]).find("option:selected").val();
 	            	totalshowElsecost+=parseFloat(elseitemprice[i].value);
 	            	showElsecost+="项目："+elseitem[i]?elseitem[i].value:""+"  "+elseitemprice[i]?elseitemprice[i].value:""+"元/天"+selectedelseitemstyle?selectedelseitemstyle:""+"<br/>";
             	}
         	}
-          formData["showElsecost"]=totalshowElsecost+"|"+showElsecost;
+          formData["showElsecost"]=totalshowElsecost+"|"+showElsecost;*/
 	  	 var showTrip="<table name='showTrip'  width='1140' cellspacing='1' cellpadding='5' border='0' align='center'><thead><tr>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' height='31'><div class='style18' align='center'><div align='center'><strong><strong>天数</strong></strong></div></div></td>"+
           "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'><strong><strong>行程</strong></strong></div></div></td>"+
@@ -290,7 +289,7 @@ itour.quoteEdit = function(){
 					 // console.log("agodaDetailval="+agodaDetailval);
 					  //$("#agodaDetail",beriefagodaTbody).val(agodaDetailval);//combobox('setValue',agodaDetailval);
 					  //$("span[name='agodaDetail']",showagodaTbody).text(agodaDetailval);
-					  beriefTrip+="<tbody name='agodaTbody'><tr><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' id='tourdays' name='tourdays' data-options=\"width:50,editable:false,onLoadSuccess:function(){$(this).combobox('setValue', "+tourdaysval+")}\">" +
+					  beriefTrip+="<tbody name='agodaTbody'><tr><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' id='tourdays' name='tourdays' data-options=\"cursor:'pointer',width:50,editable:false,onLoadSuccess:function(){$(this).combobox('setValue', "+tourdaysval+")}\">" +
 				  		"<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>" +
 				  		"<option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option>" +
 				  		"<option value='9'>9</option><option value='10'>10</option><option value='11'>11</option>" +
@@ -301,11 +300,11 @@ itour.quoteEdit = function(){
 						"onkeyup='(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)'" +
 						"onafterpaste='(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" +
 						"onblur='(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)'></td>"+
-						"<td class=STYLE126 width=124 valign=middle><input name='area' id='area' class='easyui-combobox' style='cursor:pointer'  data-options=\"width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'areas/allAreas',"+
+						"<td class=STYLE126 width=124 valign=middle><input name='area' id='area' class='easyui-combobox'   data-options=\"cursor:'pointer',width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'areas/allAreas',"+
 						"onChange:function(n,o){ var urlurl = 'travelItem/queryByScope?scope='+n ;$(this).parents('tbody').find('#travelItem').combobox('reload',urlurl);},onLoadSuccess:function(){$(this).combobox('setValue', '"+areaval+"')}\">"+
-						"<input id='travelItem' style='cursor:pointer' name='travelItem' class='easyui-combobox'"+																																						//type=checkbox
-						" data-options=\"valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
-						"formatter:function(row){return '<option  class=selectId style=vertical-align:middle name=selectId_1491992423815'+row.alias+' value='+row.alias+'>'+row.item+'</option>';}," +
+						"<input id='travelItem' style=\"cursor:'pointer'\" name='travelItem' class='easyui-combobox'"+																																						//type=checkbox
+						" data-options=\"valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,width:151,height:22," +
+						"formatter:function(row){return '<option  class=selectId style=cursor:pointer;vertical-align:middle name=selectId_1491992423815'+row.alias+' value='+row.alias+'>'+row.item+'</option>';}," +
 						"onSelect:function(record){$('option[name=selectId_1491992423815'+record.alias+']',$(this)).attr('selected', 'true');}," +
 						"onUnselect:function(record){$('option[name=selectId_1491992423815'+record.alias+']',$(this)).attr('selected',false);}" +
 						",onLoadSuccess:function(){var travelItemval ='"+travelItemval+"';$(this).combobox('setValues',travelItemval.split(',')); }" +
@@ -318,29 +317,6 @@ itour.quoteEdit = function(){
 						"<td class=STYLE126 width=308 style='float:left;text-align:left' valign=middle><span name='tourDesc'>"+tourDescval+"</span></td>"+
 						"<td class=STYLE126 width=50 valign=middle  style='float:left;text-align:left'><span name='mileage'>"+mileageval+"</span></td><td style='float:left;text-align:left'><span name='area'>"+areatext+"</span>"+
 						"<span name='travelItem'>"+travelItemtext+"</span></td></tr></tbody>";
-				/*	  var newtr="<tr><td class='STYLE126' width='34' valign='middle'><div align='center'>"+$("select[name='tourdays'] option:selected",$(e)).val()+"</div></td>"+
-			          "<td class='STYLE126' width='308' valign='middle'><span name='tourDesc'>"+$("input[name='tourDesc']",$(e)).val()+"</span></td>"+
-			          "<td class='STYLE126' width='50' valign='middle'><span name='mileage'>"+$("input[name='mileage']",$(e)).val()+"</span></td>"+
-			          "<td class='STYLE126' width='124' valign='middle'><span name='travelItem'>"+$($("div.panel.combo-p")[i]).find(".combobox-item.combobox-item-selected").text()+"</span></td>";
-			          showTrip+=newtr;for(var i=0;i<arr.length;i++)
-			          $("select[name='tourdays']",$(beriefTr)).val($("select[name='tourdays']",$(e)).find("option:selected").val());	
-			          try{
-			        	   $.parser.parse($(beriefTr).parent());
-			        	  var tourTime = $("input[name='tourTimeinput']",$(e)).val();//$("input[name='tourTimeinput']",$(e)).datebox('getValue');
-			        	  $("#travelItem",$(beriefTr)).combobox('setValue',travelItem);
-				          $("#tourTime",$(beriefTr)).datebox('setValue',tourTime);
-			          }catch(e){
-						console.log("name: " + e.name + 
-								 ",description: " +e.description+
-							      ",message: " + e.message + 
-							      ",lineNumber: " + e.lineNumber + 
-							      ",fileName: " + e.fileName + 
-							      ",stack: " + e.stack);
-					}
-			          $("input[name='tourDesc']",$(beriefTr)).val($("input[name='tourDesc']",$(e)).val());
-			          $("input[name='mileage']",$(beriefTr)).val($("input[name='mileage']",$(e)).val());
-			          beriefTrip+=beriefTr;  */ 
-				  //}
 					 showTrip+= showagodaTbody;
 			});
 			formData["showTrip"]=showTrip+"</table>";
@@ -380,7 +356,7 @@ itour.quoteEdit = function(){
 								}
 							})
 						}
-						agodaDetail+="</tr>";//+
+						agodaDetail+="</tr>"; 
 						//"<tr><td class='STYLE126'><div align='center'>"+jsontraitems[idx].item+"</div></td></tr>";
 					});
 				}});
@@ -466,7 +442,7 @@ itour.quoteEdit = function(){
 		},
 		routePlus:function(){
 			//var lastTr = $("table[name='routetable'] tbody>tr:last"); 
-			var insertTr ="<tbody name='agodaTbody'><tr><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' id='tourdays' data-options='width:50,editable:false'>" +
+			var insertTr ="<tbody name='agodaTbody'><tr><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' id='tourdays' data-options=\"cursor:'pointer',width:50,editable:false\">" +
 			"<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option " +
 			"value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option " +
 			"value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option " +
@@ -477,11 +453,11 @@ itour.quoteEdit = function(){
 			"onkeyup=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) " +
 			"onafterpaste=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this) " +
 			"onblur=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)></td>" +
-			"<td class=STYLE126 width=124 valign=middle><input name='area' id='area' class='easyui-combobox' style='cursor:pointer'  data-options=\"width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'areas/allAreas'," +
+			"<td class=STYLE126 width=124 valign=middle><input name='area' id='area' class='easyui-combobox' data-options=\"cursor:'pointer',width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'areas/allAreas'," +
 			"onChange:function(n,o){ var urlurl = 'travelItem/queryByScope?scope='+n ;$(this).parents('tbody').find('#travelItem').combobox('reload',urlurl);}\">" +
-			"<input id='travelItem' style='cursor:pointer' name='travelItem' class='easyui-combobox'  " +																																		//type=checkbox 
-			" data-options=\"valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,required:true,width:151,height:22," +
-			"formatter:function(row){return '<option class=selectId style=vertical-align:middle name=selectId_'+row.alias+' value='+row.alias+'>'+row.item+'</option>';}," +
+			"<input id='travelItem' name='travelItem' class='easyui-combobox'  " +																																		//type=checkbox 
+			" data-options=\"cursor:'pointer',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,width:151,height:22," +
+			"formatter:function(row){return '<option class=selectId style=cursor:pointer,vertical-align:middle name=selectId_'+row.alias+' value='+row.alias+'>'+row.item+'</option>';}," +
 			"onSelect:function(record){$('option[name=selectId_'+record.alias+']',$(this)).attr('selected', 'true');}," +
 			"onUnselect:function(record){$('option[name=selectId_'+record.alias+']',$(this)).attr('selected', 'false');}" +
 			",onChange:function(n,o){$('#lctiValue').val($('#lctiValue').val()+n)}\"/><input type='hidden' name='lctiValue' id='lctiValue'/></td>" +
@@ -708,19 +684,7 @@ itour.quoteEdit = function(){
             $(obj).prev().val(date);  
         },
 		init:function(){
-	/*	   $("input[name='tourTime']").datebox({  
-			   onSelect:function(date){  
-			            var nowDate = new Date();  
-			            if(date<=nowDate){  
-			            	itour.alert("提示","选择行程安排日期应在当前日期之后","info" );
-			                $("input[name='tourTime']").datebox('setValue','');  
-			                return false;
-			            }else{
-			            	return true;
-			            }  
-			        }  
-		    }); */
-			//$("input[name='rtbtn']").click(_this.saveQuoteForm);
+			$("input[name='rtbtn']").click(_this.saveQuoteForm);
 			$("input[name='route_checkall']").click(function(){
 				if($(this).attr("checked")){
 					_this.checkedAll("breakfast");
@@ -830,5 +794,4 @@ itour.quoteEdit = function(){
 $(function(){
 	itour.quoteEdit.init();
 	  /*if (window != top)
-          top.location.href = location.href;*/
-});
+          top.location.href = location

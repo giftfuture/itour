@@ -1,16 +1,12 @@
 package com.itour.controller;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -27,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,17 +39,13 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
-import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
-import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
-import com.itour.convert.RouteTemplateKit;
 import com.itour.convert.TravelItemKit;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
-import com.itour.entity.RouteTemplate;
 import com.itour.entity.SysUser;
 import com.itour.entity.TravelItem;
 import com.itour.service.LogOperationService;
@@ -62,8 +53,6 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
-import com.itour.vo.OrderDetailVO;
-import com.itour.vo.RouteTemplateVO;
 //import com.alibaba.fastjson.JSONObject;
 import com.itour.vo.TravelItemVO;
 
@@ -392,6 +381,7 @@ public class TravelItemController extends BaseController{
 			String parpath = travelitemPhotoPath+"\\"+directory;
 			String httpPath =httptravelitemPhotoPath +"/"+directory;
 			List<String> uris = new ArrayList<String>();
+			Map<String,String> map = Maps.newHashMap();
 			File newfile = null;
 			//FileInputStream is = null;
 			//BufferedInputStream imageStream = null;
@@ -411,6 +401,7 @@ public class TravelItemController extends BaseController{
 				      //  toClient.write(data); // 输出数据
 				      //  toClient.flush();
 						uris.add(httpPath+"/"+newfile.getName());//newfile.getAbsolutePath()
+						map.put(newfile.getName(), httpPath+"/"+newfile.getName());
 					}
 				}
 			}
@@ -419,6 +410,7 @@ public class TravelItemController extends BaseController{
 			//toClient = null;
 			context.put(SUCCESS, true);
 			context.put("uris", uris);
+			context.put("map", map);
 			//HtmlUtil.writerJSON(response, context);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -446,37 +438,38 @@ public class TravelItemController extends BaseController{
 	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
 	public Map<String,Object> saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		Map<String,Object> context = getRootMap();
-		String realPath = FilePros.itemCoverpath();
+		String realPath = FilePros.travelitemPhotoPath();
 		TravelItem ti = travelItemService.queryById(id);
-		String [] photos = StringUtils.isNotEmpty(ti.getPhotos()) ? ti.getPhotos().split("\\|"):null;
-		String [] names = fileNames.split(",");
-		List<String> list =	Arrays.asList(photos);
-		for(String name:names){
-			String parpath = ti != null?ti.getItemCode().replaceAll(" ", "")+"_"+ti.getAlias() :"";
+		List<String> photos = StringUtils.isNotEmpty(ti.getPhotos()) ? Arrays.asList(ti.getPhotos().split("\\|")):null;
+		List<String> names = Arrays.asList(fileNames.split(","));
+		//CopyOnWriteArrayList<String> list =	new CopyOnWriteArrayList(photos);//Arrays.asList(photos);
+		//List<String> list = Collections.synchronizedList(Arrays.asList(photos));
+		Iterator<String> it =photos.iterator();
+		List<String> sublist = Lists.newArrayList();
+		while(it.hasNext()){
+			String photo=it.next();
+			if(!names.contains(photo)){
+				sublist.add(photo);
+			}
+		}
+		for(String name:sublist){
+			String parpath = ti != null?ti.getItemCode().trim()+"_"+ti.getAlias() :"";
 			if(StringUtils.isNotEmpty(name) &&StringUtils.isNotEmpty(parpath)){
 				String filePath = realPath+"\\"+parpath+"\\"+name;
 				File file = new File(filePath);
-				if (file.exists() && file.getName().equals(name)) {
+				if (file.exists() && file.getName().equals(name)&& !fileNames.contains(name)) { 
 					file.delete();
-					for(String photo:photos){
-						if(photo.equals(name)){
-							list.remove(photo);
-						}
-					}
 				}
 			}
 		}
-		list.spliterator();
-		ti = new TravelItem();
-		ti.setId(id);
-		StringBuffer pnames = new StringBuffer();
-		for(String name:list){
-			pnames.append("|"+name);
-		}
-		ti.setPhotos(pnames.toString());
-		travelItemService.update(ti);
+		//list.spliterator();
+		TravelItem tt = new TravelItem();
+		tt.setId(id);
+		//StringUtils.join(names,"\\|");
+		ti.setPhotos(StringUtils.join(names,"|"));
+		travelItemService.update(tt);
 		context.put(SUCCESS, true);
-		context.put("msg", "图片保存成功！");
+		context.put("msg", "图片编辑保存成功！");
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的saveeditedPhoto方法");
 		String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/saveeditedPhoto",sessionuser.getId(),"",""));

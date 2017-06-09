@@ -504,6 +504,13 @@ public class RouteTemplateController extends BaseController{
 				vo.setCreateBy(sessionuser.getId());
 				vo.setUpdateBy(sessionuser.getId());
 				rtId = routeTemplateService.add(RouteTemplateKit.toEntity(vo));
+				QuoteForm qf = new QuoteForm();
+				qf.setRouteTemplate(rtId);	
+				qf.setCreateBy(sessionuser.getId());
+				qf.setUpdateBy(sessionuser.getId());
+				qf.setValid(1);
+				quoteFormService.add(qf);
+				
 			}else{
 				rt = routeTemplateService.queryById(vo.getId());
 				if(rt == null){
@@ -511,6 +518,12 @@ public class RouteTemplateController extends BaseController{
 					vo.setCreateBy(sessionuser.getId());
 					vo.setUpdateBy(sessionuser.getId());
 					rtId = routeTemplateService.add(RouteTemplateKit.toEntity(vo));
+					QuoteForm qf = new QuoteForm();
+					qf.setRouteTemplate(rtId);	
+					qf.setCreateBy(sessionuser.getId());
+					qf.setUpdateBy(sessionuser.getId());
+					qf.setValid(1);
+					quoteFormService.add(qf);
 				}else{
 					vo.setValid(1);
 					vo.setUpdateBy(sessionuser.getId());
