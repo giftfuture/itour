@@ -25,8 +25,51 @@ $(document).ready(function() {
 			}, 200).hide();
 		});
 	});
-
-});
+	// 点击登录
+	$("#but_login").click(function(){
+		submit();
+	});
+	//回车登录
+	$(document).keydown(function(e){
+		 e = e || window.event;
+		  //阻止默认事件
+	  /*   if(e.preventDefault){
+	         e.preventDefault();
+	     }else{
+	         e.returnValue = false;
+	     }*/
+		if(e.keyCode == 13) {
+			submit();
+		}
+	});
+	// 重置
+	$('#forgetpass').click(function(e) {
+		$(":input").each(function() {
+		$('#'+this.name).val("");
+		});
+		$("#forget-pwd-win").dialog('open');
+	});
+	$("#btn-forgetpwd-close").click(function(){
+		$("#forget-pwd-win").dialog('close');
+	})
+	$("#btn-forgetpwd-submit").click(function(){
+		itour.progress('请稍侯','信息提交中...');
+		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(result){
+			itour.closeProgress();
+			if(result.success||result.success=='true'){
+				$("#forget-pwd-win").dialog('close');
+				$("#modify-pwd-win").dialog('open');
+			}else{
+				itour.alert("提示",result.msg||"通过邮箱重置密码失败，请联系管理员。","info");
+			}
+		});
+	})
+	$("#btn-pwd-close").click(function(){
+		$("#modify-pwd-win").dialog('close');
+	})
+	$("#btn-pwd-submit").click(function(){
+		modifyPwd();
+	})
 $('.userload').click(function(e){
 	$('.formLogin').animate({
 		opacity : 1,
@@ -38,30 +81,28 @@ $('.userload').click(function(e){
 		$('.userbox').hide();
 	});
 });
-// 重置
-$('#forgetpass').click(function(e) {
-	$(":input").each(function() {
-	$('#'+this.name).val("");
-	});
+
 });
-// 点击登录
-$("#but_login").click(function(e){
-	//console.log("btn_login click trigger");
-	submit();
-});
-//回车登录
-$(document).keydown(function(e){
-	 e = e || window.event;
-	  //阻止默认事件
-  /*   if(e.preventDefault){
-         e.preventDefault();
-     }else{
-         e.returnValue = false;
-     }*/
-	if(e.keyCode == 13) {
-		submit();
-	}
-});
+function modifyPwd(){
+	var pwdForm = $("#pwdForm");
+	if(pwdForm.form('validate')){
+		itour.saveForm(pwdForm,function(data){
+			$('#modify-pwd-win').dialog('close');
+		    pwdForm.resetForm();
+		});
+	 }
+};
+function forgetPwdForm(){
+	var pwdForm = $("#forgetpwdForm");
+	if(pwdForm.form('validate')){
+		//var parentId =$('#search_parentId').val();
+		/*$("#edit_parentId").val(parentId)*/
+		itour.saveForm(pwdForm,function(data){
+			$('#forget-pwd-win').dialog('close');
+		    pwdForm.resetForm();
+		});
+	 }
+}
 //表单提交
 function submit(){
 	var submit = true;

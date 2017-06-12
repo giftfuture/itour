@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.URL;
+
 import com.itour.base.entity.BaseEntity;
 
 public class AdLink extends BaseEntity {
@@ -15,6 +17,7 @@ public class AdLink extends BaseEntity {
 	private static final long serialVersionUID = 7069705719789084689L;
 	private String id;
 	private String advertise;
+	//@URL
 	private String adlink;
     @Min(value = 0, message = "video 的最小值为0")
     @Max(value = 1, message = "video 的最大值为1")
