@@ -307,8 +307,8 @@
   <div id="need-know">
   <table  class="frametb" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028" style="text-align:left"><span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
+    <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
+    <td width="1028" style="text-align:left;float:left;"><span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
@@ -323,7 +323,7 @@
 </table>
   <table  class="frametb" border="0" cellspacing="0" cellpadding="0">
    <tbody><tr>
-     <td width="336" style="text-align:left;float:left"><span class="STYLE3" style="text-align:left">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
+     <td style="text-align:left;float:left"><span class="STYLE3" style="text-align:left">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
      <span class="STYLE3" ><a href="${basePath}light/selfbooking/${rt.alias}">
      <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>

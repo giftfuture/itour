@@ -69,9 +69,9 @@ function loadlevel2Area(level1Area){
 <form name="searchForm" method="post">
 <table class="frametb" align="center">
   <tr>
-    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
+    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>快速搜索</strong></div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
-       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+       <strong>旅行方式：</strong><input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
        旅游区域：<!--onBeforeLoad
      	   -->
@@ -175,7 +175,7 @@ function loadlevel2Area(level1Area){
 </center> --%>
 <table class="lefttxt frametb" align="center">
   <tbody><tr>
-    <td width="611" valign="top" height="105" bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
+    <td valign="middle" height="135" bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
           <td width="883" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">主角旅行 www.iTours.com.cn</div></td>

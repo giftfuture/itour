@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 /**
  * 
  * <br>
@@ -45,6 +48,8 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String shortContent;//简略介绍
 	private String alias;
 	private String routeCode;//线路编号
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private int rcdDays;//建议天数
 	private float mileage;//里程
@@ -53,6 +58,8 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String arrive;//到达地
 	private float trekDistance;//徒步距离
 	private String transportation;//交通工具
+    @Min(value = 1, message = "difficultyRate 的最小值为1")
+    @Max(value = 5, message = "difficultyRate 的最大值为5")
 	private int difficultyRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private List<Integer> diffRate;//难度 (挑战度)1为最低,5为最高,依次递增
 	private List<Integer> undiffRate;//难度 (挑战度)1为最低,5为最高,依次递增
@@ -66,6 +73,8 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String verifyCode;//验证码
 	private int rcdDays1;//建议天数
 	private int rcdDays2;//建议天数
+    @Min(value = 1, message = "starLevel 的最小值为1")
+    @Max(value = 5, message = "starLevel 的最大值为5")
 	private int starLevel;//线路星级
 	private String levelArea;//
 	private String level1Area;//线路一级区域
