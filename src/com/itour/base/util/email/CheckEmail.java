@@ -7,7 +7,9 @@ import org.apache.commons.net.smtp.SMTPReply;
 import org.xbill.DNS.Lookup;  
 import org.xbill.DNS.MXRecord;  
 import org.xbill.DNS.Record;  
-import org.xbill.DNS.Type;  
+import org.xbill.DNS.Type;
+import com.dominicsayers.isemail.IsEMail;  
+import com.dominicsayers.isemail.IsEMailResult;  
   
 public class CheckEmail {  
       
@@ -148,7 +150,18 @@ public class CheckEmail {
         }  
         return false;  
     }  
-      
+    public static boolean checkEmail(String email) throws Exception {
+    	  if (!email.matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+")) {
+    	   return false;
+    	  }
+    	  IsEMailResult result = IsEMail.is_email_verbose(email, true);
+    	  switch (result.getState()) {
+    	  case OK:
+    	   return true;
+    	  default:
+    	   return false;
+    	  }
+	}
     /** 
      * This method is more accurate than checkEmailMethod(String email); 
      *  
@@ -172,7 +185,7 @@ public class CheckEmail {
         }else{  
             System.out.println("false");  
         }  */
-    	checkEmailMethod("zpclor@@dsina.com");
+    	checkEmailMethod("zpclord@sina.com");
     }  
   
 }  

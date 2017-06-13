@@ -45,7 +45,7 @@ $(document).ready(function() {
 	// 重置
 	$('#forgetpass').click(function(e) {
 		$(":input").each(function() {
-		$('#'+this.name).val("");
+			$('#'+this.name).val("");
 		});
 		$("#forget-pwd-win").dialog('open');
 	});
@@ -54,11 +54,15 @@ $(document).ready(function() {
 	})
 	$("#btn-forgetpwd-submit").click(function(){
 		itour.progress('请稍侯','信息提交中...');
-		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(result){
+		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(data){
 			itour.closeProgress();
+			var result = $.parseJSON(data);
+			//console.log(result+"   "+result.success);
 			if(result.success||result.success=='true'){
-				$("#forget-pwd-win").dialog('close');
-				$("#modify-pwd-win").dialog('open');
+				itour.alert("",result.msg,"info",function(){
+					$("#forget-pwd-win").dialog('close');
+					$("#modify-pwd-win").dialog('open');
+				})
 			}else{
 				itour.alert("提示",result.msg||"通过邮箱重置密码失败，请联系管理员。","info");
 			}
@@ -70,26 +74,52 @@ $(document).ready(function() {
 	$("#btn-pwd-submit").click(function(){
 		modifyPwd();
 	})
-$('.userload').click(function(e){
-	$('.formLogin').animate({
-		opacity : 1,
-		left : '0'
-	}, 300);
-	$('.userbox').animate({
-		opacity : 0
-	}, 200, function() {
-		$('.userbox').hide();
+	$('.userload').click(function(e){
+		$('.formLogin').animate({
+			opacity : 1,
+			left : '0'
+		}, 300);
+		$('.userbox').animate({
+			opacity : 0
+		}, 200, function() {
+			$('.userbox').hide();
+		});
 	});
-});
+	/* 自定义密码验证*/
+	$.extend($.fn.validatebox.defaults.rules, {  
+	    equals: {  
+	        validator: function(value,param){  
+	            return value == $(param[0]).val();  
+	        },  
+	        message: '两次输入密码不匹配.'  
+	    }
+	})
 
 });
 function modifyPwd(){
+	itour.progress('请稍侯','信息提交中...');
 	var pwdForm = $("#pwdForm");
+	var param = {'email':$("#email",pwdForm).val(),'newPwd':$("#newPwd",pwdForm).val(),'pwdCode':$("#pwdCode",pwdForm).val()};
+	//console.log(param);
 	if(pwdForm.form('validate')){
-		itour.saveForm(pwdForm,function(data){
-			$('#modify-pwd-win').dialog('close');
-		    pwdForm.resetForm();
-		});
+		$.post(basePath+'main/resetPwd',param,function(data){
+			var result = $.parseJSON(data);
+			itour.closeProgress();
+			if(result.success||result.success=='true'){
+				itour.alert("",result.msg,"info",function(){
+					$('#modify-pwd-win').dialog('close');
+					pwdForm.resetForm();
+				})
+			}else{
+				itour.alert("提示",result.msg||"通过邮箱重置密码失败，请联系管理员。","info");
+			}
+		})
+	/*	itour.saveFormWithoutLogin(pwdForm,function(data){
+			itour.alert("提示",result.msg,"info",function(){
+				$('#modify-pwd-win').dialog('close');
+				pwdForm.resetForm();
+			})
+		});*/
 	 }
 };
 function forgetPwdForm(){
