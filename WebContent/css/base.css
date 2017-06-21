@@ -1,5 +1,9 @@
 /**{font-size:14px;}*/
 body {font-family:MicrosoftYaHei;padding:0px;font-size:13px;margin:0;}
+　img { max-width: 100%;}
+img, object { max-width: 100%;}
+　img { width: 100%; }
+　img { -ms-interpolation-mode: bicubic; }
 form,h1{margin: 0; padding: 0;}
 h2 {font-size:18px;color:#333;font-weight:bold;margin:0;margin-bottom:15px;}
 .warp{padding: 10px;}
@@ -25,20 +29,16 @@ a{text-decoration: none;color:#2786D6;}
  #uploadphoto{display:none;}  /* z-Index:10000 !important;padding:.2em;outline:0;position:absolute;*/
 #edit-pwd-win{display:none;}
 .commontb{
-  width:1350px;
+  width:100%;
   text-align:center;
   align:center;
-  cellpadding:20;
-  cellspacing:0;
   font-family: "微软雅黑";
   border:0;
 } 
 .frametb{
-  width:1140px;
+  width:100%;
   text-align:center;
   align:center;
-  cellpadding:20;
-  cellspacing:0;
   font-family: "微软雅黑";
   border:0;
 } 
@@ -55,41 +55,41 @@ color:#000;
 color:#b3b3b3;
 }
 body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-	font-family: "微软雅黑";
-	font-size:12px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    font-family: "微软雅黑";
+    font-size:12px;
 }
 .h1-black {
-	font-family: "微软雅黑";
-	font-size: 36px;
-	font-weight: bold;
-	color: #333333;
+    font-family: "微软雅黑";
+    font-size: 36px;
+    font-weight: bold;
+    color: #333333;
 }
 .h1-2 {
-	font-family: "微软雅黑";
-	font-size: 36px;
-	color: #666666;
+    font-family: "微软雅黑";
+    font-size: 36px;
+    color: #666666;
 }
 .f24 {
-	font-size: 24px;
-	line-height: 40px;
+    font-size: 24px;
+    line-height: 40px;
 }
 .h2-24 {
-	font-family: "微软雅黑";
-	font-size: 24px;
+    font-family: "微软雅黑";
+    font-size: 24px;
 }
 .f12-gao1 {
-	font-size: 12px;
-	line-height: 20px;
-	color: #333333;
+    font-size: 12px;
+    line-height: 20px;
+    color: #333333;
 }
 .f14-gao1 {
-	font-size: 14px;
-	line-height: 30px;
-	color: #333333;
+    font-size: 14px;
+    line-height: 30px;
+    color: #333333;
 }
 .STYLE126 {font-size: 14px}
 .STYLE148 {color: #990000}
@@ -97,14 +97,14 @@ body {
 .STYLE17 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #990000; }
 .STYLE18 {font-family: "微软雅黑"}
 .STYLE19 {
-	color: #990000;
-	font-family: "微软雅黑";
-	font-weight: bold;
+    color: #990000;
+    font-family: "微软雅黑";
+    font-weight: bold;
 }
 .STYLE20 {color: #990000; font-family: "微软雅黑"; }
 .STYLE22 {color: #666666; font-family: "微软雅黑"; }
-.STYLE129 {	color: #000000;
-	font-weight: bold;
+.STYLE129 { color: #000000;
+    font-weight: bold;
 }
 .STYLE2 {font-family: "微软雅黑"; font-size: 24px; color: #990000; }
 .STYLE3 {font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #990000; }

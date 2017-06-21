@@ -22,8 +22,8 @@
   <tr>
     <td><img src="images/banner.jpg" /></td>
   </tr>
-</table>
-<table class="commontb" align="center">
+ </table>
+  <table class="frametb" align="center" width="61.3%" style="width:61.3%">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     

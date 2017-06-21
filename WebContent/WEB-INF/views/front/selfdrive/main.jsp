@@ -18,46 +18,45 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
- <table class="commontb" align="center"><tr><td><img src="images/index-ad/banner.jpg"  /></td></tr></table>
-<table  class="commontb" align="center" bgcolor="#FFFFFF">
+ <center>
+ <table class="commontb" align="center" width="72.6%" style="width:72.6%">
+ <tr><td colspan=3><img width="100%" src="images/index-ad/banner.jpg"  /></td></tr>
   <!--DWLayoutTable-->
-  <tr>
+  <!-- <tr bgcolor="#FFFFFF">
     <td width="10" background="images/shadowleft.gif"><img src="images/shadowleft.gif" width="10" height="8" /></td>
-    <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td valign="top" class="title"><table   border="0" align="center" cellpadding="0" cellspacing="0">
     </table></td>
     <td width="10" background="images/shadowright.gif"><img src="images/shadowright.gif" width="10" height="8" /></td>
-  </tr>
-</table>
-<table class="commontb" align="center">
- <tbody id="fbcontent">
-<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
-  <tr>
-    <c:forEach items="${rts.get(status.index)}" var="rt" >
-    <td valign="top">
-    <table width="353" border="0" align="left" cellpadding="0" cellspacing="0">
+  </tr> -->
+  </table>
+  <table class="frametb" align="center" width="61.3%" style="width:61.3%">
+    <tr>
+    <td height="106" valign="top" bgcolor="#fafafa" colspan=3>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="296" class="h2-24"><a href="${basePath}selfdrive/selfdrive/${rt.alias}">${rt.title}</a></td>
-            </tr>
-        </table></td>
+        <td class="h1-black" style="text-align:left">自驾玩玩</td>
       </tr>
       <tr>
-        <td><a href="${basePath }selfdrive/selfdrive/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
+        <td class="h1-2" style="text-align:left">專業團隊為您提供後勤保障</td>
       </tr>
       <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
+        <td style="text-align:left"><p>帶上家人，約上朋友 </p>
+          <p>自驾玩玩<br />  
+              <br />
+           <%--  》》<a href="${basePath }climb/main">了解更多</a> --%></p>
+          <p></p></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
       </tr>
     </table></td>
-    </c:forEach>
-  </tr></c:forEach> --%>
+  </tr>
+ <tbody id="fbcontent">
   </tbody>
+   <tr><td colspan=3><ul id='fbpage'></ul></td></tr>
+  <tr><td  colspan=3><%@include file="/front/footer.jsp" %></td></tr>
 </table>
-<center><ul id='fbpage'></ul></center>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/main.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>

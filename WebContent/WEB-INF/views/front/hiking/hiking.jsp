@@ -6,20 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>徒步旅行路线</title>
 </head>
-<table width="200" border="0" cellspacing="0" cellpadding="0">
+<%@include file="/front/header.jsp"  %>
+<center>
+<table width="72.6%" style="width:72.6%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td> <%@include file="/front/header.jsp"  %></td>
+    <td> </td>
   </tr>
-</table>
-<br />
-<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
-  <tr>
-    <td class="h1-black">四姑娘山海子沟徒步、长坪沟穿越毕棚沟</td>
-  </tr>
-</table>
-<br />
-<table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
-  <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="600"><img src="images/Route001.jpg" width="600" height="338" /></td>
@@ -756,9 +748,11 @@
   <tr>
     <td><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
+  <!--  <tr><td ><ul id='fbpage'></ul></td></tr> -->
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>
 

@@ -43,6 +43,9 @@ import com.itour.vo.QuoteFormVO;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.TravelItemVO;
 
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+
 @Controller
 @RequestMapping("/climb") 
 public class ClimbController  extends BaseController{
@@ -73,6 +76,13 @@ public class ClimbController  extends BaseController{
 	@RequestMapping(value="/main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ClimbController main当前是移动浏览器#####");
+        	return forward("mfront/climb/main",context);
+        }
 		return forward("front/climb/main",context); 
 	}
 	/**
@@ -190,6 +200,13 @@ public class ClimbController  extends BaseController{
 		map.put("rt", rt);
 		map.put("qf", qf);
 		map.put("alias", alias);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ClimbController climb{alias}当前是移动浏览器#####");
+        	return forward("mfront/climb/detail",map);
+        }
 		return forward("front/climb/detail",map); 
 	}
 	/**
@@ -235,6 +252,13 @@ public class ClimbController  extends BaseController{
 		Map<String,Object> map = getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ClimbController detail{alias}当前是移动浏览器#####");
+        	return forward("mfront/climb/detail",map);
+        }
 		return forward("front/climb/detail",map); 
 	}
 	/**
@@ -279,6 +303,13 @@ public class ClimbController  extends BaseController{
 		}
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ClimbController selfbooking当前是移动浏览器#####");
+        	return forward("mfront/climb/selfbooking",map);
+        }
 		return forward("front/climb/selfbooking",map); 
 	}
 	/**

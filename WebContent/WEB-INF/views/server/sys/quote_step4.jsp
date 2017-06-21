@@ -21,6 +21,20 @@
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <title>${bean.title }</title>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+  .ui-progressbar {
+    position: relative;
+  }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+</style>
 </head>
 <body>
 <form:form method="post" id="back_form" name="back_form" action="${basePath }travelOrder/list">
@@ -58,9 +72,6 @@
   </tr>  
 </table>
 <table  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  align="center">
- <!--  <tr>
-    <td style="float:left" class="h1-black" style="color: #990000;" ></td>
-  </tr> -->
   <tr>
     <td width="660">
     <table  style="float:right;text-align:right;align:right;margin-right:50px;" width="600" border="0" cellpadding="0" cellspacing="0">
@@ -195,9 +206,6 @@
 </table>
 </td></tr>
 </table>
-
-
-
 <div  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a target="_self">整体概览</a></li>
@@ -262,9 +270,6 @@
    <tr>
     <td colspan=2 style="text-align:left;align:left;">${bean.beforeInstruction }</td>
   </tr>
- <!--  <tr>
-    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
-  </tr> -->
 </table>
 </div></td></tr>
 <tr><td colspan=2>

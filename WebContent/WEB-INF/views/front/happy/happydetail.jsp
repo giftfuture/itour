@@ -8,8 +8,8 @@
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <title>回忆幸福详情</title>
-<meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
-<meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
+<meta name="description" content=" ">
+<meta name="keywords" content=" ">
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
@@ -49,11 +49,11 @@
       <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
+  <tr><td><%@include file="/front/footer.jsp"  %></td></tr>
     </table> 
 </table>
 
 <script type="text/javascript" src="${basePath}js/ux/front/happy/happydetail.js"></script>
-<%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
 

@@ -29,17 +29,17 @@
 <body>
  <%@include file="/front/header.jsp"  %>
 <center>
-<table border="0"  class="commontb" align="center" cellpadding="10" cellspacing="0">
+<table border="0"  class="commontb" align="center" cellpadding="10" cellspacing="0" width="72.6%" style="width:72.6%" >
   <tr>
-    <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td width="55%" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
-    <td width="760"><table  style="float:right;text-align:right;align:right;margin-right:50px;" width="600" border="0" cellpadding="0" cellspacing="0">
+    <td width="55%" style="width:55%;"><table  style="float:right;text-align:right;align:right;margin-right:30px;" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px"  height="338" width="600"/></td>
+        <td name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px"  height="338" width="100%"/></td>
       </tr>
       <tr>
-        <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+        <td height="69"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
             <div align="center">
 <!--滚动图片 start-->
@@ -73,7 +73,7 @@
 </div>
       </tr></table></td>
       </tr></table></td>
-    <td style="float:left;width:590" valign="top">
+    <td style="float:left;width:45%" valign="top">
      <table cellspacing="0" cellpadding="0" border="0">
       <tbody><tr>
         <td><img src="images/frame2-1.gif" width="480" height="7"></td>
@@ -171,7 +171,7 @@
 </td></tr>
 </table>
 
-<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
+<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1" width="61.3%" style="width:61.3%" >
  <ul class='etabs' style="text-align:left;float:left">
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}light/light/${alias}#review">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}light/light/${alias}#detail-route">详细行程</a></li>
@@ -188,12 +188,12 @@
   <tr>
     <td background="${basePath}images/frame1-2.gif"><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
-        <td width="761" valign="top" class="STYLE126" style="text-align:left"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
+        <td width="40%" valign="top" class="STYLE126" style="text-align:left"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
             ${rt.designConcept }
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
           ${rt.customizedService }</span>
         </td>
-        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
+        <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
             <div class="easyzoom easyzoom--overlay">
                 <a href="${basePath}images/map-002.jpg">
                     <img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
@@ -418,8 +418,8 @@
   </div> -->
   </div>
   </div>
+    <div style="width:72.6%"><%@include file="/front/footer.jsp" %></div>
 <script type="text/javascript" src="${basePath}js/ux/front/light/detail.js"></script>
-<%@include file="/front/footer.jsp" %>
 </center>
 </body>
 </html>

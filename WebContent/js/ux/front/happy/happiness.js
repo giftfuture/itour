@@ -16,15 +16,15 @@ itour.happiness = function(){
 						var html="";
 						$(data).each(function(i,e){
 							//console.log(data[i]);
-							html+="<table width='1100' border='0' align='center' cellpadding='10' cellspacing='0'>"+
+							html+="<table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'>"+
 					        "<tr>"+
-					          "<td valign='top'><table width='1000' border='0' cellspacing='0' cellpadding='20'>"+
+					          "<td valign='top'><table width='100%' border='0' cellspacing='0' cellpadding='20'>"+
 					              "<tr>"+
-					                "<td width='316'><table width='260' border='0' align='center' cellpadding='0' cellspacing='0'>"+
+					                "<td style='width:26.8%'><table  border='0' align='center' cellpadding='0' cellspacing='0'>"+
 					                  "<tr>"+
-					                    "<td width='260'><table border='0' cellspacing='0' cellpadding='0'>"+
+					                    "<td><table border='0' cellspacing='0' cellpadding='0'>"+
 					                        "<tr>"+
-					                          "<td width='181' height='111'><a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'><img src='"+basePath+(e.cover?e.cover:"") +"' width='305' height='165' /></a></td>"+
+					                          "<td style='width:100%;'><a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'><img src='"+basePath+(e.cover?e.cover:"") +"' width='100%' /></a></td>"+
 					                          "<td width='11' rowspan='2' valign='bottom'><img src='"+basePath+"images/tu-k-02.gif' width='11' height='122' /></td>"+
 					                        "</tr>"+
 					                        "<tr>"+
@@ -33,14 +33,14 @@ itour.happiness = function(){
 					                    "</table></td>"+
 					                  "</tr>"+
 					                "</table></td>"+
-					                "<td width='691' valign='bottom'><table width='667' border='0' cellpadding='2' cellspacing='2' class='STYLE126'>"+
+					                "<td width='73.2%' valign='bottom'><table width='100%' border='0' cellpadding='2' cellspacing='2' class='STYLE126'>"+
 					                 " <tr>"+
 					                   // "<td valign='top'>&nbsp;</td>"+
 					                    "<td style='text-align:left'><span class='STYLE19'>"+(e.title?e.title:"")+" </span><span class='STYLE22'>"+(e.tourTime?e.tourTime:"")+"</span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td width='20' valign='top'><div align='center'><img src='"+basePath+"images/quote-1.gif' /></div></td>"+
-					                    "<td width='576' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
+					                    "<td width='100%' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td valign='top'>&nbsp;</td>"+

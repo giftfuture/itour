@@ -30,7 +30,7 @@ $(document).ready(function() {
                     ['view', ['fullscreen', 'codeview', 'help']]
                 ],
 	        // popover
-	        popover: {
+	        popover: {/*
 	          image: [
 	            ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
 	            ['float', ['floatLeft', 'floatRight', 'floatNone']],
@@ -44,8 +44,8 @@ $(document).ready(function() {
 	            ['font', ['bold', 'underline', 'clear']],
 	            ['para', ['ul', 'paragraph']],
 	            ['table', ['table']],
-	            ['insert', ['link'/*, 'picture'*/]]
-	          ]},
+	            ['insert', ['link', 'picture']]
+	          ]*/},
         fontNames: ['Microsoft YaHei ','Serif', 'Sans', 'Arial', 'Arial Black', 'Courier','Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande','Sacramento'],
         colors: [
                  ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],

@@ -1,0 +1,81 @@
+.headline {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	color: #990000;
+}
+.heedline1 {
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 0.875em;
+	color: #990000;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	line-height: 20px;
+	letter-spacing: normal;
+	word-spacing: normal;
+
+}
+.lefttxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #666666;
+	text-decoration: none;
+	font-weight: normal;
+	line-height: 15px;
+}
+
+.headline2 {
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 0.875em;
+	color: #999999;
+	font-weight: bold;
+}
+.TP01 {
+	FONT-SIZE: 0.9375em;
+	COLOR: #990000;
+	FONT-FAMILY: "Arial", "Helvetica", "sans-serif";
+	font-weight: bold;
+}
+.TP03 {
+	FONT-SIZE: 0.875em;
+	COLOR: #555555;
+	LINE-HEIGHT: 1.4em;
+	font-family: "Arial", "Helvetica", "sans-serif";
+}
+.TP04 {
+	FONT-SIZE: 0.8125em;
+	COLOR: #666666;
+	LINE-HEIGHT: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.TP05 {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.875em; COLOR: #cc3300
+}
+.neirong01 {
+	FONT-SIZE: 0.875em; LINE-HEIGHT: 22px
+}
+.STYLE123 {
+	font-size: 0.8125em;
+	line-height: 16px;
+	font-weight: normal;
+	color: #666666;
+}
+.STYLE100 {
+	font-size: 1em;
+	color: #666666;
+}
+STYLE74 {
+	font-size: 1em;
+	line-height: normal;
+	color: #333333;
+}
+.STYLE75 {
+	font-size: 1em;
+	color: #333333;
+}

@@ -733,6 +733,19 @@ itour.quoteEdit = function(){
 		},elsefeeMinus:function(e){
 			$(e).parent().remove();
 		},
+		addhotel:function(){
+			var insertSpan = "<span class=STYLE126><input name='hotelName' class='easyui-textbox' data-options=\"prompt:'酒店名称'\" type=text>&nbsp;&nbsp; "+
+		    "<input name='hotelPosition'  class='easyui-textbox' data-options=\"prompt:'酒店位置'\" />"+
+		    "<input name='checkinDate'  class='easyui-datebox' data-options=\"prompt:'入住日期',width:80,editable:false,region:'north',split:true,border:false\" >"+
+		    " <input name='hotelpriceperday' style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+            "元/晚 X<input name=hoteldays size=6 style='width:50px' type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+              "  天数&nbsp;&nbsp;<a name=hotelminus onclick='javascript:itour.quoteEdit.hotelMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>"	;
+			$.parser.parse($(insertSpan).parent());
+			$("#addhoteliv").append(insertSpan);
+		},
+		hotelMinus:function(e){
+			$(e).parent().remove();
+		},
 		showSuccess:function (str) {
 			$('#alertMessage').removeClass('error').html(str).stop(true, true).show().animate({
 				opacity : 1,
@@ -820,6 +833,7 @@ itour.quoteEdit = function(){
 			$("a[name='adddinner']").click(function(){_this.dinnerPlus()});
 			$("a[name='addspecialdinner']").live('click',function(){_this.specialDinnerPlus(this)});
 			$("a[name='addsingledinner']").live('click',function(){_this.singleDinnerPlus(this)}); 
+			$("a[name='addhotel']").live('click',function(){_this.addhotel()});
 			$.extend($.fn.validatebox.defaults.rules,{  
 			    dateValided : {  
 			        validator : function(value) { //参数value为当前文本框的值

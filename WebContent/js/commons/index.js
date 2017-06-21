@@ -12,7 +12,7 @@ itour.index = function(){
 					$(result).each(function(i,e){
 						//console.log(e.advertise);
 						arr[i]=e.advertise;
-						if(e.isVideo){
+						if(e.isVideo==1){
 							links[i] = basePath+'video/'+ e.adlink;
 						}else{
 							links[i]=e.adlink;
@@ -71,7 +71,7 @@ itour.index = function(){
 			//console.log(links+"   "+bannerindex);
 		
 			//var intervalid = setInterval("alert(111111111)",timeInterval);
-			var exchange = "<tr><td style='text-align:center;width:100%;float:middle;' height='33px' ><ol style='padding-left:800px;display:table;text-align:center;width:100%;float:middle'>";
+			var exchange = "<tr><td style='text-align:center;width:100%;float:middle;' height='33px' colspan='2'><ol style='padding-left:43%;display:table;text-align:center;width:100%;float:middle'>";
 			for(var i =0;i<arr.length;i++){
 				exchange+="<li style=''></li>";
 			}

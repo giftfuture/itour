@@ -3,31 +3,31 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
 <title>目的地详情</title>
 <link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
+ <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+ <meta http-equiv="description" content="This is my page"> 
 </head>
 <body>
 <center>
 <%@include file="/front/header.jsp"  %> 
-<table class="commontb" valign="middle" style="height:100%">
+<table class="commontb" valign="middle" style="width:72.6%" width="72.6%">
   <tr style="align:center">
-    <td valign="top" rowspan=2 style="text-align:center" align="center"><!-- style='weight:100%;height:100%;'  -->
+    <td valign="top" style="text-align:center" align="center"><!-- style='weight:100%;height:100%;'  -->
             <div style="float:middle;display:inline-block;valign:top;text-align:center;align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:202px;height:30px;" >旅遊目的地</div>
             <div class="treebox">
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
-					<li class="level1">
-						<a href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%><c:out value="${scope.value}"></c:out><i class="down"></i></a>
-						<ul class="level2">
+					<li class="level1" style="width:100%">
+						<a style="width:100%" href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%><c:out value="${scope.value}"></c:out><i class="down"></i></a>
+						<ul class="level2" style="width:100%">
 							<c:forEach items="${items}" var="item">
 								<c:if test="${scope.key==item.scope }">
-									<li><a href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>
+									<li style="width:100%"><a style="float:left" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>
 								</c:if>
 							</c:forEach>
 						</ul>
@@ -65,12 +65,14 @@
 					//--><!]]>
 			</script>
 			</DIV>
-<!--滚动图片 end--><span style="text-align:left;">${itemvo.content }</span> </td>
+			<!--滚动图片 end-->
+			<span style="text-align:left;">${itemvo.content }</span> </td>
             <td style="text-align:center;valign:top;vertical-align:top;align:center;display:inline-block;"><img src="images/ticket.png" width="30" height="30">
             <span class="STYLE3">${itemvo.item}门票信息（CNY）：</span><br/>
-            <span style="text-align:center;valign:top;vertical-align:top;display:inline-block;" align="center" >${itemvo.ticketsBlock}</span><br/><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
+            <span style="text-align:center;valign:top;vertical-align:top;display:inline-block;" align="center" >${itemvo.ticketsBlock}</span><br/><br/><br/><br/>
+            <span class="h2-24" style="margin-top:30px;padding-top:30px"><img src="images/route2.png" width="48" height="48"></span>
 		<span class="style3">相关旅游线路</span>
-		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
+		<table width="435" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
               <tbody>
               <c:forEach items="${rts}" var="item">
               <tr>
@@ -79,36 +81,21 @@
                <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
               </tr>
         	</c:forEach>
+        	<c:if test="${showMore}">
               <tr>
                 <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
                 <td>&nbsp;</td>
               </tr>
+              </c:if>
           </tbody></table></td>
           </tr>
-          <tr>
+         <!--  <tr>
             <td valign="top"  style="weight:100%;height:100%;text-align:left;valign:top;">
-           
-		</td><td><%-- <span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
-		<span class="STYLE3">相关旅游线路</span>
-		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
-              <tbody>
-              <c:forEach items="${rts}" var="item">
-              <tr>
-                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
-             <!- width="66" width="384" class="f12-gao1"--> 
-               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
-              </tr>
-        	</c:forEach>
-              <tr>
-                <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
-                <td>&nbsp;</td>
-              </tr>
-          </tbody></table> --%>
-		</td>
-	  	 </tr>
-</table>
+		</td> 
+	  	 </tr> -->
+	  	 <tr><td colspan="3"><%@include file="/front/footer.jsp"  %></td></tr>
+	</table>
+	</center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destdetail.js"></script>
-<%@include file="/front/footer.jsp"  %>
-</center>
 </body>
 </html>

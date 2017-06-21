@@ -73,7 +73,6 @@ itour.serverquotestep4 = function(){
 			//generateReport
 			$("a[name='generateReport']").click(function(){
 				itour.progress('请稍侯','信息提交中...');
-				
 				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},function(responseText){
 					var result = $.parseJSON(responseText);
 					//console.log(result);

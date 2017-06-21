@@ -59,8 +59,8 @@
 			<option value="加入散客团">加入散客团</option>
 		  </select>&nbsp;&nbsp;&nbsp;&nbsp;
 		  <span id="groupdiv" style="display:none">
-		  团号:<input id="groupCode" type="text" class="easyui-textbox" size="80" />
-		  出团日期：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.selfdriveselfbooking.onChangeDate(this)" style="width:100px;" />
+		<!--   团号:<input id="groupCode" type="text" class="easyui-textbox" size="80" /> -->
+		  出团日期：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.selfdriveselfbooking.onChangeDate(this)" style="width:100px;" />
 		  </span> </td>
         </tr>
         <tr> 
@@ -309,7 +309,7 @@
   </tr>
 </table>
   </form>
+      <center><div style="width:72.6%"><%@include file="/front/footer.jsp" %></div></center>
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/selfbooking.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>

@@ -13,17 +13,19 @@
 <title>登山旅行</title>
 </head>
 <body>
-<table  class="commontb" align="center">
-   <tr>
-    <td> <%@include file="/front/header.jsp"  %> </td>
-  </tr>
+<%@include file="/front/header.jsp"  %>
+<center>
+<table  class="commontb" align="center" width="72.6%" style="width:72.6%">
+   <!-- <tr>
+    <td>  </td>
+  </tr> -->
   <tr>
-    <td><img src="images/img/gonga-04.jpg"/></td>
+    <td colspan=3><img src="images/img/gonga-04.jpg" width="100%"/></td>
   </tr>
-</table>
-<table  class="commontb" align="center">
+   </table>
+  <table class="frametb" align="center" width="61.3%" style="width:61.3%">
   <tr>
-    <td height="106" valign="top" bgcolor="#fafafa">
+    <td height="106" valign="top" bgcolor="#fafafa" colspan=3>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td class="h1-black" style="text-align:left">徒步登山</td>
@@ -43,46 +45,13 @@
       </tr>
     </table></td>
   </tr>
-  <tr>
-    <td valign="top">&nbsp;</td>
-  </tr>
-  <tr>
-    <td valign="top">&nbsp;</td>
-  </tr>
-</table>
-<table class="commontb" align="center">
  <tbody id="fbcontent">
-<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
-  <tr>
-    <c:forEach items="${rts.get(status.index)}" var="rt" >
-    <td valign="top">
-    <table width="353" border="0" align="left" cellpadding="0" cellspacing="0">
-      <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="296" class="h2-24"><a href="${basePath}climb/climb/${rt.alias}">${rt.title}</a></td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><a href="${basePath }climb/climb/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
-      </tr>
-      <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
-      </tr>
-      <tr>
-        <td><span class="f14-gao1">${item.content}</span></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-    </c:forEach>
-  </tr></c:forEach> --%>
   </tbody>
+  <tr><td colspan=3><ul id='fbpage'></ul></td></tr>
+  <tr><td  colspan=3><%@include file="/front/footer.jsp" %></td></tr>
 </table>
-<center><ul id='fbpage'></ul></center>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/main.js"></script>
-<%@include file="/front/footer.jsp" %>
+
 </body>
 </html>

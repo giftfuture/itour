@@ -28,15 +28,15 @@
 <body>
 <%@include file="/front/header.jsp"  %> 
 <center>
-<table class="commontb" align="center">
+<table class="commontb" align="center" width="72.6%" style="width:72.6%" >
   <tr>
-    <td width="766" style="float:middle" class="h1-black" >${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td width="55%" style="float:middle" class="h1-black" >${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
-    <td>
-    <table style="float:right;text-align:right;align:right;margin-right:50px;" valign="top" >
+    <td width="55%" style="width:55%;" >
+    <table style="float:right;margin-right:30px" valign="top" >
       <tr>		
-        <td><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="600"/></td>
+        <td><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="100%"/></td>
       </tr>
       <tr>
         <td height="69">
@@ -72,7 +72,7 @@
 <!--滚动图片 end-->
 </div>
      </td></tr></table></td>
-    <td style="float:left" valign="top">
+    <td style="float:left;width:45%" width="45%" valign="top">
      <table cellspacing="0" cellpadding="0" border="0">
       <tbody><tr>
         <td><img src="images/frame2-1.gif" width="480" height="7"></td>
@@ -171,7 +171,7 @@
   <%-- <tr><td><a href="${basePath}hiking/toQuote2/${rt.alias}" class="easyui-linkbutton">预定本路线</a></td></tr>	 --%>
 <br />
 <br />
-<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
+<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="" cellspacing="" width="61.3%" style="width:61.3%" >
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking/hiking/${alias}#review" target="_self">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking/hiking/${alias}#detail-route" target="_self">详细行程</a></li>
@@ -184,20 +184,20 @@
  <div id="review" name="review">
   <table  class="frametb" align="center">
   <tr>
-    <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td width="100%" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif" width="1140" ><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr> 
-        <td width="761" valign="top" style="text-align:left" class="STYLE126"><span class="STYLE3">设计理念：</span><br />
+        <td width="40%" valign="top" style="text-align:left" class="STYLE126"><span class="STYLE3">设计理念：</span><br />
        	  ${rt.designConcept }
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
           ${rt.customizedService }</span>
         </td>
-        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
+        <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
    			<div class="easyzoom easyzoom--overlay">
 				<a href="${basePath}images/map-002.jpg">
-					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />		
+					<img src="${basePath}images/map-002.jpg" alt="" width="100%" height="360" />		
 				</a>
 			</div>
           </div>
@@ -418,12 +418,9 @@
   </tr>
 </table>
   </div> </div>
- <!--  <div id="consulting" style="display:none;">
-
-  </div> -->
    </div>
+   <div style="width:72.6%"><%@include file="/front/footer.jsp" %></div>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
-<%@include file="/front/footer.jsp" %>
 </center>
 </body>
 </html>

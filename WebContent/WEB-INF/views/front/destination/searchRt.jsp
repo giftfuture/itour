@@ -25,12 +25,12 @@
  </script>
 </head>
 <body>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<%@include file="/front/header.jsp" %>
+<center>
+<table  style="width:72.6%" width="72.6%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><%@include file="/front/header.jsp" %></td>
+    <td></td>
   </tr>
-</table>
 <%-- <input type="hidden" name="travelStyle" value="${travelStyle }"/>
 <input type="hidden" name="level1Area" value="${level1Area }"/>
 <input type="hidden" name="level2Area" value="${level2Area }"/>
@@ -38,18 +38,19 @@
 <input type="hidden" name="rcdDays2" value="${rcdDays2 }"/>
 <input type="hidden" name="rcdDays" value="${rcdDays }"/> --%>
 <!-- <div id="fbcontent"></div> -->
+<tr><td>
 <input type="hidden" name="alias" value="${alias }"	/>
-<input type="hidden" name="pageNo" value="${pageNo }"	/>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<input type="hidden" name="pageNo" value="${pageNo }"	/></td></tr>
   <tr>
     <td width="766" valign="top">
     <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
    	<tbody id="fbcontent"></tbody>
     </table></td>
   </tr>
+  <tr><td><ul id='fbpage'></ul></td></tr>
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
-<center><ul id='fbpage'></ul></center>
-<%@include file="/front/footer.jsp" %>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/searchRt.js"></script>
 </body>
 </html>
