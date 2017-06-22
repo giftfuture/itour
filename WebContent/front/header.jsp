@@ -8,7 +8,7 @@
     	<th colspan="3"><img src="${basePath}images/chinatravel.png" alt="" />
     	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th><!-- href="tel:+8602885580038" -->
     	<th colspan=2><span style="color:red">一鍵撥號：<a >+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th>
-    	<th><a >info@iTours.com.cn</a></th></tr><!-- href="mailto:info@iTours.com.cn" -->
+    	<th><a >info@iTours.com.cn</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://zjj.itours.com.cn/itour_en">英文</a></th></tr><!-- href="mailto:info@iTours.com.cn" -->
     	<tr class="trbanner" align="center">
     	<td style="text-align:center;width:10%"><a onclick="location.href='${basePath}'" style="font-color:#FFFFFF">首頁</a></td>
     	<td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking/main'">徒步</a></td>

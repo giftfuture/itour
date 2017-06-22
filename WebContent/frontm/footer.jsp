@@ -1,11 +1,11 @@
  <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<script type="text/javascript" src="${basePath}js/commons/package.js"></script>
+<script type="text/javascript" src="${basePath}jsm/commons/package.js"></script>
 <script type="text/javascript">
  var rcdDays='${rcdDays}';
  var level1Area ='${level1Area}';
  var level2Area = '${level2Area}';
 </script>
-<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  
+<script type="text/javascript" src="${basePath}jsm/ux/front/footer.js"></script>  
 <div width="100%" style="width:100%"  data-role="content"  data-fullscreen="true">
 <form name="searchForm" method="post">
 <table class="commontb" align="center"  width="100%" style="width:100%"  data-role="content"  data-fullscreen="true">

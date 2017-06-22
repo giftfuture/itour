@@ -113,7 +113,7 @@ public class IndexController extends BaseController {
 						}
 					}
 					ts.setCover(tsCoverPath+"/"+PinYinUtil.getPinYin(ts.getType())+"_"+ts.getAlias()+"/"+ts.getCover());
-					mapvo.put(ts.getType()+"#"+ts.getDescrip()+"#"+ts.getCover(),newvos);
+					mapvo.put(ts.getType()+"#"+ts.getDescrip()+"#"+ts.getCover()+"#"+ts.getAlias(),newvos);
 				}
 			}
 		}

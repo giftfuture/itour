@@ -10,7 +10,7 @@
 <body>
 <div id="append_parent"></div>
 <table align="center" width="100%" style="width:100%;text-align:center;float:middle"  bgcolor="#FFFFFF">
-  <tr><td colspan="3"><%@include file="/frontm/header.jsp"  %></td>  
+  <tr><td colspan="3"><%@include file="/frontm/header.jsp"  %></td> </tr> 
   <tr> 
     <td width="5" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="5" height="8" /></td>
     <td width="177"><div align="center"><img src="images/logo.jpg" width="160" height="96" /></div></td>

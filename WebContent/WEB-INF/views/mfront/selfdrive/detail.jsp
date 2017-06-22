@@ -345,7 +345,7 @@
 </table>
 <table  class="frametb"  align="center">
   <tr>
-    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath}images/frame1-2.gif">

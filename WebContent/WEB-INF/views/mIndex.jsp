@@ -80,7 +80,7 @@
                                     <tr>
                                         <td width="100%" class="h2-24red" colspan=3
                                             style="text-align: left;"><a
-                                            width="100%" href="${basePath}hiking/main"><img
+                                            width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}/main"><img
                                                 src="images/icon-0${status.index+1 }.jpg" width="57"
                                                 height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>
@@ -90,7 +90,7 @@
                                     </tr>
                                     <tr>
                                         <td width="100%" colspan=3 style="text-align: left"><a
-                                            href="${basePath}hiking/main" class="STYLE3"><img
+                                            href="${basePath}${fn:split(entry['key'], '#')[3]}/main" class="STYLE3"><img
                                                 src="${basePath }${fn:split(entry['key'],'#')[2]}"
                                                 style="border: none;" border="0px"   width="100%" /></a></td>
                                     </tr>

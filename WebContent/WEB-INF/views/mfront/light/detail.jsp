@@ -22,9 +22,7 @@
 <script type="text/javascript" src="${basePath}jsm/plug-in/zeroclip/ZeroClipboard.swf"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/pdf/jspdf.min.js"></script>
-
 <script type="text/javascript">
-
 </script>
 </head>
 <body>
@@ -341,7 +339,7 @@
 </table>
 <table class="frametb"  align="center">
   <tr>
-    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath}images/frame1-2.gif">
