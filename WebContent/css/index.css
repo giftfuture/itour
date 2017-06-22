@@ -40,9 +40,9 @@ body {
     color: #990000;font-family: "微软雅黑";
 }
 .STYLE5 {font-family: "黑体";
-font-size: 2.25em;
-font-weight: bold;
-color: #990000;}
+		font-size: 2.25em;
+		font-weight: bold;
+		color: #990000;}
 .STYLE6 {font-family: "微软雅黑";font-size:14px}
 .STYLE7 {color: #666666; font-family: "微软雅黑"; }
 .STYLE8 {font-size: 14px; line-height: 1.875em; color: #333333; font-family: "微软雅黑"; }
@@ -51,16 +51,16 @@ color: #990000;}
 .trbanner{font-family: "微软雅黑"; font-size: 1.5em; background-color: #FF0000;}
 .btn-item {
   background: grey;  /* transparent */
-  width:1.75em;
-  height:1.75em;
+  width:0.8em;
+  height:0.8em;
    float:middle; 
 }
 .btn-item__cur {
   background: #8B0000;
   border-color: #fff;
-  width:0.875em;
+  width:1.2em;
+  height:1.2em;
   float:middle; 
-  height:14px;
 }
 tr td ol{position:relative;width: 80px;height: 20px;top:-30px;left:60px;}
 tr td ol li{float:left;width: 10px;height: 10px;margin: 5px;background: #fff;}
@@ -93,8 +93,8 @@ a:visited {
   text-align:center;
   align:center;
   font-family: "微软雅黑";
-  font-size: 2.25em;
-  font-weight: bold;
+ /*  font-size: 2.25em;
+  font-weight: bold; */
 }
 #top-menu tr.trbanner{
     color:#FFFFFF;

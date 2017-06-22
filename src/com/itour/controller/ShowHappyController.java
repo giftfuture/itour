@@ -232,7 +232,7 @@ public class ShowHappyController extends BaseController{
         OperatingSystem os = userAgent.getOperatingSystem();
         if(os.isMobileDevice()){
         	logger.debug("###########ShowhappyController happydetail当前是移动浏览器#####");
-        	return forward("mfront/happy/happydetail");
+        	return forward("mfront/happy/happydetail",context);
         }
 		return forward("front/happy/happydetail",context); 
 	}

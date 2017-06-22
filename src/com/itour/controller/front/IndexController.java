@@ -161,6 +161,13 @@ public class IndexController extends BaseController {
 		Map<String,Object> map = getRootMap();
 		String videopath = FilePros.httpbannervideoPath();
 		map.put("videopath",videopath+"/"+videoName);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########当前是移动浏览器#####");
+        	return forward("mfront/video",map);
+        }
 		return forward("front/video",map);		
 	}
 	/**

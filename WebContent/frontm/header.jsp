@@ -4,10 +4,10 @@
     <table align="center" style="border:0;cursor:pointer;width:100%" > <!-- class="easyui-datagrid" -->
     	<tr><th colspan="4"><a href="${basePath}"><img src="${basePath}images/head2016.gif" /></a></th><th colspan="4"><a><img src="${basePath}images/chinatravel.png" alt="" /></a></th></tr>
     	<tr><th colspan="8">
-    	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th><!-- href="tel:+8602885580038" -->
+    	<span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊&nbsp;info@iTours.com.cn</span></th><!-- href="tel:+8602885580038" -->
     	</tr><!-- href="mailto:info@iTours.com.cn" -->
     	<tr><th colspan=8><span style="color:red">一鍵撥號：<a >+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;&nbsp;<!-- <a href="sms:139xxxxxxx">一键发送短信</a> --></th></tr>
-        <tr><th colspan=8><a >info@iTours.com.cn</a></th></tr>
+        <!-- <tr><th colspan=8><a>info@iTours.com.cn</a></th></tr> -->
     	<tr class="trbanner" align="center">
     	<td style="text-align:center;width:10%"><a onclick="location.href='${basePath}'" style="font-color:#FFFFFF">首頁</a></td>
     	<td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking/main'">徒步</a></td>

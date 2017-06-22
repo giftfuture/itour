@@ -24,6 +24,7 @@
 </script>
 </head>
 <body>
+<center>
 <div data-role="content"  data-fullscreen="true">    
     <table class="commontb"  width="100%" style="width:100%" align="center">
         <tr><td><%@include file="/frontm/header.jsp"%></td></tr>
@@ -122,7 +123,7 @@
                                     <tr>
                                         <td width="32" style="text-align: right"><img
                                             src="images/heart02.png" width="32" height="32" /></td>
-                                        <td width="100%" class="h2-24" style="text-align: left">回憶幸福</td>
+                                        <td width="80%" class="h2-24" style="text-align: left">回憶幸福</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -179,6 +180,7 @@
             <tr><td><%@include file="/frontm/footer.jsp"%></td></tr>
     </table>
     </div>
-    <script type="text/javascript" src="${basePath }jsm/commons/index.js"></script>
+</center>
+<script type="text/javascript" src="${basePath }jsm/commons/index.js"></script>
 </body>
 </html>

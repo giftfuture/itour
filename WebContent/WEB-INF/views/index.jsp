@@ -177,8 +177,8 @@
 		</tr>
 		<!-- <tr><td colspan=2><ul id='fbpage'></ul></td></tr> -->
 		<tr><td colspan=2><%@include file="/front/footer.jsp"%></td></tr>
-	</table>
-	</center>
-	<script type="text/javascript" src="js/commons/index.js"></script>
+</table>
+</center>
+<script type="text/javascript" src="js/commons/index.js"></script>
 </body>
 </html>

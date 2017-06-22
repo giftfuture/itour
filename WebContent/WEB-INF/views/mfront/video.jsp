@@ -54,7 +54,7 @@ var basePath = '${basePath}';
 <link rel="stylesheet" href="${basePath}css/index.css" />  
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>欢迎访问主角旅行</title>
- <link href="${basePath }cssm/index.css" rel="stylesheet" type="text/css" />
+<%--  <link href="${basePath }cssm/index.css" rel="stylesheet" type="text/css" /> --%>
  <script type="text/javascript">
  jQuery.browser={};
  (function(){
@@ -67,18 +67,19 @@ var basePath = '${basePath}';
  </script>
 </head>
 <body>
+<%@include file="/frontm/header.jsp" %>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><%@include file="/frontm/header.jsp" %></td>
+    <td></td>
   </tr>
  <%-- <tr>
     <td><img id="banner-index"  src="${basePath }images/Route001.jpg"/></td>
   </tr> --%>  
-<tr><td style="padding-top:70px;margin-top:70px">
+<tr><td style="">
 <!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
 <script type="text/javascript">
 if($.browser.msie){ 
-	document.write('<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="80%" style="margin-top: -10px;margin-left: -8px;" id="FLVPlayer1">'+
+	document.write('<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="80%" style="" id="FLVPlayer1">'+
 			'<param name="movie" value="FLVPlayer_Progressive.swf" />'+
 			'<param name="quality" value="high" />'+
 			'<param name="wmode" value="opaque" />'+
@@ -89,8 +90,8 @@ if($.browser.msie){
 			'<param name="expressinstall" value="expressInstall.swf" />'+
 			'</object>');
 	}else{
-		 document.write('<div align="center" width="100%" height="82%">'+
-		'<video width="100%" height="82%" webkit-playsinline="true" autoplay="autoplay" controls="controls">'+
+		 document.write('<div align="center" width="100%"  >'+
+		'<video width="100%" webkit-playsinline="true" autoplay="autoplay" controls="controls">'+
 		'<source src="${videopath}.mp4" type="video/mp4"></source>'+
 		'your browser does not support the video tag'+
 		'</video></div>'); 
@@ -109,7 +110,7 @@ if($.browser.msie){
 your browser does not support the video tag
 </video> --%>
 </td></tr>
+<tr><td><%@include file="/frontm/footer.jsp" %></td></tr>
 </table>
-<%@include file="/frontm/footer.jsp" %>
 </body>
 </html>

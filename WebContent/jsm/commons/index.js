@@ -12,7 +12,7 @@ itour.mindex = function(){
 					$(result).each(function(i,e){
 						//console.log(e.advertise);
 						arr[i]=e.advertise;
-						if(e.isVideo==1){
+						if(e.video==1){
 							links[i] = basePath+'video/'+ e.adlink;
 						}else{
 							links[i]=e.adlink;

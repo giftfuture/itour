@@ -8,7 +8,7 @@
     pageContext.setAttribute("basePath", basePath);
     int count=1;  														
     application.setAttribute("count",count); 
-    String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
+   // String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
     long getTimestamp=new Date().getTime();
 %>
 <script type="text/javascript">
@@ -50,13 +50,13 @@ var basePath = '${basePath}';
 <meta http-equiv="cache-control" content="no-cache">  
 <meta http-equiv="expires" content="0">      
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="mobile-agent" content="format=html5; url=<%=homePage%>" />
-<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=homePage%>" />
+<meta http-equiv="mobile-agent" content="format=html5; url=<%=basePath%>" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=basePath%>" />
 <link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
 <link rel="stylesheet" href="${basePath}css/index.css" />  
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>欢迎访问主角旅行</title>
- <link href="css/index.css" rel="stylesheet" type="text/css" />
+<!--  <link href="css/index.css" rel="stylesheet" type="text/css" /> -->
  <script type="text/javascript">
  jQuery.browser={};
  (function(){
@@ -69,9 +69,11 @@ var basePath = '${basePath}';
  </script>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<%@include file="/front/header.jsp" %>
+<center>
+<table width="72.6%" style="width:72.6%">
   <tr>
-    <td><%@include file="/front/header.jsp" %></td>
+    <td></td>
   </tr>
  <%-- <tr>
     <td><img id="banner-index"  src="${basePath }images/Route001.jpg"/></td>
@@ -112,6 +114,7 @@ your browser does not support the video tag
 </video> --%>
 </td></tr>
 </table>
-<%@include file="/front/footer.jsp" %>
+<table style="width:61.3%" width="61.3%"><tr><td><%@include file="/front/footer.jsp" %></td></tr></table>
+</center>
 </body>
 </html>

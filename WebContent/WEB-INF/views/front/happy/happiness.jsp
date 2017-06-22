@@ -13,10 +13,8 @@
 <title></title>
 </head>
 <body>
-<table class="commontb" border="0" align="center" cellpadding="10" cellspacing="0" width="100%" style="width:100%">
-  <tr>
-    <td> <%@include file="/front/header.jsp"  %></td>
-  </tr>
+<%@include file="/front/header.jsp"  %>
+<table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0" width="61.3%" style="width:61.3%">
   <tr>
     <td class="STYLE17"><div align="center">回憶幸福~將幸福定格</div></td>
   </tr>
@@ -24,17 +22,17 @@
     <td><img src="images/frame1-1.gif" width="1140"/></td>
   </tr>
   <tr>
-    <td width="1140" style="width:1140px;padding-left:250px;margin-left:250px;text-align:left;background-image:url('images/frame1-2.gif');background-position:115px 0px;">
-           <span style="float:left">※  旅行  是流動的歷程<br />
+    <td style="text-align:left;padding-left:10px;background-image:url('images/frame1-2.gif');">
+              ※  旅行  是流動的歷程<br />
               ※  感動  是霎那的永恆 <br />
-              ※  回憶  是一輩子的幸福風景 </span>  
-      <span style="float:right;padding-right:220px"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></span></td>
+              ※  回憶  是一輩子的幸福風景 
+      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></span></td>
   </tr>
   <tr><!--  style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"  -->
     <td><img src="${basePath }images/frame1-3.gif" width="1140" /></td>
   </tr>
 </table>
-<table border="0" align="center" cellpadding="0" cellspacing="0">
+<table  class="commontb" border="0" align="center" cellpadding="0" cellspacing="0" width="61.3%" style="width:61.3%">
   <tr>
     <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
@@ -75,21 +73,21 @@
               </tr>
             </table>
               <div>
-			</div>
+            </div>
           </td>
         </tr>
       </table>
       </c:forEach> --%>
-  		<div id="fbcontent"></div>
-	    <ul id='fbpage'></ul>
+        <div id="fbcontent"></div>
+        <ul id='fbpage'></ul>
       </td>
   </tr>
   <tr>
     <td><img src="${basePath }images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
+    <tr><td><%@include file="/front/footer.jsp"  %>  </td></tr>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/happiness.js"></script>
-<%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
 
