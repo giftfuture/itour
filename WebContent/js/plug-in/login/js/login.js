@@ -68,10 +68,10 @@ $(document).ready(function() {
 			}
 		});
 	})
-	$("#btn-pwd-close").click(function(){
+	$("#btn-forgetpwd-close").click(function(){
 		$("#modify-pwd-win").dialog('close');
 	})
-	$("#btn-pwd-submit").click(function(){
+	$("#btn-forgetpwd-submit").click(function(){
 		modifyPwd();
 	})
 	$('.userload').click(function(e){

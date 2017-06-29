@@ -75,7 +75,7 @@ label.iPhoneCheckLabelOn span {
    <div class="ribbon" style="background-image:url(${basePath }images/head2016.gif);"></div>
    <div class="inner">
     <div class="logo">
-    	<span style=""><font face="微软雅黑">主角旅行后台管理</font></span>
+    	<span style=""><font face="微软雅黑">主角旅行(繁体版)后台管理</font></span>
      <!-- <img src="js/plug-in/login/images/toplogo.png"/> -->
     </div>
     <div class="formLogin"><!--  check="${basePath}main/checkuser" -->
@@ -120,7 +120,7 @@ label.iPhoneCheckLabelOn span {
    </div>
   </div>
     <!--  forget password start -->
-    <div id="forget-pwd-win"  class="easyui-dialog" buttons="#forgetPwdbtn" title="忘记用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:150px;">
+    <div id="forget-pwd-win"  class="easyui-dialog" buttons="#forgetPwdbtn" title="忘记用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:150px;display:none">
         <form id="forgetpwdForm" action="${basePath}main/modifyPwd" class="ui-form" method="post">
              <div class="ui-edit" style="padding-top:13px;">
 	              <div class="fitem">  
@@ -136,7 +136,7 @@ label.iPhoneCheckLabelOn span {
     </div>
     <!-- forget password end  -->
     <!--  modify password start -->
-    <div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:280px;">
+    <div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:280px;display:none">
         <form id="pwdForm" name="pwdForm" action="${basePath}main/resetPwd" class="ui-form" method="post">
              <div class="ui-edit">
                <div class="fitem">  

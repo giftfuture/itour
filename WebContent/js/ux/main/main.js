@@ -58,11 +58,22 @@ itour.main = function(){
 				    pwdForm.resetForm();
 				});
 			 }
-		},
+		 },
+		 getCookie : function (name){
+		     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		     if(arr=document.cookie.match(reg))
+		     return unescape(arr[2]);
+		     else
+		     return null;
+	     },
+	     setCookie : function (name,value){
+		     var exp = new Date();
+		     exp.setTime(exp.getTime() + 60*60*1000);
+		     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	     },
 		init:function(){
 			this.treeInit();
 			this.menuHover();
-			
 			//修改密码绑定事件
 			$('.modify-pwd-btn').click(function(){
 				$('#modify-pwd-win').dialog('open');

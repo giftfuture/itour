@@ -32,17 +32,17 @@
       <span style="float:right;"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></span></td>
   </tr>
   <tr><!--  style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"  -->
-    <td><img src="${basePath }images/frame1-3.gif" width="1140" /></td>
+    <td><img src="${basePath }images/frame1-3.gif" width="100%" /></td>
   </tr>
 </table>
 <table border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="${basePath }images/frame1-1.gif" width="1140" height="7" /></td>
+    <td><img src="${basePath }images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
     <td background="${basePath }images/frame1-2.gif">
-  		<div id="fbcontent"></div>
-	    <ul id='fbpage'></ul>
+        <div id="fbcontent"></div>
+        <ul id='fbpage'></ul>
       </td>
   </tr>
    <tr>

@@ -252,11 +252,11 @@ itour.quoteEdit = function(){
             	}
         	}
           formData["showElsecost"]=totalshowElsecost+"|"+showElsecost;*/
-	  	 var showTrip="<table name='showTrip'  width='1140' cellspacing='1' cellpadding='5' border='0' align='center'><thead><tr>"+
-          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' height='31'><div class='style18' align='center'><div align='center'><strong><strong>天数</strong></strong></div></div></td>"+
-          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'><strong><strong>行程</strong></strong></div></div></td>"+
-          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'>里程</div></div></td>"+
-          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0'><div class='STYLE18' align='center'><div align='center'>景点</div></div></td>"+
+	  	 var showTrip="<table name='showTrip'  width='100%' cellspacing='1' cellpadding='1' border='0' align='center'><thead><tr>"+
+          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' style='width:5%' height='31'><div class='style18' align='center'><div align='center'><strong><strong>天数</strong></strong></div></div></td>"+
+          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' style='width:60%'><div class='STYLE18' align='center'><div align='center'><strong><strong>行程</strong></strong></div></div></td>"+
+          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' style='width:5%'><div class='STYLE18' align='center'><div align='center'>里程</div></div></td>"+
+          "<td class='STYLE129' valign='middle' bgcolor='#F0F0F0' style='width:30%'><div class='STYLE18' align='center'><div align='center'>景点</div></div></td>"+
           "</tr></thead>";
         var beriefTrip="";
 			var agodaTbodys =$("table[name='routetable'] tbody[name='agodaTbody']");
@@ -322,13 +322,13 @@ itour.quoteEdit = function(){
 			formData["showTrip"]=showTrip+"</table>";
 			formData["beriefTrip"]=beriefTrip;
 			
-			var agodaDetail = "<table border='0' align='center' cellpadding='0' cellspacing='0' width='1140'><tbody>";
+			var agodaDetail = "<table border='0' align='center' cellpadding='0' cellspacing='0' width='100%'><tbody>";
 			agodaDetail+="<tr><td><img src='images/frame1-1.gif' width='100%' height='7'></td></tr>" ;
 			agodaDetail+="<tr><td background='images/frame1-2.gif'></td></tr><tr><td><span class='STYLE9'>"+$("input[name='rttitle']").val()+"</span>";
 			$("table[name='routetable'] tbody[name='agodaTbody']").each(function(i,e){
 				agodaDetail+="<table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'><tbody>";
-				agodaDetail+="<tr><td width='78' class='STYLE148'><strong>Day "+(i+1)+" </strong></td>";
-				agodaDetail+="<td width='972'><span class='STYLE148'><strong> "+$("input[name='rtelevation']").val()+"km 住：四姑娘山鎮 </strong></span></td></tr>" ;
+				agodaDetail+="<tr><td width='10%' class='STYLE148'><strong>Day "+(i+1)+" </strong></td>";
+				agodaDetail+="<td width='90%'><span class='STYLE148'><strong> "+$("input[name='rtelevation']").val()+"km 住：四姑娘山鎮 </strong></span></td></tr>" ;
 				agodaDetail+="<tr><td valign='top'>&nbsp;</td>"+
 	            "<td valign='top' style='text-align:left'><span class='STYLE126'>"+$("#agodaDetail",$(e)).val()+"<br>";
 				var landscapes = $("#travelItem",$(e)).val();//$("#lctiValue",e).val();
@@ -340,7 +340,7 @@ itour.quoteEdit = function(){
 					//	var ex =  eval('('+bean+')');
 						//console.log(jsontraitems[idx].item);
 						agodaDetail+="<span>【"+jsontraitems[idx].item+"】"+jsontraitems[idx].content+"</span>";
-						agodaDetail+="<table width='300' border='0' cellspacing='1' cellpadding='5'><tbody>";
+						agodaDetail+="<table width='100%' border='0' cellspacing='1' cellpadding='1'><tbody>";
 						agodaDetail+="<tr>";
 						if(jsontraitems[idx].photos.length>0){
 							var jsonphotos = jsontraitems[idx].photos.split(",");
@@ -348,7 +348,7 @@ itour.quoteEdit = function(){
 								//console.log(jsontraitems[i].photos);
 								//console.log(ele);
 								if(ele.length>0){
-									agodaDetail+="<td><div align='left'><img alt="+jsontraitems[idx].item+" title="+jsontraitems[idx].item+" src='"+ele+"' width='271' height='152'></div></td>";
+									agodaDetail+="<td><div align='left'><img alt="+jsontraitems[idx].item+" title="+jsontraitems[idx].item+" src='"+ele+"' width='100%'></div></td>";
 								}
 								if(index>0&&index%4==0){
 									agodaDetail+="</tr>";

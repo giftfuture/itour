@@ -17,7 +17,7 @@ itour.mdestinationssc = function(){
 								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'">'+e.item+'</a></p>'+
 								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'"><img src="'+basePath+e.cover+'" width="100%" /></a></p>'+
 								   	'<p style="text-align:left;font-size:0.5em;">'+e.shortContent+'</p>'+
-							    '</td>'+(i !=0 &&i%2==0?"</tr><tr>":"");
+							    '</td>'+((i+1)%3==0?"</tr><tr>":"");
 						});
 						$("#fbcontent").empty();
 			   			$("#fbcontent").append(html+"</tr>");
