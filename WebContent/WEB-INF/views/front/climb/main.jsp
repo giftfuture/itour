@@ -20,7 +20,7 @@
     <td>  </td>
   </tr> -->
   <tr>
-    <td colspan=3><img src="images/img/gonga-04.jpg" width="100%"/></td>
+    <td colspan=3 align="center" style="text-align:center;width:100%" width="100%"><img src="images/img/gonga-04.jpg" width="100%"/></td>
   </tr>
    </table>
   <table class="frametb" align="center" width="61.3%" style="width:61.3%">

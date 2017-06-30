@@ -52,7 +52,7 @@
         </tr>
 		<tr> 
           <td><div align="right"><strong>旅行方式：</strong></div></td>
-          <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false,panelHeight:100">
+          <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="width:150,editable:false,panelHeight:100">
 		  	<option value="">请选择</option>
 		  	<option value="单独安排">单独安排</option>
 			<option value="加入散客团">加入散客团</option>
@@ -96,7 +96,7 @@
         </tr>
         <tr>
           <td><div align="right"><strong>酒 店：</strong></div></td>
-          <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="editable:false,panelHeight:200">
+          <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="width:150,editable:false,panelHeight:200">
 		  	<option value="">请选择</option>
             <option value="奢华型（最好的酒店）">奢华型（最好的酒店）</option>
             <option value="尊贵型（五星级）">尊贵型（五星级）</option>
@@ -127,7 +127,7 @@
         </tr> -->
         <tr> 
           <td><div align="right"><strong>联系人姓名：</strong></div></td>
-          <td style="text-align:left"><input name="receiver" type="text" class="easyui-textbox"/> 
+          <td style="text-align:left"><input name="receiver" type="text" class="easyui-textbox" data-options="width:150"/> 
           <select id="gender" name="gender" class="easyui-combobox" data-options="editable:false,panelHeight:100">
               <option>性别</option>
               <option value="1">男</option>
@@ -143,7 +143,7 @@
         </tr>
         <tr> 
           <td><div align="right"><strong>国家及地区：</strong></div></td>
-          <td style="text-align:left"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
+          <td style="text-align:left"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:150,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             （如：中国香港）</td>
         </tr>
         <tr> 

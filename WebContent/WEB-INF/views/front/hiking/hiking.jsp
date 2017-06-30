@@ -203,7 +203,7 @@
 <table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/heart02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="font-size:1.5em;">服务及报价</span></span></span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -248,7 +248,7 @@
                 <td width="336"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span></td>
                 <td width="264"><span class="STYLE3"><img src="images/tailor.gif" width="134" height="32" /></span></td>
               </tr>
-            </table>            </td>
+            </table></td>
         </tr>
       </table></td>
   </tr>
@@ -261,7 +261,7 @@
 <table width="1120" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="images/ask03.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
+    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="font-size:1.4em;">还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">

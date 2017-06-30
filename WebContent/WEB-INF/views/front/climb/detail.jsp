@@ -183,10 +183,11 @@
  <div id="review">
   <table  class="frametb" align="center">
   <tr>
-    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td style="align:left;float:left" background="${basePath}images/frame1-2.gif">
+    <table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr>
         <td width="40%" valign="top" class="STYLE126" style="text-align:left"><span class="STYLE3">设计理念</span><span class="STYLE2">：</span><br />
           ${rt.designConcept }
@@ -206,7 +207,7 @@
     </td>
     </tr>
      <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td style="align:left;float:left;"><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
     </table>
   </div>
@@ -217,97 +218,19 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
     <tr>
-    <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td width="1140" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
-  <tr><td colspan="2" background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
+  <tr><td colspan="2"  background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
   <tr>
   <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>   
   <tr>
-    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
+    <td colspan=2 style="width:97.26%"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
-  <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
+  <tr><td style="width:97.26%" colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
-<%-- <tr><td colspan=2>
-<table  class="frametb" align="center">
-  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">
-    <table  class="frametb" align="center">
-        <tr>
-          <td valign="top"><br />
-          <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
-                             <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
-                          <br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}元/人</td>
-              </tr>
-
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[0]}</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td style="text-align:left">大人：${qf.adultsQuote}元/人*4人<br />
-                  小孩：${qf.childquote }元/人*2人（小孩不含门票） </td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>          
-            <br /></td></tr>
-      </table>
-      </td>
-      </tr>
-      </table>
-      </td></tr>  --%>
-  <!--   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>  -->
 </table>
   </div>
   <div id="need-know">

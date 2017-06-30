@@ -21,7 +21,7 @@
     <td>  </td>
   </tr> -->
   <tr>
-    <td  colspan=3><img width="100%" src="images/img/girl-03.jpeg" /></td>
+    <td  colspan=3 align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/img/girl-03.jpeg" /></td>
   </tr>
    </table>
   <table class="frametb" align="center" width="61.3%" style="width:61.3%">

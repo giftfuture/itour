@@ -8,8 +8,10 @@
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
+<link rel="stylesheet" type="text/css" href="${basePath}css/jquery-ui-1.7.2.custom.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easyzoom.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
@@ -22,9 +24,11 @@
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <title>${bean.title }</title>
 <script type="text/javascript">
-</script>
+//var topValue = $(window).scrollTop();
+$(".messager-window").css('top',-3000);
+</script>   
 <style type="text/css">
-  .ui-progressbar {
+/*   .ui-progressbar {
     position: relative;
   }
   .progress-label {
@@ -33,13 +37,16 @@
     top: 4px;
     font-weight: bold;
     text-shadow: 1px 1px 0 #fff;
+  } */
+  .panel.window.messager-window{
+    top:0px;
   }
 </style>
 </head>
 <body>
+<center>
 <form:form method="post" id="back_form" name="back_form" action="${basePath }travelOrder/list">
 </form:form>
-<center>
 <form name="calculatespendForm" action="travelOrder/generateReport" method="post">
 <div id="reportdiv">
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
@@ -68,10 +75,10 @@
     <td class="h1-black">${rt.title}<span class="STYLE27"></span></td>
   </tr>
    <tr>
-    <td><span class="STYLE126 STYLE3" style="font-size: 16px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: #990000;">${torder.orderName } </span><input type="hidden" name="tordername" value="${torder.orderName }"/><input type="hidden" name="idrt" value="${rtid}"/></td>
+    <td><span class="STYLE126 STYLE3" style="font-size: 16px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: #990000;">${torder.orderName }</span><input type="hidden" name="tordername" value="${torder.orderName }"/><input type="hidden" name="idrt" value="${rtid}"/></td>
   </tr>  
 </table>
-<table  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  align="center">
+<table  style="width:1140px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  align="center">
   <tr>
     <td width="660">
     <table  style="float:right;text-align:right;align:right;margin-right:50px;" width="600" border="0" cellpadding="0" cellspacing="0">
@@ -118,7 +125,8 @@
         <td><img src="images/frame2-1.gif" width="480" height="7"></td>
       </tr>
       <tr>
-        <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="5" border="0" align="center">
+        <td background="images/frame2-2.gif">
+        <table cellspacing="0" cellpadding="5" border="0" align="center">
           <tbody>
           <tr>
             <td><table class="STYLE126" width="442" cellspacing="2" cellpadding="4" border="0">
@@ -206,7 +214,7 @@
 </table>
 </td></tr>
 </table>
-<div  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
+<div  style="width:1140px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a target="_self">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a target="_self">详细行程</a></li>
@@ -229,7 +237,7 @@
         <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">行程地图</span>
    			<div class="easyzoom easyzoom--overlay"><p>
 				<a>
-					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />		
+					<img src="${basePath}images/map-002.jpg" alt="" width="640" />		
 				</a></p>
 			</div>
           </div>
@@ -257,11 +265,11 @@
   <tr>
     <td style="float:left"><img style="float:left" src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
-    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
+    <td colspan=2> <span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">详细日程</span></span></td>
   </tr>
   <tr><td colspan="2" background="${basePath}images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-  <tr><td colspan=2>  <div id="need-know" name="need-know">
+  <tr><td colspan=2> <div id="need-know" name="need-know">
   <table  class="frametb" align="center">
   <tr>
     <td width="32"><img src="${basePath}images/document2.png" width="32" height="32" /></td>
@@ -281,7 +289,8 @@
 <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">服务及报价</span></span></span></span></td>
+    <td width="1028"><span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14">
+    <span class="STYLE2" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">服务及报价</span></span></span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -343,9 +352,8 @@
               <td bgcolor="#f0f0f0"><div align="right"><strong>报价：</strong></div></td>
               <td style="text-align:left;float:left">大人：<span name="adultsperguy">${vo.plusSumPrice+adultsumcost }</span>元/人*${od.adults }人 
                 小孩：<span name="childsperguy">${vo.plusDevicePrice+childrensumcost }</span>元/人*${od.children }人（小孩不含门票） </td>
-              <td>&nbsp;</td>
+              <td></td>
             </tr>
-        
           </table>          
           <p>&nbsp;</p>
           </td>
@@ -356,22 +364,29 @@
     <td style="float:left"><img  style="float:left" src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-</td></tr></table></div></div></div>
+</td></tr>
+<tr><td>
+
+</td></tr>
+</table></div>
 </div>
-    <table><tr>
-      <td><label></label>
-          <table border="0" cellspacing="0" cellpadding="3">
-            <tr>
-              <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;" href="travelOrder/returntoQuote3/${torder.id}/${bean.id }" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a></td>
-              <td><a  style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="modefyProject" value="改下项目描述" >改下项目描述</a></td>
-              <td><input type="hidden" name="formContent"/><a style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="generateReport" value="生成正式报价单" >生成正式报价单</a></td>
-               <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;display:none" class="easyui-linkbutton" name="viewReport" value="查看报价单" >查看报价单</a></td>	
-            </tr>
-        </table></td>
-      <td>&nbsp;</td>
-    </tr></table>
-</form>
+</div>
+ <div ><div id="divProgressbar" align="center" style="text-align:center;width:15%;"></div>
+<!--  <img id="progressImgage" class="progress hide" alt="" src="@Url.Content("~/Images/ajax-loader.gif")"/>
+ <div id="maskOfProgressImage" class="mask hide"></div> -->
+ <table border="0" cellspacing="0" cellpadding="3">
+   <tr>
+	 <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;" href="travelOrder/returntoQuote3/${torder.id}/${bean.id }" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a></td>
+	 <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="modefyProject" value="改下项目描述" >改下项目描述</a></td>
+	 <td><input type="hidden" name="formContent"/>
+	 <span style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="generateReport" value="生成正式报价单" >生成正式报价单</span></td>
+	 <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;display:none" class="easyui-linkbutton" name="viewReport" value="查看报价单" >查看报价单</a></td>  
+    </tr>
+</table></div>   
+</div>
 <script type="text/javascript" src="${basePath}js/ux/sys/quote_step4.js"></script>
+</form>
+</center>
 </body>
 </html>
 

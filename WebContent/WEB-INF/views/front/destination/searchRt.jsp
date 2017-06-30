@@ -25,11 +25,10 @@
  </script>
 </head>
 <body>
-<%@include file="/front/header.jsp" %>
 <center>
 <table  style="width:72.6%" width="72.6%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td></td>
+    <td><%@include file="/front/header.jsp"  %></td>
   </tr>
 <%-- <input type="hidden" name="travelStyle" value="${travelStyle }"/>
 <input type="hidden" name="level1Area" value="${level1Area }"/>
