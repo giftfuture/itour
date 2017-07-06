@@ -8,10 +8,10 @@
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
-<link rel="stylesheet" type="text/css" href="${basePath}css/jquery-ui-1.7.2.custom.css">
+<%-- <link rel="stylesheet" type="text/css" href="${basePath}css/jquery-ui-1.7.2.custom.css"> --%>
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/jquery-ui-1.7.2.custom.min.js"></script>
+<%-- <script type="text/javascript" src="${basePath}js/plug-in/jquery-ui-1.7.2.custom.min.js"></script> --%>
 <script type="text/javascript" src="${basePath}js/plug-in/easyzoom.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
@@ -25,7 +25,7 @@
 <title>${bean.title }</title>
 <script type="text/javascript">
 //var topValue = $(window).scrollTop();
-$(".messager-window").css('top',-3000);
+//$(".messager-window").css('top',-3000);
 </script>   
 <style type="text/css">
 /*   .ui-progressbar {
@@ -38,9 +38,9 @@ $(".messager-window").css('top',-3000);
     font-weight: bold;
     text-shadow: 1px 1px 0 #fff;
   } */
-  .panel.window.messager-window{
+ /*  .panel.window.messager-window{
     top:0px;
-  }
+  } */
 </style>
 </head>
 <body>
@@ -371,7 +371,7 @@ $(".messager-window").css('top',-3000);
 </table></div>
 </div>
 </div>
- <div ><div id="divProgressbar" align="center" style="text-align:center;width:15%;"></div>
+ <div ><div class="easyui-progressbar" id="divProgressbar" align="center" style="text-align:center;width:15%;display:none;"></div>
 <!--  <img id="progressImgage" class="progress hide" alt="" src="@Url.Content("~/Images/ajax-loader.gif")"/>
  <div id="maskOfProgressImage" class="mask hide"></div> -->
  <table border="0" cellspacing="0" cellpadding="3">

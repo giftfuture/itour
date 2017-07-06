@@ -173,7 +173,7 @@ public class ImageFilter {
     	  imgs.add(m_image.group());
       }
      for(String img:imgs){
-    	 if(StringUtils.isNotEmpty(img)&&!img.contains(replacenew)){
+    	 if(StringUtils.isNotEmpty(img) && !img.contains(replacenew) && !img.contains("images/frame")){
     		/* m_image = p_image.matcher(img);
     		 while(m_image.find()){
     			 group =  m_image.group();
@@ -188,7 +188,9 @@ public class ImageFilter {
 		  	  m = pattern.matcher(img); 
 	          while(m.find()){ 
 	        	  result = m.group(); 
-	        	  newimg = img.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+	        	  if(base64ImgExt.containsKey(result.substring(result.indexOf('.')+1))){
+	        		  newimg = img.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1)+"\"");
+	        	  }
 	          } 
 		  content = content.replaceAll(img, newimg);
     	 }
@@ -466,38 +468,38 @@ public class ImageFilter {
 		 		if(m.find()){
 			   // if(checkImage(src)){      //找出base64图片元素    
 			    	//if(matcher.find()){
-						       //String str = m.group(); 
-						       String str = src.substring(src.indexOf(base64)+base64.length());
-						       System.out.println(html.indexOf(src)+"     "+src.indexOf(str)+"    "+html.length());
-						       html = html.replace(src, fileName);
-						       System.out.println(html.length());
-						      // String src = src.replace("'", "");// StringUtils.replace(str, "src=\"", "\"");// ExStringUtils.substringBetween(str, "src=\"", "\"");//src="..."  
-						       // String base64ImgData = StringUtils.replace(str, "base64,", "");//图片数据  
-						        if(StringUtils.isNotEmpty(ext)){  
-						            //data:image/gif;base64,base64编码的gif图片数据  
-						            //data:image/png;base64,base64编码的png图片数据  
-						      /*      if("jpeg".equalsIgnoreCase(ext)){//data:image/jpeg;base64,base64编码的jpeg图片数据  
-						                ext = "jpg";  
-						            } else if("x-icon".equalsIgnoreCase(ext)){//data:image/x-icon;base64,base64编码的icon图片数据  
-						                ext = "ico";  
-						            }*/  
-						          //  String filePath = fileRoot+File.separator+fileName;//图片路径  
-						            	File directory = new File(serRoot);  
-						    			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
-						    				directory.mkdirs();  
-						    			} 
-						    			String path = showhappy.getShCode()+"_"+showhappy.getRoute();
-						    			File ff = new File(serRoot+File.separatorChar+path);  
-						    			if(!ff.exists()||!ff.isDirectory()){//文件根目录不存在时创建  
-						    				ff.mkdirs();  
-						    			}
-						                convertBase64DataToImage(str, serRoot+File.separatorChar+path+File.separatorChar+newname);//转成文件  
-						                if(!fileName.equals(newname)){
-						                	html = html.replace(fileName, newname);
-						                }
-						                //  String serPath = serRoot+fileName;//服务器地址  
-						            //    htmlContent = htmlContent.replace(src, serPath);//替换src为服务器地址  
-						        }      
+				       //String str = m.group(); 
+				       String str = src.substring(src.indexOf(base64)+base64.length());
+				       System.out.println(html.indexOf(src)+"     "+src.indexOf(str)+"    "+html.length());
+				       html = html.replace(src, fileName);
+				       System.out.println(html.length());
+				      // String src = src.replace("'", "");// StringUtils.replace(str, "src=\"", "\"");// ExStringUtils.substringBetween(str, "src=\"", "\"");//src="..."  
+				       // String base64ImgData = StringUtils.replace(str, "base64,", "");//图片数据  
+				        if(StringUtils.isNotEmpty(ext)){  
+				            //data:image/gif;base64,base64编码的gif图片数据  
+				            //data:image/png;base64,base64编码的png图片数据  
+				      /*      if("jpeg".equalsIgnoreCase(ext)){//data:image/jpeg;base64,base64编码的jpeg图片数据  
+				                ext = "jpg";  
+				            } else if("x-icon".equalsIgnoreCase(ext)){//data:image/x-icon;base64,base64编码的icon图片数据  
+				                ext = "ico";  
+				            }*/  
+				          //  String filePath = fileRoot+File.separator+fileName;//图片路径  
+				            	File directory = new File(serRoot);  
+				    			if(!directory.exists()||!directory.isDirectory()){//文件根目录不存在时创建  
+				    				directory.mkdirs();  
+				    			} 
+				    			String path = showhappy.getShCode()+"_"+showhappy.getRoute();
+				    			File ff = new File(serRoot+File.separatorChar+path);  
+				    			if(!ff.exists()||!ff.isDirectory()){//文件根目录不存在时创建  
+				    				ff.mkdirs();  
+				    			}
+				                convertBase64DataToImage(str, serRoot+File.separatorChar+path+File.separatorChar+newname);//转成文件  
+				                if(!fileName.equals(newname)){
+				                	html = html.replace(fileName, newname);
+				                }
+				                //  String serPath = serRoot+fileName;//服务器地址  
+				            //    htmlContent = htmlContent.replace(src, serPath);//替换src为服务器地址  
+				        }      
 				       // }           
 			    }   
 			}

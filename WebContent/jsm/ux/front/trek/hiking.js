@@ -22,11 +22,11 @@ itour.mhiking = function(){
 								              '<tr>'+
 								                '<td width="11%"><div align="center"></div>'+
 								                  (e.sex||e.sex==1 ? '<img src="images/man.gif" width="32" height="32" /></td>':'<img src="images/woman.gif" width="32" height="32" /></td>')+
-								                '<td width="59%" style="text-align:left"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
+								                '<td width="89%" style="text-align:left"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
 								              '</tr>'+
 								              '<tr>'+
-								                '<td width="11%">'+(e.createTime?e.createTime:"")+'</td>'+
-								                '<td style="text-align:left"><span class="STYLE148">'+(e.content?e.content:"")+'</span></td>'+
+								              '<td width="11%">&nbsp;</td>' +
+								                '<td width="89%" style="text-align:left"> '+(e.content?e.content:"")+'</td>'+
 								              '</tr>'+
 								              '<tr>'+
 								                '<td>&nbsp;</td>'+

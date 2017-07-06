@@ -49,7 +49,7 @@
 <DIV class=LeftBotton  style="margin-right:15px" id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 <DIV style="margin-left:15px" class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
-<div class=box><A class=imgBorder target=_blank><IMG height=55 alt="landscape" src="${basePath }${photo}" width=100 border=0></A> 
+<div class=box><A class=imgBorder target=_blank><IMG alt="landscape" src="${basePath }${photo}"  border=0></A> 
 </div>
 </c:forEach>
 <!-- 图片列表 end --></DIV>
@@ -60,11 +60,11 @@
         scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
         scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
         scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
-        scrollPic_02.frameWidth     = 608;//显示框宽度
-        scrollPic_02.pageWidth      = 152; //翻页宽度
+        scrollPic_02.frameWidth     = '100%';//显示框宽度
+        scrollPic_02.pageWidth      = '25%'; //翻页宽度
         scrollPic_02.speed          = 20; //移动速度(单位毫秒，越小越快)
         scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
-        scrollPic_02.autoPlay       = false; //自动播放
+        scrollPic_02.autoPlay       = true; //自动播放
         scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
         scrollPic_02.initialize(); //初始化
         //--><!]]>
@@ -361,8 +361,8 @@
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="prompt:'请键入您的大名',validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox" data-options="editable:false,panelHeight:80">
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left;height:22"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'请键入您的大名',validType:'string'"/><!--  -->
+                    <select name="sex" id="sex" class="easyui-combobox" data-options="editable:false,panelHeight:80,height:22">
                       <option value="1">先生</option>
                       <option value="0">女士</option>
                     </select>
@@ -371,12 +371,12 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="prompt:'请键入合法的电邮',validType:'email'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="height:22,prompt:'请键入合法的电邮',validType:'email'"/>
                     <!-- <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt;  --></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="prompt:'请键入您的联系电话'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="height:22,prompt:'请键入您的联系电话'"/>
                     <!-- <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; --> </td>
               </tr>
           <!--     <tr>
@@ -394,7 +394,7 @@
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
-                <input type="text" id="verifyCode" class=" easyui-textbox" title="验证码" name="verifyCode"  data-options="prompt:'请键入正确的验证码!'"/><br/>
+                <input type="text" id="verifyCode" class=" easyui-textbox" title="验证码" name="verifyCode"  data-options="height:22,prompt:'请键入正确的验证码!'"/><br/>
                 <img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
                 &nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">看不清，换一张</a>
       </div></td>

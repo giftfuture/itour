@@ -40,11 +40,11 @@
         </tr>
         <tr> 
           <td width="35%"align="right" style="text-align:right;width:35%;"> <strong>出行日期：</strong></td>
-          <td width="65%" style="text-align:left;width:65%;"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="height:22,showSeconds:false, validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.mtrekselfbooking.onChangeDate(this)"/></td>
+          <td width="65%" style="text-align:left;width:65%;"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datebox' data-options="height:22,showSeconds:false, validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.mtrekselfbooking.onChangeDate(this)"/></td>
         </tr>
         <tr> 
           <td width="35%"align="right" style="text-align:right"> <strong>返程日期：</strong></td>
-          <td style="text-align:left;width:65%"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="height:22,showSeconds:false, validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.mtrekselfbooking.onChangeDate(this)"/></td>
+          <td style="text-align:left;width:65%"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datebox' data-options="height:22,showSeconds:false, validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.mtrekselfbooking.onChangeDate(this)"/></td>
         </tr>
 		<tr> 
           <td width="35%"align="right" style="text-align:right"> <strong>旅行方式：</strong></td>

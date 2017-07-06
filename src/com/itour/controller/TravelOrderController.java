@@ -1037,7 +1037,7 @@ public class TravelOrderController extends BaseController {
 				result = sendSuccessResult(response, "预订成功，请稍后查看邮箱预定成功信息！", pdfurl);
 			}
 		}
-		return result;
+		return JsonUtils.encode(result) ;
 	}
 
 	@Auth(verifyLogin = true, verifyURL = true)

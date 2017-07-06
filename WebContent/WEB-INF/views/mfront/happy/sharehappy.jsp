@@ -31,20 +31,20 @@ function ww4(date){
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
 	        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-	         <tr><td  style="text-align:left" class="STYLE18" colspan=2>标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
+	         <tr><td  style="text-align:left" class="STYLE18" colspan=2>标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="easyui-textbox" data-options="height:22" name="title" id="title"/></td>
 	         </tr><!-- opacity:0 -->
 	         <tr>
 	            <td style="text-align:left" colspan=2><span class="STYLE23 STYLE18">旅行線路：</span>
-	            	<input id="route" name="route" class="easyui-combobox"  data-options="width:'59%',valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
+	            	<input id="route" name="route" class="easyui-combobox"  data-options="width:'59%',height:22,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
 	            </td>
 	       </tr>
 	       <tr><td style="text-align:left" colspan=2><span class="STYLE23 STYLE18">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
-	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
+	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="height:22,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
 	           </span></td></tr>
 	        <tr> <td style="text-align:left" class="STYLE18" colspan=2>&nbsp;回&nbsp;憶&nbsp;人：
-            	<span class="STYLE18"><input type="text" class="easyui-textbox" id="signature" name="signature"/></span></td></tr>
+            	<span class="STYLE18"><input type="text" class="easyui-textbox" data-options="height:22" id="signature" name="signature"/></span></td></tr>
             	<tr><td colspan=2 style="text-align:left" class="STYLE18" >&nbsp;&nbsp;&nbsp;&nbsp;来&nbsp;&nbsp;自：
-            	<input name="area" id="area" class="easyui-combobox"  data-options="valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
+            	<input name="area" id="area" class="easyui-combobox"  data-options="height:22,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</td></tr>
             <tr><td style="text-align:left;" class="STYLE18" colspan=2>
                     &nbsp;&nbsp;&nbsp;&nbsp;封&nbsp;&nbsp;面：<input style="width:60%" type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
@@ -54,7 +54,7 @@ function ww4(date){
 	            <td colspan=2><div id="content"></div></td>
 	       </tr>
 	       <tr>
-	       <td colspan=2 style="text-align:left" class="STYLE18">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="prompt:'请输入正确的验证码!'"/> 
+	       <td colspan=2 style="text-align:left" class="STYLE18">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="height:22,prompt:'请输入正确的验证码!'"/> 
 	           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
 	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
 	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">分享回忆</a></td>
