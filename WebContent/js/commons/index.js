@@ -9,18 +9,22 @@ itour.index = function(){
 				async:false,
 				cache: false,
 				success:function(result){
-					$(result).each(function(i,e){
-						//console.log(e.advertise);
-						arr[i]=e.advertise;
-						if(e.video==1){
-							links[i] = basePath+'video/'+ e.adlink;
-						}else{
-							links[i]=e.adlink;
-						}
-						titles[i]=e.title;
-						//console.log(links);
-					});
-				},error:function(){
+					console.log(result);
+					if(result){
+						$(result).each(function(i,e){
+							//console.log(e.advertise+"   "+e.adlink);
+							arr[i]=e.advertise;
+							if(e.video==1){
+								links[i] = basePath+'video/'+ e.adlink;
+							}else{
+								links[i]=e.adlink;
+							}
+							titles[i]=e.title;
+							//console.log(links);
+						});
+				    }
+				},error:function(XMLHttpRequest, textStatus, errorThrown){
+					itour.alert("提示","加载首页链接出错"+XMLHttpRequest.status+"	"+XMLHttpRequest.readyState+"   "+errorThrown+textStatus,"info");
 				}
 			})
 		},
@@ -104,10 +108,10 @@ itour.index = function(){
 return _this;
 }();
 
-window.onload=function(){
+/*window.onload=function(){
 	itour.index.init();
 	//setInterval(itour.index.changeImg(parseInt(curIndex),arr,titles,links),parseInt(timeInterval));
-}
-/*$(function(){
+}*/
+$(function(){
 	itour.index.init();
-});*/
+});

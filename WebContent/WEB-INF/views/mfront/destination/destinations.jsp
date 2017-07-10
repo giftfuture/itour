@@ -19,10 +19,12 @@
       <table><tr><td width="20%" style="width:20%;vertical-align:top;" >
        <table valign="top" width="100%" border="0" cellspacing="0"  style="float:left;" >
           <tr>
-            <td height="30" valign="top" style="width:20%;height:auto;" bgcolor="#990000"><span style="font-size:1em">旅遊目的地</span>
+            <td height="30" valign="top" style="width:20%;height:auto;" bgcolor="#990000">
             <div valign="top" style="align:center;font-size:1.125em;width:20%;background-color:#8B0000;text-decoration:none;color:white;">
             <div valign="top" class="treebox" style="float:left">
                 <ul class="menu">
+                <!-- <span style="font-size:1rem">旅遊目的地</span> -->
+               <label style="float:middle;text-align:center;align:center;background-color:#8B0000;text-decoration:none;color:white;vertical-align:top;font-size:0.7rem;">旅遊目的地</label>
                 <c:forEach items="${scopes}" var="scope" varStatus="status">
                     <li style="width:100%" class="level1">
                         <a style="width:100%"  href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%>
@@ -31,7 +33,7 @@
                         <ul class="level2" style="width:100%;float:left;margin:0px;padding:0px;margin:0px;padding:0px;">
                             <c:forEach items="${items}" var="item">
                                 <c:if test="${scope.key==item.scope }">
-                                    <li style="float:left;width:100%;margin:0px;padding:0px;"><a  style="float:left;width:100%;margin:0px;padding:0px;" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>     
+                                    <li style="float:left;width:100%;margin:0px;padding:0px;"><a style="float:left;width:100%;margin:0px;padding:0px;" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>     
                                 </c:if>
                             </c:forEach>
                         </ul>

@@ -53,7 +53,7 @@ $(document).ready(function() {
 		$("#forget-pwd-win").dialog('close');
 	})
 	$("#btn-forgetpwd-submit").click(function(){
-		itour.progress('请稍侯','信息提交中...');
+		itour.progress('请稍候','信息提交中...');
 		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(data){
 			itour.closeProgress();
 			var result = $.parseJSON(data);
@@ -97,7 +97,7 @@ $(document).ready(function() {
 
 });
 function modifyPwd(){
-	itour.progress('请稍侯','信息提交中...');
+	itour.progress('请稍候','信息提交中...');
 	var pwdForm = $("#pwdForm");
 	var param = {'email':$("#email",pwdForm).val(),'newPwd':$("#newPwd",pwdForm).val(),'pwdCode':$("#pwdCode",pwdForm).val()};
 	//console.log(param);

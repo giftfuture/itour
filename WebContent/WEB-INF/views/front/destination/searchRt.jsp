@@ -26,9 +26,10 @@
 </head>
 <body>
 <center>
+<%@include file="/front/header.jsp"  %>
 <table  style="width:72.6%" width="72.6%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><%@include file="/front/header.jsp"  %></td>
+    <td></td>
   </tr>
 <%-- <input type="hidden" name="travelStyle" value="${travelStyle }"/>
 <input type="hidden" name="level1Area" value="${level1Area }"/>
@@ -47,7 +48,10 @@
     </table></td>
   </tr>
   <tr><td><ul id='fbpage'></ul></td></tr>
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td></td></tr>
+</table>
+<table  style="width:61.3%" width="61.3%" border="0" cellspacing="0" cellpadding="0">
+<tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
 </center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/searchRt.js"></script>

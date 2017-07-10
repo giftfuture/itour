@@ -21,6 +21,7 @@ itour.mindex = function(){
 						//console.log(links);
 					});
 				},error:function(){
+					itour.alert("提示","加载首页链接出错","info");
 				}
 			})
 	/*	$.post(

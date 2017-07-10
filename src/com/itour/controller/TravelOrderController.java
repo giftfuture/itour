@@ -343,7 +343,33 @@ public class TravelOrderController extends BaseController {
 		logOperationService.add(new LogOperation(logId, "查看", entity.getId(), JsonUtils.encode(entity), "","travelOrder/getId", sessionuser.getId())); 
 		return JsonUtils.encode(context);
 	}
-
+	
+	
+	/**
+	 * 待处理订单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin = true, verifyURL = true)
+	@ResponseBody
+	@RequestMapping(value = "/unDealedOrders", method = RequestMethod.POST)
+	public String unDealedOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> context = getRootMap();
+		List<TravelOrder> list = travelOrderService.unDealedOrders();
+		if (list == null) {
+			return sendFailureResult(response, "无待处理订单!");
+		}
+		context.put(SUCCESS, true);
+		context.put("data", list);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的unDealedOrders方法");
+		String logId = logSettingService.add(new LogSetting("travel_order", "订单管理", "travelOrder/unDealedOrders", sessionuser.getId(), "", "")); 
+		logOperationService.add(new LogOperation(logId, "查看", list.size()+"", JsonUtils.encode(list), "","travelOrder/unDealedOrders", sessionuser.getId())); 
+		return JsonUtils.encode(context);
+	}
 	/**
 	 * 
 	 * @param id
@@ -355,7 +381,19 @@ public class TravelOrderController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(String[] id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		travelOrderService.delete(id);
+		if(id.length >= 1){
+			if(id.length == 1){
+				OrderDetailVO vo = orderDetailService.queryByOrderId(id[0]);
+				travelOrderService.delete(id);
+				orderDetailService.delete(vo.getId());
+			}else{
+				List<OrderDetailVO> vos = orderDetailService.queryByOrderIds(id);
+				travelOrderService.delete(id);
+				for(OrderDetailVO vo:vos){
+					orderDetailService.delete(vo.getId());
+				}
+			}
+		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的delete方法");
@@ -377,7 +415,19 @@ public class TravelOrderController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/logicdelete", method = RequestMethod.POST)
 	public String logicdelete(String[] id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		travelOrderService.logicdelete(id);
+		if(id.length >= 1){
+			if(id.length == 1){
+				OrderDetailVO vo = orderDetailService.queryByOrderId(id[0]);
+				travelOrderService.logicdelete(id);
+				orderDetailService.logicdelete(vo.getId());
+			}else{
+				List<OrderDetailVO> vos = orderDetailService.queryByOrderIds(id);
+				travelOrderService.logicdelete(id);
+				for(OrderDetailVO vo:vos){
+					orderDetailService.logicdelete(vo.getId());
+				}
+			}
+		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的logicdelete方法");
@@ -1037,6 +1087,10 @@ public class TravelOrderController extends BaseController {
 				result = sendSuccessResult(response, "预订成功，请稍后查看邮箱预定成功信息！", pdfurl);
 			}
 		}
+		TravelOrder t = new TravelOrder();
+		t.setId(to.getId());
+		t.setOrderStatus(4);//表示订单处理完成 的状态
+		travelOrderService.update(t);
 		return JsonUtils.encode(result) ;
 	}
 

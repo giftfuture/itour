@@ -68,13 +68,23 @@
 	<!-- 中间内容页面 -->
 	<div data-options="region:'center'" >
 		<div class="easyui-tabs" id="tab-box" data-options="fit:true,border:false">
+		   <!--  <iframe scrolling='auto' frameborder='0' style='width:100%; height:100%'>
+				<div title="Welcome" style="padding:20px;overflow:hidden;"> 
+					<div style="margin-top:20px;">
+					</div>
+					<pre>欢迎进入主角旅行（繁体）中文版网站后台管理界面</pre>
+					<div style="margin-top:20px;" id="unDealedOrders">
+					
+					</div>
+				</div>
+			</iframe> -->
 			<div title="Welcome" style="padding:20px;overflow:hidden;"> 
-				<div style="margin-top:20px;">
-				</div>
-				<pre>欢迎进入主角旅行（繁体）中文版网站后台管理界面</pre>
-				<div style="margin-top:20px;">
-				</div>
-			</div>
+                    <div style="margin-top:20px;">
+                    </div>
+                    <pre>欢迎进入主角旅行（繁体）中文版网站后台管理界面</pre>
+                    <div style="margin-top:20px;" id="unDealedOrders">
+                    </div>
+                </div>
 		</div>	
 	</div>
 	<!--  modify password start -->

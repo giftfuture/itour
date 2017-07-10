@@ -137,7 +137,14 @@ itour.orderDetail = function(){
 			},
   			dataGrid:{
   				title:'订单详情',
-	   			url:'orderDetail/dataList.json',
+  				url:'orderDetail/dataList.json?orderId='+orderId,
+  				rownumbers: true,
+  				//method: 'POST',
+	   			//queryParams: { 'orderId': '0e45a45054514385bdd3008f23680349' },
+		   		/*onBeforeLoad: function (param) {
+		   			 console.log(orderId);
+		   			 console.log($("input[name='orderId']").val());
+		   	    },*/
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'travelOrder',title:'订单号',align:'center',sortable:true,
@@ -159,7 +166,8 @@ itour.orderDetail = function(){
 						formatter:function(value,row,index){
 							return row.areaname;
 						}
-					},{field:'status',title:'状态',align:'center',sortable:true,
+					},
+				/*	{field:'status',title:'状态',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							if(value == 1){
 								return "待处理";
@@ -170,7 +178,7 @@ itour.orderDetail = function(){
 							if(value == 3){
 								return "处理完成";
 							}
-					}},
+					}},*/
 					{field:'createTime',title:'创建时间',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.createTime;
@@ -394,8 +402,8 @@ itour.orderDetail = function(){
 										//$("span[name='orderId']").text("aaaa");
 									}},*/
 									/*{id:'btnadd',text:'添加',btnType:'add'},*/
-									{id:'btnedit',text:'修改',btnType:'edit'},
-									{id:'btndelete',text:'物理删除',btnType:'remove'},
+									{id:'btnedit',text:'修改',btnType:'edit'}//,
+									/*{id:'btndelete',text:'物理删除',btnType:'remove'},
 									{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 									{
 										id:'btnback',
@@ -405,7 +413,7 @@ itour.orderDetail = function(){
 										handler:function(){
 											_this.toList();
 										}
-									}
+									}*/
 								]
 			}
 		},

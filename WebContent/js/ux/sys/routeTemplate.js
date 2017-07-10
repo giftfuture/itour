@@ -1,6 +1,7 @@
 $package('itour.routeTemplate');
 itour.routeTemplate = function(){
 	var _box = null;
+	var photoszxxfile = null;
 	var _this = {
 			uploadCoverAction:'routeTemplate/uploadCover',
 			uploadCoverForm:function(){
@@ -256,6 +257,11 @@ itour.routeTemplate = function(){
 							return row.customerId;
 						}
 					},*/
+					{field:'quotoFormquotoForm',title:'路线编辑',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">路线编辑</a>';
+						}
+					},
 					{field:'routeCode',title:'线路编号',align:'center',sortable:true,//线路编号
 						formatter:function(value,row,index){
 							return row.routeCode;
@@ -304,11 +310,6 @@ itour.routeTemplate = function(){
 							return '<a href="'+basePath+'routeTemplate/rtschedule?id='+row.id+'">详细日程</a>';
 						}
 					},*/
-					{field:'quotoFormquotoForm',title:'路线编辑',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">路线编辑</a>';
-						}
-					},
 					{field:'level1Area',title:'一级区域',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.level1Area;
@@ -504,15 +505,7 @@ itour.routeTemplate = function(){
 									}
 								}},
 								{id:'btndelete',text:'物理删除',btnType:'remove'},
-								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
-								{id:'btnback',
-									text:'back',
-									disabled: true,
-									iconCls:'icon-back',
-									handler:function(){
-										_this.toList();
-									}
-								}
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
 							]
 			}
 		},
@@ -748,7 +741,7 @@ itour.routeTemplate = function(){
 			var zxxmapfile = $.extend(uploadFile,this.mapparams);
 			zxxmapfile.init();
 			this.initUploadMapForm(); 
-			var photoszxxfile =  $.extend(uploadPhotos,this.photosparams);
+			photoszxxfile =  $.extend(uploadPhotos,this.photosparams);
 			photoszxxfile.init();
 			this.initUploadForm();
 			$('#addLine_btn').click(_this.addLine);

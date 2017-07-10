@@ -14,9 +14,9 @@
 </head>
 <body>
 <div >
-	 
-<table class="commontb" align="center" width="72.6%" style="width:72.6%">
- <tr><td><%@include file="/front/header.jsp"  %></td></tr>
+<%@include file="/front/header.jsp"  %>
+<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
+ <tr><td></td></tr>
   <tr> 
     <td style="text-align:center;float:middle" valign="top" colspan="3"><!--  -->
       四川，简称“川”或“蜀”，省会成都，位于中国大陆西南腹地，东部为川东平行岭谷和川中丘陵，中部为四川盆地和成都平原，西部为川西高原，与陕西、贵州、云南、西藏、青海、甘肃、重庆诸省市交界，是国宝大熊猫的故乡。

@@ -1,6 +1,7 @@
 $package('itour.travelItem');
 itour.travelItem = function(){
 	var _box = null;
+	var zf = null;
 	var _this = {
 			uploadCoverAction:'travelItem/uploadCover',
 			uploadCoverForm:function(){
@@ -557,12 +558,7 @@ itour.travelItem = function(){
 								_this.editPhotoWin().window('open');
 								
 							}
-						}},
-						{id:'btnback',text:'back',disabled: true,iconCls:'icon-back',
-							handler:function(){
-								_this.toList();
-							}
-						}
+						}}
 			     	]
 			}
 		},
@@ -576,7 +572,7 @@ itour.travelItem = function(){
 			var uploadCoverFile = $.extend(uploadFile,this.uploadCoverParams);
 			uploadCoverFile.init(); 
 			this.initUploadCoverForm();
-			var zf = $.extend(ZXXFILE,this.uploadparams);
+			zf = $.extend(ZXXFILE,this.uploadparams);
 			zf.init();
 			//console.log(uploadCoverFile);
 			//console.log(zf);
@@ -705,7 +701,8 @@ itour.travelItem = function(){
 						if (html) {
 							//删除方法
 							$(".upload_delete",this.uploadPhotoWin).click(function() {
-								zxxfile.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+								//var zxxfile = $.extend(ZXXFILE,this.uploadparams);
+								zf.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
 								return false;	
 							});
 							//提交按钮显示

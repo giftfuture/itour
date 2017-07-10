@@ -294,7 +294,7 @@
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->
       </tr>
       <tr> <td style="width:35%"></td>
-          <td  style="text-align:left;width:65%"><a class="easyui-linkbutton" iconcls="icon-ok" name="check_formbtn">快速预定</a></td>
+          <td  style="text-align:left;width:65%;padding-bottom:30px;"><a class="easyui-linkbutton" iconcls="icon-ok" name="check_formbtn">快速预定</a></td>
       </tr>
       </table></td>
     <td width="5" background="images/default/shadowright.gif">

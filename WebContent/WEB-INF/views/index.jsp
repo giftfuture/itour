@@ -12,6 +12,7 @@
 <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>欢迎访问主角旅行</title>
 <link href="css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${basePath }js/commons/index.js"></script>
 <script type="text/javascript">
 	jQuery.browser = {};
 	(function() {
@@ -30,7 +31,7 @@
 <table class="commontb" align="center" width="72.6%" style="width:72.6%">
 	   <tr>
 			<td style="width:100%;text-align:center" align="center" width="100%" colspan="2">
-			<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" /></a></td>
+			<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" height="598px" /></a></td>
 		</tr>
 		 </table>
         <table class="frametb" align="center" width="61.3%" style="width:61.3%">
@@ -179,6 +180,5 @@
 		<tr><td colspan=2><%@include file="/front/footer.jsp"%></td></tr>
 </table>
 </center>
-<script type="text/javascript" src="js/commons/index.js"></script>
 </body>
 </html>

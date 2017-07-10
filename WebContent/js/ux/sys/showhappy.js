@@ -161,13 +161,12 @@ itour.showhappy = function(){
 							}
 						}
 					},
-				{field:'content',title:'内容',align:'center',sortable:true,
+					{field:'content',title:'内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							if(row.content && row.content.length>30){
 								return row.content.substring(0,30)+"...";
-							}else{									
-								return row.content;
-							}
+							}								
+							return row.content;
 						}
 					},
 					{field:'tourTime',title:'旅行日期',align:'center',sortable:true,
@@ -226,19 +225,10 @@ itour.showhappy = function(){
 						},
 					]],
 					toolbar:[
-								/*{id:'btnadd',text:'添加',btnType:'add'},
-								{id:'btnedit',text:'修改',btnType:'edit'},*/
+								/*{id:'btnadd',text:'添加',btnType:'add'},*/
+								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'物理删除',btnType:'remove'},
-								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
-								{
-									id:'btnback',
-									text:'back',
-									disabled: true,
-									iconCls:'icon-back',
-									handler:function(){
-										_this.toList();
-									}
-								}
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
 							]
 			}
 		},

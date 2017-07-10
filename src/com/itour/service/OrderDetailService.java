@@ -45,6 +45,17 @@ public class OrderDetailService<T> extends BaseService<T> {
 		return new BasePage<OrderDetailVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	
+	public BasePage<OrderDetailVO> singleQuery(String orderId) {
+		OrderDetailVO vo = mapper.queryByOrderId(orderId);
+		List<OrderDetailVO> list =  Lists.newArrayList();
+		list.add(vo);
+		//List<OrderDetailVO> records = Lists.newArrayList();
+		/*for(OrderDetail fb:list) {
+			records.add(OrderDetailKit.toRecord(fb));
+		}*/
+		return new BasePage<OrderDetailVO>(0, 10, list, 1);
+	}
+	
 	public OrderDetailVO queryByOrderId(String orderId){
 		return mapper.queryByOrderId(orderId);
 	};
@@ -76,7 +87,9 @@ public class OrderDetailService<T> extends BaseService<T> {
 		}
 		return gCode;
 	};
-	
+	public List<OrderDetailVO> queryByOrderIds(String [] orderIds){
+		return mapper.queryByOrderIds(orderIds);
+	}
 	@Autowired
     private OrderDetailDao<T> mapper;
 

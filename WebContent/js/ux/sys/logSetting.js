@@ -58,7 +58,10 @@ itour.logSetting = function(){
 								return row.createTime;
 							}
 						},
-					]]
+					]],toolbar:[
+								{id:'btndelete',text:'物理删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
+							]
 			}
 		},
 		init:function(){

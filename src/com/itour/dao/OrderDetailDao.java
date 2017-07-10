@@ -18,5 +18,6 @@ import com.itour.vo.OrderDetailVO;
 public interface OrderDetailDao<T> extends BaseDao<T> {
 	OrderDetailVO queryByOrderId(@Param(value="orderId")String orderId);
 	List<String> queryGroupCode(@Param(value="groupCode")String groupCode);
+	List<OrderDetailVO> queryByOrderIds(@Param(value="orderIds") String ... orderIds);
 	List<OrderDetailVO> queryByListVo(BasePage page);
 }

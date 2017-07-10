@@ -28,6 +28,11 @@ import com.itour.vo.TravelStyleVO;
 @Service 
 public class TravelOrderService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
+	
+	public List<TravelOrder> unDealedOrders(){
+		return mapper.unDealedOrders();
+	};
+	
 	/**
 	 * 分页查询
 	 * 

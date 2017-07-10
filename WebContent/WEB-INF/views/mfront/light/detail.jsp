@@ -75,10 +75,10 @@
 <!-- </table>
 <table class="commontb" align="center" width="100%"  style="width:100%;text-align:center;float:middle" > -->
 <tr>
- <td style="text-align:center;float:middle;width:100%;"> 
-     <table style="text-align:center;float:middle;width:100%;" align="center">
+ <td style="text-align:center;float:middle; "> 
+     <table style="text-align:center;float:middle;" align="center">
       <tbody><tr>
-        <td><img src="images/frame2-1.gif" width="100%" height="7"></td>
+        <td><img src="images/frame2-1.gif" height="7"></td>
       </tr>
       <tr>
         <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="0" border="0" align="center">
@@ -153,12 +153,6 @@
         <td><img src="${basePath}images/print.png" width=" " height=" " />
         <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
       </tr>
-      <tr><td>相关路线：
-         <c:forEach items="${rt.relates}" var="relat"><br>
-         <a href="${basePath}light/light/${relat.alias}" >${relat.title }</a>
-            <%-- <a href="${basePath}light/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
-         </c:forEach>
-         </td></tr>
     <%--   <tr><td><a href="${basePath}light/toQuote2/${rt.alias}" class="easyui-linkbutton">预定本路线</a></td></tr> --%>
     </table></td>
   </tr>
@@ -166,14 +160,12 @@
     </td>
   </tr>
   <tr>
-    <td><img src="images/frame2-3.gif" width="100%" height="7"></td>
+    <td><img src="images/frame2-3.gif" height="7"></td>
   </tr>
   </tbody>
 </table>
 </td></tr>
- 
-
-  <tr><td style="text-align:center;float:middle;width:100%;" align="center"> 
+<tr><td style="text-align:center;float:middle;width:100%;" align="center"> 
 <div class="frametb" id="tab-container" class='tab-container' width="100%"  style="width:100%;text-align:center;float:middle" >
  <ul class='etabs' style="text-align:left;float:left">
    <li width="15%" bgcolor="#F0F0F0" class='tab'><a href="${basePath}light/light/${alias}#review" target="_self">整体概览</a></li>
@@ -322,6 +314,22 @@
   </tr>
   <tr>
     <td colspan=2 style="text-align:left;align:left">${rt.serviceAndQuote }</td>
+  </tr>
+     <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">相关线路</span></span></span></span></td>
+  </tr>
+  <tr>
+    <td  colspan=2 width="100%" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+  </tr>
+  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+     <c:forEach items="${rt.relates}" var="relat"><br>
+     <a href="${basePath}light/light/${relat.alias}" >${relat.title }</a>
+       <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
+     </c:forEach>
+     </td></tr>
+   <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
  <tr>
      <td colspan=2><span class="STYLE3" style="text-align:left;float:left">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 

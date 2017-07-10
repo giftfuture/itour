@@ -19,9 +19,9 @@
   <tr>
     <td valign="top" style="width:20%;text-align:left;vertical-align:top;" align="left" rowspan="4"> <!-- float:middle;valign:top;text-align:center;align:center; -->
             <!-- <span style="font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:100%;" >旅遊目的地</span> -->
-            <label style="float:middle;text-align:center;align:center;font-size:14px;background-color:#8B0000;text-decoration:none;color:white;vertical-align:top;">旅遊目的地</label>
             <div class="treebox">
 				<ul class="menu">
+				 <label style="float:middle;text-align:center;align:center;background-color:#8B0000;text-decoration:none;color:white;vertical-align:top;font-size:0.7rem;">旅遊目的地</label>
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
 					<li class="level1" style="width:100%">
 						<a style="width:100%" href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%><i class="down"></i><c:out value="${scope.value}"></c:out></a>
@@ -48,7 +48,7 @@
 			<DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 			<c:forEach items="${photos}" var="photo">
 				<div class="box">
-				<a class="imgBorder" target="_blank"><img alt="landscape" src="${basePath }${photo}" width=100 height=55 border=0></a> 
+				<a class="imgBorder" target="_blank"><img alt="landscape" src="${basePath }${photo}"  border=0></a> 
 				</div>
 			</c:forEach>
 			<!-- 图片列表 end --></DIV>
@@ -59,11 +59,11 @@
 					scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
 					scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
 					scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
-					scrollPic_02.frameWidth     = "70%";//显示框宽度
-					scrollPic_02.pageWidth      = "100%"; //翻页宽度
+					scrollPic_02.frameWidth     = "100%";//显示框宽度
+					scrollPic_02.pageWidth      = "25%"; //翻页宽度
 					scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
 					scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
-					scrollPic_02.autoPlay       = false; //自动播放
+					scrollPic_02.autoPlay       = true; //自动播放
 					scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
 					scrollPic_02.initialize(); //初始化
 					//--><!]]>

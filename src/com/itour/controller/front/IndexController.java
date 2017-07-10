@@ -53,7 +53,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 @Controller
 public class IndexController extends BaseController {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	// Servrice start
+	// Servrice start		
 	@Autowired 
 	private TravelItemService<TravelItem> travelItemService; 
 	@Autowired
@@ -85,6 +85,7 @@ public class IndexController extends BaseController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/",method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		//long startTime = System.currentTimeMillis();
 		Map<String,Object> map = getRootMap();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
@@ -146,6 +147,7 @@ public class IndexController extends BaseController {
             model = matcher.group(1).trim();  
             logger.debug("通过userAgent解析出机型：" + model);  
         }
+        //System.out.println("运行时间####"+(System.currentTimeMillis()-startTime));
 		return forward("index",map); 
 	}
 	

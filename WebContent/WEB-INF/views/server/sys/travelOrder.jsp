@@ -9,19 +9,19 @@
  	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
+			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
 			<label class="ui-label">订单状态:</label>
-				<select name="orderStatus" class="easyui-combobox" data-options="editable:false,width:100">
+				<select name="orderStatus" class="easyui-combobox" data-options="editable:false,width:120">
 					<option value="">--请选择--</option>
 					<option value="1">待付款</option>
 					<option value="2">付款完成,待确认</option>
 					<option value="3">确认支付完成</option>
 				</select>&nbsp;&nbsp;
 			</p>
-		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-textbox" data-options="width:100">&nbsp;&nbsp;
-			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:100,editable:false,region:'north',split:true,border:false" ></p>
-	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
+			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false" ></p>
+	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" style="margin-top:10;" iconCls="icon-search">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
