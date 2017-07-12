@@ -9,7 +9,7 @@ itour.index = function(){
 				async:false,
 				cache: false,
 				success:function(result){
-					console.log(result);
+					//console.log(result);
 					if(result){
 						$(result).each(function(i,e){
 							//console.log(e.advertise+"   "+e.adlink);

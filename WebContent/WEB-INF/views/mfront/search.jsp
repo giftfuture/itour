@@ -13,6 +13,9 @@
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript">
 /*  $(document.forms["searchForm"]).form('load','${context}'); */
+  var rcdDays='${rcdDays}';
+ var level1Area ='${level1Area}';
+ var level2Area = '${level2Area}';
  jQuery.browser={};
  (function(){
 	 jQuery.browser.msie=false; 

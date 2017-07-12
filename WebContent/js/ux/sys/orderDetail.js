@@ -137,7 +137,7 @@ itour.orderDetail = function(){
 			},
   			dataGrid:{
   				title:'订单详情',
-  				url:'orderDetail/dataList.json?orderId='+orderId,
+  				url:'orderDetail/dataList.json'+($("#orderId").val()?'?orderId='+$("#orderId").val():''),
   				rownumbers: true,
   				//method: 'POST',
 	   			//queryParams: { 'orderId': '0e45a45054514385bdd3008f23680349' },

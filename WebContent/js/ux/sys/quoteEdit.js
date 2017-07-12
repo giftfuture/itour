@@ -455,7 +455,7 @@ itour.quoteEdit = function(){
 			"onblur=(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)></td>" +
 			"<td class=STYLE126 width=124 valign=middle><input name='area' id='area' class='easyui-combobox' data-options=\"cursor:'pointer',width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'areas/allAreas'," +
 			"onChange:function(n,o){ var urlurl = 'travelItem/queryByScope?scope='+n ;$(this).parents('tbody').find('#travelItem').combobox('reload',urlurl);}\">" +
-			"<input id='travelItem' name='travelItem' class='easyui-combobox'  " +																																		//type=checkbox 
+			"&nbsp;&nbsp;<input id='travelItem' name='travelItem' class='easyui-combobox'  " +																																		//type=checkbox 
 			" data-options=\"cursor:'pointer',valueField:'alias',textField:'item',multiple:true,method:'get',editable:false,region:'north',split:true,border:false,width:151,height:22," +
 			"formatter:function(row){return '<option class=selectId style=cursor:pointer,vertical-align:middle name=selectId_'+row.alias+' value='+row.alias+'>'+row.item+'</option>';}," +
 			"onSelect:function(record){$('option[name=selectId_'+record.alias+']',$(this)).attr('selected', 'true');}," +
@@ -793,5 +793,8 @@ itour.quoteEdit = function(){
 }*/
 $(function(){
 	itour.quoteEdit.init();
+});
 	  /*if (window != top)
-          top.location.href = location
+          top.location.href = location.href;
+          */
+	

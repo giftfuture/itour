@@ -307,8 +307,8 @@
   <div id="need-know" name="need-know">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028" style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
+    <td width="5%" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
+    <td width="95%" style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">行前需知</span></span></td>
   </tr>
    <tr>
     <td colspan=2 style="text-align:left;align:left;">${rt.beforeInstruction }</td>
@@ -346,8 +346,8 @@
   <div id="feed-back" name="feed-back">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32" style="text-align:left"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
-    <td width="1028" style="text-align:left"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left">还想了解什么吗？快来跟我们说说：</span></span></span></span></td>
+    <td width="5%" style="text-align:left"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
+    <td width="95%" style="text-align:left"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left">还想了解什么吗？快来跟我们说说：</span></span></span></span></td>
   </tr>
 </table>
 <table  class="frametb" align="center">

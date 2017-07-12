@@ -31,7 +31,6 @@ itour.footer = function(){
 			if(window.top != window.self){
 				window.top.location =  window.self.location;
 			}
-		    
 		    $.ajax({  
 		        url:basePath+'levelarea/queryLevel1',
 		        async : false,  

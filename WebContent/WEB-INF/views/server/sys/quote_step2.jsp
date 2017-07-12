@@ -39,7 +39,7 @@
 <input type="hidden" name="quoteclimbregisteradultsSumCost"  value="${vo.quoteclimbregisteradultsSumCost}" />
 <input type="hidden" name="quoteclimbnexusadultsSumCost"  value="${vo.quoteclimbnexusadultsSumCost}" />
 <input type="hidden" name="quoteelsecostadultsSumCost"  value="${vo.quoteelsecostadultsSumCost}" />
-<a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
+<a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a>
 </form:form>
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
   <tr>

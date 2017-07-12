@@ -3,7 +3,7 @@
 <center>
     <div id="top-menu">
     <table align="center" style="border:0;cursor:pointer;width:100%" width="100%">
-        <tbody style="width:100">
+        <tbody style="width:100%">
         <tr><th colspan="2"><a href="${basePath}"><img src="${basePath}images/head2016.gif" /></a></th>
         <th colspan="3"><img src="${basePath}images/chinatravel.png" alt="" />
         <span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊</span></th><!-- href="tel:+8602885580038" -->
