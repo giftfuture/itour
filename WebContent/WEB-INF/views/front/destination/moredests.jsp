@@ -18,7 +18,7 @@
 <table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
  <tr><td></td></tr>
   <tr> 
-    <td style="text-align:center;float:middle" valign="top" colspan="3"><!--  -->
+    <td style="text-align:left;float:left" valign="top" colspan="3"><!--  -->
       四川，简称“川”或“蜀”，省会成都，位于中国大陆西南腹地，东部为川东平行岭谷和川中丘陵，中部为四川盆地和成都平原，西部为川西高原，与陕西、贵州、云南、西藏、青海、甘肃、重庆诸省市交界，是国宝大熊猫的故乡。
       四川是“中国西部综合交通枢纽”、“中国西部经济发展高地”，经济总量连续多年位居西部第一[1]  。 
       四川是中国重要的经济、工业、农业、军事、旅游、文化大省。省会成都在1993年被国务院确定为中国西南地区的科技、商贸、金融中心和交通、通信枢纽[2]  。成都双流国际机场是中国第四大航空港[3]  。 

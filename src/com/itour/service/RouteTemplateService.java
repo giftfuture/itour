@@ -2,6 +2,7 @@ package com.itour.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
@@ -185,8 +186,8 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteTemplateVO> queryByItems(String travelItems)throws Exception{
-		List<RouteTemplateVO> list = mapper.queryByItems(travelItems);
+	public List<RouteTemplateVO> queryByItems(Map map)throws Exception{
+		List<RouteTemplateVO> list = mapper.queryByItems(map);
 		List<RouteTemplateVO> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVO rt:list){

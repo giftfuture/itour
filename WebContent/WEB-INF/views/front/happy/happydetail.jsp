@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
-<table class="" align="center" border="0" cellpadding="0" cellspacing="0">
+<table class="" align="center" style="text-align:center" width="61.3%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19">${sh.title }</span></div></td>
   </tr>

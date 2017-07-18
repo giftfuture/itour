@@ -27,7 +27,7 @@
 <body>
 <center>
 <%@include file="/front/header.jsp"  %>
-<table  style="width:72.6%" width="72.6%" border="0" cellspacing="0" cellpadding="0">
+<table  style="width:61.3%" width="61.3%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td></td>
   </tr>

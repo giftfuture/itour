@@ -41,15 +41,30 @@ public class Constants {
 	public static final Map<String,Object> TDQUOTE1 = Maps.newConcurrentMap();
 	public static final Map<String,Object> TDQUOTE2 = Maps.newConcurrentMap();
 	public static final Map<String,Object> TDQUOTE3 = Maps.newConcurrentMap();
+	public static final List<LevelArea> level1Areas = Lists.newArrayList();//一级区域
+	public static final List<Map<String,Object>> allStyles = Lists.newArrayList();//所有旅行方式
+	public static final List<AdLink> alladLinks = Lists.newArrayList();//所有首页链接
+	public static final List<Areas> allAreas = Lists.newArrayList();//所在地区
+	public static final List<LevelArea> allLevelAreas = Lists.newArrayList();//所有一级，二级区域
+	public static final List<TravelItemVO> homehotSights = Lists.newArrayList();//首页展示的热门景点
+	public static final Map<String,BasePage<ShowHappyVO>> homeshpage = Maps.newHashMap();//首页的回忆幸福
+	public static final LinkedHashMap<String,List<RouteTemplateVO>>  homertmapvo = Maps.newLinkedHashMap();//首页
+	public static final List<ShowHappyVO>  showhappypage = Lists.newArrayList();//回忆幸福
+	//public static final List<FeedbackVO> hikingfbpage = Lists.newArrayList();//徒步旅行反馈列表
+	//public static final List<FeedbackVO> climbfbpage = Lists.newArrayList();//登山反馈列表
+	//public static final List<FeedbackVO> selfdrivefbpage = Lists.newArrayList();//自驾反馈列表
+	//public static final List<FeedbackVO> lightfbpage = Lists.newArrayList();//轻旅行反馈列表
+	//public static final List<FeedbackVO> feedbackpage = Lists.newArrayList();//轻旅行反馈列表
 	public static final Map<String,String> travelStyles = Maps.newHashMap();
 	public static final int maxMoreDestinations = 5;//每个景点的相关景点多于5个才显示MOre
 	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
 	public static final int perPage = 3;//前端回忆幸福每页数据
-	public static final int happyperPage = 8;//前端回忆幸福每页数据
+	public static final int happyperPage = 9;//前端回忆幸福每页数据
 	public static final int fbperPage = 4;//前端反馈每页数据量
 	public static final int hotview = 4;//首页显示的热门景点
 	public static final int routesperrow = 3;//每行显示的路线
 	public static final int destsPerPage=15;//每页显示的更多景点相关的路线
+	public static final int relatedDests = 8;//详细页面显示的相关线路数
 	public static final int moredestsPerPage=9;//每页显示的更多目的地
 	public static final int rtPerPage=9;//每页显示的路线数
 	public static  int perRow = 3;
@@ -117,7 +132,7 @@ public class Constants {
 			   }
 		   }
 		   String lv1asql = "select distinct level1_area ,alias_code from level_area group by level1_area";
-		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","-请选择-"));}};
+		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","-所有-"));}};
 		   areas1.addAll(jdbcTemplate.query(lv1asql,  new RowMapper<LevelArea>(){
 		        @Override  
 		        public LevelArea mapRow(ResultSet rs, int rowNum) throws SQLException {  
@@ -205,20 +220,6 @@ public class Constants {
 	public static void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		Constants.jdbcTemplate = jdbcTemplate;
 	}
-	public static final List<LevelArea> level1Areas = Lists.newArrayList();//一级区域
-	public static final List<Map<String,Object>> allStyles = Lists.newArrayList();//所有旅行方式
-	public static final List<AdLink> alladLinks = Lists.newArrayList();//所有首页链接
-	public static final List<Areas> allAreas = Lists.newArrayList();//所在地区
-	public static final List<LevelArea> allLevelAreas = Lists.newArrayList();//所有一级，二级区域
-	public static final List<TravelItemVO> homehotSights = Lists.newArrayList();//首页展示的热门景点
-	public static final Map<String,BasePage<ShowHappyVO>> homeshpage = Maps.newHashMap();//首页的回忆幸福
-	public static final LinkedHashMap<String,List<RouteTemplateVO>>  homertmapvo = Maps.newLinkedHashMap();//首页
-	public static final List<ShowHappyVO>  showhappypage = Lists.newArrayList();//回忆幸福
-	//public static final List<FeedbackVO> hikingfbpage = Lists.newArrayList();//徒步旅行反馈列表
-	//public static final List<FeedbackVO> climbfbpage = Lists.newArrayList();//登山反馈列表
-	//public static final List<FeedbackVO> selfdrivefbpage = Lists.newArrayList();//自驾反馈列表
-	//public static final List<FeedbackVO> lightfbpage = Lists.newArrayList();//轻旅行反馈列表
-	//public static final List<FeedbackVO> feedbackpage = Lists.newArrayList();//轻旅行反馈列表
 	
 	
 }

@@ -152,4 +152,13 @@ public class SystemVariable{
 		SystemVariable.jdbcTemplate = jdbcTemplate;
 	}
 	
+	/* 启动不同任务类型的线程 */
+	public void initThreadRunner() {
+		String pTaskType = "";
+		try {
+			//pTaskType = PropertiesUtils.getProperties(ContextUtils.taskTypeFileName).getProperty("taskType");
+		} catch (Exception e) {
+			// logger.error("读取属性文件错误！");
+		}
+	}
 }

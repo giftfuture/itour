@@ -32,6 +32,15 @@
   <tr>
     <td width="60%" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
+    <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
+        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
   <tr>
    <td>
       <table style="float:middle;text-align:center;" align="center" valign="top" >
@@ -224,79 +233,6 @@
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
 <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
-<%--      <tr><td colspan=2>
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">
-    <table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
-              <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
-                          <br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}元/人</td>
-              </tr>
-
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[0]}</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td style="text-align:left">大人：${qf.adultsQuote}元/人*4人<br />
-                  小孩：${qf.childquote }元/人*2人（小孩不含门票） </td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>          
-            <br /></td></tr>
-      </table>
-      </td>
-      </tr> --%>
- <!--  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>  -->
       </table> 
   </div>
   <div id="need-know" name="need-know">
@@ -362,7 +298,7 @@
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
                 <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'请键入您的大名',validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:80">
+                    <select name="sex" id="sex" class="easyui-combobox" data-options="width:60,height:22,editable:false,panelHeight:80">
                       <option value="1">先生</option>
                       <option value="0">女士</option>
                     </select>
@@ -391,7 +327,7 @@
                 </td>
               </tr>
               <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><strong>验证码：</strong></td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
                 <input type="text" id="verifyCode"  class="easyui-textbox" title="验证码" name="verifyCode"  data-options="height:22,prompt:'请键入正确的验证码!'"/><br/>
                 <img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">

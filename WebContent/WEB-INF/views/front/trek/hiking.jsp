@@ -26,12 +26,43 @@
 </script>
 </head>
 <body>
-<%@include file="/front/header.jsp"  %> 
 <center>
+<%@include file="/front/header.jsp"  %> 
+<!-- <section>  
+    <div>  
+    <div class="share-box">  
+        <div>  
+            <p>点击下方图标直接分享</p>         
+            <ul>  
+                新浪微博  
+                <li><a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg','itours','http://www.junlenet.com','页面编码gb2312|utf-8默认gb2312'));"  class="invite-kinds2">新浪微博</a></li>  
+                QQ好友  
+                <li><a href="javascript:;"  id="qq_id" target="_blank">QQ好友</a></li>  
+                QQ空间  
+                <li><a href="javascript:;"  onclick = "qqZone()">QQ空间</a></li>  
+                腾讯微博  
+                <li><a href="javascript:;"  onclick = "tencentWeiBo()">腾讯微博</a></li>  
+            </ul>  
+        </div>  
+        <div class="ewm" id="qrcode"></div>  
+        参考:jquery.qrcode.js  
+    </div>  
+    </div>  
+</section> -->  
+<!-- <hr>   -->
 <table class="commontb" align="center" width="72.6%" style="width:72.6%" >
   <tr>
     <td width="55%" style="float:middle" class="h1-black" >${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
+  <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
+        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
   <tr>
     <td width="55%" style="width:55%;" >
     <table style="float:right;margin-right:30px" valign="top" >
@@ -426,10 +457,10 @@
    <tr>
     <td style="text-align:center"><ul id='fbpage'></ul></td>
   </tr>
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
   </div> </div>
    </div>
-   <div style="width:72.6%"><%@include file="/front/footer.jsp" %></div>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
 </center>
 </body>

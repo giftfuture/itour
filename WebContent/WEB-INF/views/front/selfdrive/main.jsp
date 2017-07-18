@@ -20,7 +20,7 @@
  <%@include file="/front/header.jsp"  %>
  <center>
  <table class="commontb" align="center" width="72.6%" style="width:72.6%">
- <tr><td colspan=3 align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/index-ad/banner.jpg"  /></td></tr>
+ <tr><td colspan=3 align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/index-ad/banner.jpg" height="598px" /></td></tr>
   <!--DWLayoutTable-->
   <!-- <tr bgcolor="#FFFFFF">
     <td width="10" background="images/shadowleft.gif"><img src="images/shadowleft.gif" width="10" height="8" /></td>

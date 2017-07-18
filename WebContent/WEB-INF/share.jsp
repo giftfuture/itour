@@ -4,7 +4,7 @@
 <html lang="en">  
 <head>  
     <meta charset="UTF-8">  
-    <title>君乐科技js分享代码</title>  
+    <title>itoursjs分享代码</title>  
 </head>  
 <body style="background:#e5e6e6;">  
 <section>  
@@ -14,7 +14,7 @@
             <p>点击下方图标直接分享</p>         
             <ul>  
                 <!-- 新浪微博 -->  
-                <li><a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg','君乐科技','http://www.junlenet.com','页面编码gb2312|utf-8默认gb2312'));"  class="invite-kinds2">新浪微博</a></li>  
+                <li><a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg','itours','http://www.junlenet.com','页面编码gb2312|utf-8默认gb2312'));"  class="invite-kinds2">新浪微博</a></li>  
                 <!-- QQ好友 -->  
                 <li><a href="javascript:;"  id="qq_id" target="_blank">QQ好友</a></li>  
                 <!-- QQ空间 -->  
@@ -34,17 +34,17 @@
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>  
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>  
 <script>  
-  var url = "http://www.junlenet.com";  
-    var desc_ = "君乐科技";        
+  var url = "${basePath}";  
+    var desc_ = "itours";        
     function tencentWeiBo(){  
-         var _url = "http://www.junlenet.com";     
+         var _url = "${basePath}";     
          var _showcount = 0;  
          var _summary = "";  
          var _title = desc_;  
-         var _site = "http://www.junlenet.com";    
+         var _site = "${basePath}";    
          var _width = "600px";  
          var _height = "800px";  
-         var _pic = "http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg";  
+         var _pic = "${basePath}adlink/Route001.jpg";  
          var _shareUrl = 'http://share.v.t.qq.com/index.php?c=share&a=index';  
          _shareUrl += '&title=' + encodeURIComponent(_title||document.title);    //分享的标题  
          _shareUrl += '&url=' + encodeURIComponent(_url||location.href);    //分享的链接  
@@ -60,10 +60,10 @@
     /*title是标题，rLink链接，summary内容，site分享来源，pic分享图片路径,分享到新浪微博*/    
     function shareTSina() {    
         var title = desc_;  
-        var   rLink = "http://www.junlenet.com";  
-        var backUrl = "http://wx.hengfu100.com/member/c_friend";  
+        var   rLink = "${basePath}";  
+        var backUrl = "${basePath}";  
         var site = desc_;  
-        var pic = "http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg";  
+        var pic = "${basePath}adlink/Route001.jpg";  
         window.open("http://service.weibo.com/share/share.php?pic=" +encodeURIComponent(pic) +"&title=" +     
         encodeURIComponent(title.replace(/ /g, " ").replace(/<br \/>/g, " "))+ "&url=" + encodeURIComponent(rLink),    
         "分享至新浪微博",    
@@ -72,14 +72,14 @@
     
      function qqFriend() {  
             var p = {  
-                url : 'http://www.junlenet.com', /*获取URL，可加上来自分享到QQ标识，方便统计*/  
+                url : '${basePath}', /*获取URL，可加上来自分享到QQ标识，方便统计*/  
                 desc:'',  
                 //title : '新玩法，再不来你就out了！', /*分享标题(可选)*/  
                 title:desc_,  
                 summary : '', /*分享摘要(可选)*/  
-                pics : 'http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg', /*分享图片(可选)*/  
+                pics : '${basePath}adlink/Route001.jpg', /*分享图片(可选)*/  
                 flash : '', /*视频地址(可选)*/  
-                site : 'http://www.junlenet.com', /*分享来源(可选) 如：QQ分享*/  
+                site : '${basePath}', /*分享来源(可选) 如：QQ分享*/  
                 style : '201',  
                 width : 32,  
                 height : 32  
@@ -95,16 +95,16 @@
         }  
       
     function qqZone(){  
-         var _url = "http://www.junlenet.com";     
+         var _url = "${basePath}";     
          var _showcount = 0;  
          var _desc = desc_;  
          var _summary = "";  
-         var _title = "君乐科技";  
+         var _title = "itours";  
          var _site = "";  
          var _width = "600px";  
          var _height = "800px";  
          var _summary = "";  
-         var _pic = "http://www.junlenet.com/uploads/allimg/150510/1-150510104044.jpg";  
+         var _pic = "${basePath}adlink/Route001.jpg";  
          var _shareUrl = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?';  
          _shareUrl += 'url=' + encodeURIComponent(_url||document.location);   //参数url设置分享的内容链接|默认当前页location  
          _shareUrl += '&showcount=' + _showcount||0;      //参数showcount是否显示分享总数,显示：'1'，不显示：'0'，默认不显示  

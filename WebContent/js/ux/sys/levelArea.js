@@ -122,12 +122,12 @@ itour.levelarea = function(){
   			},						
   			dataGrid:{
   				title:'路线区域',
-	   			url:'levelarea/dataList.json',
+	   			url:'levelarea/dataList.json'+($("#routeTemplate").val()?'?routeTemplate='+$("#routeTemplate").val():''),
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'item',title:'景点',align:'center',sortable:true,width:'200',
+					{field:'title',title:'路线名称',align:'center',sortable:true,width:'200',
 						formatter:function(value,row,index){
-							return row.item;
+							return row.title;
 						}
 					},
 					{field:'level1Area',title:'一级区域',align:'center',sortable:true,width:'200',
@@ -140,9 +140,9 @@ itour.levelarea = function(){
 							return row.level2Area;
 						}
 					},
-					{field:'title',title:'路线名称',align:'center',sortable:true,width:'200',
+					{field:'item',title:'景点',align:'center',sortable:true,width:'200',
 						formatter:function(value,row,index){
-							return row.title;
+							return row.item;
 						}
 					}
 				/*	{field:'aliasCode',title:'别名码',align:'center',sortable:true,

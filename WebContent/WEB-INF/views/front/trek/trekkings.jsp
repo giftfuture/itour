@@ -19,7 +19,7 @@
    <!-- <tr> <td></td> </tr> -->
   <tr>
     <td align="center" style="text-align:center;width:100%" width="100%">
-          <img width="100%" src="images/banner-trekking.jpg"  />  </td>
+          <img width="100%" src="images/banner-trekking.jpg"  height="598px"  />  </td>
   </tr>
   </table>
   <table class="frametb" align="center" width="61.3%" style="width:61.3%">

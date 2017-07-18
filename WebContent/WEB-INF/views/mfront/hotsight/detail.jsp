@@ -33,6 +33,15 @@
   <tr>
     <td width="55%" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
+    <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
+        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
   <tr>
     <td width="55%" style="width:55%;"><table style="float:right;text-align:right;align:right;margin-right:30px;">
       <tr>
@@ -359,7 +368,7 @@
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
                 <td width="249" bgcolor="#F0F0F0" class="STYLE126"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'请键入您的大名',validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox" data-options="height:22,width:80,editable:false,panelHeight:80">
+                    <select name="sex" id="sex" class="easyui-combobox" data-options=" height:22,width:60,editable:false,panelHeight:80">
                       <option value="1">先生</option>
                       <option value="0">女士</option>
                     </select>
@@ -389,7 +398,7 @@
                  </td>
               </tr>
               <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">验证码</td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><strong>验证码：</strong></td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
                 <input type="text" id="verifyCode"  class="easyui-textbox" title="验证码" name="verifyCode"  data-options="height:22,prompt:'请键入正确的验证码!'"/><br/>
                 <img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">

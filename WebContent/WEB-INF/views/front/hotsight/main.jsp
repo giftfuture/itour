@@ -20,7 +20,7 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/banner.jpg" /></td>
+    <td align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/banner.jpg"  height="598px" /></td>
   </tr>
  </table>
   <table class="frametb" align="center" width="61.3%" style="width:61.3%">

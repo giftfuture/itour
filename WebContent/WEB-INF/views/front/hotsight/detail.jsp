@@ -33,6 +33,15 @@
   <tr>
     <td width="55%" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
+    <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
+        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
   <tr>
     <td width="55%" style="width:55%;"><table style="float:right;text-align:right;align:right;margin-right:30px;">
       <tr>
@@ -418,13 +427,13 @@
    <tr>
     <td>  <ul id='fbpage'></ul></td>
   </tr>
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
   </div>
   <!-- <div id="consulting" style="display:none;">
   </div> -->
   </div>
   </div>
-    <div style="width:72.6%"><%@include file="/front/footer.jsp" %></div>
 <script type="text/javascript" src="${basePath}js/ux/front/hotsight/detail.js"></script>
 </center>
 </body>
