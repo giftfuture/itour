@@ -104,7 +104,6 @@
         </tx:attributes>  
     </tx:advice>  
 	
-	
 	<!-- 扫描 MyBatis Sql -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="mapperLocations">

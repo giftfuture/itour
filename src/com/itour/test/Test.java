@@ -10,11 +10,11 @@ public class Test {
 	public static void main(String[] args) {
 		HashMap map = new HashMap();
 		map.put(new Object(), new Object());
-		map.put(new Object(), new Object());
 		map.put(new ArrayList(), new ArrayList());
-		map.put(new ArrayList(), new ArrayList());
+		map.put(12, new ArrayList());
 		map.put(1, 2);
 		map.put(1, 22);
+		map.put(new ArrayList(), new ArrayList());
 		//for(map.forEach(action);)
 		Iterator<Entry> it = map.entrySet().iterator();
 		while(it.hasNext())

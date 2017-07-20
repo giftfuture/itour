@@ -30,8 +30,8 @@ public class WebInitListener extends JdbcDaoSupport implements ServletContextLis
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 	   //ServletContext servlet=event.getServletContext();
-	   SystemVariable.init();
 	   Constants.init();
+	   SystemVariable.init();
 	}
 	
 
