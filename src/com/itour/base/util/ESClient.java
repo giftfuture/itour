@@ -19,22 +19,26 @@ import org.elasticsearch.common.unit.TimeValue;
 
 import java.net.InetAddress;
 import java.util.Date;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ESClient {
     static Log log = LogFactory.getLog(ESClient.class);
-
+    
     //    用于提供单例的TransportClient BulkProcessor
     static public TransportClient tclient = null;
     static BulkProcessor staticBulkProcessor = null;
 
 //【获取TransportClient 的方法】
     public static TransportClient getClient() {
+    	ReentrantLock  ll = null;
+    	ReentrantReadWriteLock rll = null;
         try {
             if (tclient == null) {
                 String EsHosts = "10.10.2.1:9300,10.10.2.2:9300";
                 Settings settings = Settings.settingsBuilder()
                         .put("cluster.name", "wshare_es")//设置集群名称
                         .put("tclient.transport.sniff", true).build();//自动嗅探整个集群的状态，把集群中其它机器的ip地址加到客户端中
-
+                	
                 tclient = TransportClient.builder().settings(settings).build();
                 String[] nodes = EsHosts.split(",");
                 for (String node : nodes) {

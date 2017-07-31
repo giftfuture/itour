@@ -116,6 +116,9 @@ var YDataGrid = function(config){
 								//designConcept.setData(result.data.designConcept);
 								$("#serviceAndQuote").summernote('code',result.data.serviceAndQuote);
 							}
+							if(result.data.content&&result.data.content.length>0){
+								$("#content").summernote('code',result.data.content);
+							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 							}*/
@@ -212,7 +215,7 @@ var YDataGrid = function(config){
 					var parentId =$('#search_parentId').val();
 					$("#edit_parentId").val(parentId);
 				    //var beforeInstruction = CKEDITOR.replace("beforeInstruction", { "toolbar": "Basic" }); //显示编辑器
-				/*    beforeInstruction.document.getBody().getHtml();
+					/* beforeInstruction.document.getBody().getHtml();
 			            CKFinder.setupCKEditor(editor, "ckfinder/"); //设置图片管理组件
 			            //处理CKEDITOR的值
 			            function CKupdate() {

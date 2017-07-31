@@ -291,7 +291,7 @@ function hideTop() {
 }
 //加载信息
 function loading(name, overlay) {
-	$('body').append('<div id="overlay"></div><div id="preloader">' + name + '...</div>');
+	$('body').append('<div id="overlay"></div><div id="preloader">' + name + '...</div>');/*<div id="overlay"></div>*/
 	if (overlay == 1) {
 		$('#overlay').css('opacity', 0.1).fadeIn(function() {
 			$('#preloader').fadeIn();

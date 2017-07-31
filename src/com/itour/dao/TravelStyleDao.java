@@ -18,6 +18,7 @@ import com.itour.entity.TravelStyle;
  */
 public interface TravelStyleDao<T> extends BaseDao<T> {
 	
+	
 	List<TravelStyle> queryValid();
 	
 	/**

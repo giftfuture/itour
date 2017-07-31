@@ -53,6 +53,7 @@ public class TravelOrderService<T> extends BaseService<T> {
 		}
 		return new BasePage<TravelOrderVO>(vo.getStart(), vo.getLimit(), records,count);
 	}
+	
 	@Autowired
     private TravelOrderDao<T> mapper;
 

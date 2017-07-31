@@ -30,7 +30,7 @@
                         <ul class="level2" style="float:middle;width:100%">
                             <c:forEach items="${items}" var="item">
                                 <c:if test="${scope.key==item.scope }">
-                                    <li style="width:100%" style="float:middle"><a style="float:left" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>     
+                                    <li style="width:100%" style="float:middle"><a style="float:left" href="${basePath }destination-detail-${item.alias}"><c:out value="${item.item}"></c:out></a></li>     
                                 </c:if>
                             </c:forEach>
                         </ul>
@@ -51,7 +51,7 @@
                 <span style="text-align:right;float:right;"><div align="right">
                 <c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
                 <c:if test="${tiSizes[sortitem.key]>= maxd}">
-                 |<a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">显示更多</a>
+                 |<a href="${basePath}destination-moredests-${fn:split(sortitem.key, '_')[0]}">显示更多</a>
                  </c:if>
                 </div></span></td>
               </tr>
@@ -59,7 +59,7 @@
                  <c:forEach items="${sortitem.value}" var="ti" varStatus="ix">
                     <td style="text-align:left;align:left;width:33%;float:left;" width="33%">
                           <c:if test="${not empty ti.alias  && not empty ti.item  && not empty ti.cover}">
-                              <a href="${basePath }destination/detail/${ti.alias}" style='padding:3px;margin:3px'>${ti.item}<br/>
+                              <a href="${basePath }destination-detail-${ti.alias}" style='padding:3px;margin:3px'>${ti.item}<br/>
                                 <img width="100%" style="float:left;padding:3px;margin:3px;"  alt="" src="${basePath }${ti.cover}"/>
                               </a>
                            </c:if>

@@ -27,8 +27,38 @@ itour.footer = function(){
 		    }); 
 		  }
 		},
+		footAds:function(){
+		/*	  $.ajax({  
+			        url : basePath+'adLink/footAds',  
+			        async : false,  
+			        method: 'post',
+			        success : function(rest){ 
+			        	console.log(rest);
+			            var result = $.parseJSON(rest);// eval('('+rest+")");//转换为json对象 
+			            //console.log(result);     
+			            var html = "<tr bgcolor='#fafafa'>"; 
+			            $(result).each(function(i,e){
+			            	if(i!=0 && (i+1)%5==0){
+			            		html+="</tr><tr bgcolor='#fafafa'>";
+			            	}
+			            	html+=" <td width='210'><a href='"+basePath+e.adlink+"'>"+e.title+"</a></td>";
+			            });
+			            $("table[name='keyfooter']").append(html+"</tr>");
+			        }  
+			    });*/
+			  $.post(basePath+'adLink/footAds',{},function(rest){
+				     var html = "<tr bgcolor='#fafafa'>"; 
+				     var result = $.parseJSON(rest);
+			            $(result).each(function(i,e){
+			            	if(i!=0 && i%5==0){
+			            		html+="</tr><tr bgcolor='#fafafa'>";
+			            	}
+			            	html+=" <td width='210'><a href='"+basePath+e.adlink+"'>"+e.title+"</a></td>";
+			            });
+			            $("table[name='keyfooter']").append(html+"</tr>");
+			  })
+		},
 		init:function(){
-			 
 		    $.ajax({  
 		        url:basePath+'levelarea/queryLevel1',
 		        async : false,  
@@ -53,7 +83,8 @@ itour.footer = function(){
 		        data:[{'value':'','text':'-所有-'},{'value':'1_5','text':'1-5天'},{'value':'6_9','text':'6-9天'},{'value':'10_15','text':'10-15天'},{'value':'16','text':'16天+'}],
 		        mode:'local',
 		        onLoadSuccess:function(){$(this).combobox('setValue', rcdDays);}
-		    }) 
+		    });
+		    _this.footAds();
 			//$("a[name='search']").click(_this.searchRtResult); 
 			//$("a[name='search']").attr("href",_this.searchRtResult); 
 			/*_this.fbpagination(1); href="itour.footer.searchRtResult"
@@ -76,9 +107,9 @@ itour.footer = function(){
 	return _this;
 }();
 
-window.onload=function(){
+/*window.onload=function(){
 	itour.footer.init();
-}
-/*$(function(){
+}*/
+$(function(){
 	itour.footer.init();
-});	*/	
+});		

@@ -289,7 +289,7 @@ function sharehappy() {
 			//console.log("data.success="+data.success);
 			if (result.success) {
 				itour.alert("提示",result.msg||"晒出成功！",'info');
-				setTimeout(function(){window.location.href=basePath+"showhappy/main";}, 3000);
+				setTimeout(function(){window.location.href=basePath+"showhappy-main";}, 3000);
 				//_this.showSuccess(result.msg);
 			} else {
 				itour.alert("提示",result.msg||"晒出出错！",'info');

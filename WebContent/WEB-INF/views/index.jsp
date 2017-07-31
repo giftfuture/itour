@@ -28,7 +28,7 @@
 <body>
 <%@include file="/front/header.jsp"%>
 <center>
-<table class="commontb" align="center" width="72.6%" style="width:72.6%">
+<table class="commontb" align="center" style="width:72.6%" width="72.6%">
 	   <tr>
 			<td style="width:100%;text-align:center" align="center" width="100%" colspan="2">
 			<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" height="598px" /></a></td>
@@ -54,7 +54,7 @@
 								主角旅行是隶属于中旅旗下的专业定制旅行服务团队。 我們有強大的信心來履行對您的承諾，因為我們
 							</p>
 							<p>
-								<%-- 》》<a href="${basePath }whyus/aboutus">了解更多</a> --%>
+								 》》<a href="${basePath }whyus-aboutus">了解更多</a>  
 							</p>
 							<p></p></td>
 					</tr>
@@ -80,8 +80,8 @@
 							<td valign="top"><table width="100%" border="0" align="left" cellpadding="0"  style="float:left" cellspacing="0">
 									<tr>
 										<td width="100%" class="h2-24red" colspan=3
-											style="text-align: left; padding-left: 50px"><a
-											width="100px" href="${basePath}hiking/main"><img
+											style="text-align: left; padding-left: 50px">
+											<a width="100px" href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3 tsSTYLE3" style="font-size:1em;font-weight:normal;"><img
 												src="images/icon-0${status.index+1 }.jpg" width="57"
 												height="43">${fn:split(entry['key'],'#')[0]}</a></td>
 									</tr>
@@ -91,20 +91,20 @@
 									</tr>
 									<tr>
 										<td width="100%" colspan=3 style="text-align: left"><a
-											href="${basePath}hiking/main" class="STYLE3"><img
+											href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3"><img
 												src="${basePath }${fn:split(entry['key'],'#')[2]}"
 												style="border: none;" border="0px" height="166" width="84%" /></a></td>
 									</tr>
 									<c:forEach items="${entry['value']}" var="et">
 										<tr>
 											<td style="text-align: left"><a
-												href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}">>><span
+												href="${basePath }${et.travelStyleAlias }-${et.travelStyleAlias }-${et.alias}">>><span
 													class="STYLE7">${et.title }</span></a></td>
 										</tr>
 									</c:forEach>
 									<tr>
 										<td style="text-align: left"><a
-											href="${basePath }${entry['value'][0].travelStyleAlias }/main">More>></a></td>
+											href="${basePath }${entry['value'][0].travelStyleAlias }-main">More>></a></td>
 									</tr>
 								</table></td>
 							</c:forEach>
@@ -129,7 +129,7 @@
 								<tbody>
 									<tr>
 										<td colspan=2>
-											<a href="${basePath }showhappy/detail/${showhappy.shCode}"><img
+											<a href="${basePath }showhappy-detail-${showhappy.shCode}"><img
 												src="${basePath }${showhappy.cover }" width="80%" height="166" /></a>
 										</td>
 									</tr>
@@ -137,7 +137,7 @@
 										<td colspan=2 style="text-align: left">
 											<p class="f12-gao1">
 											<span class="STYLE6" width="80%">${showhappy.shortContent }
-												 <a href="${basePath}showhappy/main">More》》</a></span>
+												 <a href="${basePath}showhappy-main">More》》</a></span>
 											</p>
 											</td>
 									</tr>
@@ -162,7 +162,7 @@
 						</tr>
 						<tr>
 							</c:if>
-							<td><a href="${basePath }destination/detail/${hotvo.alias}"><img src="${basePath}${hotvo.cover}" width="100%"
+							<td><a href="${basePath }destination-detail-${hotvo.alias}"><img src="${basePath}${hotvo.cover}" width="100%"
 								height="168" title="${hotvo.item }" /></a></td>
 							</c:forEach>
 							</c:if>
@@ -170,7 +170,7 @@
 						<tr>
 							<td><p class="f12-gao1">
 								<span class="STYLE6"> <a
-									href="${basePath }destination/main">More》》</a></span></p>
+									href="${basePath }destination-main">More》》</a></span></p>
 							</td>
 						</tr>
 					</tbody>

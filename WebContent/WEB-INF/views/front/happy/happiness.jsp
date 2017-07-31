@@ -26,7 +26,7 @@
               ※  旅行  是流動的歷程<br />
               ※  感動  是霎那的永恆 <br />
               ※  回憶  是一輩子的幸福風景 
-      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></span></td>
+      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy-sharehappy">《<strong>分享回憶</strong>》</a></span></td>
   </tr>
   <tr><!--  style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"  -->
     <td><img src="${basePath }images/frame1-3.gif" width="1140" /></td>

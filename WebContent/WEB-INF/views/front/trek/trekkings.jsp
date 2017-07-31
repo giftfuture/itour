@@ -15,7 +15,7 @@
 <body>
  <%@include file="/front/header.jsp"  %> 
  <center>
-<table class="commontb" align="center"  width="72.6%" style="width:72.6%"><!-- width="72.6%" style="width:72.6%" -->
+<table class="commontb" align="center"><!-- width="72.6%" style="width:72.6%" -->
    <!-- <tr> <td></td> </tr> -->
   <tr>
     <td align="center" style="text-align:center;width:100%" width="100%">

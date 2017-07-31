@@ -3,7 +3,9 @@ package com.itour.test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.Collection;
 public class Testing {
 	  private final char value[] = null;
@@ -57,6 +59,8 @@ public class Testing {
 		Class<String> cls = null;
 		Object obj = null;
 		Collections.sort(new ArrayList());
+		WeakHashMap wmap = null;
+		HashMap hasmap = null;
 		BigDecimal bd = new BigDecimal("1111");
 		System.out.println(bd.toEngineeringString());
 		System.out.println(bd.toPlainString());

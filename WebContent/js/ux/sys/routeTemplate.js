@@ -257,9 +257,9 @@ itour.routeTemplate = function(){
 							return row.customerId;
 						}
 					},*/
-					{field:'quotoFormquotoForm',title:'路线编辑',align:'center',sortable:true,
+					{field:'quotoFormquotoForm',title:'行程编辑',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">路线编辑</a>';
+							return '<a href="'+basePath+'routeTemplate/quoteEdit?id='+row.id+'">行程编辑</a>';
 						}
 					},
 					{field:'routeCode',title:'线路编号',align:'center',sortable:true,//线路编号

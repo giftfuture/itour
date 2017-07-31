@@ -30,8 +30,10 @@ import com.itour.base.page.Pager;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.PinYinUtil;
 import com.itour.base.web.BaseController;
+import com.itour.entity.AdLink;
 import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
+import com.itour.service.AdLinkService;
 import com.itour.service.LevelAreaService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
@@ -74,7 +76,8 @@ public class IndexController extends BaseController {
 	private LogOperationService logOperationService;
 	@Autowired
 	private ShowHappyService showHappyService; 
-	
+	@Autowired
+	private AdLinkService adLinkService;
 	/**
 	 * 
 	 * @param request
@@ -158,7 +161,7 @@ public class IndexController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/video/{videoName}",method = RequestMethod.GET) 
+	@RequestMapping(value="/video-{videoName}",method = RequestMethod.GET) 
 	public ModelAndView video(@PathVariable("videoName")String videoName,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
 		String videopath = FilePros.httpbannervideoPath();
@@ -239,7 +242,7 @@ public class IndexController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/search") 
-	public ModelAndView searchRt(String pageNo,@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("level1Area")String level1Area,@RequestParam("level2Area")String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ModelAndView searchRt(String pageNo,@RequestParam(value="travel_style",required=false) String travelStyle,@RequestParam(value="vacation",required=false)String rcdDays,@RequestParam(value="level1Area",required=false)String level1Area,@RequestParam(value="level2Area",required=false)String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
 		//Map<String,Object> context = getRootMap();
 		//RouteTemplateVO vo = new RouteTemplateVO();
@@ -320,4 +323,5 @@ public class IndexController extends BaseController {
 		map.put("params", params);
 		return JsonUtils.encode(map); 
 	}
+
 }

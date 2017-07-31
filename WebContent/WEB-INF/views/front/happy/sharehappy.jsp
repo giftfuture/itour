@@ -56,7 +56,7 @@ function ww4(date){
 	           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
 	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
 	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">分享回忆</a></td>
-	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消分享</a></td></tr>
+	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy-sharehappy" iconcls="icon-cancel">取消分享</a></td></tr>
 	    </table><div id="alertMessage"></div>
     </form:form> 
     </td>

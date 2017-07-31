@@ -63,7 +63,7 @@
      </script>
 	</div>
 	<div data-options="region:'south',split:true,border:false" style="height: 30px;overflow:hidden;">
-		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
+		<div class="panel-header" style="border:none;text-align: center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
 	</div>
 	<!-- 中间内容页面 -->
 	<div data-options="region:'center'" >
@@ -78,13 +78,13 @@
 					</div>
 				</div>
 			</iframe> -->
-			<div title="Welcome" style="padding:20px;overflow:hidden;"> 
-                    <div style="margin-top:20px;">
-                    </div>
-                    <pre>欢迎进入主角旅行（繁体）中文版网站后台管理界面</pre>
-                    <div style="margin-top:20px;" id="unDealedOrders">
-                    </div>
+			<div title="Welcome" style="padding:20px;overflow:auto;"> 
+                <div style="margin-top:20px;">
                 </div>
+                <pre style="font-size:1.5em;font-family: '微软雅黑';">欢迎进入主角旅行（繁体）中文版网站后台管理界面</pre>
+                <table style="margin-top:20px;width:100%;height:auto;border:1px solid grey;overflow-y:scroll;" border="1" id="unDealedOrders">
+                </table>
+            </div>
 		</div>	
 	</div>
 	<!--  modify password start -->

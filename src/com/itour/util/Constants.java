@@ -47,6 +47,7 @@ public class Constants {
 	public static final List<LevelArea> level1Areas = Lists.newArrayList();//一级区域
 	public static final List<Map<String,Object>> allStyles = Lists.newArrayList();//所有旅行方式
 	public static final List<AdLink> alladLinks = Lists.newArrayList();//所有首页链接
+	public static final List<AdLink> allFootadLinks = Lists.newArrayList();//所有页脚链接
 	public static final List<Areas> allAreas = Lists.newArrayList();//所在地区
 	public static final List<LevelArea> allLevelAreas = Lists.newArrayList();//所有一级，二级区域
 	public static final List<TravelItemVO> homehotSights = Lists.newArrayList();//首页展示的热门景点
@@ -155,7 +156,7 @@ public class Constants {
 		   }
 	   }
 	   List<Map<String,Object>> newlist = Lists.newArrayList();
-	   newlist.add(new HashMap(){{put("alias","");put("type","--All--");}});
+	   newlist.add(new HashMap(){{put("alias","");put("type","--所有--");}});
 	   //List<Map<String,Object>> tsmap = jdbcTemplate.queryForList(tssql);
 	   newlist.addAll(list);
 	   allStyles.clear();
@@ -165,14 +166,14 @@ public class Constants {
 	public static void load(LevelAreaService levelAreaService){
 		  String lv1asql = "select distinct level1_area ,alias_code from level_area group by level1_area";
 		  System.out.println("Constants.initLevelAreas.sql="+lv1asql);
-		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","-All-"));}};
+		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","-所有-"));}};
 		   areas1.addAll(jdbcTemplate.query(lv1asql,  new RowMapper<LevelArea>(){
 		        @Override  
 		        public LevelArea mapRow(ResultSet rs, int rowNum) throws SQLException {  
-	        	  LevelArea sh = new LevelArea();  
-                sh.setLevel1Area(rs.getString("level1_area"));	
-                sh.setAliasCode(rs.getString("alias_code"));
-                return sh;   
+		        	LevelArea sh = new LevelArea();  
+	                sh.setLevel1Area(rs.getString("level1_area"));	
+	                sh.setAliasCode(rs.getString("alias_code"));
+	                return sh;   
 		        }  
 		   }));
 		   level1Areas.clear();
@@ -180,9 +181,9 @@ public class Constants {
 	}
 	
 	public static void load(AdLinkService adLinkService){
-		  String adsql="select * from ad_link where valid=1";
+		  String adsql="select * from ad_link where valid=1 and foot = 0";
 		  String adlinpath = FilePros.httpadLinkPath();
-		  System.out.println("Constants.initLeveinitAdLinklAreas.sql="+adsql);
+		  System.out.println("Constants.initLeveinitAdLinklAreas.adsql="+adsql);
 		  List<AdLink> adlist = jdbcTemplate.query(adsql, new RowMapper<AdLink>(){
 		        @Override  
 		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
@@ -196,6 +197,20 @@ public class Constants {
 		   });
 		   alladLinks.clear();
 		   alladLinks.addAll(adlist);
+		   String footsql = "select * from ad_link where valid=1 and foot=1";
+		   System.out.println("Constants.initLeveinitAdLinklAreas.footsql="+footsql);
+		   List<AdLink> footlinks = jdbcTemplate.query(footsql, new RowMapper<AdLink>(){
+		        @Override  
+		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
+		        	AdLink sh = new AdLink();  
+                 //  sh.setAdvertise(adlinpath+"/"+rs.getString("advertise"));
+                   sh.setTitle(rs.getString("title"));
+                   sh.setAdlink(rs.getString("adlink"));
+                   return sh;   
+		        }  
+		   });
+		   allFootadLinks.clear();
+		   allFootadLinks.addAll(footlinks);
 	}
 	
 	public static void load(AreasService areasService){

@@ -54,7 +54,7 @@
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <!-- <div class="ftitle">首页链接</div> -->
-					<div class="fitem">
+					<div class="fitem"><input type="hidden" name="foot" value="-1"/>
 						<label>链接名称:</label><input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="width:300,missingMessage:'请填写项目名称'" >
 						<span style="color:red">*</span>
 					</div>

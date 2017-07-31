@@ -3,6 +3,7 @@ package com.itour.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -354,6 +355,7 @@ public class MainController extends BaseController {
 					childMenus = sysMenuService.getChildMenuByUser(user.getId());//子节点
 					childBtns = sysMenuBtnService.getMenuBtnByUser(user.getId());//按钮操作
 				}
+				Collections.reverse(rootMenus);
 				buildData(childMenus,childBtns,request); //构建必要的数据
 				List<TreeNode> menuList = treeMenu(rootMenus,childMenus);
 				//TreeUtil treeutil = new TreeUtil(rootMenus,childMenus,childBtns);

@@ -14,7 +14,7 @@
   <tr>
     <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>快速搜索</strong></div></td>
     <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  
-      <label><strong>旅行方式：</strong><input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-所有-'">
+      <label><strong>旅行方式：</strong><input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-所有-'">
        旅游区域： 
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'">
      	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'"/> 
@@ -25,52 +25,8 @@
   </tr>
 </table>
 </form>
-<!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
-  <tr>
-    <td height="106" valign="top" bgcolor="#fafafa">
-    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
-      <tr>
-        <td width="210"><strong>一些關鍵字</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-        <td width="210"><strong>页脚待定</strong></td>
-      </tr>
-      <tr>
-        <td valign="top"><p>四川旅游<br />
-        四川旅游<br />
-        四川旅游<br />
-        四川旅游<br />
-        四川旅游<br />
-        四川旅游</p>          </td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-        <td valign="top">四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游<br />
-四川旅游</td>
-      </tr>
-    </table></td>
-  </tr>
-</table> -->
+  <table width="100%" border="0" align="center" style="margin-top:30;background-color:#fafafa;" cellpadding="5" cellspacing="0"  bgcolor="#fafafa" name="keyfooter">
+    </table> 
 <%-- <center>
 <div id="links" style="align:center">
    <div class="contents"><a href="http://www.ctrip.cn/" target="_blank"><img src="${basePath }/images/ad/20121209192739900.jpg" style="width:105px;height:36px;border:0px;"></a>

@@ -50,7 +50,7 @@
                                 主角旅行是隶属于中旅旗下的专业定制旅行服务团队。 我們有強大的信心來履行對您的承諾，因為我們
                             </p>
                             <p>
-                                》》<a href="${basePath }whyus/aboutus">了解更多</a>
+                                》》<a href="${basePath }whyus-aboutus">了解更多</a>
                             </p>
                             <p></p></td>
                     </tr>
@@ -79,8 +79,8 @@
                                     align="left" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td width="100%" class="h2-24red" colspan=3
-                                            style="text-align: left;"><a
-                                            width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}/main"><img
+                                            style="text-align: left;"><a class="STYLE3 tsSTYLE3" style="font-size:1em;font-weight:normal;"
+                                            width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}-main"><img
                                                 src="images/icon-0${status.index+1 }.jpg" width="57"
                                                 height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>
@@ -90,20 +90,20 @@
                                     </tr>
                                     <tr>
                                         <td width="100%" colspan=3 style="text-align: left"><a
-                                            href="${basePath}${fn:split(entry['key'], '#')[3]}/main" class="STYLE3"><img
+                                            href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3"><img
                                                 src="${basePath }${fn:split(entry['key'],'#')[2]}"
                                                 style="border: none;" border="0px"   width="100%" /></a></td>
                                     </tr>
                                     <c:forEach items="${entry['value']}" var="et">
                                         <tr>
                                             <td style="text-align: left"><a
-                                                href="${basePath }${et.travelStyleAlias }/${et.travelStyleAlias }/${et.alias}">>><span
+                                                href="${basePath }${et.travelStyleAlias }-${et.travelStyleAlias }-${et.alias}">>><span
                                                     class="STYLE7">${et.title }</span></a></td>
                                         </tr>
                                     </c:forEach>
                                     <tr>
                                         <td style="text-align: left"><a
-                                            href="${basePath }${entry['value'][0].travelStyleAlias }/main">More>></a></td>
+                                            href="${basePath }${entry['value'][0].travelStyleAlias }-main">More>></a></td>
                                     </tr>
                                 </table></td>
                             </c:forEach>
@@ -129,7 +129,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan=2>
-                                            <a href="${basePath }showhappy/detail/${showhappy.shCode}"><img
+                                            <a href="${basePath }showhappy-detail-${showhappy.shCode}"><img
                                                 src="${basePath }${showhappy.cover }" width="100%"  /></a>
                                         </td>
                                     </tr>
@@ -137,7 +137,7 @@
                                         <td colspan=2 style="text-align: left">
                                             <p class="f12-gao1">
                                             <span class="STYLE6">${showhappy.shortContent }
-                                                 <a href="${basePath}showhappy/main">More》》</a></span>
+                                                 <a href="${basePath}showhappy-main">More》》</a></span>
                                             </p>
                                             </td>
                                     </tr>
@@ -162,7 +162,7 @@
                         </tr>
                         <tr>
                             </c:if>
-                            <td><a href="${basePath }destination/detail/${hotvo.alias}"><img src="${basePath}${hotvo.cover}" width="100%"
+                            <td><a href="${basePath }destination-detail-${hotvo.alias}"><img src="${basePath}${hotvo.cover}" width="100%"
                                  title="${hotvo.item }" /></a></td>
                             </c:forEach>
                             </c:if>
@@ -170,7 +170,7 @@
                         <tr>
                             <td><p class="f12-gao1">
                                     <span class="STYLE6"> <a
-                                        href="${basePath }destination/main">More》》</a></span>
+                                        href="${basePath }destination-main">More》》</a></span>
                                 </p></td>
                         </tr>
                     </tbody>
