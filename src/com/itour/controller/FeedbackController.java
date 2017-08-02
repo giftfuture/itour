@@ -198,7 +198,7 @@ public class FeedbackController extends BaseController{
 			String logId =logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/add(update)",user.getId(),"",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 			logOperationService.add(new LogOperation(logId,"更新",fb!=null ?fb.getId():"",JsonUtils.encode(fb),JsonUtils.encode(bean),"feedback/add(update)",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		}*/
-		return sendSuccessResult(response, "保存成功~");
+		return sendSuccessResult(response, "感谢您咨询，我们会在1个工作日内回复您。");
 		//sendSuccessMessage(response, "保存成功~");
 	}
 	/**

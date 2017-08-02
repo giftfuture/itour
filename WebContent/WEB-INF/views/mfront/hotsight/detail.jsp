@@ -180,10 +180,10 @@
 
 <div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1" width="61.3%" style="width:61.3%" >
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight/hotsight/${alias}#review">整体概览</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight/hotsight/${alias}#detail-route">详细行程</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight/hotsight/${alias}#need-know">行前需知</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight/hotsight/${alias}#feed-back">客户反馈</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight-${alias}#review">整体概览</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight-${alias}#detail-route">详细行程</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight-${alias}#need-know">行前需知</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight-${alias}#show-happy">回忆幸福</a></li>
 <!--    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -236,73 +236,6 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-<%-- <tr><td colspan=2>  
-<table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><img src="images/frame1-1.gif" width="100%" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">
-    <table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
-        <tr>
-          <td valign="top"><br />
-          <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
-                             <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0" style="text-align:left"><div align="right"><strong>导游：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br />
-                          <br />
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>综费</strong><strong>：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}元/人</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>报价</strong></div></td>
-                <td style="text-align:left">大人：${qf.adultsQuote}元/人*4人<br />
-                  小孩：${qf.childquote }元/人*2人（小孩不含门票） </td>
-                <td>&nbsp;</td>
-              </tr>
-      </table>
-      </td>
-      </tr>
-      </table>
-      </td></tr> --%>
   <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
@@ -435,8 +368,61 @@
   </tr>
 </table>
   </div>
-  <!-- <div id="consulting" style="display:none;">
-  </div> -->
+   <div id="show-happy" name="show-happy">
+    <table style="margin-bottom:30"><tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">回忆幸福</span></span></span>——将幸福定格</span></td>
+  </tr>
+  <tr>
+    <td colspan=2 width="1140" style="float:left"><img style="float:left;vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+  </tr>
+  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+                <table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'> 
+                            <tr> 
+                              <td valign='top'><table width='100%' border='0' cellspacing='0' cellpadding='20'> 
+                                   <tr> 
+                                    <td style='width:26.8%'><table  border='0' align='center' cellpadding='0' cellspacing='0'> 
+                                      <tr>
+                                        <td><table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                              <td style='width:100%;'><a href='${basePath}showhappy-detail-${shvo.shCode}'><img src='${basePath}${shvo.cover}' width='100%' /></a></td>
+                                              <td width='11' rowspan='2' valign='bottom'><img src='${basePath}images/tu-k-02.gif' width='11' height='122' /></td>
+                                            </tr>
+                                            <tr>
+                                              <td><div align='right'><img src='${basePath}images/tu-k-01.gif' width='191' height='9' /></div></td>
+                                            </tr>
+                                        </table></td>
+                                      </tr>
+                                    </table></td>
+                                    <td width='73.2%' valign='bottom'><table width='100%' border='0' cellpadding='2' cellspacing='2' class='STYLE126'>
+                                      <tr>
+                                        
+                                        <td style='text-align:left'><span class='STYLE19'>${shvo.title} </span><span class='STYLE22'>${shvo.tourTime}</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td width='100%' style='text-align:left'><span class='STYLE18'>${shvo.shortContent}<a href='${basePath}showhappy-detail-${shvo.shCode}'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>
+                                      </tr>
+                                      <tr>
+                                        <td style='text-align:right'><div class='STYLE20'>${shvo.signature} From ${shvo.areaname}</div></td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                </table>
+                                  <div>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+   </td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy-main">更多回憶》》</a></span></td>
+    </tr>
+   <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>
+  </table>
+  </div> 
   </div>
   </div>
     <div style="width:72.6%"><%@include file="/front/footer.jsp" %></div>

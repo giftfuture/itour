@@ -282,6 +282,7 @@ itour.quoteEdit = function(){
 					 // $("span[name='area']",showagodaTbody).text(areatext);
 					  var travelItemval = $("#travelItem",$(e)).val();
 					  var travelItemtext = $("#travelItem",$(e)).combobox('getText');
+					  var hotelPlace = $("#hotelPlace",$(e)).val();
 					 // console.log("travelItemval="+travelItemval+"travelItemtext"+travelItemtext);
 					 // $("#travelItem",beriefagodaTbody).val(travelItemval);//combobox('setValue',travelItemval);
 					 // $("span[name='travelItem']",showagodaTbody).text(travelItemtext);
@@ -309,6 +310,7 @@ itour.quoteEdit = function(){
 						"onUnselect:function(record){$('option[name=selectId_1491992423815'+record.alias+']',$(this)).attr('selected',false);}" +
 						",onLoadSuccess:function(){var travelItemval ='"+travelItemval+"';$(this).combobox('setValues',travelItemval.split(',')); }" +
 						"\"/></td>"+
+						"<td class=STYLE126 valign=middle><input type='text' data-options='' value='"+hotelPlace+"' class='easyui-textbox' name='hotelPlace' id='hotelPlace'></td>"+
 						"<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' title='删除本行' style='height:16px;height:16px;' src='images/minus.png' ></a></td></tr>"+
 						"<tr><td class=STYLE126 width=100 valign=middle><strong>详细行程：</strong></td><td style='text-align:left' colspan='4' class=STYLE126 valign=middle>"+
 						"<input type='text' class='easyui-textbox' id='agodaDetail' name='agodaDetail' value='"+agodaDetailval+"' data-options=\"width:890,height:34,onLoadSuccess:function(){$(this).combobox('setValue', '"+agodaDetailval+"')}\"/></td></tr></tbody>";
@@ -328,7 +330,7 @@ itour.quoteEdit = function(){
 			$("table[name='routetable'] tbody[name='agodaTbody']").each(function(i,e){
 				agodaDetail+="<table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'><tbody>";
 				agodaDetail+="<tr><td width='10%' class='STYLE148'><strong>Day "+(i+1)+" </strong></td>";
-				agodaDetail+="<td width='90%'><span class='STYLE148'><strong> "+$("input[name='rtelevation']").val()+"km 住：四姑娘山鎮 </strong></span></td></tr>" ;
+				agodaDetail+="<td width='90%'><span class='STYLE148'><strong> "+$("input[name='rtelevation']").val()+"km 住："+ $("#hotelPlace",$(e)).val()+" </strong></span></td></tr>" ;
 				agodaDetail+="<tr><td valign='top'>&nbsp;</td>"+
 	            "<td valign='top' style='text-align:left'><span class='STYLE126'>"+$("#agodaDetail",$(e)).val()+"<br>";
 				var landscapes = $("#travelItem",$(e)).val();//$("#lctiValue",e).val();
@@ -461,6 +463,7 @@ itour.quoteEdit = function(){
 			"onSelect:function(record){$('option[name=selectId_'+record.alias+']',$(this)).attr('selected', 'true');}," +
 			"onUnselect:function(record){$('option[name=selectId_'+record.alias+']',$(this)).attr('selected', 'false');}" +
 			",onChange:function(n,o){$('#lctiValue').val($('#lctiValue').val()+n)}\"/><input type='hidden' name='lctiValue' id='lctiValue'/></td>" +
+			"<td class=STYLE126 valign=middle><input type='text' data-options='' class='easyui-textbox' name='hotelPlace' id='hotelPlace'></td>"+
 			"<td><a name='routeminus' onclick='javascript:itour.quoteEdit.routeMinus(this)'><img alt='' style='height:16px;height:16px;' title='删除本行' src='images/minus.png' ></a></td></tr>" +
 			"<tr><td class=STYLE126 width=100 valign=middle><strong>详细行程：</strong></td><td style='text-align:left' colspan='4' class=STYLE126 valign=middle>" +
 			"<input type='text' class='easyui-textbox' name='agodaDetail' id='agodaDetail' data-options='width:890,height:34'/></td></tr></tbody>" ;

@@ -34,6 +34,7 @@ import com.itour.entity.TravelStyle;
 import com.itour.service.CustomersService;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
+import com.itour.service.ShowHappyService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelOrderService;
 import com.itour.service.TravelStyleService;
@@ -41,6 +42,7 @@ import com.itour.util.Constants;
 import com.itour.vo.CalculateQuoteVO;
 import com.itour.vo.QuoteFormVO;
 import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.ShowHappyVO;
 import com.itour.vo.TravelItemVO;
 
 import eu.bitwalker.useragentutils.OperatingSystem;
@@ -65,6 +67,8 @@ public class ClimbController  extends BaseController{
 	private CustomersService customersService; 
 	@Autowired
 	private TravelOrderService travelOrderService;
+	@Autowired
+	private ShowHappyService showHappyService;
 	
 	/**
 	 * 
@@ -125,9 +129,19 @@ public class ClimbController  extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/climb-climb-{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/climb-{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
+		ShowHappyVO shvo = null;
+		if(rt != null && StringUtils.isNotEmpty(rt.getRouteCode())){
+			List<ShowHappyVO> shs = showHappyService.queryByRoute(rt.getRouteCode());
+			if(shs.size() >= 1){
+				shvo = shs.get(0);
+				String shareHappyCoverPath = FilePros.httpshCoverPath();
+				String coverpath = shareHappyCoverPath+"/"+shvo.getShCode()+"_"+shvo.getRoute()+"/";
+				shvo.setCover(coverpath+shvo.getCover());
+			}
+		}
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
 		String httpmappath = FilePros.httprouteMapPath();
@@ -200,6 +214,7 @@ public class ClimbController  extends BaseController{
 		map.put("rt", rt);
 		map.put("qf", qf);
 		map.put("alias", alias);
+		map.put("shvo", shvo);
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
         //Browser browser = userAgent.getBrowser();  
         OperatingSystem os = userAgent.getOperatingSystem();
@@ -319,7 +334,7 @@ public class ClimbController  extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote1",method = RequestMethod.GET) 
+	@RequestMapping(value="/climb/toQuote1",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote1(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -334,7 +349,7 @@ public class ClimbController  extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote2/{alias}",method = RequestMethod.GET) 
+	@RequestMapping(value="/climb/toQuote2/{alias}",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote2(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -361,7 +376,7 @@ public class ClimbController  extends BaseController{
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
-	@RequestMapping(value="/calculateSum", method = RequestMethod.POST)
+	@RequestMapping(value="/climb/calculateSum", method = RequestMethod.POST)
 	public String calculateSum(@RequestBody CalculateQuoteVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Float adultsumcost =0f;
 		Float childrensumcost =0f;
@@ -422,7 +437,7 @@ public class ClimbController  extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote3",method = RequestMethod.GET) 
+	@RequestMapping(value="/climb/toQuote3",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote3(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -437,7 +452,7 @@ public class ClimbController  extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote4",method = RequestMethod.GET) 
+	@RequestMapping(value="/climb/toQuote4",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote4(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();

@@ -181,13 +181,13 @@ public class Constants {
 	}
 	
 	public static void load(AdLinkService adLinkService){
-		  String adsql="select * from ad_link where valid=1 and foot = 0";
+		  String adsql="select * from ad_link where valid=1 and foot = -1";
 		  String adlinpath = FilePros.httpadLinkPath();
 		  System.out.println("Constants.initLeveinitAdLinklAreas.adsql="+adsql);
 		  List<AdLink> adlist = jdbcTemplate.query(adsql, new RowMapper<AdLink>(){
 		        @Override  
 		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
-		        	AdLink sh = new AdLink();  
+		           AdLink sh = new AdLink();  
                    sh.setAdvertise(adlinpath+"/"+rs.getString("advertise"));
                    sh.setVideo(rs.getInt("video"));
                    sh.setTitle(rs.getString("title"));

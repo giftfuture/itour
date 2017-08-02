@@ -27,12 +27,12 @@
  </script>
 </head>
 <body>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<%@include file="/frontm/header.jsp" %>
+<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><%@include file="/frontm/header.jsp" %></td>
+    <td></td>
   </tr>
-</table>
+</table> -->
 
 <%-- <input type="hidden" name="travelStyle" value="${travelStyle }"/>
 <input type="hidden" name="level1Area" value="${level1Area }"/>
@@ -43,8 +43,8 @@
 <!-- <div id="fbcontent"></div> -->
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="766" valign="top">
-    <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
+    <td width="100%" valign="top">
+    <table border="0" align="center" cellpadding="1" cellspacing="0" name="searchRtstb">
    	<tbody id="fbcontent"></tbody>
     </table></td>
   </tr>

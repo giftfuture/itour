@@ -224,7 +224,7 @@ public class ShowHappyController extends BaseController{
 				}
 			}
 				sh.setContent(content);
-			}
+		}
 		//Map<String,Object> record = ShowHappyKit.toRecord(sh);
 		context.put("sh", sh);
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  

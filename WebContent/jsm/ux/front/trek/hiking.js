@@ -179,7 +179,7 @@ itour.mhiking = function(){
 				 			//console.log(data);
 							itour.closeProgress();
 						 	if(jsondata.success||jsondata.success=="true"){
-					       		 itour.alert('提示','提问成功.','info');
+					       		 itour.alert('提示',jsondata.message||'提问成功!','info');
 						       	 document.forms["fastask"].reset();
 					        }else{
 					        	itour.alert('提示', jsondata.msg || "请求出现异常,请联系管理员",'error'); 

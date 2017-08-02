@@ -1,7 +1,6 @@
 package com.itour.controller.front;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
+import com.itour.base.convert.ImageFilter;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.page.Pager;
@@ -32,12 +32,14 @@ import com.itour.entity.TravelItem;
 import com.itour.entity.TravelStyle;
 import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
+import com.itour.service.ShowHappyService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
 import com.itour.vo.CalculateQuoteVO;
 import com.itour.vo.QuoteFormVO;
 import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.ShowHappyVO;
 import com.itour.vo.TravelItemVO;
 
 import eu.bitwalker.useragentutils.OperatingSystem;
@@ -58,6 +60,8 @@ public class HikingController extends BaseController{
 	private TravelStyleService travelStyleService;
 	@Autowired
 	private QuoteFormService quoteFormService;
+	@Autowired
+	private ShowHappyService showHappyService;
 	
 	/**
 	 * 
@@ -153,9 +157,21 @@ public class HikingController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/hiking-hiking-{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking-{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
+		//List<ShowHappyVO> shs = Lists.newArrayList();
+		ShowHappyVO shvo = null;
+		String shareHappyPath = FilePros.httpshareHappyPath();
+		if(rt != null && StringUtils.isNotEmpty(rt.getRouteCode())){
+			List<ShowHappyVO> shs = showHappyService.queryByRoute(rt.getRouteCode());
+			if(shs.size() >= 1){
+				shvo = shs.get(0);
+				String shareHappyCoverPath = FilePros.httpshCoverPath();
+				String coverpath = shareHappyCoverPath+"/"+shvo.getShCode()+"_"+shvo.getRoute()+"/";
+				shvo.setCover(coverpath+shvo.getCover());
+			}
+		}
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
 		String mappath = FilePros.httprouteMapPath();
@@ -165,7 +181,7 @@ public class HikingController extends BaseController{
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
 			rt.setCover(coverpath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+rt.getAlias()+"/"+rt.getCover());
-		}
+		}			
 		List<RouteTemplateVO> relates = routeTemplateService.queryByRelatedRoutes(rt.getId());
 		rt.setRelates(relates);
 		QuoteFormVO qf = quoteFormService.queryByRtId(rt.getId());
@@ -222,6 +238,7 @@ public class HikingController extends BaseController{
 		map.put("items", items);
 		map.put("rt", rt);
 		map.put("qf", qf);
+		map.put("shvo",shvo);
 		//map.put("homeurl", "front/trek/trekking");
 		map.put("alias", alias);
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
@@ -333,7 +350,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote1",method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking/toQuote1",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote1(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -348,7 +365,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote2/{alias}",method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking/toQuote2/{alias}",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote2(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -375,7 +392,7 @@ public class HikingController extends BaseController{
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
-	@RequestMapping(value="/calculateSum", method = RequestMethod.POST)
+	@RequestMapping(value="/hiking/calculateSum", method = RequestMethod.POST)
 	public String calculateSum(@RequestBody CalculateQuoteVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Float adultsumcost =0f;
 		Float childrensumcost =0f;
@@ -436,7 +453,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote3",method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking/toQuote3",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote3(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
@@ -451,7 +468,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/toQuote4",method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking/toQuote4",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView toQuote4(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();

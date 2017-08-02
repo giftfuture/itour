@@ -28,17 +28,19 @@
 <body>
 <%@include file="/front/header.jsp"%>
 <center>
+<div style="z-index:-1; position:relative;">
 <table class="commontb" align="center" style="width:72.6%" width="72.6%">
-	   <tr>
-			<td style="width:100%;text-align:center" align="center" width="100%" colspan="2">
-			<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" height="598px" /></a></td>
-		</tr>
-		 </table>
-        <table class="frametb" align="center" width="61.3%" style="width:61.3%">
+  <tr>
+	<td style="width:100%;text-align:center" align="center" width="100%" colspan="2">
+	<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" height="598px" /></a></td>
+</tr>
+ </table>
+ </div>
+<div style=" position:relative;margin-top:-60;z-index:9999;width:61.3%">
+        <table class="frametb" align="center" width="100%" style="width:100%;">
 		<tr>
-			<td height="106" valign="top" bgcolor="#fafafa" colspan="2">
-				<table width="100%" border="0" align="left" cellpadding="0"
-					cellspacing="0">
+			<td height="106" valign="top" bgcolor="#fafafa" style="background-color:#fafafa" colspan="2">
+				<table width="100%" border="0" align="left" bgcolor="#fafafa" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="STYLE9" style="text-align: left">主角旅行——定製旅行服務商</td>
 					</tr>
@@ -98,7 +100,7 @@
 									<c:forEach items="${entry['value']}" var="et">
 										<tr>
 											<td style="text-align: left"><a
-												href="${basePath }${et.travelStyleAlias }-${et.travelStyleAlias }-${et.alias}">>><span
+												href="${basePath }${et.travelStyleAlias }-${et.alias}">>><span
 													class="STYLE7">${et.title }</span></a></td>
 										</tr>
 									</c:forEach>
@@ -179,6 +181,7 @@
 		<!-- <tr><td colspan=2><ul id='fbpage'></ul></td></tr> -->
 		<tr><td colspan=2><%@include file="/front/footer.jsp"%></td></tr>
 </table>
+</div>
 </center>
 </body>
 </html>

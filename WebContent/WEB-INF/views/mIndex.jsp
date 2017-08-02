@@ -25,7 +25,7 @@
 </head>
 <body>
 <center>
-<div data-role="content"  data-fullscreen="true">    
+<div data-role="content"  data-fullscreen="true" style="z-index:-1; position:relative;">    
     <table class="commontb"  width="100%" style="width:100%" align="center">
         <tr><td><%@include file="/frontm/header.jsp"%></td></tr>
         <tr>
@@ -33,6 +33,7 @@
         </tr>
         <tr>
             <td valign="top" bgcolor="#fafafa">
+            <div style=" position:relative;margin-top:-50;z-index:9999;width:90%">
                 <table width="100%" border="0" align="left" cellpadding="0"
                     cellspacing="0">
                     <tr>
@@ -58,6 +59,7 @@
                         <td>&nbsp;</td>
                     </tr>
                 </table>
+                </div>
             </td>
         </tr>
         <tr>
@@ -97,7 +99,7 @@
                                     <c:forEach items="${entry['value']}" var="et">
                                         <tr>
                                             <td style="text-align: left"><a
-                                                href="${basePath }${et.travelStyleAlias }-${et.travelStyleAlias }-${et.alias}">>><span
+                                                href="${basePath }${et.travelStyleAlias }-${et.alias}">>><span
                                                     class="STYLE7">${et.title }</span></a></td>
                                         </tr>
                                     </c:forEach>
