@@ -72,7 +72,10 @@
             <!--滚动图片 end--></td></tr>
         <tr><td style="width:80%;text-align:center;float:middle;"><span style="text-align:left;">${itemvo.content }</span> </td></tr>
         <tr>
-            <td style="text-align:left;valign:top;vertical-align:top;align:left;display:inline-block;width:80%;" ><img src="images/ticket.png" width="30" height="30">
+            <td style="text-align:left;valign:top;vertical-align:top;align:left;display:inline-block;width:80%;padding-top:30;" >
+            <span style="font-size:1.5em">${itemvo.item}</span><br/>
+            <span>${itemvo.shortContent}...</span><br/>
+            <img src="images/ticket.png" width="30" height="30">
             <span class="STYLE3">${itemvo.item}门票信息（CNY）：</span><br/>
             <span style="text-align:center;valign:top;vertical-align:top;display:inline-block;" align="center" >${itemvo.ticketsBlock}</span><br/><br/><br/><br/>
             <span class="h2-24" style=""><img src="images/route2.png" width="48" height="48"></span>
