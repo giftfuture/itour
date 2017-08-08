@@ -135,5 +135,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jmxtools.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jmxri.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pojo-mbean-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-boot-2.0.0.M3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

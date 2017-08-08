@@ -9,7 +9,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
+import com.google.common.io.BaseEncoding;
 public class AES128 {
 
 	public static void main(String[] args) {

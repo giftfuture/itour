@@ -367,7 +367,6 @@
    <tr>
     <td style="text-align:center">  <ul id='fbpage'></ul></td>
   </tr>
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
   </div>
    <div id="show-happy" name="show-happy">
@@ -423,6 +422,7 @@
    <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
   </table>
   </div> 
   </div>

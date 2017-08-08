@@ -236,7 +236,7 @@ public class TravelOrderController extends BaseController {
 	@Auth(verifyLogin = false, verifyURL = false)
 	@ResponseBody
 	@RequestMapping(value = "/booking", method = RequestMethod.POST)
-	public String booking(@RequestBody OrderDetailVO entity, HttpServletRequest request, HttpServletResponse response)
+	public synchronized String booking(@RequestBody OrderDetailVO entity, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request);// 清除验证码，确保验证码只能用一次
