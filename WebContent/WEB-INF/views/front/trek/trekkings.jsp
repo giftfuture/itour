@@ -36,22 +36,15 @@
         <td style="text-align:left"><p>帶上家人，約上朋友 </p>
           <p>登山頂峰 
          <%--    》》<a href="${basePath}hiking/main">了解更多</a> --%></p>
-          <p></p></td>
+          </td>
       </tr>
-      <!-- <tr>
-        <td>&nbsp;</td>
-      </tr> -->
     </table></td>
   </tr>
-<!--   <tr>
-    <td valign="top">&nbsp;</td>
-  </tr>
-  <tr>
-    <td valign="top">&nbsp;</td>
-  </tr> -->
 <tbody id="fbcontent">
-  </tbody>
-  <tr><td><ul id="fbpage"></ul></td></tr>
+ </tbody>
+ <tr><td><ul id="fbpage"></ul></td></tr>
+</table>
+  <table class="frametb" align="center">
   <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
 </center>

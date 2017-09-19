@@ -7,7 +7,7 @@
 </script>
 <div width="100%" style="width:100%"  data-role="content"  data-fullscreen="true">
 <form name="searchForm" method="post">
-<table class="commontb" align="center"  width="100%"  height="100%" style="width:100%;height:150px;"  data-role="content"  data-fullscreen="true">
+<table class="commontb" align="center"  width="100%"  height="100%" style="width:100%;height:150px;margin-top:30px;"  data-role="content"  data-fullscreen="true">
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>快速搜索</strong></div></td>
     <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  

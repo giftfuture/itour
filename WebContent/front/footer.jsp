@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script> 
 <div>
 <form name="searchForm" method="post">
-<table class="frametb" align="center" style="width:100%" width="100%">
+<table class="frametb" align="center" style="width:100%;margin-top:30px" width="100%">
   <tr>
     <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>快速搜索</strong></div></td>
     <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  

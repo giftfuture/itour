@@ -18,10 +18,8 @@ public class ReflectUtil {
             try {  
                 result = field.get(obj);  
             } catch (IllegalArgumentException e) {  
-                // TODO Auto-generated catch block  
                 e.printStackTrace();  
             } catch (IllegalAccessException e) {  
-                // TODO Auto-generated catch block  
                 e.printStackTrace();  
             }  
         }  
@@ -61,10 +59,8 @@ public class ReflectUtil {
                 field.setAccessible(true);  
                 field.set(obj, fieldValue);  
             } catch (IllegalArgumentException e) {  
-                // TODO Auto-generated catch block  
                 e.printStackTrace();  
             } catch (IllegalAccessException e) {  
-                // TODO Auto-generated catch block  
                 e.printStackTrace();  
             }  
         }  

@@ -63,6 +63,9 @@ public class CustomersService extends BaseService<Customers> {
 	public List<CustomerVO> queryOrdersByCid(String id){
 		return mapper.queryOrdersByCid(id);
 	};
+	public 	Customers queryByEmail(String email){
+		return mapper.queryByEmail(email);
+	}
 	public CustomerVO selectById(String id){
 		return mapper.selectById(id);
 	};

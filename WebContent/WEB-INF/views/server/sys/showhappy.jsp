@@ -48,7 +48,7 @@
                 <label>更新时间</label>
                 <input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
             </div> -->
-                                <!-- <input name="status" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写status"> -->
+      <!-- <input name="status" type="text" maxlength="" class="easyui-numberbox" data-options="" missingMessage="请填写status"> -->
      <div id="edit-win" class="easyui-dialog" title="回忆幸福" data-options="autoOpen:false,closed:true,iconCls:'icon-save',modal:true,closeOnEscape:false, 
      open:function(event,ui){$('.panel-tool-close').hide();}" style="width:1150px;height:420px;">  
      	<form id="editForm" class="ui-form" method="post">  
@@ -98,7 +98,6 @@
                     <tr><td colspan=3 style="text-align:left"><div class="fitem" style="text-align:left;">
                         <label>审核意见</label>
                         <textarea rows="5" cols="90" name="result" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:1050,height:150" missingMessage="请填写result"></textarea>
-                    <!--    <input name="result" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写result"> -->
                     </div></td><td></td></tr>
                       </table>  
   			</div>

@@ -309,7 +309,7 @@
   </tr>
 </table>
   </form>
-   <center><div style="width:72.6%"><%@include file="/front/footer.jsp" %></div></center>
+   <center><div style="width:61.3%"><%@include file="/front/footer.jsp" %></div></center>
 <script type="text/javascript" src="${basePath}js/ux/front/hotsight/selfbooking.js"></script>
 </body>
 </html>

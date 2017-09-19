@@ -314,12 +314,18 @@ itour.mhiking = function(){
 				}
 			});
 			$("a.imgBorder img").on('click',function(){
-				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
-				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
+				var src = $(this).attr("src");
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+					$(this).attr("src",src);
+					$(this).stop().animate({opacity:1},"slow");
+				});
 			});
 			$("a.imgBorder img").on('mouseover',function(){
-				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
-				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
+				var src = $(this).attr("src");
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+					$(this).attr("src",src);
+					$(this).stop().animate({opacity:1},"slow");
+				});
 			});
 			//扩展easyui表单的验证  
 			$.extend($.fn.validatebox.defaults.rules, { 

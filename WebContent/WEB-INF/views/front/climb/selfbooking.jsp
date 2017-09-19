@@ -28,9 +28,6 @@
 </table>
  <form name="booking" method="post">
 <table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-<!--   <tr>
-    <td><input type="hidden" id="site_id" name="site_id" value="3" /></td>
-    <td><input type="hidden" id="line_url" name="line_url" value="http://www.travel-sichuan.com/sichuan/daocheng/t-dc-01.htm" /></td></tr> -->
   <tr>
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
     <td> <div align="center"> </div>
@@ -38,8 +35,7 @@
       <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
         <tr> 
            <td width="20%" align="right" style="text-align:right"><strong>旅行线路： </strong></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
-          <%-- <input name="routename" type="text" class="easyui-textbox" data-options="editable:false" size="80" value="${rt.title } " /> --%></td>
+          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>预计出行日期：</strong></div></td>
@@ -118,13 +114,8 @@
         <tr> 
           <td><div align="right"><strong>是否安排饮食 ：</strong></div></td>
           <td style="text-align:left"><input type="checkbox" name="foodArrange" value="请安排" />
-          <!--   <input type="radio" name="foodrequest" value="自行安排"  />  请安排  自行安排 -->
            </td>
         </tr>
-<!--         <tr> 
-          <td><div align="right"></div></td>
-          <td>&nbsp;</td>
-        </tr> -->
         <tr> 
           <td><div align="right"><strong>联系人姓名：</strong></div></td>
           <td style="text-align:left"><input name="receiver" type="text" class="easyui-textbox" data-options="width:150"/> 
@@ -154,11 +145,6 @@
           <td><div align="right"><strong>联系电话：</strong></div></td>
           <td style="text-align:left"><input name="receiverMobile" class="easyui-textbox" type="text" data-options="validType:'mobileTelephone',groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
         </tr>
-   <!--      <tr> 
-          <td valign="top"> <div align="right"><strong>详细要求：</strong></div></td>
-          <td style="text-align:left">希望能知道您对这次旅游的想法和期望，这样我们更更好的为您设计：<br /> <textarea name="description" cols="70" rows="8" id="description"></textarea> 
-          </td>
-        </tr> -->
         <tr> 
           <td colspan=2>为能了解您的个性需求，请填写下面表格，以获得更细致的个性服务。（只需在您关注的问题中打勾或填写即可） </td>
         </tr>
@@ -288,10 +274,6 @@
           <td valign="top" style="text-align:left">希望能知道您对这次旅游的想法和期望，这样我们更更好的为您设计：
           <textarea name="specialrequest" cols="70" rows="8" class="easyui-textbox" data-options="multiline:true" style="height:100px"></textarea></td>
         </tr>
-  <!--  <tr> 
-          <td valign="top"><div align="right"></div></td>
-          <td valign="top" style="text-align:left"><input type="submit" name="Submit2" value="预定" /></td>
-        </tr> -->
     <tr> 
         <td> <div align="right"><strong>验证码：</strong></div></td>
         <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="验证码" data-options="prompt:'请输入正确的验证码!'"/>
@@ -308,7 +290,7 @@
   </tr>
 </table>
   </form>
-    <center><div style="width:72.6%"><%@include file="/front/footer.jsp" %></div></center>
+    <center><div style="width:61.3%"><%@include file="/front/footer.jsp" %></div></center>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/selfbooking.js"></script>
 </body>
 </html>

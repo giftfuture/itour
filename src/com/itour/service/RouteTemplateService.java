@@ -68,11 +68,12 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			}*/
 			List<RouteTemplateVO>  relates = mapper.queryByRelatedRoutes(vo.getId());
 			fb.setRelates(relates);
-			StringBuffer relatedRouteTitles = new StringBuffer();
+			List<String> relatedRouteTitles = Lists.newArrayList();
 			for(RouteTemplateVO rtvo:relates){
-				relatedRouteTitles.append(rtvo.getTitle()+",");
+				relatedRouteTitles.add(rtvo.getTitle());
+				//relatedRouteTitles.append(rtvo.getTitle()+",");
 			}
-			fb.setRelatedRouteTitles(relatedRouteTitles.toString());
+			fb.setRelatedRouteTitles(relatedRouteTitles);
 			//String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
 			//fb.setCover(coverpath);
 			records.add(fb);
@@ -113,11 +114,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			fb.setCover(coverpath);
 			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(fb.getId());
 			fb.setRelates(relates);
-			StringBuffer relatedRouteTitles = new StringBuffer();
+			List<String> relatedRouteTitles = Lists.newArrayList();
+			//StringBuffer relatedRouteTitles = new StringBuffer();
 			for(RouteTemplateVO rtvo:relates){
-				relatedRouteTitles.append(rtvo.getTitle()+",");
+				relatedRouteTitles.add(rtvo.getTitle());
+				//relatedRouteTitles.append(rtvo.getTitle()+",");
 			}
-			fb.setRelatedRouteTitles(relatedRouteTitles.toString());
+			fb.setRelatedRouteTitles(relatedRouteTitles);
 			records.add(fb);
 		}
 		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), list,count);
@@ -156,11 +159,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			rt.setCover(coverpath);
 			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(rt.getId());
 			rt.setRelates(relates);
-			StringBuffer relatedRouteTitles = new StringBuffer();
+			List<String> relatedRouteTitles = Lists.newArrayList();
+			//StringBuffer relatedRouteTitles = new StringBuffer();
 			for(RouteTemplateVO rtvo:relates){
-				relatedRouteTitles.append(rtvo.getTitle()+",");
+				relatedRouteTitles.add(rtvo.getTitle());
+				//relatedRouteTitles.append(rtvo.getTitle()+",");
 			}
-			rt.setRelatedRouteTitles(relatedRouteTitles.toString());
+			rt.setRelatedRouteTitles(relatedRouteTitles);
 			//vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), list,count);
@@ -195,11 +200,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			rt.setCover(coverpath);
 			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(rt.getId());
 			rt.setRelates(relates);
-			StringBuffer relatedRouteTitles = new StringBuffer();
+			List<String> relatedRouteTitles = Lists.newArrayList();
+			//StringBuffer relatedRouteTitles = new StringBuffer();
 			for(RouteTemplateVO rtvo:relates){
-				relatedRouteTitles.append(rtvo.getTitle()+",");
+				relatedRouteTitles.add(rtvo.getTitle());
+				//relatedRouteTitles.append(rtvo.getTitle()+",");
 			}
-			rt.setRelatedRouteTitles(relatedRouteTitles.toString());
+			rt.setRelatedRouteTitles(relatedRouteTitles);
 			vos.add(rt);
 		}
 		return vos;
@@ -219,11 +226,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			rt.setCover(coverpath);
 			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(rt.getId());
 			rt.setRelates(relates);
-			StringBuffer relatedRouteTitles = new StringBuffer();
+			List<String> relatedRouteTitles = Lists.newArrayList();
+			//StringBuffer relatedRouteTitles = new StringBuffer();
 			for(RouteTemplateVO rtvo:relates){
-				relatedRouteTitles.append(rtvo.getTitle()+",");
+				relatedRouteTitles.add(rtvo.getTitle());
+				//relatedRouteTitles.append(rtvo.getTitle()+",");
 			}
-			rt.setRelatedRouteTitles(relatedRouteTitles.toString());
+			rt.setRelatedRouteTitles(relatedRouteTitles);
 			vos.add(rt);
 		}
 		int count = mapper.countQueryByItems(vo);
@@ -292,11 +301,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			relates.add(rt.getRouteCode());
 		}*/
 		vo.setRelates(relates);
-		StringBuffer relatedRouteTitles = new StringBuffer();
+		List<String> relatedRouteTitles = Lists.newArrayList();
+		//StringBuffer relatedRouteTitles = new StringBuffer();
 		for(RouteTemplateVO rtvo:relates){
-			relatedRouteTitles.append(rtvo.getTitle()+",");
+			relatedRouteTitles.add(rtvo.getTitle());
+			//relatedRouteTitles.append(rtvo.getTitle()+",");
 		}
-		vo.setRelatedRouteTitles(relatedRouteTitles.toString());
+		vo.setRelatedRouteTitles(relatedRouteTitles);
 		/*TravelStyle tstyle =(TravelStyle)tsDao.queryById(vo.getTravelStyle());
 		vo.setTravelStyle(tstyle!=null?tstyle.getAlias():"");*/
 		return vo;

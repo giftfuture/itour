@@ -45,7 +45,7 @@
   <tr>
     <td width="55%" style="width:55%;"><table style="float:right;margin-right:30px;"><!-- text-align:right;align:right; -->
       <tr>
-        <td width="100%" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="100%"/></td>
+        <td width="100%" name="magnifying"><div class="bigImage"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="100%"/></div></td>
       </tr>
       <tr>
        <td height="69"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -203,14 +203,16 @@
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
           ${rt.customizedService }</span>
         </td>
+        <c:if test="${not empty rt.routeMap}">
         <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
             <div class="easyzoom easyzoom--overlay">
-                <a href="${basePath}images/map-002.jpg">
-                    <img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
+                <a href="${basePath}${rt.routeMap}">
+                    <img src="${basePath}${rt.routeMap}" alt="" width="640" height="360" />
                 </a>
             </div>
           </div>
         </td>
+        </c:if>
       </tr>
     </table>
     </td>
@@ -223,7 +225,7 @@
   <div id="detail-route">
   <table class="frametb" align="center">
   <tr>
-    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
+    <td colspan=2 style="padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
     <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
     <tr>
@@ -235,7 +237,7 @@
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>   
   <tr>
-    <td colspan=2 style="width:97.26%"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
+    <td colspan=2 style="width:97.26%;padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
   <tr><td style="width:97.26%" colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
@@ -245,29 +247,29 @@
   <div id="need-know">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
+    <td colspan=2 style="text-align:left;float:left;padding-top:30;"><img src="images/document2.png" width="32" height="32" />
+   <span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
   </tr>
     <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <td colspan=2 style="float:left;padding-top:30;"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left;float:left">${rt.serviceAndQuote }</td>
   </tr>
   <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <td colspan=2 style="float:left;padding-top:30;"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">相关线路</span></span></span></span></td>
   </tr>
   <tr>
-    <td  colspan=2 width="1140" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td colspan=2 width="1140" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
-     <a href="${basePath}climb-climb-${relat.alias}" >${relat.title }</a>
+     <a href="${basePath}climb-${relat.alias}" >${relat.title }</a>
        <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
@@ -277,7 +279,7 @@
 </table>
   <table  class="frametb" align="center">
    <tbody><tr>
-     <td width="336"  colspan=2 ><span style="text-align:left;float:left" class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
+     <td width="336"  colspan=2 style="padding-top:30;"><span style="text-align:left;float:left" class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
      <span class="STYLE3" style="text-align:left;float:left;"><a style="text-align:left;float:left;" href="${basePath}climb-selfbooking-${rt.alias}">
      <img style="float:middle" src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>
@@ -306,7 +308,8 @@
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*姓名</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'请键入您的大名',validType:'string'"/><!--  -->
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left">
+                <input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'请键入您的大名',validType:'string'"/><!--  -->
                     <select name="sex" id="sex" class="easyui-combobox" data-options="height:22,width:80,editable:false,panelHeight:80">
                       <option value="1">先生</option>
                       <option value="0">女士</option>
@@ -316,12 +319,14 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*电邮</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="height:22,prompt:'请键入合法的电邮',validType:'email'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left">
+                <input type="text" class="easyui-textbox" name="email" data-options="height:22,prompt:'请键入合法的电邮',validType:'email'"/>
                     <!-- <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt;  --></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>电话</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="height:22,prompt:'请键入您的联系电话'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left">
+                <input type="text" name="mobile"  class="easyui-numberbox" data-options="height:22,prompt:'请键入您的联系电话'"/>
                     <!-- <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; --> </td>
               </tr>
           <!--     <tr>
@@ -412,12 +417,11 @@
                                 </div>
                               </td>
                             </tr>
+						    <tr>
+						      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy">更多回憶》》</a></span></td>
+						    </tr>
                           </table>
    </td></tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy-main">更多回憶》》</a></span></td>
-    </tr>
    <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>

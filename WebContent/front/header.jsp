@@ -16,13 +16,13 @@
 	        <tr class="trbanner" align="center">
 	        <td style="text-align:center;width:10%"></td>
 	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}'" style="font-color:#FFFFFF">首頁</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking-main'">徒步</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }climb-main'">登山</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }selfdrive-main'">自駕</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }light-main'">輕驢行</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking'">徒步</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }climb'">登山</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }selfdrive'">自駕</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }light'">輕驢行</a></td>
 	        <%-- <td><a href="${basePath }customized/main">定制</a></td> --%>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }showhappy-main'">回憶興福</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }destination-main'">目的地</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }showhappy'">回憶興福</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }destination'">目的地</a></td>
 	        <td style="text-align:left;width:10%"><a onclick="location.href='${basePath}whyus-why'">关于我们</a></td>
 	        <td style="text-align:center;width:10%"></td>
 	        </tr>

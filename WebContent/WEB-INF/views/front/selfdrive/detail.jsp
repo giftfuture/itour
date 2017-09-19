@@ -45,7 +45,7 @@
   <tr>
     <td width="55%" style="width:55%;"><table style="float:right;text-align:right;align:right;margin-right:30px;"  >
       <tr>
-        <td name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px"  height="338" width="100%"/></td><!-- width="600" height="338" -->
+        <td name="magnifying"><div class="bigImage"><img src="${basePath}${rt.cover}" style="border:none;" border="0px"  height="338" width="100%"/></div></td><!-- width="600" height="338" -->
       </tr>
       <tr>
         <td height="69"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -201,16 +201,17 @@
             ${rt.designConcept }
           <span class="STYLE148"><strong>主角旅行團隊定製服務：</strong><br />
           ${rt.customizedService }</span>
-          <br />  
         </td>
+        <c:if test="${not empty rt.routeMap}">
         <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
             <div class="easyzoom easyzoom--overlay">
-                <a href="${basePath}images/map-002.jpg">
-                    <img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
+                <a href="${basePath}${rt.routeMap}">
+                    <img src="${basePath}${rt.routeMap}" alt="" width="640" height="360" />
                 </a>
             </div>
           </div>
         </td>
+        </c:if>
       </tr>
     </table>
     </td>
@@ -257,21 +258,21 @@
   <div id="need-know">
   <table class="frametb" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
-    <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028" style="text-align:left;float:left;"><span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
+    <td colspan=2 style="text-align:left;float:left;padding-top:30;"><img src="images/document2.png" width="32" height="32" /> 
+    <span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left;float:left">${rt.beforeInstruction }</td>
   </tr>
   <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <td colspan=2 style="float:left;padding-top:30;"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">服务及报价</span></span></span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left;float:left">${rt.serviceAndQuote }</td>
   </tr>
    <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <td colspan=2 style="float:left;padding-top:30;"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">相关线路</span></span></span></span></td>
   </tr>
   <tr>
@@ -279,7 +280,7 @@
   </tr>
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
-     <a href="${basePath}selfdrive-selfdrive-${relat.alias}" >${relat.title }</a>
+     <a href="${basePath}selfdrive-${relat.alias}" >${relat.title }</a>
        <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
@@ -289,7 +290,7 @@
 </table>
   <table width="600" border="0" cellspacing="0" cellpadding="0">
    <tbody><tr>
-     <td width="336" style="text-align:left"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span> &nbsp;&nbsp;
+     <td width="336" style="text-align:left;padding-top:30;"><span class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span> &nbsp;&nbsp;
       <span class="STYLE3" ><a href="${basePath}selfdrive-selfbooking-${rt.alias}">
      <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>
@@ -424,21 +425,19 @@
                                 </div>
                               </td>
                             </tr>
+						    <tr>
+						      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy">更多回憶》》</a></span></td>
+						    </tr>
                           </table>
    </td></tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy-main">更多回憶》》</a></span></td>
-    </tr>
    <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
+  <tr><td colspan=2><%@include file="/front/footer.jsp" %></td></tr>
   </table>
   </div> 
   </div>
-  </div></td></tr>
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
-  </table>
+  </div> 
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/detail.js"></script>
 </center>
 </body>

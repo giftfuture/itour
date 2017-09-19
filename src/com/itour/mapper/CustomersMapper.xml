@@ -51,8 +51,6 @@
 <sql id="Base_Column_List" >
 	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction, date_format(birthday,'%Y年%c月%d日') birthday,valid
 </sql>
-   
-   
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
 where customers.valid=1
@@ -78,7 +76,7 @@ where customers.valid=1
 	<if test="email != null and email != ''" >
 	    and customers.email like CONCAT('%', #{email}, '%')
 	</if>
-	<if test="scope != null" >
+	<if test="scope != null and scope != ''" >
 	    and customers.scope =  #{scope}
 	</if>
 	<if test="city != null and city != ''" >
@@ -102,7 +100,7 @@ where customers.valid=1
 	<if test="introduction != null and introduction != ''" >
 	    and customers.introduction like CONCAT('%', #{introduction}, '%')
 	</if>
-	<if test="birthday !=null">
+	<if test="birthday !=null and birthday != ''">
 		and customers.birthday like CONCAT('%',#{birthday},'%')
 	</if>
 </trim>
@@ -179,6 +177,10 @@ where customers.valid=1
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from customers where id = #{id}
+</select>
+<!-- 邮箱查询 -->
+<select id="queryByEmail"  resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="Base_Column_List" />  from customers where email = #{email}
 </select>
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
 	select customers.*,areas.areaname from customers left join areas on customers.scope=areas.id

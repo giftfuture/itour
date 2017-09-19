@@ -13,7 +13,7 @@
 <table width="100%" border="0" align="center" cellspacing="0" style="width:100%">
 <tr><td><center><%@include file="/frontm/header.jsp"  %></center></td></tr>
   <tr>
-    <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
+    <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">为什么选择我们</span></span></div></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">

@@ -12,7 +12,7 @@
  <%@include file="/front/header.jsp"  %>
 <table border="0" align="center" cellpadding="30" cellspacing="0">
   <tr>
-    <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
+    <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">为什么选择我们</span></span></div></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">

@@ -1,5 +1,5 @@
 package com.itour.base.auth;
-
+import org.aspectj.weaver.reflect.ReflectionWorld;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

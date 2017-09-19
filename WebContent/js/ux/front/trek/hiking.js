@@ -317,13 +317,30 @@ itour.hiking = function(){
 				}
 			});
 			$("a.imgBorder img").on('click',function(){
-				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
+				var src = $(this).attr("src");
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+					$(this).attr("src",src);
+					$(this).stop().animate({opacity:1},"slow");
+				});
 				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
 			});
 			$("a.imgBorder img").on('mouseover',function(){
+				var src = $(this).attr("src");
 				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
-				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
+				//$(this).parents("tr").prev().find(".bigImage img").attr("src",$(this).attr("src"));
+				//$(this).parents("tr").prev().find(".bigImage img").hide();
+				//$(this).parents("tr").prev().find(".bigImage img").fadeIn("slow");
+				//$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity: '1'},1000);  
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+					//console.log(src);
+					$(this).attr("src",src);
+					$(this).stop().animate({opacity:1},"slow");
+				});
+				//console.log($(this).parents("tr").prev().find(".bigImage img").attr("src"));
 			});
+			/*$("a.imgBorder img").hover(function(){
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity: 1},1000); 
+			});*/
 			//扩展easyui表单的验证  
 			$.extend($.fn.validatebox.defaults.rules, { 
 			    phoneNum: { //验证手机号   
@@ -375,6 +392,6 @@ $(function(){
 	   itour.hiking.init();
 	   itour.hiking.copyUrl();
 	   var homeurl = window.location.href;
-	   var url = qqFriend();  
-       $("#qq_id").attr("href",url); 
+	  // var url = qqFriend();  
+       //$("#qq_id").attr("href",url); 
 });

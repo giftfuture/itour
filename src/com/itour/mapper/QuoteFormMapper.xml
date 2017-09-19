@@ -162,8 +162,8 @@ where quote_form.valid=1
 		<if test="routeTemplate != null and routeTemplate != ''">and quote_form.route_template like CONCAT('%', #{routeTemplate}, '%')</if>
 		<if test="beriefTrip != null and beriefTrip != ''">and quote_form.berief_trip like CONCAT('%', #{beriefTrip}, '%')</if>
 		<if test="showTrip != null and showTrip  != ''">and quote_form.show_trip like CONCAT('%', #{showTrip}, '%')</if>
-		<if test="adults != null">and quote_form.adults=#{adults}</if>
-		<if test="children != null">and quote_form.children=#{children}</if>
+		<if test="adults != null and adults != ''">and quote_form.adults=#{adults}</if>
+		<if test="children != null and children != ''">and quote_form.children=#{children}</if>
 		<if test="remark != null and remark != ''" >
 		    and quote_form.remark like CONCAT('%', #{remark}, '%')
 		</if>

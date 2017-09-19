@@ -45,7 +45,9 @@
   </tr> --%>
   </tbody>
     <tr><td colspan="3"><ul id="fbpage"></ul></td></tr>
-  <tr><td colspan="3"><%@include file="/front/footer.jsp" %></td></tr>
+</table>
+<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
 </div>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/moredests.js"></script>

@@ -34,8 +34,7 @@
         <tr>
             <td valign="top" bgcolor="#fafafa">
             <div style=" position:relative;margin-top:-50;z-index:9999;width:90%">
-                <table width="100%" border="0" align="left" cellpadding="0"
-                    cellspacing="0">
+                <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
                     <tr>
                         <td class="STYLE9" style="text-align: left">主角旅行——定製旅行服務商</td>
                     </tr>
@@ -82,7 +81,7 @@
                                     <tr>
                                         <td width="100%" class="h2-24red" colspan=3
                                             style="text-align: left;"><a class="STYLE3 tsSTYLE3" style="font-size:1em;font-weight:normal;"
-                                            width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}-main"><img
+                                            width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}"><img
                                                 src="images/icon-0${status.index+1 }.jpg" width="57"
                                                 height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>
@@ -92,7 +91,7 @@
                                     </tr>
                                     <tr>
                                         <td width="100%" colspan=3 style="text-align: left"><a
-                                            href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3"><img
+                                            href="${basePath}${fn:split(entry['key'], '#')[3]}" class="STYLE3"><img
                                                 src="${basePath }${fn:split(entry['key'],'#')[2]}"
                                                 style="border: none;" border="0px"   width="100%" /></a></td>
                                     </tr>
@@ -105,7 +104,7 @@
                                     </c:forEach>
                                     <tr>
                                         <td style="text-align: left"><a
-                                            href="${basePath }${entry['value'][0].travelStyleAlias }-main">More>></a></td>
+                                            href="${basePath }${entry['value'][0].travelStyleAlias }">More>></a></td>
                                     </tr>
                                 </table></td>
                             </c:forEach>
@@ -139,7 +138,7 @@
                                         <td colspan=2 style="text-align: left">
                                             <p class="f12-gao1">
                                             <span class="STYLE6">${showhappy.shortContent }
-                                                 <a href="${basePath}showhappy-main">More》》</a></span>
+                                                 <a href="${basePath}showhappy">More》》</a></span>
                                             </p>
                                             </td>
                                     </tr>
@@ -172,7 +171,7 @@
                         <tr>
                             <td><p class="f12-gao1">
                                     <span class="STYLE6"> <a
-                                        href="${basePath }destination-main">More》》</a></span>
+                                        href="${basePath }destination">More》》</a></span>
                                 </p></td>
                         </tr>
                     </tbody>

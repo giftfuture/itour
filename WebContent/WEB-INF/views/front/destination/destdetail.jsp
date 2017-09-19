@@ -79,9 +79,8 @@
               <tbody>
               <c:forEach items="${rts}" var="item">
               <tr>
-                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
-             <!- width="66" width="384" class="f12-gao1"--> 
-               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
+                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }-${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
+               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }-${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
               </tr>
         	</c:forEach>
         	<c:if test="${showMore}">
@@ -92,12 +91,10 @@
               </c:if>
           </tbody></table></td>
           </tr>
-         <!--  <tr>
-            <td valign="top"  style="weight:100%;height:100%;text-align:left;valign:top;">
-		</td> 
-	  	 </tr> -->
-	  	 <tr><td colspan="3"><%@include file="/front/footer.jsp"  %></td></tr>
 	</table>
+	<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+</table>
 	</center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destdetail.js"></script>
 </body>

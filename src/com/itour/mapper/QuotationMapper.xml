@@ -52,7 +52,7 @@ where quotation.valid=1
 	<if test="type != null and type != ''" >
 	    and quotation.type like CONCAT('%', #{type}, '%')
 	</if>
-	<if test="totalPrice != null" >
+	<if test="totalPrice != null and totalPrice != ''" >
 	    and quotation.total_price =  #{totalPrice}
 	</if>
 	<if test="formula != null and formula != ''" >

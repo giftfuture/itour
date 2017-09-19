@@ -23,6 +23,7 @@ import com.itour.convert.ShowHappyKit;
 import com.itour.dao.ShowHappyDao;
 import com.itour.entity.LevelArea;
 import com.itour.entity.ShowHappy;
+import com.itour.entity.TravelOrder;
 import com.itour.listener.event.LevelAreaEvent;
 import com.itour.listener.event.ShowHappyEvent;
 import com.itour.listener.listener.BaseListener;
@@ -120,6 +121,13 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 			//records.add(ShowHappyKit.toRecord(sh));
 		}
 		return new BasePage<ShowHappyVO>(vo.getStart(), vo.getLimit(), list, count);
+	}
+	/**
+	 * 待处理游记
+	 * @return
+	 */
+	public List<ShowHappyVO> unDealedDiarys(){
+		return mapper.unDealedDiarys();
 	}
 	/**
 	 * 

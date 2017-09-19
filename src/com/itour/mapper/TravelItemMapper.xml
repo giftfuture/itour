@@ -156,7 +156,7 @@ where travel_item.valid=1
 	<if test="recommandCrowd != null and recommandCrowd != ''" >
 	    and travel_item.recommand_crowd like CONCAT('%', #{recommandCrowd}, '%')
 	</if>
-	<if test="travelStyle != null">
+	<if test="travelStyle != null and travelStyle != ''">
 	    and travel_item.travel_style like CONCAT('%', #{travelStyle}, '%')
 	</if>
 	<if test="cover != null and cover != ''">

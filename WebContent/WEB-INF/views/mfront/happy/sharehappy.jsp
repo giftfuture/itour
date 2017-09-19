@@ -31,7 +31,8 @@ function ww4(date){
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
 	        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-	         <tr><td  style="text-align:left" class="STYLE18" colspan=2>标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="easyui-textbox" data-options="height:22" name="title" id="title"/></td>
+	         <tr><td  style="text-align:left" class="STYLE18" colspan=2>标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：
+	         <input type="text" class="easyui-textbox" data-options="width:'59%',height:22" name="title" id="title"/></td>
 	         </tr><!-- opacity:0 -->
 	         <tr>
 	            <td style="text-align:left" colspan=2><span class="STYLE23 STYLE18">旅行線路：</span>
@@ -39,10 +40,12 @@ function ww4(date){
 	            </td>
 	       </tr>
 	       <tr><td style="text-align:left" colspan=2><span class="STYLE23 STYLE18">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
-	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="height:22,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
+	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:'59%',height:22,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
 	           </span></td></tr>
-	        <tr> <td style="text-align:left" class="STYLE18" colspan=2>&nbsp;回&nbsp;憶&nbsp;人：
-            	<span class="STYLE18"><input type="text" class="easyui-textbox" data-options="height:22" id="signature" name="signature"/></span></td></tr>
+	       <tr><td style="text-align:left"><span class="STYLE23 STYLE18">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</span><span class="STYLE148">
+            <input type="text" class="easyui-textbox" data-options="width:'59%',height:22" id="email" name="email"/></span></td><td></td></tr>
+	        <tr><td style="text-align:left" class="STYLE18" colspan=2>&nbsp;回&nbsp;憶&nbsp;人：
+            	<span class="STYLE18"><input type="text" class="easyui-textbox" data-options="width:'59%',height:22" id="signature" name="signature"/></span></td></tr>
             	<tr><td colspan=2 style="text-align:left" class="STYLE18" >&nbsp;&nbsp;&nbsp;&nbsp;来&nbsp;&nbsp;自：
             	<input name="area" id="area" class="easyui-combobox"  data-options="height:22,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</td></tr>
