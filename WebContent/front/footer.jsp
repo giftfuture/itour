@@ -27,20 +27,6 @@
 </form>
   <table width="100%" border="0" align="center" style="margin-top:30;background-color:#fafafa;" cellpadding="5" cellspacing="0"  bgcolor="#fafafa" name="keyfooter">
     </table> 
-<%-- <center>
-<div id="links" style="align:center">
-   <div class="contents"><a href="http://www.ctrip.cn/" target="_blank"><img src="${basePath }/images/ad/20121209192739900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.qunar.com/" target="_blank"><img src="${basePath }/images/ad/20121209192856900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.12306.cn" target="_blank"><img src="${basePath }/images/ad/20121209193221900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.kuxun.cn/" target="_blank"><img src="${basePath }/images/ad/20121209192108900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.mangocity.com/" target="_blank"><img src="${basePath }/images/ad/20121209192948900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.csair.com/cn/" target="_blank"><img src="${basePath }/images/ad/20121209192627900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.ceair.com/" target="_blank"><img src="${basePath }/images/ad/20121209193103900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.ch.com" target="_blank"><img src="${basePath }/images/ad/20121209193323900.jpg" style="width:105px;height:36px;border:0px;"></a>
-       <a href="http://www.mafengwo.cn/" target="_blank"><img src="${basePath }/images/ad/20120419110149.png" style="width:105px;height:36px;border:0px;"></a>
-   </div>
-</div>
-</center> --%>
 <table class="lefttxt frametb" align="center" style="margin-top:30px">
   <tbody><tr>
     <td valign="middle" height="135" bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -65,28 +51,5 @@
     </div></td>
   </tr></tbody>
 </table>
-<!-- <table class="commontb" align="center">
-  <tr>
-    <td width="1350" height="105" valign="top" bgcolor="#666666">
-    <table width="1140" height="60" border="0" align="center" class="lefttxt" cellpadding="20"  cellspacing="0">
-      <tbody>
-        <tr>
-          <td width="1140" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
-        </tr>
-        <tr>
-          <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: 成都一環路南三段15號華僑大廈9層<br />
-            Tel: +86-28-85580038 / 85562905<br />
-            E-mail: info@itours.com.cn </div></td>
-        </tr>
-      </tbody>
-    </table>
-    </td>
-  </tr>
-  <tr>
-    <td><div align="center">
-<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="站长统计">站长统计</a>	
-	</div></td>
-  </tr>
-</table> -->
 </div>
 

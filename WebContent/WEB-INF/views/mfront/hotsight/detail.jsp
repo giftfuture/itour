@@ -27,8 +27,14 @@
 </script>
 </head>
 <body>
-<center>
  <%@include file="/front/header.jsp"  %>
+  <div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<center>
 <table class="commontb" align="center" width="72.6%" style="width:72.6%" >
   <tr>
     <td width="55%" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>

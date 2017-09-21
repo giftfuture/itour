@@ -1,5 +1,5 @@
 /**{font-size:14px;}*/
-body {font-family:MicrosoftYaHei;padding:0px;font-size:13px;margin:0;}
+body {font-family:MicrosoftYaHei;padding:0px;font-size:14px;margin:0;}
 　img { max-width: 100%;}
 img, object { max-width: 100%;}
 　img { width: 100%; }
@@ -135,3 +135,4 @@ td { text-align: center;}
       border-radius: 5px 5px 5px 5px;
       display:block;
     }
+.bdsharebuttonbox{height:300px;width:40px;float:left;padding-top:30px;margin-left:10px;position:fixed;overflow-y:auto;}

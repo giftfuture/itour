@@ -154,7 +154,7 @@ function submit(){
 }
 //刷新验证码
 function changeImg(){
-    document.getElementById("validateCodeImg").src=basePath+"ImageServlet?"+Math.random();
+    document.getElementById("validateCodeImg").src=basePath+"LoginServlet?"+Math.random();
 }
 //登录处理函数
 function login() {
@@ -291,7 +291,7 @@ function hideTop() {
 }
 //加载信息
 function loading(name, overlay) {
-	$('body').append('<div id="overlay"></div><div id="preloader">' + name + '...</div>');/*<div id="overlay"></div>*/
+	$('body').append('<div id="overlay"></div><div id="preloader">' + name + '...</div>');
 	if (overlay == 1) {
 		$('#overlay').css('opacity', 0.1).fadeIn(function() {
 			$('#preloader').fadeIn();

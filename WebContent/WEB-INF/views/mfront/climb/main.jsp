@@ -8,8 +8,8 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content=""> 
+ <meta http-equiv="keywords" content="登山，越峰，爬山，奇峰险岭，登山探险，登山装备，喜马拉雅，珠穆朗玛，珠峰">  
+ <meta http-equiv="description" content="登山，越峰，爬山，奇峰险岭，登山探险，登山装备，喜马拉雅，珠穆朗玛，珠峰"> 
 <title>登山旅行</title>
 </head>
 <body>

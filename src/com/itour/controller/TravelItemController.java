@@ -114,14 +114,6 @@ public class TravelItemController extends BaseController{
 	@RequestMapping(value="/uploadCover", method = RequestMethod.POST) 
 	public String uploadCover(@RequestParam(value="id")String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//ti.setCover(cover);
-	//	fb.setCover(coverpath+"/"+fb.getItemCode()+"_"+fb.getAlias()+"/"+fb.getCover());
-		//travelItemService.update(ti);	
-		//SysUser sessionuser = SessionUtils.getUser(request);
-		//logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的updateCover方法");
-		//String logid = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/updateCover",sessionuser.getId(),"",""));
-		//logOperationService.add(new LogOperation(logid,"更新封面",vo!= null?vo.getId():"",JsonUtils.encode(vo),JsonUtils.encode(ti),"travelItem/updateCover",sessionuser.getId()));
-		//return forward("server/sys/travelItem"); 
 		Map<String,Object> context = getRootMap();
 		String coverpath = FilePros.itemCoverpath();
 		try {
@@ -129,18 +121,12 @@ public class TravelItemController extends BaseController{
 			TravelItem ti =travelItemService.queryById(id);
 			TravelItemVO vo = TravelItemKit.toRecord(ti);
 			if(vo !=null){
-				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
-				//vo.setCover(fileName);
 				String path = coverpath+"\\"+StringUtils.trim(vo.getItemCode())+"_"+vo.getAlias();
-				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-						//OutputStream out = null;
 						List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 						 String picName = "";
-						// String newpicName = "";
 						 File directory = null;
-						// File uploadpic = null;
 						 MultipartFile f = multifiles.get(0);
 					     if(f.getOriginalFilename().length() > 0) {    
 					    	picName = f.getOriginalFilename();   
@@ -148,27 +134,14 @@ public class TravelItemController extends BaseController{
 				            if(!directory.exists()||!directory.isDirectory()){
 				            	directory.mkdirs();
 				            }
-				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				           // uploadpic = new File(path+"\\"+picName );
 				            Thumbnails.of(f.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(path+"\\"+picName );
 				            System.out.println("景点ID="+id+"上传封面图片是" + picName);  
-				            //out = new FileOutputStream(uploadpic);  
-				            //out.write(f.getBytes());  
-				            //out.close();  
 				        }  
 						ti.setCover(picName);
 						picName = null;
 						directory = null;
-						//uploadpic = null;
 						ti.setUpdateBy(sessionuser.getId());;
 						travelItemService.uploadCover(ti);
-						/*if(out != null){
-							try {
-								out.close();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}*/
 						context.put(SUCCESS, true);
 						context.put("msg", "景点封面图片上传成功！");
 				}else{
@@ -270,7 +243,7 @@ public class TravelItemController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
-	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)//,method = RequestMethod.POST  , produces = "application/json"
+	@RequestMapping(value="/uploadPhoto",method = RequestMethod.POST)// produces = "application/json"
 	public @ResponseBody String uploadPhotos(String id,@RequestParam(value="fileselect",required=false) MultipartFile fileselect,
 			HttpServletRequest request,HttpServletResponse response) {
 		Map<String,Object>  context = getRootMap();
@@ -466,7 +439,7 @@ public class TravelItemController extends BaseController{
 		TravelItem tt = new TravelItem();
 		tt.setId(id);
 		//StringUtils.join(names,"\\|");
-		ti.setPhotos(StringUtils.join(names,"|"));
+		tt.setPhotos(StringUtils.join(names,"|"));
 		travelItemService.update(tt);
 		context.put(SUCCESS, true);
 		context.put("msg", "图片编辑保存成功！");

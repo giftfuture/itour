@@ -1,20 +1,20 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
  <link href="${basePath}cssm/index.css" rel="stylesheet" type="text/css" /> 
+ <meta name="keywords" content="四川旅游|西藏旅游|新疆旅游|云南旅游|徒步旅行|登山|自駕|輕驢行|回憶興福" />
+<meta name="description" content="主角旅行网，您是旅程的主角｜四川旅游|西藏旅游|新疆旅游|云南旅游|徒步旅行|登山|自駕|輕驢行|回憶興福" />
    <center><div id="top-menu" data-role="content" data-fullscreen="true">
-    <table align="center" style="border:0;cursor:pointer;width:100%" > <!-- class="easyui-datagrid" -->
+    <table align="center" style="border:0;cursor:pointer;width:100%" > 
         <tr><th colspan="4"><a href="${basePath}"><img src="${basePath}images/head2016.gif" /></a></th><th colspan="4"><a><img src="${basePath}images/chinatravel.png" alt="" /></a></th></tr>
         <tr><th colspan="8">
-        <span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊&nbsp;info@iTours.com.cn</span></th><!-- href="tel:+8602885580038" -->
-        </tr><!-- href="mailto:info@iTours.com.cn" -->
+        <span style="padding-bottom:5px;">旗下&nbsp;定製旅行服務團隊&nbsp;info@iTours.com.cn</span></th>
+        </tr>
         <tr><th colspan=7><span style="color:red">一鍵撥號：<a >+86&nbsp;28&nbsp;85580038</a></span>&nbsp;&nbsp;<a href="http://zjj.itours.com.cn/itour_en">English</a></th></tr>
-        <!-- <tr><th colspan=8><a>info@iTours.com.cn</a></th></tr> -->
         <tr class="trbanner" align="center">
         <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}'" style="font-color:#FFFFFF">首頁</a></td>
         <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking'">徒步</a></td>
         <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }climb'">登山</a></td>
         <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }selfdrive'">自駕</a></td>
         <td style="text-align:center;width:15%"><a onclick="location.href='${basePath }light'">輕驢行</a></td>
-        <%-- <td><a href="${basePath }customized/main">定制</a></td> --%>
         <td style="text-align:center;width:15%"><a onclick="location.href='${basePath }showhappy'">回憶興福</a></td>
         <td style="text-align:center;width:15%"><a onclick="location.href='${basePath }destination'">目的地</a></td>
         <td style="text-align:center;width:16%"><a onclick="location.href='${basePath}whyus-why'">关于我们</a></td>

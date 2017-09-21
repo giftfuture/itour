@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
 <title>徒步旅行</title>
-<meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod　overland, Motercycle tours "/>
-<meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours"/>
+<meta name="keywords" content="西南冒险:徒步旅行 , 登山爬峰 , 长途越野, 摩托车 "/>
+<meta name="description" content="西南冒险:徒步旅行 , 登山爬峰 , 长途越野, 摩托车 "/>
 <%-- <script type="text/javascript" src="${basePath}Scripts/flashobject.js"></script>
 <script src="${basePath}Scripts/AC_RunActiveContent.js" type="text/javascript"></script> --%>
 <link href="${basePath}/css/qzx.css" rel="stylesheet" type="text/css" />

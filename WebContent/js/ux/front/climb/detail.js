@@ -319,16 +319,16 @@ itour.climbdetail = function(){
 			});
 			$("a.imgBorder img").on('click',function(){
 				var src = $(this).attr("src");
-				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"fast",null,function(){
 					$(this).attr("src",src);
-					$(this).stop().animate({opacity:1},"slow");
+					$(this).stop().animate({opacity:1},"normal");
 				});
 			});
 			$("a.imgBorder img").on('mouseover',function(){
 				var src = $(this).attr("src");
-				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"fast",null,function(){
 					$(this).attr("src",src);
-					$(this).stop().animate({opacity:1},"slow");
+					$(this).stop().animate({opacity:1},"normal");
 				});
 			});
 			//扩展easyui表单的验证  

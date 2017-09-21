@@ -7,7 +7,7 @@ itour.travelItem = function(){
 			uploadCoverForm:function(){
 				return $("#uploadCoverForm");
 			},
-			uploadCoverWin:function(){//upload-photo
+			uploadCoverWin:function(){
 				return $("#uploadCover-photo");
 			},
 			saveuploadCover:function(){
@@ -28,8 +28,6 @@ itour.travelItem = function(){
 				});
 			},
 			initUploadCoverForm:function(){
-				/*var uploadCoverFile = $.extend(uploadFile,this.uploadCoverParams);
-				uploadCoverFile.init(); */
 				_this.uploadCoverWin().find("#coverSubmit").click(function(){
 					_this.saveuploadCover();
 				});
@@ -68,8 +66,6 @@ itour.travelItem = function(){
 				});
 			},
 			initUploadForm:function(){
-				/*var zxxfile = $.extend(ZXXFILE,this.uploadparams);
-				zxxfile.init();*/
 				//console.log(zxxfile.url);
 				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
 					_this.savePhoto();
@@ -87,12 +83,11 @@ itour.travelItem = function(){
 					});
 				});
 			},
-			
 			editPhotoAction:'travelItem/saveeditedPhoto',
 			editPhotoForm:function(){
 				return $("#editPhotoForm");
 			},
-			editPhotoWin:function(){//upload-photo
+			editPhotoWin:function(){
 				return $("#edit-photo");
 			},
 			submitPhoto:function(){
@@ -120,7 +115,7 @@ itour.travelItem = function(){
 						//console.log(data.uris);
 						var k=0;
 						for(var i in data.map){
-							if(k !=0 && k%3==0){
+							if(k !=0 && k%5==0){
 								images+='</tr><tr>';
 							}
 						  images+='<td><a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><img alt="图片浏览" name="'+i+'" src="'+basePath+data.map[i]+'" style="width:100px;height:100px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
@@ -336,20 +331,12 @@ itour.travelItem = function(){
 					},
 					{field:'cover',title:'封面',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if((row.cover+"").length>30){
-									return (row.cover+"").substring(0,30)+"....";
-								}else{									
-									return row.cover;
-								}
+								return '<a href="javascript:void(0)" onmouseenter="javascript:itour.travelItem.previewphoto(\''+row.cover+'\',\''+row.item+'\' )" onmouseleave="javascript:itour.travelItem.unpreviewphoto()">预览</a>';
 							}
 					},
 					{field:'photos',title:'美图',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if((row.photos+"").length>30){
-									return (row.photos+"").substring(0,30)+"....";
-								}else{									
-									return row.photos;
-								}
+								return '<a href="javascript:void(0)" onmouseenter="javascript:itour.travelItem.previewphotos(\''+row.itemCode+'\',\''+row.alias+'\',\''+row.photoPath+'\',\''+row.photos+'\',\''+row.item+'\')" onmouseleave="javascript:itour.travelItem.unpreviewphotos()">预览</a>';
 							}
 					},
 					{field:'mileage',title:'里程(公里)',align:'center',sortable:true,
@@ -554,13 +541,10 @@ itour.travelItem = function(){
 						{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-large-picture',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){
-							/*	var zxxfile = $.extend(ZXXFILE,this.params);*/
-								//_this.init.zxxfile;
 								_this.editPhotoForm().resetForm();
 								_this.editPhotoForm().find("input[name='id']").val(selected[0].id);
 								_this.loadPhotoList(selected[0].id);
 								_this.editPhotoWin().window('open');
-								
 							}
 						}}
 			     	]
@@ -676,6 +660,44 @@ itour.travelItem = function(){
 			var happySelect='<select name="happyValue" type="text" maxlength="" class="easyui-combobox"  data-options="width:131,editable:false" missingMessage="请填写happyValue"><option value="">--请选择--</option><option value="1">心情舒畅</option><option value="2">趣味盎然</option><option value="3">乐翻天</option><option value="4">乐不思蜀</option><option value="5">极乐无穷</option></select>';
 			$("#happyLabel").parent().append(happySelect);
 		},
+		previewphoto:function(src,title){
+			$("#preview-photo").attr("title",title);
+			$("#preview-photo").find("#preview").attr("src",src);
+			$("#preview-photo").find("#preview").attr("alt",title);
+			$("#preview-photo").find("#preview").hover(function(){$("#preview-photo").dialog('open');},function(){
+				$("#preview-photo").dialog('close');
+			});
+			$("#preview-photo").dialog('open');
+		},
+		unpreviewphoto:function(){
+			$("#preview-photo").dialog('close');
+		},
+		previewphotos:function(itemCode,alias,photoPath,photos,title){
+			$("#preview-photos").attr("title",title);
+				var images = "<tr>";
+					//console.log(data.uris);
+				    var ptoArray =  photos.split('|');
+					for(var i in ptoArray){
+						if(i !=0 && i%5==0){
+							images+='</tr><tr>';
+						}
+					  images+='<td><img alt="'+title+'" name="'+i+'" src="'+photoPath+'/'+(itemCode+"_"+alias)+'/'+ptoArray[i]+'" style="width:150px;height:150px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
+					  i++;
+					}
+				$("#preview-photos table").html(images+="</tr>");
+				var zxxeditphoto = $.extend(ZxxeditPhoto,{});
+				zxxeditphoto.init();
+			$("#preview-photos").dialog('open'); 
+			//$("#preview-photos").find("#preview").attr("src",src);
+			//$("#preview-photo").find("#preview").attr("alt",title);
+			$("#preview-photos").hover(function(){$("#preview-photos").dialog('open');},function(){
+				$("#preview-photos").dialog('close');
+			});
+			$("#preview-photos").dialog('open');
+		},
+		unpreviewphotos:function(){
+			$("#preview-photos").dialog('close');
+		},
 		uploadparams:{
 			fileInput: $("#fileImage",this.uploadPhotoWin).get(0),
 			//dragDrop: $("#fileDragArea").get(0),
@@ -769,7 +791,6 @@ itour.travelItem = function(){
 				$("#coverpreview",this.uploadCoverWin).html('<div class="upload_loading"></div>');
 				var funAppendImage = function() {
 					file = files[i];
-					//alert("ffffff"+file.name);
 					if (file) {
 						var reader = new FileReader();
 						reader.onload = function(e) {
