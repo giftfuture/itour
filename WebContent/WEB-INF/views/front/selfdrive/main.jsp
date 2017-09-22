@@ -9,8 +9,8 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
-<meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
-<meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
+<meta name="keywords" content="自驾,自驾游，自行驾车出游，有车一族，骑行川藏,方便自行解决交通的人">
+<meta name="description" content="主角旅游网是专门为广大驴友们提供自驾游，自驾游路线，自驾游路线查询，自驾游攻略等一站式全面服务的网站。中国西部最专业最全面的自助游旅游服务提供商">
 <!-- <script type="text/javascript" src="Scripts/flashobject.js"></script>
 <script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
 <link href="css/qzx.css" rel="stylesheet" type="text/css" />

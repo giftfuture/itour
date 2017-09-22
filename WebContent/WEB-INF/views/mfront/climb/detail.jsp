@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mountain trip in detail</title>
+<title>登山-${rt.title }</title>
+<meta http-equiv="keywords" content="登山，越峰，爬山，奇峰险岭，登山探险，登山装备，喜马拉雅，珠穆朗玛，珠峰">  
+<meta http-equiv="description" content="${rt.shortContent }"> 
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  

@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>轻旅行路线</title>
+<title>轻旅行-${rt.title }</title>
+<meta http-equiv="keywords" content="轻旅行">  
+<meta http-equiv="description" content="${rt.shortContent }"> 
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -223,22 +225,19 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
      <tr>
-    <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td  colspan=2 style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
   <tr>
   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td  colspan=2><img style="float:left" src="images/frame1-3.gif" height="7" /></td>
   </tr>  
   <tr>
     <td colspan=2 style="padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
- <!--  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>  -->
- <tr><td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
+ <tr><td colspan="2" style="text-align:left"><p style="text-align:left;width:61.3%"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></p></td> </tr>
       </table> 
   </div>
   <div id="need-know">
@@ -267,7 +266,6 @@
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
      <a href="${basePath}light-${relat.alias}" >${relat.title }</a>
-       <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
      <tr>
@@ -417,13 +415,14 @@
                           </table>
    </td></tr>
    <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" height="7" /></td>
   </tr>
-  <tr><td colspan=2><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td colspan=2></td></tr>
   </table>
   </div> 
   </div>
   </div>
+  <%@include file="/front/footer.jsp" %>
 <script type="text/javascript" src="${basePath}js/ux/front/light/detail.js"></script>
 </center>
 </body>

@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>轻旅行</title>
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content=""> 
-<title>轻旅行</title>
+ <meta http-equiv="keywords" content="轻旅行">  
+ <meta http-equiv="description" content="不必等行李，无财一身轻，想走就走，想留就留，更多尝试新鲜的机会，它是一种环保的理念，更开放，更自由，更经济，更复合"> 
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script> --%>
 </head>

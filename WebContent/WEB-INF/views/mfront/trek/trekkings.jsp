@@ -8,8 +8,8 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content=""> 
+ <meta http-equiv="keywords" content="徒步,运动,户外,徒步旅行,穷游,徒步中国,徒步旅行从这里开始！">  
+ <meta http-equiv="description" content="户外运动，深度旅行，摄影外拍，跟团旅游，野外露营,徒步旅行知识、技巧、线路、攻略、游记,我们推崇自由的旅行方式，用双脚丈量世界！"> 
 <title>徒步旅行</title>
 </head>
 <body>

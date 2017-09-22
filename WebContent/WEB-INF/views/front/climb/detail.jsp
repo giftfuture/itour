@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mountain trip in detail</title>
+<title>登山-${rt.title }</title>
+<meta http-equiv="keywords" content="登山，越峰，爬山，奇峰险岭，登山探险，登山装备，喜马拉雅，珠穆朗玛，珠峰">  
+<meta http-equiv="description" content="${rt.shortContent }"> 
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -226,23 +228,23 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
     <tr>
-    <td width="1140" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td  colspan=2 style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr><td colspan="2"  background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
   <tr>
   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>   
   <tr>
     <td colspan=2 style="width:97.26%;padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
   <tr><td style="width:97.26%" colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-  <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
+  <tr> <td colspan="2" style="text-align:left"><span class="STYLE7"><p  style="width:61.3%;text-align:left">注：以上行程僅供參考，可根据您的假期重新调整设计。</p></span></td> </tr>
 </table>
   </div>
   <div id="need-know">
-  <table  class="frametb" align="center">
+  <table  class="frametb" align="center" style="width:61.3%">
   <tr>
     <td colspan=2 style="text-align:left;float:left;padding-top:30;"><img src="images/document2.png" width="32" height="32" />
    <span class="h2-24" style="float:left"><span class="STYLE148">行前需知</span></span></td>
@@ -274,22 +276,22 @@
     <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-  <table  class="frametb" align="center">
+  <table class="frametb" align="center" style="width:61.3%">
    <tbody><tr>
-     <td width="336"  colspan=2 style="padding-top:30;"><span style="text-align:left;float:left" class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
+     <td width="336" colspan=2 style="padding-top:30;"><span style="text-align:left;float:left" class="STYLE3">告诉我们您的需求，免费为您策划方案 GO! </span>&nbsp;&nbsp; 
      <span class="STYLE3" style="text-align:left;float:left;"><a style="text-align:left;float:left;" href="${basePath}climb-selfbooking-${rt.alias}">
      <img style="float:middle" src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
   </div>
   <div id="feed-back">
-  <table  class="frametb" align="center">
+  <table  class="frametb" align="center" style="width:61.3%">
   <tr>
     <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
     <td width="1028" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >还想了解什么吗？快来跟我们说说：</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
-<table  class="frametb" align="center">
+<table  class="frametb" align="center" style="width:61.3%">
   <tr>
     <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>

@@ -503,7 +503,7 @@ public class TravelItemController extends BaseController{
 		if(StringUtils.isNotEmpty(travelStyle)){			
 			map.put("travelStyle", travelStyle);
 		}
-		if(StringUtils.isNotEmpty(scope)){			
+		if(StringUtils.isNotEmpty(scope)){	
 			map.put("scope", scope);
 		}
 		if(rcdDays.indexOf('-')>0){

@@ -16,7 +16,6 @@ itour.trekkings = function(){
 									      '<tr><td>&nbsp;</td></tr></table></td>'
 									      +((i+1)%3==0?"</tr><tr>":""); 
 								});
-								;
 								$("#fbpage").parents("tr").before(html+'</tr>');
 								   var options = {
 										   bootstrapMajorVersion: 3, //bootstrap版本

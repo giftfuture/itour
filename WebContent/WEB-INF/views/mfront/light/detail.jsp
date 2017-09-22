@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>轻旅行路线</title>
+<title>轻旅行-${rt.title }</title>
+<meta http-equiv="keywords" content="轻旅行">  
+<meta http-equiv="description" content="${rt.shortContent }"> 
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  

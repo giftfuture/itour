@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script> 
 <div>
 <form name="searchForm" method="post">
-<table class="frametb" align="center" style="width:100%;margin-top:30px" width="100%">
+<table class="frametb" align="center" style="width:61.3%;margin-top:30px">
   <tr>
     <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>快速搜索</strong></div></td>
     <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  
@@ -25,9 +25,9 @@
   </tr>
 </table>
 </form>
-  <table width="100%" border="0" align="center" style="margin-top:30;background-color:#fafafa;" cellpadding="5" cellspacing="0"  bgcolor="#fafafa" name="keyfooter">
+  <table border="0" align="center" style="margin-top:30;background-color:#fafafa;width:61.3%" cellpadding="5" cellspacing="0"  bgcolor="#fafafa" name="keyfooter">
     </table> 
-<table class="lefttxt frametb" align="center" style="margin-top:30px">
+<table class="lefttxt " align="center" style="margin-top:30px;width:61.3%">
   <tbody><tr>
     <td valign="middle" height="135" bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>

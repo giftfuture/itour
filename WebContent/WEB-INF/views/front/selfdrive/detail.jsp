@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>自驾路线</title>
+<title>自驾-${rt.title }</title>
+<meta name="keywords" content="自驾,自驾游，自行驾车出游，有车一族，骑行川藏,方便自行解决交通的人">
+<meta name="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -226,30 +228,21 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
    <tr style="text-align:left;align:left;float:left">
-    <td width="1140" style="text-align:left;align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td  colspan=2 style="text-align:left;align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
   <tr style="text-align:left;align:left;float:left">
-    <td  style="text-align:left;align:left;float:left">
-    <img  style="text-align:left;align:left;float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td  colspan=2 style="text-align:left;align:left;float:left">
+    <img  style="text-align:left;align:left;float:left" src="images/frame1-3.gif" height="7" /></td>
   </tr> 
   <tr>
-  <!-- <tr>
-    <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
-  </tr> -->
- <!--  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>  -->
   <tr>
     <td colspan=2><span class="h2-24" style="float:left">
     <img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-<!--   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr>  -->
-  <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
+  <tr> <td colspan="2" style="text-align:left"><p style="text-align:left;width:61.3%"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></p></td> </tr>
 </table>
   </div>
   <div id="need-know">
@@ -278,7 +271,6 @@
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
      <a href="${basePath}selfdrive-${relat.alias}" >${relat.title }</a>
-       <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
      <tr>
@@ -333,12 +325,6 @@
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="height:22,prompt:'请键入您的联系电话'"/>
                    <!--  <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt;  --></td>
               </tr>
-         <!--      <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>标题</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE140"><label>
-                  <input type="text" name="title" />
-                </label></td>
-              </tr> -->
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>内容</strong>:</div></td>
                 <td bgcolor="#F0F0F0" class="STYLE140" style="padding-left:20px;text-align:left"> 

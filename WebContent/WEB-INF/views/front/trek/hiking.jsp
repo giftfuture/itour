@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title>徒步旅行-${rt.title }</title>
+<meta http-equiv="keywords" content="徒步,运动,户外,徒步旅行,穷游,徒步中国,徒步旅行从这里开始！">  
+<meta http-equiv="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -177,7 +179,6 @@
 </td></tr>
 </table>
 <br />
-  <%-- <tr><td><a href="${basePath}hiking/toQuote2/${rt.alias}" class="easyui-linkbutton">预定本路线</a></td></tr>	 --%>
 <div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="" cellspacing="" width="61.3%" style="width:61.3%" >
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking-${alias}#review" target="_self">整体概览</a></li>
@@ -227,23 +228,22 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">简要日程</span></span></td>
   </tr>
    <tr>
-    <td width="1140" style="align:left;float:left"><img  width="100%" src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td colspan=2 style="align:left;float:left"><img  width="100%" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
-  <tr><td colspan="2" background="images/frame1-2.gif" >${qf.showTrip }</td></tr>   <!-- style="valign:top;" -->
-  <!-- <tr>
-     <td><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td>
-   </tr> -->
+  <tr><td colspan="2" background="images/frame1-2.gif" >${qf.showTrip }</td></tr>  
   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
+  </table>
+   <table  class="frametb" align="center">
   <tr>
     <td colspan=2 style="padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">详细日程</span></span></td>
   </tr>
-  <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">注：以上行程僅供參考，可根据您的假期重新调整设计。</span></td> </tr>
-      </table>
-      </div>
+  <tr width="1140"><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
+   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7"><p style="text-align:left;width:1140;">注：以上行程僅供參考，可根据您的假期重新调整设计。</p></span></td> </tr>
+   </table>
+   </div>
   <div id="need-know" name="need-know">
   <table  class="frametb" align="center">
   <tr>
@@ -270,7 +270,6 @@
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
      <a href="${basePath}hiking-${relat.alias}" >${relat.title }</a>
-       <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
      <tr>
@@ -420,12 +419,12 @@
   </tr>
   </table>
   </div></td></tr>
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
-</table>
+  </table>
   </div>
   
   </div>
    </div>
+   <%@include file="/front/footer.jsp" %>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/hiking.js"></script>
 </center>
 </body>

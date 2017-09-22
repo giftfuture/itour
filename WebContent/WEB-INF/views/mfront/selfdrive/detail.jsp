@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>自驾路线</title>
+<title>自驾-${rt.title }</title>
+<meta name="keywords" content="自驾,自驾游，自行驾车出游，有车一族，骑行川藏,方便自行解决交通的人">
+<meta name="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  

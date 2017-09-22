@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title>徒步旅行-${rt.title }</title>
+<meta http-equiv="keywords" content="徒步,运动,户外,徒步旅行,穷游,徒步中国,徒步旅行从这里开始！">  
+<meta http-equiv="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  
