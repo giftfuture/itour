@@ -34,13 +34,10 @@ html {
     }
 } */
 html,body {font-family:MicrosoftYaHei;padding:0px;font-size:14px;font-size:1.2rem ;margin:0;}
+img {-ms-interpolation-mode: bicubic;}
 .bigImage img{
     opacity: 1;
 }
-　img { max-width: 100%;}
-img, object { max-width: 100%;}
-　img { width: 100%; }
-　img { -ms-interpolation-mode: bicubic; }
 form,h1{margin: 0; padding: 0;}
 h2 {font-size:1.125em;color:#333;font-weight:bold;margin:0;margin-bottom:15px;}
 .warp{padding: 10px;}
@@ -51,7 +48,7 @@ a{text-decoration: none;color:#2786D6;}
 .green{color: #090!important;}
 .orange{color: #F60!important;}
 .datagrid-row-selected a{color: white;}
-
+ol{list-style:none;}
 .ui-form{margin:0;  padding:10px 15px; }  
 .ftitle{font-size:0.875em;  font-weight:bold;  padding:5px 0;  margin-bottom:10px;  border-bottom:1px solid #ccc;  }  
 .fitem{margin-bottom:5px;  }  
@@ -175,4 +172,6 @@ td { text-align: center;}
       border-radius: 5px 5px 5px 5px;
       display:block;
     }
-.bdsharebuttonbox{height:300px;width:40px;float:left;padding-top:30px;margin-left:10px;position:fixed;overflow-y:auto;}
+.bdsharebuttonbox{height:360px;width:40px;float:left;padding-top:30px;margin-left:10px;position:fixed;overflow-y:auto;}
+.bdimgshare-bg{display:none};
+label.bdimgshare-lbl{display:none;}

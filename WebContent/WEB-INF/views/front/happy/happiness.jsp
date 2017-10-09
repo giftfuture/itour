@@ -14,7 +14,7 @@
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
-<table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0" width="61.3%" style="width:61.3%">
+<table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0" width="61.3%" style="margin-top:30px;width:61.3%">
   <tr>
     <td class="STYLE17"><div align="center">回憶幸福~將幸福定格</div></td>
   </tr>
@@ -85,8 +85,9 @@
   <tr>
     <td><img src="${basePath }images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
-    <tr><td><%@include file="/front/footer.jsp"  %>  </td></tr>
+    <tr><td>  </td></tr>
 </table>
+<%@include file="/front/footer.jsp"  %>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/happiness.js"></script>
 </body>
 </html>

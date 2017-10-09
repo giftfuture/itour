@@ -11,25 +11,22 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <meta name="keywords" content="自驾,自驾游，自行驾车出游，有车一族，骑行川藏,方便自行解决交通的人">
 <meta name="description" content="主角旅游网是专门为广大驴友们提供自驾游，自驾游路线，自驾游路线查询，自驾游攻略等一站式全面服务的网站。中国西部最专业最全面的自助游旅游服务提供商">
-<!-- <script type="text/javascript" src="Scripts/flashobject.js"></script>
-<script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
-<link href="css/qzx.css" rel="stylesheet" type="text/css" />
-<link href="css/bodylink.css" rel="stylesheet" type="text/css" /> -->
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
  <center>
+ <div style="z-index:-1; position:relative;">
  <table class="commontb" align="center"><!--  width="72.6%" style="width:72.6%" -->
- <tr><td colspan=3 align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/index-ad/banner.jpg" height="598px" /></td></tr>
+ <tr><td colspan=3 align="center" style="text-align:center;width:100%" width="100%" class="banner">
+ <img width="100%" src="images/index-ad/banner.jpg" /></td></tr>
   <!--DWLayoutTable-->
-  <!-- <tr bgcolor="#FFFFFF">
-    <td width="10" background="images/shadowleft.gif"><img src="images/shadowleft.gif" width="10" height="8" /></td>
-    <td valign="top" class="title"><table   border="0" align="center" cellpadding="0" cellspacing="0">
-    </table></td>
-    <td width="10" background="images/shadowright.gif"><img src="images/shadowright.gif" width="10" height="8" /></td>
-  </tr> -->
   </table>
-  <table class="frametb" align="center" width="61.3%" style="width:61.3%">
+  </div>
+  <div style="position:relative;margin-top:-60;z-index:9999;width:1140">
+  <table class="frametb" align="center">
+    <tr style="width:100%;text-align:center" align="center" width="100%" >
+            <td colspan=3  width="100%" style="width:100%"></td>
+        </tr>
     <tr>
     <td height="106" valign="top" bgcolor="#fafafa" colspan=3>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -54,8 +51,10 @@
  <tbody id="fbcontent">
   </tbody>
    <tr><td colspan=3><ul id='fbpage'></ul></td></tr>
-  <tr><td  colspan=3><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td  colspan=3></td></tr>
 </table>
+</div>
+<%@include file="/front/footer.jsp" %>
 </center>
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/main.js"></script>
 </body>

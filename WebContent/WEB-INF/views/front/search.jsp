@@ -39,15 +39,13 @@
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="766" valign="top">
-    <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
+    <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb" style="width:61.3%">
    	<tbody id="fbcontent"></tbody>
     </table></td>
   </tr>
 </table>
 <center><ul id='fbpage'></ul></center>
-<table class="frametb" align="center" width="61.3%" style="width:61.3%">
- <tr><td><%@include file="/front/footer.jsp" %></td></tr>
-</table>
+<%@include file="/front/footer.jsp" %>
 </center>
 <script type="text/javascript">
 /* 	var travelStyle = '${travelStyle}';

@@ -8,28 +8,29 @@
  var level2Area = '${level2Area}';
 </script>
 <script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script> 
-<div>
-<form name="searchForm" method="post">
-<table class="frametb" align="center" style="width:61.3%;margin-top:30px">
+<div id="footer" style="text-align:center;float:middle;width:100%" width="100%">
+<form name="searchForm" method="post" style="width:100%" width="100%">
+<table class="frametb" align="center" style="margin-top:30px;width:1140;">
   <tr>
     <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>快速搜索</strong></div></td>
     <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  
-      <label><strong>旅行方式：</strong><input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-所有-'">
+      <label><strong>旅行方式：</strong><input name="travel_style" id="travel_style" class="easyui-combobox textbox-prompt" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-所有-'">
        旅游区域： 
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'">
      	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'"/> 
-        假期天数：<a href="javascript:void(0)">
-	   <input class="easyui-combobox" data-options="width:120,minWidth:80,height:22,editable:false,prompt:'-所有-'" name="vacation" id="vacation"/>
-      </a></label></td>
+        假期天数： 
+	   <input class="easyui-combobox" name="vacation" id="vacation" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'" />
+      </label></td>
       <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
   </tr>
 </table>
 </form>
-  <table border="0" align="center" style="margin-top:30;background-color:#fafafa;width:61.3%" cellpadding="5" cellspacing="0"  bgcolor="#fafafa" name="keyfooter">
+  <table border="0" align="center" style="width:1140;margin-top:30;background-color:#fafafa;" cellpadding="5" cellspacing="0"  bgcolor="#fafafa" name="keyfooter">
+  <tbody></tbody>
     </table> 
-<table class="lefttxt " align="center" style="margin-top:30px;width:61.3%">
+<table class="lefttxt " align="center" style="margin-top:30px;width:1140;">
   <tbody><tr>
-    <td valign="middle" height="135" bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
+    <td valign="middle" height="135" bgcolor="#666666"><table width="97%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
           <td width="100%" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">主角旅行 www.iTours.com.cn</div></td>

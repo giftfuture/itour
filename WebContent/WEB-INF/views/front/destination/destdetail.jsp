@@ -9,13 +9,13 @@
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
+ <meta http-equiv="keywords" content="${itemvo.item}${itemvo.alias}${itemvo.shortContent}">  
+ <meta http-equiv="description" content="${itemvo.shortContent}${itemvo.remark}"> 
 </head>
 <body>
 <center>
 <%@include file="/front/header.jsp"  %> 
-<table class="commontb" valign="middle" style="width:72.6%" width="72.6%">
+<table class="commontb" valign="middle" style="margin-top:30px;width:72.6%" width="72.6%">
   <tr style="align:center">
     <td valign="top" style="text-align:center" align="center"><!-- style='weight:100%;height:100%;'  -->
             <div style="float:middle;display:inline-block;valign:top;text-align:center;align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:202px;height:30px;" >旅遊目的地</div>
@@ -93,8 +93,9 @@
           </tr>
 	</table>
 	<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td></td></tr>
 </table>
+<%@include file="/front/footer.jsp" %>
 	</center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destdetail.js"></script>
 </body>

@@ -67,8 +67,9 @@
   <tr>
     <td style="float:left"><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td></td></tr>
 </table>
+<%@include file="/front/footer.jsp" %>
 </body>
 </html>
 

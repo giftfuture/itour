@@ -62,6 +62,13 @@ itour.index = function(){
 		    }
 		},
 		init:function(){
+			var docwidth = document.documentElement.clientWidth;
+			var padwidth= (docwidth-1350)/2;
+			var paddingwidth = (docwidth-1140)/2;
+		/*	$(".commontb").css("padding-left",padwidth);
+			$(".frametb").css("padding-left",paddingwidth);*/
+			$(".commontb").css("width",1350);
+			$(".frametb").css("width",1140);
 			// browserRedirect();
 			//fbpagination(1);<!--padding-left:800px;float:left;-->
 			var curIndex=0;
@@ -83,7 +90,9 @@ itour.index = function(){
 			$(bannerindex).parents("tr").after(exchange);
 			$(bannerindex).parents("tr").next().find("li").addClass("btn-item");
 			$(bannerindex).parents("tr").next().find("li").each(function(i,e){
-				$(this).click(function(){	
+				//$(this).click(function(){
+				$(this).bind("click",function(){
+					console.log(111111111111111);
 		   			//clearInterval(intervalid);
 		   			//intervalid =
 	   				setInterval(_this.changeImg(i,arr,titles,links),parseInt(timeInterval));
@@ -102,7 +111,7 @@ itour.index = function(){
 			})
 			setInterval(function(){
 				curIndex = _this.changeImg(curIndex,arr,titles,links);
-				},parseInt(timeInterval));
+			},parseInt(timeInterval));
 		}
 	}
 return _this;

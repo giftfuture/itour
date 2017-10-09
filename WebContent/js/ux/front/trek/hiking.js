@@ -133,20 +133,22 @@ itour.hiking = function(){
 				});
 			},
 			addFavorite:function () {
-				var url = window.location;
+				var url = encodeURI(window.location);
 				var title = document.title;
 				//var ua = navigator.userAgent.toLowerCase();window.external.ImportExportFavorites(true,)
 				var ctrl = (navigator.userAgent.toLowerCase()).indexOf('mac') != -1 ? 'Command/Cmd': 'CTRL';
 				try{
-					if (document.all) { //IE类浏览器
+					console.log(navigator.userAgent.toLowerCase());
+					if (document.all.length){ //IE类浏览器
 						try {
+							//console.log(url+"   "+title);
 							window.external.addFavorite(url	,title);
 							//window.external.ImportExportFavorites(true);
-						}
-						catch (e){
+						}catch (e){
+							console.log(e);
 							try{
 								window.external.toString(); //360浏览器不支持window.external，无法收藏
-								window.alert("国内开发的360浏览器等不支持主动加入收藏。\n您可以尝试通过浏览器菜单栏 或快捷键 ctrl+D 试试。");
+								window.alert("国内开发的浏览器等不支持主动加入收藏。\n您可以尝试通过浏览器菜单栏 或快捷键 ctrl+D 试试。");
 							}
 							catch (e){
 								window.external.addToFavoritesBar(url,title);  //IE8
@@ -159,8 +161,7 @@ itour.hiking = function(){
 					}else{
 						alert('您可以尝试通过快捷键' + ctrl + ' + D 加入到收藏夹~');
 					}
-				}
-				catch (e){
+				}catch (e){
 					window.alert("因为IE浏览器存在bug，添加收藏失败！\n解决办法：在注册表中查找\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n将 C:\\WINDOWS\\system32\\shdocvw.dll 改为 C:\\WINDOWS\\system32\\ieframe.dll ");
 				}
 			},ajaxSubmit:function (form,option){
@@ -305,6 +306,19 @@ itour.hiking = function(){
 		        window.open(_shareUrl,'width='+_width+',height='+_height+',top='+(screen.height-_height)/2+',left='+(screen.width-_width)/2+',toolbar=no,menubar=no,scrollbars=no,resizable=1,location=no,status=0');   
 		 }, 
 		init:function(){
+			var docwidth = document.documentElement.clientWidth;
+			var paddingwidth = (docwidth-1140)/2;
+			$("#main-content").css("padding-left",paddingwidth);
+			$("#main-content").css("width",1140);
+			//$("#tab-container").css("padding-left",paddingwidth);
+			$("#need-know").css("padding-left",paddingwidth);
+			$("#feed-back").css("padding-left",paddingwidth);
+			
+			$("#main-content").css("padding-right",paddingwidth);
+			//$("#tab-container").css("padding-right",paddingwidth);
+			$("#need-know").css("padding-right",paddingwidth);
+			$("#feed-back").css("padding-right",paddingwidth);
+			//$("#footer").css("padding-left",paddingwidth);
 			$("input[name='route_checkall']").click(function(){
 				if($(this).attr("checked")){
 					_this.checkedAll("breakfast");

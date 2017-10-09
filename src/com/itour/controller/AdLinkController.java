@@ -69,7 +69,7 @@ public class AdLinkController extends BaseController {
 	private LogOperationService logOperationService;
 	
 	@ResponseBody
-	@RequestMapping(value="/allAdLink", method = RequestMethod.POST)
+	@RequestMapping(value="/allAdLink")
 	public String allAdLink(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();
 		//List<AdLink> allAreas = Lists.newArrayList();
@@ -99,7 +99,7 @@ public class AdLinkController extends BaseController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/allFootAdLink", method = RequestMethod.POST)
+	@RequestMapping(value="/allFootAdLink")
 	public String allFootAdLink(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();
 		//List<AdLink> allAreas = Lists.newArrayList();
@@ -307,7 +307,6 @@ public class AdLinkController extends BaseController {
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-						OutputStream out = null;
 						List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 						 String picName = "";
 						// String newpicName = "";
@@ -331,16 +330,8 @@ public class AdLinkController extends BaseController {
 						rt.setAdvertise(picName);
 						picName = null;
 						directory = null;
-						//uploadpic = null;
 						rt.setUpdateBy(sessionuser.getId());
 						adLinkService.update(rt);
-						if(out != null){
-							try {
-								out.close();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
 						context.put(SUCCESS, true);
 						context.put("msg", "封面图片上传成功！");
 				}else{
@@ -377,7 +368,7 @@ public class AdLinkController extends BaseController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/footAds",method = RequestMethod.POST) 
+	@RequestMapping(value="/footAds",method={RequestMethod.POST, RequestMethod.GET}) 
 	public String footAds(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		List<AdLink> links = adLinkService.allAdLink(1);
 		return JsonUtils.encode(links);  

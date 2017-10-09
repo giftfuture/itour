@@ -2,6 +2,9 @@ $package('itour.destinations');
 itour.destinations = function(){
 	var _this = {
 		init:function(){
+			var docwidth = document.documentElement.clientWidth;
+			var paddingwidth = (docwidth-1140)/2;
+			//$("ul.menu").css("margin-left",paddingwidth);
 			_this.menuClick();
 		},
 		accordion:function(){

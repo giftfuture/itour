@@ -4,15 +4,12 @@
 <html>
 <head>
 <title>热门旅行路线</title>
-<%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
-<link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
-<link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
+<link rel="stylesheet" href="css/magiczoom.css" type="text/css" media="screen" /> 
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easyzoom.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
@@ -22,6 +19,7 @@
 <script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.swf"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/magiczoom.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -33,7 +31,9 @@
  <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
  <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
  <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
- <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+  <a href="#"  class="bds_fbook" data-cmd="fbook" title="分享到脸书"></a>
+<a href="#"  class="bds_twi" data-cmd="twi" title="分享到twitter"></a></div>  
 <center>
 <table class="commontb" align="center"><!--  width="72.6%" style="width:72.6%"  -->
   <tr>
@@ -163,14 +163,15 @@
       </table>
     <table border="0" cellpadding="2" cellspacing="0" class="f12-gao1" style="width:380;margin-left:20">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width="24" height="24" />
+        <%-- <td><img src="${basePath}images/facebook.png" width="24" height="24" />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td>
-        <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td> --%>
+        <td style="text-align:left;"><img src="${basePath}images/favorite01.png" width="24" height="24" />
         <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">收藏本页</a></td>
-        <td><img src="${basePath}images/print.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td></tr>
+        <%-- <td><img src="${basePath}images/print.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td> --%>
+        </tr>
      <%--  <tr><td><a href="${basePath}hotsight/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>     --%>
           </table>          
          </td></tr>
@@ -184,7 +185,7 @@
 </td></tr></table>
  
 
-<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1" width="61.3%" style="width:61.3%" >
+<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="0" cellspacing="0" >
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight-${alias}#review">整体概览</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hotsight-${alias}#detail-route">详细行程</a></li>
@@ -209,9 +210,9 @@
         </td>
         <c:if test="${not empty rt.routeMap}">
 	        <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
-	            <div class="easyzoom easyzoom--overlay">
-	                <a href="${basePath}${rt.routeMap}">
-	                    <img src="${basePath}${rt.routeMap}" alt="" width="640" height="360" />
+	            <div>
+	                <a href="${basePath}${rt.routeMap}" class="MagicZoom" rel="zoom-position:top">
+	                    <img src="${basePath}${rt.routeMap}" alt="" width="260" height="127"/>
 	                </a>
 	            </div>
 	          </div>
@@ -383,9 +384,9 @@
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">回忆幸福</span></span></span>——将幸福定格</span></td>
   </tr>
   <tr>
-    <td colspan=2 width="1140" style="float:left"><img style="float:left;vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td colspan=2 width="1140" ><img style="float:left;vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
-  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+  <tr><td colspan=2 background="images/frame1-2.gif"> 
                 <table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'> 
                             <tr> 
                               <td valign='top'><table width='100%' border='0' cellspacing='0' cellpadding='20'> 
@@ -427,7 +428,7 @@
                           </table>
    </td></tr>
    <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td colspan=2><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
   </table>
   </div> 

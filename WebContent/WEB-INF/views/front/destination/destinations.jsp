@@ -13,9 +13,9 @@
 <body>
  <%@include file="/front/header.jsp"  %>
 <center>
-<table class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%" >
+<table class="frametb" align="center" style="text-align:center;margin-top:30px;width:72.6%" width="72.6%" >
   <tr>
-    <td width="15.5%" valign="top" style="float:right;">
+    <td class="menutd" width="15.5%" valign="top" style="float:left;">
       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="float:left;">
           <tr>
             <td height="30" valign="top" style="height:auto;" bgcolor="#990000"><!-- padding-left:150 -->
@@ -72,8 +72,9 @@
         </td>
         </tr>
           <tr><td colspan=2><ul id="fbpage"></ul></td></tr>
-  <tr><td colspan=2><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td colspan=2></td></tr>
 </table>
+<%@include file="/front/footer.jsp" %>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
  </center>
 </body>

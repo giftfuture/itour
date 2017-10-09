@@ -51,9 +51,10 @@
   <tr><td></td></tr>
 </table>
 <table  style="width:61.3%" width="61.3%" border="0" cellspacing="0" cellpadding="0">
-<tr><td><%@include file="/front/footer.jsp" %></td></tr>
+<tr><td></td></tr>
 </table>
 </center>
+<%@include file="/front/footer.jsp" %>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/searchRt.js"></script>
 </body>
 </html>

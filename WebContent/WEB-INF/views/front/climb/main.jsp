@@ -15,15 +15,19 @@
 <body>
 <%@include file="/front/header.jsp"  %>
 <center>
+<div style="z-index:-1; position:relative;">
 <table  class="commontb" align="center"><!--  width="72.6%" style="width:72.6%" -->
-   <!-- <tr>
-    <td>  </td>
-  </tr> -->
   <tr>
-    <td colspan=3 align="center" style="text-align:center;width:100%" width="100%"><img src="images/img/gonga-04.jpg" width="100%" height="598px" /></td>
+    <td colspan=3 align="center" style="text-align:center;width:100%" width="100%" class="banner">
+    <img src="images/img/gonga-04.jpg" width="100%" /></td>
   </tr>
    </table>
-  <table class="frametb" align="center" width="61.3%" style="width:61.3%">
+   </div>
+   <div style="position:relative;margin-top:-60;z-index:9999;width:1140">
+  <table class="frametb" align="center">
+    <tr style="width:100%;text-align:center" align="center" width="100%" >
+            <td colspan=3  width="100%" style="width:100%"></td>
+        </tr>
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa" colspan=3>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -48,8 +52,10 @@
  <tbody id="fbcontent">
   </tbody>
   <tr><td colspan=3><ul id='fbpage'></ul></td></tr>
-  <tr><td  colspan=3><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td  colspan=3></td></tr>
 </table>
+</div>
+<%@include file="/front/footer.jsp" %>
 </center>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/main.js"></script>
 

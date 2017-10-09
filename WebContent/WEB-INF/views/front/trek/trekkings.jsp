@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
 <!DOCTYPE html>
-<html>
+<html lang="cn">
 <head>
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
@@ -16,10 +16,9 @@
  <%@include file="/front/header.jsp"  %> 
  <center>
 <table class="commontb" align="center"><!-- width="72.6%" style="width:72.6%" -->
-   <!-- <tr> <td></td> </tr> -->
   <tr>
-    <td align="center" style="text-align:center;width:100%" width="100%">
-          <img width="100%" src="images/banner-trekking.jpg"  height="598px"  />  </td>
+    <td class="banner" align="center" style="text-align:center;width:100%" width="100%">
+          <img width="100%" src="images/banner-trekking.jpg"  />  </td>
   </tr>
   </table>
   <table class="frametb" align="center" width="61.3%" style="width:61.3%">
@@ -43,7 +42,7 @@
   <table class="frametb" align="center" style="width:61.3%">
 <tbody id="fbcontent" width="100%" style="width:100%">
  </tbody>
- <tr><td><ul id="fbpage"></ul></td></tr>
+ <tr><td colspan=3><ul id="fbpage"></ul></td></tr>
 </table>
   <table class="frametb" align="center">
   <tr><td><%@include file="/front/footer.jsp" %></td></tr>

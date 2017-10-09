@@ -44,9 +44,10 @@
 <script type="text/javascript">
 var basePath = '${basePath}'; 
 window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
-"share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},
-"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};
-with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+"share":{},/* "image":{"viewList":["weixin","tsina","qzone","tqq","fbook","twi"],"viewText":"分享到：","viewSize":"16"}, */
+"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq","fbook","twi"]}};
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='itour/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
 </script>
 <base href=" <%=basePath%>">
 <meta charset="UTF-8">
@@ -63,4 +64,5 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 <meta http-equiv="mobile-agent" content="format=html5; url=<%=basePath%>" />
 <meta http-equiv="mobile-agent" content="format=xhtml; url=<%=basePath%>" />
 <s:htmlEscape defaultHtmlEscape="true"></s:htmlEscape>
-<link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
+<link rel="SHORTCUT ICON" href="images/head2016.ico" type="image/x-icon"> 
+<link rel="icon" href="images/head2016.ico" type="image/x-icon">

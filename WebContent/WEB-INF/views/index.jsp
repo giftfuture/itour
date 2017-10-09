@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />
 <link rel="stylesheet" href="${basePath}css/index.css" />
-<script type="text/javascript"src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
+<%-- <script type="text/javascript"src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script> --%>
 <script type="text/javascript"src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript"src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
@@ -29,14 +29,14 @@
 <%@include file="/front/header.jsp"%>
 <center>
 <div style="z-index:-1; position:relative;">
-<table class="commontb" align="center" style="width:72.6%" width="72.6%">
+<table class="commontb" align="center">
   <tr>
 	<td style="width:100%;text-align:center" align="center" width="100%" colspan="2">
-	<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" height="598px" /></a></td>
+	<a target="_blank"><img width="100%" id="banner-index" src="${basePath }images/Route001.jpg" /></a></td>
 </tr>
  </table>
  </div>
-<div style=" position:relative;margin-top:-60;z-index:9999;width:61.3%">
+<div style="position:relative;margin-top:-60;z-index:9999;">
     <table class="frametb" align="center" width="100%" style="width:100%;">
         <tr style="width:100%;text-align:center" align="center" width="100%" >
             <td  width="67.2%" style="width:67.2%"></td>
@@ -74,7 +74,7 @@
 			<td valign="top">&nbsp;</td>
 		</tr> -->
 		<tr style="width:100%;text-align:center" align="center" width="100%" >
-			<td width="67.2%" style="width:67.2%">
+			<td ><!-- width="67.2%" style="width:67.2%" -->
 				<table width="100%" border="0" align="center" cellpadding="15" cellspacing="0" style="width:100%" name="searchRtstb">
 						<tr>
 							<c:if test="${not empty mapvo }">
@@ -99,7 +99,7 @@
 										<td width="100%" colspan=3 style="text-align: left"><a
 											href="${basePath}${fn:split(entry['key'], '#')[3]}" class="STYLE3"><img
 												src="${basePath }${fn:split(entry['key'],'#')[2]}"
-												style="border: none;" border="0px" height="166" width="100%" /></a></td>
+												style="border: none;" border="0px" width="100%" /></a></td>
 									</tr>
 									<c:forEach items="${entry['value']}" var="et">
 										<tr>
@@ -119,8 +119,7 @@
 				</table>
 			</td>
 			<td width="32.8%" style="width:32.8%" valign="top" bgcolor="#f0f0f0">
-				<table width="100%" border="0" align="center" cellpadding="0"
-					cellspacing="0" class="f12-gao1">
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12-gao1">
 					<tr>
 						<td>
 							<table width="100%" border="0" align="center" cellpadding="5"
@@ -136,7 +135,7 @@
 									<tr>
 										<td colspan=2>
 											<a href="${basePath }showhappy-detail-${showhappy.shCode}"><img
-												src="${basePath }${showhappy.cover }" width="100%" height="166" /></a>
+												src="${basePath }${showhappy.cover }" width="100%" /></a>
 										</td>
 									</tr>
 									<tr>
@@ -169,7 +168,7 @@
 						<tr>
 							</c:if>
 							<td><a href="${basePath }destination-detail-${hotvo.alias}"><img src="${basePath}${hotvo.cover}" width="100%"
-								height="168" title="${hotvo.item }" /></a></td>
+								 title="${hotvo.item }" /></a></td>
 							</c:forEach>
 							</c:if>
 						</tr>
@@ -182,9 +181,10 @@
 					</tbody>
 				</table></td>
 		</tr>
-		<tr><td colspan=2><%@include file="/front/footer.jsp"%></td></tr>
+		<tr><td colspan=2></td></tr>
 </table>
 </div>
+<%@include file="/front/footer.jsp"%>
 </center>
 </body>
 </html>

@@ -17,7 +17,7 @@ function ww4(date){
 </head>
 <body>
 <%@include file="/front/header.jsp"  %> 
-<table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
+<table border="0" align="center" width="1140" cellpadding="0" cellspacing="0" style="margin-top:30px;">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"></span></div></td>
   </tr>
@@ -68,8 +68,9 @@ function ww4(date){
  <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
-  <tr><td><%@include file="/front/footer.jsp"  %>  </td></tr>
+  <tr><td>  </td></tr>
 </table>
+<%@include file="/front/footer.jsp"  %>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/sharehappy.js"></script>
 
 </body>

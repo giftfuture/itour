@@ -28,23 +28,22 @@ itour.footer = function(){
 		  }
 		},
 		footAds:function(){
-		/*	  $.ajax({  
+			  /*$.ajax({  
 			        url : basePath+'adLink/footAds',  
 			        async : false,  
 			        method: 'post',
+			        dataType:'json',
 			        success : function(rest){ 
-			        	console.log(rest);
-			            var result = $.parseJSON(rest);// eval('('+rest+")");//转换为json对象 
-			            //console.log(result);     
 			            var html = "<tr bgcolor='#fafafa'>"; 
-			            $(result).each(function(i,e){
-			            	if(i!=0 && (i+1)%5==0){
-			            		html+="</tr><tr bgcolor='#fafafa'>";
-			            	}
-			            	html+=" <td width='210'><a href='"+basePath+e.adlink+"'>"+e.title+"</a></td>";
-			            });
-			            $("table[name='keyfooter']").append(html+"</tr>");
-			        }  
+					     var result = $.parseJSON(rest);
+				            $(result).each(function(i,e){
+				            	if(i!=0 && i%5==0){
+				            		html+="</tr><tr bgcolor='#fafafa'>";
+				            	}
+				            	html+=" <td><a target='_blank' href='"+e.adlink+"'>"+e.title+"</a></td>";
+				            });
+				            $("table[name='keyfooter']").append(html+"</tr>");  
+			        }
 			    });*/
 			  $.post(basePath+'adLink/footAds',{},function(rest){
 				     var html = "<tr bgcolor='#fafafa'>"; 
@@ -55,7 +54,7 @@ itour.footer = function(){
 			            	}
 			            	html+=" <td><a target='_blank' href='"+e.adlink+"'>"+e.title+"</a></td>";
 			            });
-			            $("table[name='keyfooter']").append(html+"</tr>");
+			            $("table[name='keyfooter'] tbody").append(html+"</tr>");
 			  })
 		},
 		init:function(){
@@ -80,7 +79,7 @@ itour.footer = function(){
 		     _this.loadlevel2Area(level1Area);
 		    //console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
 		    $("#vacation").combobox({ 
-		        data:[{'value':'','text':'-所有-'},{'value':'1_5','text':'1-5天'},{'value':'6_9','text':'6-9天'},{'value':'10_15','text':'10-15天'},{'value':'16','text':'16天+'}],
+		        data:[{'value':'-所有-','text':'-所有-'},{'value':'1_5','text':'1-5天'},{'value':'6_9','text':'6-9天'},{'value':'10_15','text':'10-15天'},{'value':'16','text':'16天+'}],
 		        mode:'local',
 		        onLoadSuccess:function(){$(this).combobox('setValue', rcdDays);}
 		    });

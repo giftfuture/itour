@@ -15,7 +15,7 @@
 <body>
 <div >
 <%@include file="/front/header.jsp"  %>
-<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
+<table  class="frametb" align="center" style="margin-top:30px;text-align:center;width:61.3%" width="61.3%">
  <tr><td></td></tr>
   <tr> 
     <td style="text-align:left;float:left" valign="top" colspan="3"><!--  -->
@@ -29,27 +29,17 @@
   </tr>
   <tr><td><input type="hidden" name="scope" value="${scope }"/></td></tr>
     <tr>
-   <%--  <td><span class="STYLE5">${dests}</span></td> --%>
     <td colspan=3 style="text-align:left" name="dests">个目的地 </td>
   </tr>
   <tbody id="fbcontent">
- <%--   <tr>
-  <c:forEach items="${list}" var="dest" varStatus="stat">
-   <td align="center">
-	   	<p><a href="${basePath }destination/detail/${dest.alias}">${dest.item }</a></p>
-	   	<p><a href="${basePath }destination/detail/${dest.alias}"><img src="${basePath}${dest.cover}" width="450" height="309" /></a></p>
-	   	<p style="text-align:left">${dest.shortContent }</p>
-    </td>
-     <c:if test="${stat.index != 0 && stat.index%2==0 }"></tr><tr></c:if>
-  </c:forEach>
-  </tr> --%>
   </tbody>
     <tr><td colspan="3"><ul id="fbpage"></ul></td></tr>
 </table>
 <table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
-  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+  <tr><td></td></tr>
 </table>
 </div>
+<%@include file="/front/footer.jsp" %>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/moredests.js"></script>
 </body>
 </html>

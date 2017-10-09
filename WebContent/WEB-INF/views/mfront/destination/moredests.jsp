@@ -20,11 +20,6 @@
     </td>
   </tr>
 </table>
-<!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
-  <tr>
-    <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>  
-  </tr>
-</table> -->
 <table  class="commontb" align="center" style="width:100%">
   <tr> 
     <td style="text-align:left;float:left" valign="top" colspan=3>

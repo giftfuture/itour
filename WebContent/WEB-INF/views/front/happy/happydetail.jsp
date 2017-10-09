@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
-<table class="" align="center" style="text-align:center" width="61.3%" border="0" cellpadding="0" cellspacing="0">
+<table class="" align="center" style="margin-top:30px;text-align:center" width="61.3%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19">${sh.title }</span></div></td>
   </tr>
@@ -49,10 +49,10 @@
       <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
-  <tr><td><%@include file="/front/footer.jsp"  %></td></tr>
+  <tr><td></td></tr>
     </table> 
 </table>
-
+<%@include file="/front/footer.jsp"  %>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/happydetail.js"></script>
 </body>
 </html>

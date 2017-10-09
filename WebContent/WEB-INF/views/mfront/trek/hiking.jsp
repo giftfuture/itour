@@ -6,15 +6,12 @@
 <title>徒步旅行-${rt.title }</title>
 <meta http-equiv="keywords" content="徒步,运动,户外,徒步旅行,穷游,徒步中国,徒步旅行从这里开始！">  
 <meta http-equiv="description" content="${rt.shortContent }">
-<%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
-<link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
-<link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  
+<link rel="stylesheet" href="cssm/magiczoom.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="${basePath}cssm/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}cssm/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}cssm/ScrollPic.css">
 <script type="text/javascript" src="${basePath}jsm/commons/ScrollPic.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}jsm/plug-in/easyzoom.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/easytab/jquery.easytabs.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/easytab/jquery.hashchange.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/bootstrap/bootstrapv3.js"></script>
@@ -24,6 +21,7 @@
 <script type="text/javascript" src="${basePath}jsm/plug-in/zeroclip/ZeroClipboard.swf"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/pdf/jspdf.min.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/magiczoom.js"></script>
 <script type="text/javascript">
 </script>
 </head>
@@ -34,7 +32,9 @@
  <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
  <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
  <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
- <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+  <a href="#"  class="bds_fbook" data-cmd="fbook" title="分享到脸书"></a>
+<a href="#"  class="bds_twi" data-cmd="twi" title="分享到twitter"></a></div>  
 <center>
 <table class="commontb" align="center" width="100%" style="width:100%;text-align:center;float:middle" >
   <tr>
@@ -159,14 +159,14 @@
       </table>
     <table class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width=" " height=" " />
+        <%-- <td><img src="${basePath}images/facebook.png" width=" " height=" " />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
         <td><img src="${basePath}images/share.png" width=" " height=" " />
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td>
-        <td><img src="${basePath}images/favorite01.png" width=" " height=" " />
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td> --%>
+        <td style="text-align:left;"><img src="${basePath}images/favorite01.png" width=" " height=" " />
         <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">收藏本页</a></td>
-        <td><img src="${basePath}images/print.png" width=" " height=" " />
-        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td>
+        <%-- <td><img src="${basePath}images/print.png" width=" " height=" " />
+        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td> --%>
       </tr>
     </table>
     </td></tr></tbody></table>
@@ -207,9 +207,9 @@
         </td>
         <c:if test="${not empty rt.routeMap}">
 	        <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">行程地图</span><br />
-	            <div class="easyzoom easyzoom--overlay">
-	                <a href="${basePath}${rt.routeMap}">
-	                    <img src="${basePath}${rt.routeMap}" alt="" width="100%" />        
+	            <div>
+	                <a href="${basePath}${rt.routeMap}" class="MagicZoom" rel="zoom-position:top">
+	                    <img src="${basePath}${rt.routeMap}" alt="" width="100%"  height="127"/>        
 	                </a>
 	            </div>
 	          </div>

@@ -9,9 +9,6 @@
 <%@include file="/front/header.jsp"  %>
 <center>
 <table width="72.6%" style="width:72.6%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td> </td>
-  </tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="600"><img src="images/Route001.jpg" width="600" height="338" /></td>

@@ -17,9 +17,9 @@
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'"/></span></p>
          <p style="height:15px">&nbsp;<span style="text-align:left"><strong>二级区域：</strong><input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false,prompt:'-所有-'"/></span> 
          </p>
-        <p style="height:15px"><span style="text-align:left"><strong>假期天数：</strong><a href="javascript:void(0)">
-    <input class="easyui-combobox" data-options="width:120,minWidth:50,height:22,editable:false,prompt:'-所有-'" name="vacation" id="vacation"/>
-      </a></span></p></td>
+        <p style="height:15px"><span style="text-align:left"><strong>假期天数：</strong> 
+    <input class="easyui-combobox" data-options="width:120,minWidth:50,height:22,editable:false,panelHeight:'auto',prompt:'-所有-'" name="vacation" id="vacation"/>
+      </span></p></td>
       <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
   </tr>
 </table>
@@ -28,7 +28,7 @@
    </table>
 <table class="commontb"  align="center" width="100%" style="margin-top:30px;width:100%" data-role="content"  data-fullscreen="true">
   <tbody><tr>
-    <td valign="middle" height="135" bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
+    <td valign="middle" height="135" bgcolor="#666666"><table width="97%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
           <td width="100%" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">主角旅行 www.iTours.com.cn</div></td>
@@ -53,3 +53,35 @@
 </table>
 </div>
 <script type="text/javascript" src="${basePath}jsm/ux/front/footer.js"></script>  
+<script type="text/javascript">
+var ahrefs=document.getElementsByTagName("a");
+var triggerEt = function (obj){
+     //var event = window.event;
+ //event.preventDefault();
+ 
+ if($(obj).attr("href")){window.location.href=$(obj).attr("href");}
+ else if($(obj).attr("onclick")){window.location.href=$(obj).attr("onclick").split('=')[1];}
+ }
+for(var i=0;i<ahrefs.length;i++){ 
+  if(ahrefs[i].addEventListener){
+      //if($(ahrefs[i]).attr("href")){$(ahrefs[i]).on("touchstart",$(ahrefs[i]).attr("href"));}
+     // if($(ahrefs[i]).attr("href")){$(ahrefs[i]).attr("ontouchstart",$(ahrefs[i]).attr("href"));}
+    ahrefs[i].addEventListener("touchstart",triggerEt(ahrefs[i]),false);
+    //ahrefs[i].addEventListener("touchend",triggerEt(ahrefs[i]),false);
+    //ahrefs[i].addEventListener("touchmove",triggerEt(ahrefs[i]),false);
+    ahrefs[i].addEventListener("click",triggerEt(ahrefs[i]),false);
+    // $(ahrefs[i]).on('click',function(){alert("33333333333333");});
+  } 
+ 
+//
+    //ahrefs[i].ontouchstart=function(){ 
+    //    alert(this.getAttribute("href"));
+    //    window.location.href=this.getAttribute("href");   
+    //}
+    //ahrefs[i].addEventListener('touchstart','window.location.href=this.getAttribute("href")');
+};
+//ahrefs[44].ontouchstart=function(){ 
+ //       alert(this.getAttribute("href"));
+ //       window.location.href="http://www.baidu.com";   
+  //  }
+</script>

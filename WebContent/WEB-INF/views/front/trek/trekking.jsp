@@ -12,39 +12,8 @@
 <link href="${basePath}/css/bodylink.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<table class="commontb" align="center">
-   <tr>
-    <td> <%@include file="/front/header.jsp"%></td>
-  </tr>
-<!--<tr>
-    <td width="10" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
-    <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="845" height="40"><p class="righttxt"><strong><font size="+3">Southwest-China-Adventures.com</font> </strong></p></td>
-        <td width="115"><img src="img-test/China.jpg" width="40" height="24" /><img src="img-test/ok.gif" width="31" height="24" /><img src="img-test/Belgium.jpg" width="32" height="24" /></td>
-      </tr>
-    </table></td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
-  </tr> -->
-</table>
-<!-- <table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  DWLayoutTable
-  <tr>
-    <td width="10" height="16" background="image/shadowleft.gif"><img src="image/shadowleft.gif" width="10" height="8" /></td>
-    <td width="758" valign="top" class="title">DWLayoutEmptyCell&nbsp;</td>
-    <td width="218" valign="bottom" class="righttxt">language: English | French </td>
-    <td width="10" background="image/shadowright.gif"><img src="image/shadowright.gif" width="10" height="8" /></td>
-  </tr>
-  <tr>
-    <td background="image/shadowleft.gif">DWLayoutEmptyCell&nbsp;</td>
-    <td colspan="2" valign="top"><table width="960" height="23" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
-      <tr>
-        <td width="623" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE134"><a href="trekking.html">Trekking</a>　 |　 <a href="offroad.html">Off road</a>　| 　 <a href="Classic.html">Classic Tours</a>　  |   　<a href="Customized-Tours.html">Customized Tours </a><a href="http://www.itours.com.cn/booking/booking-swca.php"></a>　| 　<a href="aboutus.html">Why Us</a></div></td>
-      </tr>
-    </table></td>
-    <td background="image/shadowright.gif">DWLayoutEmptyCell&nbsp;</td>
-  </tr>
-</table> -->
+<%@include file="/front/header.jsp"%>
+<center>
 <table  class="commontb" align="center">
   <!--DWLayoutTable-->
   <tr>
@@ -166,32 +135,8 @@
     <img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<%-- <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <!--DWLayoutTable-->
-  <tr>
-    <td width="10" height="16" background="${basePath}images/shadowleft.gif"><img src="${basePath}images/shadowleft.gif" width="10" height="8" /></td>
-    <td width="200" valign="top" class="title"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td valign="bottom"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td width="10" background="${basePath}images/shadowright.gif"><img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
-  </tr>
-  <tr>
-    <td background="${basePath}images/shadowleft.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-    <td colspan="2" valign="top">
-    <table width="100%" height="60" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
-      <tr>
-        <td width="623" height="30" bgcolor="#EFEFEF"><div align="center">Southwest-China-Adventures.com</div></td>
-      </tr>
-      <tr>
-        <td height="30" bgcolor="#EFEFEF" class="TP05"><div align="center"> Add: Huaqiao Building, #15 South Three Sections of Yihuan Road, Chengdu, Sichuan, China<br />
-          Tel: +86-28-85580038 / 85562905 <br />
-          E-mail: olivierwagemans@hotmail.com </div></td>
-      </tr>
-    </table>
-        <br /></td>
-    <td background="${basePath}images/shadowright.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
-  </tr>
-</table> --%>
+</center>
+<center><%@include file="/front/footer.jsp" %></center>
 <script type="text/javascript" src="${basePath}js/ux/front/trek/trekking.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>
